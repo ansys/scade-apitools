@@ -6,10 +6,11 @@ on:
       - "*"
     branches:
       - main
+  workflow_dispatch:
 
 env:
   MAIN_PYTHON_VERSION: '3.7'
-  DOCUMENTATION_CNAME: 'scade.docs.pyansys.com'
+  DOCUMENTATION_CNAME: 'apitools.scade.docs.pyansys.com'
   LIBRARY_NAME: 'ansys-scade-apitools'
   LIBRARY_NAMESPACE: 'ansys.scade.apitools'
 
@@ -23,7 +24,7 @@ jobs:
     name: "Code style"
     runs-on: ubuntu-latest
     steps:
-      - uses: pyansys/actions/code-style@v2
+      - uses: pyansys/actions/code-style@v4
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
@@ -31,7 +32,7 @@ jobs:
     name: "Documentation style"
     runs-on: ubuntu-latest
     steps:
-      - uses: pyansys/actions/doc-style@v2
+      - uses: pyansys/actions/doc-style@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -42,10 +43,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        os: [ubuntu-latest]
+        python-version: ['3.7']
     steps:
-      - uses: pyansys/actions/build-wheelhouse@v2
+      - uses: pyansys/actions/build-wheelhouse@v4
         with:
           library-name: ${{ env.LIBRARY_NAME }}
           library-namespace: ${{ env.LIBRARY_NAMESPACE }}
@@ -54,55 +55,75 @@ jobs:
 
   tests:
     name: "Tests"
-    runs-on: ${{ matrix.os }}
+    # runs-on: ${{ matrix.os }}
+    runs-on: [self-hosted, 'SCADE']
     needs: [smoke-tests]
     strategy:
       matrix:
-       os: [ubuntu-latest, windows-latest]
-       python-version: ['3.7', '3.8', '3.9', '3.10']
+        os: [windows-latest]
+        scade-version: ['23.1']
       fail-fast: false
     steps:
-      - uses: pyansys/actions/tests-pytest@v2
+      - name: "Install Git and clone project"
+        uses: actions/checkout@v3
+    
+      # - uses: pyansys/actions/tests-pytest@v4
+      - uses: ./tests-pytest
         with:
-          pytest-extra-args: "--cov=ansys --cov-report=term --cov-report=html:.cov/html"
+          pytest-extra-args: "--cov=ansys --cov-report=term --cov-branch --cov-report=html:.cov/html"
+          scade-version: ${{ matrix.scade-version }}
 
   doc-build:
     name: "Build documentation"
     runs-on: ubuntu-latest
     needs: [doc-style]
     steps:
-      - uses: pyansys/actions/doc-build@v2
+      - uses: pyansys/actions/doc-build@v4
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-  doc-deploy-dev:
-    name: "Deploy development documentation"
-    runs-on: ubuntu-latest
-    needs: [doc-build]
-    if: github.event_name == 'push'
-    steps:
-      - uses: pyansys/actions/doc-deploy-dev@v2
-        with:
-          cname: ${{ env.DOCUMENTATION_CNAME }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-  doc-deploy-stable:
-    name: "Deploy stable documentation"
-    runs-on: ubuntu-latest
-    needs: [doc-deploy-dev]
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
-    steps:
-      - uses: pyansys/actions/doc-deploy-stable@v2
-        with:
-          cname: ${{ env.DOCUMENTATION_CNAME }}
-          token: ${{ secrets.GITHUB_TOKEN }}
 
   build-library:
     name: "Build library basic example"
     runs-on: ubuntu-latest
-    needs: [tests, doc-deploy-stable]
+    needs: [tests, doc-build]
     steps:
-      - uses: pyansys/actions/build-library@v2
+      - uses: pyansys/actions/build-library@v4
         with:
           library-name: ${{ env.LIBRARY_NAME }}
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
+
+  doc-deploy-dev:
+    name: "Deploy development documentation"
+    # Deploy development only when merging or pushing to the 'main' branch
+    runs-on: ubuntu-latest
+    needs: [build-library]
+    if: github.event_name == 'push' && !contains(github.ref, 'refs/tags')
+    steps:
+      - uses: pyansys/actions/doc-deploy-dev@v4
+        with:
+          doc-artifact-name: 'documentation-html'
+          cname: ${{ env.DOCUMENTATION_CNAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+  
+  release-github:
+    name: "Release to GitHub"
+    runs-on: ubuntu-latest
+    needs: [build-library]
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
+    steps:
+      - uses: pyansys/actions/release-github@v4
+        with:
+          library-name: ${{ env.LIBRARY_NAME }}
+
+  doc-deploy-stable:
+    name: "Deploy stable documentation"
+    # Deploy release documentation when creating a new tag
+    runs-on: ubuntu-latest
+    needs: [release-github]
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
+    steps:
+      - uses: pyansys/actions/doc-deploy-stable@v4
+        with:
+          doc-artifact-name: 'documentation-html'
+          cname: ${{ env.DOCUMENTATION_CNAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -6,7 +6,8 @@ repos:
   - id: black
 
 - repo: https://github.com/pycqa/isort
-  rev: 5.10.1
+  # https://stackoverflow.com/questions/75269700/pre-commit-fails-to-install-isort-5-11-4-with-error-runtimeerror-the-poetry-co/75295105#75295105
+  rev: 5.11.5
   hooks:
   - id: isort
 
@@ -19,6 +20,16 @@ repos:
   rev: v2.1.0
   hooks:
   - id: codespell
+    exclude: >
+        (?x)^(
+            .*\.etp|
+            .*\.vsw|
+            .*\.scade|
+            .*\.xscade|
+            \.tox |
+            tests/resources/.*\.xml
+        )$
+
 
 - repo: https://github.com/pycqa/pydocstyle
   rev: 6.1.1

@@ -1,6 +1,8 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
+import os
 
+from ansys_sphinx_theme import ansys_favicon, get_version_match
 from ansys_sphinx_theme import pyansys_logo_black as logo
 
 # Project information
@@ -14,6 +16,10 @@ html_logo = logo
 html_theme = "ansys_sphinx_theme"
 html_short_title = html_title = "pyscade-apitools"
 
+# multi-version documentation
+cname = os.getenv("DOCUMENTATION_CNAME", "apitools.scade.docs.pyansys.com")
+"""The canonical name of the webpage hosting the documentation."""
+
 # specify the location of your github repo
 html_theme_options = {
     "github_url": "https://github.com/ansys-scade/apitools",
@@ -22,6 +28,11 @@ html_theme_options = {
     "additional_breadcrumbs": [
         ("PyAnsys", "https://docs.pyansys.com/"),
     ],
+    "switcher": {
+        "json_url": f"https://{cname}/versions.json",
+        "version_match": get_version_match(version),
+    },
+    "check_switcher": False,
 }
 
 # Sphinx extensions
@@ -67,9 +78,12 @@ numpydoc_validation_checks = {
     # type, unless multiple values are being returned"
 }
 
+# Favicon
+html_favicon = ansys_favicon
 
 # static path
 html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]

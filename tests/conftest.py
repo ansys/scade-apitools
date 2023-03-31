@@ -1,4 +1,4 @@
-# MIT License
+﻿# MIT License
 #
 # Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
@@ -20,18 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""
-scade.
+"""Unit tests fixtures."""
 
-apitools
-"""
+from pathlib import Path
+from shutil import rmtree
 
-try:
-    import importlib.metadata as importlib_metadata
-except ModuleNotFoundError:
-    import importlib_metadata
+import pytest
 
-# ignore F401: load_project made available for modules, not used here
-from ansys.scade.apitools.auto_scade_env import load_project  # noqa: F401
 
-__version__ = importlib_metadata.version(__name__.replace(".", "-"))
+@pytest.fixture(scope='session')
+def tmpdir():
+    """Create/empty the temporary directory for output files."""
+    path = Path('tests') / 'tmp'
+    try:
+        rmtree(str(path))
+    except FileNotFoundError:
+        pass
+    path.mkdir()
+    return path
