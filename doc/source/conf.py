@@ -38,11 +38,22 @@ html_theme_options = {
 # Sphinx extensions
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx.ext.autodoc.typehints",
     "sphinx.ext.autosummary",
+    "sphinx.ext.napoleon",
     "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
+    # "sphinx_gallery.gen_gallery",
 ]
+
+# Turn on sphinx.ext.autosummary
+autosummary_generate = True
+
+# sphinx_gallery_conf = {
+#     "examples_dirs": "../examples",   # path to your example scripts
+#     "gallery_dirs": "examples",  # path where the gallery generated output will be saved
+# }
 
 # Intersphinx mapping
 intersphinx_mapping = {

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" xmlns:at="unknown_address">
+	<declarations>
+		<Package name="GetJson">
+			<declarations>
+				<Sensor name="noPragma">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/19/5021/59D8/642a9d49eca"/>
+					</pragmas>
+				</Sensor>
+				<Sensor name="pragmaDict">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/1f/5021/59D8/642a9d5e7943"/>
+						<at:Pragma>
+							{&quot;Number&quot;: 42, &quot;bool&quot;: true, &quot;text&quot;: &quot;a\nb&quot;}
+						</at:Pragma>
+					</pragmas>
+				</Sensor>
+				<Sensor name="pragmaList">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/25/5021/59D8/642a9d864096"/>
+						<at:Pragma>
+							[9, 11, 12, 31, 46, 81, 82]
+						</at:Pragma>
+					</pragmas>
+				</Sensor>
+				<Sensor name="wrongPragma">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/37/5021/59D8/642a9f61245b"/>
+						<at:Pragma>
+							json syntax error
+						</at:Pragma>
+					</pragmas>
+				</Sensor>
+				<Sensor name="xmlPragma">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/2a/1F0C/39D4/642c4d1a4643"/>
+						<at:Sensor value="some value"/>
+					</pragmas>
+				</Sensor>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/14/5021/59D8/642a9d28aef" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/15/5021/59D8/642a9d283b1d" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/16/5021/59D8/642a9d284575" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/17/5021/59D8/642a9d2811f9" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+		<Package name="SetJson">
+			<declarations>
+				<Sensor name="pragmaCreate">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/4d/1E32/8554/642aa689304a"/>
+					</pragmas>
+				</Sensor>
+				<Sensor name="pragmaUnchange">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/50/1E32/8554/642aa68965ba"/>
+						<at:Pragma>
+							{&quot;Number&quot;: 42, &quot;bool&quot;: true, &quot;text&quot;: &quot;a\nb&quot;}
+						</at:Pragma>
+					</pragmas>
+				</Sensor>
+				<Sensor name="pragmaChange">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/52/1E32/8554/642aa6893d41"/>
+						<at:Pragma>
+							{&quot;Number&quot;: 31, &quot;text&quot;: &quot;c&quot;}
+						</at:Pragma>
+					</pragmas>
+				</Sensor>
+				<Sensor name="pragmaDelete">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/58/1E32/8554/642aa6bd36e4"/>
+						<at:Pragma>
+							{&quot;Number&quot;: 42, &quot;bool&quot;: true, &quot;text&quot;: &quot;a\nb&quot;}
+						</at:Pragma>
+					</pragmas>
+				</Sensor>
+				<Sensor name="pragmaAlreadyEmpty">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/5e/1E32/8554/642aab3f6a57"/>
+					</pragmas>
+				</Sensor>
+				<Sensor name="xmlPragma">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/30/1F0C/39D4/642c4d241e5b"/>
+						<at:Sensor value="some value"/>
+					</pragmas>
+				</Sensor>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/48/1E32/8554/642aa6896bb3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/49/1E32/8554/642aa6897557" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4a/1E32/8554/642aa6892e23" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4b/1E32/8554/642aa6894b0a" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

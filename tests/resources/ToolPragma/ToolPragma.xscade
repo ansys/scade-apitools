@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" xmlns:tool="unknown_address">
+	<declarations>
+		<Package name="GetKcg">
+			<declarations>
+				<Sensor name="pragmaCName">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/77/1F0C/39D4/642d1e77113a"/>
+						<kcg:Pragma>
+							C:name CName
+						</kcg:Pragma>
+					</pragmas>
+				</Sensor>
+				<Sensor name="noPragma">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/7d/1F0C/39D4/642d1e7f696b"/>
+					</pragmas>
+				</Sensor>
+				<Sensor name="pragmaAdaName">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/83/1F0C/39D4/642d1f047a3b"/>
+						<kcg:Pragma>
+							Ada:name AdaName
+						</kcg:Pragma>
+					</pragmas>
+				</Sensor>
+				<Sensor name="pragmaNames">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/89/1F0C/39D4/642d1f0c5619"/>
+						<kcg:Pragma>
+							C:name CName
+						</kcg:Pragma>
+						<kcg:Pragma>
+							Ada:name AdaName
+						</kcg:Pragma>
+						<kcg:Pragma>
+							Ada:pragma Text pragma Ada
+						</kcg:Pragma>
+					</pragmas>
+				</Sensor>
+				<Type external="imported" name="Scalar">
+					<pragmas>
+						<ed:Type oid="!ed/8c/1F0C/39D4/642d2057316a"/>
+						<kcg:Pragma>
+							C:scalar
+						</kcg:Pragma>
+						<kcg:Pragma>
+							C:initializer 42
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="CAll">
+					<definition>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/8d/1F0C/39D4/642d20724d22"/>
+						<kcg:Pragma>
+							C:name CName
+						</kcg:Pragma>
+						<kcg:Pragma>
+							manifest
+						</kcg:Pragma>
+						<kcg:Pragma>
+							C:scalar
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/6f/1F0C/39D4/642c4e517174" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/70/1F0C/39D4/642c4e513014" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/71/1F0C/39D4/642c4e511766" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/72/1F0C/39D4/642c4e514a4b" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+		<Package name="SetKcg">
+			<declarations>
+				<Type name="PragmaChange">
+					<definition>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a8/1F0C/39D4/642d22196b5d"/>
+						<kcg:Pragma>
+							Ada:name AdaName
+						</kcg:Pragma>
+						<kcg:Pragma>
+							Ada:pragma Ada pragma text
+						</kcg:Pragma>
+						<kcg:Pragma>
+							C:name oldCName
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="PragmaUnchange">
+					<definition>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/ae/1F0C/39D4/642d224c1be4"/>
+						<kcg:Pragma>
+							Ada:name AdaName
+						</kcg:Pragma>
+						<kcg:Pragma>
+							Ada:pragma Ada pragma text
+						</kcg:Pragma>
+						<kcg:Pragma>
+							manifest
+						</kcg:Pragma>
+						<kcg:Pragma>
+							C:name CName
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="PragmaDelete">
+					<definition>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/b4/1F0C/39D4/642d22545fdb"/>
+						<kcg:Pragma>
+							Ada:name AdaName
+						</kcg:Pragma>
+						<kcg:Pragma>
+							Ada:pragma Ada pragma text
+						</kcg:Pragma>
+						<kcg:Pragma>
+							manifest
+						</kcg:Pragma>
+						<kcg:Pragma>
+							C:name CName
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="PragmaCreate">
+					<definition>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/bc/1F0C/39D4/642d226f3115"/>
+					</pragmas>
+				</Type>
+				<Type name="PragmaEmpty">
+					<definition>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/fb/1F0C/39D4/642d91505c8f"/>
+						<kcg:Pragma>
+							Ada:name AdaName
+						</kcg:Pragma>
+						<kcg:Pragma>
+							Ada:pragma Ada pragma text
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/73/1F0C/39D4/642d1e153fbc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/74/1F0C/39D4/642d1e151af7" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/75/1F0C/39D4/642d1e1564ce" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/76/1F0C/39D4/642d1e15a26" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+		<Package name="GetTool">
+			<declarations>
+				<Sensor name="xmlPragma">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/3f/2A50/6E68/642e751c1f63"/>
+						<tool:Sensor value="some value"/>
+					</pragmas>
+				</Sensor>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/46/2A50/6E68/642e752d4186" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/47/2A50/6E68/642e752d4d01" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/48/2A50/6E68/642e752d2bab" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/49/2A50/6E68/642e752d550e" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+		<Package name="SetTool">
+			<declarations>
+				<Sensor name="xmlPragma">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/45/2A50/6E68/642e751f7534"/>
+						<tool:Sensor value="some value"/>
+					</pragmas>
+				</Sensor>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/4a/2A50/6E68/642e754a6eb3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4b/2A50/6E68/642e754a6e88" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4c/2A50/6E68/642e754a1e26" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4d/2A50/6E68/642e754a1a9" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
