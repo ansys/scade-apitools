@@ -30,9 +30,15 @@ Present means scade_env.pyd is accessible from sys.path.
 
 import importlib
 from pathlib import Path
+import platform
 import re
 import sys
-import winreg as reg
+
+if platform.system() == 'Windows':
+    import winreg as reg
+else:
+    # allow importing the file on other systems
+    pass
 
 
 def resolve_venv(home: Path) -> Path:
@@ -49,15 +55,16 @@ def resolve_venv(home: Path) -> Path:
 def get_scade_dirs(min='00.0', max='99.9'):
     """Return the list of SCADE installation directories."""
     names = []
-    for company in 'Esterel Technologies', 'Ansys Inc':
-        hklm = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, 'SOFTWARE\%s\SCADE' % company)
-        for i in range(reg.QueryInfoKey(hklm)[0]):
-            name = reg.EnumKey(hklm, i)
-            try:
-                dir, _ = reg.QueryValueEx(reg.OpenKey(hklm, name), 'InstallDir')
-                names.append((name, dir))
-            except FileNotFoundError:
-                pass
+    if platform.system() == 'Windows':
+        for company in 'Esterel Technologies', 'Ansys Inc':
+            hklm = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, 'SOFTWARE\%s\SCADE' % company)
+            for i in range(reg.QueryInfoKey(hklm)[0]):
+                name = reg.EnumKey(hklm, i)
+                try:
+                    dir, _ = reg.QueryValueEx(reg.OpenKey(hklm, name), 'InstallDir')
+                    names.append((name, dir))
+                except FileNotFoundError:
+                    pass
     dirs = []
     for name, dir in sorted(names, key=lambda x: x[0]):
         if name >= min and name < max:
@@ -119,9 +126,14 @@ def add_scade_to_sys_path():
         sys.path.append(str(_base / 'APIs' / 'Python' / 'lib'))
 
 
-# scade_env.pyd is in <scade installation>/SCADE/bin
-if not importlib.util.find_spec("scade_env"):
-    add_scade_to_sys_path()
+if platform.system() == 'Windows':
+    # scade_env.pyd is in <scade installation>/SCADE/bin
+    if not importlib.util.find_spec("scade_env"):
+        add_scade_to_sys_path()
 
-# ignore F401: load_project made available for modules, not used here
-from scade_env import load_project  # noqa: F401
+    # ignore F401: load_project made available for modules, not used here
+    from scade_env import load_project  # noqa: F401
+else:
+    # allow importing the file on other systems
+    # for documentation generation, for example
+    load_project = None

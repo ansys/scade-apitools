@@ -38,17 +38,25 @@ html_theme_options = {
 # Sphinx extensions
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.autodoc.typehints",
+    # "sphinx.ext.autodoc.typehints",
     "sphinx.ext.autosummary",
     "sphinx.ext.napoleon",
-    "numpydoc",
+    # JH "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     # "sphinx_gallery.gen_gallery",
 ]
 
-# Turn on sphinx.ext.autosummary
-autosummary_generate = True
+# JH # Turn on sphinx.ext.autosummary
+# JH autosummary_generate = True
+autodoc_typehints = 'description'
+# When the documentatino is run on Linux systems
+autodoc_mock_imports = ['scade']
+
+# autoclass_content: keep default
+# autoclass_content = 'both'
+# autodoc_class_signature: can't be used with enums
+# autodoc_class_signature = 'separated'
 
 # sphinx_gallery_conf = {
 #     "examples_dirs": "../examples",   # path to your example scripts
