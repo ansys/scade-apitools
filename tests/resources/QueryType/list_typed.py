@@ -20,47 +20,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Collection of functions for the accessing the expressions."""
+"""List all the typed objects of the loaded projects."""
 
-from enum import Enum
+import scade
+import scade.model.suite as suite
+from scade.model.suite import get_roots as get_sessions
+from scade.model.suite.visitors import Visit
 
-# ignore F401: functions made available for modules, not used here
-from .access import (  # _noqa: F401
-    ActivateNoInitOp,
-    ActivateOp,
-    ArrayOp,
-    BinaryOp,
-    CaseOp,
-    ChgIthOp,
-    ConstValue,
-    DataArrayOp,
-    DataStructOp,
-    Expression,
-    FbyOp,
-    FlattenOp,
-    IdExpression,
-    IfThenElseOp,
-    InitOp,
-    IteratorOp,
-    Label,
-    Last,
-    ListExpression,
-    MakeOp,
-    NAryOp,
-    NumericCastOp,
-    OpCall,
-    PartialIteratorOp,
-    PreOp,
-    Present,
-    PrjDynOp,
-    PrjOp,
-    RestartOp,
-    ScalarToVectorOp,
-    SharpOp,
-    SliceOp,
-    TextExpression,
-    TransposeOp,
-    UnaryOp,
-    accessor,
-)
-from .predef import Eck  # _noqa: F401
+
+def outputln(text):
+    scade.output(text + '\n')
+
+
+class List(Visit):
+    def __init__(self, model: suite.Model):
+        self.visit(model)
+
+    def visit_typed_object(self, typed_object: suite.TypedObject, *args):
+        outputln('("%s", ),' % typed_object.get_full_path())
+
+
+for session in get_sessions():
+    List(session.model)

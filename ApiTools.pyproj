@@ -41,6 +41,7 @@
     <Folder Include="src\ansys\scade\apitools\" />
     <Folder Include="src\ansys\scade\apitools\expr\" />
     <Folder Include="src\ansys\scade\apitools\prop\" />
+    <Folder Include="src\ansys\scade\apitools\query\" />
     <Folder Include="tests\" />
   </ItemGroup>
   <ItemGroup>
@@ -50,12 +51,15 @@
     <Compile Include="src\ansys\scade\apitools\expr\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\prop\pragma.py" />
     <Compile Include="src\ansys\scade\apitools\prop\__init__.py" />
+    <Compile Include="src\ansys\scade\apitools\query\type.py" />
+    <Compile Include="src\ansys\scade\apitools\query\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\__init__.py" />
     <Compile Include="tests\conftest.py" />
     <Compile Include="tests\test_access.py" />
     <Compile Include="tests\test_auto_scade_env.py" />
     <Compile Include="tests\test_metadata.py" />
     <Compile Include="tests\test_pragma.py" />
+    <Compile Include="tests\test_query_type.py" />
     <Compile Include="tests\test_utils.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

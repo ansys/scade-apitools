@@ -47,11 +47,12 @@ extensions = [
     # "sphinx_gallery.gen_gallery",
 ]
 
-# JH # Turn on sphinx.ext.autosummary
-# JH autosummary_generate = True
+# Print the type annotations from the signature in the description only
 autodoc_typehints = 'description'
-# When the documentatino is run on Linux systems
+# When the documentation is run on Linux systems
 autodoc_mock_imports = ['scade']
+# Purpose of this option?
+add_module_names = False
 
 # autoclass_content: keep default
 # autoclass_content = 'both'

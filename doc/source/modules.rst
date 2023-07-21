@@ -7,8 +7,9 @@ Reference
    :toctree: _autosummary
    :recursive:
 
-   expr
-   prop
+   ansys.scade.apitools.expr
+   ansys.scade.apitools.prop
+   ansys.scade.apitools.query
 
 ..
    automodule:: expr.access

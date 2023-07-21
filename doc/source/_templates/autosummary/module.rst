@@ -1,5 +1,7 @@
 {{ fullname | escape | underline}}
 
+.. currentmodule:: {{ module }}
+
 .. automodule:: {{ fullname }}
 
    {% block attributes %}
@@ -56,6 +58,9 @@
    :toctree:
    :recursive:
 {% for item in modules %}
+   {# provide the name in the module's context #}
+   {# activate this option to be consistent with modules, if needed #}
+   {# { item.split('.')[-1] } #}
    {{ item }}
 {%- endfor %}
 {% endif %}

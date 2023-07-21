@@ -70,7 +70,7 @@ def load_session(pathname: Path) -> suite.Session:
     return session
 
 
-def load_project(pathname: Path) -> suite.Session:
+def load_project(pathname: Path) -> project.Project:
     """
     Load a Scade project in a separate environment.
 

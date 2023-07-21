@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="Types">
+			<declarations>
+				<Type external="imported" name="ImportedScalar">
+					<pragmas>
+						<ed:Type oid="!ed/18/4F8C/79D4/642edf491027"/>
+						<kcg:Pragma>
+							C:scalar
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type external="imported" name="Imported">
+					<pragmas>
+						<ed:Type oid="!ed/19/4F8C/79D4/642edf57588a"/>
+					</pragmas>
+				</Type>
+				<Type name="ArrayScalar">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="2"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1a/4F8C/79D4/642edfdd5551"/>
+					</pragmas>
+				</Type>
+				<Type name="Structure">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="f1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2c/4F8C/79D4/642ee0154de0"/>
+									</pragmas>
+								</Field>
+								<Field name="f2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/35/4F8C/79D4/642ee0951cfb"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2b/4F8C/79D4/642ee00c6cbe"/>
+					</pragmas>
+				</Type>
+				<Type name="ArrayStruct">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Structure"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="3"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3e/4F8C/79D4/642ee0aafee"/>
+					</pragmas>
+				</Type>
+				<Type name="Matrix">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Vector"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="3"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/50/4F8C/79D4/642ee0c3bbb"/>
+					</pragmas>
+				</Type>
+				<Type name="Vector">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Real"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="2"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/51/4F8C/79D4/642ee0ce1052"/>
+					</pragmas>
+				</Type>
+				<Type name="Real">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/63/4F8C/79D4/642ee0f66263"/>
+					</pragmas>
+				</Type>
+				<Type name="Speed">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="Real"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/7d/4F8C/79D4/642ee10d3526"/>
+					</pragmas>
+				</Type>
+				<Type name="Enumeration">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="BLUE">
+									<pragmas>
+										<ed:Value oid="!ed/c2/4F8C/79D4/642eef70b52"/>
+									</pragmas>
+								</Value>
+								<Value name="WHITE">
+									<pragmas>
+										<ed:Value oid="!ed/c3/4F8C/79D4/642eef774517"/>
+									</pragmas>
+								</Value>
+								<Value name="RED">
+									<pragmas>
+										<ed:Value oid="!ed/c4/4F8C/79D4/642eef7b7e99"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/c1/4F8C/79D4/642eef643474"/>
+					</pragmas>
+				</Type>
+				<Type name="Color">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="Enumeration"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/cf/4F8C/79D4/642eefcedf6"/>
+					</pragmas>
+				</Type>
+				<Type name="Sized">
+					<definition>
+						<SizedType constraint="signed">
+							<size>
+								<ConstValue value="32"/>
+							</size>
+						</SizedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/106/4F8C/79D4/642fd6a75a4c"/>
+					</pragmas>
+				</Type>
+				<Type name="ArrayArray">
+					<definition>
+						<Table>
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="char"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<ConstValue value="3"/>
+									</size>
+								</Table>
+							</type>
+							<size>
+								<ConstValue value="2"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/12e/4F8C/79D4/6430082f398c"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/14/4F8C/79D4/642edf1a6346" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/15/4F8C/79D4/642edf1a7c37" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/16/4F8C/79D4/642edf1a6ce7" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/17/4F8C/79D4/642edf1a1" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+		<Package name="Typed">
+			<declarations>
+				<Open>
+					<package>
+						<PackageRef name="Types"/>
+					</package>
+					<pragmas>
+						<ed:Open oid="!ed/b7/4F8C/79D4/642ee30b3097"/>
+					</pragmas>
+				</Open>
+				<Sensor name="anonymousArray">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int8"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="1"/>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/8b/4F8C/79D4/642ee14d46c2"/>
+					</pragmas>
+				</Sensor>
+				<Sensor name="anonymousStructure">
+					<type>
+						<Struct>
+							<fields>
+								<Field name="f1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/aa/4F8C/79D4/642ee1c94ef8"/>
+									</pragmas>
+								</Field>
+								<Field name="f2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/ab/4F8C/79D4/642ee1c9782f"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/a1/4F8C/79D4/642ee17168c0"/>
+					</pragmas>
+				</Sensor>
+				<Sensor name="predefined">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int8"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/ac/4F8C/79D4/642ee2ea15b8"/>
+					</pragmas>
+				</Sensor>
+				<Sensor name="speed">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Speed"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/ad/4F8C/79D4/642ee2f721c1"/>
+					</pragmas>
+				</Sensor>
+				<Sensor name="color">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Color"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/c5/4F8C/79D4/642eefc277d1"/>
+					</pragmas>
+				</Sensor>
+				<Sensor name="noType">
+					<type>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/119/4F8C/79D4/642fe433839"/>
+					</pragmas>
+				</Sensor>
+				<Operator kind="node" name="O">
+					<sizeParameters>
+						<SizeParameter name="N">
+							<pragmas>
+								<ed:SizeParameter oid="!ed/e1/4F8C/79D4/642fd46b1d5"/>
+							</pragmas>
+						</SizeParameter>
+					</sizeParameters>
+					<inputs>
+						<Variable name="sized">
+							<type>
+								<SizedType constraint="signed">
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</SizedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/e2/4F8C/79D4/642fd60d1257"/>
+							</pragmas>
+						</Variable>
+						<Variable name="generic">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/11a/4F8C/79D4/642fe6c94ff8"/>
+							</pragmas>
+						</Variable>
+						<Variable name="array">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="'T"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/124/4F8C/79D4/642fe6de79fe"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<pragmas>
+						<ed:Operator oid="!ed/df/4F8C/79D4/642fd45c55ef" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+							<diagrams>
+								<NetDiagram name="O" landscape="true" format="A4 (210 297)" oid="!ed/e0/4F8C/79D4/642fd45c2574"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/87/4F8C/79D4/642ee1344f5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/88/4F8C/79D4/642ee1346f4b" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/89/4F8C/79D4/642ee134641a" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/8a/4F8C/79D4/642ee1345ea8" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

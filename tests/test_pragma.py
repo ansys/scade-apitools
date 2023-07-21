@@ -23,14 +23,10 @@
 """
 Test suite for pragma.py.
 
-It is not possible to test exhaustively the module, since it depends on
-the way the Python environment is setup and on the various SCADE
-installations available on the computer.
-
 Test strategy:
 
 * Read existing pragmas and compare the values to the expected ones.
-* Set a pragma, save/load the file and make sure the values are correct.
+* Set a pragma and verify its value is set as expected.
 """
 
 import pytest

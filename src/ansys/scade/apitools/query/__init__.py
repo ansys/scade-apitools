@@ -20,47 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Collection of functions for the accessing the expressions."""
-
-from enum import Enum
+"""Collection of queries for SCADE Suite models."""
 
 # ignore F401: functions made available for modules, not used here
-from .access import (  # _noqa: F401
-    ActivateNoInitOp,
-    ActivateOp,
-    ArrayOp,
-    BinaryOp,
-    CaseOp,
-    ChgIthOp,
-    ConstValue,
-    DataArrayOp,
-    DataStructOp,
-    Expression,
-    FbyOp,
-    FlattenOp,
-    IdExpression,
-    IfThenElseOp,
-    InitOp,
-    IteratorOp,
-    Label,
-    Last,
-    ListExpression,
-    MakeOp,
-    NAryOp,
-    NumericCastOp,
-    OpCall,
-    PartialIteratorOp,
-    PreOp,
-    Present,
-    PrjDynOp,
-    PrjOp,
-    RestartOp,
-    ScalarToVectorOp,
-    SharpOp,
-    SliceOp,
-    TextExpression,
-    TransposeOp,
-    UnaryOp,
-    accessor,
+from .type import (  # _noqa: F401
+    get_cell_type,
+    get_leaf_alias,
+    get_leaf_type,
+    get_type_name,
+    is_array,
+    is_enum,
+    is_imported,
+    is_predefined,
+    is_scalar,
+    is_structure,
 )
-from .predef import Eck  # _noqa: F401
