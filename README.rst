@@ -1,10 +1,14 @@
 Ansys SCADE API Tools
 =====================
-|ansys-scade| |python| |pypi| |GH-CI| |codecov| |MIT| |black| |doc|
+|pyansys| |python| |pypi| |GH-CI| |codecov| |MIT| |black| |doc|
 
-.. |ansys-scade| image:: https://img.shields.io/badge/Ansys-SCADE-ffb71b?labelColor=black&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC
+..
+   |ansys-scade| image:: https://img.shields.io/badge/Ansys-SCADE-ffb71b?labelColor=black&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC
    :target: https://github.com/ansys-scade/
    :alt: Ansys SCADE
+
+.. |pyansys| image:: https://img.shields.io/badge/Py-Ansys-ffc107.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAABDklEQVQ4jWNgoDfg5mD8vE7q/3bpVyskbW0sMRUwofHD7Dh5OBkZGBgW7/3W2tZpa2tLQEOyOzeEsfumlK2tbVpaGj4N6jIs1lpsDAwMJ278sveMY2BgCA0NFRISwqkhyQ1q/Nyd3zg4OBgYGNjZ2ePi4rB5loGBhZnhxTLJ/9ulv26Q4uVk1NXV/f///////69du4Zdg78lx//t0v+3S88rFISInD59GqIH2esIJ8G9O2/XVwhjzpw5EAam1xkkBJn/bJX+v1365hxxuCAfH9+3b9/+////48cPuNehNsS7cDEzMTAwMMzb+Q2u4dOnT2vWrMHu9ZtzxP9vl/69RVpCkBlZ3N7enoDXBwEAAA+YYitOilMVAAAAAElFTkSuQmCC
+   :target: https://docs.pyansys.com/
 
 .. |python| image:: https://img.shields.io/pypi/pyversions/ansys-scade-apitools?logo=pypi
    :target: https://pypi.org/project/ansys-scade-apitools/
@@ -14,11 +18,11 @@ Ansys SCADE API Tools
    :target: https://pypi.org/project/ansys-scade-apitools
    :alt: PyPI
 
-.. |codecov| image:: https://codecov.io/gh/ansys-scade/apitools/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/ansys-scade/apitools
+.. |codecov| image:: https://codecov.io/gh/ansys/scade-apitools/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/ansys/scade-apitools
    :alt: Codecov
 
-.. |GH-CI| image:: https://github.com/ansys-scade/apitools/actions/workflows/ci_cd.yml/badge.svg
+.. |GH-CI| image:: https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml/badge.svg
    :target: https://github.com/ansys-scade/apitools/actions/workflows/ci_cd.yml
 
 .. |MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
@@ -42,13 +46,14 @@ Documentation and Issues
 ------------------------
 For more information, see the `Documentation page`_.
 
-Feel free to post issues and other questions at `apitools Issues`_. This is the best place to post questions and code.
+Feel free to post issues and other questions at `apitools Issues`_.
+This is the best place to post questions and code.
 
 Installation
 ------------
-The ``ansys-scade-apitools`` package supports only the versions of Python delivered with Ansys SCADE:
+The ``ansys-scade-apitools`` package supports only the versions of Python delivered with
+Ansys SCADE, starting from 2021 R2:
 
-* 2019 R2 -> 2021 R1: Python 3.4
 * 2021 R2 -> 2023 R1: Python 3.7
 * 2023 R2 ->: Python 3.10
  
@@ -64,12 +69,6 @@ have the latest version of `pip`_. To do so, run:
 
     python -m pip install -U pip
 
-Or, for Python 3.4:
-
-.. code:: bash
-
-    python -m pip install -U pip==19.1.1
-
 Then, you can simply execute:
 
 .. code:: bash
@@ -79,9 +78,8 @@ Then, you can simply execute:
 For developers
 ^^^^^^^^^^^^^^
 
-Installing Pyscade apitools in developer mode allows
+Installing Ansys SCADE apitools in developer mode allows
 you to modify the source and enhance it.
-This mode is not compatible with Python 3.4.
 
 Before contributing to the project, please refer to the `PyAnsys Developer's guide`_. You will 
 need to follow these steps:
@@ -90,11 +88,12 @@ need to follow these steps:
 
    .. code:: bash
 
-      git clone https://github.com/ansys-scade/apitools
+      git clone https://github.com/ansys/scade-apitools
 
 #. Create a fresh-clean Python 3.7 environment and activate it:
 
-   It is advised to use the interpreter delivered with Ansys SCADE, for example ``C:\Program Files\ANSYS Inc\v231\SCADE\contrib\Python37\python.exe``.
+   It is advised to use the interpreter delivered with Ansys SCADE, for example
+   ``C:\Program Files\ANSYS Inc\v231\SCADE\contrib\Python37\python.exe``.
 
    .. code:: bash
 
@@ -213,8 +212,7 @@ the building requirements and then executing the build module:
 .. _pytest: https://docs.pytest.org/en/stable/
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 .. _tox: https://tox.wiki/
-.. _ansys-scade: https://github.com/ansys-scade
-.. _apitools Issues: https://github.com/ansys-scade/apitools/issues
+.. _apitools Issues: https://github.com/ansys/scade-apitools/issues
 .. _Git: https://git-scm.com
 .. _Documentation page: https://apitools.scade.docs.pyansys.com/
-.. _wheel file: https://github.com/ansys-scade/apitools/releases
+.. _wheel file: https://github.com/ansys/scade-apitools/releases
