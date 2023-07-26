@@ -24,9 +24,9 @@ setup(
         "importlib-metadata >= 1.0; python_version < '3.8'",
         "importlib-metadata >= 4.0; python_version >= '3.8'",
     ],
-    keywords=["scade", "git", "merge"],
-    # only 3.4 and 3.7. 3.10 in a near future, with 2023 R2
-    python_requires=">=3.4, !=3.5.*, !=3.6.*, !=3.8.*, !=3.9.*, <3.11",
+    keywords=["scade", "api", "tools", "library"],
+    # only 3.7. and 3.10
+    python_requires=">=3.7, !=3.8.*, !=3.9.*, <3.11",
     packages=find_namespace_packages(where="src", include="ansys*"),
     package_dir={"": "src"},
 )
