@@ -1,9 +1,14 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 import os
+import sys
 
 from ansys_sphinx_theme import ansys_favicon, get_version_match
 from ansys_sphinx_theme import pyansys_logo_black as logo
+from sphinx.highlighting import lexers
+
+sys.path.append('.')
+from _lexers.swan import SwanLexer
 
 # Project information
 project = "ansys-scade-apitools"
@@ -97,6 +102,9 @@ numpydoc_validation_checks = {
     "RT02",  # The first line of the Returns section should contain only the
     # type, unless multiple values are being returned"
 }
+
+# lexer for Scade
+lexers['swan'] = SwanLexer(startinline=True)
 
 # Favicon
 html_favicon = ansys_favicon

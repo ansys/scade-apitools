@@ -112,14 +112,14 @@ def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
 
     Example:
 
-    .. code::
+    .. code-block:: swan
 
-        types:
+        type:
             Real = float32;
             Vector = Real ^2;
             Matrix = Vector ^3;
 
-    ``get_cell_type applied`` to ``Matrix`` returns ``Vector``
+    ``get_cell_type`` applied to ``Matrix`` returns ``Vector``
     if ``skip_alias`` is ``False`` otherwise ``Real``.
     """
     # get the underlying array type
