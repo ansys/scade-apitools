@@ -23,7 +23,7 @@ Ansys SCADE API Tools
    :alt: Codecov
 
 .. |GH-CI| image:: https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml/badge.svg
-   :target: https://github.com/ansys-scade/apitools/actions/workflows/ci_cd.yml
+   :target: https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml
 
 .. |MIT| image:: https://img.shields.io/badge/License-MIT-yellow.svg
    :target: https://opensource.org/licenses/MIT
