@@ -24,6 +24,7 @@
 
 import inspect
 from pathlib import Path
+import platform
 from typing import Dict
 
 if platform.system() == 'Windows':
