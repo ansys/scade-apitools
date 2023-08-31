@@ -30,10 +30,10 @@ import scade_env
 
 
 def get_scade_home() -> Path:
-    r"""
+    """
     Return the SCADE installation directory.
 
-    For example: C:\Program Files\ANSYS Inc\v232\SCADE
+    For example: C:/Program Files/ANSYS Inc/v232/SCADE
     """
     # we can't rely on the usual variables SCADE and ETBIN which are not set
     # when the script is run through python.exe instead od scade.exe -script.
