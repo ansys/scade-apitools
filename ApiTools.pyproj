@@ -40,6 +40,7 @@
     <Folder Include="src\ansys\scade\" />
     <Folder Include="src\ansys\scade\apitools\" />
     <Folder Include="src\ansys\scade\apitools\expr\" />
+    <Folder Include="src\ansys\scade\apitools\info\" />
     <Folder Include="src\ansys\scade\apitools\prop\" />
     <Folder Include="src\ansys\scade\apitools\query\" />
     <Folder Include="tests\" />
@@ -49,6 +50,8 @@
     <Compile Include="src\ansys\scade\apitools\expr\access.py" />
     <Compile Include="src\ansys\scade\apitools\expr\predef.py" />
     <Compile Include="src\ansys\scade\apitools\expr\__init__.py" />
+    <Compile Include="src\ansys\scade\apitools\info\install.py" />
+    <Compile Include="src\ansys\scade\apitools\info\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\prop\pragma.py" />
     <Compile Include="src\ansys\scade\apitools\prop\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\query\type.py" />
@@ -57,6 +60,7 @@
     <Compile Include="tests\conftest.py" />
     <Compile Include="tests\test_access.py" />
     <Compile Include="tests\test_auto_scade_env.py" />
+    <Compile Include="tests\test_install.py" />
     <Compile Include="tests\test_metadata.py" />
     <Compile Include="tests\test_pragma.py" />
     <Compile Include="tests\test_query_type.py" />

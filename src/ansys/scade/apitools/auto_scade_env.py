@@ -85,8 +85,8 @@ def get_python_scade_versions(python_version: str):
     return interval
 
 
-def get_scade_home(version: str) -> Path:
-    """Return the most recent version of SCADE compatible with the input Pyython version."""
+def get_compatible_scade_home(version: str) -> Path:
+    """Return the most recent version of SCADE compatible with the input Python version."""
     interval = get_python_scade_versions(version)
     if interval:
         dirs = get_scade_dirs(*interval)
@@ -114,7 +114,7 @@ def add_scade_to_sys_path():
         # last chance, try the most recent installation of SCADE
         major, minor, _, _, _ = sys.version_info
         version = '%d.%d' % (major, minor)
-        home = get_scade_home(version)
+        home = get_compatible_scade_home(version)
 
     if not home:  # pragma no cover
         # wrong installation or SCADE not available on the computer
