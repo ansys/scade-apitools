@@ -8,6 +8,7 @@ Reference
    :recursive:
 
    ansys.scade.apitools.expr
+   ansys.scade.apitools.info
    ansys.scade.apitools.prop
    ansys.scade.apitools.query
 

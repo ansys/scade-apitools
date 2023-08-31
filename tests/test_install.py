@@ -21,45 +21,42 @@
 # SOFTWARE.
 
 """
-Test suite for auto_scade_env.py.
-
-It is not possible to test exhaustively the module, since it depends on
-the way the Python environment is setup and on the various SCADE
-installations available on the computer.
+Test suite for install.py.
 
 Test strategy:
-* Make sure we can import SCADE modules.
-* Make sure the individual functions return some value and don't raise
-  any exception.
+
+The test can be ruen with different releases of SCADE: The values can't be compared
+to predefined ones.
+The tests make sure the functions execute properly and return consistent data.
 """
 
-import pytest
+from pathlib import Path
+import sys
 
-# shall modify sys.path to access SCADE APIs
-import ansys.scade.apitools as apitools
-
-
-def test_auto_scade_env():
-    # shall be able to import scade.model.project.stdproject
-    import scade.model.project.stdproject as std
-
-    assert std.get_roots
+import ansys.scade.apitools.info as info
+import ansys.scade.apitools.info.install as install
 
 
-@pytest.mark.parametrize(
-    'tc',
-    [
-        (['2.7', '3.8'], False),
-        (['3.4', '3.7', '3.10'], True),
-    ],
-)
-def test_get_compatible_scade_home(tc):
-    # make sure at least one SCADE version is available for one of 3.4, 3.7, 3.10
-    # and not available for a few other versions
-    versions, status = tc
-    homes = []
-    for version in versions:
-        home = apitools.auto_scade_env.get_compatible_scade_home(version)
-        if home:
-            homes.append(home)
-    assert (len(homes) != 0) == status
+def test_get_scade_home():
+    home = info.get_scade_home()
+    # home must not be None and must contain 'SCADE'
+    assert Path(home / 'SCADE').exists()
+
+
+def test_get_scade_properties():
+    props = install.get_scade_properties()
+    # make sure some properties exist
+    assert props['INSTALL_FOLDER']
+
+
+def test_get_scade_version():
+    version = info.get_scade_version()
+    # 3 digits
+    assert version > 100 and version < 999
+    # check the consistency of the value is consistent, for example by
+    # the version of the interpreter
+    _, minor, _, _, _ = sys.version_info
+    if minor == 7:
+        assert version < 232
+    else:
+        assert version >= 232
