@@ -50,10 +50,12 @@ def test_get_scade_properties():
 
 
 def test_get_scade_version():
+    version = info.get_scade_version()
+    # 3 digits
+    assert version > 100 and version < 999
     # check the consistency of the value is consistent, for example by
     # the version of the interpreter
     _, minor, _, _, _ = sys.version_info
-    version = int(info.get_scade_version())
     if minor == 7:
         assert version < 232
     else:

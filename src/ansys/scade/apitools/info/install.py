@@ -56,4 +56,4 @@ def get_scade_properties() -> Dict[str, str]:
 def get_scade_version() -> int:
     """Return the version of SCADE, for example 232 for 2023 R2."""
     props = get_scade_properties()
-    return props['SCADE_STUDIO_NUMBER'][:3]
+    return int(props['SCADE_STUDIO_NUMBER'][:3])
