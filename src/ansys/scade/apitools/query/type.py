@@ -119,8 +119,33 @@ def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
             Vector = Real ^2;
             Matrix = Vector ^3;
 
-    ``get_cell_type`` applied to ``Matrix`` returns ``Vector``
-    if ``skip_alias`` is ``False`` otherwise ``Real``.
+    ``get_cell_type`` applied to Matrix returns Vector
+    if skip_alias is False otherwise Real.
+
+    ..
+        ``get_cell_type`` applied to ``Matrix`` returns ``Vector``
+        if ``skip_alias`` is ``False`` otherwise ``Real``.
+
+    ..
+       container:: twocol
+
+        .. container:: leftside
+
+            .. code-block:: python
+                :caption: Direct type
+
+                cell_type = get_cell_type(matrix_type, False)
+                print(cell_type.name)
+                Vector
+
+        .. container:: rightside
+
+            .. code-block:: python
+                :caption: Indirect type
+
+                cell_type = get_cell_type(matrix_type, True)
+                print(cell_type.name)
+                Real
     """
     # get the underlying array type
     leaf_type = get_leaf_type(type_)
