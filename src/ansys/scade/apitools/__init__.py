@@ -31,7 +31,7 @@ try:
 except ModuleNotFoundError:
     import importlib_metadata
 
-# ignore F401: load_project made available for modules, not used here
-from ansys.scade.apitools.auto_scade_env import load_project  # noqa: F401
+# ignore F401: declare_project made available for modules, not used here
+from ansys.scade.apitools.auto_scade_env import declare_project  # noqa: F401
 
 __version__ = importlib_metadata.version(__name__.replace(".", "-"))

@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.33027.164
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ApiTools", "ApiTools.pyproj", "{44133FA6-3E12-4E84-9E77-478B46A4B35D}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "update_doc", "tools\update_doc\update_doc.pyproj", "{337183EE-0B53-41DD-A441-92ECBD605810}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{44133FA6-3E12-4E84-9E77-478B46A4B35D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44133FA6-3E12-4E84-9E77-478B46A4B35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{337183EE-0B53-41DD-A441-92ECBD605810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{337183EE-0B53-41DD-A441-92ECBD605810}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

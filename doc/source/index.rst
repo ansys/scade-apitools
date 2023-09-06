@@ -13,7 +13,9 @@ API Tools
    :maxdepth: 2
    :caption: Contents:
 
+   scripting
    modules
+   examples
 
 Indices and tables
 ==================

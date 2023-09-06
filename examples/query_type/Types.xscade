@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="Types">
+			<declarations>
+				<Type external="imported" name="ImportedScalar">
+					<pragmas>
+						<ed:Type oid="!ed/6f/2A25/85F4/64f1d90a7394"/>
+						<kcg:Pragma>
+							C:scalar
+						</kcg:Pragma>
+					</pragmas>
+				</Type>
+				<Type name="Structure">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="f1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/73/2A25/85F4/64f1d90a62c"/>
+									</pragmas>
+								</Field>
+								<Field name="f2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/74/2A25/85F4/64f1d90a4a33"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/72/2A25/85F4/64f1d90a2f43"/>
+					</pragmas>
+				</Type>
+				<Type name="Matrix">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Vector"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="3"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/76/2A25/85F4/64f1d90a4621"/>
+					</pragmas>
+				</Type>
+				<Type name="Vector">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Real"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="2"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/77/2A25/85F4/64f1d90a692d"/>
+					</pragmas>
+				</Type>
+				<Type name="Real">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/78/2A25/85F4/64f1d90a5b9e"/>
+					</pragmas>
+				</Type>
+				<Type name="Speed">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="Real"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/79/2A25/85F4/64f1d90a7083"/>
+					</pragmas>
+				</Type>
+				<Type name="Enumeration">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="BLUE">
+									<pragmas>
+										<ed:Value oid="!ed/7b/2A25/85F4/64f1d90a6b9b"/>
+									</pragmas>
+								</Value>
+								<Value name="WHITE">
+									<pragmas>
+										<ed:Value oid="!ed/7c/2A25/85F4/64f1d90a2627"/>
+									</pragmas>
+								</Value>
+								<Value name="RED">
+									<pragmas>
+										<ed:Value oid="!ed/7d/2A25/85F4/64f1d90a5bac"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/7a/2A25/85F4/64f1d90a305e"/>
+					</pragmas>
+				</Type>
+				<Type name="Color">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="Enumeration"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/7e/2A25/85F4/64f1d90a4dce"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/6b/2A25/85F4/64f1d90a3b2d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/6c/2A25/85F4/64f1d90a6f42" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/6d/2A25/85F4/64f1d90a4fe6" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/6e/2A25/85F4/64f1d90a1d80" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

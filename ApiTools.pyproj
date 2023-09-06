@@ -35,6 +35,8 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="examples\" />
+    <Folder Include="examples\query_type\" />
     <Folder Include="src\" />
     <Folder Include="src\ansys\" />
     <Folder Include="src\ansys\scade\" />
@@ -46,6 +48,16 @@
     <Folder Include="tests\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="examples\query_type\get_cell_type.py" />
+    <Compile Include="examples\query_type\get_leaf_alias.py" />
+    <Compile Include="examples\query_type\get_leaf_type.py" />
+    <Compile Include="examples\query_type\get_type_name.py" />
+    <Compile Include="examples\query_type\is_array.py" />
+    <Compile Include="examples\query_type\is_enum.py" />
+    <Compile Include="examples\query_type\is_imported.py" />
+    <Compile Include="examples\query_type\is_predefined.py" />
+    <Compile Include="examples\query_type\is_scalar.py" />
+    <Compile Include="examples\query_type\is_structure.py" />
     <Compile Include="src\ansys\scade\apitools\auto_scade_env.py" />
     <Compile Include="src\ansys\scade\apitools\expr\access.py" />
     <Compile Include="src\ansys\scade\apitools\expr\predef.py" />
@@ -65,6 +77,9 @@
     <Compile Include="tests\test_pragma.py" />
     <Compile Include="tests\test_query_type.py" />
     <Compile Include="tests\test_utils.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="examples\README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
