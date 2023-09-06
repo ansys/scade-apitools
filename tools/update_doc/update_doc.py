@@ -43,6 +43,7 @@ def update_doc(root: Path) -> List[str]:
     files = []
 
     target_dir = root / 'doc' / 'source' / '_examples'
+    target_dir.mkdir(exist_ok=True)
     projects = sorted([_ for _ in root.glob('examples/*/*.etp')])
     for project in projects:
         # create the catalog
