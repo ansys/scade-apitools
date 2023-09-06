@@ -44,6 +44,8 @@ def get_type_name(type_: suite.Type) -> str:
     -------
         str
             Name of a type or a string representation.
+
+    .. seealso:: Example :ref:`get_type_name <ex__get_type_name>`
     """
     if isinstance(type_, suite.NamedType):
         return type_.name
@@ -66,6 +68,8 @@ def get_leaf_alias(type_: suite.Type) -> suite.Type:
         suite.Type
             Closest alias of the input's type definition, or the input type
             if it is not an alias.
+
+    .. seealso:: Example :ref:`get_leaf_alias <ex__get_leaf_alias>`
     """
     while isinstance(type_, suite.NamedType) and isinstance(type_.type, suite.NamedType):
         type_ = type_.type
@@ -88,6 +92,8 @@ def get_leaf_type(type_: suite.Type) -> suite.Type:
         suite.Type
             Definition of the input type. It is not a named type unless
             it is predefined.
+
+    .. seealso:: Example :ref:`get_leaf_type <ex__get_leaf_type>`
     """
     while isinstance(type_, suite.NamedType) and type_.type:
         type_ = type_.type
@@ -146,6 +152,8 @@ def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
                 cell_type = get_cell_type(matrix_type, True)
                 print(cell_type.name)
                 Real
+
+    .. seealso:: Example :ref:`get_cell_type <ex__get_cell_type>`
     """
     # get the underlying array type
     leaf_type = get_leaf_type(type_)
@@ -177,6 +185,8 @@ def is_array(type_: suite.Type) -> bool:
     -------
         bool
             ``type_`` is an array.
+
+    .. seealso:: Example :ref:`is_array <ex__is_array>`
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -195,6 +205,8 @@ def is_structure(type_: suite.Type) -> bool:
     -------
         bool
             ``type_`` is a structure.
+
+    .. seealso:: Example :ref:`is_structure <ex__is_structure>`
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -213,6 +225,8 @@ def is_enum(type_: suite.Type) -> bool:
     -------
         bool
             ``type_`` is an enumeration.
+
+    .. seealso:: Example :ref:`is_enum <ex__is_enum>`
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -231,6 +245,8 @@ def is_predefined(type_: suite.Type) -> bool:
     -------
         bool
             ``type_`` is predefined.
+
+    .. seealso:: Example :ref:`is_predefined <ex__is_predefined>`
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -249,6 +265,8 @@ def is_imported(type_: suite.Type) -> bool:
     -------
         bool
             ``type_`` is imported.
+
+    .. seealso:: Example :ref:`is_imported <ex__is_imported>`
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -270,6 +288,8 @@ def is_scalar(type_: suite.Type, target: str = 'C') -> bool:
     -------
         bool
             ``type_`` is scalar.
+
+    .. seealso:: Example :ref:`is_scalar <ex__is_scalar>`
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
