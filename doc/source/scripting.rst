@@ -40,7 +40,7 @@ The operating mode is identical in both cases. When a script is run:
 
 There is another advanced kind of scripts in the IDE: SCADE custom extensions.
 These scripts are run at startup or when a workspace is loaded, and live until the application ends or the project is closed.
-The Python interpreters have more functions to extend the user interface with features such as toolbars or dialogs.
+The Python interpreters have more functions to extend the user interface with GUI artifacts such as toolbars, menus or property pages.
 
 Python environment
 ------------------
@@ -69,7 +69,7 @@ When ``PYTHONPATH`` does not refer to a SCADE environment, ``apitools`` has seve
 depending on ``sys.executable``:
 
 * Interpreter delivered in ``SCADE/contrib/PythonXxx``: The directories are relative to its location.
-* Interpreter of a virtual environment on top of an interpreter delivered with SCADE: The virtual environment(s) is(are) resolved, then same as above.
+* Interpreter of a virtual environment on top of an interpreter delivered with SCADE: The virtual environment is resolved, then same as above.
 * Independent interpreter: ``apitools`` selects the most recent version of SCADE installed on the computer which is compatible with the current interpreter, then same as above:
 
   * Python 3.7: from 2021 R1 to 2023 R1.
