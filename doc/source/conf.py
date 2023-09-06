@@ -10,6 +10,9 @@ from sphinx.highlighting import lexers
 sys.path.append('.')
 from _lexers.swan import SwanLexer
 
+# allow custom extensions
+sys.path.append(os.path.abspath("./_ext"))
+
 # Project information
 project = "ansys-scade-apitools"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
@@ -50,6 +53,8 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     # "sphinx_gallery.gen_gallery",
+    # apitools examples
+    'ex',
 ]
 
 # Print the type annotations from the signature in the description only

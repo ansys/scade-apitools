@@ -15,6 +15,7 @@ API Tools
 
    scripting
    modules
+   examples
 
 Indices and tables
 ==================
