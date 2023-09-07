@@ -7,6 +7,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ApiTools", "ApiTools.pyproj
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "update_doc", "tools\update_doc\update_doc.pyproj", "{337183EE-0B53-41DD-A441-92ECBD605810}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "scripts", "tools\scripts\scripts.pyproj", "{37B51BE2-CD8A-4CB9-A6B9-6F6A257AB419}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,8 @@ Global
 		{44133FA6-3E12-4E84-9E77-478B46A4B35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{337183EE-0B53-41DD-A441-92ECBD605810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{337183EE-0B53-41DD-A441-92ECBD605810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37B51BE2-CD8A-4CB9-A6B9-6F6A257AB419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37B51BE2-CD8A-4CB9-A6B9-6F6A257AB419}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

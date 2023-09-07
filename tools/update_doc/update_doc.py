@@ -42,6 +42,7 @@ def update_doc(root: Path) -> List[str]:
     """Return the list of new/updated rst files."""
     files = []
 
+    examples_dir = root / 'doc' / 'source' / 'examples'
     target_dir = root / 'doc' / 'source' / '_examples'
     target_dir.mkdir(exist_ok=True)
     projects = sorted([_ for _ in root.glob('examples/*/*.etp')])
@@ -53,32 +54,39 @@ def update_doc(root: Path) -> List[str]:
         doc = (target_dir / name).with_suffix('.rst')
         tmp = doc.with_suffix('.rst.tmp')
         with tmp.open('w') as f:
-            f.write('%s\n%s\n\n' % (name, '-' * len(name)))
+            f.write('%s\n%s\n\n' % (name, '=' * len(name)))
             f.write("project: %s\n\n" % project.name)
             for example in examples:
-                # copy the file to the documentation hierarchy
+                base = example.stem
+                pascal = ''.join([_.capitalize() for _ in base.split('_')])
+                png = examples_dir / name / (pascal + '.png')
+                out = examples_dir / name / ('output_%s.txt' % base)
+                # copy the files to the documentation hierarchy
                 shutil.copy(example, target_dir)
 
                 # add an entry to the file
-                entry = '\n'.join(
-                    [
-                        "",
-                        ".. _ex__%s:" % example.stem,
-                        "",
-                        ".. raw:: html",
-                        "",
-                        "  <details>",
-                        "  <summary><a>%s</a></summary>" % example.stem,
-                        "",
-                        ".. literalinclude :: /_examples/%s" % example.name,
-                        "",
-                        ".. raw:: html",
-                        "",
-                        "  </details>",
-                        "",
-                    ]
-                )
-                f.write(entry)
+                # start html section
+                f.write("\n.. raw:: html\n\n")
+                f.write("  <details>\n")
+                f.write("  <summary><a>%s</a></summary>\n" % base)
+                # index
+                f.write("\n.. _ex__%s:\n" % base)
+                # optional image
+                if png.exists():
+                    f.write(
+                        "\n.. figure:: /examples/%s/%s\n\n  Operator %s"
+                        % (name, png.name, png.stem)
+                    )
+                # script
+                f.write("\n.. literalinclude :: /_examples/%s.py\n" % base)
+                # optional output
+                if out.exists():
+                    f.write("\nOutput:\n")
+                    f.write("\n.. literalinclude :: /examples/%s/%s\n" % (name, out.name))
+                # optional output
+                # end html section
+                f.write("\n.. raw:: html\n\n")
+                f.write("  </details>\n")
         if not doc.exists() or not filecmp.cmp(doc, tmp):
             shutil.copy(tmp, doc)
             files.append(str(doc))

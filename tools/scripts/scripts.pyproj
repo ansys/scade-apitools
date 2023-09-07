@@ -2,16 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>337183ee-0b53-41dd-a441-92ecbd605810</ProjectGuid>
+    <ProjectGuid>37b51be2-cd8a-4cb9-a6b9-6f6a257ab419</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>update_doc.py</StartupFile>
+    <StartupFile>update_examples.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>update_doc</Name>
-    <RootNamespace>update_doc</RootNamespace>
-    <InterpreterId>Global|VisualStudio|.venv</InterpreterId>
+    <Name>scripts</Name>
+    <RootNamespace>scripts</RootNamespace>
+    <InterpreterId>Global|PythonCore|3.10</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,10 +22,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="update_doc.py" />
+    <Compile Include="dump_diagrams.py" />
+    <Compile Include="dump_outputs.py" />
+    <Compile Include="update_examples.py" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|VisualStudio|.venv" />
+    <InterpreterReference Include="Global|PythonCore|3.10" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
