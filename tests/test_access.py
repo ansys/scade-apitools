@@ -132,8 +132,8 @@ def test_slice_op(model):
     assert expression.expression == equation.right
     assert isinstance(expression, expr.SliceOp)
     assert expression.array.path.name == 'arraySlice'
-    assert expression.fromIndex.value == '1'
-    assert expression.toIndex.value == '3'
+    assert expression.from_index.value == '1'
+    assert expression.to_index.value == '3'
 
 
 def test_prj_dyn_op(model):
