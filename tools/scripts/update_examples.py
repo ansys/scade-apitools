@@ -38,7 +38,7 @@ the documentation directory.
 import filecmp
 import os
 from pathlib import Path
-from subprocess import run
+from subprocess import CompletedProcess, run
 import sys
 
 # add <repo>/src to the path to access apitools
@@ -46,6 +46,35 @@ repo = Path(__file__).parent.parent.parent
 sys.path.append(str(repo / 'src'))
 
 from ansys.scade.apitools.info import get_scade_home
+
+
+def run_example(project: Path, script: Path) -> CompletedProcess:
+    """Run the script on the project and retrieve stderr/stdout."""
+    exe = get_scade_home() / 'SCADE' / 'bin' / 'scade.exe'
+
+    cmd = [str(exe), '-script', script.as_posix(), project.as_posix()]
+    cp = run(cmd, capture_output=True)
+    return cp
+
+
+def run_example(project: Path, script: Path) -> CompletedProcess:
+    """
+    Run the script on the project and retrieve stderr/stdout.
+
+    Atlernative to the above command since, for some unknown reason,
+    scade.exe fails to import ansys.scade.apitools in the context of tox.
+    """
+    cmd = [
+        sys.executable,
+        Path(__file__).with_name('run_example.py').as_posix(),
+        project.as_posix(),
+        script.as_posix(),
+    ]
+    cp = run(cmd, capture_output=True)
+    if cp.stderr:
+        print('failed to run', ' '.join(cmd))
+        print(cp.stderr.decode())
+    return cp
 
 
 def update_file(context: str, tmp: Path, dst: Path) -> int:
@@ -61,7 +90,7 @@ def update_file(context: str, tmp: Path, dst: Path) -> int:
             os.replace(tmp, dst)
             exit_code = 1
         elif not filecmp.cmp(dst, tmp):
-            print('%s: creating %s' % (context, dst.name))
+            print('%s: updating %s' % (context, dst.name))
             os.replace(tmp, dst)
             exit_code = 1
         else:
@@ -116,11 +145,10 @@ def update_examples(root: Path) -> int:
             txts.add(txt.stem)
 
             # run the script on the current project and retrieve the output
-            cmd = [str(exe), '-script', script.as_posix(), project.as_posix()]
-            cp = run(cmd, capture_output=True)
+            cp = run_example(project, script)
             if cp.stderr:
-                print('failed to run', ' '.join(cmd))
-                print(cp.stderr.decode())
+                # print('failed to run', ' '.join(cmd))
+                # print(cp.stderr.decode())
                 exit_code = 1
                 continue
             if cp.stdout:

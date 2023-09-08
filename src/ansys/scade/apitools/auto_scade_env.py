@@ -69,7 +69,7 @@ def get_scade_dirs(min='00.0', max='99.9'):
     for name, dir in sorted(names, key=lambda x: x[0]):
         if name >= min and name < max:
             dirs.append(dir)
-            print('short list', dir)
+            # print('short list', dir)
     return dirs
 
 
@@ -93,7 +93,7 @@ def get_compatible_scade_home(version: str) -> Path:
         if dirs:
             # ordered list, get the most recent compatible version
             # and leave a message for who might read it
-            print('Using', dirs[-1])
+            # print('Using', dirs[-1])
             return Path(dirs[-1])
     return None
 

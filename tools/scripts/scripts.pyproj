@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="dump_diagrams.py" />
+    <Compile Include="run_example.py" />
     <Compile Include="update_examples.py" />
   </ItemGroup>
   <ItemGroup>
