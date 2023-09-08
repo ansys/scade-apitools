@@ -116,8 +116,13 @@ def update_examples(root: Path) -> int:
             txts.add(txt.stem)
 
             # run the script on the current project and retrieve the output
-            cmd = [exe, '-script', script, project]
+            cmd = [str(exe), '-script', script.as_posix(), project.as_posix()]
             cp = run(cmd, capture_output=True)
+            if cp.stderr:
+                print('failed to run', ' '.join(cmd))
+                print(cp.stderr.decode())
+                exit_code = 1
+                continue
             if cp.stdout:
                 with tmp.open('w') as f:
                     f.write(cp.stdout.decode())
@@ -129,7 +134,13 @@ def update_examples(root: Path) -> int:
         old_pngs = {_.stem for _ in doc.glob('*.png')}
         pngs = set()
         script = Path(__file__).with_name('dump_diagrams.py')
-        cmd = [exe, '-script', script, project, "dump_diagrams('%s', '.tmp')" % doc.as_posix()]
+        cmd = [
+            str(exe),
+            '-script',
+            script.as_posix(),
+            project.as_posix(),
+            "dump_diagrams('%s', '.tmp')" % doc.as_posix(),
+        ]
         cp = run(cmd, capture_output=True)
         if cp.stderr:
             print('failed to run', ' '.join(cmd))

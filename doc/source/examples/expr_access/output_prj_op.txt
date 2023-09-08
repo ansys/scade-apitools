@@ -1,0 +1,4 @@
+kind: Eck.PRJ
+instance name: 1
+flow: p
+with: [label]

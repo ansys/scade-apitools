@@ -1,0 +1,5 @@
+kind: Eck.IF
+instance name: 1
+condition: i
+then: [t]
+else: [e]

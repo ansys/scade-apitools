@@ -1,0 +1,5 @@
+kind: Eck.SLICE
+instance name: 1
+array: a
+from index: 1
+to index: 3

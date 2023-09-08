@@ -1,0 +1,4 @@
+kind: Eck.SCALAR_TO_VECTOR
+instance name: 1
+parameters: [s1,s2]
+size: 42

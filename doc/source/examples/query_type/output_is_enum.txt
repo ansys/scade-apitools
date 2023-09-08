@@ -1,0 +1,2 @@
+Color is enum: True
+Speed is enum: False

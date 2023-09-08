@@ -1,0 +1,3 @@
+kind: Eck.OR
+instance name: 1
+parameters: [c1,c2,c3]

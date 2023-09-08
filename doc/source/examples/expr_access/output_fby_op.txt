@@ -1,0 +1,5 @@
+kind: Eck.FBY
+instance name: 1
+flows: [f1,f2]
+delay: [1]
+init values: [42,9]

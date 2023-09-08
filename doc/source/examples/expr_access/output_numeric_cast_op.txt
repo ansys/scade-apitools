@@ -1,0 +1,4 @@
+kind: Eck.NUMERIC_CAST
+instance name: 1
+flow: p
+type: int32

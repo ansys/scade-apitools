@@ -1,0 +1,4 @@
+kind: Eck.FLATTEN
+instance name: 1
+flow: p
+type: Structure

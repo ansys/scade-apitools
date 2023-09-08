@@ -1,0 +1,2 @@
+Vector is array: True
+Speed is array: False

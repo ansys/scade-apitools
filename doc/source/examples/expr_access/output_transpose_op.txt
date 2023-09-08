@@ -1,0 +1,4 @@
+kind: Eck.TRANSPOSE
+instance name: 1
+array: a
+dimensions: 1, 2

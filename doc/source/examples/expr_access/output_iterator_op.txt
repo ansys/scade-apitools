@@ -1,0 +1,7 @@
+kind: Eck.MAPFOLD
+instance name: 16
+size: 31
+accumulator count: 2
+operator: Operator
+parameters: [a1,a2,p]
+instance parameters: [9]

@@ -1,0 +1,6 @@
+kind: Eck.RESTART
+instance name: 2
+every: condition
+operator: Operator
+parameters: [p1,p2,p3]
+instance parameters: [42]

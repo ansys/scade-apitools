@@ -1,0 +1,9 @@
+kind: Eck.MAPFOLDW
+instance name: 2
+size: 31
+if: condition
+accumulator count: 1
+defaults: [false,42]
+operator: Operator
+parameters: [a,p1,p2]
+instance parameters: [9]
