@@ -38,6 +38,7 @@ the documentation directory.
 import filecmp
 import os
 from pathlib import Path
+import platform
 from subprocess import CompletedProcess, run
 import sys
 
@@ -45,7 +46,8 @@ import sys
 repo = Path(__file__).parent.parent.parent
 sys.path.append(str(repo / 'src'))
 
-from ansys.scade.apitools.info import get_scade_home
+if platform.system() == 'Windows':
+    from ansys.scade.apitools.info import get_scade_home
 
 
 def run_example(project: Path, script: Path) -> CompletedProcess:
@@ -194,4 +196,9 @@ def update_examples(root: Path) -> int:
 
 
 if __name__ == '__main__':
-    sys.exit(update_examples(repo))
+    # can be run only on Windows
+    if platform.system() == 'Windows':
+        sys.exit(update_examples(repo))
+    else:
+        # nothing to do
+        sys.exit(0)
