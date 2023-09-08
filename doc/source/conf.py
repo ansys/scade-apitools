@@ -30,7 +30,7 @@ cname = os.getenv("DOCUMENTATION_CNAME", "apitools.scade.docs.pyansys.com")
 
 # specify the location of your github repo
 html_theme_options = {
-    "github_url": "https://github.com/ansys-scade/apitools",
+    "github_url": "https://github.com/ansys/scade-apitools",
     "show_prev_next": False,
     "show_breadcrumbs": True,
     "additional_breadcrumbs": [

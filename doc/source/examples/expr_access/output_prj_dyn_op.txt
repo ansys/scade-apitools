@@ -1,0 +1,5 @@
+kind: Eck.PRJ_DYN
+instance name: 1
+array: a
+indexes: [1,0]
+default: 42

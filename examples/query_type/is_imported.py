@@ -12,7 +12,7 @@ from ansys.scade.apitools.query import is_imported
 # load the Scade model
 model = get_sessions()[0].model
 # retrieve the type Imported which is imported
-imported = model.get_object_from_path('Types::Imported/')
+imported = model.get_object_from_path('Types::ImportedScalar/')
 # the result shall be True
 output('%s is imported: %s\n' % (imported.name, is_imported(imported)))
 # retrieve the type Speed which resolves to float32

@@ -1,0 +1,7 @@
+kind: Eck.ACTIVATE
+instance name: 4
+every: condition
+defaults: [9,false,' ']
+operator: Operator
+parameters: [p1,p2,p3]
+instance parameters: [31]

@@ -66,6 +66,8 @@ class Present(Expression):
     ----------
         expression :
             Signal expression to wrap.
+
+    .. seealso:: Example :ref:`present <ex__present>`
     """
 
     def __init__(self, expression: suite.ExprId):
@@ -89,6 +91,8 @@ class Last(Expression):
     ----------
         expression :
             Last variable expression to wrap.
+
+    .. seealso:: Example :ref:`last <ex__last>`
     """
 
     def __init__(self, expression: suite.ExprId):
@@ -112,6 +116,8 @@ class IdExpression(Expression):
     ----------
         expression :
             Reference expression to wrap.
+
+    .. seealso:: Example :ref:`id_expression <ex__id_expression>`
     """
 
     def __init__(self, expression: suite.ExprId):
@@ -134,6 +140,8 @@ class ConstValue(Expression):
     ----------
         expression :
             Literal to wrap.
+
+    .. seealso:: Example :ref:`const_value <ex__const_value>`
     """
 
     def __init__(self, expression: suite.ConstValue):
@@ -221,6 +229,8 @@ class DataStructOp(CallExpression):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`data_struct_op <ex__data_struct_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -245,6 +255,8 @@ class DataArrayOp(CallExpression):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`data_array_op <ex__data_array_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -289,6 +301,8 @@ class TransposeOp(ArrayOp):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`transpose_op <ex__transpose_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -311,24 +325,26 @@ class SliceOp(ArrayOp):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`slice_op <ex__slice_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
         assert Eck(expression.predef_opr) == Eck.SLICE
         super().__init__(expression)
-        self._fromIndex = accessor(expression.parameters[1])
-        self._toIndex = accessor(expression.parameters[2])
+        self._from_index = accessor(expression.parameters[1])
+        self._to_index = accessor(expression.parameters[2])
 
     @property
-    def fromIndex(self) -> Expression:
+    def from_index(self) -> Expression:
         """Start index of the slice."""
-        return self._fromIndex
+        return self._from_index
 
     @property
-    def toIndex(self) -> Expression:
+    def to_index(self) -> Expression:
         """End index of the slice."""
-        return self._toIndex
+        return self._to_index
 
 
 class Label(Expression):
@@ -360,6 +376,8 @@ class PrjDynOp(ArrayOp):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`prj_dyn_op <ex__prj_dyn_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -403,7 +421,7 @@ class ListExpression(Expression):
         self._items = [accessor(_) for _ in expression.parameters]
 
     @property
-    def items(self) -> str:
+    def items(self) -> list[Expression]:
         """Expressions of the group."""
         return self._items
 
@@ -447,6 +465,8 @@ class ScalarToVectorOp(CallExpression):
     must be a group of flows, the class :class:`~ScalarToVectorOp` does not inherit
     from :class:`~FlowOp`. It exposes directly the list of input flows instead of
     having a flow which is a :class:`~ListExpression`.
+
+    .. seealso:: Example :ref:`scalar_to_vector_op <ex__scalar_to_vector_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -455,7 +475,7 @@ class ScalarToVectorOp(CallExpression):
         super().__init__(expression)
         # the last parameter is the size
         self._flows = [accessor(_) for _ in expression.parameters[:-1]]
-        self._size = accessor(expression.parameters[1])
+        self._size = accessor(expression.parameters[-1])
 
     @property
     def flows(self) -> list[Expression]:
@@ -520,6 +540,8 @@ class PrjOp(ProjectionOp):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`prj_op <ex__prj_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -536,6 +558,8 @@ class ChgIthOp(ProjectionOp):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`chg_ith_op <ex__chg_ith_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -563,6 +587,8 @@ class MakeOp(CallExpression):
 
     Note: The design differs slightly from the meta-model. This class derives from
     :class:`~CallExpression`.
+
+    .. seealso:: Example :ref:`make_op <ex__make_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -573,12 +599,12 @@ class MakeOp(CallExpression):
         self._type = expression.parameters[1].reference
 
     @property
-    def flows(self) -> str:
+    def flows(self) -> list[Expression]:
         """Components of the structure."""
         return self._flows
 
     @property
-    def type_(self) -> str:
+    def type_(self) -> suite.NamedType:
         """Type to build."""
         return self._type
 
@@ -587,7 +613,7 @@ class FlattenOp(CallExpression):
     """
     Flattening of a structure.
 
-    ``(flatten ``<type>``)(``<flow>``)
+    ``(flatten <type>)(<flow>)``
 
     Parameters
     ----------
@@ -596,6 +622,8 @@ class FlattenOp(CallExpression):
 
     Note: The design differs slightly from the meta-model. This class derives from
     :class:`~CallExpression`.
+
+    .. seealso:: Example :ref:`flatten_op <ex__flatten_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -606,12 +634,12 @@ class FlattenOp(CallExpression):
         self._type = expression.parameters[1].reference
 
     @property
-    def flow(self) -> str:
+    def flow(self) -> Expression:
         """Input flow."""
         return self._flow
 
     @property
-    def type_(self) -> str:
+    def type_(self) -> suite.NamedType:
         """Type to build."""
         return self._type
 
@@ -648,6 +676,8 @@ class UnaryOp(AryOp):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`unary_op <ex__unary_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -668,7 +698,7 @@ class NAryOp(AryOp):
 
     ``<operand> <operator> <operand> <operator> ... <operator> <operand>``
 
-    where ``<name>`` is one of:
+    where ``<operator>`` is one of:
 
     * ``@``
     * ``and``, ``or``, ``xor``
@@ -681,6 +711,8 @@ class NAryOp(AryOp):
             Call expression to wrap.
 
     Note: ``xor`` shall be binary but it is stored as nary in the xscade files.
+
+    .. seealso:: Example :ref:`n_ary_op <ex__n_ary_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -701,7 +733,7 @@ class BinaryOp(NAryOp):
 
     ``<operand> <operator> <operand>``
 
-    where ``<name>`` is one of:
+    where ``<operator>`` is one of:
 
     * ``-``, ``/``, ``mod``
     * ``<``, ``<=``, ``>``, ``>=``, ``=``, ``<>``
@@ -712,6 +744,8 @@ class BinaryOp(NAryOp):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`binary_op <ex__binary_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -728,6 +762,8 @@ class NumericCastOp(FlowOp):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`numeric_cast_op <ex__numeric_cast_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -754,6 +790,8 @@ class SharpOp(CallExpression):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`sharp_op <ex__sharp_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -782,6 +820,8 @@ class IfThenElseOp(CallExpression):
     Note: The design differs slightly from the meta-model. Since the then/else
     parts must be groups of flows, the class :class:`~IfThenElseOp` exposes directly
     the list of then/else flows instead of a flow which is a :class:`~ListExpression`.
+
+    .. seealso:: Example :ref:`if_then_else_op <ex__if_then_else_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -830,6 +870,8 @@ class CaseOp(CallExpression):
     is replaced by a tuple (``pattern``, ``flow``).
 
     A new property, ``default``, provides the optional default value.
+
+    .. seealso:: Example :ref:`case_op <ex__case_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -873,6 +915,8 @@ class InitOp(CallExpression):
     must be groups of flows, the class :class:`~InitOp` does not inherit
     from :class:`~FlowOp`. It exposes directly the lists of flows and initial
     values instead of having flows which are instances of :class:`~ListExpression`.
+
+    .. seealso:: Example :ref:`init_op <ex__init_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -908,6 +952,8 @@ class PreOp(CallExpression):
     must be a group of flows, the class :class:`~PreOp` does not inherit
     from :class:`~FlowOp`. It exposes directly the lists of flows instead of
     having a flow which is a :class:`~ListExpression`.
+
+    .. seealso:: Example :ref:`pre_op <ex__pre_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -932,6 +978,8 @@ class FbyOp(CallExpression):
     ----------
         expression :
             Call expression to wrap.
+
+    .. seealso:: Example :ref:`fby_op <ex__fby_op>`
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -1062,6 +1110,8 @@ class RestartOp(ConditionalOp):
 
         operator :
             Operator call expression.
+
+    .. seealso:: Example :ref:`restart_op <ex__restart_op>`
     """
 
     pass
@@ -1106,6 +1156,8 @@ class ActivateOp(CondactOp):
 
         operator :
             Operator call expression.
+
+    .. seealso:: Example :ref:`activate_op <ex__activate_op>`
     """
 
     pass
@@ -1122,6 +1174,8 @@ class ActivateNoInitOp(CondactOp):
 
         operator :
             Operator call expression.
+
+    .. seealso:: Example :ref:`activate_no_init_op <ex__activate_no_init_op>`
     """
 
     pass
@@ -1138,6 +1192,8 @@ class IteratorOp(OpOp):
 
         operator :
             Operator call expression.
+
+    .. seealso:: Example :ref:`iterator_op <ex__iterator_op>`
     """
 
     def __init__(self, expression: suite.ExprCall, operator: CallExpression):
@@ -1173,6 +1229,8 @@ class PartialIteratorOp(IteratorOp):
 
         operator :
             Operator call expression.
+
+    .. seealso:: Example :ref:`partial_iterator_op <ex__partial_iterator_op>`
     """
 
     def __init__(self, expression: suite.ExprCall, operator: CallExpression):

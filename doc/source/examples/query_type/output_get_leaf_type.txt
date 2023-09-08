@@ -1,0 +1,2 @@
+leaf type: float32
+leaf type: <class 'scade.model.suite.suite.Table'>

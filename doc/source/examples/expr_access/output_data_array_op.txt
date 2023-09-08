@@ -1,0 +1,3 @@
+kind: Eck.BLD_VECTOR
+instance name: 1
+values: [v0,v1,v2]

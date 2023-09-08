@@ -1,0 +1,5 @@
+kind: Eck.CASE
+instance name: 1
+switch: s
+cases: {1: f1,2: f2}
+default: d

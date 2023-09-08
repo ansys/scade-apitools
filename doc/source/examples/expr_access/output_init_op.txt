@@ -1,0 +1,4 @@
+kind: Eck.FOLLOW
+instance name: 1
+flows: [f1,f2]
+init values: [42,true]

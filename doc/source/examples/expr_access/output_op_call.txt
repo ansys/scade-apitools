@@ -1,0 +1,5 @@
+kind: Eck.NONE
+instance name: Toulouse
+operator: Operator
+parameters: [p1,p2,p3]
+instance parameters: [42]

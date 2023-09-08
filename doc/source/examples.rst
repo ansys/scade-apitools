@@ -9,6 +9,7 @@ The examples are organized by SCADE models.
 
 .. toctree::
 
+   _examples/expr_access 
    _examples/query_type 
 
 ..

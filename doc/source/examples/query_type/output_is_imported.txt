@@ -1,0 +1,2 @@
+ImportedScalar is imported: True
+Speed is imported: False

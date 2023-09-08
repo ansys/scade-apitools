@@ -1,0 +1,2 @@
+Structure is structure: True
+Speed is structure: False

@@ -1,0 +1,7 @@
+kind: Eck.ACTIVATE_NOINIT
+instance name: 6
+every: condition
+defaults: [31,true,'h']
+operator: Operator
+parameters: [p1,p2,p3]
+instance parameters: [9]

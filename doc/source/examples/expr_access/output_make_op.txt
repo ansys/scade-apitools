@@ -1,0 +1,4 @@
+kind: Eck.MAKE
+instance name: 1
+flows: [p1,p2]
+type: Structure

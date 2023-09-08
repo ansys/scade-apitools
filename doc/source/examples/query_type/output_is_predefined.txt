@@ -1,0 +1,2 @@
+Speed is predefined: True
+Vector is predefined: False
