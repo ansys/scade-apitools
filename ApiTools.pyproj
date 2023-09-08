@@ -5,7 +5,7 @@
     <ProjectGuid>44133fa6-3e12-4e84-9e77-478b46a4b35d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>src\ansys\scade\apitools\expr\access.py</StartupFile>
-    <SearchPath>src;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\bin</SearchPath>
+    <SearchPath>C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>ApiTools</Name>
@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="examples\" />
+    <Folder Include="examples\expr_access\" />
     <Folder Include="examples\query_type\" />
     <Folder Include="src\" />
     <Folder Include="src\ansys\" />
@@ -48,6 +49,37 @@
     <Folder Include="tests\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="examples\expr_access\activate_no_init_op.py" />
+    <Compile Include="examples\expr_access\activate_op.py" />
+    <Compile Include="examples\expr_access\binary_op.py" />
+    <Compile Include="examples\expr_access\case_op.py" />
+    <Compile Include="examples\expr_access\chg_ith_op.py" />
+    <Compile Include="examples\expr_access\const_value.py" />
+    <Compile Include="examples\expr_access\data_array_op.py" />
+    <Compile Include="examples\expr_access\data_struct_op.py" />
+    <Compile Include="examples\expr_access\fby_op.py" />
+    <Compile Include="examples\expr_access\flatten_op.py" />
+    <Compile Include="examples\expr_access\id_expression.py" />
+    <Compile Include="examples\expr_access\if_then_else_op.py" />
+    <Compile Include="examples\expr_access\init_op.py" />
+    <Compile Include="examples\expr_access\iterator_op.py" />
+    <Compile Include="examples\expr_access\last.py" />
+    <Compile Include="examples\expr_access\make_op.py" />
+    <Compile Include="examples\expr_access\numeric_cast_op.py" />
+    <Compile Include="examples\expr_access\n_ary_op.py" />
+    <Compile Include="examples\expr_access\op_call.py" />
+    <Compile Include="examples\expr_access\partial_iterator_op.py" />
+    <Compile Include="examples\expr_access\present.py" />
+    <Compile Include="examples\expr_access\pre_op.py" />
+    <Compile Include="examples\expr_access\prj_dyn_op.py" />
+    <Compile Include="examples\expr_access\prj_op.py" />
+    <Compile Include="examples\expr_access\restart_op.py" />
+    <Compile Include="examples\expr_access\scalar_to_vector_op.py" />
+    <Compile Include="examples\expr_access\sharp_op.py" />
+    <Compile Include="examples\expr_access\slice_op.py" />
+    <Compile Include="examples\expr_access\text_expression.py" />
+    <Compile Include="examples\expr_access\transpose_op.py" />
+    <Compile Include="examples\expr_access\unary_op.py" />
     <Compile Include="examples\query_type\get_cell_type.py" />
     <Compile Include="examples\query_type\get_leaf_alias.py" />
     <Compile Include="examples\query_type\get_leaf_type.py" />
