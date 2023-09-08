@@ -50,4 +50,4 @@ repos:
     args: [./tools/scripts/update_examples.py]
     always_run: true
     pass_filenames: false
-    additional_dependencies: ['ansys-scade-apitools']
+    additional_dependencies: ['importlib_metadata']

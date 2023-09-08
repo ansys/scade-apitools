@@ -34,12 +34,12 @@ import sys
 repo = Path(__file__).parent.parent.parent
 sys.path.append(str(repo / 'src'))
 
-from ansys.scade.apitools import load_project
+from ansys.scade.apitools import declare_project
 
 # expect exactly two parameters in that order
 project, script = sys.argv[1:]
 # setup the Scade environment
-load_project(project)
+declare_project(project)
 with open(script) as f:
     text = f.read()
 exec(text, globals())
