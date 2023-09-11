@@ -1,0 +1,3 @@
+pragma any for sandbox: some text
+pragma any deleted for sandbox: True
+pragma any deleted for sandbox: False

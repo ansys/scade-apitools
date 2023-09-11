@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="P">
+			<declarations>
+				<Sensor name="sandbox">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Sensor oid="!ed/52/6BC7/71C0/64feccc61d87"/>
+					</pragmas>
+				</Sensor>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/1e39/2C32/7098/64febbf67d84" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1e3a/2C32/7098/64febbf6ba7" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1e3b/2C32/7098/64febbf612a8" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1e3c/2C32/7098/64febbf66dc" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
