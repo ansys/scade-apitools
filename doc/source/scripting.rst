@@ -1,3 +1,5 @@
+.. _scripting scade:
+
 SCADE scripting
 ===============
 
