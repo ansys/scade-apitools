@@ -1,0 +1,8 @@
+pragma kcg C:name found for sandbox: True
+pragma kcg C:name for sandbox: c_name
+pragma kcg C:name modified for sandbox: True
+pragma kcg C:name deleted for sandbox: True
+pragma kcg Ada:name found for sandbox: False
+pragma kcg Ada:name for sandbox: None
+pragma kcg Ada:name modified for sandbox: True
+pragma kcg Ada:name deleted for sandbox: True

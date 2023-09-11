@@ -66,6 +66,8 @@ def find_pragma(object_: suite.Object, id: str) -> suite.Pragma:
     -------
         suite.Pragma
             Found pragma.
+
+    .. seealso:: Example :ref:`pragma <ex__pragma>`
     """
     # return next([_ for _ in object_.pragmas if _.id == id], None)
     return object_.find_pragma(id)
@@ -87,6 +89,8 @@ def remove_pragma(object_: suite.Object, id: str) -> bool:
     -------
         bool
             The pragma is found.
+
+    .. seealso:: Example :ref:`pragma <ex__pragma>`
     """
     # the implementation differs from the default one to return
     # the modification status
@@ -119,6 +123,8 @@ def get_pragma_text(object_: suite.Object, id: str) -> str:
     -------
         str
             Text of the found pragma or "".
+
+    .. seealso:: Example :ref:`pragma <ex__pragma>`
     """
     # the implementation differs from the default one to return None
     # when the found pragma is not textual
@@ -153,6 +159,8 @@ def set_pragma_text(object_: suite.Object, id: str, text: str) -> bool:
     -------
         bool
             The model is modified.
+
+    .. seealso:: Example :ref:`pragma <ex__pragma>`
     """
     # the implementation differs from the default one to garbage empty
     # pragmas and return the modification status
@@ -192,6 +200,8 @@ def find_pragma_tool(object_: suite.Object, id: str, key: str) -> suite.TextPrag
     -------
         suite.TextPragma
             Found pragma.
+
+    .. seealso:: Example :ref:`pragma_tool <ex__pragma_tool>`
     """
     for pragma in object_.pragmas:
         if pragma.id == id:
@@ -222,6 +232,8 @@ def remove_pragma_tool(object_: suite.Object, id: str, key: str) -> bool:
     -------
         bool
             The pragma is found.
+
+    .. seealso:: Example :ref:`pragma_tool <ex__pragma_tool>`
     """
     pragma = find_pragma_tool(object_, id, key)
     if pragma:
@@ -250,6 +262,8 @@ def get_pragma_tool_text(object_: suite.Object, id: str, key: str) -> str:
     -------
         str
             Text of the found pragma or "".
+
+    .. seealso:: Example :ref:`pragma_tool <ex__pragma_tool>`
     """
     pragma = find_pragma_tool(object_, id, key)
     if pragma:
@@ -279,6 +293,8 @@ def set_pragma_tool_text(object_: suite.Object, id: str, key: str, text: str) ->
     -------
         bool
             The model is modified.
+
+    .. seealso:: Example :ref:`pragma_tool <ex__pragma_tool>`
     """
     pragma = find_pragma_tool(object_, id, key)
     new_text = "%s %s" % (key, text) if text else key
@@ -313,6 +329,8 @@ def get_pragma_json(object_: suite.Object, id: str) -> object:
             Python object corresponding to the JSON document stored in the
             pragma, or ``{}`` if there is no pragma, or ``None`` if the
             pragma does not contain a valid JSON document.
+
+    .. seealso:: Example :ref:`pragma_json <ex__pragma_json>`
     """
     text = get_pragma_text(object_, id)
     try:
@@ -340,6 +358,8 @@ def set_pragma_json(object_: suite.Object, id: str, data: object) -> bool:
     -------
         bool
             The object is modified.
+
+    .. seealso:: Example :ref:`pragma_json <ex__pragma_json>`
     """
     text = json.dumps(data, sort_keys=True).strip("\n") if data else ""
     return set_pragma_text(object_, id, text)

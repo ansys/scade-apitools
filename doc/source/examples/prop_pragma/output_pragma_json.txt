@@ -1,0 +1,2 @@
+pragma any for sandbox: {"bool": true, "text": "some text"}
+pragma any for sandbox: {'bool': True, 'text': 'some text'}

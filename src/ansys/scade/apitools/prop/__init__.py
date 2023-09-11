@@ -27,9 +27,11 @@ from .pragma import (  # _noqa: F401
     find_pragma,
     find_pragma_tool,
     get_pragma_json,
+    get_pragma_text,
     get_pragma_tool_text,
     remove_pragma,
     remove_pragma_tool,
     set_pragma_json,
+    set_pragma_text,
     set_pragma_tool_text,
 )
