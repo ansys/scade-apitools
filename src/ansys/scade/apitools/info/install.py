@@ -25,15 +25,9 @@
 import inspect
 import os
 from pathlib import Path
-import platform
 from typing import Dict
 
-if platform.system() == 'Windows':
-    import scade_env
-else:
-    # allow importing the file on other systems
-    # for documentation generation, for example
-    pass
+import scade_env
 
 
 def get_scade_home() -> Path:
