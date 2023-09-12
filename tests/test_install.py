@@ -25,7 +25,7 @@ Test suite for install.py.
 
 Test strategy:
 
-The test can be ruen with different releases of SCADE: The values can't be compared
+The test can be run with different releases of SCADE: The values can't be compared
 to predefined ones.
 The tests make sure the functions execute properly and return consistent data.
 """

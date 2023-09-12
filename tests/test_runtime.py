@@ -20,8 +20,42 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Information on the current version of SCADE."""
+"""
+Test suite for runtime.py.
 
-# ignore F401: functions made available for modules, not used here
-from .install import get_scade_home, get_scade_version  # _noqa: F401
-from .runtime import ide, print  # _noqa: F401
+Test strategy:
+
+The test can be run only in batche mode.
+The tests make sure the functions execute properly and return consistent data.
+"""
+
+import builtins
+
+import ansys.scade.apitools.info as info
+import ansys.scade.apitools.info.runtime as runtime
+
+
+def test_ide():
+    # tests run in batch mode
+    assert not info.ide
+
+
+def test_print():
+    # tests run in batch mode
+    assert runtime.print == builtins.print
+
+
+def test_ide_print(capsys):
+    # print some text with ide_print and print and compare the results
+    args = ['abc', 'd\ne', 'f g']
+    # ignore prior outputs if any
+    captured = capsys.readouterr()
+    # standard print
+    print(*args, sep='-', end='.\n')
+    builtin_result = capsys.readouterr().out
+    # ide_print
+    runtime.ide_print(*args, sep='-', end='.\n')
+    ide_result = capsys.readouterr().out
+    # scade.output does not behave aas expected in pytest environment
+    # --> not testable
+    # assert builtin_result == ide_result

@@ -20,8 +20,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Information on the current version of SCADE."""
+"""Access to SCADE runtime info."""
 
-# ignore F401: functions made available for modules, not used here
-from .install import get_scade_home, get_scade_version  # _noqa: F401
-from .runtime import ide, print  # _noqa: F401
+import builtins
+import sys
+
+import scade
+
+ide = 'activate' in dir(scade)
+"""Indicate whether the script runs with the SCADE Studio environment."""
+
+
+def ide_print(*args, sep=' ', end='\n', file=sys.stdout, flush=False):
+    """Alternative to print based on scade.output."""
+    if file == sys.stdout or file == sys.stderr:
+        if sep is None:
+            sep = ' '
+        if end is None:
+            end = '\n'
+        text = sep.join([str(_) for _ in args])
+        scade.output(text + end)
+    else:
+        builtins.print(*args, sep, end, file, flush)
+
+
+print = ide_print if ide else builtins.print
+"""Emulation of print for SCADE Studio environment."""

@@ -1,0 +1,1 @@
+SCADE installation directory: c:\Program Files\ANSYS Inc\v231\SCADE

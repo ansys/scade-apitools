@@ -131,7 +131,7 @@ if platform.system() == 'Windows':
     if not importlib.util.find_spec("scade_env"):
         add_scade_to_sys_path()
 
-    # ignore F401: load_project made available for modules, not used here
+    # ignore F401: declare_project made available for modules, not used here
     from scade_env import load_project as declare_project  # noqa: F401
 else:
     # allow importing the file on other systems

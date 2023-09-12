@@ -95,6 +95,7 @@
     <Compile Include="src\ansys\scade\apitools\expr\predef.py" />
     <Compile Include="src\ansys\scade\apitools\expr\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\info\install.py" />
+    <Compile Include="src\ansys\scade\apitools\info\runtime.py" />
     <Compile Include="src\ansys\scade\apitools\info\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\prop\pragma.py" />
     <Compile Include="src\ansys\scade\apitools\prop\__init__.py" />
@@ -108,6 +109,7 @@
     <Compile Include="tests\test_metadata.py" />
     <Compile Include="tests\test_pragma.py" />
     <Compile Include="tests\test_query_type.py" />
+    <Compile Include="tests\test_runtime.py" />
     <Compile Include="tests\test_utils.py" />
   </ItemGroup>
   <ItemGroup>
