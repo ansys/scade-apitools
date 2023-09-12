@@ -23,6 +23,7 @@
 """Access to SCADE installation info."""
 
 import inspect
+import os
 from pathlib import Path
 import platform
 from typing import Dict
@@ -41,12 +42,17 @@ def get_scade_home() -> Path:
 
     For example: C:/Program Files/ANSYS Inc/v232/SCADE
     """
-    # we can't rely on the usual variables SCADE and ETBIN which are not set
+    # when run from a SCADE environment, use the built-in environment variable SCADE
     # when the script is run through python.exe instead od scade.exe -script.
     # we derive the scade home directory from the location of the module scade_env
     # which is locate in <home>/SCADE/bin
-    scade_home = Path(inspect.getfile(scade_env))
-    return scade_home.parent.parent.parent
+    try:
+        scade_home = Path(inspect.getfile(scade_env))
+        return scade_home.parent.parent.parent
+    except TypeError:
+        # in a SCADE environment, scade_env is a built-in module
+        # and SCADE is set to <home>/SCADE
+        return Path(os.environ['SCADE']).parent
 
 
 def get_scade_properties() -> Dict[str, str]:
