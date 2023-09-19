@@ -42,6 +42,7 @@
     <Folder Include="src\ansys\" />
     <Folder Include="src\ansys\scade\" />
     <Folder Include="src\ansys\scade\apitools\" />
+    <Folder Include="src\ansys\scade\apitools\create\" />
     <Folder Include="src\ansys\scade\apitools\expr\" />
     <Folder Include="src\ansys\scade\apitools\info\" />
     <Folder Include="src\ansys\scade\apitools\prop\" />
@@ -91,6 +92,8 @@
     <Compile Include="examples\query_type\is_scalar.py" />
     <Compile Include="examples\query_type\is_structure.py" />
     <Compile Include="src\ansys\scade\apitools\auto_scade_env.py" />
+    <Compile Include="src\ansys\scade\apitools\create\project.py" />
+    <Compile Include="src\ansys\scade\apitools\create\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\expr\access.py" />
     <Compile Include="src\ansys\scade\apitools\expr\predef.py" />
     <Compile Include="src\ansys\scade\apitools\expr\__init__.py" />
@@ -105,6 +108,7 @@
     <Compile Include="tests\conftest.py" />
     <Compile Include="tests\test_access.py" />
     <Compile Include="tests\test_auto_scade_env.py" />
+    <Compile Include="tests\test_create_project.py" />
     <Compile Include="tests\test_install.py" />
     <Compile Include="tests\test_metadata.py" />
     <Compile Include="tests\test_pragma.py" />

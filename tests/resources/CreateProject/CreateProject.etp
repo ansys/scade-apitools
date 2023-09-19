@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project id="1" oid_count="6" defaultConfiguration="2">
+	<props>
+		<Prop id="3" name="@STUDIO:PRODUCT">
+			<value>Studio</value>
+		</Prop>
+	</props>
+	<roots>
+		<Folder id="4" name="Folder"/>
+		<FileRef id="6" persistAs="FileRef.txt"/>
+	</roots>
+	<configurations>
+		<Configuration id="2" name="Default"/>
+	</configurations>
+</Project>
