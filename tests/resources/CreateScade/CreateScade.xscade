@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Constant name="N">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/1a/50CC/40DC/650ad6ac661"/>
+			</pragmas>
+		</Constant>
+		<Type name="Int32">
+			<definition>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/18/25E4/9650/6509c3cf35f7"/>
+			</pragmas>
+		</Type>
+	</declarations>
+</File>

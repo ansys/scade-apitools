@@ -21,13 +21,19 @@
 # SOFTWARE.
 
 """
-Test suite for install.py.
+Test suite for create/project.py.
 
 Test strategy:
 
-The test can be run with different releases of SCADE: The values can't be compared
-to predefined ones.
-The tests make sure the functions execute properly and return consistent data.
+The tests of this module operate make a copy of a reference project and add project
+elements. The project is saved once all the tests of a class are executed.
+
+The status of the tests cases is assessed by ensuring the functions execute properly and
+by testing a few properties of the created data: This gives enough confidence for the
+correctness of the execution. Indeed, it is not easy to compare the resulting project
+to some expected result, nor easy to maintain.
+
+Anyways, the result projects can be exmined after the execution of the tests, for a deep analysis.
 """
 
 from typing import List, Union

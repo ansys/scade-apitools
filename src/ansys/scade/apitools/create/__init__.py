@@ -32,3 +32,12 @@ from .project import (  # _noqa: F401
     create_prop,
     save_project,
 )
+from .scade import (  # _noqa: F401
+    TypePolymorphicError,
+    TypeSyntaxError,
+    _add_pending_link,
+    _build_type_tree,
+    _link_pendings,
+    _object_link_type,
+    save_all,
+)
