@@ -294,12 +294,12 @@ def _link_storage_element(owner: suite.Package, element: suite.StorageElement, p
         if owner != model:
             directory = Path(owner.defined_in.sao_file_name).parent
             try:
-                persistAs = path.relative_to(directory)
+                persist_as = path.relative_to(directory)
             except ValueError:
                 persist_as = str(path)
         else:
-            persistAs = ''
-        unit = _create_unit(model, str(path), persistAs)
+            persist_as = ''
+        unit = _create_unit(model, str(path), persist_as)
         element.storage_unit = unit
         _modified_files.add(unit)
     elif owner != model:

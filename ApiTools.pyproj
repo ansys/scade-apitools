@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>44133fa6-3e12-4e84-9e77-478b46a4b35d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>src\ansys\scade\apitools\expr\access.py</StartupFile>
+    <StartupFile>tests\sandbox.py</StartupFile>
     <SearchPath>C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -92,6 +92,7 @@
     <Compile Include="examples\query_type\is_scalar.py" />
     <Compile Include="examples\query_type\is_structure.py" />
     <Compile Include="src\ansys\scade\apitools\auto_scade_env.py" />
+    <Compile Include="src\ansys\scade\apitools\create\expression.py" />
     <Compile Include="src\ansys\scade\apitools\create\project.py" />
     <Compile Include="src\ansys\scade\apitools\create\scade.py" />
     <Compile Include="src\ansys\scade\apitools\create\__init__.py" />
@@ -107,8 +108,12 @@
     <Compile Include="src\ansys\scade\apitools\query\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\__init__.py" />
     <Compile Include="tests\conftest.py" />
+    <Compile Include="tests\sandbox.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tests\test_access.py" />
     <Compile Include="tests\test_auto_scade_env.py" />
+    <Compile Include="tests\test_create_expression.py" />
     <Compile Include="tests\test_create_project.py" />
     <Compile Include="tests\test_create_scade.py" />
     <Compile Include="tests\test_install.py" />
