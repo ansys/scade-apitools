@@ -31,6 +31,7 @@ import pytest
 
 import ansys.scade.apitools.create as create
 from ansys.scade.apitools.create.scade import suite
+from ansys.scade.apitools.expr import Eck
 
 
 def _pre_process_expression_tree(model, tree):
@@ -95,7 +96,7 @@ create_unary_data = [
     # bitwise
     ('lnot', 12, 'lnot 12'),
     # more complex operand
-    ('-', ['_', 'POS', [32], [], []], '- ( + 32)'),
+    ('-', ['_', Eck.POS, [32], [], []], '- ( + 32)'),
     # casts for Scade < 6.5
     ('int', 65.0, ''),
     ('real', 81, ''),
@@ -341,7 +342,7 @@ create_data_struct_data = [
     # nominal
     ('single', ['one', 1], '{one : 1}'),
     ('double', ['one', 1, 'two', 2], '{one : 1, two : 2}'),
-    ('embed', ['one', ['_', 'PLUS', [2, 2], [], []], 'four', 4], '{one : 2 + 2, four : 4}'),
+    ('embed', ['one', ['_', Eck.PLUS, [2, 2], [], []]], '{one : 2 + 2}'),
     # robustness
     ('empty', [], create.ExprSyntaxError),
     # TODO: the test below fails: expected exception not raised
@@ -725,13 +726,12 @@ build_expression_tree_data = [
     ('0_ui24', create.ExprSyntaxError),
     ('a_i8', 'a_i8'),
     ([], create.EmptyTreeError),
-    (['_', 'UNKNOWN', [], [], []], create.ExprSyntaxError),
     # too many parameters
-    (['_', 'PLUS', [], [], [], []], create.ExprSyntaxError),
+    (['_', Eck.PLUS, [], [], [], []], create.ExprSyntaxError),
     # not enough parameters
-    (['_', 'PLUS', [], []], create.ExprSyntaxError),
-    (['_', 'PLUS', []], create.ExprSyntaxError),
-    (['_', 'PLUS'], create.ExprSyntaxError),
+    (['_', Eck.PLUS, [], []], create.ExprSyntaxError),
+    (['_', Eck.PLUS, []], create.ExprSyntaxError),
+    (['_', Eck.PLUS], create.ExprSyntaxError),
     # wrong label
     (['a b c', 2], create.TypeIdentifierError),
 ]

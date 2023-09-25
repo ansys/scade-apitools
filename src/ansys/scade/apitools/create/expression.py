@@ -32,37 +32,37 @@ from .scade import _add_pending_link
 
 # association tables
 _unary_ops = {
-    '-': 'NEG',
-    '+': 'POS',
-    '!': 'NOT',
-    'int': 'REAL2INT',
-    'real': 'INT2REAL',
-    'lnot': 'LNOT',
+    '-': Eck.NEG,
+    '+': Eck.POS,
+    '!': Eck.NOT,
+    'int': Eck.REAL2INT,
+    'real': Eck.INT2REAL,
+    'lnot': Eck.LNOT,
 }
 _binary_ops = {
-    '&': 'AND',
-    '|': 'OR',
-    '^': 'XOR',
-    '#': 'SHARP',
-    '+': 'PLUS',
-    '-': 'SUB',
-    '*': 'MUL',
-    '/': 'SLASH',
-    ':': 'DIV',
-    '%': 'MOD',
-    '<': 'LESS',
-    '<=': 'LEQUAL',
-    '>': 'GREAT',
-    '>=': 'GEQUAL',
-    '=': 'EQUAL',
-    '<>': 'NEQUAL',
-    'land': 'LAND',
-    'lor': 'LOR',
-    'lxor': 'LXOR',
-    '<<': 'LSL',
-    '>>': 'LSR',
+    '&': Eck.AND,
+    '|': Eck.OR,
+    '^': Eck.XOR,
+    '#': Eck.SHARP,
+    '+': Eck.PLUS,
+    '-': Eck.SUB,
+    '*': Eck.MUL,
+    '/': Eck.SLASH,
+    ':': Eck.DIV,
+    '%': Eck.MOD,
+    '<': Eck.LESS,
+    '<=': Eck.LEQUAL,
+    '>': Eck.GREAT,
+    '>=': Eck.GEQUAL,
+    '=': Eck.EQUAL,
+    '<>': Eck.NEQUAL,
+    'land': Eck.LAND,
+    'lor': Eck.LOR,
+    'lxor': Eck.LXOR,
+    '<<': Eck.LSL,
+    '>>': Eck.LSR,
 }
-_nary_ops = {'&': 'AND', '|': 'OR', '^': 'XOR', '#': 'SHARP', '+': 'PLUS', '*': 'MUL'}
+_nary_ops = {'&': Eck.AND, '|': Eck.OR, '^': Eck.XOR, '#': Eck.SHARP, '+': Eck.PLUS, '*': Eck.MUL}
 
 # aliases to enhance readability
 ET = list
@@ -143,10 +143,10 @@ def create_unary(op: str, tree: ET) -> ET:
     -------
         ET
     """
-    id = _unary_ops.get(op)
-    if id is None:
+    eck = _unary_ops.get(op)
+    if eck is None:
         raise ExprSyntaxError('create_unary', op)
-    return ['_', id, [tree], [], []]
+    return ['_', eck, [tree], [], []]
 
 
 def create_binary(op: str, tree1: ET, tree2: ET) -> ET:
@@ -168,10 +168,10 @@ def create_binary(op: str, tree1: ET, tree2: ET) -> ET:
     -------
         ET
     """
-    id = _binary_ops.get(op)
-    if id is None:
+    eck = _binary_ops.get(op)
+    if eck is None:
         raise ExprSyntaxError('create_binary', op)
-    return ['_', id, [tree1, tree2], [], []]
+    return ['_', eck, [tree1, tree2], [], []]
 
 
 def create_nary(op: ET, *args: List[ET]) -> ET:
@@ -190,12 +190,12 @@ def create_nary(op: ET, *args: List[ET]) -> ET:
     -------
         ET
     """
-    id = _nary_ops.get(op)
-    if id is None:
+    eck = _nary_ops.get(op)
+    if eck is None:
         raise ExprSyntaxError('CreateNAry', op)
     if len(args) < 2:
         raise ExprSyntaxError('CreateNAry', args)
-    return ['_', id, args, [], []]
+    return ['_', eck, args, [], []]
 
 
 # selectors
@@ -229,7 +229,7 @@ def create_if(condition: ET, *args: List[ET]) -> ET:
     then_tree = _create_sequence(thens)
     else_tree = _create_sequence(elses)
 
-    return ['_', 'IF', [condition, then_tree, else_tree], [], []]
+    return ['_', Eck.IF, [condition, then_tree, else_tree], [], []]
 
 
 def create_case(selector: ET, *args: List[ET]) -> ET:
@@ -266,7 +266,7 @@ def create_case(selector: ET, *args: List[ET]) -> ET:
     pattern_tree = _create_sequence(patterns)
     input_tree = _create_sequence(inputs)
 
-    return ['_', 'CASE', [selector, input_tree, pattern_tree], [], []]
+    return ['_', Eck.CASE, [selector, input_tree, pattern_tree], [], []]
 
 
 # types
@@ -292,7 +292,7 @@ def create_make(type_: suite.NamedType, *args: List[ET]) -> ET:
     if len(args) < 1:
         raise ExprSyntaxError('create_make', args)
 
-    return ['_', 'MAKE', [_create_sequence(args), type_], [], []]
+    return ['_', Eck.MAKE, [_create_sequence(args), type_], [], []]
 
 
 def create_flatten(type_: suite.NamedType, arg: ET) -> ET:
@@ -312,7 +312,7 @@ def create_flatten(type_: suite.NamedType, arg: ET) -> ET:
         ET
     """
     _check_object(type_, 'create_flatten', 'type', suite.NamedType)
-    return ['_', 'FLATTEN', [arg, type_], [], []]
+    return ['_', Eck.FLATTEN, [arg, type_], [], []]
 
 
 # structures
@@ -340,7 +340,7 @@ def create_scalar_to_vector(size: ET, *args: List[ET]) -> ET:
     if len(args) == 0:
         raise ExprSyntaxError('create_scalar_to_vector', args)
     # the size must be the last parameter
-    return ['_', 'SCALAR_TO_VECTOR', list(args) + [size], [], []]
+    return ['_', Eck.SCALAR_TO_VECTOR, list(args) + [size], [], []]
 
 
 def create_data_array(*args: List[ET]) -> ET:
@@ -358,7 +358,7 @@ def create_data_array(*args: List[ET]) -> ET:
     """
     if len(args) == 0:
         raise ExprSyntaxError('create_data_array', args)
-    return ['_', 'BLD_VECTOR', args, [], []]
+    return ['_', Eck.BLD_VECTOR, args, [], []]
 
 
 def create_data_struct(*args: List[ET]):
@@ -386,7 +386,7 @@ def create_data_struct(*args: List[ET]):
         if not isinstance(label, str) or not label.isidentifier():
             raise TypeIdentifierError('create_data_struct', args)
         parameters.append([label, args[2 * i + 1]])
-    return ['_', 'BLD_STRUCT', parameters, [], []]
+    return ['_', Eck.BLD_STRUCT, parameters, [], []]
 
 
 def create_prj(flow: ET, path: List[ET]) -> ET:
@@ -408,7 +408,7 @@ def create_prj(flow: ET, path: List[ET]) -> ET:
     if len(path) == 0:
         raise ExprSyntaxError('create_prj', path)
     parameters = [flow] + path
-    return ['_', 'PRJ', parameters, [], []]
+    return ['_', Eck.PRJ, parameters, [], []]
 
 
 def create_prj_dyn(flow: ET, path: List[ET], default: ET) -> ET:
@@ -433,7 +433,7 @@ def create_prj_dyn(flow: ET, path: List[ET], default: ET) -> ET:
     if len(path) == 0:
         raise ExprSyntaxError('create_prj_dyn', path)
     parameters = [flow] + path + [default]
-    return ['_', 'PRJ_DYN', parameters, [], []]
+    return ['_', Eck.PRJ_DYN, parameters, [], []]
 
 
 def create_change_ith(flow: ET, path: List[ET], value: ET) -> ET:
@@ -458,7 +458,7 @@ def create_change_ith(flow: ET, path: List[ET], value: ET) -> ET:
     if len(path) == 0:
         raise ExprSyntaxError('create_change_ith', path)
     parameters = [flow, value] + path
-    return ['_', 'CHANGE_ITH', parameters, [], []]
+    return ['_', Eck.CHANGE_ITH, parameters, [], []]
 
 
 # time
@@ -479,7 +479,7 @@ def create_pre(*args: List[ET]) -> ET:
     """
     if len(args) == 0:
         raise ExprSyntaxError('create_pre', '')
-    return ['_', 'PRE', args, [], []]
+    return ['_', Eck.PRE, args, [], []]
 
 
 def create_init(flows: Union[ET, List[ET]], inits: Union[ET, List[ET]]) -> ET:
@@ -514,7 +514,7 @@ def create_init(flows: Union[ET, List[ET]], inits: Union[ET, List[ET]]) -> ET:
     flows_tree = _create_sequence(flows)
     inits_tree = _create_sequence(inits)
 
-    return ['_', 'FOLLOW', [flows_tree, inits_tree], [], []]
+    return ['_', Eck.FOLLOW, [flows_tree, inits_tree], [], []]
 
 
 def create_fby(flows: Union[ET, List[ET]], delay: ET, inits: Union[ET, List[ET]]) -> ET:
@@ -550,7 +550,7 @@ def create_fby(flows: Union[ET, List[ET]], delay: ET, inits: Union[ET, List[ET]]
         inits = [inits]
 
     parameters = flows + [delay] + inits
-    return ['_', 'FBY', parameters, [], []]
+    return ['_', Eck.FBY, parameters, [], []]
 
 
 def create_times(number: ET, flow: ET) -> ET:
@@ -569,7 +569,7 @@ def create_times(number: ET, flow: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'TIMES', [number, flow], [], []]
+    return ['_', Eck.TIMES, [number, flow], [], []]
 
 
 # array
@@ -594,7 +594,7 @@ def create_slice(array: ET, start: ET, end: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'SLICE', [array, start, end], [], []]
+    return ['_', Eck.SLICE, [array, start, end], [], []]
 
 
 def create_concat(*args: List[ET]) -> ET:
@@ -612,7 +612,7 @@ def create_concat(*args: List[ET]) -> ET:
     """
     if len(args) < 2:
         raise ExprSyntaxError('create_concat', args)
-    return ['_', 'CONCAT', args, [], []]
+    return ['_', Eck.CONCAT, args, [], []]
 
 
 def create_reverse(flow: ET) -> ET:
@@ -628,7 +628,7 @@ def create_reverse(flow: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'REVERSE', [flow], [], []]
+    return ['_', Eck.REVERSE, [flow], [], []]
 
 
 def create_transpose(array: ET, dim1: ET, dim2: ET) -> ET:
@@ -650,7 +650,7 @@ def create_transpose(array: ET, dim1: ET, dim2: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'TRANSPOSE', [array, dim1, dim2], [], []]
+    return ['_', Eck.TRANSPOSE, [array, dim1, dim2], [], []]
 
 
 # activation
@@ -669,7 +669,7 @@ def create_restart(every: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'RESTART', [every], [], []]
+    return ['_', Eck.RESTART, [every], [], []]
 
 
 def create_activate(every: ET, *args: List[ET]) -> ET:
@@ -689,7 +689,7 @@ def create_activate(every: ET, *args: List[ET]) -> ET:
         ET
     """
     # args may be empty
-    return ['_', 'ACTIVATE', [every, _create_sequence(args)], [], []]
+    return ['_', Eck.ACTIVATE, [every, _create_sequence(args)], [], []]
 
 
 def create_activate_no_init(every: ET, *args: List[ET]) -> ET:
@@ -709,7 +709,7 @@ def create_activate_no_init(every: ET, *args: List[ET]) -> ET:
         ET
     """
     # args may be empty
-    return ['_', 'ACTIVATE_NOINIT', [every, _create_sequence(args)], [], []]
+    return ['_', Eck.ACTIVATE_NOINIT, [every, _create_sequence(args)], [], []]
 
 
 # iterators
@@ -728,7 +728,7 @@ def create_map(size: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'MAP', [size], [], []]
+    return ['_', Eck.MAP, [size], [], []]
 
 
 def create_mapi(size: ET) -> ET:
@@ -744,7 +744,7 @@ def create_mapi(size: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'MAPI', [size], [], []]
+    return ['_', Eck.MAPI, [size], [], []]
 
 
 def create_fold(size: ET) -> ET:
@@ -760,7 +760,7 @@ def create_fold(size: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'FOLD', [size], [], []]
+    return ['_', Eck.FOLD, [size], [], []]
 
 
 def create_foldi(size: ET) -> ET:
@@ -776,7 +776,7 @@ def create_foldi(size: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'FOLDI', [size], [], []]
+    return ['_', Eck.FOLDI, [size], [], []]
 
 
 def create_mapfold(size: ET, acc: ET) -> ET:
@@ -795,7 +795,7 @@ def create_mapfold(size: ET, acc: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'MAPFOLD', [size, acc], [], []]
+    return ['_', Eck.MAPFOLD, [size, acc], [], []]
 
 
 def create_mapfoldi(size: ET, acc: ET) -> ET:
@@ -814,7 +814,7 @@ def create_mapfoldi(size: ET, acc: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'MAPFOLDI', [size, acc], [], []]
+    return ['_', Eck.MAPFOLDI, [size, acc], [], []]
 
 
 def create_foldw(size: ET, condition: ET) -> ET:
@@ -833,7 +833,7 @@ def create_foldw(size: ET, condition: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'FOLDW', [size, condition], [], []]
+    return ['_', Eck.FOLDW, [size, condition], [], []]
 
 
 def create_foldwi(size: ET, condition: ET) -> ET:
@@ -852,7 +852,7 @@ def create_foldwi(size: ET, condition: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'FOLDWI', [size, condition], [], []]
+    return ['_', Eck.FOLDWI, [size, condition], [], []]
 
 
 def create_mapw(size: ET, condition: ET, default: ET) -> ET:
@@ -874,7 +874,7 @@ def create_mapw(size: ET, condition: ET, default: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'MAPW', [size, condition, default], [], []]
+    return ['_', Eck.MAPW, [size, condition, default], [], []]
 
 
 def create_mapwi(size: ET, condition: ET, default: ET) -> ET:
@@ -896,7 +896,7 @@ def create_mapwi(size: ET, condition: ET, default: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'MAPWI', [size, condition, default], [], []]
+    return ['_', Eck.MAPWI, [size, condition, default], [], []]
 
 
 def create_mapfoldw(size: ET, acc: ET, condition: ET, default: ET) -> ET:
@@ -921,7 +921,7 @@ def create_mapfoldw(size: ET, acc: ET, condition: ET, default: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'MAPFOLDW', [size, acc, condition, default], [], []]
+    return ['_', Eck.MAPFOLDW, [size, acc, condition, default], [], []]
 
 
 def create_mapfoldwi(size: ET, acc: ET, condition: ET, default: ET) -> ET:
@@ -946,7 +946,7 @@ def create_mapfoldwi(size: ET, acc: ET, condition: ET, default: ET) -> ET:
     -------
         ET
     """
-    return ['_', 'MAPFOLDWI', [size, acc, condition, default], [], []]
+    return ['_', Eck.MAPFOLDWI, [size, acc, condition, default], [], []]
 
 
 # ----------------------------------------------------------------------------
@@ -955,7 +955,7 @@ def create_mapfoldwi(size: ET, acc: ET, condition: ET, default: ET) -> ET:
 
 def _create_sequence(flows: List[ET]) -> ET:
     """Create an expression tree for a group of flows."""
-    return ['_', 'SEQ_EXPR', flows, [], []]
+    return ['_', Eck.SEQ_EXPR, flows, [], []]
 
 
 class ExprSyntaxError(Exception):
@@ -1114,12 +1114,8 @@ def _build_expression_tree(context: suite.Object, tree: ET) -> suite.Expression:
         expr = suite.ExprCall(context)
         if item == '_':
             # Call to a predefined operator
-            ident = tree[1]
-            try:
-                code = Eck[ident].value
-            except KeyError:
-                raise ExprSyntaxError('_build_expression_tree', tree)
-            expr.predef_opr = code
+            eck = tree[1]
+            expr.predef_opr = eck.value
             treecdr = tree[2:]
         else:
             # Call to an operator
