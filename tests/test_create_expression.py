@@ -200,50 +200,57 @@ def test_create_nary(symbol: str, args, expected):
 
 create_if_data = [
     # nominal
-    ('if-single', True, [0, 1], 'if true then (0) else (1)'),
-    ('if-double', False, [0, 1, 2, 3], 'if false then (0, 2) else (1, 3)'),
+    ('if-single', True, [0], [1], 'if true then (0) else (1)'),
+    ('if-double', False, [0, 1], [2, 3], 'if false then (0, 1) else (2, 3)'),
     # robustness
-    ('empty', True, [], create.ExprSyntaxError),
-    ('odd', False, [0, 1, 2], create.ExprSyntaxError),
+    ('empty', True, [], [False], create.ExprSyntaxError),
+    ('diff', False, [0], [1, 2], create.ExprSyntaxError),
 ]
 ids = [_[0] for _ in create_if_data]
 
 
-@pytest.mark.parametrize('id, condition, args, expected', create_if_data, ids=ids)
-def test_create_if(id: str, condition, args, expected):
+@pytest.mark.parametrize('id, condition, thens, elses, expected', create_if_data, ids=ids)
+def test_create_if(id: str, condition, thens, elses, expected):
     if isinstance(expected, str):
         # nominal
-        tree = create.create_if(condition, *args)
+        tree = create.create_if(condition, thens, elses)
         assert _build_expr(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_if(condition, *args)
+            tree = create.create_if(condition, thens, elses)
 
 
 create_case_data = [
     # nominal
-    ('single', True, ["'A'", 65], "( case true of \n | 'A' :   65)"),
-    ('double', 1, [0, 'false', 1, 'true'], '( case 1 of \n | 0 :   false\n | 1 :   true)'),
-    ('default', 6, [1, 2, 3, 4, '_', 5], '( case 6 of \n | 1 :   2\n | 3 :   4\n | _ :   5)'),
+    ('single', True, [("'A'", 65)], None, "( case true of \n | 'A' :   65)"),
+    (
+        'double',
+        1,
+        [(0, 'false'), (1, 'true')],
+        None,
+        '( case 1 of \n | 0 :   false\n | 1 :   true)',
+    ),
+    ('default', 6, [(1, 2), (3, 4)], 5, '( case 6 of \n | 1 :   2\n | 3 :   4\n | _ :   5)'),
     # robustness
-    ('empty', False, [], create.ExprSyntaxError),
-    ('odd', "'a'", [0, 1, 2], create.ExprSyntaxError),
-    ('default', 42, ['_', 0, 1, 2], create.ExprSyntaxError),
+    ('empty', False, [], None, create.ExprSyntaxError),
 ]
 ids = [_[0] for _ in create_case_data]
 
 
-@pytest.mark.parametrize('id, selector, args, expected', create_case_data, ids=ids)
-def test_create_case(id: str, selector, args, expected):
+@pytest.mark.parametrize('id, selector, args, default, expected', create_case_data, ids=ids)
+def test_create_case(id: str, selector, args, default, expected):
     if isinstance(expected, str):
         # nominal
-        tree = create.create_case(selector, *args)
+        if default:
+            tree = create.create_case(selector, args, default)
+        else:
+            tree = create.create_case(selector, args)
         assert _build_expr(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_case(selector, *args)
+            tree = create.create_case(selector, args, default)
 
 
 create_make_data = [

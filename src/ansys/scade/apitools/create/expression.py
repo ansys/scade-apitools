@@ -22,7 +22,7 @@
 
 """Helpers to describe expression trees."""
 
-from typing import List, Union
+from typing import List, Tuple, Union
 
 import scade.model.suite as suite
 
@@ -201,68 +201,71 @@ def create_nary(op: ET, *args: List[ET]) -> ET:
 # selectors
 
 
-def create_if(condition: ET, *args: List[ET]) -> ET:
+def create_if(condition: ET, then: List[ET], else_: List[ET]) -> ET:
     """
     Return the expression tree for the operator if-then-else.
+
+    Note: interface change with respect to the SCADE Creation Library, the flows
+    'then' and the flows 'else' are now specified in two separate lists.
 
     Parameters
     ----------
         condition : ET
             Expression tree corresponding to the condition of the selector.
 
-        *args : List[ET]
-            Then/else expression trees, expressed as [ <then>, <else>, ]+
+        then : List[ET]
+            List of expressions trees when condition is true.
+
+        else_ : List[ET]
+            List of expressions trees when condition is false.
 
     Returns
     -------
         ET
     """
-    length = len(args)
-    if length == 0 or length % 2 != 0:
-        raise ExprSyntaxError('create_if', args)
+    length = len(then)
+    if length == 0 or length != len(else_):
+        raise ExprSyntaxError('create_if', then)
 
-    thens = []
-    elses = []
-    for i in range(length // 2):
-        thens.append(args[2 * i])
-        elses.append(args[2 * i + 1])
-    then_tree = _create_sequence(thens)
-    else_tree = _create_sequence(elses)
+    then_tree = _create_sequence(then)
+    else_tree = _create_sequence(else_)
 
     return ['_', Eck.IF, [condition, then_tree, else_tree], [], []]
 
 
-def create_case(selector: ET, *args: List[ET]) -> ET:
+def create_case(selector: ET, cases: List[Tuple[ET, ET]], default: ET = None) -> ET:
     """
     Return the expression tree for the operator case.
+
+    Note: interface change with respect to the SCADE Creation Library, the pairs pattern/value
+    are now embedded in a list of tuples, and the default value is optional.
 
     Parameters
     ----------
         selector : ET
             Expression tree corresponding to the selector.
 
-        *args : List[ET]
-            Pattern/values expression trees, expressed as [ <pattern>, <value>, ]+
+        cases : List[Tuple[ET, ET]]
+            Pattern/values expression trees.
 
-            The pattern '_', corresponding to the optional default, must be the last one.
+        default: ET
+            Optional default value.
 
     Returns
     -------
         ET
     """
-    length = len(args)
-    if length == 0 or length % 2 != 0:
-        raise ExprSyntaxError('create_case', args)
-    if '_' in args and args.index('_') != length - 2:
-        raise ExprSyntaxError('create_case', args)
+    if len(cases) == 0:
+        raise ExprSyntaxError('create_case', cases)
 
     patterns = []
     inputs = []
-    for i in range(length // 2):
-        pattern = args[2 * i]
-        if pattern != '_':
-            patterns.append(pattern)
-        inputs.append(args[2 * i + 1])
+    for pattern, input in cases:
+        patterns.append(pattern)
+        inputs.append(input)
+    if default:
+        patterns.append('_')
+        inputs.append(default)
     pattern_tree = _create_sequence(patterns)
     input_tree = _create_sequence(inputs)
 
@@ -322,7 +325,7 @@ def create_scalar_to_vector(size: ET, *args: List[ET]) -> ET:
     """
     Return the expression tree for the operator scalar_to_vector.
 
-    Note: interface change with respet to the SCADE Creation Library, the parameter size
+    Note: interface change with respect to the SCADE Creation Library, the parameter size
     has moved from the last position to the first one.
 
     Parameters
@@ -486,7 +489,7 @@ def create_init(flows: Union[ET, List[ET]], inits: Union[ET, List[ET]]) -> ET:
     """
     Return the expression tree for the operator init.
 
-    Note: interface change with respet to the SCADE Creation Library, the flows
+    Note: interface change with respect to the SCADE Creation Library, the flows
     and their initial values are now specified in two separate lists.
 
     Parameters
@@ -521,7 +524,7 @@ def create_fby(flows: Union[ET, List[ET]], delay: ET, inits: Union[ET, List[ET]]
     """
     Return the expression tree for the operator init.
 
-    Note: interface change with respet to the SCADE Creation Library, the flows
+    Note: interface change with respect to the SCADE Creation Library, the flows
     and their initial values are now specified in two separate lists.
 
     Parameters
