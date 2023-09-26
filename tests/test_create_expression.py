@@ -58,6 +58,9 @@ create_call_data = [
     ('EmptySized', [], [42], '(EmptySized<<42>>)()'),
     ('Regular', [True, 1], [], 'Regular(true, 1)'),
     ('Sized', ["'O'"], [9, 31], "(Sized<<9, 31>>)('O')"),
+    ('EmptySizedLx', [], 42, '(EmptySizedLx<<42>>)()'),
+    ('RegularLx', [True, 1], None, 'RegularLx(true, 1)'),
+    ('SizedLx', "'O'", [9, 31], "(SizedLx<<9, 31>>)('O')"),
 ]
 ids = [_[0] for _ in create_call_data]
 
@@ -199,9 +202,10 @@ def test_create_nary(symbol: str, args, expected):
 create_if_data = [
     # nominal
     ('if-single', True, [0], [1], 'if true then (0) else (1)'),
+    ('if-singlelx', True, 0, 1, 'if true then (0) else (1)'),
     ('if-double', False, [0, 1], [2, 3], 'if false then (0, 1) else (2, 3)'),
     # robustness
-    ('empty', True, [], [False], create.ExprSyntaxError),
+    ('empty', True, [], [False], create.EmptyTreeError),
     ('diff', False, [0], [1, 2], create.ExprSyntaxError),
 ]
 ids = [_[0] for _ in create_if_data]
@@ -373,8 +377,10 @@ create_prj_data = [
     ('index', [42], 'index[42]'),
     ('field', ['a'], 'field.a'),
     ('mixed', [9, 'b', 31], 'mixed[9].b[31]'),
+    ('indexlx', 42, 'indexlx[42]'),
+    ('fieldlx', 'a', 'fieldlx.a'),
     # robustness
-    ('empty', [], create.ExprSyntaxError),
+    ('empty', [], create.EmptyTreeError),
 ]
 ids = [_[0] for _ in create_prj_data]
 
@@ -398,8 +404,9 @@ create_prj_dyn_data = [
     ('index', [42], False, '(index.[42] default false)'),
     ('field', ['a', -1], 0, '(field. .a[(-1)] default 0)'),
     ('mixed', [9, 'b', 31], "' '", "(mixed.[9].b[31] default ' ')"),
+    ('indexlx', 42, False, '(indexlx.[42] default false)'),
     # robustness
-    ('empty', [], 0, create.ExprSyntaxError),
+    ('empty', [], 0, create.EmptyTreeError),
 ]
 ids = [_[0] for _ in create_prj_dyn_data]
 
@@ -423,8 +430,9 @@ create_change_ith_data = [
     ('index', [42], False, '(index with [42] = false)'),
     ('field', ['a', -1], 0, '(field with .a[(-1)] = 0)'),
     ('mixed', [9, 'b', 31], "' '", "(mixed with [9].b[31] = ' ')"),
+    ('indexlx', 42, False, '(indexlx with [42] = false)'),
     # robustness
-    ('empty', [], 0, create.ExprSyntaxError),
+    ('empty', [], 0, create.EmptyTreeError),
 ]
 ids = [_[0] for _ in create_change_ith_data]
 
@@ -470,7 +478,7 @@ create_init_data = [
     (True, False, '(false) -> (true)'),
     ([9, "'a'"], [31, "'g'"], "(31, 'g') -> (9, 'a')"),
     # robustness
-    ([], [], create.ExprSyntaxError),
+    ([], [], create.EmptyTreeError),
     ([1, 2], [3, 4, 5], create.ExprSyntaxError),
     (1, [2, 3], create.ExprSyntaxError),
     ([1, 2], [3], create.ExprSyntaxError),
@@ -495,7 +503,7 @@ create_fby_data = [
     (True, 1, False, 'fby(true; 1; false)'),
     ([9, "'a'"], 2, [31, "'g'"], "fby(9, 'a'; 2; 31, 'g')"),
     # robustness
-    ([], 0, [], create.ExprSyntaxError),
+    ([], 0, [], create.EmptyTreeError),
     ([1, 2], 1, [3, 4, 5], create.ExprSyntaxError),
     (1, 2, [2, 3], create.ExprSyntaxError),
     ([1, 2], 3, [3], create.ExprSyntaxError),
@@ -609,6 +617,9 @@ create_restart_data = [
     ('EmptySized', [], [42], False, '(restart (EmptySized<<42>>) every false)()'),
     ('Regular', [True, 1], [], True, '(restart Regular every true)(true, 1)'),
     ('Sized', ["'O'"], [9, 31], False, "(restart (Sized<<9, 31>>) every false)('O')"),
+    ('EmptySizedLx', [], 42, False, '(restart (EmptySizedLx<<42>>) every false)()'),
+    ('RegularLx', [True, 1], None, True, '(restart RegularLx every true)(true, 1)'),
+    ('SizedLx', "'O'", [9, 31], False, "(restart (SizedLx<<9, 31>>) every false)('O')"),
 ]
 ids = [_[0] for _ in create_restart_data]
 
@@ -620,7 +631,8 @@ def test_create_restart(name: str, args, inst_args, every, expected: str):
     # nominal
     modifier = create.create_restart(every)
     if inst_args:
-        tree = create.create_higher_order_call(operator, args, [modifier], inst_args)
+        # use extended mode for the single modifier
+        tree = create.create_higher_order_call(operator, args, modifier, inst_args)
     else:
         tree = create.create_higher_order_call(operator, args, [modifier])
     assert _build_expr(tree) == expected
@@ -749,7 +761,7 @@ def test_normalize_tree_value(tree, expected_value, expected_kind):
             tree = _normalize_tree(tree)
 
 
-# additinal tests with Scade model elements
+# additional tests with Scade model elements
 normalize_tree_reference_data = [
     # nominal
     (suite.Constant, 'constant', 'constant'),
@@ -776,7 +788,7 @@ def test_normalize_tree_reference(class_: str, name: str, expected):
             expr = _normalize_tree(tree)
 
 
-# additinal tests with Scade model elements
+# additional tests with Scade model elements
 normalize_tree_type_data = [
     # nominal
     (suite.NamedType, 'type_', 'type_'),
@@ -792,3 +804,10 @@ def test_normalize_tree_type(class_: str, name: str, expected):
     # nominal
     tree = _normalize_tree(tree)
     assert tree.type.name == expected
+
+
+# additional tests with a tree
+def test_normalize_tree_type():
+    first = _normalize_tree(True)
+    second = _normalize_tree(first)
+    assert second == first
