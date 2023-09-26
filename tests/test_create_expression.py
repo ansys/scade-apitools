@@ -30,8 +30,8 @@ be used for real scripts.
 import pytest
 
 import ansys.scade.apitools.create as create
+from ansys.scade.apitools.create.expression import _normalize_tree
 from ansys.scade.apitools.create.scade import suite
-from ansys.scade.apitools.expr import Eck
 
 
 def _pre_process_expression_tree(model, tree):
@@ -47,7 +47,7 @@ def _pre_process_expression_tree(model, tree):
 
 def _build_expr(tree, context: suite.Object = None) -> str:
     """Build an expression from a tree and return textual representation."""
-    expr = create._build_expression_tree(context, tree)
+    expr = tree._build_expression(context)
     create._link_pendings()
     return expr.to_string().strip()
 
@@ -95,8 +95,6 @@ create_unary_data = [
     ('+', 31, '+ 31'),
     # bitwise
     ('lnot', 12, 'lnot 12'),
-    # more complex operand
-    ('-', ['_', Eck.POS, [32], [], []], '- ( + 32)'),
     # casts for Scade < 6.5
     ('int', 65.0, ''),
     ('real', 81, ''),
@@ -347,19 +345,13 @@ def test_create_data_array(id: str, args, expected):
 
 create_data_struct_data = [
     # nominal
-    ('single', ['one', 1], '{one : 1}'),
-    ('double', ['one', 1, 'two', 2], '{one : 1, two : 2}'),
-    ('embed', ['one', ['_', Eck.PLUS, [2, 2], [], []]], '{one : 2 + 2}'),
+    ('single', [('one', 1)], '{one : 1}'),
+    ('double', [('one', 1), ('two', 2)], '{one : 1, two : 2}'),
     # robustness
     ('empty', [], create.ExprSyntaxError),
-    # TODO: the test below fails: expected exception not raised
-    # and the one after, which is identical, raises the expected exception
-    # how to proceed?
-    # ('empty embed', ['one', [], 'four', 4], create.EmptyTreeError),
-    # ('empty embed', ['one', [], 'four', 4], ''),
-    ('odd', ['one', 1, 'two'], create.ExprSyntaxError),
-    ('not ident', ['not ident', 1], create.TypeIdentifierError),
-    ('number', [0, 1], create.TypeIdentifierError),
+    ('empty embed', [('one', []), ('four', 4)], create.EmptyTreeError),
+    ('not ident', [('not ident', 1)], create.TypeIdentifierError),
+    ('number', [(0, 1)], create.TypeIdentifierError),
 ]
 ids = [_[0] for _ in create_data_struct_data]
 
@@ -703,87 +695,100 @@ def test_create_iterator(name: str, args, expected: str):
     assert _build_expr(tree) == expected
 
 
-# _build_expression_tree is checked through the unit tests for the individual wrappers
-# The following test cases are intended for coverage of the nominal uses cases and robustness
-build_expression_tree_data = [
+# _normalize_tree is checked through the unit tests for the individual wrappers
+# the following test cases are intended for coverage of the nominal uses cases and robustness
+normalize_tree_value_data = [
     # nominal
     # Python literals
-    (False, 'false'),
-    (True, 'true'),
-    (1, '1'),
-    (-2, '-2'),
+    (False, 'false', 'Bool'),
+    (True, 'true', 'Bool'),
+    (1, '1', 'Int'),
+    (-2, '-2', 'Int'),
+    (3.14, '3.14', 'Real'),
     # Scade literals
-    ('false', 'false'),
-    ('true', 'true'),
-    ('1', '1'),
-    ('-2', '-2'),
-    ('3.14e+0', '3.14e+0'),
-    ('1_i8', '1_i8'),
-    ('2_i16', '2_i16'),
-    ('3_i32', '3_i32'),
-    ('4_i64', '4_i64'),
-    ('5_ui8', '5_ui8'),
-    ('6_ui16', '6_ui16'),
-    ('7_ui32', '7_ui32'),
-    ('8_ui64', '8_ui64'),
-    ('1.2_f32', '1.2_f32'),
-    ('.3_f64', '.3_f64'),
-    ("'a'", "'a'"),
+    ('false', 'false', 'Bool'),
+    ('true', 'true', 'Bool'),
+    ('1', '1', 'Int'),
+    ('-2', '-2', 'Int'),
+    ('3.14e+0', '3.14e+0', 'Real'),
+    ('1_i8', '1_i8', 'Int'),
+    ('2_i16', '2_i16', 'Int'),
+    ('3_i32', '3_i32', 'Int'),
+    ('4_i64', '4_i64', 'Int'),
+    ('5_ui8', '5_ui8', 'Int'),
+    ('6_ui16', '6_ui16', 'Int'),
+    ('7_ui32', '7_ui32', 'Int'),
+    ('8_ui64', '8_ui64', 'Int'),
+    ('1.2_f32', '1.2_f32', 'Real'),
+    ('.3_f64', '.3_f64', 'Real'),
+    ("'a'", "'a'", 'Char'),
     # projection path element
-    ('a_i8', 'a_i8'),
+    ('a_i8', 'a_i8', 'String'),
     # robustness
-    ('a b_i8', create.ExprSyntaxError),
-    ('+_f32', create.ExprSyntaxError),
-    (set(), create.ExprSyntaxError),
+    ('a b_i8', create.ExprSyntaxError, None),
+    ('+_f32', create.ExprSyntaxError, None),
+    (set(), create.ExprSyntaxError, None),
     # literals
-    ('0_ui24', create.ExprSyntaxError),
-    ('a_i8', 'a_i8'),
-    ([], create.EmptyTreeError),
-    # too many parameters
-    (['_', Eck.PLUS, [], [], [], []], create.ExprSyntaxError),
-    # not enough parameters
-    (['_', Eck.PLUS, [], []], create.ExprSyntaxError),
-    (['_', Eck.PLUS, []], create.ExprSyntaxError),
-    (['_', Eck.PLUS], create.ExprSyntaxError),
-    # wrong label
-    (['a b c', 2], create.TypeIdentifierError),
+    ('0_ui24', create.ExprSyntaxError, None),
+    ([], create.EmptyTreeError, None),
 ]
-ids = [str(_[0]) for _ in build_expression_tree_data]
+ids = [str(_[0]) for _ in normalize_tree_value_data]
 
 
-@pytest.mark.parametrize('tree, expected', build_expression_tree_data, ids=ids)
-def test_build_expression_tree(tree: list, expected):
-    if isinstance(expected, str):
+@pytest.mark.parametrize('tree, expected_value, expected_kind', normalize_tree_value_data, ids=ids)
+def test_normalize_tree_value(tree, expected_value, expected_kind):
+    if isinstance(expected_value, str):
         # nominal
-        assert _build_expr(tree) == expected
+        tree = _normalize_tree(tree)
+        # tree must be an instance of _Value
+        assert tree.value == expected_value
+        assert tree.kind == expected_kind
     else:
         # robustness
-        with pytest.raises(expected):
-            expr = create._build_expression_tree(None, tree)
+        with pytest.raises(expected_value):
+            tree = _normalize_tree(tree)
 
 
 # additinal tests with Scade model elements
-build_expression_tree_ex_data = [
+normalize_tree_reference_data = [
     # nominal
     (suite.Constant, 'constant', 'constant'),
     (suite.Sensor, 'sensor', 'sensor'),
-    (suite.NamedType, 'type_', 'type_'),
     (suite.LocalVariable, 'local', 'local'),
     # robustness
     (suite.Operator, 'operator', create.ExprSyntaxError),
 ]
-ids = [str(_[1]) for _ in build_expression_tree_ex_data]
+ids = [str(_[1]) for _ in normalize_tree_reference_data]
 
 
-@pytest.mark.parametrize('class_, name, expected', build_expression_tree_ex_data, ids=ids)
-def test_build_expression_tree_ex(class_: str, name: str, expected):
+@pytest.mark.parametrize('class_, name, expected', normalize_tree_reference_data, ids=ids)
+def test_normalize_tree_reference(class_: str, name: str, expected):
     object_ = class_()
     object_.name = name
     tree = object_
     if isinstance(expected, str):
         # nominal
-        assert _build_expr(tree) == expected
+        tree = _normalize_tree(tree)
+        assert tree.reference.name == expected
     else:
         # robustness
         with pytest.raises(expected):
-            expr = create._build_expression_tree(None, tree)
+            expr = _normalize_tree(tree)
+
+
+# additinal tests with Scade model elements
+normalize_tree_type_data = [
+    # nominal
+    (suite.NamedType, 'type_', 'type_'),
+]
+ids = [str(_[1]) for _ in normalize_tree_type_data]
+
+
+@pytest.mark.parametrize('class_, name, expected', normalize_tree_type_data, ids=ids)
+def test_normalize_tree_type(class_: str, name: str, expected):
+    object_ = class_()
+    object_.name = name
+    tree = object_
+    # nominal
+    tree = _normalize_tree(tree)
+    assert tree.type.name == expected

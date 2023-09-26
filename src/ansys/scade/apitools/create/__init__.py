@@ -28,7 +28,6 @@ from .expression import (  # _noqa: F401
     EmptyTreeError,
     ExprSyntaxError,
     TypeIdentifierError,
-    _build_expression_tree,
     create_activate,
     create_activate_no_init,
     create_binary,
