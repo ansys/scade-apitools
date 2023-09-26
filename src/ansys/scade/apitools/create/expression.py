@@ -983,6 +983,12 @@ class EmptyTreeError(Exception):
 
 
 def _is_int(number: str) -> bool:
+    # trivial test first
+    try:
+        i = int(number)
+        return True
+    except:
+        pass
     tokens = number.split('_', 1)
     if len(tokens) != 2:
         return False
@@ -996,6 +1002,12 @@ def _is_int(number: str) -> bool:
 
 
 def _is_real(number: str) -> bool:
+    # trivial test first
+    try:
+        r = float(number)
+        return True
+    except:
+        pass
     tokens = number.split('_', 1)
     if len(tokens) == 2 and tokens[1] in ('f32', 'f64'):
         try:
@@ -1004,6 +1016,11 @@ def _is_real(number: str) -> bool:
         except:
             pass
     return False
+
+
+def _is_bool(value: str) -> bool:
+    # trivial test first
+    return value == 'true' or value == 'false'
 
 
 # TODO: instance name
@@ -1067,7 +1084,10 @@ def _build_expression_tree(context: suite.Object, tree: ET) -> suite.Expression:
                 value = str(item)
                 kind = 'Real'
             elif isinstance(item, str):
-                if _is_int(item):
+                if _is_bool(item):
+                    value = item
+                    kind = 'Bool'
+                elif _is_int(item):
                     # number with one of the suffixes _i8, ui32, etc.
                     value = item
                     kind = 'Int'

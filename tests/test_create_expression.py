@@ -700,11 +700,17 @@ def test_create_iterator(name: str, args, expected: str):
 # The following test cases are intended for coverage of the nominal uses cases and robustness
 build_expression_tree_data = [
     # nominal
-    # literals
+    # Python literals
     (False, 'false'),
     (True, 'true'),
     (1, '1'),
     (-2, '-2'),
+    # Scade literals
+    ('false', 'false'),
+    ('true', 'true'),
+    ('1', '1'),
+    ('-2', '-2'),
+    ('3.14e+0', '3.14e+0'),
     ('1_i8', '1_i8'),
     ('2_i16', '2_i16'),
     ('3_i32', '3_i32'),
