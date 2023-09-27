@@ -44,11 +44,6 @@ def model():
     return load_session(pathname).model
 
 
-def format_test_data(data: list) -> tuple:
-    """Add an id to each data, assuming the first element is a Scade path."""
-    return [pytest.param(*_, id=_[0].split(':')[-1].strip('/')) for _ in data]
-
-
 def test_last(model):
     equation = model.get_object_from_path('Access::ExprId/last_=')
     assert isinstance(equation, suite.Equation)

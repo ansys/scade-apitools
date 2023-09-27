@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Project id="1" oid_count="6" defaultConfiguration="2">
+<Project id="1" oid_count="4" defaultConfiguration="2">
 	<props>
 		<Prop id="3" name="@STUDIO:PRODUCT">
 			<value>SC</value>
+		</Prop>
+		<Prop id="4" name="@SCADE:SAVEVERSION">
+			<value>SCADE65</value>
 		</Prop>
 	</props>
 	<configurations>

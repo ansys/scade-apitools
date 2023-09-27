@@ -30,7 +30,6 @@ Set of helpers for SCADE model creation functions.
 
 from os.path import abspath
 from pathlib import Path
-from typing import Union
 
 import scade.model.project.stdproject as std
 import scade.model.suite as suite
@@ -70,100 +69,6 @@ def save_all():
 
 # ----------------------------------------------------------------------------
 # Helpers (private)
-
-_predefined_types = {}
-"""
-Cache for predefined types.
-
-* The key is a name.
-* The value is the corresponding predefined type.
-"""
-
-_type_constraints = {}
-"""
-Cache for type constraints.
-
-* The key is a name.
-* The value is the corresponding type constraint.
-"""
-
-_numeric_types = [
-    'int8',
-    'int16',
-    'int32',
-    'int64',
-    'uint8',
-    'uint16',
-    'uint32',
-    'uint64',
-    'float32',
-    'float64',
-]
-"""List of the numeric types for KCG 6.6."""
-
-
-_constraints = [
-    'numeric',
-    'integer',
-    'signed',
-    'unsigned',
-    'float',
-]
-"""List of constraints."""
-
-
-def _get_predefined_type(context: suite.Object, name: str) -> suite.NamedType:
-    """
-    Return a predefined type instance from a name for a given context.
-
-    Parameters
-    ----------
-        context : suite.Object
-            Any object from which we can derive the owning session.
-
-        name : str
-            Name of the type.
-
-    Returns
-    -------
-        suite.NamedType
-    """
-    global _predefined_types
-
-    type_ = _predefined_types.get(name)
-    if type_ is None:
-        model = _get_owner_model(context)
-        session = model.session
-        type_ = session.find_predefined_type(name)
-        _predefined_types[name] = type_
-    return type_
-
-
-def _get_type_constraint(context: suite.Object, name: str) -> suite.TypeConstraint:
-    """
-    Return a type constraint instance from a name for a given context.
-
-    Parameters
-    ----------
-        context : suite.Object
-            Any object from which we can derive the owning session.
-
-        name : str
-            Name of the type.
-
-    Returns
-    -------
-        suite.TypeConstraint
-    """
-    global _type_constraints
-
-    constraint = _type_constraints.get(name)
-    if constraint is None:
-        model = _get_owner_model(context)
-        session = model.session
-        constraint = session.find_type_constraint(name)
-        _type_constraints[name] = constraint
-    return constraint
 
 
 def _get_owner_model(object_: suite.Object) -> suite.Model:
@@ -302,31 +207,9 @@ def _link_storage_element(owner: suite.Package, element: suite.StorageElement, p
         unit = _create_unit(model, str(path), persist_as)
         element.storage_unit = unit
         _modified_files.add(unit)
-    elif owner != model:
+    else:
+        assert owner != model
         _set_modified(owner)
-
-
-def _object_link_type(object_: suite.TypedObject, type_: suite.Type):
-    r"""
-    Set the type of an object.
-
-    * The association object : type is buffered.
-    * The composition object : build_type is updated immediately when required.
-
-    Parameters
-    ----------
-        object\_ : suite.TypedObject
-            Input object.
-
-        type\_ : suite.Type
-            Type of the object.
-    """
-    if type_:
-        global _pending_links
-
-        if not isinstance(type_, suite.NamedType):
-            object_.build_type = type_
-        _add_pending_link(object_, 'type', type_)
 
 
 def _add_pending_link(object_: suite.Object, role: str, link: suite.Object):
@@ -362,141 +245,6 @@ def _link_pendings():
     for object_, role, link in _pending_links:
         _scade_api.set(object_, role, link)
     _pending_links = []
-
-
-class TypeSyntaxError(ValueError):
-    """Subclass of ValueError for incorrect type tree structures."""
-
-    def __init__(self, context, tree):
-        """Format a dedicated message from the parameters."""
-        super().__init__('%s: %s: Syntax error' % (context, tree))
-
-
-class TypePolymorphicError(ValueError):
-    """Subclass of ValueError for incorrect type tree structures."""
-
-    def __init__(self, context, tree):
-        """Format a dedicated message from the parameters."""
-        super().__init__('%s: %s: Illegal polymorphic type' % (context, tree))
-
-
-def _build_type_tree(context: suite.Object, tree: Union[str, suite.Type, list]) -> suite.Type:
-    r"""
-    Create a type from a type tree structure.
-
-    Note: the references to types are buffered, until the type is connected to
-    an object with the function object_link_type.
-
-    Parameters
-    ----------
-        context : suite.Object
-            Context of the creation of the type, used create the instances of the
-            types, find the predefined types or resolve polymorphic types (TODO).
-
-        tree : Union[str, suite.NamedType, list]
-            Description of the type:
-
-            * Name of a predefined type
-            * Existing type instance
-            * List of parameters to define an anonymous Scade type
-
-    Returns
-    -------
-        suite.Type
-    """
-    global _numeric_types
-
-    if tree is None:
-        return None
-    if isinstance(tree, list):
-        if len(tree) == 0:
-            raise TypeSyntaxError('BuildTypeTree', tree)
-        word = tree[0]
-    else:
-        word = tree
-
-    # TODO: sized types
-    if word == 'unsigned':
-        if len(tree) != 2:
-            raise TypeSyntaxError('BuildTypeTree', tree)
-        type_ = suite.SizedType(context)
-        type_.constraint = _get_type_constraint(context, tree[0])
-        # {{ TODO use expr trees
-        # type_.size_expression = BuildExpressionTree(context, dim)
-        size = tree[1]
-        if isinstance(size, suite.ConstVar):
-            value = suite.ExprId(context)
-            _add_pending_link(value, 'reference', size)
-        else:
-            value = suite.ConstValue(context)
-            value.value = str(size)
-        # }}
-        type_.size_expression = value
-
-    elif word == 'struct':
-        if len(tree) != 2:
-            raise TypeSyntaxError('BuildTypeTree', tree)
-        type_ = suite.Structure(context)
-        elements = []
-        pairs = tree[1]
-        if not pairs or len(pairs) % 2 == 1:
-            # the number of elements must be even and not null
-            raise TypeSyntaxError('BuildTypeTree', tree)
-        for i in range(len(pairs) // 2):
-            ident = pairs[2 * i]
-            subtree = pairs[2 * i + 1]
-            element = suite.CompositeElement(type_)
-            element.name = ident
-            elements.append(element)
-            subtype = _build_type_tree(context, subtree)
-            _object_link_type(element, subtype)
-        type_.elements = elements
-
-    elif word == 'table':
-        if len(tree) != 3:
-            raise TypeSyntaxError('BuildTypeTree', tree)
-        subtype = _build_type_tree(context, tree[2])
-        if not tree[1]:
-            # there must be at least one dimension
-            raise TypeSyntaxError('BuildTypeTree', tree)
-        for dim in tree[1]:
-            type_ = suite.Table(context)
-            # {{ TODO use expr trees
-            # type_.size_expression = BuildExpressionTree(context, dim)
-            if isinstance(dim, suite.ConstVar):
-                value = suite.ExprId(context)
-                _add_pending_link(value, 'reference', dim)
-            else:
-                value = suite.ConstValue(context)
-                value.value = str(dim)
-            # }}
-            type_.size_expression = value
-            _object_link_type(type_, subtype)
-            subtype = type_
-
-    elif isinstance(word, str):
-        if word == 'char' or word == 'bool':
-            type_ = _get_predefined_type(context, word)
-
-        elif word == 'int' or word == 'real':
-            # KCG 6.4 and earlier
-            type_ = _get_predefined_type(context, word)
-
-        elif word in _numeric_types:
-            # KCG 6.5 and greater
-            type_ = _get_predefined_type(context, word)
-
-        elif word and word[0] == "'":
-            raise TypePolymorphicError('BuildTypeTree', word)
-
-        else:
-            raise TypeSyntaxError('BuildTypeTree', tree)
-
-    else:
-        _check_object(word, 'BuildTypeTree', 'type', suite.Type)
-        type_ = word
-
-    return type_
 
 
 def _set_modified(object_: suite.Object):

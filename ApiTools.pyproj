@@ -95,6 +95,7 @@
     <Compile Include="src\ansys\scade\apitools\create\expression.py" />
     <Compile Include="src\ansys\scade\apitools\create\project.py" />
     <Compile Include="src\ansys\scade\apitools\create\scade.py" />
+    <Compile Include="src\ansys\scade\apitools\create\type.py" />
     <Compile Include="src\ansys\scade\apitools\create\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\expr\access.py" />
     <Compile Include="src\ansys\scade\apitools\expr\predef.py" />
@@ -115,7 +116,7 @@
     <Compile Include="tests\test_auto_scade_env.py" />
     <Compile Include="tests\test_create_expression.py" />
     <Compile Include="tests\test_create_project.py" />
-    <Compile Include="tests\test_create_scade.py" />
+    <Compile Include="tests\test_create_type.py" />
     <Compile Include="tests\test_install.py" />
     <Compile Include="tests\test_metadata.py" />
     <Compile Include="tests\test_pragma.py" />

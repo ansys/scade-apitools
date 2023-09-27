@@ -30,25 +30,15 @@ be used for real scripts.
 import pytest
 
 import ansys.scade.apitools.create as create
-from ansys.scade.apitools.create.expression import _normalize_tree
-from ansys.scade.apitools.create.scade import suite
+from ansys.scade.apitools.create.expression import EX, _build_expression, _normalize_tree
+from ansys.scade.apitools.create.scade import _link_pendings, suite
 
 
-def _pre_process_expression_tree(model, tree):
-    """Replace all occurrences of '@path' by the corresponding model element."""
-    if isinstance(tree, list):
-        return [_pre_process_expression_tree(model, _) for _ in tree]
-    elif isinstance(tree, str):
-        if tree and tree[0] == '@':
-            return model.get_object_from_path(tree[1:])
-    # default
-    return tree
-
-
-def _build_expr(tree, context: suite.Object = None) -> str:
+def _tree_to_string(tree: EX, context: suite.Object = None) -> str:
     """Build an expression from a tree and return textual representation."""
-    expr = tree._build_expression(context)
-    create._link_pendings()
+    expr = _build_expression(tree, context)
+    # link pending references so that to_string gives the expected result
+    _link_pendings()
     return expr.to_string().strip()
 
 
@@ -74,7 +64,7 @@ def test_create_call_nominal(name: str, args, inst_args, expected: str):
         tree = create.create_call(operator, args, inst_args)
     else:
         tree = create.create_call(operator, args)
-    assert _build_expr(tree) == expected
+    assert _tree_to_string(tree) == expected
 
 
 def test_create_call_robustness():
@@ -113,7 +103,7 @@ def test_create_unary(symbol, arg, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_unary(symbol, arg)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -160,7 +150,7 @@ def test_create_binary(symbol: str, arg1, arg2, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_binary(symbol, arg1, arg2)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -192,7 +182,7 @@ def test_create_nary(symbol: str, args, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_nary(symbol, *args)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -216,7 +206,7 @@ def test_create_if(id: str, condition, thens, elses, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_if(condition, thens, elses)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -248,7 +238,7 @@ def test_create_case(id: str, selector, args, default, expected):
             tree = create.create_case(selector, args, default)
         else:
             tree = create.create_case(selector, args)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -273,7 +263,7 @@ def test_create_make(name: str, args, class_, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_make(type_, *args)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -296,7 +286,7 @@ def test_create_flatten(name: str, arg, class_, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_flatten(type_, arg)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -318,7 +308,7 @@ def test_create_scalar_to_vector(size, args, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_scalar_to_vector(size, *args)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -340,7 +330,7 @@ def test_create_data_array(id: str, args, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_data_array(*args)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -365,7 +355,7 @@ def test_create_data_struct(id: str, args, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_data_struct(*args)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -392,7 +382,7 @@ def test_create_prj(name: str, path, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_prj(c, path)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -418,7 +408,7 @@ def test_create_prj_dyn(name: str, path, default, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_prj_dyn(c, path, default)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -444,7 +434,7 @@ def test_create_change_ith(name: str, path, value, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_change_ith(c, path, value)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -466,7 +456,7 @@ def test_create_pre(flows, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_pre(*flows)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -491,7 +481,7 @@ def test_create_init(flows, inits, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_init(flows, inits)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -516,7 +506,7 @@ def test_create_fby(flows, delay, inits, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_fby(flows, delay, inits)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -534,7 +524,7 @@ ids = ['%s - %s' % (_[0], _[1]) for _ in create_times_data]
 def test_create_times(number, flow, expected: str):
     # nominal
     tree = create.create_times(number, flow)
-    assert _build_expr(tree) == expected
+    assert _tree_to_string(tree) == expected
 
 
 create_slice_data = [
@@ -550,7 +540,7 @@ def test_create_slice(name, start, end, expected: str):
     constant = suite.Constant()
     constant.name = name
     tree = create.create_slice(constant, start, end)
-    assert _build_expr(tree) == expected
+    assert _tree_to_string(tree) == expected
 
 
 create_concat_data = [
@@ -573,7 +563,7 @@ def test_create_concat(names, expected):
     if isinstance(expected, str):
         # nominal
         tree = create.create_concat(*arrays)
-        assert _build_expr(tree) == expected
+        assert _tree_to_string(tree) == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -592,7 +582,7 @@ def test_create_reverse(name, expected: str):
     c = suite.Constant()
     c.name = name
     tree = create.create_reverse(c)
-    assert _build_expr(tree) == expected
+    assert _tree_to_string(tree) == expected
 
 
 create_transpose_data = [
@@ -607,7 +597,7 @@ def test_create_transpose(name, dim1, dim2, expected: str):
     c = suite.Constant()
     c.name = name
     tree = create.create_transpose(c, dim1, dim2)
-    assert _build_expr(tree) == expected
+    assert _tree_to_string(tree) == expected
 
 
 # data from create_call
@@ -635,7 +625,7 @@ def test_create_restart(name: str, args, inst_args, every, expected: str):
         tree = create.create_higher_order_call(operator, args, modifier, inst_args)
     else:
         tree = create.create_higher_order_call(operator, args, [modifier])
-    assert _build_expr(tree) == expected
+    assert _tree_to_string(tree) == expected
 
 
 # op parameters and instance parameters with higher order
@@ -655,7 +645,7 @@ def test_create_activate(name: str, args, every, expected: str):
     # nominal
     modifier = create.create_activate(every, *args)
     tree = create.create_higher_order_call(operator, [], [modifier])
-    assert _build_expr(tree) == expected
+    assert _tree_to_string(tree) == expected
 
 
 # op parameters and instance parameters with higher order
@@ -675,7 +665,7 @@ def test_create_activate_no_init(name: str, args, every, expected: str):
     # nominal
     modifier = create.create_activate_no_init(every, *args)
     tree = create.create_higher_order_call(operator, [], [modifier])
-    assert _build_expr(tree) == expected
+    assert _tree_to_string(tree) == expected
 
 
 # design different from other expressions: a single function for all the iterators
@@ -704,7 +694,7 @@ def test_create_iterator(name: str, args, expected: str):
     # nominal
     modifier = eval('create.create_%s(*args)' % name.lower())
     tree = create.create_higher_order_call(operator, [], [modifier])
-    assert _build_expr(tree) == expected
+    assert _tree_to_string(tree) == expected
 
 
 # _normalize_tree is checked through the unit tests for the individual wrappers
@@ -807,7 +797,7 @@ def test_normalize_tree_type(class_: str, name: str, expected):
 
 
 # additional tests with a tree
-def test_normalize_tree_type():
+def test_normalize_tree_tree():
     first = _normalize_tree(True)
     second = _normalize_tree(first)
     assert second == first

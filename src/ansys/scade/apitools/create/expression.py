@@ -23,10 +23,10 @@
 """
 Helpers to create expression trees.
 
-Expression trees are intermediate structures to declare arbitrary complex expressions,
-and then create the corresponding SCADE Suite expressions in the context
-of a model element, for example the right part of an equation or the default value
-of an output.
+Expression trees are intermediate structures to declare any arbitrary complex
+expressions, and then create the corresponding SCADE Suite expressions in the
+context of a model element, for example the right part of an equation or the
+default value of an output.
 
 This module provides functions to create an expression tree for any expression
 of the Scade language, including higher order constructs. Thus, the intermediate
@@ -34,9 +34,9 @@ structures or classes defining the expression trees can be opaque.
 
 Notes: the typing is relaxed in this module to ease the constructs.
 
-* The type ``ET`` is an alias for ``ExpressionTree`` to shorten the declarations.
+* ``ET`` is an alias for ``ExpressionTree`` to shorten the declarations.
 
-* ``EX``, standing for extended expression tree, is defined as ::
+* ``EX``, standing for extended expression tree, is defined as::
 
      Union[bool, int, float, str, suite.ConstVar, suite.NamedType, ET]
 
@@ -44,7 +44,7 @@ Notes: the typing is relaxed in this module to ease the constructs.
   such as Python literals, string values or SCADE Python objects, as valid
   expression trees.
 
-* ``LX``, standing for extended lists of expression trees, is defined as ::
+* ``LX``, standing for extended lists of expression trees, is defined as::
 
      Union[EX, List[EX]]
 
@@ -250,6 +250,26 @@ def _normalize_tree_ex(any: LX) -> List[ET]:
         return _normalize_tree(any)
     else:
         return [_normalize_tree(any)]
+
+
+def _build_expression(tree: EX, context: suite.Object) -> suite.Expression:
+    """
+    Build an expression from an extended expression tree.
+
+    Parameters
+    ----------
+        tree : EX
+            Operand: expression tree.
+
+        context : suite.Object
+            Context of the creation of the expression.
+
+    Returns
+    -------
+        suite.Expression
+    """
+    tree = _normalize_tree(tree)
+    return tree._build_expression(context)
 
 
 # association tables

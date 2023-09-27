@@ -24,6 +24,7 @@
 
 from enum import Enum
 
+# ignore F401: functions made available for modules, not used here
 from .expression import (  # _noqa: F401
     EmptyTreeError,
     ExprSyntaxError,
@@ -67,8 +68,6 @@ from .expression import (  # _noqa: F401
     create_transpose,
     create_unary,
 )
-
-# ignore F401: functions made available for modules, not used here
 from .project import (  # _noqa: F401
     create_configuration,
     create_file_ref,
@@ -76,12 +75,5 @@ from .project import (  # _noqa: F401
     create_prop,
     save_project,
 )
-from .scade import (  # _noqa: F401
-    TypePolymorphicError,
-    TypeSyntaxError,
-    _add_pending_link,
-    _build_type_tree,
-    _link_pendings,
-    _object_link_type,
-    save_all,
-)
+from .scade import save_all  # _noqa: F401
+from .type import create_sized, create_structure, create_table  # _noqa: F401

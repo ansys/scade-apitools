@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Project id="1" oid_count="90" defaultConfiguration="23">
+<Project id="1" oid_count="92" defaultConfiguration="23">
 	<props>
 		<Prop id="10" name="@STUDIO:PRODUCT">
 			<value>SC</value>
@@ -261,12 +261,6 @@
 			<value>true</value>
 			<configuration>65</configuration>
 		</Prop>
-		<Prop id="73" name="@SCADE:DEFAULTFILE">
-			<value>CreateScade.xscade</value>
-		</Prop>
-		<Prop id="74" name="@SCADE:SEMFILE">
-			<value>CreateScade.err</value>
-		</Prop>
 		<Prop id="75" name="@SCADE:NOTEFILE">
 			<value>$(SCADE)/lib/DefaultAty.aty</value>
 		</Prop>
@@ -341,6 +335,12 @@
 			<value>57</value>
 			<value>65</value>
 		</Prop>
+		<Prop id="91" name="@SCADE:DEFAULTFILE">
+			<value>CreateType.xscade</value>
+		</Prop>
+		<Prop id="92" name="@SCADE:SEMFILE">
+			<value>CreateType.err</value>
+		</Prop>
 	</props>
 	<roots>
 		<Folder id="3" extensions="vsp;etp" name="SCADE Libraries"/>
@@ -348,7 +348,7 @@
 			<elements>
 				<Folder id="13" extensions="xscade;scade" name="Separate Files"/>
 				<FileRef id="89" persistAs="Package.xscade"/>
-				<FileRef id="90" persistAs="CreateScade.xscade"/>
+				<FileRef id="90" persistAs="CreateType.xscade"/>
 			</elements>
 		</Folder>
 	</roots>

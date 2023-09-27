@@ -25,6 +25,6 @@ workspace ::= {
 {"1", "2"}
 }
 project_ref ::= {
-{"2", "CreateScade.etp", "1"}
+{"2", "CreateType.etp", "1"}
 }
 END

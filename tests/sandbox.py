@@ -1,9 +1,8 @@
 # for debug purposes and quick tests
 # (breakpoints can't be always hit with VS/pytest)
 
-import scade.model.suite as suite
-
 import ansys.scade.apitools.create as create
+from ansys.scade.apitools.create.scade import suite
 from conftest import load_session
 from test_utils import get_resources_dir
 
