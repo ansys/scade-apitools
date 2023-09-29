@@ -33,7 +33,7 @@ import scade.model.project.stdproject as std
 
 
 def create_folder(
-    owner: Union[std.Project, std.Folder], name: str, extensions: str = ''
+    owner: Union[std.Project, std.Folder], path: Union[str, List[str]], extensions: str = ''
 ) -> std.Folder:
     """
     Create an instance of Folder.
@@ -41,13 +41,16 @@ def create_folder(
     A folder shall have a name and be either a root folder of a project or
     a sub-folder of another folder.
 
+    Note: returns the folder with the given name if it exists.
+
     Parameters
     ----------
         owner : std.Project or std.Folder
             Owner of the folder, either the project itself or a folder.
 
-        name : str
-            Name of the folder.
+        path : Union[str, List[str]]
+            Either the name of the folder. When a path is provided, the function
+            creates the intermediate folders which do not exist.
 
         extensions: str
             String defining the extensions associated to the folder.
@@ -57,6 +60,22 @@ def create_folder(
         std.Folder
     """
     _check_object(owner, 'create_folder', 'owner', (std.Project, std.Folder))
+
+    if isinstance(path, str):
+        path = [path]
+    for name in path[:-1]:
+        # create the intermediate folders
+        print('create intermediate', name)
+        owner = create_folder(owner, name)
+    name = path[-1]
+    # check for the existence of the folder
+    elements = _get_elements(owner)
+    for element in elements:
+        if isinstance(element, std.Folder) and element.name == name:
+            return element
+
+    # not found
+    print('create leaf', name)
     if isinstance(owner, std.Project):
         folder = std.Folder(owner)
         folder.owner = owner
@@ -292,7 +311,7 @@ def _check_object(object_, context: str, name: str, classes: Tuple[Any, ...]):
 # to be moved to query.project
 def _find_file_ref(project: std.Project, pathname: str) -> std.FileRef:
     """
-    Search a project for a file with the profided path.
+    Search a project for a file with the provided path.
 
     Parameters
     ----------
@@ -311,6 +330,22 @@ def _find_file_ref(project: std.Project, pathname: str) -> std.FileRef:
         if path == abspath(file_ref.pathname):
             return file_ref
     return None
+
+
+def _get_elements(parent: Union[std.Project, std.Folder]) -> List[std.Element]:
+    """
+    Return the contained elements of a project or a folder.
+
+    Parameters
+    ----------
+        parent: Union[std.Project, std.Folder]
+            Input project or folder.
+
+    Returns
+    ----------
+        List[std.Element]
+    """
+    return parent.roots if isinstance(parent, std.Project) else parent.elements
 
 
 # def FindObject(context: object, name: str, role: str, att):

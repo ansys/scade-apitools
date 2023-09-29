@@ -25,6 +25,17 @@
 from enum import Enum
 
 # ignore F401: functions made available for modules, not used here
+from .declaration import (  # _noqa: F401
+    VK,
+    add_enumeration_values,
+    create_constant,
+    create_enumeration,
+    create_imported_constant,
+    create_imported_type,
+    create_named_type,
+    create_package,
+    create_sensor,
+)
 from .expression import (  # _noqa: F401
     EmptyTreeError,
     ExprSyntaxError,
@@ -75,5 +86,10 @@ from .project import (  # _noqa: F401
     create_prop,
     save_project,
 )
-from .scade import save_all  # _noqa: F401
+from .scade import (  # _noqa: F401
+    add_element_to_project,
+    add_imported_to_project,
+    add_simulation_file_to_project,
+    save_all,
+)
 from .type import create_sized, create_structure, create_table  # _noqa: F401

@@ -42,7 +42,7 @@ import pytest
 
 import ansys.scade.apitools.create as create
 
-# import std form prj to ensure import order: models after apitools
+# import std from prj to ensure import order: models after apitools
 # import scade.model.project.stdproject as std
 from ansys.scade.apitools.create.project import std
 from test_utils import get_resources_dir
@@ -60,12 +60,10 @@ def find_element(project: std.Project, path: str) -> std.Annotable:
         return parent
     names = path.split('/')
     for name in names[:-2]:
-        # raise StopIteration if not found
         parent = next(
             _ for _ in get_elements(parent) if isinstance(_, std.Folder) and _.name == name
         )
     name = names[-1]
-    # raise StopIteration if not found
     return next(_ for _ in get_elements(parent) if _.name == name)
 
 

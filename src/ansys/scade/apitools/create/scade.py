@@ -28,14 +28,16 @@ Set of helpers for SCADE model creation functions.
 * Type trees
 """
 
-from os.path import abspath
+from enum import Enum
+from os.path import abspath, relpath
 from pathlib import Path
+from typing import Union
 
 import scade.model.project.stdproject as std
 import scade.model.suite as suite
 
 from .. import _scade_api
-from .project import _check_object
+from .project import _check_object, _find_file_ref, create_file_ref, create_folder
 
 _modified_files = set()
 """
@@ -57,6 +59,16 @@ List of pending associations to be set once an object is built.
 # Interface
 
 
+class Sfk(Enum):
+    """Simulation file kind."""
+
+    C = 1  # Source File for C
+    OBJECT = 2  # Object File
+    MACRO = 3  # Macro File
+    TYPE = 4  # Type Definition File
+    ADA = 5  # Source File for Ada
+
+
 def save_all():
     """Save all the modified files of Scade models."""
     global _modified_files
@@ -65,6 +77,196 @@ def save_all():
         unit.save()
 
     _modified_files = set()
+
+
+def add_element_to_project(
+    project: std.Project,
+    element: suite.StorageElement,
+    folder: std.Folder = None,
+    default: bool = True,
+) -> std.FileRef:
+    """
+    Add the file defining the storage element to the project.
+
+    The file is added if and only if it is not already present.
+    If it is present, the parameters folder and default are ignored.
+
+    The file is added to:
+
+    * The specified folder when not None.
+    * Or one of the default folders  "Model Files" or "Separate Files"
+      depending on the nature of the storage unit when default is True.
+    * Otherwise to the project as a root element.
+
+    Parameters
+    ----------
+        project : std.Project
+            Project to modify.
+
+        element : suite.StorageELement
+            Element which storage unit must be added to the project.
+
+            If the storage unit is not root, the added file is
+            tagged as ``NONROOT`` for SCADE.
+
+        folder : std.Folder
+            Parent folder of the file to add to the project.
+
+        default: bool
+            When True, the file is added to one of the default folders
+            for SCADE Suite files.
+
+    Returns
+    -------
+        std.FileRef
+    """
+    unit = element.defined_in
+    path = unit.sao_file_name
+    file_ref = _find_file_ref(project, Path(path))
+    if not file_ref:
+        if folder:
+            parent = folder
+        elif default:
+            names = ['Model Files']
+            if not unit.is_root():
+                names.append('Separate Files')
+            parent = create_folder(project, names)
+        else:
+            parent = project
+        file_ref = create_file_ref(parent, path)
+        # update persist_as to a relative path to the project
+        file_ref.set_path_name(path)
+        if not unit.is_root():
+            file_ref.set_bool_tool_prop_def('SCADE', 'NONROOT', True, False, None)
+    return file_ref
+
+
+def add_imported_to_project(
+    project: std.Project,
+    element: Union[suite.NamedType, suite.Operator],
+    path: str,
+    folder: std.Folder = None,
+    default: bool = True,
+) -> std.FileRef:
+    """
+    Add imported source file, associated to the SCADE imported element, to the project.
+
+    The file is added if and only if it is not already present.
+    If it is present, the parameters folder ad default are ignored.
+
+    The file is added to:
+
+    * The specified folder when not None.
+    * Or one of the default folders  "External Code" or "External Type Definitions",
+      depending on nature of element.
+    * Otherwise to the project as a root element.
+
+    Parameters
+    ----------
+        project : std.Project
+            Project to modify.
+
+        element: Union[suite.NamedType, suite.Operator]
+            Imported element.
+
+        path : str
+            Path of the file to be added to the project.
+
+        folder : std.Folder
+            Parent folder of the file to add to the project.
+
+        default: bool
+            When True, the file is added to the default folder
+            for SCADE Simulation files, according to the element.
+
+    Returns
+    -------
+        std.FileRef
+    """
+    if isinstance(element, suite.Operator):
+        kind = Sfk.ADA if Path(path).suffix.lower() in ['.adb', '.ads'] else Sfk.C
+        prop = 'IMPORTED_NODES'
+    else:
+        kind = Sfk.TYPE
+        prop = 'IMPORTED_TYPES'
+
+    file_ref = add_simulation_file_to_project(project, path, kind, folder, default)
+
+    elements = file_ref.get_tool_prop_def('SCADE', prop, [], None)
+    # get the path without the trailing slash, so that the IDE
+    # does fail to find the relationship file-element
+    elements.append(element.get_full_path().strip('/'))
+    file_ref.set_tool_prop_def('SCADE', prop, elements, [], None)
+
+    return file_ref
+
+
+def add_simulation_file_to_project(
+    project: std.Project, path: str, kind: Sfk, folder: std.Folder = None, default=True
+) -> std.FileRef:
+    """
+    Add a file to the project and tag it appropriately for the SCADE simulation.
+
+    The file is added if and only if it is not already present.
+    If it is present, the parameters folder and default are ignored.
+
+    The file is added to:
+
+    * The specified folder when not None.
+    * Or one of the default folders  "External Code" or "External Type Definitions",
+      depending on the kind of the file.
+    * Otherwise to the project as a root element.
+
+    Parameters
+    ----------
+        project : std.Project
+            Project to modify.
+
+        path : Path
+            Path of the file to be added to the project.
+
+        kind: Sfk
+            Kind of the added file.
+
+        folder : std.Folder
+            Parent folder of the file to add to the project.
+
+        default: bool
+            When True, the file is added to the default folder
+            for SCADE Simulation files, according to kind.
+
+    Returns
+    -------
+        std.FileRef
+    """
+    file_ref = _find_file_ref(project, path)
+    if not file_ref:
+        if folder:
+            parent = folder
+        elif default:
+            folders = {
+                Sfk.C: 'External Code',
+                Sfk.OBJECT: 'External Type Code',
+                Sfk.MACRO: 'External Definitions',
+                Sfk.TYPE: 'External Type Definitions',
+                Sfk.ADA: 'External Code',
+            }
+            parent = create_folder(project, folders[kind])
+        else:
+            parent = project
+        file_ref = create_file_ref(parent, path)
+        # update persist_as to a relative path to the project
+        file_ref.set_path_name(path)
+        values = {
+            Sfk.C: 'CS',
+            Sfk.OBJECT: 'Obj',
+            Sfk.MACRO: 'Macro',
+            Sfk.TYPE: 'Type',
+            Sfk.ADA: 'AdaS',
+        }
+        file_ref.set_scalar_tool_prop_def('SIMULATOR', 'FILEKIND', values[kind], '', None)
+
+    return file_ref
 
 
 # ----------------------------------------------------------------------------
@@ -116,21 +318,6 @@ def _get_model_project(model: suite.Model) -> std.Project:
     """
     pathname = abspath(model.descriptor.model_file_name)
     return next((_ for _ in std.get_roots() if abspath(_.pathname) == pathname), None)
-
-
-def _is_ident(name: str) -> bool:
-    """
-    Return whether name is a valid identifier.
-
-    Note: the implementation uses ``str.isidentifier`` which accepts
-    a superset of Scade identifiers.
-
-    Parameters
-    ----------
-        name : str
-            Name to verify.
-    """
-    return name.isidentifier()
 
 
 def _get_default_file(model: suite.Model) -> Path:
@@ -198,10 +385,7 @@ def _link_storage_element(owner: suite.Package, element: suite.StorageElement, p
     if path is not None:
         if owner != model:
             directory = Path(owner.defined_in.sao_file_name).parent
-            try:
-                persist_as = path.relative_to(directory)
-            except ValueError:
-                persist_as = str(path)
+            persist_as = str(Path(relpath(abspath(path), directory)).with_suffix(''))
         else:
             persist_as = ''
         unit = _create_unit(model, str(path), persist_as)
@@ -209,6 +393,7 @@ def _link_storage_element(owner: suite.Package, element: suite.StorageElement, p
         _modified_files.add(unit)
     else:
         assert owner != model
+    if owner != model:
         _set_modified(owner)
 
 
@@ -258,7 +443,7 @@ def _set_modified(object_: suite.Object):
     """
     global _modified_files
 
-    unit = object.defined_in
+    unit = object_.defined_in
     unit.sao_modified = True
     _modified_files.add(unit)
 
@@ -287,13 +472,12 @@ def _create_unit(model: suite.Model, path: Path, persist_as: str) -> suite.Stora
     global _modified_files
 
     for unit in model.model_storage_units:
-        if Path(unit.sao_file_name) == path:
+        if abspath(unit.sao_file_name) == abspath(path):
             _modified_files.add(unit)
             return unit
     unit = suite.StorageUnit(model)
-    unit.sao_file_name = pathname
-    if persist_as is not None:
-        unit.persist_as = persist_as
+    unit.sao_file_name = str(path)
+    unit.persist_as = persist_as
     unit.model = model
     _modified_files.add(unit)
 
