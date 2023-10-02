@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Operator kind="node" external="imported" name="IO">
+			<inputs>
+				<Variable name="iOne">
+					<type>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/6f8/16D8/6760/651acf9347a"/>
+					</pragmas>
+				</Variable>
+				<Variable name="iThree">
+					<type>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/6f9/16D8/6760/651acf93719"/>
+					</pragmas>
+				</Variable>
+				<Variable name="hOne">
+					<type>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/6f4/16D8/6760/651acf937f76" hidden="true"/>
+					</pragmas>
+				</Variable>
+				<Variable name="hThree">
+					<type>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/6f5/16D8/6760/651acf936145" hidden="true"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="oOne">
+					<type>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/6f6/16D8/6760/651acf937154"/>
+					</pragmas>
+				</Variable>
+				<Variable name="oThree">
+					<type>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/6f7/16D8/6760/651acf9376a2"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<pragmas>
+				<ed:Operator oid="!ed/6f2/16D8/6760/651acf936ee1"/>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>

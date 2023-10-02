@@ -27,14 +27,25 @@ from enum import Enum
 # ignore F401: functions made available for modules, not used here
 from .declaration import (  # _noqa: F401
     VK,
+    IllegalIOError,
+    ParamImportedError,
     add_enumeration_values,
+    add_operator_hidden,
+    add_operator_inputs,
+    add_operator_outputs,
+    add_operator_parameters,
     create_constant,
     create_enumeration,
+    create_graphical_operator,
     create_imported_constant,
+    create_imported_operator,
     create_imported_type,
     create_named_type,
     create_package,
     create_sensor,
+    create_textual_operator,
+    set_specialized_operator,
+    set_type_constraint,
 )
 from .expression import (  # _noqa: F401
     EmptyTreeError,

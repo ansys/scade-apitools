@@ -32,7 +32,7 @@ Creation functions for Scade model declarations.
 
 from enum import Enum
 from pathlib import Path
-from typing import List
+from typing import List, Tuple
 
 import scade.model.suite as suite
 
@@ -42,7 +42,7 @@ from .project import _check_object
 
 # from .expression import ET
 from .scade import _link_pendings, _link_storage_element, _set_modified
-from .type import TX, _build_type, _object_link_type
+from .type import TX, _build_type, _constraints, _get_type_constraint, _object_link_type
 
 
 class VK(Enum):
@@ -443,7 +443,7 @@ def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path) -> sui
     Parameters
     ----------
         owner : suite.Package
-            Owner of the constant, either the model itself or a package.
+            Owner of the sensor, either the model itself or a package.
 
         name : str
             Name of the sensor.
@@ -479,3 +479,437 @@ def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path) -> sui
         _set_modified(owner)
 
     return sensor
+
+
+def _create_operator(
+    owner: suite.Package,
+    name: str,
+    path: Path,
+    visibility: VK = VK.PUBLIC,
+    symbol_file: Path = None,
+    state: bool = False,
+) -> suite.Operator:
+    """Core function to create an instance of Operator."""
+    _check_object(owner, 'create_operator', 'owner', suite.Package)
+
+    operator = suite.Operator(owner)
+    operator.name = name
+    _scade_api.add(owner, 'operator', operator)
+
+    # other properties
+    operator.visibility = visibility.value
+    operator.symbol_file = '' if symbol_file is None else str(symbol_file)
+    operator.state = state
+
+    _link_storage_element(owner, operator, path)
+
+    return operator
+
+
+def create_graphical_operator(
+    owner: suite.Package,
+    name: str,
+    path: Path,
+    visibility: VK = VK.PUBLIC,
+    symbol_file: Path = None,
+    state: bool = False,
+) -> suite.Operator:
+    """
+    Create an instance of Operator with a graphical diagram.
+
+    An operator shall have a name.
+
+    Parameters
+    ----------
+        owner : suite.Package
+            Owner of the operator, either the model itself or a package.
+
+        name : str
+            Name of the operator.
+
+        path: Path
+            Path of the file to store the oprator.
+
+            This parameter is optional if the package's owner is a package.
+            When path is None and owner is the model, the operator is
+            stored in the model's default file.
+
+        visibility: VK
+            Accessibility of the operator, either public or private.
+
+        symbol_file: Path
+            Optional Path of the file defining the symbol of the operator.
+
+        state: bool
+            True if the operator is a node.
+
+    Returns
+    -------
+        suite.Operator
+    """
+    operator = _create_operator(owner, name, path, visibility, symbol_file, state)
+
+    diagram = suite.NetDiagram(operator)
+    diagram.name = operator.name
+    diagram.landscape = True
+    _scade_api.add(operator, 'diagram', diagram)
+
+    return operator
+
+
+def create_textual_operator(
+    owner: suite.Package,
+    name: str,
+    path: Path,
+    visibility: VK = VK.PUBLIC,
+    symbol_file: Path = None,
+    state: bool = False,
+) -> suite.Operator:
+    """
+    Create an instance of Operator with a textual diagram.
+
+    An operator shall have a name.
+
+    Parameters
+    ----------
+        owner : suite.Package
+            Owner of the operator, either the model itself or a package.
+
+        name : str
+            Name of the operator.
+
+        path: Path
+            Path of the file to store the oprator.
+
+            This parameter is optional if the package's owner is a package.
+            When path is None and owner is the model, the operator is
+            stored in the model's default file.
+
+        visibility: VK
+            Accessibility of the operator, either public or private.
+
+        symbol_file: Path
+            Optional Path of the file defining the symbol of the operator.
+
+        state: bool
+            True if the operator is a node.
+
+    Returns
+    -------
+        suite.Operator
+    """
+    operator = _create_operator(owner, name, path, visibility, symbol_file, state)
+
+    diagram = suite.TextDiagram(operator)
+    diagram.name = operator.name
+    diagram.landscape = False
+    _scade_api.add(operator, 'diagram', diagram)
+
+    return operator
+
+
+def create_imported_operator(
+    owner: suite.Package,
+    name: str,
+    path: Path,
+    visibility: VK = VK.PUBLIC,
+    symbol_file: Path = None,
+    state: bool = False,
+) -> suite.Operator:
+    """
+    Create an instance of imported Operator.
+
+    An operator shall have a name.
+
+    Parameters
+    ----------
+        owner : suite.Package
+            Owner of the operator, either the model itself or a package.
+
+        name : str
+            Name of the operator.
+
+        file: Path
+            Optional file defining the imported operator.
+
+        path: Path
+            Path of the file to store the oprator.
+
+            This parameter is optional if the package's owner is a package.
+            When path is None and owner is the model, the operator is
+            stored in the model's default file.
+
+        visibility: VK
+            Accessibility of the operator, either public or private.
+
+        symbol_file: Path
+            Optional Path of the file defining the symbol of the operator.
+
+        state: bool
+            True if the operator is a node.
+
+    Returns
+    -------
+        suite.Operator
+    """
+    operator = _create_operator(owner, name, path, visibility, symbol_file, state)
+    operator.imported = True
+
+    return operator
+
+
+class IllegalIOError(Exception):
+    """Exception for wrong IO specification."""
+
+    def __init__(self, context, io, role):
+        """Provide a customized message."""
+        super().__init__('%s: %s: Illegal %s' % (context, io, role))
+
+
+class ParamImportedError(Exception):
+    """Exception for wrong imported operator specification."""
+
+    def __init__(self, context, item, text):
+        """Provide a customized message."""
+        super().__init__('%s: %s%s)' % (context, item, text))
+
+
+def _get_generic_type(operator: suite.Operator, name: str) -> suite.NamedType:
+    """Return the polymorphic type name of operator, create it if it does not exist."""
+    type_ = next((_ for _ in operator.typevars if _.name == name), None)
+    if type_ is None:
+        type_ = suite.NamedType(operator)
+        type_.name = name
+        operator.typevars.append(type_)
+    return type_
+
+
+def _add_operator_ios(
+    operator: suite.Operator,
+    ios: List[suite.LocalVariable],
+    vars: List[Tuple[str, TX]],
+    insert_before: suite.LocalVariable,
+) -> List[suite.LocalVariable]:
+    """Core function to create operator I/Os."""
+    context = 'add_operator_ios'
+    _check_object(operator, context, 'operator', suite.Operator)
+    if insert_before is not None:
+        _check_object(insert_before, context, 'insert_before', suite.LocalVariable)
+        if insert_before.operator != operator:
+            raise IllegalIOError(context, insert_before, 'IO')
+        index = insert_before.interface_range
+    else:
+        index = len(ios)
+
+    new_ios = []
+    for name, tree in vars:
+        if isinstance(tree, str) and len(tree) > 0 and tree[0] == "'":
+            type_ = _get_generic_type(operator, tree)
+        else:
+            type_ = _build_type(tree, operator)
+        io = suite.LocalVariable(operator)
+        io.name = name
+        io.interface_range = index
+        ios.append(io)
+        _object_link_type(io, type_)
+
+        new_ios.append(io)
+        index += 1
+
+    _link_pendings()
+    _set_modified(operator)
+
+    return new_ios
+
+
+def add_operator_inputs(
+    operator: suite.Operator, vars: List[Tuple[str, TX]], insert_before: suite.LocalVariable
+) -> List[suite.LocalVariable]:
+    """
+    Add inputs to an operator.
+
+    Return the added inputs.
+
+    Note: interface change with respect to the SCADE Creation Library,
+    the pairs name/type tree are now embedded in a list of tuples.
+
+    Parameters
+    ----------
+        operator : suite.Operator
+            Input operator.
+
+        vars : List[Tuple[str, TX]]
+            Name/type expression trees.
+
+        insert_before: suite.LocalVariable
+            Insertion point of the inputs.
+
+            When this parameter is not None, it shall be an existing input of the oprator.
+            The inputs are inserted before this input. Otherwise, the inputs are added at the end.
+
+    Returns
+    -------
+        List[suite.LocalVariable]
+    """
+    return _add_operator_ios(operator, operator.inputs, vars, insert_before)
+
+
+def add_operator_hidden(
+    operator: suite.Operator, vars: List[Tuple[str, TX]], insert_before: suite.LocalVariable
+) -> List[suite.LocalVariable]:
+    """
+    Add hidden inputs to an operator.
+
+    Return the added hidden inputs.
+
+    Note: interface change with respect to the SCADE Creation Library,
+    the pairs name/type tree are now embedded in a list of tuples.
+
+    Parameters
+    ----------
+        operator : suite.Operator
+            Input operator.
+
+        vars : List[Tuple[str, TX]]
+            Name/type expression trees.
+
+        insert_before: suite.LocalVariable
+            Insertion point of the inputs.
+
+            When this parameter is not None, it shall be an existing hidden input of the oprator.
+            The hidden inputs are inserted before this input.
+            Otherwise, the hidden inputs are added at the end.
+
+    Returns
+    -------
+        List[suite.LocalVariable]
+    """
+    return _add_operator_ios(operator, operator.hiddens, vars, insert_before)
+
+
+def add_operator_outputs(
+    operator: suite.Operator, vars: List[Tuple[str, TX]], insert_before: suite.LocalVariable
+) -> List[suite.LocalVariable]:
+    """
+    Add outputs to an operator.
+
+    Return the added outputs.
+
+    Note: interface change with respect to the SCADE Creation Library,
+    the pairs name/type tree are now embedded in a list of tuples.
+
+    Parameters
+    ----------
+        operator : suite.Operator
+            Input operator.
+
+        vars : List[Tuple[str, TX]]
+            Name/type expression trees.
+
+        insert_before: suite.LocalVariable
+            Insertion point of the outputs.
+
+            When this parameter is not None, it shall be an existing output of the oprator.
+            The outputs are inserted before this input.
+            Otherwise, the outputs are added at the end.
+
+    Returns
+    -------
+        List[suite.LocalVariable]
+    """
+    return _add_operator_ios(operator, operator.outputs, vars, insert_before)
+
+
+def add_operator_parameters(
+    operator: suite.Operator, parameters: List[str], insert_before: suite.Constant
+) -> List[suite.Constant]:
+    """
+    Add parameters to an operator.
+
+    Return the added parameters.
+
+    Parameters
+    ----------
+        operator : suite.Operator
+            Input operator.
+
+        parameters : List[str]
+            Name of the parameters to create.
+
+        insert_before: suite.Constant
+            Insertion point of the parameter.
+
+            When this parameter is not None, it shall be an existing parameter of the oprator.
+            The parameters are inserted before this parameter.
+            Otherwise, the parameters are added at the end.
+
+    Returns
+    -------
+        List[suite.LocalVariable]
+    """
+    _check_object(operator, 'add_operator_parameters', 'operator', suite.Operator)
+    if insert_before is not None:
+        _check_object(insert_before, 'add_operator_parameters', 'insert_before', suite.Constant)
+        if insert_before.operator != operator:
+            raise IllegalIOError(add_operator_parameters, insert_before, 'parameter')
+        index = insert_before.parameter_range
+    else:
+        index = len(operator.parameters)
+
+    new_parameters = []
+    for name in parameters:
+        parameter = suite.Constant(operator)
+        parameter.name = name
+        parameter.parameter_range = index
+        operator.parameters.append(parameter)
+        _object_link_type(parameter, _build_type('uint32', operator))
+
+        new_parameters.append(parameter)
+        index += 1
+
+    _link_pendings()
+    _set_modified(operator)
+    return new_parameters
+
+
+def set_specialized_operator(operator: suite.Operator, imported: suite.Operator):
+    """
+    Declare a specialization of an imported operator.
+
+    Parameters
+    ----------
+        operator : suite.Operator
+            Specializing operator.
+
+        imported : suite.Operator
+            Specialized imported operator.
+    """
+    _check_object(operator, 'set_specialized_operator', 'operator', suite.Operator)
+    _check_object(imported, 'set_specialized_operator', 'imported', suite.Operator)
+    if not imported.imported:
+        raise ParamImportedError(
+            'set_specialized_operator: ', imported.name, ': Illegal imported operator'
+        )
+
+    operator.specialized_operator = imported
+    _set_modified(operator)
+
+
+def set_type_constraint(type_: suite.NamedType, name: str):
+    """
+    Set the constaint of a polymorphic type.
+
+    Parameters
+    ----------
+        type_ : suite.NamedType
+            Input polymorphic type.
+
+        name : str
+            Name of the constraint.
+    """
+    _check_object(type_, 'declare_type_constraint', 'type', suite.NamedType)
+    if not name in _constraints:
+        raise Exception('%s: Unknown constraint' % name)
+    type_.constraint = _get_type_constraint(type_, name)
+
+    _set_modified(type_)

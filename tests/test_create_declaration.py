@@ -43,14 +43,14 @@ import pytest
 
 import ansys.scade.apitools.create as create
 
+# import suite from declaration to ensure import order: models after apitools
+# import scade.model.suite as suite
+from ansys.scade.apitools.create.declaration import suite
+
 # import std from prj to ensure import order: models after apitools
 # import scade.model.project.stdproject as std
 from ansys.scade.apitools.create.project import std
 from test_utils import get_resources_dir
-
-# import suite from declaration to ensure import order: models after apitools
-# import scade.model.suite as suite
-# from ansys.scade.apitools.create.declaration import suite
 
 
 def _get_path(project: std.Project, rel_path: str) -> Path:
@@ -128,8 +128,8 @@ class TestCreateDeclaration:
         create.save_all()
 
     nominal_imported_type_data = [
-        ('PackageImported', 'Package:', 'ExternalTypes.h', None),
-        ('RootImported', '', 'ExternalTypes.h', None),
+        ('PackageImportedType', 'Package:', 'ExternalTypes.h', None),
+        ('RootImportedType', '', 'ExternalTypes.h', None),
         ('RootUnknown', '', None, None),
     ]
 
@@ -278,3 +278,250 @@ class TestCreateDeclaration:
         assert session.model.get_object_from_path(sensor_path) == sensor
         assert sensor.type.name == type_
         create.save_all()
+
+    nominal_graphical_operator_data = [
+        # nominal uses cases
+        ('PackageOperator', 'Package:', create.VK.PUBLIC),
+        ('RootOperator', '', create.VK.PRIVATE),
+    ]
+
+    @pytest.mark.parametrize(
+        'name, owner, visibility',
+        nominal_graphical_operator_data,
+        ids=[_[0] for _ in nominal_graphical_operator_data],
+    )
+    def test_create_graphical_operator(self, tmp_project_session, name, owner, visibility):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        owner = session.model.get_object_from_path(owner)
+        operator = create.create_graphical_operator(owner, name, None, visibility=visibility)
+        # add the unit to the project
+        create.add_element_to_project(project, operator, folder=None, default=True)
+        # the created operator must be accessible
+        operator_path = '%s%s/' % (owner.get_full_path(), name)
+        assert session.model.get_object_from_path(operator_path) == operator
+        assert isinstance(operator.diagrams[0], suite.NetDiagram)
+        assert operator.visibility == visibility.value
+        create.save_all()
+
+    nominal_textual_operator_data = [
+        # nominal uses cases
+        ('PackageNode', 'Package:', True),
+        ('RootFuntion', '', False),
+    ]
+
+    @pytest.mark.parametrize(
+        'name, owner, state',
+        nominal_textual_operator_data,
+        ids=[_[0] for _ in nominal_textual_operator_data],
+    )
+    def test_create_textual_operator(self, tmp_project_session, name, owner, state):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        owner = session.model.get_object_from_path(owner)
+        operator = create.create_textual_operator(owner, name, None, state=state)
+        # add the unit to the project
+        create.add_element_to_project(project, operator, folder=None, default=True)
+        # the created operator must be accessible
+        operator_path = '%s%s/' % (owner.get_full_path(), name)
+        assert session.model.get_object_from_path(operator_path) == operator
+        assert isinstance(operator.diagrams[0], suite.TextDiagram)
+        assert operator.state == state
+        create.save_all()
+
+    nominal_imported_operator_data = [
+        # nominal uses cases
+        ('PackageImportedOp', 'Package:', None),
+        ('RootImportedOp', '', 'Operator.c'),
+    ]
+
+    @pytest.mark.parametrize(
+        'name, owner, file',
+        nominal_imported_operator_data,
+        ids=[_[0] for _ in nominal_imported_operator_data],
+    )
+    def test_create_imported_operator(self, tmp_project_session, name, owner, file):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        owner = session.model.get_object_from_path(owner)
+        operator = create.create_imported_operator(owner, name, None)
+        # add the unit to the project
+        create.add_element_to_project(project, operator, folder=None, default=True)
+        if file:
+            create.add_imported_to_project(project, operator, file)
+        # the created operator must be accessible
+        operator_path = '%s%s/' % (owner.get_full_path(), name)
+        assert session.model.get_object_from_path(operator_path) == operator
+        assert len(operator.diagrams) == 0
+        create.save_all()
+
+    set_specialized_operator_data = [
+        # nominal uses cases
+        ('Operator', create.ParamImportedError),
+        ('Imported', None),
+    ]
+
+    @pytest.mark.parametrize(
+        'specialized, exception',
+        set_specialized_operator_data,
+        ids=[_[0] for _ in set_specialized_operator_data],
+    )
+    def test_specialized_operator(self, tmp_project_session, specialized, exception):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        specialized = session.model.get_object_from_path(specialized)
+        name = 'Specializing%s' % specialized.name
+        operator = create.create_graphical_operator(session.model, name, None)
+        create.add_element_to_project(project, operator, folder=None, default=True)
+        if exception:
+            with pytest.raises(exception):
+                create.set_specialized_operator(operator, specialized)
+        else:
+            create.set_specialized_operator(operator, specialized)
+            create.save_all()
+
+    nominal_operator_io_vars_data = [
+        ([('zero', 'bool')], 'one'),
+        ([('two', 'char')], 'three'),
+        ([('four', 'int32'), ('five', 'float64')], None),
+        ([('six', "'T")], 'unknown'),
+    ]
+    nominal_io_operator_kind_data = [
+        ('inputs'),
+        ('hiddens'),
+        ('outputs'),
+    ]
+
+    @pytest.mark.parametrize(
+        'vars, before',
+        nominal_operator_io_vars_data,
+        ids=[_[0][0][0] for _ in nominal_operator_io_vars_data],
+    )
+    @pytest.mark.parametrize(
+        'kind',
+        nominal_io_operator_kind_data,
+        ids=[_[0] for _ in nominal_io_operator_kind_data],
+    )
+    def test_add_operator_io_nominal(self, tmp_project_session, kind, vars, before):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        # hardcoded for operator IO
+        operator = session.model.get_object_from_path('IO')
+        fct = {
+            'inputs': create.add_operator_inputs,
+            'hiddens': create.add_operator_hidden,
+            'outputs': create.add_operator_outputs,
+        }[kind]
+        # add the prefix to vars and before
+        prefix = kind[0]
+        before = None if not before else kind[0] + before.capitalize()
+        vars = [(prefix + _[0].capitalize(), _[1]) for _ in vars]
+        # store the names for some minimal verifications
+        names = {_.name for _ in getattr(operator, kind)}
+        names |= {_[0] for _ in vars}
+        # add the ios
+        before = next((_ for _ in getattr(operator, kind) if _.name == before), None)
+        result = fct(operator, vars, before)
+        # some verifications...
+        assert [_.name for _ in result] == [_[0] for _ in vars]
+        assert names == {_.name for _ in getattr(operator, kind)}
+        # finally, make sure the created elements can be accessed
+        for io in result:
+            io_path = '%s%s/' % (operator.get_full_path(), io.name)
+            assert session.model.get_object_from_path(io_path) == io
+        create.save_all()
+
+    robstness_operator_io_data = [
+        ([('zero', 'bool')], 'IOOther/other'),
+    ]
+
+    @pytest.mark.parametrize(
+        'vars, before',
+        robstness_operator_io_data,
+        ids=[_[0][0][0] for _ in robstness_operator_io_data],
+    )
+    def test_add_operator_io_robustness(self, tmp_project_session, vars, before):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        # hardcoded for operator IO
+        operator = session.model.get_object_from_path('IO')
+        before = session.model.get_object_from_path(before)
+        with pytest.raises(create.IllegalIOError):
+            create.add_operator_inputs(operator, vars, before)
+
+    nominal_operator_parameters_data = [
+        (['A'], 'IO/B'),
+        (['B'], 'IO/A'),
+        (['C', 'D'], None),
+    ]
+
+    @pytest.mark.parametrize(
+        'parameters, before',
+        nominal_operator_parameters_data,
+        ids=[_[0][0] for _ in nominal_operator_parameters_data],
+    )
+    def test_add_operator_parameters_nominal(self, tmp_project_session, parameters, before):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        # hardcoded for operator IO
+        operator = session.model.get_object_from_path('IO')
+        # add the prefix to vars and before
+        before = session.model.get_object_from_path(before) if before else None
+        # store the names for some minimal verifications
+        names = {_.name for _ in operator.parameters}
+        names |= set(parameters)
+        # add the parameters
+        result = create.add_operator_parameters(operator, parameters, before)
+        # some verifications...
+        assert [_.name for _ in result] == parameters
+        assert names == {_.name for _ in operator.parameters}
+        # finally, make sure the created elements can be accessed
+        for parameter in result:
+            parameter_path = '%s%s/' % (operator.get_full_path(), parameter.name)
+            assert session.model.get_object_from_path(parameter_path) == parameter
+        create.save_all()
+
+    robstness_operator_parameters_data = [
+        (['N'], 'IOOther/OTHER'),
+    ]
+
+    @pytest.mark.parametrize(
+        'parameters, before',
+        robstness_operator_parameters_data,
+        ids=[_[0][0] for _ in robstness_operator_parameters_data],
+    )
+    def test_add_operator_parameters_robustness(self, tmp_project_session, parameters, before):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        # hardcoded for operator IO
+        operator = session.model.get_object_from_path('IO')
+        before = session.model.get_object_from_path(before)
+        with pytest.raises(create.IllegalIOError):
+            create.add_operator_parameters(operator, parameters, before)
+
+    type_constraint_data = [
+        ('t1', 'numeric', None),
+        ('t2', 'integer', None),
+        ('t3', 'signed', None),
+        ('t4', 'unsigned', None),
+        ('t5', 'float', None),
+        ('tu', 'unknown', Exception),
+    ]
+
+    @pytest.mark.parametrize(
+        'name, constraint, exception',
+        type_constraint_data,
+        ids=[_[0] for _ in type_constraint_data],
+    )
+    def test_type_constraint(self, tmp_project_session, name, constraint, exception):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        # hardcoded for operator IO
+        operator = session.model.get_object_from_path('IO')
+        io = create.add_operator_inputs(operator, [(name, ("'%s" % name).capitalize())], None)[0]
+        if exception:
+            with pytest.raises(exception):
+                create.set_type_constraint(io.type, constraint)
+        else:
+            create.set_type_constraint(io.type, constraint)
+            create.save_all()

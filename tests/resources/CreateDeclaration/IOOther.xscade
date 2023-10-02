@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Operator kind="node" external="imported" name="IOOther">
+			<sizeParameters>
+				<SizeParameter name="OTHER">
+					<pragmas>
+						<ed:SizeParameter oid="!ed/6ff/16D8/6760/651ad941569"/>
+					</pragmas>
+				</SizeParameter>
+			</sizeParameters>
+			<inputs>
+				<Variable name="other">
+					<type>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/6fc/16D8/6760/651ad1993f66"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<pragmas>
+				<ed:Operator oid="!ed/6fa/16D8/6760/651ad1882a76"/>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
