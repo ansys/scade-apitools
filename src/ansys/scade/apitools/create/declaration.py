@@ -46,7 +46,7 @@ from .type import TX, _build_type, _constraints, _get_type_constraint, _object_l
 
 
 class VK(Enum):
-    """Either public or private."""
+    """Visibility Kind: either public or private."""
 
     PUBLIC = 'Public'
     PRIVATE = 'Private'
@@ -69,14 +69,14 @@ def create_package(
         name : str
             Name of the package.
 
-        path: Path
+        path : Path
             Path of the file to store the package.
 
             This parameter is optional if the package's owner is a package.
             When path is None and owner is the model, the package is
             stored in the model's default file.
 
-        visibility: VK
+        visibility : VK
             Accessibility of the package, either public or private.
 
     Returns
@@ -129,17 +129,17 @@ def create_named_type(
         name : str
             Name of the type.
 
-        definition: TX
+        definition : TX
             Definition of the type expressed as a type tree.
 
-        path: Path
+        path : Path
             Path of the file to store the type.
 
             This parameter is ignored if the owner is a package.
             When path is None and owner is the model, the type is
             stored in the model's default file.
 
-        visibility: VK
+        visibility : VK
             Accessibility of the type, either public or private.
 
     Returns
@@ -186,14 +186,14 @@ def create_imported_type(
         name : str
             Name of the type.
 
-        path: Path
+        path : Path
             Path of the file to store the type.
 
             This parameter is ignored if the owner is a package.
             When path is None and owner is the model, the type is
             stored in the model's default file.
 
-        visibility: VK
+        visibility : VK
             Accessibility of the type, either public or private.
 
     Returns
@@ -234,17 +234,17 @@ def create_enumeration(
         name : str
             Name of the type.
 
-        values: List[str]
+        values : List[str]
             List of the enumeration values.
 
-        path: Path
+        path : Path
             Path of the file to store the type.
 
             This parameter is ignored if the owner is a package.
             When path is None and owner is the model, the type is
             stored in the model's default file.
 
-        visibility: VK
+        visibility : VK
             Accessibility of the type, either public or private.
 
     Returns
@@ -288,16 +288,16 @@ def add_enumeration_values(type_: suite.NamedType, values: List[str], insert_bef
         type_ : suite.NamedType
             Named type defining the enumeration.
 
-        values: List[str]
+        values : List[str]
             List of the enumeration values to add.
 
-        insert_before: str
+        insert_before : str
             Insertion point of the values.
 
             When this parameter is not None, and exists, the values are inserted
             before this value. Otherwise, the values are added at the end.
 
-        visibility: str
+        visibility : str
             Either 'Public' or 'Private'.
     """
     _check_object(type_, 'add_enumeration_values', 'type_', suite.NamedType)
@@ -338,20 +338,20 @@ def create_constant(
         name : str
             Name of the constant.
 
-        type_: TX
+        type_ : TX
             Definition of the type expressed as a type tree.
 
-        value: EX
+        value : EX
             Expression tree defining the value.
 
-        path: Path
+        path : Path
             Path of the file to store the constant.
 
             This parameter is ignored if the owner is a package.
             When path is None and owner is the model, the constant is
             stored in the model's default file.
 
-        visibility: VK
+        visibility : VK
             Accessibility of the constant, either public or private.
 
     Returns
@@ -396,17 +396,17 @@ def create_imported_constant(
         name : str
             Name of the constant.
 
-        type_: TX
+        type_ : TX
             Definition of the type expressed as a type tree.
 
-        path: Path
+        path : Path
             Path of the file to store the constant.
 
             This parameter is ignored if the owner is a package.
             When path is None and owner is the model, the constant is
             stored in the model's default file.
 
-        visibility: VK
+        visibility : VK
             Accessibility of the constant, either public or private.
 
     Returns
@@ -448,10 +448,10 @@ def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path) -> sui
         name : str
             Name of the sensor.
 
-        type_: TX
+        type_ : TX
             Definition of the type expressed as a type tree.
 
-        path: Path
+        path : Path
             Path of the file to store the constant.
 
             This parameter is ignored if the owner is a package.
@@ -527,20 +527,20 @@ def create_graphical_operator(
         name : str
             Name of the operator.
 
-        path: Path
+        path : Path
             Path of the file to store the oprator.
 
             This parameter is optional if the package's owner is a package.
             When path is None and owner is the model, the operator is
             stored in the model's default file.
 
-        visibility: VK
+        visibility : VK
             Accessibility of the operator, either public or private.
 
-        symbol_file: Path
+        symbol_file : Path
             Optional Path of the file defining the symbol of the operator.
 
-        state: bool
+        state : bool
             True if the operator is a node.
 
     Returns
@@ -578,20 +578,20 @@ def create_textual_operator(
         name : str
             Name of the operator.
 
-        path: Path
+        path : Path
             Path of the file to store the oprator.
 
             This parameter is optional if the package's owner is a package.
             When path is None and owner is the model, the operator is
             stored in the model's default file.
 
-        visibility: VK
+        visibility : VK
             Accessibility of the operator, either public or private.
 
-        symbol_file: Path
+        symbol_file : Path
             Optional Path of the file defining the symbol of the operator.
 
-        state: bool
+        state : bool
             True if the operator is a node.
 
     Returns
@@ -629,23 +629,23 @@ def create_imported_operator(
         name : str
             Name of the operator.
 
-        file: Path
+        file : Path
             Optional file defining the imported operator.
 
-        path: Path
+        path : Path
             Path of the file to store the oprator.
 
             This parameter is optional if the package's owner is a package.
             When path is None and owner is the model, the operator is
             stored in the model's default file.
 
-        visibility: VK
+        visibility : VK
             Accessibility of the operator, either public or private.
 
-        symbol_file: Path
+        symbol_file : Path
             Optional Path of the file defining the symbol of the operator.
 
-        state: bool
+        state : bool
             True if the operator is a node.
 
     Returns
@@ -741,7 +741,7 @@ def add_operator_inputs(
         vars : List[Tuple[str, TX]]
             Name/type expression trees.
 
-        insert_before: suite.LocalVariable
+        insert_before : suite.LocalVariable
             Insertion point of the inputs.
 
             When this parameter is not None, it shall be an existing input of the oprator.
@@ -773,7 +773,7 @@ def add_operator_hidden(
         vars : List[Tuple[str, TX]]
             Name/type expression trees.
 
-        insert_before: suite.LocalVariable
+        insert_before : suite.LocalVariable
             Insertion point of the inputs.
 
             When this parameter is not None, it shall be an existing hidden input of the oprator.
@@ -806,7 +806,7 @@ def add_operator_outputs(
         vars : List[Tuple[str, TX]]
             Name/type expression trees.
 
-        insert_before: suite.LocalVariable
+        insert_before : suite.LocalVariable
             Insertion point of the outputs.
 
             When this parameter is not None, it shall be an existing output of the oprator.
@@ -836,7 +836,7 @@ def add_operator_parameters(
         parameters : List[str]
             Name of the parameters to create.
 
-        insert_before: suite.Constant
+        insert_before : suite.Constant
             Insertion point of the parameter.
 
             When this parameter is not None, it shall be an existing parameter of the oprator.

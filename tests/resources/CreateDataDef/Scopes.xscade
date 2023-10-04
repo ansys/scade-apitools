@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="node" name="Scopes">
+	<inputs>
+		<Variable name="expressions">
+			<type>
+				<NamedType>
+					<type>
+						<NullRef/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/735/16D8/6760/651bcd8733b2"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<data>
+		<StateMachine name="SM">
+			<states>
+				<State initial="true" name="State">
+					<pragmas>
+						<ed:State oid="!ed/720/16D8/6760/651bb0e96653"/>
+					</pragmas>
+				</State>
+			</states>
+			<pragmas>
+				<ed:StateMachine oid="!ed/71b/16D8/6760/651bb0e71278"/>
+			</pragmas>
+		</StateMachine>
+		<WhenBlock name="WB">
+			<when>
+				<ConstValue value="true"/>
+			</when>
+			<matches>
+				<Match pattern="true">
+					<pragmas>
+						<ed:Match oid="!ed/72b/16D8/6760/651bb0fa76a8"/>
+						<ed:Action oid="!ed/72c/16D8/6760/651bb0fa7d4"/>
+					</pragmas>
+				</Match>
+			</matches>
+			<pragmas>
+				<ed:WhenBlock oid="!ed/726/16D8/6760/651bb0f873fe"/>
+			</pragmas>
+		</WhenBlock>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/718/16D8/6760/651bb04d11b7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+			<diagrams>
+				<NetDiagram name="Scopes" landscape="true" format="A4 (210 297)" oid="!ed/719/16D8/6760/651bb04d1371">
+					<presentationElements>
+						<StateMachineGE presentable="!ed/71b/16D8/6760/651bb0e71278">
+							<position>
+								<Point x="979" y="609"/>
+							</position>
+							<size>
+								<Size width="5239" height="4128"/>
+							</size>
+						</StateMachineGE>
+						<StateGE presentable="!ed/720/16D8/6760/651bb0e96653">
+							<position>
+								<Point x="1244" y="953"/>
+							</position>
+							<size>
+								<Size width="4710" height="3598"/>
+							</size>
+						</StateGE>
+						<WhenBlockGE presentable="!ed/726/16D8/6760/651bb0f873fe">
+							<position>
+								<Point x="1058" y="6350"/>
+							</position>
+							<size>
+								<Size width="6800" height="5530"/>
+							</size>
+							<startPos>
+								<Point x="450" y="582"/>
+							</startPos>
+						</WhenBlockGE>
+						<WhenBranchGE labelWidth="794" presentable="!ed/72b/16D8/6760/651bb0fa76a8">
+							<position>
+								<Point x="1588" y="7964"/>
+							</position>
+						</WhenBranchGE>
+						<ActionGE presentable="!ed/72c/16D8/6760/651bb0fa7d4">
+							<position>
+								<Point x="2858" y="7885"/>
+							</position>
+							<size>
+								<Size width="4710" height="3598"/>
+							</size>
+						</ActionGE>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

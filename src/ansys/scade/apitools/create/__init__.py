@@ -25,6 +25,20 @@
 from enum import Enum
 
 # ignore F401: functions made available for modules, not used here
+from .data_def import (  # _noqa: F401
+    AK,
+    add_data_def_assertion,
+    add_data_def_equation,
+    add_data_def_locals,
+    add_data_def_net_diagram,
+    add_data_def_probes,
+    add_data_def_signals,
+    add_data_def_text_diagram,
+    add_diagram_edge,
+    add_diagram_missing_edges,
+    set_variable_default,
+    set_variable_last,
+)
 from .declaration import (  # _noqa: F401
     VK,
     IllegalIOError,
