@@ -37,9 +37,21 @@
 												<SignalRef name="signal"/>
 											</signals>
 											<pragmas>
-												<ed:Emission oid="!ed/664/788E/4884/651e03909d1"/>
+												<ed:Emission oid="!ed/671/788E/4884/651e73238e6"/>
 											</pragmas>
 										</Emission>
+										<!-- _ = 0; -->
+										<Equation>
+											<lefts>
+												<VariableRef name="_"/>
+											</lefts>
+											<right>
+												<ConstValue value="0"/>
+											</right>
+											<pragmas>
+												<ed:Equation oid="!ed/672/788E/4884/651e73237ea8"/>
+											</pragmas>
+										</Equation>
 									</data>
 									<pragmas>
 										<ed:Action oid="!ed/65a/788E/4884/651e03904acf"/>
@@ -182,6 +194,10 @@
 							</slashPos>
 						</TransitionGE>
 						<TransitionGE polyline="true" presentable="!ed/610/788E/4884/651df8407b77">
+							<textAreas>
+								<TextArea text="emit 'signal;&#xA;
+_ = 0;" role="122"/>
+							</textAreas>
 							<positions>
 								<Point x="8149" y="2011"/>
 								<Point x="9551" y="2672"/>
@@ -189,7 +205,7 @@
 								<Point x="8176" y="2778"/>
 							</positions>
 							<labelSize>
-								<Size width="3916" height="370"/>
+								<Size width="2937" height="635"/>
 							</labelSize>
 							<labelPos>
 								<Point x="8784" y="2328"/>
@@ -229,7 +245,7 @@
 								<Point x="5371" y="2752"/>
 							</labelPos>
 							<slashPos>
-								<Point x="5953" y="2752"/>
+								<Point x="5371" y="2752"/>
 							</slashPos>
 						</TransitionGE>
 					</presentationElements>

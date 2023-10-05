@@ -397,8 +397,10 @@ class TestCreateDataDef:
         main = create.add_state_transition(normal, create.TK.WEAK, fork)
         # add an action to the main transition
         signal = session.model.get_object_from_path('P::States/signal/')
-        main.effect = suite.Action(main)
-        create.add_data_def_equation(main.effect, None, [signal], None)
+        # a scope shall be added to the transition
+        create.add_transition_equation(main, [signal], None)
+        # add another action to make sure another scope is not created
+        create.add_transition_equation(main, ['_'], 0)
 
         # compare the semantics of the state machine with the reference
         reference = session.model.get_object_from_path('P::States/Reference:')

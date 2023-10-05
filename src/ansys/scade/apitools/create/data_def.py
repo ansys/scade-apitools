@@ -336,7 +336,7 @@ def add_data_def_equation(
         lefts : List[Union[suite.LocalVariable, TX]]
             List of variables defined by the equation. The elements can be either an
             existing local variable or a type tree, to create on the fly a new internal
-            variable.
+            variable, when diagram is a graphical diagram.
 
         right : EX
             Expression of the equation.
@@ -370,6 +370,7 @@ def add_data_def_equation(
         _check_object(
             diagram, 'add_data_def_equation', 'diagram', (suite.NetDiagram, suite.TextDiagram)
         )
+        (_check_object(_, 'add_data_def_equation', 'lefts', suite.LocalVariable) for _ in lefts)
 
     equation = suite.Equation(data_def)
     for left in lefts:
@@ -969,12 +970,7 @@ def create_transition_fork(
 
 def add_state_transition(state: suite.State, kind: TK, tree: TR) -> suite.Transition:
     """
-    Add a new transition from a state.
-
-    Note : the transition is created without action. To add equations, the following
-    statement must be added::
-
-        transition.effect = suite.Action(transition)
+    Add a new transition starting from a state.
 
     Parameters
     ----------
@@ -1049,6 +1045,41 @@ def _build_transition(src: Union[suite.State, suite.Transition], tree: TR) -> su
             _build_transition(transition, fork)
 
     return transition
+
+
+def add_transition_equation(
+    transition: suite.Transition,
+    lefts: List[Union[suite.LocalVariable, TX]],
+    right: EX,
+) -> suite.Equation:
+    """
+    Create an equation in a transition.
+
+    Note: this function ensures the availability of a scope before creating the
+    equation. Indeed, the transitions do not have a scope, suite.DataDef, by default.
+
+    Parameters
+    ----------
+        transition : suite.Transition
+            Input transition.
+
+        lefts : List[suite.LocalVariable]
+            List of variables defined by the equation.
+
+        right : EX
+            Expression of the equation.
+
+    Returns
+    -------
+        suite.Equation
+    """
+    _check_object(transition, 'add_transition_equation', 'transition', suite.Transition)
+
+    # make sure the transition has a scope
+    if not transition.effect:
+        transition.effect = suite.Action(transition)
+
+    return add_data_def_equation(transition.effect, None, lefts, right)
 
 
 # ----------------------------------------------------------------------------

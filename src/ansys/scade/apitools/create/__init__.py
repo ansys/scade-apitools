@@ -44,6 +44,7 @@ from .data_def import (  # _noqa: F401
     add_diagram_missing_edges,
     add_state_machine_state,
     add_state_transition,
+    add_transition_equation,
     create_transition_fork,
     create_transition_state,
     set_variable_default,
