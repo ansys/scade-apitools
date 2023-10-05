@@ -220,8 +220,8 @@ def _add_data_def_diagram(data_def: suite.DataDef, class_: type, name: str) -> s
     diagram = class_(data_def)
     diagram.name = name
     data_def.diagrams.append(diagram)
-    if isinstance(data_def, suite.Action):
-        # internal IDE structure not consistent, an additional property is required
+    if isinstance(data_def, (suite.Action, suite.State)):
+        # the display of the scope is no longer embedded
         if data_def.presentation_element:
             data_def.presentation_element.display = 'Split'
 
@@ -370,7 +370,13 @@ def add_data_def_equation(
         _check_object(
             diagram, 'add_data_def_equation', 'diagram', (suite.NetDiagram, suite.TextDiagram)
         )
-        (_check_object(_, 'add_data_def_equation', 'lefts', suite.LocalVariable) for _ in lefts)
+    else:
+        # internal variables allowed only for graphical diagrams
+        [
+            _check_object(_, 'add_data_def_equation', 'lefts', suite.LocalVariable)
+            for _ in lefts
+            if _ != '_'
+        ]
 
     equation = suite.Equation(data_def)
     for left in lefts:
@@ -638,8 +644,8 @@ def add_data_def_assertion(
 
 def add_data_def_state_machine(
     data_def: suite.DataDef,
-    diagram: suite.Diagram,
     name: str,
+    diagram: suite.Diagram,
     position: Tuple[float, float] = None,
     size: Tuple[float, float] = None,
 ) -> suite.StateMachine:
@@ -651,8 +657,11 @@ def add_data_def_state_machine(
         data_def : suite.DataDef
             Input scope, either an operator, a state or an action.
 
+        name : str
+            Name of the state machine.
+
         diagram : suite.Diagram
-            Diagram containing the equation: either graphical, textual or None.
+            Diagram containing the state machine: either graphical, textual or None.
 
             Note: the diagram can't be None if the scope contains at least one diagram.
 
@@ -750,7 +759,7 @@ def add_state_machine_state(
             Kind of the state, either normal, initial, or final.
 
         display : DK
-            Display kind of the state, either graphical, textual, or split.
+            Layout of the state, either graphical, textual, or split.
 
     Returns
     -------
@@ -820,11 +829,6 @@ class TransitionTree:
         self.label_size = label_size if label_size else [0, 0]
         self.slash_position = slash_position if slash_position else [0, 0]
         self.polyline = polyline
-
-    def _build_transition(self, context: suite.Object) -> suite.Transition:
-        """Build a transition from the transition tree."""
-        # must be overridden
-        assert False  # pragma no cover
 
 
 TR = TransitionTree
@@ -1133,115 +1137,227 @@ def add_transition_equation(
 #    LinkPendings()
 #    SetModified(datadef)
 #    return ib
-#
-#
-## -----------------------------------------------------------------------------
-## when blocks
-#
-#'''
-# <diagram>: Diagram the block has to be linked to. This shall be either a diagram of <datadef>
-#            or an empty diagram when <datadef> is for example the action of a transition.
-# <when>: Expression tree that should resolve to
-# <branches>: List of branches; each branch is made of an expression tree and a properties set
-#             ({ [ <exp_tree> [ <br_props> ] ]+ })
-# <wh_props>: Properties set of the block.
-# 	* position (¤): Pair of integers defining the position of the block ({ <int> <int> })
-# 	* size (¤): Pair of integers defining the size of the block ({ <int> <int> })
-# 	* startPos (¤): Pair of integers defining the branch position ({ <int> <int> })
-# 	* labelWidth (¤): Integer defining the width of the label containing expression
-# <br_props>: Properties set of the branch.
-# 	* startPos (¤): Pair of integers defining the branch position ({ <int> <int> })
-# 	* labelWidth (¤): Integer defining the width of the label containing the pattern
-# 	* position (¤): Pair of integers defining the position of the action ({ <int> <int> })
-# 	* size (¤): Pair of integers defining the size of the action ({ <int> <int> })
-# 	* display (¤): Layout of the action, EmbeddedGraphical, EmbeddedTextual or Split
-#'''
-#
-#
-# def AddDataDefWhenBlock(datadef, diagram, name, when, branches, **keywords):
-#    _check_object(datadef, 'AddDataDefWhenBlock', 'datadef', suite.DataDef)
-#    if diagram is not None:
-#        _check_object(
-#            diagram, 'AddDataDefWhenBlock', 'diagram', (suite.NetDiagram, suite.TextDiagram)
-#        )
-#
-#    if not branches:
-#        raise (
-#            WhenBlockSyntaxError('AddDataDefWhenBlock', 'The block must have at least one branch')
-#        )
-#
-#    wb = suite.WhenBlock(datadef)
-#    wb.name = name
-#    _scade_api.add(datadef, 'flow', wb)
-#    wb.when = BuildExpressionTree(wb, when)
-#
-#    # graphical part
-#    pe = None  # default
-#    if diagram is not None:
-#        if isinstance(diagram, suite.NetDiagram):
-#            pe = suite.WhenBlockGE(datadef)
-#        else:
-#            # text diagram
-#            pe = suite.FlowTE(datadef)
-#        wb.presentation_element = pe
-#        _scade_api.add(diagram, 'presentationElement', pe)
-#
-#    ApplyGraphicalPropSet(wb, pe, 'AddDataDefWhenBlock', keywords)
-#
-#    AddWhenBlockBranches(wb, branches)
-#
-#    LinkPendings()
-#    SetModified(datadef)
-#    return wb
-#
-#
-# def AddWhenBlockBranches(when_block, branches):
-#    _check_object(when_block, 'AddWhenBlockBranches', 'wb', suite.WhenBlock)
-#
-#    diagram = when_block.presentation_element.diagram if when_block.presentation_element else None
-#
-#    for branch in branches:
-#        # each branch must be a tuple with 1 or 2 elements
-#        if not isinstance(branch, tuple) and (len(branches) != 1 or len(branches) != 2):
-#            raise (WhenBlockSyntaxError('AddWhenBlockBranches', 'Branch syntax error'))
-#
-#        when_branch = suite.WhenBranch(when_block)
-#        _scade_api.add(when_block, 'whenBranch', when_branch)
-#        when_branch.pattern = BuildExpressionTree(when_branch, branch[0])
-#        when_branch.action = suite.Action(when_block)
-#
-#        # graphical part: a bit complex since two PE for one branch
-#        args = branch[1] if len(branch) == 2 else {}
-#        branch_props = {}
-#        lw = args.pop('labelWidth', None)
-#        if lw:
-#            branch_props['labelWidth'] = lw
-#        lw = args.pop('startPos', None)
-#        if lw:
-#            # not the same name
-#            branch_props['position'] = lw
-#        # remaining props for the action
-#        action_props = args
-#
-#        peb = None  # default
-#        pea = None  # default
-#        if diagram is not None:
-#            if isinstance(diagram, suite.NetDiagram):
-#                peb = suite.WhenBranchGE(when_block)
-#                pea = suite.ActionGE(when_block)
-#            else:
-#                # text diagram
-#                peb = suite.FlowTE(when_block)
-#                pea = suite.FlowTE(when_block)
-#            when_branch.presentation_element = peb
-#            when_branch.action.presentation_element = pea
-#            _scade_api.add(diagram, 'presentationElement', peb)
-#            _scade_api.add(diagram, 'presentationElement', pea)
-#
-#        ApplyGraphicalPropSet(when_branch, peb, 'AddDataDefWhenBlock', branch_props)
-#        ApplyGraphicalPropSet(when_branch.action, pea, 'AddDataDefWhenBlock', action_props)
-#
-#
+
+
+# ----------------------------------------------------------------------------
+# when blocks
+
+
+class WhenBranch:
+    """Intermediate class for when branches."""
+
+    def __init__(
+        self,
+        pattern: EX,
+        position: Tuple[float, float] = None,
+        size: Tuple[float, float] = None,
+        display: DK = DK.GRAPHICAL,
+        label_width: int = 0,
+    ):
+        """Store the attributes."""
+        self.pattern = pattern
+        self.position = position if position else [0, 0]
+        self.size = size if size else [0, 0]
+        self.display = display
+        self.label_width = label_width
+
+
+def create_when_branch(
+    pattern: EX,
+    position: Tuple[float, float] = None,
+    size: Tuple[float, float] = None,
+    display: DK = DK.GRAPHICAL,
+    label_width: int = 0,
+) -> WhenBranch:
+    """
+    Create an intermediate structure for a when branch.
+
+    The graphical properties are expressed  1/100th of mm.
+
+    They are considered if and only if the owning when block
+    has a graphical representation.
+
+    Parameters
+    ----------
+        pattern : EX
+            Value of the branch.
+
+        position : Tuple[float, float]
+            Position of the action.
+
+        size : Tuple[float, float]
+            Size of the action.
+
+        display : DK
+            Layout of the action, either graphical, textual, or split.
+
+        label_width : int
+            Optional width of the label containing the pattern.
+
+    Returns
+    -------
+        WhenBranch
+    """
+    return WhenBranch(pattern, position, size, display, label_width)
+
+
+def add_data_def_when_block(
+    data_def: suite.DataDef,
+    name: str,
+    when: EX,
+    branches: List[WhenBranch],
+    diagram: suite.Diagram = None,
+    position: Tuple[float, float] = None,
+    size: Tuple[float, float] = None,
+    start_position: Tuple[float, float] = (450, 582),
+    label_width: int = 0,
+) -> suite.WhenBlock:
+    """
+    Add a new when block in a scope.
+
+    The graphical properties are expressed  1/100th of mm.
+
+    They are considered if and only if the owning when block
+    has a graphical representation.
+
+    Parameters
+    ----------
+        data_def : suite.DataDef
+            Input scope, either an operator, a state or an action.
+
+        name : str
+            Name of the block.
+
+        when : EX
+            Pattern of the block.
+
+        branches : List[WhenBranch]
+            List of intermediate structures describing the branches.
+
+            There must be at least one branch.
+
+        diagram : suite.Diagram
+            Diagram containing the block: either graphical, textual or None.
+
+            Note: the diagram can't be None if the scope contains at least one diagram.
+
+        position : Tuple[float, float]
+            Position of the block.
+
+        size : Tuple[float, float]
+            Size of the block.
+
+        label_width : int
+            Optional width of the label containing the pattern.
+
+        start_position : Tuple[float, float]
+            Optional, start position of the branches, relative to the block.
+
+    Returns
+    -------
+        suite.WhenBlock
+    """
+    _check_object(data_def, 'add_data_def_when_block', 'datadef', suite.DataDef)
+    if diagram is not None:
+        _check_object(
+            diagram, 'add_data_def_when_block', 'diagram', (suite.NetDiagram, suite.TextDiagram)
+        )
+
+    if not branches:
+        raise ValueError('add_data_def_when_block: The block must have at least one branch')
+
+    wb = suite.WhenBlock(data_def)
+    wb.name = name
+    data_def.flows.append(wb)
+    wb.when = _build_expression(when, wb)
+
+    # graphical part
+    pe = None  # default
+    if diagram is not None:
+        if isinstance(diagram, suite.NetDiagram):
+            pe = suite.WhenBlockGE(data_def)
+            # graphical properties
+            pe.start_pos = _num_to_str(start_position)
+            pe.label_width = label_width
+            pe.position = _num_to_str(position)
+            pe.size = _num_to_str(size)
+        else:
+            # text diagram
+            pe = suite.FlowTE(data_def)
+            # no other properties
+        wb.presentation_element = pe
+        diagram.presentation_elements.append(pe)
+
+    add_when_block_branches(wb, branches)
+
+    _link_pendings()
+    _set_modified(data_def)
+    return wb
+
+
+def add_when_block_branches(
+    when_block: suite.WhenBlock,
+    branches: List[WhenBranch],
+) -> List[suite.WhenBranch]:
+    """
+    Add a new branches to a when block.
+
+    Parameters
+    ----------
+        when_block : suite.WhenBlock
+            Input block.
+
+        branches : List[WhenBranch]
+            List of intermediate structures describing the branches.
+
+    Returns
+    -------
+        List[suite.WhenBranch]
+    """
+    _check_object(when_block, 'add_when_block_branches', 'wb', suite.WhenBlock)
+
+    diagram = when_block.presentation_element.diagram if when_block.presentation_element else None
+
+    when_branches = []
+    for branch in branches:
+        _check_object(branch, 'add_when_block_branches', 'branch', WhenBranch)
+
+        when_branch = suite.WhenBranch(when_block)
+        when_block.when_branches.append(when_branch)
+        when_branch.pattern = _build_expression(branch.pattern, when_branch)
+        when_branch.action = suite.Action(when_block)
+        when_branches.append(when_branch)
+
+        # graphical part: a bit complex since two PE for one branch
+        peb = None  # default
+        pea = None  # default
+        if diagram is not None:
+            if isinstance(diagram, suite.NetDiagram):
+                pew = when_block.presentation_element
+                peb = suite.WhenBranchGE(when_block)
+                pea = suite.ActionGE(when_block)
+                # graphical properties
+                # apply a fixed offset from the block's left and the action's top
+                # the following offsets are reversed engineered and rounded from model files
+                start = (pew.position[0] + pew.start_pos[0] + 80, branch.position[1] + 80)
+                peb.position = _num_to_str(start)
+                peb.label_width = branch.label_width
+                pea.position = _num_to_str(branch.position)
+                pea.size = _num_to_str(branch.size)
+                pea.display = branch.display
+            else:
+                # text diagram
+                peb = suite.FlowTE(when_block)
+                pea = suite.FlowTE(when_block)
+                # no other properties
+            when_branch.presentation_element = peb
+            when_branch.action.presentation_element = pea
+            diagram.presentation_elements.append(peb)
+            diagram.presentation_elements.append(pea)
+
+    return when_branches
+
+
 ## -----------------------------------------------------------------------------
 ## Helpers
 #

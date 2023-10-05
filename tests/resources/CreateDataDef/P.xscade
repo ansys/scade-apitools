@@ -3,10 +3,47 @@
 	<declarations>
 		<Package name="P">
 			<declarations>
+				<Type name="Enumeration">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="A">
+									<pragmas>
+										<ed:Value oid="!ed/6ff/788E/4884/651e9c0310d6"/>
+									</pragmas>
+								</Value>
+								<Value name="B">
+									<pragmas>
+										<ed:Value oid="!ed/700/788E/4884/651e9c064a1e"/>
+									</pragmas>
+								</Value>
+								<Value name="C">
+									<pragmas>
+										<ed:Value oid="!ed/701/788E/4884/651e9c087c1a"/>
+									</pragmas>
+								</Value>
+								<Value name="D">
+									<pragmas>
+										<ed:Value oid="!ed/702/788E/4884/651e9c0c3198"/>
+									</pragmas>
+								</Value>
+								<Value name="F">
+									<pragmas>
+										<ed:Value oid="!ed/703/788E/4884/651e9c0d3ff7"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/6fe/788E/4884/651e9bfa4c2b"/>
+					</pragmas>
+				</Type>
 				<Operator name="Scopes" href="Scopes.xscade"/>
 				<Operator name="Edges" href="Edges.xscade"/>
 				<Operator name="DataFlows" href="DataFlows.xscade"/>
-				<Operator name="States" href="States.xscade"/>
+				<Operator name="StateMachines" href="StateMachines.xscade"/>
+				<Operator name="WhenBlocks" href="WhenBlocks.xscade"/>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/714/16D8/6760/651bb0472260" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">

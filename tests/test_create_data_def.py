@@ -345,9 +345,9 @@ class TestCreateDataDef:
         create.save_all()
 
     data_def_state_machine_data = [
-        ('P::States/', 'NetDiagram'),
-        ('P::States/', 'TextDiagram'),
-        ('P::States/SM:NoDiagram:', None),
+        ('P::StateMachines/', 'NetDiagram'),
+        ('P::StateMachines/', 'TextDiagram'),
+        ('P::StateMachines/SM:NoDiagram:', None),
     ]
 
     @pytest.mark.parametrize(
@@ -367,14 +367,13 @@ class TestCreateDataDef:
         position = [500, 500]
         size = [15000, 5000]
         name = 'SM%s' % diagram.name.replace('Diagram', '') if diagram else 'SM'
-        sm = create.add_data_def_state_machine(scope, diagram, name, position, size)
+        sm = create.add_data_def_state_machine(scope, name, diagram, position, size)
         # states
         positions = [[6000, 1000], [1000, 4000], [11000, 4000]]
         size = [4000, 1000]
         states = []
         for kind, display, position in zip(create.SK, create.DK, positions):
             state = create.add_state_machine_state(sm, kind.value, position, size, kind, display)
-            position[1] += 1500
             states.append(state)
         # retrieve the create states
         normal, initial, final = states
@@ -396,14 +395,60 @@ class TestCreateDataDef:
         fork = create.create_transition_fork(False, [to_final, to_initial], 1, points)
         main = create.add_state_transition(normal, create.TK.WEAK, fork)
         # add an action to the main transition
-        signal = session.model.get_object_from_path('P::States/signal/')
+        signal = session.model.get_object_from_path('P::StateMachines/signal/')
         # a scope shall be added to the transition
         create.add_transition_equation(main, [signal], None)
         # add another action to make sure another scope is not created
         create.add_transition_equation(main, ['_'], 0)
 
         # compare the semantics of the state machine with the reference
-        reference = session.model.get_object_from_path('P::States/Reference:')
+        reference = session.model.get_object_from_path('P::StateMachines/Reference:')
         assert reference.to_string().replace('Reference', name) == sm.to_string()
+
+        create.save_all()
+
+    data_def_when_block_data = [
+        ('P::WhenBlocks/', 'NetDiagram'),
+        ('P::WhenBlocks/', 'TextDiagram'),
+        ('P::WhenBlocks/SM:NoDiagram:', None),
+    ]
+
+    @pytest.mark.parametrize(
+        'scope, name',
+        data_def_when_block_data,
+        ids=['%s%s' % (_[0], _[1]) for _ in data_def_when_block_data],
+    )
+    def test_data_def_when_block(self, tmp_project_session, scope, name):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        scope = session.model.get_object_from_path(scope)
+        # same path for branches and actions
+        if isinstance(scope, suite.WhenBranch):
+            scope = scope.action
+        diagram = next((_ for _ in scope.diagrams if _.name == name)) if name else None
+        # hard coded WB with three actions
+        # retrieve the variable used for the selector
+        e = session.model.get_object_from_path('P::WhenBlocks/e/')
+        # create the branches
+        positions = [[2300, 2000], [7000, 3500], [2300, 4500]]
+        size = [4000, 1000]
+        branches = []
+        for pattern, display, position in zip(e.type.type.values, create.DK, positions):
+            branch = create.create_when_branch(pattern.name, position, size, display)
+            branches.append(branch)
+        # create the block with two branches
+        name = 'WB%s' % diagram.name.replace('Diagram', '') if diagram else 'WB'
+        block_position = [500, 500]
+        block_size = [11000, 6000]
+        block = create.add_data_def_when_block(
+            scope, name, e, branches[:2], diagram, block_position, block_size
+        )
+
+        # add a third branch
+        create.add_when_block_branches(block, branches[2:])
+
+        # compare the semantics of the state machine with the reference
+        reference = session.model.get_object_from_path('P::WhenBlocks/Reference:')
+        assert reference.to_string().replace('Reference', name) == block.to_string()
 
         create.save_all()

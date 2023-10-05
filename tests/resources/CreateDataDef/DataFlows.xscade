@@ -842,12 +842,7 @@
 						</StateGE>
 					</presentationElements>
 				</NetDiagram>
-				<TextDiagram name="TextDiagram" landscape="false" format="A4 (210 297)" oid="!ed/73c/16D8/6760/651c349b2b62">
-					<textArea>
-						<TextArea text="/* shall create the equation textOut = textIn; */&#xA;
-"/>
-					</textArea>
-				</TextDiagram>
+				<TextDiagram name="TextDiagram" landscape="false" format="A4 (210 297)" oid="!ed/73c/16D8/6760/651c349b2b62"/>
 				<NetDiagram name="Misc" landscape="true" format="A4 (210 297)" oid="!ed/473/788E/4884/651d77ee6231">
 					<presentationElements>
 						<EquationGE kind="OBJ_LIT" presentable="!ed/478/788E/4884/651d780d4175">
