@@ -39,7 +39,10 @@ def _tree_to_string(tree: EX, context: suite.Object = None) -> str:
     expr = _build_expression(tree, context)
     # link pending references so that to_string gives the expected result
     _link_pendings()
-    return expr.to_string().strip()
+    text = expr.to_string().strip()
+    # to_string() is not deterministic for expressions: remove the indentation
+    text = '\n'.join([_.strip() for _ in text.split('\n')])
+    return text
 
 
 create_call_data = [
@@ -215,15 +218,15 @@ def test_create_if(id: str, condition, thens, elses, expected):
 
 create_case_data = [
     # nominal
-    ('single', True, [("'A'", 65)], None, "( case true of \n | 'A' :   65)"),
+    ('single', True, [("'A'", 65)], None, "( case true of\n| 'A' :   65)"),
     (
         'double',
         1,
         [(0, 'false'), (1, 'true')],
         None,
-        '( case 1 of \n | 0 :   false\n | 1 :   true)',
+        '( case 1 of\n| 0 :   false\n| 1 :   true)',
     ),
-    ('default', 6, [(1, 2), (3, 4)], 5, '( case 6 of \n | 1 :   2\n | 3 :   4\n | _ :   5)'),
+    ('default', 6, [(1, 2), (3, 4)], 5, '( case 6 of\n| 1 :   2\n| 3 :   4\n| _ :   5)'),
     # robustness
     ('empty', False, [], None, create.ExprSyntaxError),
 ]

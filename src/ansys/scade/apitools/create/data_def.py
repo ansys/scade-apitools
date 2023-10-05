@@ -456,11 +456,6 @@ def add_diagram_edge(
         expr: Union[suite.Expression]
             Parameter to be connected to the edge, or input pin index.
 
-        position : Tuple[int, int]
-            Position of the equation, expressed in 1/100th of mm.
-            This value is ignored if diagram is not a graphical diagram,
-            otherwise it must be specified.
-
         points : List[Tuple(int, int)]
             Coordinates of the segments composing the edge, expressed in 1/100th of mm.
             When None, the value is set to [(0, 0), (0, 0)], so that the SCADE Editor
@@ -560,7 +555,7 @@ def add_diagram_missing_edges(diagram: suite.NetDiagram) -> List[suite.Edge]:
 
 
 class AK(Enum):
-    """Assertion Kind: either assume or guarantee."""
+    """Assertion kind: either assume or guarantee."""
 
     ASSUME = 'Assume'
     GUARANTEE = 'Guarantee'
@@ -636,122 +631,428 @@ def add_data_def_assertion(
     return assertion
 
 
-## -----------------------------------------------------------------------------
-## state machines
-#
-#'''
-# <diagram>: Diagram the state machine has to be linked to. This shall be either a diagram of
-#            <datadef> or an empty diagram when <datadef> is for example the action of a
-#            transition.
-# <keywords>: Properties set.
-# 	* position (¤): { <int> <int> }
-# 	* size (¤): { <int> <int> }
-#'''
-#
-#
-# def AddDataDefStateMachine(datadef, diagram, name, **keywords):
-#    _check_object(datadef, 'AddDataDefStateMachine', 'datadef', suite.DataDef)
-#    if diagram is not None:
-#        _check_object(
-#            diagram, 'AddDataDefStateMachine', 'diagram', (suite.NetDiagram, suite.TextDiagram)
-#        )
-#
-#    sm = suite.StateMachine(datadef)
-#    sm.name = name
-#
-#    _scade_api.add(datadef, 'flow', sm)
-#
-#    # graphical part
-#    pe = None  # default
-#    if diagram is not None:
-#        if isinstance(diagram, suite.NetDiagram):
-#            pe = suite.StateMachineGE(datadef)
-#        else:
-#            # text diagram
-#            pe = suite.FlowTE(datadef)
-#        sm.presentation_element = pe
-#        _scade_api.add(diagram, 'presentationElement', pe)
-#
-#    ApplyGraphicalPropSet(sm, pe, 'AddDataDefStateMachine', keywords)
-#
-#    LinkPendings()
-#    SetModified(datadef)
-#    return sm
-#
-#
-#'''
-# <keywords>: Properties set.
-# 	* position (¤): Pair of integers defining the position of the state ({ <int> <int> })
-# 	* size (¤): Pair of integers defining the size of the block ({ <int> <int> })
-# 	* kind: State kind, Normal, Initial or Final
-# 	* display (¤): Layout of the state, EmbeddedGraphical, EmbeddedTextual or Split
-#'''
-#
-#
-# def AddStateMachineState(sm, name, **keywords):
-#    _check_object(sm, 'AddStateMachineState', 'state_machine', suite.StateMachine)
-#
-#    state = suite.State(sm)
-#    state.name = name
-#    found = False
-#    kind = keywords.pop('kind', None)
-#    if kind is not None:
-#        if kind == 'Initial':
-#            state.initial = True
-#        elif kind == 'Final':
-#            state.final = True
-#
-#    _scade_api.add(sm, 'state', state)
-#
-#    # graphical part
-#    pesm = sm.presentation_element
-#    diagram = pesm.diagram if pesm is not None else None
-#    pe = None  # default
-#    if diagram:
-#        if isinstance(diagram, suite.NetDiagram):
-#            pe = suite.StateGE(diagram.data_def)
-#        else:
-#            # text diagram
-#            pe = suite.FlowTE(diagram.data_def)
-#        state.presentation_element = pe
-#        _scade_api.add(diagram, 'presentationElement', pe)
-#
-#    ApplyGraphicalPropSet(state, pe, 'AddStateMachineState', keywords)
-#
-#    LinkPendings()
-#    SetModified(sm)
-#    return state
-#
-#
-#'''
-# <kind>: Kind of the transition, Weak, Strong or Synchro.
-# <transition_tree> = { <trigger> <dst> <args> }
-# <dst> ::= <state> <nature> | { <transition_tree>+ }
-# <args> ::= dict.
-# <nature>: Nature of the transition, Restart or Resume.
-# <props>: Properties set.
-# 	* priority: Integer defining the priority of the transition
-# 	* position (¤): { [ <int> <int> ]* }
-# 	* labelPos (¤): Pair of integers defining the position of the label ({ <int> <int> })
-# 	* labelSize (¤): Pair of integers defining the size of the label ({ <int> <int> })
-# 	* slashPos (¤): Pair of integers defining the position of the slash ({ <int> <int> })
-# 	* polyline (¤): true | false
-#'''
-#
-#
-# def AddStateTransition(state, kind, transition_tree):
-#    _check_object(state, 'AddStateTransition', 'state', suite.State)
-#
-#    transition = BuildTransitionTree(state, transition_tree)
-#    transition.transition_kind = kind
-#
-#    LinkPendings()
-#    SetModified(state)
-#    return transition
-#
-#
-## -----------------------------------------------------------------------------
-## if blocks
+# ----------------------------------------------------------------------------
+# state machines
+
+
+def add_data_def_state_machine(
+    data_def: suite.DataDef,
+    diagram: suite.Diagram,
+    name: str,
+    position: Tuple[float, float] = None,
+    size: Tuple[float, float] = None,
+) -> suite.StateMachine:
+    """
+    Create a state machine in a scope.
+
+    Parameters
+    ----------
+        data_def : suite.DataDef
+            Input scope, either an operator, a state or an action.
+
+        diagram : suite.Diagram
+            Diagram containing the equation: either graphical, textual or None.
+
+            Note: the diagram can't be None if the scope contains at least one diagram.
+
+        position : Tuple[float, float]
+            Position of the state machine, expressed in 1/100th of mm.
+            This value is ignored if diagram is not a graphical diagram,
+            otherwise it must be specified.
+
+        size : Tuple[float, float]
+            Size of the state machine, expressed in 1/100th of mm.
+            This value is ignored if diagram is not a graphical diagram,
+            otherwise it must be specified.
+
+    Returns
+    -------
+        suite.StateMachine
+    """
+    _check_object(data_def, 'add_data_def_state_machine', 'data_def', suite.DataDef)
+    if diagram is not None:
+        _check_object(
+            diagram, 'add_data_def_state_machine', 'diagram', (suite.NetDiagram, suite.TextDiagram)
+        )
+
+    sm = suite.StateMachine(data_def)
+    sm.name = name
+
+    data_def.flows.append(sm)
+
+    # graphical part
+    if diagram is not None:
+        # graphical part
+        if isinstance(diagram, suite.NetDiagram):
+            pe = suite.StateMachineGE(data_def)
+            # graphical properties
+            pe.position = _num_to_str(position)
+            pe.size = _num_to_str(size)
+        else:
+            # text diagram
+            pe = suite.FlowTE(data_def)
+            # no other properties
+        sm.presentation_element = pe
+        diagram.presentation_elements.append(pe)
+
+    _link_pendings()
+    _set_modified(data_def)
+    return sm
+
+
+class SK(Enum):
+    """State kind: either normal, initial, or final."""
+
+    NORMAL = 'Normal'
+    INITIAL = 'Initial'
+    FINAL = 'Final'
+
+
+class DK(Enum):
+    """Display kind: either normal, initial, or final."""
+
+    GRAPHICAL = 'EmbeddedGraphical'
+    TEXTUAL = 'EmbeddedTextual'
+    SPLIT = 'Split'
+
+
+def add_state_machine_state(
+    sm: suite.StateMachine,
+    name: str,
+    position: Tuple[float, float] = None,
+    size: Tuple[float, float] = None,
+    kind: SK = SK.NORMAL,
+    display: DK = DK.GRAPHICAL,
+) -> suite.State:
+    """
+    Create a state in a state machine.
+
+    Parameters
+    ----------
+        sm : suite.StateMachine
+            Input state machine.
+
+        name : str.StateMachine
+            Name of the state.
+
+        position : Tuple[float, float]
+            Position of the state, expressed in 1/100th of mm.
+            This value is considered if and only if the state machine
+            has a graphical representation.
+
+        size : Tuple[float, float]
+            Size of the state, expressed in 1/100th of mm.
+            This value is considered if and only if the state machine
+            has a graphical representation.
+
+        kind : SK
+            Kind of the state, either normal, initial, or final.
+
+        display : DK
+            Display kind of the state, either graphical, textual, or split.
+
+    Returns
+    -------
+        suite.State
+    """
+    _check_object(sm, 'add_state_machine_state', 'sm', suite.StateMachine)
+
+    state = suite.State(sm)
+    state.name = name
+    if kind == SK.INITIAL:
+        state.initial = True
+    elif kind == SK.FINAL:
+        state.final = True
+
+    sm.states.append(state)
+
+    # graphical part
+    pesm = sm.presentation_element
+    diagram = pesm.diagram if pesm is not None else None
+    if isinstance(diagram, suite.NetDiagram):
+        pe = suite.StateGE(diagram.data_def)
+        # graphical properties
+        pe.position = _num_to_str(position)
+        pe.size = _num_to_str(size)
+        state.presentation_element = pe
+        diagram.presentation_elements.append(pe)
+    # no presentation elements for text diagrams: only for owning state machine
+
+    _link_pendings()
+    _set_modified(sm)
+    return state
+
+
+# transition trees
+class TransitionDestination:
+    """Top-level abstract class for transition destinations."""
+
+    pass
+
+
+TD = TransitionDestination
+"""Short name for TransitionDestination to simplify the declarations."""
+
+
+class TransitionTree:
+    """Intermediate class for transitions."""
+
+    def __init__(
+        self,
+        trigger: EX,
+        target: TD,
+        priority: int,
+        points: List[Tuple[float, float]] = None,
+        label_position: Tuple[float, float] = None,
+        label_size: Tuple[float, float] = None,
+        slash_position: Tuple[float, float] = None,
+        polyline: bool = True,
+    ):
+        """Store the attributes."""
+        self.trigger = trigger
+        self.target = target
+        self.priority = priority
+        # the points must be provided for graphical representations
+        self.points = points
+        # the positions and sizes are optional
+        self.label_position = label_position if label_position else [0, 0]
+        self.label_size = label_size if label_size else [0, 0]
+        self.slash_position = slash_position if slash_position else [0, 0]
+        self.polyline = polyline
+
+    def _build_transition(self, context: suite.Object) -> suite.Transition:
+        """Build a transition from the transition tree."""
+        # must be overridden
+        assert False  # pragma no cover
+
+
+TR = TransitionTree
+"""Short name for TransitionTree to simplify the declarations."""
+
+
+class _State(TD):
+    """Destination state."""
+
+    def __init__(self, state: suite.State, reset: bool):
+        """Store the attributes."""
+        self.state = state
+        self.reset = reset
+
+
+class _Fork(TD):
+    """Forked Transitions."""
+
+    def __init__(self, transitions: List[TransitionTree]):
+        """Store the attributes."""
+        self.transitions = transitions
+
+
+class TK(Enum):
+    """Transition kind: either weak, strong, or synchro."""
+
+    WEAK = 'Weak'
+    STRONG = 'Strong'
+    SYNCHRO = 'Synchro'
+
+
+def create_transition_state(
+    trigger: EX,
+    state: suite.State,
+    reset: bool,
+    priority: int,
+    points: List[Tuple[float, float]] = None,
+    label_position: Tuple[float, float] = None,
+    label_size: Tuple[float, float] = None,
+    slash_position: Tuple[float, float] = None,
+    polyline: bool = True,
+) -> TR:
+    """
+    Create an intermediate transition structure which targets a state.
+
+    The graphical properties are expressed  1/100th of mm.
+
+    They are considered if and only if the owning state machine
+    has a graphical representation.
+
+    Parameters
+    ----------
+        trigger : EX
+            Extended expression tree defining the trigger of the transition.
+
+        state : suite.State
+            Target state of the transition.
+
+        reset : bool
+            Indicates whether the transition resets the targtet state.
+
+        priority : int
+            Priority of the transition.
+
+        points : List[Tuple[float, float]]
+            Points of the transition.
+
+        label_position : Tuple[float, float]
+            Position of the label.
+
+        label_size : Tuple[float, float]
+            Size of the label.
+
+        slash_position : Tuple[float, float]
+            Position of the separator between the trigger and the action
+            of the transition.
+
+        polyline : bool.
+            Indicates whether the representation is a list of segments or
+            a Bezier curve.
+
+    Returns
+    -------
+        TR
+    """
+    td = _State(state, reset)
+    return TR(trigger, td, priority, points, label_position, label_size, slash_position, polyline)
+
+
+def create_transition_fork(
+    trigger: EX,
+    forks: List[TR],
+    priority: int,
+    points: List[Tuple[float, float]] = None,
+    label_position: Tuple[float, float] = None,
+    label_size: Tuple[float, float] = None,
+    slash_position: Tuple[float, float] = None,
+    polyline: bool = True,
+) -> TR:
+    """
+    Create an intermediate transition structure with forked transitions.
+
+    The graphical properties are expressed  1/100th of mm.
+
+    They are considered if and only if the owning state machine
+    has a graphical representation.
+
+    Parameters
+    ----------
+        trigger : EX
+            Extended expression tree defining the trigger of the transition.
+
+        forks : List[TR]
+            Transitions forked from this transition.
+
+        priority : int
+            Priority of the transition.
+
+        points : List[Tuple[float, float]]
+            Points of the transition.
+
+        label_position : Tuple[float, float]
+            Position of the label.
+
+        label_size : Tuple[float, float]
+            Size of the label.
+
+        slash_position : Tuple[float, float]
+            Position of the separator between the trigger and the action
+            of the transition.
+
+        polyline : bool.
+            Indicates whether the representation is a list of segments or
+            a Bezier curve.
+
+    Returns
+    -------
+        TR
+    """
+    td = _Fork(forks)
+    return TR(trigger, td, priority, points, label_position, label_size, slash_position, polyline)
+
+
+def add_state_transition(state: suite.State, kind: TK, tree: TR) -> suite.Transition:
+    """
+    Add a new transition from a state.
+
+    Note : the transition is created without action. To add equations, the following
+    statement must be added::
+
+        transition.effect = suite.Action(transition)
+
+    Parameters
+    ----------
+        state : EX
+            Source of the transition.
+
+        kind : TK
+            Kind of the transition, either weak, strong, or synchro.
+
+        tree : TR
+            Transition tree: intermediate structure describing the transition.
+
+    Returns
+    -------
+        suite.Transition
+    """
+    _check_object(state, '_add_state_transition', 'state', suite.State)
+
+    transition = _build_transition(state, tree)
+    transition.transition_kind = kind.value
+
+    _link_pendings()
+    _set_modified(state)
+    return transition
+
+
+def _build_transition(src: Union[suite.State, suite.Transition], tree: TR) -> suite.Transition:
+    """Build a transition from the intermediate tree."""
+    _check_object(src, '_build_transition', 'src', (suite.State, suite.Transition))
+
+    if isinstance(src, suite.State):
+        # main transition
+        transition = suite.MainTransition(src)
+        src.outgoings.append(transition)
+    else:
+        # forked transition
+        transition = suite.ForkedTransition(src)
+        src.forked_transitions.append(transition)
+
+    if tree.trigger is None:
+        transition._else = True
+    else:
+        transition.condition = _build_expression(tree.trigger, src)
+    # do not create automatically an action: this is the behavior of the SCADE Editor
+    # transition.effect = suite.Action(transition)
+    transition.priority = tree.priority
+
+    # graphical part
+    pesrc = src.presentation_element
+    diagram = pesrc.diagram if pesrc is not None else None
+    pe = None  # default
+    if isinstance(diagram, suite.NetDiagram):
+        pe = suite.TransitionGE(diagram.data_def)
+        # graphical properties
+        values = [_ for point in tree.points for _ in point]
+        pe.points = _num_to_str(values)
+        pe.label_position = _num_to_str(tree.label_position)
+        pe.label_size = _num_to_str(tree.label_size)
+        pe.slash_position = _num_to_str(tree.slash_position)
+        pe.polyline = tree.polyline
+        transition.presentation_element = pe
+        diagram.presentation_elements.append(pe)
+    # no presentation elements for text diagrams: only for owning state machine
+
+    td = tree.target
+    if isinstance(td, _State):
+        transition.target = td.state
+        transition.reset_target = td.reset
+    else:
+        assert isinstance(td, _Fork)
+        for fork in td.transitions:
+            _build_transition(transition, fork)
+
+    return transition
+
+
+# ----------------------------------------------------------------------------
+# if blocks
 #
 #'''
 # <diagram>: Diagram the block has to be linked to. This shall be either a diagram of <datadef>
@@ -921,73 +1222,6 @@ def add_data_def_assertion(
 #
 #    def __str__(self):
 #        return '%s: %s' % (self.context, self.message)
-#
-#
-# class TreeSyntaxError(Exception):
-#    def __init__(self, context, message):
-#        self.context = context
-#        self.message = message
-#
-#    def __str__(self):
-#        return '%s: %s' % (self.context, self.message)
-#
-#
-#'''
-# <transition_tree> = { <trigger> <dst> <args> }
-# <dst> ::= <state> <nature> | { <transition_tree>+ }
-# <args> ::= dict
-#'''
-#
-#
-# def BuildTransitionTree(src, tree):
-#    _check_object(src, 'BuildTransitionTree', 'src', (suite.State, suite.Transition))
-#
-#    if len(tree) == 4:
-#        # final transition
-#        trigger, state, nature, args = tree
-#        subtree = None
-#    elif len(tree) == 3:
-#        # forked transitions
-#        trigger, subtree, args = tree
-#        state = None
-#    else:
-#        raise (TreeSyntaxError('BuildExpressionTree', 'Syntax error'))
-#
-#    if isinstance(src, suite.State):
-#        # main transition
-#        transition = suite.MainTransition(src)
-#        _scade_api.add(src, 'outgoing', transition)
-#    else:
-#        # forked transition
-#        transition = suite.ForkedTransition(src)
-#        _scade_api.add(src, 'forkedTransition', transition)
-#
-#    transition.condition = BuildExpressionTree(src, trigger)
-#    transition.effect = suite.Action(src)
-#
-#    # graphical part
-#    pesrc = src.presentation_element
-#    diagram = pesrc.diagram if pesrc is not None else None
-#    pe = None  # default
-#    if diagram:
-#        if isinstance(diagram, suite.NetDiagram):
-#            pe = suite.TransitionGE(diagram.data_def)
-#        else:
-#            # text diagram
-#            pe = suite.FlowTE(diagram.data_def)
-#        transition.presentation_element = pe
-#        _scade_api.add(diagram, 'presentationElement', pe)
-#
-#    ApplyGraphicalPropSet(transition, pe, 'BuildTransitionTree', args)
-#
-#    if state is not None:
-#        transition.target = state
-#        transition.reset_target = True if nature == 'Restart' else False
-#    else:
-#        for fork in subtree:
-#            BuildTransitionTree(transition, fork)
-#
-#    return transition
 #
 #
 #'''

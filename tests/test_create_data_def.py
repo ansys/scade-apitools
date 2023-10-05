@@ -343,3 +343,65 @@ class TestCreateDataDef:
         assert assertion.to_string() == 'assume A1 : true'
 
         create.save_all()
+
+    data_def_state_machine_data = [
+        ('P::States/', 'NetDiagram'),
+        ('P::States/', 'TextDiagram'),
+        ('P::States/SM:NoDiagram:', None),
+    ]
+
+    @pytest.mark.parametrize(
+        'scope, name',
+        data_def_state_machine_data,
+        ids=['%s%s' % (_[0], _[1]) for _ in data_def_state_machine_data],
+    )
+    def test_data_def_state_machine(self, tmp_project_session, scope, name):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        scope = session.model.get_object_from_path(scope)
+        # same path for branches and actions
+        if isinstance(scope, suite.WhenBranch):
+            scope = scope.action
+        diagram = next((_ for _ in scope.diagrams if _.name == name)) if name else None
+        # hard coded SM with three states
+        position = [500, 500]
+        size = [15000, 5000]
+        name = 'SM%s' % diagram.name.replace('Diagram', '') if diagram else 'SM'
+        sm = create.add_data_def_state_machine(scope, diagram, name, position, size)
+        # states
+        positions = [[6000, 1000], [1000, 4000], [11000, 4000]]
+        size = [4000, 1000]
+        states = []
+        for kind, display, position in zip(create.SK, create.DK, positions):
+            state = create.add_state_machine_state(sm, kind.value, position, size, kind, display)
+            position[1] += 1500
+            states.append(state)
+        # retrieve the create states
+        normal, initial, final = states
+
+        # create a transition from initial to final
+        # let the tool compute default positions/size for the label
+        # no help from the tool for the points, we must provide consistent positions
+        points = [(5000, 4500), (6000, 4000), (10000, 5000), (11000, 4500)]
+        tree = create.create_transition_state(True, final, False, 1, points, polyline=False)
+        create.add_state_transition(initial, create.TK.STRONG, tree)
+
+        # create a forked transition from normal to initial and final
+        points = [(8000, 3000), (0, 0), (0, 0), (13000, 4000)]
+        to_final = create.create_transition_state(True, final, True, 1, points)
+        # no trigger: 'else' transition
+        points = [(8000, 3000), (0, 0), (0, 0), (3000, 4000)]
+        to_initial = create.create_transition_state(None, initial, True, 2, points)
+        points = [(8000, 2000), (0, 0), (0, 0), (8000, 3000)]
+        fork = create.create_transition_fork(False, [to_final, to_initial], 1, points)
+        main = create.add_state_transition(normal, create.TK.WEAK, fork)
+        # add an action to the main transition
+        signal = session.model.get_object_from_path('P::States/signal/')
+        main.effect = suite.Action(main)
+        create.add_data_def_equation(main.effect, None, [signal], None)
+
+        # compare the semantics of the state machine with the reference
+        reference = session.model.get_object_from_path('P::States/Reference:')
+        assert reference.to_string().replace('Reference', name) == sm.to_string()
+
+        create.save_all()

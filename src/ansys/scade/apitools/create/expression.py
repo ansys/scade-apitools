@@ -268,6 +268,8 @@ def _build_expression(tree: EX, context: suite.Object) -> suite.Expression:
     -------
         suite.Expression
     """
+    if tree is None:
+        return None
     tree = _normalize_tree(tree)
     return tree._build_expression(context)
 

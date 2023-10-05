@@ -6,6 +6,7 @@
 				<Operator name="Scopes" href="Scopes.xscade"/>
 				<Operator name="Edges" href="Edges.xscade"/>
 				<Operator name="DataFlows" href="DataFlows.xscade"/>
+				<Operator name="States" href="States.xscade"/>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/714/16D8/6760/651bb0472260" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
