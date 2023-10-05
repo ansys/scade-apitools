@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Project id="1" oid_count="105" defaultConfiguration="23">
+<Project id="1" oid_count="107" defaultConfiguration="23">
 	<props>
 		<Prop id="10" name="@STUDIO:PRODUCT">
 			<value>SC</value>
@@ -379,6 +379,13 @@
 						<FileRef id="105" persistAs="WhenBlocks.xscade">
 							<props>
 								<Prop id="104" name="@SCADE:NONROOT">
+									<value>true</value>
+								</Prop>
+							</props>
+						</FileRef>
+						<FileRef id="107" persistAs="IfBlocks.xscade">
+							<props>
+								<Prop id="106" name="@SCADE:NONROOT">
 									<value>true</value>
 								</Prop>
 							</props>

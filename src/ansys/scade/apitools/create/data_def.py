@@ -1088,55 +1088,238 @@ def add_transition_equation(
 
 # ----------------------------------------------------------------------------
 # if blocks
-#
-#'''
-# <diagram>: Diagram the block has to be linked to. This shall be either a diagram of <datadef>
-#            or an empty diagram when <datadef> is for example the action of a transition.
-# <if_tree>: Tree describing the block hierarchy. This tree is defined as follow:
-#        <if_tree> :: = { if <expr_tree> <then> <else> <if_props> }
-#        <then> ::= <action_props> | <if_tree>
-#        <else> ::= <action_prop> | <if_tree>
-# <block_props>: Properties set of the block.
-# 	* position (¤): Pair of integers defining the position of the block ({ <int> <int> })
-# 	* size (¤): Pair of integers defining the size of the block ({ <int> <int> })
-# <if_props>: Properties set of the decision node.
-# 	* position (¤): Pair of integers defining the position of the node ({ <int> <int> })
-# 	* labelWidth (¤): Integer defining the width of the label containing the condition
-# <action_props>: Properties set of the action.
-# 	* position (¤): Pair of integers defining the position of the action ({ <int> <int> })
-# 	* size (¤): Pair of integers defining the size of the action ({ <int> <int> })
-# 	* display (¤): Layout of the action, EmbeddedGraphical, EmbeddedTextual or Split
-#'''
-#
-#
-# def AddDataDefIfBlock(datadef, diagram, name, if_tree, **keywords):
-#    _check_object(datadef, 'AddDataDefIfBlock', 'datadef', suite.DataDef)
-#    if diagram is not None:
-#        _check_object(
-#            diagram, 'AddDataDefIfBlock', 'diagram', (suite.NetDiagram, suite.TextDiagram)
-#        )
-#
-#    ib = suite.IfBlock(datadef)
-#    ib.name = name
-#    _scade_api.add(datadef, 'flow', ib)
-#    ib.if_node = BuildIfTree(ib, diagram, if_tree)
-#
-#    # graphical part
-#    pe = None  # default
-#    if diagram is not None:
-#        if isinstance(diagram, suite.NetDiagram):
-#            pe = suite.IfBlockGE(datadef)
-#        else:
-#            # text diagram
-#            pe = suite.FlowTE(datadef)
-#        ib.presentation_element = pe
-#        _scade_api.add(diagram, 'presentationElement', pe)
-#
-#    ApplyGraphicalPropSet(ib, pe, 'AddDataDefIfBlock', keywords)
-#
-#    LinkPendings()
-#    SetModified(datadef)
-#    return ib
+
+
+class IfTree:
+    """Intermediate structure to describe the structure of an if block."""
+
+    def __init__(self, position: Tuple[float, float] = None):
+        """Store the attributes."""
+        self.position = position if position else (0, 0)
+
+    def _build(self, context: suite.Object, diagram: suite.Diagram) -> suite.IfBranch:
+        """Build an if branch from the tree."""
+        # must be overridden
+        assert False  # pragma no cover
+
+
+IT = IfTree
+"""Short name for IfTree to simplify the declarations."""
+
+
+class _Node(IT):
+    """Intermediate structure to describe a decision of an if tree."""
+
+    def __init__(
+        self,
+        expression: EX,
+        then: IT,
+        else_: IT,
+        position: Tuple[float, float] = None,
+        label_width: int = 0,
+    ):
+        """Store the attributes."""
+        super().__init__(position)
+        self.expression = expression
+        self.then = then
+        self.else_ = else_
+        self.label_width = label_width
+
+    def _build(self, owner: suite.Object, diagram: suite.Diagram) -> suite.IfBranch:
+        """Build an if node from the tree."""
+        _check_object(owner, '_build', 'owner', (suite.IfBlock, suite.IfNode))
+
+        node = suite.IfNode(owner)
+        node.expression = _build_expression(self.expression, node)
+        node.then = self.then._build(node, diagram)
+        node._else = self.else_._build(node, diagram)
+
+        # graphical part
+        if isinstance(diagram, suite.NetDiagram):
+            pe = suite.IfNodeGE(diagram.data_def)
+            # graphical properties
+            pe.position = _num_to_str(self.position)
+            pe.label_width = self.label_width
+            node.presentation_element = pe
+            diagram.presentation_elements.append(pe)
+
+        return node
+
+
+class _Action(IT):
+    """Leaf action of an if tree."""
+
+    def __init__(
+        self,
+        position: Tuple[float, float] = None,
+        size: Tuple[float, float] = None,
+        display: DK = DK.GRAPHICAL,
+    ):
+        """Store the attributes."""
+        super().__init__(position)
+        self.size = size if size else (0, 0)
+        self.display = display
+
+    def _build(self, owner: suite.Object, diagram: suite.Diagram) -> suite.IfBranch:
+        """Build an if action from the tree."""
+        _check_object(owner, '_build', 'owner', suite.IfNode)
+
+        ia = suite.IfAction(owner)
+        ia.action = suite.Action(owner)
+
+        # graphical part
+        if isinstance(diagram, suite.NetDiagram):
+            pe = suite.ActionGE(diagram.data_def)
+            # graphical properties
+            pe.position = _num_to_str(self.position)
+            pe.size = _num_to_str(self.size)
+            pe.display = self.display
+            ia.action.presentation_element = pe
+            diagram.presentation_elements.append(pe)
+
+        return ia
+
+
+def create_if_action(
+    position: Tuple[float, float] = None,
+    size: Tuple[float, float] = None,
+    display: DK = DK.GRAPHICAL,
+) -> IT:
+    """
+    Create a leaf action in the intermediate if tree structure.
+
+    The graphical properties are expressed  1/100th of mm.
+
+    They are considered if and only if the owning if block
+    has a graphical representation.
+
+    Parameters
+    ----------
+        position : Tuple[float, float]
+            Position of the action.
+
+        size : Tuple[float, float]
+            Size of the action.
+
+        display : DK
+            Layout of the action, either graphical, textual, or split.
+
+
+    Returns
+    -------
+        IT
+    """
+    return _Action(position, size, display)
+
+
+def create_if_tree(
+    expression: EX, then: IT, else_: IT, position: Tuple[float, float] = None, label_width: int = 0
+) -> IT:
+    """
+    Create a decision in the intermediate if tree structure.
+
+    The graphical properties are expressed  1/100th of mm.
+
+    They are considered if and only if the owning if block
+    has a graphical representation.
+
+    Hint for the graphical properties: The size of a node is 80x80: consider
+    this offset to have consistent values between if nodes and actions.
+
+    Parameters
+    ----------
+        expression : EX
+            Extended expression tree defining the condition of the decision.
+
+        then : IT
+            Sub-decision tree to consider when the condition is true.
+
+        else_ : IT
+            Sub-decision tree to consider when the condition is false.
+
+        position : Tuple[float, float]
+            Position of the decision.
+
+        label_width : int
+            Size of the label.
+
+    Returns
+    -------
+        IT
+    """
+    return _Node(expression, then, else_, position, label_width)
+
+
+def add_data_def_if_block(
+    data_def: suite.DataDef,
+    name: str,
+    if_tree: IfTree,
+    diagram: suite.Diagram,
+    position: Tuple[float, float] = None,
+    size: Tuple[float, float] = None,
+) -> suite.IfBlock:
+    """
+    Create an if block in a scope.
+
+    The graphical properties are expressed  1/100th of mm.
+
+    They are considered if and only if diagram is a graphical diagram.
+
+    Parameters
+    ----------
+        data_def : suite.DataDef
+            Input scope, either an operator, a state or an action.
+
+        name : str
+            Name of the if block.
+
+        if_tree : IfTree
+            Intermediate tree to describe the structure of the if block.
+
+        diagram : suite.Diagram
+            Diagram containing the if block: either graphical, textual or None.
+
+            Note: the diagram can't be None if the scope contains at least one diagram.
+
+        position : Tuple[float, float]
+            Position of the if block.
+
+        size : Tuple[float, float]
+            Size of the if block.
+
+    Returns
+    -------
+        suite.IfBlock
+    """
+    _check_object(data_def, 'add_data_def_if_block', 'data_def', suite.DataDef)
+    if diagram is not None:
+        _check_object(
+            diagram, 'add_data_def_if_block', 'diagram', (suite.NetDiagram, suite.TextDiagram)
+        )
+
+    ib = suite.IfBlock(data_def)
+    ib.name = name
+    data_def.flows.append(ib)
+    ib.if_node = if_tree._build(ib, diagram)
+
+    # graphical part
+    pe = None  # default
+    if diagram is not None:
+        if isinstance(diagram, suite.NetDiagram):
+            pe = suite.IfBlockGE(data_def)
+            # graphical properties
+            pe.position = _num_to_str(position)
+            pe.size = _num_to_str(size)
+        else:
+            # text diagram
+            pe = suite.FlowTE(data_def)
+            # no other properties
+        ib.presentation_element = pe
+        diagram.presentation_elements.append(pe)
+
+    _link_pendings()
+    _set_modified(data_def)
+    return ib
 
 
 # ----------------------------------------------------------------------------
@@ -1345,30 +1528,16 @@ def add_when_block_branches(
                 pea.position = _num_to_str(branch.position)
                 pea.size = _num_to_str(branch.size)
                 pea.display = branch.display
-            else:
-                # text diagram
-                peb = suite.FlowTE(when_block)
-                pea = suite.FlowTE(when_block)
-                # no other properties
-            when_branch.presentation_element = peb
-            when_branch.action.presentation_element = pea
-            diagram.presentation_elements.append(peb)
-            diagram.presentation_elements.append(pea)
+                when_branch.presentation_element = peb
+                when_branch.action.presentation_element = pea
+                diagram.presentation_elements.append(peb)
+                diagram.presentation_elements.append(pea)
 
     return when_branches
 
 
 ## -----------------------------------------------------------------------------
 ## Helpers
-#
-#
-# class WhenBlockSyntaxError(Exception):
-#    def __init__(self, context, message):
-#        self.context = context
-#        self.message = message
-#
-#    def __str__(self):
-#        return '%s: %s' % (self.context, self.message)
 #
 #
 #'''
@@ -1385,48 +1554,6 @@ def add_when_block_branches(
 #'''
 #
 #
-# def BuildIfTree(owner, diagram, tree):
-#    _check_object(owner, 'BuildTransitionTree', 'node', (suite.IfBlock, suite.IfNode))
-#
-#    pe = None  # default
-#    peclass = None  # either ActionGE, IfNodeGE or FlowTE
-#    presentable = None  # either IfNode or Action instance
-#    result = None  # IfBranch
-#
-#    if isinstance(tree, tuple) and len(tree) >= 1 and tree[0] == 'if':
-#        if len(tree) != 5:
-#            raise (TreeSyntaxError('BuildIfTree', "'if': Syntax error"))
-#        # if tree
-#        _, expression, then, else_, args = tree
-#        node = suite.IfNode(owner)
-#        node.expression = BuildExpressionTree(node, expression)
-#        node.then = BuildIfTree(node, diagram, then)
-#        node._else = BuildIfTree(node, diagram, else_)
-#        peclass = suite.IfNodeGE
-#        presentable = node
-#        result = node
-#    else:
-#        # must be an action
-#        args = tree
-#        ia = suite.IfAction(owner)
-#        ia.action = suite.Action(owner)
-#        peclass = suite.ActionGE
-#        presentable = ia.action
-#        result = ia
-#
-#    # graphical part
-#    if diagram:
-#        if isinstance(diagram, suite.NetDiagram):
-#            pe = peclass(diagram.data_def)
-#        else:
-#            # text diagram
-#            pe = suite.FlowTE(diagram.data_def)
-#        presentable.presentation_element = pe
-#        _scade_api.add(diagram, 'presentationElement', pe)
-#
-#    ApplyGraphicalPropSet(presentable, pe, 'BuildIfTree', args)
-#
-#    return result
 #
 #
 # def ApplyGraphicalPropSet(object, pe, context, props):

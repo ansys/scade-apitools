@@ -44,6 +44,7 @@
 				<Operator name="DataFlows" href="DataFlows.xscade"/>
 				<Operator name="StateMachines" href="StateMachines.xscade"/>
 				<Operator name="WhenBlocks" href="WhenBlocks.xscade"/>
+				<Operator name="IfBlocks" href="IfBlocks.xscade"/>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/714/16D8/6760/651bb0472260" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">

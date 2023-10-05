@@ -452,3 +452,55 @@ class TestCreateDataDef:
         assert reference.to_string().replace('Reference', name) == block.to_string()
 
         create.save_all()
+
+    data_def_if_block_data = [
+        ('P::IfBlocks/', 'NetDiagram'),
+        ('P::IfBlocks/', 'TextDiagram'),
+        ('P::IfBlocks/SM:NoDiagram:', None),
+    ]
+
+    @pytest.mark.parametrize(
+        'scope, name',
+        data_def_if_block_data,
+        ids=['%s%s' % (_[0], _[1]) for _ in data_def_if_block_data],
+    )
+    def test_data_def_if_block(self, tmp_project_session, scope, name):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        scope = session.model.get_object_from_path(scope)
+        # same path for branches and actions
+        if isinstance(scope, suite.WhenBranch):
+            scope = scope.action
+        diagram = next((_ for _ in scope.diagrams if _.name == name)) if name else None
+        # hard coded IB with three nodes
+        # retrieve the variables used for the selector
+        a, b, c = [
+            session.model.get_object_from_path('P::IfBlocks/%s/' % _) for _ in 'a b c'.split()
+        ]
+        # create the actions
+        block_position = (500, 700)
+        block_size = (14000, 6000)
+        # default offsets of the SCADE editor
+        start_position = (block_position[0] + 450, block_position[1] + 500)
+
+        displays = list(create.DK) + [create.DK.SPLIT]
+        positions = [(10000, block_position[1] + 500), (10000, 2800), (2500, 3900), (2500, 5400)]
+        size = (4000, 1000)
+        actions = []
+        for display, position in zip(displays, positions):
+            action = create.create_if_action(position, size, display)
+            actions.append(action)
+        b1, b2, c1, c2 = actions
+        # create the nodes
+        nb = create.create_if_tree(b, b1, b2, (5000, positions[0][1] + 80))
+        nc = create.create_if_tree(c, c1, c2, (start_position[0], positions[2][1] + 80))
+        na = create.create_if_tree(a, nb, nc, (start_position[0], positions[0][1] + 80))
+
+        name = 'IB%s' % diagram.name.replace('Diagram', '') if diagram else 'IB'
+        block = create.add_data_def_if_block(scope, name, na, diagram, block_position, block_size)
+
+        # compare the semantics of the state machine with the reference
+        reference = session.model.get_object_from_path('P::IfBlocks/Reference:')
+        assert reference.to_string().replace('Reference', name) == block.to_string()
+
+        create.save_all()
