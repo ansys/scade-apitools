@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>44133fa6-3e12-4e84-9e77-478b46a4b35d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>tests\sandbox.py</StartupFile>
+    <StartupFile>doc\source\create\res\create_type\debug_create_type.py</StartupFile>
     <SearchPath>C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -35,6 +35,13 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="doc\" />
+    <Folder Include="doc\source\" />
+    <Folder Include="doc\source\create\" />
+    <Folder Include="doc\source\create\res\" />
+    <Folder Include="doc\source\create\res\create_constant\" />
+    <Folder Include="doc\source\create\res\create_package\" />
+    <Folder Include="doc\source\create\res\create_type\" />
     <Folder Include="examples\" />
     <Folder Include="examples\expr_access\" />
     <Folder Include="examples\query_type\" />
@@ -50,6 +57,13 @@
     <Folder Include="tests\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="doc\source\conf.py" />
+    <Compile Include="doc\source\create\res\create_constant\create_constant.py" />
+    <Compile Include="doc\source\create\res\create_constant\debug_create_constant.py" />
+    <Compile Include="doc\source\create\res\create_package\create_package.py" />
+    <Compile Include="doc\source\create\res\create_package\debug_create_package.py" />
+    <Compile Include="doc\source\create\res\create_type\create_type.py" />
+    <Compile Include="doc\source\create\res\create_type\debug_create_type.py" />
     <Compile Include="examples\expr_access\activate_no_init_op.py" />
     <Compile Include="examples\expr_access\activate_op.py" />
     <Compile Include="examples\expr_access\binary_op.py" />

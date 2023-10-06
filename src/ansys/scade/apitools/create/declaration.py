@@ -112,7 +112,7 @@ def create_named_type(
     owner: suite.Package,
     name: str,
     definition: TX,
-    path: Path,
+    path: Path = None,
     visibility: VK = VK.PUBLIC,
     symbol_files: List[Path] = None,
 ) -> suite.NamedType:
@@ -171,7 +171,7 @@ def create_named_type(
 
 
 def create_imported_type(
-    owner: suite.Package, name: str, path: Path, visibility: VK = VK.PUBLIC
+    owner: suite.Package, name: str, path: Path = None, visibility: VK = VK.PUBLIC
 ) -> suite.NamedType:
     """
     Create an instance of NamedType.
@@ -219,7 +219,11 @@ def create_imported_type(
 
 
 def create_enumeration(
-    owner: suite.Package, name: str, values: List[str], path: Path, visibility: VK = VK.PUBLIC
+    owner: suite.Package,
+    name: str,
+    values: List[str],
+    path: Path = None,
+    visibility: VK = VK.PUBLIC,
 ) -> suite.NamedType:
     """
     Create an instance of NamedType defined by an enumeration.
@@ -323,7 +327,12 @@ def add_enumeration_values(type_: suite.NamedType, values: List[str], insert_bef
 
 
 def create_constant(
-    owner: suite.Package, name: str, type_: TX, value: EX, path: Path, visibility: VK = VK.PUBLIC
+    owner: suite.Package,
+    name: str,
+    type_: TX,
+    value: EX,
+    path: Path = None,
+    visibility: VK = VK.PUBLIC,
 ) -> suite.Constant:
     """
     Create an instance of Constant.
@@ -381,7 +390,7 @@ def create_constant(
 
 
 def create_imported_constant(
-    owner: suite.Package, name: str, type_: TX, path: Path, visibility: VK = VK.PUBLIC
+    owner: suite.Package, name: str, type_: TX, path: Path = None, visibility: VK = VK.PUBLIC
 ):
     """
     Create an instance of Constant.
@@ -434,7 +443,7 @@ def create_imported_constant(
     return constant
 
 
-def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path) -> suite.Sensor:
+def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path = None) -> suite.Sensor:
     """
     Create an instance of Sensor.
 
