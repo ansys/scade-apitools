@@ -1497,7 +1497,7 @@ def add_when_block_branches(
     -------
         List[suite.WhenBranch]
     """
-    _check_object(when_block, 'add_when_block_branches', 'wb', suite.WhenBlock)
+    _check_object(when_block, 'add_when_block_branches', 'when_block', suite.WhenBlock)
 
     diagram = when_block.presentation_element.diagram if when_block.presentation_element else None
 
@@ -1533,47 +1533,48 @@ def add_when_block_branches(
                 diagram.presentation_elements.append(peb)
                 diagram.presentation_elements.append(pea)
 
+    _set_modified(when_block)
     return when_branches
 
 
-## -----------------------------------------------------------------------------
-## Helpers
-#
-#
-#'''
-# <if_tree> :: = { if <expr_tree> <then> <else> <if_props> }
-# <then> ::= <action_props> | <if_tree>
-# <else> ::= <action_prop> | <if_tree>
-# <if_props>: Properties set of the decision node.
-# 	* position (¤): Pair of integers defining the position of the node ({ <int> <int> })
-# 	* labelWidth (¤): Integer defining the width of the label containing the condition
-# <action_props>: Properties set of the action.
-# 	* position (¤): Pair of integers defining the position of the action ({ <int> <int> })
-# 	* size (¤): Pair of integers defining the size of the action ({ <int> <int> })
-# 	* display (¤): Layout of the action, EmbeddedGraphical, EmbeddedTextual or Split
-#'''
-#
-#
-#
-#
-# def ApplyGraphicalPropSet(object, pe, context, props):
-#    for name, value in props.items():
-#        if object is None:
-#            # try on the presentation element
-#            try:
-#                _scade_api.set(pe, name, value)
-#            except:
-#                # can't raise an error since calling function
-#                # is successful and shall return a value
-#                print('warning: ' + context + ': Illegal attribute ' + name + '\n')
-#        else:
-#            try:
-#                _scade_api.set(object, name, value)
-#            except:
-#                # try on the presentation element
-#                try:
-#                    _scade_api.set(pe, name, value)
-#                except:
-#                    # can't raise an error since calling function
-#                    # is successful and shall return a value
-#                    print('warning: ' + context + ': Illegal attribute ' + name + '\n')
+# ----------------------------------------------------------------------------
+# equation sets
+
+
+def add_diagram_equation_set(
+    diagram: suite.NetDiagram, name: str, elements: List[suite.Presentable] = None
+) -> suite.EquationSet:
+    """
+    Add a new equation set to a graphical diagram.
+
+    Parameters
+    ----------
+        diagram : suite.NetDiagram
+            Input diagram.
+
+        name : str
+            Name of the equation set.
+
+        elements : List[suite.Presentable]
+            Optional list of elements to add to the equation set.
+
+    Returns
+    -------
+        suite.EquationSet
+    """
+    _check_object(diagram, 'add_diagram_equation_set', 'diagram', suite.NetDiagram)
+    # make sure the elements can be added to the equation set
+    if elements is None:
+        elements = []
+    for index, element in enumerate(elements):
+        pe = element.presentation_element
+        if not pe or pe.diagram != diagram:
+            raise ValueError("%s: element #%d can't be added" % (diagram, index + 1))
+
+    eqs = suite.EquationSet(diagram)
+    eqs.name = name
+    eqs.presentables.extend(elements)
+    diagram.equation_sets.append(eqs)
+
+    _set_modified(diagram)
+    return eqs

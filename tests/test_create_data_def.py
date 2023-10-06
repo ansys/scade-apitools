@@ -504,3 +504,43 @@ class TestCreateDataDef:
         assert reference.to_string().replace('Reference', name) == block.to_string()
 
         create.save_all()
+
+    diagram_equation_set_data = [
+        ('P::EquationSets/', 'NetDiagram', 'a, b', ['a', 'b'], None),
+        ('P::EquationSets/', 'TextDiagram', 'd', ['d'], TypeError),
+        ('P::EquationSets/', 'NetDiagram', 'c', ['c'], ValueError),
+        ('P::EquationSets/', 'NetDiagram', 'empty', [], None),
+    ]
+
+    @pytest.mark.parametrize(
+        'scope, diagram, name, vars, exception',
+        diagram_equation_set_data,
+        ids=[_[2] for _ in diagram_equation_set_data],
+    )
+    def test_diagram_equation_set(
+        self, tmp_project_session, scope, diagram, name, vars, exception
+    ):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        path = scope
+        scope = session.model.get_object_from_path(scope)
+        # same path for branches and actions
+        if isinstance(scope, suite.WhenBranch):
+            scope = scope.action
+        diagram = next((_ for _ in scope.diagrams if _.name == diagram))
+        # retrieve the variables and then their definition
+        vars = [session.model.get_object_from_path('%s%s/' % (path, _)) for _ in vars]
+        equations = [_.definitions[0] for _ in vars]
+        if exception:
+            with pytest.raises(exception):
+                eqs = create.add_diagram_equation_set(diagram, name, equations)
+        else:
+            if equations:
+                eqs = create.add_diagram_equation_set(diagram, name, equations)
+            else:
+                eqs = create.add_diagram_equation_set(diagram, name)
+            # minimal verification
+            for equation in equations:
+                assert eqs in equation.equation_sets
+
+        create.save_all()
