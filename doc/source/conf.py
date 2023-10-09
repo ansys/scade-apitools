@@ -17,7 +17,7 @@ sys.path.append(os.path.abspath("./_ext"))
 project = "ansys-scade-apitools"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
 author = "ANSYS, Inc."
-release = version = "0.1.dev0"
+release = version = "0.3.0"
 
 # Select desired logo, theme, and declare the html title
 html_logo = logo

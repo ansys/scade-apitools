@@ -4,7 +4,7 @@ from setuptools import find_namespace_packages, setup
 
 setup(
     name="ansys-scade-apitools",
-    version="0.1.dev0",
+    version="0.3.0",
     url="https://github.com/ansys/scade-apitools",
     author="ANSYS, Inc.",
     author_email="scade-support@ansys.com",
