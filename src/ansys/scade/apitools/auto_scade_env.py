@@ -144,3 +144,5 @@ else:
     # allow importing the file on other systems
     # for documentation generation, for example
     declare_project = None
+    scade = None
+    _scade_api = None
