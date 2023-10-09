@@ -24,7 +24,7 @@ Notes:
 
   * The functions have been renamed accordingly to PEP8.
   * Most of the interfaces are identical: there are a few changes for providing a more Pythonic way.
-  * You can migrate existing applications to use this library, or continue to use *SCL* which is going to be reimplemented on top of this library.
+  * You can migrate existing applications to use this library, or continue to use *SCL* which is going to be re-implemented on top of this library.
 
 * The functions are all accessible from :py:mod:`create <ansys.scade.apitools.create>`, regardless the submodule they are defined in.
 
@@ -133,8 +133,7 @@ The next sections introduce the expression and type trees.
 Type tree
 ^^^^^^^^^
 
-A type tree describes any Scade type. To be as flexible as possible, we introduce the notion of extended type tree, ansys.scade.apitools.create.TX, which accepts any of the following values:
-An :py:class:`type tree (TT) <create.type.TypeTree>` represents any Scade type. :py:class:`Extended type trees (EX) <create.type.TX>` provide more flexibility by accepting any of the following types:
+A :py:class:`type tree (TT) <create.type.TypeTree>` represents any Scade type. :py:class:`Extended type trees (EX) <create.type.TX>` provide more flexibility by accepting any of the following types:
 
 * :py:class:`Type tree (TT) <create.type.TypeTree>`
 * Instance of ``scade.model.suite.Type``
