@@ -13,7 +13,7 @@ API Tools
    :maxdepth: 2
    :caption: Contents:
 
-   scripting
+   guide
    modules
    examples
 

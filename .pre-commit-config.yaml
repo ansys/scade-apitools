@@ -15,6 +15,7 @@ repos:
   rev: 5.0.4
   hooks:
   - id: flake8
+    additional_dependencies: [pep8-naming]
 
 - repo: https://github.com/codespell-project/codespell
   rev: v2.1.0

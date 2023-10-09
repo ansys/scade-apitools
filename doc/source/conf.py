@@ -60,7 +60,7 @@ extensions = [
 # Print the type annotations from the signature in the description only
 autodoc_typehints = 'description'
 # When the documentation is run on Linux systems
-autodoc_mock_imports = ['scade', 'scade_env']
+autodoc_mock_imports = ['scade', 'scade_env', '_scade_api']
 # Purpose of this option?
 add_module_names = False
 

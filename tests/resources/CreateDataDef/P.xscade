@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="P">
+			<declarations>
+				<Type name="Enumeration">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="A">
+									<pragmas>
+										<ed:Value oid="!ed/6ff/788E/4884/651e9c0310d6"/>
+									</pragmas>
+								</Value>
+								<Value name="B">
+									<pragmas>
+										<ed:Value oid="!ed/700/788E/4884/651e9c064a1e"/>
+									</pragmas>
+								</Value>
+								<Value name="C">
+									<pragmas>
+										<ed:Value oid="!ed/701/788E/4884/651e9c087c1a"/>
+									</pragmas>
+								</Value>
+								<Value name="D">
+									<pragmas>
+										<ed:Value oid="!ed/702/788E/4884/651e9c0c3198"/>
+									</pragmas>
+								</Value>
+								<Value name="F">
+									<pragmas>
+										<ed:Value oid="!ed/703/788E/4884/651e9c0d3ff7"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/6fe/788E/4884/651e9bfa4c2b"/>
+					</pragmas>
+				</Type>
+				<Operator name="Scopes" href="Scopes.xscade"/>
+				<Operator name="Edges" href="Edges.xscade"/>
+				<Operator name="DataFlows" href="DataFlows.xscade"/>
+				<Operator name="StateMachines" href="StateMachines.xscade"/>
+				<Operator name="WhenBlocks" href="WhenBlocks.xscade"/>
+				<Operator name="IfBlocks" href="IfBlocks.xscade"/>
+				<Operator name="EquationSets" href="EquationSets.xscade"/>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/714/16D8/6760/651bb0472260" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/715/16D8/6760/651bb04728e" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/716/16D8/6760/651bb0472965" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/717/16D8/6760/651bb0474ca8" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

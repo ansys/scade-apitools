@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Type name="Type">
+			<definition>
+				<NamedType>
+					<type>
+						<NullRef/>
+					</type>
+				</NamedType>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/67d/16D8/6760/6514b10446b4"/>
+			</pragmas>
+		</Type>
+	</declarations>
+</File>

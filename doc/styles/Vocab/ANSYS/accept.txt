@@ -7,5 +7,7 @@ endif
 endfor
 endblock
 APIs
+scade
 Scade
 SCADE
+Pythonic

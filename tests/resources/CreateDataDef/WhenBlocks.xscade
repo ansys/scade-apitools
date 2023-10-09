@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="node" name="WhenBlocks">
+	<locals>
+		<Variable name="e">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Enumeration"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/704/788E/4884/651e9c4414c1"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<StateMachine name="SM">
+			<states>
+				<State initial="true" name="NoDiagram">
+					<pragmas>
+						<ed:State oid="!ed/6c4/788E/4884/651e9af01536"/>
+					</pragmas>
+				</State>
+			</states>
+			<pragmas>
+				<ed:StateMachine oid="!ed/6c3/788E/4884/651e9af01e97"/>
+			</pragmas>
+		</StateMachine>
+		<WhenBlock name="Reference">
+			<when>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="e"/>
+					</path>
+				</IdExpression>
+			</when>
+			<matches>
+				<Match pattern="A">
+					<pragmas>
+						<ed:Match oid="!ed/715/788E/4884/651e9c5457ba"/>
+						<ed:Action oid="!ed/716/788E/4884/651e9c545549"/>
+					</pragmas>
+				</Match>
+				<Match pattern="B">
+					<pragmas>
+						<ed:Match oid="!ed/734/788E/4884/651e9c7162f6"/>
+						<ed:Action oid="!ed/739/788E/4884/651e9c73229a"/>
+					</pragmas>
+				</Match>
+				<Match pattern="C">
+					<pragmas>
+						<ed:Match oid="!ed/74a/788E/4884/651e9c9d53c3"/>
+						<ed:Action oid="!ed/74f/788E/4884/651e9c9e545c"/>
+					</pragmas>
+				</Match>
+			</matches>
+			<pragmas>
+				<ed:WhenBlock oid="!ed/710/788E/4884/651e9c536243"/>
+			</pragmas>
+		</WhenBlock>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/6c2/788E/4884/651e9af0545b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+			<diagrams>
+				<NetDiagram name="NetDiagram" landscape="true" format="A4 (210 297)" oid="!ed/6d0/788E/4884/651e9af0329c"/>
+				<NetDiagram name="NoDiagram" landscape="true" format="A4 (210 297)" oid="!ed/6d1/788E/4884/651e9af02984">
+					<presentationElements>
+						<StateMachineGE presentable="!ed/6c3/788E/4884/651e9af01e97">
+							<position>
+								<Point x="582" y="688"/>
+							</position>
+							<size>
+								<Size width="18045" height="12515"/>
+							</size>
+						</StateMachineGE>
+						<StateGE display="embeddedTextual" presentable="!ed/6c4/788E/4884/651e9af01536">
+							<position>
+								<Point x="1296" y="1402"/>
+							</position>
+							<size>
+								<Size width="16775" height="11139"/>
+							</size>
+						</StateGE>
+					</presentationElements>
+				</NetDiagram>
+				<TextDiagram name="TextDiagram" landscape="false" format="A4 (210 297)" oid="!ed/6d2/788E/4884/651e9af02e4a"/>
+				<NetDiagram name="Reference" landscape="true" format="A4 (210 297)" oid="!ed/6d3/788E/4884/651e9af04e6d">
+					<presentationElements>
+						<WhenBlockGE labelWidth="291" presentable="!ed/710/788E/4884/651e9c536243">
+							<position>
+								<Point x="503" y="503"/>
+							</position>
+							<size>
+								<Size width="11006" height="6032"/>
+							</size>
+							<startPos>
+								<Point x="450" y="582"/>
+							</startPos>
+						</WhenBlockGE>
+						<WhenBranchGE labelWidth="794" presentable="!ed/715/788E/4884/651e9c5457ba">
+							<position>
+								<Point x="1032" y="2090"/>
+							</position>
+						</WhenBranchGE>
+						<ActionGE presentable="!ed/716/788E/4884/651e9c545549">
+							<position>
+								<Point x="2302" y="2011"/>
+							</position>
+							<size>
+								<Size width="3995" height="1005"/>
+							</size>
+						</ActionGE>
+						<WhenBranchGE labelWidth="794" presentable="!ed/734/788E/4884/651e9c7162f6">
+							<position>
+								<Point x="1032" y="3572"/>
+							</position>
+						</WhenBranchGE>
+						<ActionGE presentable="!ed/739/788E/4884/651e9c73229a">
+							<position>
+								<Point x="7011" y="3493"/>
+							</position>
+							<size>
+								<Size width="3996" height="1005"/>
+							</size>
+						</ActionGE>
+						<WhenBranchGE labelWidth="794" presentable="!ed/74a/788E/4884/651e9c9d53c3">
+							<position>
+								<Point x="1032" y="4577"/>
+							</position>
+						</WhenBranchGE>
+						<ActionGE presentable="!ed/74f/788E/4884/651e9c9e545c">
+							<position>
+								<Point x="2302" y="4498"/>
+							</position>
+							<size>
+								<Size width="3995" height="1006"/>
+							</size>
+						</ActionGE>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+			<references>
+				<TypeRef path="Enumeration" refOid="!ed/6fe/788E/4884/651e9bfa4c2b"/>
+				<ConstVarRef path="A" refOid="!ed/6ff/788E/4884/651e9c0310d6"/>
+				<ConstVarRef path="B" refOid="!ed/700/788E/4884/651e9c064a1e"/>
+				<ConstVarRef path="C" refOid="!ed/701/788E/4884/651e9c087c1a"/>
+			</references>
+		</ed:Operator>
+	</pragmas>
+</Operator>

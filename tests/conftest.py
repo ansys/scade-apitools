@@ -114,6 +114,7 @@ def tmp_project_session(tmpdir, request) -> Tuple[project.Project, suite.Session
     target_dir = tmpdir / request.cls.__name__
     copytree(pathname.parent, target_dir)
     pathname = str(target_dir / pathname.name)
+    print('loading', pathname)
     project_ = load_project(pathname)
     session = load_session(pathname)
     yield project_, session

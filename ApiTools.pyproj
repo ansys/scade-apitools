@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>44133fa6-3e12-4e84-9e77-478b46a4b35d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>src\ansys\scade\apitools\expr\access.py</StartupFile>
+    <StartupFile>doc\source\create\res\create_type\debug_create_type.py</StartupFile>
     <SearchPath>C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -35,6 +35,13 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="doc\" />
+    <Folder Include="doc\source\" />
+    <Folder Include="doc\source\create\" />
+    <Folder Include="doc\source\create\res\" />
+    <Folder Include="doc\source\create\res\create_constant\" />
+    <Folder Include="doc\source\create\res\create_package\" />
+    <Folder Include="doc\source\create\res\create_type\" />
     <Folder Include="examples\" />
     <Folder Include="examples\expr_access\" />
     <Folder Include="examples\query_type\" />
@@ -42,6 +49,7 @@
     <Folder Include="src\ansys\" />
     <Folder Include="src\ansys\scade\" />
     <Folder Include="src\ansys\scade\apitools\" />
+    <Folder Include="src\ansys\scade\apitools\create\" />
     <Folder Include="src\ansys\scade\apitools\expr\" />
     <Folder Include="src\ansys\scade\apitools\info\" />
     <Folder Include="src\ansys\scade\apitools\prop\" />
@@ -49,6 +57,13 @@
     <Folder Include="tests\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="doc\source\conf.py" />
+    <Compile Include="doc\source\create\res\create_constant\create_constant.py" />
+    <Compile Include="doc\source\create\res\create_constant\debug_create_constant.py" />
+    <Compile Include="doc\source\create\res\create_package\create_package.py" />
+    <Compile Include="doc\source\create\res\create_package\debug_create_package.py" />
+    <Compile Include="doc\source\create\res\create_type\create_type.py" />
+    <Compile Include="doc\source\create\res\create_type\debug_create_type.py" />
     <Compile Include="examples\expr_access\activate_no_init_op.py" />
     <Compile Include="examples\expr_access\activate_op.py" />
     <Compile Include="examples\expr_access\binary_op.py" />
@@ -91,6 +106,13 @@
     <Compile Include="examples\query_type\is_scalar.py" />
     <Compile Include="examples\query_type\is_structure.py" />
     <Compile Include="src\ansys\scade\apitools\auto_scade_env.py" />
+    <Compile Include="src\ansys\scade\apitools\create\data_def.py" />
+    <Compile Include="src\ansys\scade\apitools\create\declaration.py" />
+    <Compile Include="src\ansys\scade\apitools\create\expression.py" />
+    <Compile Include="src\ansys\scade\apitools\create\project.py" />
+    <Compile Include="src\ansys\scade\apitools\create\scade.py" />
+    <Compile Include="src\ansys\scade\apitools\create\type.py" />
+    <Compile Include="src\ansys\scade\apitools\create\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\expr\access.py" />
     <Compile Include="src\ansys\scade\apitools\expr\predef.py" />
     <Compile Include="src\ansys\scade\apitools\expr\__init__.py" />
@@ -103,8 +125,16 @@
     <Compile Include="src\ansys\scade\apitools\query\__init__.py" />
     <Compile Include="src\ansys\scade\apitools\__init__.py" />
     <Compile Include="tests\conftest.py" />
+    <Compile Include="tests\sandbox.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tests\test_access.py" />
     <Compile Include="tests\test_auto_scade_env.py" />
+    <Compile Include="tests\test_create_data_def.py" />
+    <Compile Include="tests\test_create_declaration.py" />
+    <Compile Include="tests\test_create_expression.py" />
+    <Compile Include="tests\test_create_project.py" />
+    <Compile Include="tests\test_create_type.py" />
     <Compile Include="tests\test_install.py" />
     <Compile Include="tests\test_metadata.py" />
     <Compile Include="tests\test_pragma.py" />

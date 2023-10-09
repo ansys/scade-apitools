@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="node" name="EquationSets">
+	<locals>
+		<Variable name="a">
+			<type>
+				<NamedType>
+					<type>
+						<NullRef/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/a07/788E/4884/651fc7e4245"/>
+			</pragmas>
+		</Variable>
+		<Variable name="b">
+			<type>
+				<NamedType>
+					<type>
+						<NullRef/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/a0f/788E/4884/651fc7eb5a6a"/>
+			</pragmas>
+		</Variable>
+		<Variable name="c">
+			<type>
+				<NamedType>
+					<type>
+						<NullRef/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/a1d/788E/4884/651fc7f6e69"/>
+			</pragmas>
+		</Variable>
+		<Variable name="d">
+			<type>
+				<NamedType>
+					<type>
+						<NullRef/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/a23/788E/4884/651fc8032a4a"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- a = _null; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="a"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<NullRef/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/a08/788E/4884/651fc7e475cc"/>
+			</pragmas>
+		</Equation>
+		<!-- b = _null; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="b"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<NullRef/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/a10/788E/4884/651fc7eb5446"/>
+			</pragmas>
+		</Equation>
+		<!-- c = _null; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="c"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<NullRef/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/a1e/788E/4884/651fc7f67db0"/>
+			</pragmas>
+		</Equation>
+		<!-- d = false; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="d"/>
+			</lefts>
+			<right>
+				<ConstValue value="false"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/a38/788E/4884/651fc847343e"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/a01/788E/4884/651fc7a83f63" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+			<diagrams>
+				<NetDiagram name="WrongDiagram" landscape="true" format="A4 (210 297)" oid="!ed/a02/788E/4884/651fc7a86412">
+					<presentationElements>
+						<EquationGE presentable="!ed/a1e/788E/4884/651fc7f67db0">
+							<position>
+								<Point x="2143" y="1535"/>
+							</position>
+							<size>
+								<Size width="344" height="502"/>
+							</size>
+						</EquationGE>
+					</presentationElements>
+				</NetDiagram>
+				<NetDiagram name="NetDiagram" landscape="true" format="A4 (210 297)" oid="!ed/a03/788E/4884/651fc7c24230">
+					<presentationElements>
+						<EquationGE presentable="!ed/a08/788E/4884/651fc7e475cc">
+							<position>
+								<Point x="1879" y="1482"/>
+							</position>
+							<size>
+								<Size width="344" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/a10/788E/4884/651fc7eb5446">
+							<position>
+								<Point x="1879" y="3175"/>
+							</position>
+							<size>
+								<Size width="344" height="503"/>
+							</size>
+						</EquationGE>
+					</presentationElements>
+					<equationSets>
+						<EquationSet name="EquationSet" oid="!ed/a39/788E/4884/651fcfa6655e">
+							<presentable>!ed/a08/788E/4884/651fc7e475cc</presentable>
+						</EquationSet>
+					</equationSets>
+				</NetDiagram>
+				<TextDiagram name="TextDiagram" landscape="false" format="A4 (210 297)" oid="!ed/a04/788E/4884/651fc7cc1543">
+					<presentationElements>
+						<FlowTE presentable="!ed/a38/788E/4884/651fc847343e"/>
+					</presentationElements>
+					<textArea>
+						<TextArea text="d = false;&#xA;
+"/>
+					</textArea>
+				</TextDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

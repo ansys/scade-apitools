@@ -7,6 +7,7 @@ Reference
    :toctree: _autosummary
    :recursive:
 
+   ansys.scade.apitools.create
    ansys.scade.apitools.expr
    ansys.scade.apitools.info
    ansys.scade.apitools.prop
