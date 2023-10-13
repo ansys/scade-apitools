@@ -49,6 +49,7 @@ Examples
 .. toctree::
    :maxdepth: 1
 
+   create_if_block
    create_interface.rst
    create_make.rst
    create_state_machine.rst

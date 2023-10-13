@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>44133fa6-3e12-4e84-9e77-478b46a4b35d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>examples\create\when_block\debug_create_when_block.py</StartupFile>
+    <StartupFile>examples\create\if_block\debug_create_if_block.py</StartupFile>
     <SearchPath>C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -44,6 +44,7 @@
     <Folder Include="doc\source\create\res\create_type\" />
     <Folder Include="examples\" />
     <Folder Include="examples\create\" />
+    <Folder Include="examples\create\if_block\" />
     <Folder Include="examples\create\interface\" />
     <Folder Include="examples\create\make\" />
     <Folder Include="examples\create\state_machine\" />
@@ -70,6 +71,8 @@
     <Compile Include="doc\source\create\res\create_package\debug_create_package.py" />
     <Compile Include="doc\source\create\res\create_type\create_type.py" />
     <Compile Include="doc\source\create\res\create_type\debug_create_type.py" />
+    <Compile Include="examples\create\if_block\create_if_block.py" />
+    <Compile Include="examples\create\if_block\debug_create_if_block.py" />
     <Compile Include="examples\create\interface\create_interface.py" />
     <Compile Include="examples\create\interface\debug_create_interface.py" />
     <Compile Include="examples\create\make\create_make.py" />
