@@ -51,4 +51,5 @@ Examples
 
    create_interface.rst
    create_make.rst
+   create_state_machine.rst
    create_top_level.rst

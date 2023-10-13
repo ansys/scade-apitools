@@ -375,7 +375,7 @@ class TestCreateDataDef:
         for kind, display, position in zip(create.SK, create.DK, positions):
             state = create.add_state_machine_state(sm, kind.value, position, size, kind, display)
             states.append(state)
-        # retrieve the create states
+        # retrieve the created states
         normal, initial, final = states
 
         # create a transition from initial to final

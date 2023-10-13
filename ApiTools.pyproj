@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>44133fa6-3e12-4e84-9e77-478b46a4b35d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>examples\create\top_level\debug_create_top_level.py</StartupFile>
+    <StartupFile>examples\create\state_machine\debug_create_state_machine.py</StartupFile>
     <SearchPath>C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -46,6 +46,7 @@
     <Folder Include="examples\create\" />
     <Folder Include="examples\create\interface\" />
     <Folder Include="examples\create\make\" />
+    <Folder Include="examples\create\state_machine\" />
     <Folder Include="examples\create\top_level\" />
     <Folder Include="examples\expr_access\" />
     <Folder Include="examples\query_type\" />
@@ -72,6 +73,8 @@
     <Compile Include="examples\create\interface\debug_create_interface.py" />
     <Compile Include="examples\create\make\create_make.py" />
     <Compile Include="examples\create\make\debug_create_make.py" />
+    <Compile Include="examples\create\state_machine\create_state_machine.py" />
+    <Compile Include="examples\create\state_machine\debug_create_state_machine.py" />
     <Compile Include="examples\create\top_level\create_top_level.py" />
     <Compile Include="examples\create\top_level\debug_create_top_level.py" />
     <Compile Include="examples\expr_access\activate_no_init_op.py" />
