@@ -1,9 +1,12 @@
 interface
 =========
 
+Overview
+--------
+
 Create operators and their interfaces from a text description file.
 
-This first example aims at demonstrating the basic features of a creation script.
+This example demonstrates the basic features of a creation script.
 It reads from a text file the description of operators and their interface: inputs and outputs.
 
 The syntax of the description file is very simple.

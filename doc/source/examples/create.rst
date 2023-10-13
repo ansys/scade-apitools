@@ -47,6 +47,7 @@ Examples
    :maxdepth: 1
 
    create_interface.rst
+   create_make.rst
 
 ..
      include:: create_interface.rst
