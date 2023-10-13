@@ -8,6 +8,9 @@ They provide hints about the setup of a test environment and correspond to frequ
 These examples illustrate the usage of the intermediate structures introduced to create
 complex types and expressions, as well as the creation of control blocks.
 
+It might be a good idea to run the examples step by step with a debugger to get
+a better understanding of the code.
+
 Test environment
 ----------------
 
@@ -48,6 +51,4 @@ Examples
 
    create_interface.rst
    create_make.rst
-
-..
-     include:: create_interface.rst
+   create_top_level.rst
