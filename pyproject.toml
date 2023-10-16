@@ -9,7 +9,7 @@ description ="An extension library for SCADE Python APIs"
 readme="README.rst"
 
 # only 3.7. and 3.10
-requires-python = ">=3.7, <3.8, >=3.10, <3.11"
+requires-python = ">=3.7,<3.7,>=3.10,<3.10"
 
 license = {file = "LICENSE"}
 
