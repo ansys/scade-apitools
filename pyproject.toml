@@ -1,6 +1,65 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name="ansys-scade-apitools"
+version="0.1.dev0"
+description ="An extension library for SCADE Python APIs"
+readme="README.rst"
+
+# only 3.7. and 3.10
+requires-python = ">=3.7, <3.8, >=3.10, <3.11"
+
+license = {file = "LICENSE"}
+
+authors = [
+    {name = "Ansys, Inc.", email = "scade-support@ansys.com"},
+]
+maintainers = [
+    {name = "Ansys, Inc.", email = "scade-support@ansys.com"},
+]
+   
+dependencies=[
+    "importlib-metadata >= 1.0; python_version < '3.8'",
+    "importlib-metadata >= 4.0; python_version >= '3.8'",
+]
+
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+]
+
+keywords=["Scade", "Api", "Tools"]
+
+
+[project.optional-dependencies]
+build = [
+    "build==0.8.0",
+    "twine==4.0.1"
+]
+
+tests = [
+    "pytest==7.1.2",
+    "pytest-cov==3.0.0"
+]
+
+doc = [
+    "Sphinx==5.0.2",
+    "numpydoc==1.4.0",
+    "ansys-sphinx-theme==0.9.5",
+    "sphinx-copybutton==0.5"
+]
+
+
+[tool.flit.module]
+name = "ansys.scade.apitools"
+
+[project.urls]
+Source = "https://github.com/ansys/scade-apitools"
+
 
 [tool.black]
 line-length = 99
@@ -18,3 +77,6 @@ source = ["ansys.scade"]
 
 [tool.coverage.report]
 show_missing = true
+
+[tool.pytest.ini_options]
+testpaths = "tests"
