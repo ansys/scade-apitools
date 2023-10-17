@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="Root">
+	<inputs>
+		<Variable name="isMaster">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1e/39C9/1E78/5158235e51b4"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="out">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="MyType"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1c/143E/24/515833646f07"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<pragmas>
+		<ed:Operator oid="!ed/9/39C9/1E78/515822c4a62" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+			<diagrams>
+				<NetDiagram name="Root" landscape="true" format="A4 (210 297)" oid="!ed/a/39C9/1E78/515822c41fb1"/>
+			</diagrams>
+			<references>
+				<TypeRef path="MyType" refOid="!ed/b/39C9/1E78/515822da5db3"/>
+			</references>
+		</ed:Operator>
+	</pragmas>
+</Operator>

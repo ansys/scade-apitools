@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="P">
+			<declarations>
+				<Type name="Enumeration">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="A">
+									<pragmas>
+										<ed:Value oid="!ed/19b52/7AF/D6D8/652960bb541"/>
+									</pragmas>
+								</Value>
+								<Value name="B">
+									<pragmas>
+										<ed:Value oid="!ed/19b53/7AF/D6D8/652960bbcf"/>
+									</pragmas>
+								</Value>
+								<Value name="C">
+									<pragmas>
+										<ed:Value oid="!ed/19b54/7AF/D6D8/652960bb66c4"/>
+									</pragmas>
+								</Value>
+								<Value name="D">
+									<pragmas>
+										<ed:Value oid="!ed/19b55/7AF/D6D8/652960bb25b8"/>
+									</pragmas>
+								</Value>
+								<Value name="F">
+									<pragmas>
+										<ed:Value oid="!ed/19b56/7AF/D6D8/652960bb6654"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/19b51/7AF/D6D8/652960bbfcb"/>
+					</pragmas>
+				</Type>
+				<Operator kind="node" name="O">
+					<locals>
+						<Variable name="e">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Enumeration"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/19b5d/7AF/D6D8/652960fc5385"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<pragmas>
+						<ed:Operator oid="!ed/19b3b/7AF/D6D8/65295920c94" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+							<diagrams>
+								<NetDiagram name="O" landscape="true" format="A4 (210 297)" oid="!ed/19b3c/7AF/D6D8/6529592049b5"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/19b3d/7AF/D6D8/6529607b16a1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/19b3e/7AF/D6D8/6529607b40e1" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/19b3f/7AF/D6D8/6529607b7546" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/19b40/7AF/D6D8/6529607b4c19" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

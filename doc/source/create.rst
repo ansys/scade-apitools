@@ -23,7 +23,7 @@ Notes:
 * This library is derived from the existing *SCADE Creation Library* (*SCL*), available for TCL and Python.
 
   * The functions have been renamed accordingly to PEP8.
-  * Most of the interfaces are identical: there are a few changes for providing a more Pythonic way.
+  * If most of the interfaces are identical, there are a few changes for providing a more Pythonic way.
   * You can migrate existing applications to use this library, or continue to use *SCL* which is going to be re-implemented on top of this library.
 
 * The functions are all accessible from :py:mod:`create <ansys.scade.apitools.create>`, regardless the submodule they are defined in.
@@ -31,7 +31,7 @@ Notes:
 Overall structure of a script
 -----------------------------
 
-A script which modifies a Scade model usually has the following architecture:
+A script which modifies a Scade model has usually the following architecture:
 
 * Load an existing project: this gives access to two separate sets of data:
 
@@ -74,7 +74,7 @@ The following script adds a new package to a project::
   if __name__ == '__main__':
       main()
 
-When run on an empty project, hereafter is the new Scade model:
+When run on an empty project, the new Scade model is as follows:
 
 .. figure:: /create/img/create_package_s.png
 
@@ -154,7 +154,7 @@ The next example creates an array of points::
     tree = create.create_table(9, point)
     polyline = create.create_named_type(model, 'polyline', tree)
 
-Although this is not advised, it is possible to combine trees, thus the usage of this term::
+Although this is not advised, it is possible to combine type trees::
 
     # add an array of anonymous (x, y)
     tree_struct = create.create_structure(('x', 'float32'), ('y', 'float32'))

@@ -75,7 +75,6 @@ def create_folder(
             return element
 
     # not found
-    print('create leaf', name)
     if isinstance(owner, std.Project):
         folder = std.Folder(owner)
         folder.owner = owner

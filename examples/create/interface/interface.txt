@@ -1,0 +1,10 @@
+# description file
+#
+# N: create an operator with the specified name
+# I: create an input with the specified name and type into the current operator
+# O: create an input with the specified name and type into the current operator
+
+N Op1
+I i1 int32
+I i2 int64
+O o1 float64
