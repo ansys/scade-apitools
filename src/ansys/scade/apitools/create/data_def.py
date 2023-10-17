@@ -223,7 +223,7 @@ def _add_data_def_diagram(data_def: suite.DataDef, class_: type, name: str) -> s
     if isinstance(data_def, (suite.Action, suite.State)):
         # the display of the scope is no longer embedded
         if data_def.presentation_element:
-            data_def.presentation_element.display = 'Split'
+            data_def.presentation_element.display = DK.SPLIT.value
 
     _set_modified(data_def)
     return diagram
@@ -398,6 +398,11 @@ def add_data_def_equation(
     equation.right = _build_expression(right, data_def)
 
     # graphical part
+    if diagram and not isinstance(data_def, suite.Operator):
+        pe = data_def.presentation_element
+        if not pe or pe.display == DK.TEXTUAL:
+            # ignore the graphical information
+            diagram = None
     if diagram is not None:
         if isinstance(diagram, suite.NetDiagram):
             pe = suite.EquationGE(data_def)
@@ -784,6 +789,9 @@ def add_state_machine_state(
         # graphical properties
         pe.position = _num_to_str(position)
         pe.size = _num_to_str(size)
+        if display == DK.SPLIT:
+            add_data_def_net_diagram(state, state.name)
+        pe.display = display.value
         state.presentation_element = pe
         diagram.presentation_elements.append(pe)
     # no presentation elements for text diagrams: only for owning state machine
@@ -1096,6 +1104,8 @@ class IfTree:
     def __init__(self, position: Tuple[float, float] = None):
         """Store the attributes."""
         self.position = position if position else (0, 0)
+        # name to be used if a diagram needs to be created
+        self.name = None
 
     def _build(self, context: suite.Object, diagram: suite.Diagram) -> suite.IfBranch:
         """Build an if branch from the tree."""
@@ -1122,7 +1132,9 @@ class _Node(IT):
         super().__init__(position)
         self.expression = expression
         self.then = then
+        self.then.name = 'Then'
         self.else_ = else_
+        self.else_.name = 'Else'
         self.label_width = label_width
 
     def _build(self, owner: suite.Object, diagram: suite.Diagram) -> suite.IfBranch:
@@ -1173,7 +1185,9 @@ class _Action(IT):
             # graphical properties
             pe.position = _num_to_str(self.position)
             pe.size = _num_to_str(self.size)
-            pe.display = self.display
+            if self.display == DK.SPLIT:
+                add_data_def_net_diagram(ia.action, self.name)
+            pe.display = self.display.value
             ia.action.presentation_element = pe
             diagram.presentation_elements.append(pe)
 
@@ -1510,6 +1524,7 @@ def add_when_block_branches(
         when_branch.pattern = _build_expression(branch.pattern, when_branch)
         when_branch.action = suite.Action(when_block)
         when_branches.append(when_branch)
+        _link_pendings()
 
         # graphical part: a bit complex since two PE for one branch
         peb = None  # default
@@ -1527,7 +1542,10 @@ def add_when_block_branches(
                 peb.label_width = branch.label_width
                 pea.position = _num_to_str(branch.position)
                 pea.size = _num_to_str(branch.size)
-                pea.display = branch.display
+                if branch.display == DK.SPLIT:
+                    name = when_branch.pattern.to_string()
+                    add_data_def_net_diagram(when_branch.action, name)
+                pea.display = branch.display.value
                 when_branch.presentation_element = peb
                 when_branch.action.presentation_element = pea
                 diagram.presentation_elements.append(peb)

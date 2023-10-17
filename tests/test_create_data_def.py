@@ -365,33 +365,42 @@ class TestCreateDataDef:
         diagram = next((_ for _ in scope.diagrams if _.name == name)) if name else None
         # hard coded SM with three states
         position = [500, 500]
-        size = [15000, 5000]
+        size = [15000, 9000]
         name = 'SM%s' % diagram.name.replace('Diagram', '') if diagram else 'SM'
         sm = create.add_data_def_state_machine(scope, name, diagram, position, size)
         # states
-        positions = [[6000, 1000], [1000, 4000], [11000, 4000]]
-        size = [4000, 1000]
+        positions = [[6000, 1000], [1000, 7000], [11000, 7000]]
+        size = [4000, 2000]
         states = []
         for kind, display, position in zip(create.SK, create.DK, positions):
             state = create.add_state_machine_state(sm, kind.value, position, size, kind, display)
             states.append(state)
+            pe = state.presentation_element
+            if pe:
+                sub_diagram = (
+                    state.diagrams[0] if create.DK(pe.display) == create.DK.SPLIT else diagram
+                )
+            else:
+                sub_diagram = diagram
+            position = (position[0] + 2000 - 250, position[1] + 1000)
+            create.add_data_def_equation(state, sub_diagram, ['_'], None, position, (500, 500))
         # retrieve the created states
         normal, initial, final = states
 
         # create a transition from initial to final
         # let the tool compute default positions/size for the label
         # no help from the tool for the points, we must provide consistent positions
-        points = [(5000, 4500), (6000, 4000), (10000, 5000), (11000, 4500)]
+        points = [(5000, 8000), (7000, 7000), (9000, 9000), (11000, 8000)]
         tree = create.create_transition_state(True, final, False, 1, points, polyline=False)
         create.add_state_transition(initial, create.TK.STRONG, tree)
 
         # create a forked transition from normal to initial and final
-        points = [(8000, 3000), (0, 0), (0, 0), (13000, 4000)]
+        points = [(8000, 5000), (0, 0), (0, 0), (13000, 7000)]
         to_final = create.create_transition_state(True, final, True, 1, points)
         # no trigger: 'else' transition
-        points = [(8000, 3000), (0, 0), (0, 0), (3000, 4000)]
+        points = [(8000, 5000), (0, 0), (0, 0), (3000, 7000)]
         to_initial = create.create_transition_state(None, initial, True, 2, points)
-        points = [(8000, 2000), (0, 0), (0, 0), (8000, 3000)]
+        points = [(8000, 3000), (0, 0), (0, 0), (8000, 5000)]
         fork = create.create_transition_fork(False, [to_final, to_initial], 1, points)
         main = create.add_state_transition(normal, create.TK.WEAK, fork)
         # add an action to the main transition
@@ -447,11 +456,36 @@ class TestCreateDataDef:
         # add a third branch
         create.add_when_block_branches(block, branches[2:])
 
+        # add an equation to each branch
+        for branch, position in zip(block.when_branches, positions):
+            action = branch.action
+            pe = action.presentation_element
+            if pe:
+                sub_diagram = (
+                    action.diagrams[0] if create.DK(pe.display) == create.DK.SPLIT else diagram
+                )
+            else:
+                sub_diagram = diagram
+            variable = create.add_data_def_locals(action, [('local', 'bool')])[0]
+            position = (position[0] + 1000, position[1] + 300)
+            size = (250, 300)
+            create.add_data_def_equation(action, sub_diagram, [variable], False, position, size)
+
         # compare the semantics of the state machine with the reference
         reference = session.model.get_object_from_path('P::WhenBlocks/Reference:')
         assert reference.to_string().replace('Reference', name) == block.to_string()
 
         create.save_all()
+
+    def test_data_def_when_block_robustness(self, tmp_project_session):
+        # project/session must have been duplicated to a temporary directory
+        project, session = tmp_project_session
+        scope = session.model.get_object_from_path('P::WhenBlocks/')
+        # create one branch
+        # retrieve the variable used for the selector
+        e = session.model.get_object_from_path('P::WhenBlocks/e/')
+        with pytest.raises(ValueError):
+            create.add_data_def_when_block(scope, 'WB', e, [])
 
     data_def_if_block_data = [
         ('P::IfBlocks/', 'NetDiagram'),

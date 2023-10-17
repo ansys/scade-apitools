@@ -23,6 +23,24 @@
 		<StateMachine name="Reference">
 			<states>
 				<State name="Normal">
+					<data>
+						<!-- _ = _null; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<NullRef/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1a583/7AF/D6D8/652d72aa47ed"/>
+							</pragmas>
+						</Equation>
+					</data>
 					<until>
 						<Transition>
 							<condition>
@@ -102,13 +120,64 @@
 							</pragmas>
 						</Transition>
 					</unless>
+					<data>
+						<!-- _ = _null; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<NullRef/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1a5b1/7AF/D6D8/652d72e0417a"/>
+							</pragmas>
+						</Equation>
+					</data>
 					<pragmas>
 						<ed:State oid="!ed/5f3/788E/4884/651df04a4d88"/>
 					</pragmas>
 				</State>
 				<State final="true" name="Final">
+					<data>
+						<!-- _ = _null; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<NullRef/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1a5b8/7AF/D6D8/652d72fa1ca4"/>
+							</pragmas>
+						</Equation>
+					</data>
 					<pragmas>
-						<ed:State oid="!ed/5f4/788E/4884/651df04a6bd1"/>
+						<ed:State oid="!ed/5f4/788E/4884/651df04a6bd1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+							<diagrams>
+								<NetDiagram name="Final" landscape="true" format="A4 (210 297)" oid="!ed/1a57d/7AF/D6D8/652d728d398d">
+									<presentationElements>
+										<EquationGE presentable="!ed/1a5b8/7AF/D6D8/652d72fa1ca4">
+											<position>
+												<Point x="1826" y="423"/>
+											</position>
+											<size>
+												<Size width="502" height="503"/>
+											</size>
+										</EquationGE>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:State>
 					</pragmas>
 				</State>
 			</states>
@@ -149,7 +218,7 @@
 								<Point x="500" y="500"/>
 							</position>
 							<size>
-								<Size width="15000" height="5000"/>
+								<Size width="15000" height="9000"/>
 							</size>
 						</StateMachineGE>
 						<StateGE presentable="!ed/5f2/788E/4884/651df04a5461">
@@ -157,97 +226,105 @@
 								<Point x="6000" y="1000"/>
 							</position>
 							<size>
-								<Size width="4000" height="1000"/>
+								<Size width="4000" height="2000"/>
 							</size>
 						</StateGE>
-						<StateGE presentable="!ed/5f3/788E/4884/651df04a4d88">
+						<StateGE display="embeddedTextual" presentable="!ed/5f3/788E/4884/651df04a4d88">
 							<position>
-								<Point x="1000" y="4000"/>
+								<Point x="1000" y="7000"/>
 							</position>
 							<size>
-								<Size width="4000" height="1000"/>
+								<Size width="4000" height="2000"/>
 							</size>
 						</StateGE>
-						<StateGE presentable="!ed/5f4/788E/4884/651df04a6bd1">
+						<StateGE display="split" presentable="!ed/5f4/788E/4884/651df04a6bd1">
 							<position>
-								<Point x="11000" y="4000"/>
+								<Point x="11000" y="7000"/>
 							</position>
 							<size>
-								<Size width="4000" height="1000"/>
+								<Size width="4000" height="2000"/>
 							</size>
 						</StateGE>
 						<TransitionGE presentable="!ed/606/788E/4884/651df09135c9">
 							<positions>
-								<Point x="5000" y="4551"/>
-								<Point x="6085" y="3969"/>
-								<Point x="10081" y="5001"/>
-								<Point x="11007" y="4551"/>
+								<Point x="5000" y="8000"/>
+								<Point x="7000" y="7000"/>
+								<Point x="9000" y="9000"/>
+								<Point x="11000" y="8000"/>
 							</positions>
 							<labelSize>
-								<Size width="1376" height="370"/>
+								<Size width="1376" height="371"/>
 							</labelSize>
 							<labelPos>
-								<Point x="7303" y="4366"/>
+								<Point x="7620" y="7461"/>
 							</labelPos>
 							<slashPos>
-								<Point x="7885" y="4366"/>
+								<Point x="8202" y="7461"/>
 							</slashPos>
 						</TransitionGE>
 						<TransitionGE polyline="true" presentable="!ed/610/788E/4884/651df8407b77">
 							<textAreas>
 								<TextArea text="emit 'signal;&#xA;
-_ = 0;" role="122"/>
+ _ = 0;" role="122"/>
 							</textAreas>
 							<positions>
-								<Point x="8149" y="2011"/>
-								<Point x="9551" y="2672"/>
-								<Point x="9022" y="2461"/>
-								<Point x="8176" y="2778"/>
+								<Point x="8000" y="3000"/>
+								<Point x="0" y="0"/>
+								<Point x="0" y="0"/>
+								<Point x="8000" y="5000"/>
 							</positions>
 							<labelSize>
-								<Size width="2937" height="635"/>
+								<Size width="3175" height="794"/>
 							</labelSize>
 							<labelPos>
-								<Point x="8784" y="2328"/>
+								<Point x="6403" y="3466"/>
 							</labelPos>
 							<slashPos>
-								<Point x="9816" y="2328"/>
+								<Point x="7091" y="3466"/>
 							</slashPos>
 						</TransitionGE>
 						<TransitionGE polyline="true" presentable="!ed/625/788E/4884/651df8c349e3">
 							<positions>
-								<Point x="8202" y="3043"/>
-								<Point x="11165" y="3307"/>
-								<Point x="11192" y="3334"/>
-								<Point x="12859" y="3995"/>
+								<Point x="8000" y="5000"/>
+								<Point x="0" y="0"/>
+								<Point x="0" y="0"/>
+								<Point x="13000" y="7000"/>
 							</positions>
 							<labelSize>
-								<Size width="1323" height="953"/>
+								<Size width="1375" height="370"/>
 							</labelSize>
 							<labelPos>
-								<Point x="10980" y="2990"/>
+								<Point x="11060" y="4710"/>
 							</labelPos>
 							<slashPos>
-								<Point x="11509" y="2990"/>
+								<Point x="11642" y="4710"/>
 							</slashPos>
 						</TransitionGE>
 						<TransitionGE polyline="true" presentable="!ed/62b/788E/4884/651df8e37b46">
 							<positions>
-								<Point x="8202" y="3043"/>
-								<Point x="6509" y="3360"/>
-								<Point x="4789" y="3678"/>
-								<Point x="3096" y="3995"/>
+								<Point x="8000" y="5000"/>
+								<Point x="0" y="0"/>
+								<Point x="0" y="0"/>
+								<Point x="3000" y="5000"/>
 							</positions>
 							<labelSize>
-								<Size width="1376" height="370"/>
+								<Size width="1058" height="371"/>
 							</labelSize>
 							<labelPos>
-								<Point x="5371" y="2752"/>
+								<Point x="4842" y="7011"/>
 							</labelPos>
 							<slashPos>
-								<Point x="5371" y="2752"/>
+								<Point x="5107" y="7011"/>
 							</slashPos>
 						</TransitionGE>
+						<EquationGE presentable="!ed/1a583/7AF/D6D8/652d72aa47ed">
+							<position>
+								<Point x="7752" y="2037"/>
+							</position>
+							<size>
+								<Size width="503" height="503"/>
+							</size>
+						</EquationGE>
 					</presentationElements>
 				</NetDiagram>
 			</diagrams>

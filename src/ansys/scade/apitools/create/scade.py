@@ -444,8 +444,9 @@ def _set_modified(object_: suite.Object):
     global _modified_files
 
     unit = object_.defined_in
-    unit.sao_modified = True
-    _modified_files.add(unit)
+    if unit:
+        unit.sao_modified = True
+        _modified_files.add(unit)
 
 
 def _create_unit(model: suite.Model, path: Path, persist_as: str) -> suite.StorageUnit:

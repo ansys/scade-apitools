@@ -37,21 +37,120 @@
 			</when>
 			<matches>
 				<Match pattern="A">
+					<locals>
+						<Variable name="local">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/19e1b/7AF/D6D8/652d00bb2c35"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- local = false; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="local"/>
+							</lefts>
+							<right>
+								<ConstValue value="false"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/19e08/7AF/D6D8/652cff54af2"/>
+							</pragmas>
+						</Equation>
+					</data>
 					<pragmas>
 						<ed:Match oid="!ed/715/788E/4884/651e9c5457ba"/>
 						<ed:Action oid="!ed/716/788E/4884/651e9c545549"/>
 					</pragmas>
 				</Match>
 				<Match pattern="B">
+					<locals>
+						<Variable name="local">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/19e21/7AF/D6D8/652d00ee2a88"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- local = false; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="local"/>
+							</lefts>
+							<right>
+								<ConstValue value="false"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/19e5f/7AF/D6D8/652d0274662b"/>
+							</pragmas>
+						</Equation>
+					</data>
 					<pragmas>
 						<ed:Match oid="!ed/734/788E/4884/651e9c7162f6"/>
 						<ed:Action oid="!ed/739/788E/4884/651e9c73229a"/>
 					</pragmas>
 				</Match>
 				<Match pattern="C">
+					<locals>
+						<Variable name="local">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/19e27/7AF/D6D8/652d00ef12eb"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- local = false; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="local"/>
+							</lefts>
+							<right>
+								<ConstValue value="false"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/19e42/7AF/D6D8/652d011c7317"/>
+							</pragmas>
+						</Equation>
+					</data>
 					<pragmas>
 						<ed:Match oid="!ed/74a/788E/4884/651e9c9d53c3"/>
-						<ed:Action oid="!ed/74f/788E/4884/651e9c9e545c"/>
+						<ed:Action oid="!ed/74f/788E/4884/651e9c9e545c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+							<diagrams>
+								<NetDiagram name="C" landscape="true" format="A4 (210 297)" oid="!ed/19e05/7AF/D6D8/652ce336369d">
+									<presentationElements>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/19e42/7AF/D6D8/652d011c7317">
+											<position>
+												<Point x="979" y="318"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Action>
 					</pragmas>
 				</Match>
 			</matches>
@@ -116,7 +215,7 @@
 								<Point x="1032" y="3572"/>
 							</position>
 						</WhenBranchGE>
-						<ActionGE presentable="!ed/739/788E/4884/651e9c73229a">
+						<ActionGE display="embeddedTextual" presentable="!ed/739/788E/4884/651e9c73229a">
 							<position>
 								<Point x="7011" y="3493"/>
 							</position>
@@ -129,7 +228,7 @@
 								<Point x="1032" y="4577"/>
 							</position>
 						</WhenBranchGE>
-						<ActionGE presentable="!ed/74f/788E/4884/651e9c9e545c">
+						<ActionGE display="split" presentable="!ed/74f/788E/4884/651e9c9e545c">
 							<position>
 								<Point x="2302" y="4498"/>
 							</position>
@@ -137,6 +236,14 @@
 								<Size width="3995" height="1006"/>
 							</size>
 						</ActionGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/19e08/7AF/D6D8/652cff54af2">
+							<position>
+								<Point x="3307" y="2355"/>
+							</position>
+							<size>
+								<Size width="211" height="317"/>
+							</size>
+						</EquationGE>
 					</presentationElements>
 				</NetDiagram>
 			</diagrams>
