@@ -40,7 +40,7 @@ Ansys SCADE API Tools
 
 Overview
 --------
-An extension library for SCADE Python APIs
+An extension library for SCADE Python APIs.
 
 Documentation and Issues
 ------------------------
@@ -133,7 +133,7 @@ need to follow these steps:
 
 
 Testing
---------------
+-------
 
 This project takes advantage of `tox`_. This tool allows to automate common
 development tasks (similar to Makefile) but it is oriented towards Python
