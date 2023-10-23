@@ -60,12 +60,12 @@ runs:
         target-name: ${{ steps.get-scade-python.outputs.python-name }}
 
     - name: Check Python and install dependencies
-        run: |
-          echo "Activate the environment ${{ steps.create-scade-venv.outputs.scripts-dir }}"
-          source $${{ steps.create-scade-venv.outputs.scripts-dir }}/activate
-          python --version
-          python -m pip install .[tests]
-        shell: bash
+      run: |
+        echo "Activate the environment ${{ steps.create-scade-venv.outputs.scripts-dir }}"
+        source $${{ steps.create-scade-venv.outputs.scripts-dir }}/activate
+        python --version
+        python -m pip install .[tests]
+      shell: bash
 
     - name: "Run the tests"
       uses: ansys-scade/actions/scade-tests-pytest@main
