@@ -87,23 +87,23 @@ Files: tests-pytest/*
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
 License: MIT
 
-Files: .*pyproj
+Files: *.pyproj
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
 License: MIT
 
-Files: .*etp
+Files: *.etp
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
 License: MI
 
-Files: .*vsw
+Files: *.vsw
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
 License: MI
 
-Files: .*xscade
+Files: *.xscade
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
 License: MI
 
-Files: .*tot
+Files: *.tot
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
 License: MI
 
