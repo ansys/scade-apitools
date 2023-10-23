@@ -113,6 +113,8 @@ need to follow these steps:
 
    .. code:: bash
 
+      python -m pip install -U pip     # Upgrading pip
+      python -m pip install tox        # Installing tox (optional)
       python -m pip install '.[build]' # for building the wheels
       python -m pip install '.[tests]' # for testing the package
       python -m pip install '.[doc]'   # for building the documentation
