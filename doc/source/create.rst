@@ -35,7 +35,7 @@ A script which modifies a Scade model has usually the following architecture:
 
 * Load an existing project: this gives access to two separate sets of data:
 
-  * Project: content of the project file (``.etp``). 
+  * Project: content of the project file (``.etp``).
   * Scade model: content of the model files (``*.xscade`` and ``*.scade``).
 
 * Add new elements to the project and the model.

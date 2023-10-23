@@ -19,7 +19,7 @@ authors = [
 maintainers = [
     {name = "Ansys, Inc.", email = "scade-support@ansys.com"},
 ]
-   
+
 dependencies=[
     "importlib-metadata >= 1.0; python_version < '3.8'",
     "importlib-metadata >= 4.0; python_version >= '3.8'",

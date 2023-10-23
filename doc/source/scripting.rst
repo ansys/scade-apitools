@@ -7,7 +7,7 @@ Reminder
 --------
 
 Most of the SCADE Python APIs available in the SCADE IDE are proxies to internal C++ or Java kernels.
-The most popular are the following ones: 
+The most popular are the following ones:
 
 * SCADE Suite
 * SCADE Test

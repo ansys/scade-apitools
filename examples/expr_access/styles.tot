@@ -1,142 +1,142 @@
 
 [Studio/Settings]
 
-"ShowAdvancedOptionPage"="true" 
+"ShowAdvancedOptionPage"="true"
 
 [Studio/Settings/Workspace]
 
-"DisplayStartupPage"="false" 
+"DisplayStartupPage"="false"
 
 [Scade/Styles/ScNetStyle2/Activation Block](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Activation Block/Activation]
 
-"FontColor"="(50,77,112)" 
-"FontBold"="false" 
-"FillColor"="(174,180,210)" 
+"FontColor"="(50,77,112)"
+"FontBold"="false"
+"FillColor"="(174,180,210)"
 
 [Scade/Styles/ScNetStyle2/Assertion](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Assertion/Entity]
 
-"FontColor"="(216,0,0)" 
+"FontColor"="(216,0,0)"
 
 [Scade/Styles/ScNetStyle2/Branch](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Branch/Entity]
 
-"FontColor"="(50,77,112)" 
-"FillColor"="(174,180,210)" 
+"FontColor"="(50,77,112)"
+"FillColor"="(174,180,210)"
 
 [Scade/Styles/ScNetStyle2/Action](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Action/Entity]
 
-"FontColor"="(50,77,112)" 
-"FillColor"="(174,180,210)" 
+"FontColor"="(50,77,112)"
+"FillColor"="(174,180,210)"
 
 [Scade/Styles/ScNetStyle2/Edge](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Edge/Entity]
 
-"FontColor"="(50,77,112)" 
-"FontSize"="10" 
+"FontColor"="(50,77,112)"
+"FontSize"="10"
 
 [Scade/Styles/ScNetStyle2/Predefined Operator](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Predefined Operator/Entity]
 
-"FillColor"="(152,198,231)" 
+"FillColor"="(152,198,231)"
 
 [Scade/Styles/ScNetStyle2/Predefined Operator/Instance name]
 
-"FontName"="Arial Narrow" 
-"FontSize"="8" 
+"FontName"="Arial Narrow"
+"FontSize"="8"
 
 [Scade/Styles/ScNetStyle2/Predefined Operator/Assign]
 
-"FontName"="Arial Narrow" 
-"FontSize"="8" 
+"FontName"="Arial Narrow"
+"FontSize"="8"
 
 [Scade/Styles/ScNetStyle2/Signal](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Signal/Entity]
 
-"FillColor"="(174,180,210)" 
+"FillColor"="(174,180,210)"
 
 [Scade/Styles/ScNetStyle2/State](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/State/Entity]
 
-"FillColor"="(174,180,210)" 
+"FillColor"="(174,180,210)"
 
 [Scade/Styles/ScNetStyle2/Transition](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Transition/Entity]
 
-"FontColor"="(50,77,112)" 
+"FontColor"="(50,77,112)"
 
 [Scade/Styles/ScNetStyle2/Operator](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Operator/Assign]
 
-"FontName"="" 
-"FontSize"="8" 
+"FontName"=""
+"FontSize"="8"
 
 [Scade/Styles/ScNetStyle2/Operator/Instance name]
 
-"FontName"="Arial Narrow" 
-"FontSize"="8" 
+"FontName"="Arial Narrow"
+"FontSize"="8"
 
 [Scade/Styles/ScNetStyle2/Variable](kind=Style; Style=ScNetStyle2)
 
 
 [Scade/Styles/ScNetStyle2/Variable/Entity]
 
-"FontSize"=10 
+"FontSize"=10
 
 [Scade/Preferences/General]
 
-"DefaultType"="0" 
+"DefaultType"="0"
 
 [Scade/Preferences/General/FilesManagement]
 
-"PropagateNameChanges"="true" 
-"UseCreationDialogBox"="true" 
+"PropagateNameChanges"="true"
+"UseCreationDialogBox"="true"
 
 [Scade/Preferences/View/NetView]
 
-"DisplayInternalTypes"="true" 
-"DisplayInterface"="false" 
-"DisplayCharArraysAsString"="true" 
+"DisplayInternalTypes"="true"
+"DisplayInterface"="false"
+"DisplayCharArraysAsString"="true"
 
 [Scade/Preferences/Language/Time]
 
-"When"="true" 
-"Merge"="true" 
+"When"="true"
+"Merge"="true"
 
 [Scade/Preferences/Language/HigherOrder]
 
-"ClockedActivate"="true" 
+"ClockedActivate"="true"
 
 [Scade/Preferences/Language/Logical]
 
-"Sharp"="true" 
+"Sharp"="true"
 
 [Scade/Simulator/Options/DisplayOptions]
 
-"TimeBufferingSize"="750" 
+"TimeBufferingSize"="750"
 
 [Scade/Simulator/Options/StopOptions]
 
-"OnAssertion"="true" 
+"OnAssertion"="true"

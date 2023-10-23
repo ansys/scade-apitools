@@ -34,7 +34,7 @@ SCADE CLI
 
 The easiest way consists in setting the current directory to the considered example's directory and run ``scade.exe -script``::
 
-    scade.exe -script <project> <script> 
+    scade.exe -script <project> <script>
 
 Python
 ~~~~~~
@@ -67,10 +67,10 @@ Examples
    :maxdepth: 1
 
    examples/create
-   _examples/expr_access 
-   _examples/info 
-   _examples/prop_pragma 
-   _examples/query_type 
+   _examples/expr_access
+   _examples/info
+   _examples/prop_pragma
+   _examples/query_type
 
 ..
     .. include:: _examples/query_type.rst

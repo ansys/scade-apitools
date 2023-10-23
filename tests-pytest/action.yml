@@ -38,7 +38,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-  
+
     - name: "Retrieve SCADE installation directory"
       uses: ansys-scade/actions/get-scade-dir@main
       id: get-scade-dir
@@ -60,12 +60,16 @@ runs:
         target-name: ${{ steps.get-scade-python.outputs.python-name }}
 
     - name: Check Python and install dependencies
+      shell: cmd
       run: |
         echo "Activate the environment ${{ steps.create-scade-venv.outputs.scripts-dir }}"
-        source $${{ steps.create-scade-venv.outputs.scripts-dir }}/activate
-        python --version
-        python -m pip install .[tests]
-      shell: bash
+        echo PYTHON_DIR=${{ steps.create-scade-venv.outputs.scripts-dir }}>> %GITHUB_ENV%
+        call %PYTHON_DIR%\activate.bat
+        python.exe --version
+        echo TMP_PYTHON_EXE=%PYTHON_DIR%\python.exe>> %GITHUB_ENV%
+        %TMP_PYTHON_EXE% -m pip install -U pip
+        %TMP_PYTHON_EXE% -m pip install .[tests]
+
 
     - name: "Run the tests"
       uses: ansys-scade/actions/scade-tests-pytest@main

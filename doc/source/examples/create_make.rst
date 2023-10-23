@@ -15,11 +15,11 @@ the operator and its interface, with an empty graphical diagram:
 .. code-block:: swan
 
     package MyPackage
-        const 
+        const
             NCD : int32 = 2;
             NORMAL : int32 = 4;
 
-        type 
+        type
             MyType = {
                 element1 : int32,
                 element1Status : int32,

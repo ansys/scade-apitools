@@ -56,7 +56,7 @@ Ansys SCADE, starting from 2021 R2:
 
 * 2021 R2 -> 2023 R1: Python 3.7
 * 2023 R2 ->: Python 3.10
- 
+
 At least two installation modes are provided: user and developer.
 
 For users
@@ -81,7 +81,7 @@ For developers
 Installing Ansys SCADE apitools in developer mode allows
 you to modify the source and enhance it.
 
-Before contributing to the project, please refer to the `PyAnsys Developer's guide`_. You will 
+Before contributing to the project, please refer to the `PyAnsys Developer's guide`_. You will
 need to follow these steps:
 
 #. Start by cloning this repository:
@@ -122,13 +122,13 @@ need to follow these steps:
 #. Install the project in editable mode:
 
     .. code:: bash
-    
+
       python -m pip install --editable .
-    
+
 #. Finally, verify your development installation by running:
 
    .. code:: bash
-        
+
       tox
 
 
@@ -137,7 +137,7 @@ Testing
 
 This project takes advantage of `tox`_. This tool allows to automate common
 development tasks (similar to Makefile) but it is oriented towards Python
-development. 
+development.
 
 Using tox
 ^^^^^^^^^
