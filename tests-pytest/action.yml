@@ -64,12 +64,14 @@ runs:
       run: |
         echo "Activate the environment ${{ steps.create-scade-venv.outputs.scripts-dir }}"
         echo PYTHON_DIR=${{ steps.create-scade-venv.outputs.scripts-dir }}>> %GITHUB_ENV%
-        call %PYTHON_DIR%\activate.bat
-        python.exe --version
-        echo TMP_PYTHON_EXE=%PYTHON_DIR%\python.exe>> %GITHUB_ENV%
-        %TMP_PYTHON_EXE% -m pip install -U pip
-        %TMP_PYTHON_EXE% -m pip install .[tests]
 
+    - name: Check Python 
+      run: |
+        call %PYTHON_DIR%\activate.bat
+        python --version
+        %PYTHON_DIR%\python.exe -m pip install -U pip
+        %PYTHON_DIR%\python.exe -m pip install .[tests]
+      shell: cmd
 
     - name: "Run the tests"
       uses: ansys-scade/actions/scade-tests-pytest@main
