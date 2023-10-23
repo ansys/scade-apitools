@@ -90,6 +90,7 @@ jobs:
       - name: "Upload zip to artifacts"
         uses: actions/upload-artifact@v3
         with:
+          name: examples
           path: ./examples.zip
           retention-days: 7
           if-no-files-found: error
