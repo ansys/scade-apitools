@@ -113,10 +113,9 @@ need to follow these steps:
 
    .. code:: bash
 
-      python -m pip install -U pip setuptools tox
-      python -m pip install -r requirements/requirements_build.txt
-      python -m pip install -r requirements/requirements_doc.txt
-      python -m pip install -r requirements/requirements_tests.txt
+      python -m pip install '.[build]' # for building the wheels
+      python -m pip install '.[tests]' # for testing the package
+      python -m pip install '.[doc]'   # for building the documentation
 
 
 #. Install the project in editable mode:
@@ -197,7 +196,7 @@ the building requirements and then executing the build module:
 
 .. code:: bash
 
-    python -m pip install -r requirements/requirements_build.txt
+    python -m pip install '.[build]'
     python -m build
     python -m twine check dist/*
 
