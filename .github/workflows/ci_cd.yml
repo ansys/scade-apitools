@@ -82,6 +82,18 @@ jobs:
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
+      - name: "Zipping the examples directory"
+        run: |
+          sudo apt-get install zip
+          zip -r examples.zip ./examples
+      
+      - name: "Upload zip to artifacts"
+        uses: actions/upload-artifact@v3
+        with:
+          path: ./examples.zip
+          retention-days: 7
+          if-no-files-found: error
+
   build-library:
     name: "Build library basic example"
     runs-on: ubuntu-latest
@@ -114,6 +126,7 @@ jobs:
       - uses: ansys/actions/release-github@v4
         with:
           library-name: ${{ env.LIBRARY_NAME }}
+          additional-artifacts: 'examples.zip'
 
   doc-deploy-stable:
     name: "Deploy stable documentation"
