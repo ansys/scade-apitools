@@ -86,7 +86,7 @@ jobs:
         run: |
           sudo apt-get install zip
           zip -r examples.zip ./examples
-      
+
       - name: "Upload zip to artifacts"
         uses: actions/upload-artifact@v3
         with:
