@@ -46,6 +46,12 @@ repos:
   - id: check-yaml
   - id: trailing-whitespace
 
+- repo: https://github.com/ansys/pre-commit-hooks
+  rev: v0.1.3
+  hooks:
+    - id: add-license-headers
+      args: ["--loc", "./"]
+
 - repo: local
   hooks:
   # generate the scripts execution outputs and diagram png files

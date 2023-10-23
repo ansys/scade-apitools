@@ -65,7 +65,7 @@ runs:
         echo "Activate the environment ${{ steps.create-scade-venv.outputs.scripts-dir }}"
         echo PYTHON_DIR=${{ steps.create-scade-venv.outputs.scripts-dir }}>> %GITHUB_ENV%
 
-    - name: Check Python 
+    - name: Check Python
       run: |
         call %PYTHON_DIR%\activate.bat
         python --version

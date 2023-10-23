@@ -1,6 +1,7 @@
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
