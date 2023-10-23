@@ -1,5 +1,5 @@
 {% if false %}
-{{ fullname | escape | underline}}
+{{ name | escape | underline}}
 {% else %}
 {# alternative to fullname to have a shorter line #}
 {{ objname | escape | underline}}
