@@ -93,20 +93,24 @@ License: MIT
 
 Files: *.etp
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
-License: MI
+License: MIT
 
 Files: *.vsw
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
-License: MI
+License: MIT
+
+Files: *.sln
+Copyright: 2023 ANSYS, Inc. and/or its affiliates.
+License: MIT
 
 Files: *.xscade
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
-License: MI
+License: MIT
 
 Files: *.tot
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
-License: MI
+License: MIT
 
 Files: examples/*
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
-License: MI
+License: MIT
