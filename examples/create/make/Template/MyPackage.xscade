@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/6" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="MyPackage">
+			<declarations>
+				<Constant name="NCD">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int32"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="2"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1f/39C9/1E78/515823704240"/>
+					</pragmas>
+				</Constant>
+				<Constant name="NORMAL">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int32"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="4"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/31/318F/1874/515aa28565de"/>
+					</pragmas>
+				</Constant>
+				<Type name="MyType">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="element1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/c/39C9/1E78/515822f02b10"/>
+									</pragmas>
+								</Field>
+								<Field name="element1Status">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/26/2F06/C6C/515c5e9459f8"/>
+									</pragmas>
+								</Field>
+								<Field name="element2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2f/2F06/C6C/515c5e9e7605"/>
+									</pragmas>
+								</Field>
+								<Field name="element2Status">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/38/2F06/C6C/515c5ea51d50"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/b/39C9/1E78/515822da5db3"/>
+					</pragmas>
+				</Type>
+				<Operator name="Root" href="Root.xscade"/>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/20/39C9/1E78/5158254219e7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/21/39C9/1E78/51582542227d" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/22/39C9/1E78/5158254277c8" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/23/39C9/1E78/5158254211b0" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

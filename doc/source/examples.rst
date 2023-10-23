@@ -3,13 +3,17 @@ Examples
 
 Overview
 --------
-The examples are organized by SCADE models. These models are not necessarily correct, they intend to provide some data to be processed by the scripts.
+The examples are organized by SCADE models. These models are not necessarily correct,
+they intend to provide some data to be processed by the scripts.
 
 The overall structure of an example script is as follows:
 
 * Retrieve one or more Scade model elements from the project.
 * Apply a command from ``ansys.scade.apitools`` to these elements.
 * Print some feedback.
+
+Note: The examples for the module :py:mod:`create <ansys.scade.apitools.create>`
+have a different design, described in the appropriate section.
 
 Run the examples
 ----------------
@@ -60,7 +64,9 @@ Examples
 --------
 
 .. toctree::
+   :maxdepth: 1
 
+   examples/create
    _examples/expr_access 
    _examples/info 
    _examples/prop_pragma 

@@ -11,3 +11,6 @@ scade
 Scade
 SCADE
 Pythonic
+when_block
+top_level
+state_machine
