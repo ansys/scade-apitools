@@ -462,7 +462,7 @@ def create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None)
 
 
 def create_if(condition: EX, then: LX, else_: LX) -> ET:
-    """
+    r"""
     Return the expression tree for the operator if-then-else.
 
     Note: interface change with respect to the SCADE Creation Library, the flows
@@ -476,7 +476,7 @@ def create_if(condition: EX, then: LX, else_: LX) -> ET:
         then : Union[EX, List[EX]]
             List of expressions trees when condition is true.
 
-        else_ : Union[EX, List[EX]]
+        else\_ : Union[EX, List[EX]]
             List of expressions trees when condition is false.
 
     Returns

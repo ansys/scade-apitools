@@ -1172,7 +1172,7 @@ def create_if_action(
 def create_if_tree(
     expression: EX, then: IT, else_: IT, position: Tuple[float, float] = None, label_width: int = 0
 ) -> IT:
-    """
+    r"""
     Create a decision in the intermediate if tree structure.
 
     The graphical properties are expressed  1/100th of mm.
@@ -1189,7 +1189,7 @@ def create_if_tree(
         Extended expression tree defining the condition of the decision.
     then : IT
         Sub-decision tree to consider when the condition is true.
-    else_ : IT
+    else\_ : IT
         Sub-decision tree to consider when the condition is false.
     position : Tuple[float, float]
         Position of the decision.

@@ -285,12 +285,12 @@ def create_enumeration(
 
 
 def add_enumeration_values(type_: suite.NamedType, values: List[str], insert_before: str):
-    """
+    r"""
     Add enumeration values to an enumeration type.
 
     Parameters
     ----------
-        type_ : suite.NamedType
+        type\_ : suite.NamedType
             Named type defining the enumeration.
 
         values : List[str]
@@ -335,7 +335,7 @@ def create_constant(
     path: Path = None,
     visibility: VK = VK.PUBLIC,
 ) -> suite.Constant:
-    """
+    r"""
     Create an instance of Constant.
 
     A constant shall have a name, a type, and a value.
@@ -348,7 +348,7 @@ def create_constant(
         name : str
             Name of the constant.
 
-        type_ : TX
+        type\_ : TX
             Definition of the type expressed as a type tree.
 
         value : EX
@@ -393,7 +393,7 @@ def create_constant(
 def create_imported_constant(
     owner: suite.Package, name: str, type_: TX, path: Path = None, visibility: VK = VK.PUBLIC
 ):
-    """
+    r"""
     Create an instance of Constant.
 
     An imported constant shall have a name and a type.
@@ -406,7 +406,7 @@ def create_imported_constant(
         name : str
             Name of the constant.
 
-        type_ : TX
+        type\_ : TX
             Definition of the type expressed as a type tree.
 
         path : Path
@@ -445,7 +445,7 @@ def create_imported_constant(
 
 
 def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path = None) -> suite.Sensor:
-    """
+    r"""
     Create an instance of Sensor.
 
     A sensor shall have a name and a type.
@@ -458,7 +458,7 @@ def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path = None)
         name : str
             Name of the sensor.
 
-        type_ : TX
+        type\_ : TX
             Definition of the type expressed as a type tree.
 
         path : Path
@@ -906,12 +906,12 @@ def set_specialized_operator(operator: suite.Operator, imported: suite.Operator)
 
 
 def set_type_constraint(type_: suite.NamedType, name: str):
-    """
+    r"""
     Set the constaint of a polymorphic type.
 
     Parameters
     ----------
-        type_ : suite.NamedType
+        type\_ : suite.NamedType
             Input polymorphic type.
 
         name : str

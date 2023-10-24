@@ -220,12 +220,12 @@ def create_sized(signed: bool, size: EX) -> TT:
 
 
 def create_table(dimensions: Union[EX, List[EX]], type_: TX) -> TT:
-    """
+    r"""
     Return the type tree for a structure.
 
     Parameters
     ----------
-        type_ : TX
+        type\_ : TX
             Type tree defining the type of the array elements.
 
         dimensions : Union[EX, List[EX]]
