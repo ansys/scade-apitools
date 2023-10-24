@@ -436,14 +436,13 @@ def create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None)
 
     Parameters
     ----------
-        op : str
-            Operator: & | | | ^ | # | + | *
+    op : str
+        Operator: & | | | ^ | # | + | *
+    args : List[EX]
+        Operands: expression trees.
 
-        *args : List[EX]
-            Operands: expression trees.
-
-        modifiers : Union[ET, List[ET]]
-            Optional list of higher order constructs, to be provided as keyword parameter.
+    modifiers : Union[ET, List[ET]]
+        Optional list of higher order constructs, to be provided as keyword parameter.
 
     Returns
     -------
@@ -548,14 +547,12 @@ def create_make(
 
     Parameters
     ----------
-        type : suite.NamedType
-            Type to be instantiated.
-
-        *args : List[EX]
-            Values of the type instance.
-
-        modifiers : Union[ET, List[ET]]
-            Optional list of higher order constructs, to be provided as keyword parameter.
+    type : suite.NamedType
+        Type to be instantiated.
+    args : List[EX]
+        Values of the type instance.
+    modifiers : Union[ET, List[ET]]
+        Optional list of higher order constructs, to be provided as keyword parameter.
 
     Returns
     -------

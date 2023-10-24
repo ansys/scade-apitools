@@ -63,6 +63,7 @@ def find_pragma(object_: suite.Object, id: str) -> suite.Pragma:
             Element to search the pragma.
         id : str
             Identifier of the pragma.
+
     Returns
     -------
         suite.Pragma

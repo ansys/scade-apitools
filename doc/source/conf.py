@@ -4,7 +4,11 @@ import os
 from pathlib import Path
 import sys
 
-from ansys_sphinx_theme import ansys_favicon, get_version_match, get_autoapi_templates_dir_relative_path
+from ansys_sphinx_theme import (
+    ansys_favicon,
+    get_autoapi_templates_dir_relative_path,
+    get_version_match,
+)
 from ansys_sphinx_theme import pyansys_logo_black as logo
 from sphinx.highlighting import lexers
 
@@ -43,9 +47,9 @@ html_theme_options = {
 
 # Sphinx extensions
 extensions = [
-    #"sphinx.ext.autodoc",
+    # "sphinx.ext.autodoc",
     # "sphinx.ext.autodoc.typehints",
-    #"sphinx.ext.napoleon",
+    # "sphinx.ext.napoleon",
     # JH "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
@@ -75,7 +79,7 @@ add_module_names = False
 
 # Intersphinx mapping
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/dev", None),
+    "python": ("https://docs.python.org/3.11", None),
     # kept here as an example
     # "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
     # "numpy": ("https://numpy.org/devdocs", None),
@@ -135,7 +139,8 @@ def prepare_jinja_env(jinja_env) -> None:
     See https://jinja.palletsprojects.com/en/3.0.x/api/#jinja2.Environment
     """
     jinja_env.globals["project_name"] = project
-    
+
+
 autoapi_prepare_jinja_env = prepare_jinja_env
 
 # Configuration for Sphinx autoapi

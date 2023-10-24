@@ -253,8 +253,8 @@ def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
 
     Parameters
     ----------
-        *fields : List[Tuple[str, TX]]
-            Name/type expression trees.
+    fields : List[Tuple[str, TX]]
+        Name/type expression trees.
 
     Returns
     -------
