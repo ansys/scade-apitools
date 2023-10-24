@@ -39,12 +39,13 @@ def get_type_name(type_: suite.Type) -> str:
 
     Parameters
     ----------
-        type\_ :
-            Input type.
+    type\_ : suite.Type
+        Input type.
+
     Returns
     -------
-        str
-            Name of a type or a string representation.
+    str
+        Name of a type or a string representation.
 
     .. seealso:: Example :ref:`get_type_name <ex__get_type_name>`
     """
@@ -62,13 +63,14 @@ def get_leaf_alias(type_: suite.Type) -> suite.Type:
 
     Parameters
     ----------
-        type\_ :
-            Input type.
+    type\_ : suite.Type
+        Input type.
+
     Returns
     -------
-        suite.Type
-            Closest alias of the input's type definition, or the input type
-            if it is not an alias.
+    suite.Type
+        Closest alias of the input's type definition, or the input type
+        if it is not an alias.
 
     .. seealso:: Example :ref:`get_leaf_alias <ex__get_leaf_alias>`
     """
@@ -86,13 +88,14 @@ def get_leaf_type(type_: suite.Type) -> suite.Type:
 
     Parameters
     ----------
-        type\_ :
-            Input type.
+    type\_ : suite.Type
+        Input type.
+
     Returns
     -------
-        suite.Type
-            Definition of the input type. It is not a named type unless
-            it is predefined.
+    suite.Type
+        Definition of the input type. It is not a named type unless
+        it is predefined.
 
     .. seealso:: Example :ref:`get_leaf_type <ex__get_leaf_type>`
     """
@@ -107,18 +110,19 @@ def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
 
     Parameters
     ----------
-        type\_ :
-            Input type, which must be an array.
-        skip_alias : bool
-            When ``True``, the aliased arrays are considered as dimensions
-            of the input array.
+    type\_ : suite.Type
+        Input type, which must be an array.
+    skip_alias : bool
+        When ``True``, the aliased arrays are considered as dimensions
+        of the input array.
+
     Returns
     -------
-        suite.Type
-            Type of the array elements.
+    suite.Type
+        Type of the array elements.
 
-    Example:
-
+    Examples
+    --------
     .. code-block:: swan
 
         type:
@@ -180,12 +184,13 @@ def is_array(type_: suite.Type) -> bool:
 
     Parameters
     ----------
-        type\_ :
-            Input type.
+    type\_ : suite.Type
+        Input type.
+
     Returns
     -------
-        bool
-            ``type_`` is an array.
+    bool
+        ``type_`` is an array.
 
     .. seealso:: Example :ref:`is_array <ex__is_array>`
     """
@@ -200,12 +205,13 @@ def is_structure(type_: suite.Type) -> bool:
 
     Parameters
     ----------
-        type\_ :
-            Input type.
+    type\_ : suite.Type
+        Input type.
+
     Returns
     -------
-        bool
-            ``type_`` is a structure.
+    bool
+        ``type_`` is a structure.
 
     .. seealso:: Example :ref:`is_structure <ex__is_structure>`
     """
@@ -220,12 +226,13 @@ def is_enum(type_: suite.Type) -> bool:
 
     Parameters
     ----------
-        type\_ :
-            Input type.
+    type\_ : suite.Type
+        Input type.
+
     Returns
     -------
-        bool
-            ``type_`` is an enumeration.
+    bool
+        ``type_`` is an enumeration.
 
     .. seealso:: Example :ref:`is_enum <ex__is_enum>`
     """
@@ -240,12 +247,13 @@ def is_predefined(type_: suite.Type) -> bool:
 
     Parameters
     ----------
-        type\_ :
-            Input type.
+    type\_ : suite.Type
+        Input type.
+
     Returns
     -------
-        bool
-            ``type_`` is predefined.
+    bool
+        ``type_`` is predefined.
 
     .. seealso:: Example :ref:`is_predefined <ex__is_predefined>`
     """
@@ -260,12 +268,13 @@ def is_imported(type_: suite.Type) -> bool:
 
     Parameters
     ----------
-        type\_ :
-            Input type.
+    type\_ : suite.Type
+        Input type.
+
     Returns
     -------
-        bool
-            ``type_`` is imported.
+    bool
+        ``type_`` is imported.
 
     .. seealso:: Example :ref:`is_imported <ex__is_imported>`
     """
@@ -280,15 +289,16 @@ def is_scalar(type_: suite.Type, target: str = 'C') -> bool:
 
     Parameters
     ----------
-        type\_ :
-            Input type.
-        target :
-            Target language to consider if ``type_`` is imported.
-            Must be either ``'C'`` or ``'Ada'``.
+    type\_ : suite.Type
+        Input type.
+    target :
+        Target language to consider if ``type_`` is imported.
+        Must be either ``'C'`` or ``'Ada'``.
+
     Returns
     -------
-        bool
-            ``type_`` is scalar.
+    bool
+        ``type_`` is scalar.
 
     .. seealso:: Example :ref:`is_scalar <ex__is_scalar>`
     """

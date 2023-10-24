@@ -49,7 +49,7 @@ html_theme_options = {
 extensions = [
     # "sphinx.ext.autodoc",
     # "sphinx.ext.autodoc.typehints",
-    # "sphinx.ext.napoleon",
+    "sphinx.ext.napoleon",
     # JH "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
