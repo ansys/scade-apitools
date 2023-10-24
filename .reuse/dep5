@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Ansys SCADE API Tools
 Upstream-Contact: pyansys.core@ansys.com
-Source: https://github.com/ansys/pyansys-geometry
+Source: https://github.com/ansys/scade-apitools
 
 Files: .github/*
 Copyright: 2023 ANSYS, Inc. and/or its affiliates.
