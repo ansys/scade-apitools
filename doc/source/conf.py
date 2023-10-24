@@ -8,9 +8,10 @@ from ansys_sphinx_theme import (
     ansys_favicon,
     get_autoapi_templates_dir_relative_path,
     get_version_match,
+    pyansys_logo_black,
 )
-from ansys_sphinx_theme import pyansys_logo_black as logo
 from sphinx.highlighting import lexers
+
 from ansys.scade.apitools import __version__
 
 sys.path.append('.')
@@ -23,9 +24,9 @@ author = "ANSYS, Inc."
 release = version = __version__
 
 # Select desired logo, theme, and declare the html title
-html_logo = logo
+html_logo = pyansys_logo_black
 html_theme = "ansys_sphinx_theme"
-html_short_title = html_title = "ansys-scade-apitools"
+html_short_title = html_title = "Ansys SCADE API Tools"
 
 # multi-version documentation
 cname = os.getenv("DOCUMENTATION_CNAME", "apitools.scade.docs.pyansys.com")
@@ -48,17 +49,15 @@ html_theme_options = {
 
 # Sphinx extensions
 extensions = [
-    # "sphinx.ext.autodoc",
-    # "sphinx.ext.autodoc.typehints",
+    "autoapi.extension",
+    "sphinx.ext.autodoc.typehints",
     "sphinx.ext.napoleon",
-    # JH "numpydoc",
+    "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
-    "autoapi.extension",
     "sphinx_jinja",
     "sphinx_design",
-    # "sphinx_gallery.gen_gallery",
-    # apitools examples
+    # "sphinx_gallery.gen_gallery",# apitools examples
 ]
 
 # Print the type annotations from the signature in the description only
@@ -100,12 +99,14 @@ numpydoc_validate = True
 numpydoc_validation_checks = {
     "GL06",  # Found unknown section
     "GL07",  # Sections are in the wrong order.
-    "GL08",  # The object does not have a docstring
+    # Disabled the docstring validation as most of the methods doesn't have the docstring
+    # TODO: Add docstring and enable GL08 validation
+    # "GL08",  # The object does not have a docstring
     "GL09",  # Deprecation warning should precede extended summary
     "GL10",  # reST directives {directives} must be followed by two colons
     "SS01",  # No summary found
     "SS02",  # Summary does not start with a capital letter
-    # "SS03", # Summary does not end with a period
+    "SS03",  # Summary does not end with a period
     "SS04",  # Summary contains heading whitespaces
     # "SS05", # Summary must start with infinitive verb, not third person
     "RT02",  # The first line of the Returns section should contain only the
@@ -131,6 +132,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 
+# Configuration for Sphinx autoapi
 def prepare_jinja_env(jinja_env) -> None:
     """
     Customize the jinja env.
@@ -143,8 +145,6 @@ def prepare_jinja_env(jinja_env) -> None:
 
 
 autoapi_prepare_jinja_env = prepare_jinja_env
-
-# Configuration for Sphinx autoapi
 autoapi_type = "python"
 autoapi_dirs = ["../../src/ansys"]
 autoapi_root = "api"
