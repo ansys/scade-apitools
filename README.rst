@@ -40,7 +40,7 @@ Ansys SCADE API Tools
 
 Overview
 --------
-An extension library for SCADE Python APIs.
+Ansys SCADE API Tools is an extension library for SCADE Python APIs.
 
 Documentation and Issues
 ------------------------
@@ -57,34 +57,36 @@ Ansys SCADE, starting from 2021 R2:
 * 2021 R2 -> 2023 R1: Python 3.7
 * 2023 R2 ->: Python 3.10
 
-At least two installation modes are provided: user and developer.
+Ansys SCADE API Tools has two installation modes: user and developer.
 
-For users
-^^^^^^^^^
+Install in user mode
+^^^^^^^^^^^^^^^^^^^^
 
-In order to install apitools, make sure you
-have the latest version of `pip`_. To do so, run:
+Before installing Ansys SCADE API Tools in user mode, make sure you have the latest version of
+`pip`_ with:
 
 .. code:: bash
 
-    python -m pip install -U pip
+   python -m pip install -U pip
 
-Then, you can simply execute:
+Then, install Ansys SCADE API Tools with:
 
 .. code:: bash
 
     python -m pip install ansys-scade-apitools
 
-For developers
-^^^^^^^^^^^^^^
+Install in developer mode
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installing Ansys SCADE apitools in developer mode allows
 you to modify the source and enhance it.
 
-Before contributing to the project, please refer to the `PyAnsys Developer's guide`_. You will
-need to follow these steps:
+.. note::
 
-#. Start by cloning this repository:
+   Before contributing to the project, please refer to the `PyAnsys Developer's guide`_. You will
+   need to follow these steps:
+
+#. Clone the ``ansys-scade-apitools`` repository:
 
    .. code:: bash
 
@@ -115,9 +117,9 @@ need to follow these steps:
 
       python -m pip install -U pip     # Upgrading pip
       python -m pip install tox        # Installing tox (optional)
-      python -m pip install '.[build]' # for building the wheels
-      python -m pip install '.[tests]' # for testing the package
-      python -m pip install '.[doc]'   # for building the documentation
+      python -m pip install .[build]   # for building the wheels
+      python -m pip install .[tests]   # for testing the package
+      python -m pip install .[doc]     # for building the documentation
 
 
 #. Install the project in editable mode:
@@ -143,9 +145,11 @@ development.
 Using tox
 ^^^^^^^^^
 
-As Makefile has rules, `tox`_ has environments. In fact, the tool creates its
-own virtual environment so anything being tested is isolated from the project in
-order to guarantee project's integrity. The following environments commands are provided:
+While Makefile has rules, `tox`_ has environments. In fact, ``tox`` creates its
+own virtual environment so that anything being tested is isolated from the project
+to guarantee the project's integrity.
+
+The following environments commands are provided:
 
 - **tox -e style**: will check for coding style quality.
 - **tox -e py**: checks for unit tests.
@@ -156,13 +160,13 @@ order to guarantee project's integrity. The following environments commands are 
 Raw testing
 ^^^^^^^^^^^
 
-If required, you can always call the style commands (`black`_, `isort`_,
-`flake8`_...) or unit testing ones (`pytest`_) from the command line. However,
-this does not guarantee that your project is being tested in an isolated
+If required, from the command line, you can call style commands, including
+`black`_, `isort`_, and `flake8`_, and unit testing commands like `pytest`_.
+However, this does not guarantee that your project is being tested in an isolated
 environment, which is the reason why tools like `tox`_ exist.
 
 
-A note on pre-commit
+Using ``pre-commit``
 ^^^^^^^^^^^^^^^^^^^^
 
 The style checks take advantage of `pre-commit`_. Developers are not forced but
@@ -183,7 +187,8 @@ For building documentation, you can either run the usual rules provided in the
 
     make -C doc/ html && your_browser_name doc/html/index.html
 
-However, the recommended way of checking documentation integrity is using:
+However, the recommended way of checking documentation integrity is to use
+``tox``:
 
 .. code:: bash
 
@@ -214,6 +219,5 @@ the building requirements and then executing the build module:
 .. _Sphinx: https://www.sphinx-doc.org/en/master/
 .. _tox: https://tox.wiki/
 .. _apitools Issues: https://github.com/ansys/scade-apitools/issues
-.. _Git: https://git-scm.com
 .. _Documentation page: https://apitools.scade.docs.pyansys.com/
 .. _wheel file: https://github.com/ansys/scade-apitools/releases
