@@ -1,17 +1,15 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 import os
+from pathlib import Path
 import sys
 
-from ansys_sphinx_theme import ansys_favicon, get_version_match
+from ansys_sphinx_theme import ansys_favicon, get_version_match, get_autoapi_templates_dir_relative_path
 from ansys_sphinx_theme import pyansys_logo_black as logo
 from sphinx.highlighting import lexers
 
 sys.path.append('.')
 from _lexers.swan import SwanLexer
-
-# allow custom extensions
-sys.path.append(os.path.abspath("./_ext"))
 
 # Project information
 project = "ansys-scade-apitools"
@@ -45,13 +43,15 @@ html_theme_options = {
 
 # Sphinx extensions
 extensions = [
-    "sphinx.ext.autodoc",
+    #"sphinx.ext.autodoc",
     # "sphinx.ext.autodoc.typehints",
-    "sphinx.ext.autosummary",
-    "sphinx.ext.napoleon",
+    #"sphinx.ext.napoleon",
     # JH "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
+    "autoapi.extension",
+    "sphinx_jinja",
+    "sphinx_design",
     # "sphinx_gallery.gen_gallery",
     # apitools examples
 ]
@@ -115,7 +115,6 @@ html_favicon = ansys_favicon
 
 # static path
 html_static_path = ["_static"]
-html_css_files = ["custom.css"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -125,3 +124,34 @@ source_suffix = ".rst"
 
 # The master toctree document.
 master_doc = "index"
+
+
+def prepare_jinja_env(jinja_env) -> None:
+    """
+    Customize the jinja env.
+
+    Notes
+    -----
+    See https://jinja.palletsprojects.com/en/3.0.x/api/#jinja2.Environment
+    """
+    jinja_env.globals["project_name"] = project
+    
+autoapi_prepare_jinja_env = prepare_jinja_env
+
+# Configuration for Sphinx autoapi
+autoapi_type = "python"
+autoapi_dirs = ["../../src/ansys"]
+autoapi_root = "api"
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "special-members",
+]
+autoapi_template_dir = get_autoapi_templates_dir_relative_path(Path(__file__))
+suppress_warnings = ["autoapi.python_import_resolution"]
+autoapi_python_use_implicit_namespaces = True
+autoapi_keep_files = True
+autoapi_render_in_single_page = ["class", "enum", "exception"]
+exclude_patterns = ["autoapi"]

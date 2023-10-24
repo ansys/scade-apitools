@@ -47,10 +47,13 @@ tests = [
 ]
 
 doc = [
-    "Sphinx==5.0.2",
-    "numpydoc==1.4.0",
-    "ansys-sphinx-theme==0.9.5",
-    "sphinx-copybutton==0.5"
+    "ansys-sphinx-theme==0.12.1",
+    "numpydoc==1.6.0",
+    "sphinx==7.2.5",
+    "sphinx-autoapi==3.0.0", # "sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi@feat/single-page-option", ---> Installed directly in workflow
+    "sphinx-copybutton==0.5.2",
+    "sphinx-jinja==2.0.2",
+    "sphinx_design==0.5.0",
 ]
 
 

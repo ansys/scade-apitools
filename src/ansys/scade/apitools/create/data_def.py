@@ -48,19 +48,17 @@ def add_data_def_signals(data_def: suite.DataDef, names: List[str]) -> List[suit
     """
     Add signals to a scope.
 
-    Return the added signals.
-
     Parameters
     ----------
-        data_def : suite.DataDef
-            Input scope, either an operator, a state or an action.
-
-        names : List[str]
-            Names of the signals to be created.
+    data_def : suite.DataDef
+        Input scope, either an operator, a state or an action.
+    names : List[str]
+        Names of the signals to be created.
 
     Returns
     -------
-        List[suite.LocalVariable]
+    List[suite.LocalVariable]
+        Return the added signals.
     """
     _check_object(data_def, 'add_data_def_signals', 'data_def', suite.DataDef)
 
@@ -104,22 +102,22 @@ def add_data_def_locals(
     """
     Add local variables to a scope.
 
-    Return the added variables.
-
-    Note: interface change with respect to the SCADE Creation Library,
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library,
     the pairs name/type tree are now embedded in a list of tuples.
 
     Parameters
     ----------
-        data_def : suite.DataDef
-            Input scope, either an operator, a state or an action.
-
-        vars : List[Tuple[str, TX]]
-            Name/type expression trees.
+    data_def : suite.DataDef
+        Input scope, either an operator, a state or an action.
+    vars : List[Tuple[str, TX]]
+        Name/type expression trees.
 
     Returns
     -------
-        List[suite.LocalVariable]
+    List[suite.LocalVariable]
+        Return the added variables.
     """
     return _add_data_def_variables(data_def, vars, False)
 
@@ -130,22 +128,22 @@ def add_data_def_probes(
     """
     Add probes to a scope.
 
-    Return the added probes.
-
-    Note: interface change with respect to the SCADE Creation Library,
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library,
     the pairs name/type tree are now embedded in a list of tuples.
 
     Parameters
     ----------
-        data_def : suite.DataDef
-            Input scope, either an operator, a state or an action.
-
-        vars : List[Tuple[str, TX]]
-            Name/type expression trees.
+    data_def : suite.DataDef
+        Input scope, either an operator, a state or an action.
+    vars : List[Tuple[str, TX]]
+        Name/type expression trees.
 
     Returns
     -------
-        List[suite.LocalVariable]
+    List[suite.LocalVariable]
+        Return the added probes.
     """
     return _add_data_def_variables(data_def, vars, True)
 
@@ -158,19 +156,17 @@ def set_variable_default(variable: suite.LocalVariable, tree: EX) -> suite.Expre
     """
     Set the default value of a variable.
 
-    Return the expression.
-
     Parameters
     ----------
-        variable : suite.LocalVariable
-            Input variable.
-
-        tree : EX
-            Default value expressed as an extended expression tree.
+    variable : suite.LocalVariable
+        Input variable.
+    tree : EX
+        Default value expressed as an extended expression tree.
 
     Returns
     -------
-        suite.Expression
+    suite.Expression
+        Return the expression.
     """
     return _set_variable_expression(variable, 'default', tree)
 
@@ -179,19 +175,17 @@ def set_variable_last(variable: suite.LocalVariable, tree: EX) -> suite.Expressi
     """
     Set the last value of a variable.
 
-    Return the expression.
-
     Parameters
     ----------
-        variable : suite.LocalVariable
-            Input variable.
-
-        tree : EX
-            Last value expressed as an extended expression tree.
+    variable : suite.LocalVariable
+        Input variable.
+    tree : EX
+        Last value expressed as an extended expression tree.
 
     Returns
     -------
-        suite.Expression
+    suite.Expression
+        Return the expression.
     """
     return _set_variable_expression(variable, 'last', tree)
 
@@ -234,19 +228,17 @@ def add_data_def_text_diagram(data_def: suite.DataDef, name: str) -> suite.TextD
     """
     Add a textal diagram to a scope.
 
-    Return the diagram.
-
     Parameters
     ----------
-        data_def : suite.DataDef
-            Input scope, either an operator, a state or an action.
-
-        name : str
-            Name of the diagram.
+    data_def : suite.DataDef
+        Input scope, either an operator, a state or an action.
+    name : str
+        Name of the diagram.
 
     Returns
     -------
-        suite.TextDiagram
+    suite.TextDiagram
+        Return the diagram.
     """
     diagram = _add_data_def_diagram(data_def, suite.TextDiagram, name)
     diagram.landscape = False
@@ -257,19 +249,17 @@ def add_data_def_net_diagram(data_def: suite.DataDef, name: str) -> suite.NetDia
     """
     Add a graphical diagram to a scope.
 
-    Return the diagram.
-
     Parameters
     ----------
-        data_def : suite.DataDef
-            Input scope, either an operator, a state or an action.
-
-        name : str
-            Name of the diagram.
+    data_def : suite.DataDef
+        Input scope, either an operator, a state or an action.
+    name : str
+        Name of the diagram.
 
     Returns
     -------
-        suite.NetDiagram
+    suite.NetDiagram
+        Return the diagram.
     """
     diagram = _add_data_def_diagram(data_def, suite.NetDiagram, name)
     diagram.landscape = True
@@ -289,7 +279,9 @@ def _create_internal(data_def: suite.DataDef, tree: TX) -> suite.LocalVariable:
     """
     Create an internal variable for an operator.
 
-    Note: the algorithm is inefficient, it is adivsed the name
+    Notes
+    -----
+    The algorithm is inefficient, it is adivsed the name
     of the internal variables is computed with a cache in the client code.
 
     """
@@ -326,45 +318,36 @@ def add_data_def_equation(
 
     Parameters
     ----------
-        data_def : suite.DataDef
-            Input scope, either an operator, a state or an action.
-
-        diagram : suite.Diagram
-            Diagram containing the equation: either graphical, textual or None.
-
-            Note: the diagram can't be None if the scope contains at least one diagram.
-
-        lefts : List[Union[suite.LocalVariable, TX]]
-            List of variables defined by the equation. The elements can be either an
-            existing local variable or a type tree, to create on the fly a new internal
-            variable, when diagram is a graphical diagram.
-
-        right : EX
-            Expression of the equation.
-
-        position : Tuple[float, float]
-            Position of the equation, expressed in 1/100th of mm.
-            This value is ignored if diagram is not a graphical diagram,
-            otherwise it must be specified.
-
-        size : Tuple[float, float]
-            Size of the equation, expressed in 1/100th of mm.
-            This value is ignored if diagram is not a graphical diagram,
-            otherwise it must be specified.
-
-        symmetrical : bool
-            Indicates whether the graphical representation is symmetrical.
-
-        rotation : int
-            Rotation angle of the equation, expressed in degrees.
-            The value shall be one of 0, 90, 180 or 270.
-
-        textual : bool
-            Indicates whether the equation is a textual or has a graphical representation.
-
+    data_def : suite.DataDef
+        Input scope, either an operator, a state or an action.
+    diagram : suite.Diagram
+        Diagram containing the equation: either graphical, textual or None.
+        Note: the diagram can't be None if the scope contains at least one diagram.
+    lefts : List[Union[suite.LocalVariable, TX]]
+        List of variables defined by the equation. The elements can be either an
+        existing local variable or a type tree, to create on the fly a new internal
+        variable, when diagram is a graphical diagram.
+    right : EX
+        Expression of the equation.
+    position : Tuple[float, float]
+        Position of the equation, expressed in 1/100th of mm.
+        This value is ignored if diagram is not a graphical diagram,
+        otherwise it must be specified.
+    size : Tuple[float, float]
+        Size of the equation, expressed in 1/100th of mm.
+        This value is ignored if diagram is not a graphical diagram,
+        otherwise it must be specified.
+    symmetrical : bool
+        Indicates whether the graphical representation is symmetrical.
+    rotation : int
+        Rotation angle of the equation, expressed in degrees.
+        The value shall be one of 0, 90, 180 or 270.
+    textual : bool
+        Indicates whether the equation is a textual or has a graphical representation.
+    
     Returns
     -------
-        suite.Equation
+    suite.Equation
     """
     _check_object(data_def, 'add_data_def_equation', 'datadef', suite.DataDef)
     if diagram is not None:

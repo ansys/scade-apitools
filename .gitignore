@@ -163,6 +163,7 @@ doc/source/_autosummary/
 /.metadata/
 docstd/
 doc/source/_examples/
+doc/source/api/
 
 # vscode
 .vscode

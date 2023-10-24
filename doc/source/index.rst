@@ -14,8 +14,8 @@ API Tools
    :caption: Contents:
 
    guide
-   modules
    examples
+   api/index
 
 Indices and tables
 ==================
