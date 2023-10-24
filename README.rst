@@ -92,10 +92,10 @@ you to modify the source and enhance it.
 
       git clone https://github.com/ansys/scade-apitools
 
-#. Create a fresh-clean Python 3.7 environment and activate it:
+#. Create a fresh-clean Python 3.10 environment and activate it:
 
    It is advised to use the interpreter delivered with Ansys SCADE, for example
-   ``C:\Program Files\ANSYS Inc\v231\SCADE\contrib\Python37\python.exe``.
+   ``C:\Program Files\ANSYS Inc\v232\SCADE\contrib\Python310\python.exe``.
 
    .. code:: bash
 
@@ -203,7 +203,7 @@ the building requirements and then executing the build module:
 
 .. code:: bash
 
-    python -m pip install '.[build]'
+    python -m pip install .[build]
     python -m build
     python -m twine check dist/*
 

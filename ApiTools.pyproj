@@ -5,7 +5,7 @@
     <ProjectGuid>44133fa6-3e12-4e84-9e77-478b46a4b35d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>examples\create\when_block\debug_create_when_block.py</StartupFile>
-    <SearchPath>C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\bin</SearchPath>
+    <SearchPath>C:\Program Files\ANSYS Inc\v232\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v232\SCADE\SCADE\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>ApiTools</Name>
@@ -24,17 +24,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Interpreter Include=".venv\">
-      <Id>.venv</Id>
-      <Version>3.7</Version>
-      <Description>.venv (23.1)</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X64</Architecture>
-    </Interpreter>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="doc\" />
     <Folder Include="doc\source\" />
     <Folder Include="doc\source\create\" />
@@ -51,6 +40,7 @@
     <Folder Include="examples\create\top_level\" />
     <Folder Include="examples\create\when_block\" />
     <Folder Include="examples\expr_access\" />
+    <Folder Include="examples\info\" />
     <Folder Include="examples\query_type\" />
     <Folder Include="src\" />
     <Folder Include="src\ansys\" />
@@ -114,6 +104,11 @@
     <Compile Include="examples\expr_access\text_expression.py" />
     <Compile Include="examples\expr_access\transpose_op.py" />
     <Compile Include="examples\expr_access\unary_op.py" />
+    <Compile Include="examples\info\get_scade_home.py" />
+    <Compile Include="examples\info\get_scade_properties.py" />
+    <Compile Include="examples\info\get_scade_version.py" />
+    <Compile Include="examples\info\ide.py" />
+    <Compile Include="examples\info\print.py" />
     <Compile Include="examples\query_type\get_cell_type.py" />
     <Compile Include="examples\query_type\get_leaf_alias.py" />
     <Compile Include="examples\query_type\get_leaf_type.py" />
@@ -164,6 +159,17 @@
   <ItemGroup>
     <Content Include="examples\README.md" />
     <Content Include="pytest.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include=".venv\">
+      <Id>.venv</Id>
+      <Version>3.10</Version>
+      <Description>.venv (23.2)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
