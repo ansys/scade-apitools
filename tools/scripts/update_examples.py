@@ -107,7 +107,7 @@ def update_file(context: str, tmp: Path, dst: Path) -> int:
     return exit_code
 
 
-def update_examples(root: Path) -> int:
+def update_examples(root: Path, png: bool) -> int:
     """
     Update the execution outputs and diagrams for the examples.
 
@@ -155,42 +155,43 @@ def update_examples(root: Path) -> int:
                 continue
             if cp.stdout:
                 with tmp.open('w') as f:
-                    f.write(cp.stdout.decode())
+                    f.write(cp.stdout.decode().replace('\r\n', '\n'))
 
             if update_file(example.name, tmp, txt):
                 exit_code = 1
 
-        # generate the diagrams
-        old_pngs = {_.stem for _ in doc.glob('*.png')}
-        pngs = set()
-        script = Path(__file__).with_name('dump_diagrams.py')
-        cmd = [
-            str(exe),
-            '-script',
-            script.as_posix(),
-            project.as_posix(),
-            "dump_diagrams('%s', '.tmp')" % doc.as_posix(),
-        ]
-        cp = run(cmd, capture_output=True)
-        if cp.stderr:
-            print('failed to run', ' '.join(cmd))
-            print(cp.stderr.decode())
-            exit_code = 1
-            continue
-        for tmp in cp.stdout.decode().split('\n'):
-            if not tmp:
-                continue
-            tmp = Path(tmp)
-            pngs.add(tmp.stem)
-            if update_file(example.name, tmp, tmp.with_suffix('.png')):
+        if png:
+            # generate the diagrams
+            old_pngs = {_.stem for _ in doc.glob('*.png')}
+            pngs = set()
+            script = Path(__file__).with_name('dump_diagrams.py')
+            cmd = [
+                str(exe),
+                '-script',
+                script.as_posix(),
+                project.as_posix(),
+                "dump_diagrams('%s', '.tmp')" % doc.as_posix(),
+            ]
+            cp = run(cmd, capture_output=True)
+            if cp.stderr:
+                print('failed to run', ' '.join(cmd))
+                print(cp.stderr.decode())
                 exit_code = 1
+                continue
+            for tmp in cp.stdout.decode().split('\n'):
+                if not tmp:
+                    continue
+                tmp = Path(tmp)
+                pngs.add(tmp.stem)
+                if update_file(example.name, tmp, tmp.with_suffix('.png')):
+                    exit_code = 1
 
-        for txt in sorted(old_txts - txts):
-            exit_code = 1
-            print('%s/%s: no script' % (doc.name, txt))
-        for png in sorted(old_pngs - pngs):
-            exit_code = 1
-            print('%s/%s: no diagram' % (doc.name, png))
+            for txt in sorted(old_txts - txts):
+                exit_code = 1
+                print('%s/%s: no script' % (doc.name, txt))
+            for png in sorted(old_pngs - pngs):
+                exit_code = 1
+                print('%s/%s: no diagram' % (doc.name, png))
 
     return exit_code
 
@@ -198,7 +199,8 @@ def update_examples(root: Path) -> int:
 if __name__ == '__main__':
     # can be run only on Windows
     if platform.system() == 'Windows':
-        sys.exit(update_examples(repo))
+        png = len(sys.argv) == 2 and sys.argv[1] == '-png'
+        sys.exit(update_examples(repo, png))
     else:
         # nothing to do
         sys.exit(0)
