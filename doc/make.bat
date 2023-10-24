@@ -9,6 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=source
 set BUILDDIR=_build
+set SCRIPTPATH= ../tools/update_doc/update_doc.py
 
 if "%1" == "" goto help
 if "%1" == "clean" goto clean
@@ -25,7 +26,7 @@ if errorlevel 9009 (
 	echo.http://sphinx-doc.org/
 	exit /b 1
 )
-
+python %SCRIPTPATH%
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
 goto end
 

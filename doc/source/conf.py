@@ -22,7 +22,7 @@ release = version = "0.1.dev0"
 # Select desired logo, theme, and declare the html title
 html_logo = logo
 html_theme = "ansys_sphinx_theme"
-html_short_title = html_title = "pyscade-apitools"
+html_short_title = html_title = "ansys-scade-apitools"
 
 # multi-version documentation
 cname = os.getenv("DOCUMENTATION_CNAME", "apitools.scade.docs.pyansys.com")
@@ -54,7 +54,6 @@ extensions = [
     "sphinx_copybutton",
     # "sphinx_gallery.gen_gallery",
     # apitools examples
-    'ex',
 ]
 
 # Print the type annotations from the signature in the description only
