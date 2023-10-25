@@ -836,26 +836,22 @@ def add_operator_parameters(
     """
     Add parameters to an operator.
 
-    Return the added parameters.
-
     Parameters
     ----------
-        operator : suite.Operator
-            Input operator.
-
-        parameters : List[str]
-            Name of the parameters to create.
-
-        insert_before : suite.Constant
-            Insertion point of the parameter.
-
-            When this parameter is not None, it shall be an existing parameter of the oprator.
-            The parameters are inserted before this parameter.
-            Otherwise, the parameters are added at the end.
+    operator : suite.Operator
+        Input operator.
+    parameters : List[str]
+        Name of the parameters to create.
+    insert_before : suite.Constant
+        Insertion point of the parameter.
+        When this parameter is not None, it shall be an existing parameter of the oprator.
+        The parameters are inserted before this parameter.
+        Otherwise, the parameters are added at the end.
 
     Returns
     -------
-        List[suite.LocalVariable]
+    List[suite.LocalVariable]
+        Return the added parameters.
     """
     _check_object(operator, 'add_operator_parameters', 'operator', suite.Operator)
     if insert_before is not None:
