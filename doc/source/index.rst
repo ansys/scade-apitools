@@ -1,13 +1,9 @@
-..
-   Just reuse the root readme to avoid duplicating the documentation.
-   Provide any documentation specific to your online documentation
-   here.
-
-..   include:: ../../README.rst
+Ansys SCADE API Tools
+=====================
 
 .. toctree::
    :maxdepth: 2
-   :hidden:
+   :caption: Contents:
 
    guide
    api/index
@@ -15,7 +11,7 @@
    contributing
 
 Indices and tables
-------------------
+-------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

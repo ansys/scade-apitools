@@ -47,7 +47,7 @@ tests = [
 ]
 
 doc = [
-    "ansys-sphinx-theme==0.12.1",
+    "ansys-sphinx-theme==0.12.4",
     "numpydoc==1.6.0",
     "sphinx==7.2.5",
     "sphinx-autoapi==3.0.0", # "sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi@feat/single-page-option", ---> Installed directly in workflow
@@ -83,4 +83,4 @@ show_missing = true
 
 [tool.pytest.ini_options]
 testpaths = "tests"
-addopts = "-ra --cov=ansys.scade --cov-report html:.cov/html --cov-report xml:.cov/xml --cov-report term -vv"
+addopts = "-ra --cov=ansys.scade --cov-report html:.cov/html --cov-branch --cov-report xml:.cov/xml --cov-report term -vv"
