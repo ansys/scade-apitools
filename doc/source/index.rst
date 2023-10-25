@@ -5,7 +5,7 @@ Ansys SCADE API Tools
    :maxdepth: 2
    :caption: Contents:
 
-   guide
+   user_guide/index
    api/index
    examples
    contributing

@@ -13,20 +13,20 @@ The overall design consists in having independent functions: it is not required 
 
 **Important: this library must be used in command line scripts only. Modifying a model from the IDE, while it is loaded, corrupts the internal state of the SCADE Editor and leads to unpredictable results.**
 
-Notes:
+.. Note::
 
-* The current version gives only access to the creation of new elements into an existing project or Scade model.
+  * The current version gives only access to the creation of new elements into an existing project or Scade model.
 
-  The edition of a model, for example deleting elements, requires more functions that could be added later on.
+    The edition of a model, for example deleting elements, requires more functions that could be added later on.
 
-* The annotations are not supported yet.
-* This library is derived from the existing *SCADE Creation Library* (*SCL*), available for TCL and Python.
+  * The annotations are not supported yet.
+  * This library is derived from the existing *SCADE Creation Library* (*SCL*), available for TCL and Python.
 
-  * The functions have been renamed accordingly to PEP8.
-  * If most of the interfaces are identical, there are a few changes for providing a more Pythonic way.
-  * You can migrate existing applications to use this library, or continue to use *SCL* which is going to be re-implemented on top of this library.
+    * The functions have been renamed accordingly to PEP8.
+    * If most of the interfaces are identical, there are a few changes for providing a more Pythonic way.
+    * You can migrate existing applications to use this library, or continue to use *SCL* which is going to be re-implemented on top of this library.
 
-* The functions are all accessible from :py:mod:`create <ansys.scade.apitools.create>`, regardless the submodule they are defined in.
+  * The functions are all accessible from :py:mod:`create <ansys.scade.apitools.create>`, regardless the submodule they are defined in.
 
 Overall structure of a script
 -----------------------------
@@ -41,7 +41,9 @@ A script which modifies a Scade model has usually the following architecture:
 * Add new elements to the project and the model.
 * Save the project and the model.
 
-The following script adds a new package to a project::
+The following script adds a new package to a project:
+
+.. code:: python
 
   """
   Example for creating a package.
@@ -76,18 +78,21 @@ The following script adds a new package to a project::
 
 When run on an empty project, the new Scade model is as follows:
 
-.. figure:: /create/img/create_package_s.png
+.. figure:: ../_static/assets/img/create_package_s.png
 
 The new file is added to the project at the default location:
 
-.. figure:: /create/img/create_package_fv.png
+.. figure:: ../_static/assets/img/create_package_fv.png
 
 Debugging of a creation script
 ------------------------------
 
 It is advised to embed the script in an environment which makes first a copy of the model to ease the debugging.
 
-The following script, compatible with any Python IDE, makes a copy of the original model, declares the result project and calls the original script's function main::
+The following script, compatible with any Python IDE, makes a copy of the original model, declares
+the result project and calls the original script's function main:
+
+.. code:: python
 
   """
   Wrapper of create_package.py for debugging.
@@ -119,9 +124,13 @@ The following script, compatible with any Python IDE, makes a copy of the origin
 Trees
 -----
 
-The library does not allow the creation of intermediate elements to prevent the risk of incorrect models because of partial or missing links.
-For example, it is not possible to create an instance of ``ExprId`` linked to a constant but not contained by any model element.
-Some parts such as types or expressions can be quite large: there are functions to create such trees in an incremental way, which will be compiled when creating the related model element. These intermediate structures, or trees, are used for creating:
+The library does not allow the creation of intermediate elements to prevent the risk of
+incorrect models because of partial or missing links.
+For example, it is not possible to create an instance of ``ExprId`` linked to a constant
+but not contained by any model element.
+Some parts such as types or expressions can be quite large: there are functions to create
+such trees in an incremental way, which will be compiled when creating the related model
+element. These intermediate structures, or trees, are used for creating:
 
 * Types
 * Expressions
@@ -133,20 +142,27 @@ The next sections introduce the expression and type trees.
 Type tree
 ^^^^^^^^^
 
-A :py:class:`type tree (TT) <create.type.TypeTree>` represents any Scade type. :py:class:`Extended type trees (EX) <create.type.TX>` provide more flexibility by accepting any of the following types:
+A :py:class:`type tree (TT) <create.type.TypeTree>` represents any Scade type.
+:py:class:`Extended type trees (EX) <create.type.TX>` provide more flexibility by
+accepting any of the following types:
 
 * :py:class:`Type tree (TT) <create.type.TypeTree>`
 * Instance of ``scade.model.suite.Type``
 * Name of a predefined type: ``'bool'``, ``'int32'``, ``'float64'``...
 
-There are functions to create complex expression trees, such as structures or arrays, cf. :py:mod:`create.type <ansys.scade.apitools.create.type>`.
+There are functions to create complex expression trees, such as structures or arrays, cf.
+:py:mod:`create.type <ansys.scade.apitools.create.type>`.
 
-The following example adds a simple type to a model::
+The following example adds a simple type to a model:
+
+.. code:: python
 
     # add a new type to the model, in the default file for root declarations
     speed = create.create_named_type(model, 'Speed', 'float32', path=None)
 
-The next example creates an array of points::
+The next example creates an array of points:
+
+.. code:: python
 
     # add an array of points
     tree = create.create_structure(('x', 'float32'), ('y', 'float32'))
@@ -154,14 +170,17 @@ The next example creates an array of points::
     tree = create.create_table(9, point)
     polyline = create.create_named_type(model, 'polyline', tree)
 
-Although this is not advised, it is possible to combine type trees::
+Although this is not advised, it is possible to combine type trees:
+
+.. code:: python
 
     # add an array of anonymous (x, y)
     tree_struct = create.create_structure(('x', 'float32'), ('y', 'float32'))
     tree_table = create.create_table(9, tree_struct)
     polyline2 = create.create_named_type(model, 'polyline2', tree_table)
 
-Refer to the module :py:mod:`create.type <ansys.scade.apitools.create.type>` for a complete reference and the functions to create any type tree.
+Refer to the module :py:mod:`create.type <ansys.scade.apitools.create.type>` for a complete
+reference and the functions to create any type tree.
 
 ..
   :py:func:`create.declaration.create_named_type`
@@ -169,14 +188,21 @@ Refer to the module :py:mod:`create.type <ansys.scade.apitools.create.type>` for
 Expression tree
 ^^^^^^^^^^^^^^^
 
-An :py:class:`expression tree (ET) <create.expression.ExpressionTree>` represents any Scade expression, made of operators and operands. :py:class:`Extended expression trees (EX) <create.expression.EX>` provide more flexibility by accepting any of the following types:
+An :py:class:`expression tree (ET) <create.expression.ExpressionTree>` represents any
+Scade expression, made of operators and operands.
+:py:class:`Extended expression trees (EX) <create.expression.EX>` provide more
+flexibility by accepting any of the following types:
 
 * :py:class:`Expression tree (ET) <create.expression.ExpressionTree>`
 * Instance of ``scade.model.suite.ConstVar``
 * Scade literals: ``'true'``, ``'3.14_f32'``
 * Python literals: ``True``, ``42``, ``3.14``, ``'c'``...
 
-The following example adds two constants to a model. The first one, ``N`` is an integer and its expression is the literal ``42``. The second one, ``N2``, requires an expression tree to specify its value::
+The following example adds two constants to a model. The first one, ``N`` is an
+integer and its expression is the literal ``42``. The second one, ``N2``, requires
+an expression tree to specify its value
+
+.. code:: python
 
     # constant N: int32 = 42
     cst_n = create.create_constant(model, 'N', 'int32', 42)
@@ -184,4 +210,5 @@ The following example adds two constants to a model. The first one, ``N`` is an 
     tree = create.create_nary('*', cst_n, cst_n)
     cst_n2 = create.create_constant(model, 'N2', 'int32', tree)
 
-Refer to the module :py:mod:`create.expression <ansys.scade.apitools.create.expression>` for a complete reference and the functions to create any expression tree.
+Refer to the module :py:mod:`create.expression <ansys.scade.apitools.create.expression>`
+for a complete reference and the functions to create any expression tree.

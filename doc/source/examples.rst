@@ -32,7 +32,9 @@ The examples associated to a Scade model are referenced in the project:
 SCADE CLI
 ~~~~~~~~~
 
-The easiest way consists in setting the current directory to the considered example's directory and run ``scade.exe -script``::
+The easiest way consists in setting the current directory to the considered example's directory and run ``scade.exe -script``
+
+.. code:: bash
 
     scade.exe -script <project> <script>
 
@@ -41,22 +43,30 @@ Python
 
 The model used to run the example must be declared prior to the script execution.
 
-* Change the current directory to the considered example's directory, for example `examples/query_type` ::
+* Change the current directory to the considered example's directory, for example `examples/query_type` .
+
+.. code:: bash
 
     > cd examples\query_type
 
-* Run a Python 3.7 or 3.10 session depending on the release of SCADE  installed on your computer ::
+* Run a Python 3.7 or 3.10 session depending on the release of SCADE  installed on your computer.
+
+.. code:: bash
 
     > where python.exe
     C:\Users\jhenry\AppData\Local\Programs\Python\Python310\python.exe
     > python.exe
 
-* Declare the project
+* Declare the project.
+
+.. code:: python
 
     >>> from ansys.scade.apitools import declare_project
     >>> declare_project('QueryType.etp')
 
-* Copy/paste the content of a script or run it as follows ::
+* Copy/paste the content of a script or run it as follows:
+
+.. code:: python
 
     >>> exec(open('get_type_name.py').read())
 
