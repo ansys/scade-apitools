@@ -40,4 +40,4 @@ except importlib_metadata.PackageNotFoundError:
 
 # ignore F401: declare_project made available for modules, not used here
 from ansys.scade.apitools.auto_scade_env import _scade_api, declare_project, scade  # noqa: F401
-from ansys.scade.apitools.info import ide, print
+from ansys.scade.apitools.info.runtime import ide, print
