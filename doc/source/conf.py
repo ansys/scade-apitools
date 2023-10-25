@@ -45,6 +45,7 @@ html_theme_options = {
         "version_match": get_version_match(version),
     },
     "check_switcher": False,
+    "navigation_with_keys": True,
 }
 
 # Sphinx extensions
