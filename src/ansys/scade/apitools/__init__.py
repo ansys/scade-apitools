@@ -38,6 +38,15 @@ except importlib_metadata.PackageNotFoundError:
     # may happen in GH action Code Style
     __version__ = None
 
-# ignore F401: declare_project made available for modules, not used here
-from ansys.scade.apitools.auto_scade_env import _scade_api, declare_project, scade  # noqa: F401
-from ansys.scade.apitools.info.runtime import ide, print
+try:
+    # ignore F401: declare_project made available for modules, not used here
+    from ansys.scade.apitools.auto_scade_env import (  # noqa: F401
+        _scade_api,
+        declare_project,
+        scade,
+    )
+    from ansys.scade.apitools.info import ide, print  # noqa: F401
+except:
+    # may happen when generating the documentation on platforms
+    # where SCADE is not available
+    pass
