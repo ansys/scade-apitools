@@ -162,3 +162,10 @@ autoapi_python_use_implicit_namespaces = True
 autoapi_keep_files = True
 autoapi_render_in_single_page = ["class", "enum", "exception"]
 exclude_patterns = ["autoapi"]
+
+# TODO: remove ignore links after public release
+linkcheck_ignore = [
+    "https://github.com/ansys/scade-apitools",
+    "https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml",
+    "https://pypi.org/project/ansys-scade-apitools",
+]
