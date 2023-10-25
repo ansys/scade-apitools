@@ -3,22 +3,19 @@
    Provide any documentation specific to your online documentation
    here.
 
-..
-   include:: ../../README.rst
-
-API Tools
-=========
+..   include:: ../../README.rst
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :hidden:
 
    guide
-   examples
    api/index
+   examples
+   contributing
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
