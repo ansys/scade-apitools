@@ -12,6 +12,8 @@ from ansys_sphinx_theme import (
 )
 from sphinx.highlighting import lexers
 
+from ansys.scade.apitools import __version__
+
 sys.path.append('.')
 from _lexers.swan import SwanLexer
 
@@ -19,7 +21,7 @@ from _lexers.swan import SwanLexer
 project = "ansys-scade-apitools"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
 author = "ANSYS, Inc."
-release = version = "0.1.dev0" # TODO: has to be match with the version of scade-apitools
+release = version = __version__
 
 # Select desired logo, theme, and declare the html title
 html_logo = pyansys_logo_black
