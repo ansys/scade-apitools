@@ -5,7 +5,7 @@
     <ProjectGuid>44133fa6-3e12-4e84-9e77-478b46a4b35d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>examples\create\when_block\debug_create_when_block.py</StartupFile>
-    <SearchPath>C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v231\SCADE\SCADE\bin</SearchPath>
+    <SearchPath>C:\Program Files\ANSYS Inc\v241\SCADE\SCADE\APIs\Python\lib;C:\Program Files\ANSYS Inc\v241\SCADE\SCADE\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>ApiTools</Name>
@@ -27,7 +27,7 @@
     <Interpreter Include=".venv\">
       <Id>.venv</Id>
       <Version>3.7</Version>
-      <Description>.venv (23.1)</Description>
+      <Description>.venv (24.1)</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
