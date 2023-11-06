@@ -1,3 +1,5 @@
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+
 """
 Example for the basic functions of ansys.scade.apitools.prop.pragma.
 
