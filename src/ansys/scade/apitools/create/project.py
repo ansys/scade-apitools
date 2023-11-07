@@ -42,23 +42,23 @@ def create_folder(
     A folder shall have a name and be either a root folder of a project or
     a sub-folder of another folder.
 
-    Note: returns the folder with the given name if it exists.
+    Notes
+    -----
+    Returns the folder with the given name if it exists.
 
     Parameters
     ----------
-        owner : std.Project or std.Folder
-            Owner of the folder, either the project itself or a folder.
-
-        path : Union[str, List[str]]
-            Either the name of the folder. When a path is provided, the function
-            creates the intermediate folders which do not exist.
-
-        extensions: str
-            String defining the extensions associated to the folder.
+    owner : std.Project or std.Folder
+        Owner of the folder, either the project itself or a folder.
+    path : Union[str, List[str]]
+        Either the name of the folder. When a path is provided, the function
+        creates the intermediate folders which do not exist.
+    extensions: str
+        String defining the extensions associated to the folder.
 
     Returns
     -------
-        std.Folder
+    std.Folder
     """
     _check_object(owner, 'create_folder', 'owner', (std.Project, std.Folder))
 
@@ -98,16 +98,15 @@ def create_file_ref(owner: Union[std.Project, std.Folder], persist_as: str) -> s
 
     Parameters
     ----------
-        owner : std.Project or std.Folder
-            Owner of the file, either the project itself or a folder.
-
-        persist_as : str
-            String representation of the reference to the file to be stored in the project's file,
-            either a relative reference to the project or an absolute path.
+    owner : std.Project or std.Folder
+        Owner of the file, either the project itself or a folder.
+    persist_as : str
+        String representation of the reference to the file to be stored in the project's file,
+        either a relative reference to the project or an absolute path.
 
     Returns
     -------
-        std.FileRef
+    std.FileRef
     """
     _check_object(owner, 'create_file_ref', 'owner', (std.Project, std.Folder))
 
@@ -132,15 +131,14 @@ def create_configuration(owner: std.Project, name: str) -> std.Configuration:
 
     Parameters
     ----------
-        owner : std.Project
-            Project.
-
-        name : str
-            Name of the configuration.
+    owner : std.Project
+        Project.
+    name : str
+        Name of the configuration.
 
     Returns
     -------
-        std.Configuration
+    std.Configuration
     """
     _check_object(owner, 'create_configuration', 'owner', std.Project)
 
@@ -163,21 +161,18 @@ def create_prop(
 
     Parameters
     ----------
-        owner : std.Annotable
-            Element the property is attached to.
-
-        configuration : str
-            Configuration to associate to the property otherwise ``None``.
-
-        name : str
-            Name of the property.
-
-        values : List[str]
-            Values of the property as a list of strings.
+    owner : std.Annotable
+        Element the property is attached to.
+    configuration : str
+        Configuration to associate to the property otherwise ``None``.
+    name : str
+        Name of the property.
+    values : List[str]
+        Values of the property as a list of strings.
 
     Returns
     -------
-        std.Prop
+    std.Prop
     """
     _check_object(owner, 'create_prop', 'owner', std.Annotable)
     if configuration is not None:
@@ -204,8 +199,8 @@ def save_project(project: std.Project):
 
     Parameters
     ----------
-        project : std.Project
-            Project to save.
+    project : std.Project
+        Project to save.
     """
     _check_object(project, 'save_project', 'project', std.Project)
     project.save(project.pathname)
@@ -227,15 +222,13 @@ def _create_empty_project(pathname: str, configuration: str, products: List[str]
 
     Parameters
     ----------
-        pathname : str
-            Path of the project.
-
-        configuration : str
-            Name of the configuration: a project must have at least one configuration.
-
-        products: List[str]
-            optional list of tags identifiying the nature of the project.
-            For example, ``SC`` indicates a SCADE Suite project.
+    pathname : str
+        Path of the project.
+    configuration : str
+        Name of the configuration: a project must have at least one configuration.
+    products: List[str]
+        optional list of tags identifiying the nature of the project.
+        For example, ``SC`` indicates a SCADE Suite project.
     """
     if products is None:
         products = []
@@ -315,15 +308,14 @@ def _find_file_ref(project: std.Project, pathname: str) -> std.FileRef:
 
     Parameters
     ----------
-        project : std.Project
-            Input project.
-
-        pathname : str
-            Path of the project to search.
+    project : std.Project
+        Input project.
+    pathname : str
+        Path of the project to search.
 
     Returns
     ----------
-        std.FileRef
+    std.FileRef
     """
     path = abspath(pathname)
     for file_ref in project.file_refs:
@@ -338,12 +330,12 @@ def _get_elements(parent: Union[std.Project, std.Folder]) -> List[std.Element]:
 
     Parameters
     ----------
-        parent: Union[std.Project, std.Folder]
-            Input project or folder.
+    parent: Union[std.Project, std.Folder]
+        Input project or folder.
 
     Returns
     ----------
-        List[std.Element]
+    List[std.Element]
     """
     return parent.roots if isinstance(parent, std.Project) else parent.elements
 

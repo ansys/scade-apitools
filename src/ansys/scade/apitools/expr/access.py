@@ -48,8 +48,8 @@ class Expression:
 
     Parameters
     ----------
-        expression : suite.Expression
-            Expression to wrap.
+    expression : suite.Expression
+        Expression to wrap.
     """
 
     def __init__(self, expression: suite.Expression):
@@ -65,8 +65,8 @@ class Present(Expression):
 
     Parameters
     ----------
-        expression :
-            Signal expression to wrap.
+    expression :
+        Signal expression to wrap.
 
     .. seealso:: Example :ref:`present <ex__present>`
     """
@@ -90,8 +90,8 @@ class Last(Expression):
 
     Parameters
     ----------
-        expression :
-            Last variable expression to wrap.
+    expression :
+        Last variable expression to wrap.
 
     .. seealso:: Example :ref:`last <ex__last>`
     """
@@ -115,8 +115,8 @@ class IdExpression(Expression):
 
     Parameters
     ----------
-        expression :
-            Reference expression to wrap.
+    expression :
+        Reference expression to wrap.
 
     .. seealso:: Example :ref:`id_expression <ex__id_expression>`
     """
@@ -139,8 +139,8 @@ class ConstValue(Expression):
 
     Parameters
     ----------
-        expression :
-            Literal to wrap.
+    expression :
+        Literal to wrap.
 
     .. seealso:: Example :ref:`const_value <ex__const_value>`
     """
@@ -163,8 +163,8 @@ class TextExpression(Expression):
 
     Parameters
     ----------
-        expression :
-            Erroneous expression to wrap.
+    expression :
+        Erroneous expression to wrap.
     """
 
     def __init__(self, expression: suite.ExprText):
@@ -190,8 +190,8 @@ class CallExpression(Expression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -228,8 +228,8 @@ class DataStructOp(CallExpression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`data_struct_op <ex__data_struct_op>`
     """
@@ -254,8 +254,8 @@ class DataArrayOp(CallExpression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`data_array_op <ex__data_array_op>`
     """
@@ -278,8 +278,8 @@ class ArrayOp(CallExpression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -300,8 +300,8 @@ class TransposeOp(ArrayOp):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`transpose_op <ex__transpose_op>`
     """
@@ -324,8 +324,8 @@ class SliceOp(ArrayOp):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`slice_op <ex__slice_op>`
     """
@@ -354,8 +354,8 @@ class Label(Expression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
     """
 
     def __init__(self, expression: suite.ConstValue):
@@ -375,8 +375,8 @@ class PrjDynOp(ArrayOp):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`prj_dyn_op <ex__prj_dyn_op>`
     """
@@ -412,8 +412,8 @@ class ListExpression(Expression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
     """
 
     def __init__(self, expression: suite.Expression):
@@ -433,11 +433,10 @@ class FlowOp(CallExpression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
-
-        flow :
-            Expression operand
+    expression :
+        Call expression to wrap.
+    flow :
+        Expression operand
     """
 
     def __init__(self, expression: suite.ExprCall, flow: suite.Expression):
@@ -457,15 +456,17 @@ class ScalarToVectorOp(CallExpression):
 
     ``<flow> ^ <size>``
 
-    Parameters
-    ----------
-        expression :
-            Call expression to wrap.
-
-    Note: The design differs slightly from the meta-model. Since the input
+    Notes
+    -----
+    The design differs slightly from the meta-model. Since the input
     must be a group of flows, the class :class:`~ScalarToVectorOp` does not inherit
     from :class:`~FlowOp`. It exposes directly the list of input flows instead of
     having a flow which is a :class:`~ListExpression`.
+
+    Parameters
+    ----------
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`scalar_to_vector_op <ex__scalar_to_vector_op>`
     """
@@ -495,14 +496,12 @@ class ProjectionOp(FlowOp):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
-
-        flow :
-            Expression operand
-
-        with_expressions :
-            Path of the expression
+    expression :
+        Call expression to wrap.
+    flow :
+        Expression operand
+    with_expressions :
+        Path of the expression
     """
 
     def __init__(
@@ -539,8 +538,8 @@ class PrjOp(ProjectionOp):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`prj_op <ex__prj_op>`
     """
@@ -557,8 +556,8 @@ class ChgIthOp(ProjectionOp):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`chg_ith_op <ex__chg_ith_op>`
     """
@@ -581,13 +580,15 @@ class MakeOp(CallExpression):
 
     ``(make <type>)(<flow>, ..., <flow>)``
 
+    Notes
+    -----
+    The design differs slightly from the meta-model. This class derives from
+    :class:`~CallExpression`.
+
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
-
-    Note: The design differs slightly from the meta-model. This class derives from
-    :class:`~CallExpression`.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`make_op <ex__make_op>`
     """
@@ -616,13 +617,15 @@ class FlattenOp(CallExpression):
 
     ``(flatten <type>)(<flow>)``
 
+    Notes
+    -----
+    The design differs slightly from the meta-model. This class derives from
+    :class:`~CallExpression`.
+
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
-
-    Note: The design differs slightly from the meta-model. This class derives from
-    :class:`~CallExpression`.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`flatten_op <ex__flatten_op>`
     """
@@ -651,8 +654,8 @@ class AryOp(CallExpression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -675,8 +678,8 @@ class UnaryOp(AryOp):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`unary_op <ex__unary_op>`
     """
@@ -706,12 +709,14 @@ class NAryOp(AryOp):
     * ``+``, ``*``
     * ``land``, ``lor``
 
+    Notes
+    -----
+    ``xor`` shall be binary but it is stored as nary in the xscade files.
+
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
-
-    Note: ``xor`` shall be binary but it is stored as nary in the xscade files.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`n_ary_op <ex__n_ary_op>`
     """
@@ -743,8 +748,8 @@ class BinaryOp(NAryOp):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`binary_op <ex__binary_op>`
     """
@@ -761,8 +766,8 @@ class NumericCastOp(FlowOp):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`numeric_cast_op <ex__numeric_cast_op>`
     """
@@ -789,8 +794,8 @@ class SharpOp(CallExpression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`sharp_op <ex__sharp_op>`
     """
@@ -813,14 +818,16 @@ class IfThenElseOp(CallExpression):
 
     ``if <if> then <then>, ..., <then> else <else>, ..., <else>``
 
-    Parameters
-    ----------
-        expression :
-            Call expression to wrap.
-
-    Note: The design differs slightly from the meta-model. Since the then/else
+    Notes
+    -----
+    The design differs slightly from the meta-model. Since the then/else
     parts must be groups of flows, the class :class:`~IfThenElseOp` exposes directly
     the list of then/else flows instead of a flow which is a :class:`~ListExpression`.
+
+    Parameters
+    ----------
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`if_then_else_op <ex__if_then_else_op>`
     """
@@ -861,16 +868,18 @@ class CaseOp(CallExpression):
          | <pattern> :   <flow>
          | _ :   <default>)
 
-    Parameters
-    ----------
-        expression :
-            Call expression to wrap.
-
-    Note: The design differs slightly from the meta-model. The class
+    Notes
+    -----
+    The design differs slightly from the meta-model. The class
     ``Case`` used to implement the collection ``case``
     is replaced by a tuple (``pattern``, ``flow``).
 
     A new property, ``default``, provides the optional default value.
+
+    Parameters
+    ----------
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`case_op <ex__case_op>`
     """
@@ -907,15 +916,17 @@ class InitOp(CallExpression):
 
     ``<init>, ..., <init> -> <flow>, ..., <flow>``
 
-    Parameters
-    ----------
-        expression :
-            Call expression to wrap.
-
-    Note: The design differs slightly from the meta-model. Since the inputs
+    Notes
+    -----
+    The design differs slightly from the meta-model. Since the inputs
     must be groups of flows, the class :class:`~InitOp` does not inherit
     from :class:`~FlowOp`. It exposes directly the lists of flows and initial
     values instead of having flows which are instances of :class:`~ListExpression`.
+
+    Parameters
+    ----------
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`init_op <ex__init_op>`
     """
@@ -944,15 +955,17 @@ class PreOp(CallExpression):
 
     ``pre <flow>, ..., <flow>``
 
-    Parameters
-    ----------
-        expression :
-            Call expression to wrap.
-
-    Note: The design differs slightly from the meta-model. Since the input
+    Notes
+    -----
+    The design differs slightly from the meta-model. Since the input
     must be a group of flows, the class :class:`~PreOp` does not inherit
     from :class:`~FlowOp`. It exposes directly the lists of flows instead of
     having a flow which is a :class:`~ListExpression`.
+
+    Parameters
+    ----------
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`pre_op <ex__pre_op>`
     """
@@ -977,8 +990,8 @@ class FbyOp(CallExpression):
 
     Parameters
     ----------
-        expression :
-            Call expression to wrap.
+    expression :
+        Call expression to wrap.
 
     .. seealso:: Example :ref:`fby_op <ex__fby_op>`
     """
@@ -1014,14 +1027,16 @@ class OpCall(CallExpression):
 
     ``<operator><< <instance parameter>, ...>>(<call parameter>, ...)``
 
-    Parameters
-    ----------
-        expression :
-            Expression to wrap.
-
-    Note: The design differs slightly from the meta-model. The class
+    Notes
+    -----
+    The design differs slightly from the meta-model. The class
     :class:`~OpCall` is no more aggreated by the class :class:`~CallExpression`
     but derives from it: This leads to a simpler design.
+
+    Parameters
+    ----------
+    expression :
+        Expression to wrap.
     """
 
     def __init__(self, expression: suite.ExprCall):
@@ -1052,17 +1067,18 @@ class OpOp(CallExpression):
     """
     Abstract class for higher order operators.
 
-    Parameters
-    ----------
-        expression :
-            Higher order expression to wrap.
-
-        operator :
-            Operator call expression.
-
-    Note: The design differs slightly from the meta-model. The class
+    Notes
+    -----
+    The design differs slightly from the meta-model. The class
     :class:`~OpOp` is no more aggreated by the class :class:`~CallExpression`
     but derives from it: This leads to a simpler design.
+
+    Parameters
+    ----------
+    expression :
+        Higher order expression to wrap.
+    operator :
+        Operator call expression.
     """
 
     def __init__(self, expression: suite.ExprCall, operator: CallExpression):
@@ -1082,11 +1098,10 @@ class ConditionalOp(OpOp):
 
     Parameters
     ----------
-        expression :
-            Higher order expression to wrap.
-
-        operator :
-            Operator call expression.
+    expression :
+        Higher order expression to wrap.
+    operator :
+        Operator call expression.
     """
 
     def __init__(self, expression: suite.ExprCall, operator: CallExpression):
@@ -1106,11 +1121,10 @@ class RestartOp(ConditionalOp):
 
     Parameters
     ----------
-        expression :
-            Higher order expression to wrap.
-
-        operator :
-            Operator call expression.
+    expression :
+        Higher order expression to wrap.
+    operator :
+        Operator call expression.
 
     .. seealso:: Example :ref:`restart_op <ex__restart_op>`
     """
@@ -1122,17 +1136,18 @@ class CondactOp(ConditionalOp):
     """
     Abstract class for activate operators.
 
-    Parameters
-    ----------
-        expression :
-            Higher order expression to wrap.
-
-        operator :
-            Operator call expression.
-
-    Note: The design differs slightly from the meta-model. Since the flow
+    Notes
+    -----
+    The design differs slightly from the meta-model. Since the flow
     ``default`` must be a group of flows, the class :class:`~CondactOp` exposes directly
     the list of default values instead of an instance of :class:`~ListExpression`.
+
+    Parameters
+    ----------
+    expression :
+        Higher order expression to wrap.
+    operator :
+        Operator call expression.
     """
 
     def __init__(self, expression: suite.ExprCall, operator: CallExpression):
@@ -1152,11 +1167,10 @@ class ActivateOp(CondactOp):
 
     Parameters
     ----------
-        expression :
-            Higher order expression to wrap.
-
-        operator :
-            Operator call expression.
+    expression :
+        Higher order expression to wrap.
+    operator :
+        Operator call expression.
 
     .. seealso:: Example :ref:`activate_op <ex__activate_op>`
     """
@@ -1170,11 +1184,10 @@ class ActivateNoInitOp(CondactOp):
 
     Parameters
     ----------
-        expression :
-            Higher order expression to wrap.
-
-        operator :
-            Operator call expression.
+    expression :
+        Higher order expression to wrap.
+    operator :
+        Operator call expression.
 
     .. seealso:: Example :ref:`activate_no_init_op <ex__activate_no_init_op>`
     """
@@ -1188,11 +1201,10 @@ class IteratorOp(OpOp):
 
     Parameters
     ----------
-        expression :
-            Higher order expression to wrap.
-
-        operator :
-            Operator call expression.
+    expression :
+        Higher order expression to wrap.
+    operator :
+        Operator call expression.
 
     .. seealso:: Example :ref:`iterator_op <ex__iterator_op>`
     """
@@ -1225,11 +1237,10 @@ class PartialIteratorOp(IteratorOp):
 
     Parameters
     ----------
-        expression :
-            Higher order expression to wrap.
-
-        operator :
-            Operator call expression.
+    expression :
+        Higher order expression to wrap.
+    operator :
+        Operator call expression.
 
     .. seealso:: Example :ref:`partial_iterator_op <ex__partial_iterator_op>`
     """
@@ -1358,13 +1369,13 @@ def accessor(expression: suite.Expression) -> Expression:
 
     Parameters
     ----------
-        expression : suite.Expression
-            Expression to wrap.
+    expression : suite.Expression
+        Expression to wrap.
 
     Returns
     -------
-        Expression
-            Expression accessor.
+    Expression
+        Expression accessor.
     """
     # ExprId
     if isinstance(expression, suite.ExprId):

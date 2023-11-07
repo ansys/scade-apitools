@@ -259,15 +259,14 @@ def _build_expression(tree: EX, context: suite.Object) -> suite.Expression:
 
     Parameters
     ----------
-        tree : EX
-            Operand: expression tree.
-
-        context : suite.Object
-            Context of the creation of the expression.
+    tree : EX
+        Operand: expression tree.
+    context : suite.Object
+        Context of the creation of the expression.
 
     Returns
     -------
-        suite.Expression
+    suite.Expression
     """
     if tree is None:
         return None
@@ -316,18 +315,16 @@ def create_call(operator: suite.Operator, args: LX, inst_args: LX = None) -> ET:
 
     Parameters
     ----------
-        op : suite.Operator
-            Called operator
-
-        args : Union[EX, List[EX]]
-            Parameters: expression trees.
-
-        inst_args : Union[EX, List[EX]]
-            Instance parameters: expression trees.
+    op : suite.Operator
+        Called operator
+    args : Union[EX, List[EX]]
+        Parameters: expression trees.
+    inst_args : Union[EX, List[EX]]
+        Instance parameters: expression trees.
 
     Returns
     -------
-        ET
+    ET
     """
     if inst_args is None:
         inst_args = []
@@ -345,21 +342,18 @@ def create_higher_order_call(
 
     Parameters
     ----------
-        op : suite.Operator
-            Called operator
-
-        args : Union[EX, List[EX]]
-            Parameters: expression trees.
-
-        modifiers : Union[ET, List[ET]]
-            Higher order constructs: expression trees.
-
-        inst_args : Union[EX, List[EX]]
-            Instance parameters: expression trees.
+    op : suite.Operator
+        Called operator
+    args : Union[EX, List[EX]]
+        Parameters: expression trees.
+    modifiers : Union[ET, List[ET]]
+        Higher order constructs: expression trees.
+    inst_args : Union[EX, List[EX]]
+        Instance parameters: expression trees.
 
     Returns
     -------
-        ET
+    ET
     """
     if inst_args is None:
         inst_args = []
@@ -379,18 +373,16 @@ def create_unary(op: str, tree: EX, modifiers: Union[ET, List[ET]] = None) -> ET
 
     Parameters
     ----------
-        op : str
-            Operator: - | + | !
-
-        tree : EX
-            Operand: expression tree.
-
-        modifiers : Union[ET, LIST[ET]]
-            Optional list of higher order constructs.
+    op : str
+        Operator: - | + | !
+    tree : EX
+        Operand: expression tree.
+    modifiers : Union[ET, LIST[ET]]
+        Optional list of higher order constructs.
 
     Returns
     -------
-        ET
+    ET
     """
     eck = _unary_ops.get(op)
     if eck is None:
@@ -406,21 +398,18 @@ def create_binary(op: str, tree1: EX, tree2: EX, modifiers: Union[ET, List[ET]] 
 
     Parameters
     ----------
-        op : str
-            Operator: & | | | ^ | # | + | - | * | / | : | % | < | <= | > | >= | = | <>
-
-        tree1 : EX
-            First operand: expression tree.
-
-        tree2 : EX
-            Second operand: expression tree.
-
-        modifiers : Union[ET, List[ET]]
-            Optional list of higher order constructs.
+    op : str
+        Operator: & | | | ^ | # | + | - | * | / | : | % | < | <= | > | >= | = | <>
+    tree1 : EX
+        First operand: expression tree.
+    tree2 : EX
+        Second operand: expression tree.
+    modifiers : Union[ET, List[ET]]
+        Optional list of higher order constructs.
 
     Returns
     -------
-        ET
+    ET
     """
     eck = _binary_ops.get(op)
     if eck is None:
@@ -440,13 +429,12 @@ def create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None)
         Operator: & | | | ^ | # | + | *
     args : List[EX]
         Operands: expression trees.
-
     modifiers : Union[ET, List[ET]]
         Optional list of higher order constructs, to be provided as keyword parameter.
 
     Returns
     -------
-        ET
+    ET
     """
     eck = _nary_ops.get(op)
     if eck is None:
@@ -465,23 +453,23 @@ def create_if(condition: EX, then: LX, else_: LX) -> ET:
     r"""
     Return the expression tree for the operator if-then-else.
 
-    Note: interface change with respect to the SCADE Creation Library, the flows
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library, the flows
     'then' and the flows 'else' are now specified in two separate lists.
 
     Parameters
     ----------
-        condition : EX
-            Expression tree corresponding to the condition of the selector.
-
-        then : Union[EX, List[EX]]
-            List of expressions trees when condition is true.
-
-        else\_ : Union[EX, List[EX]]
-            List of expressions trees when condition is false.
+    condition : EX
+        Expression tree corresponding to the condition of the selector.
+    then : Union[EX, List[EX]]
+        List of expressions trees when condition is true.
+    else\_ : Union[EX, List[EX]]
+        List of expressions trees when condition is false.
 
     Returns
     -------
-        ET
+    ET
     """
     norm_then = _normalize_tree_ex(then)
     norm_else = _normalize_tree_ex(else_)
@@ -500,23 +488,23 @@ def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: EX = None) ->
     """
     Return the expression tree for the operator case.
 
-    Note: interface change with respect to the SCADE Creation Library, the pairs pattern/value
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library, the pairs pattern/value
     are now embedded in a list of tuples, and the default value is optional.
 
     Parameters
     ----------
-        selector : EX
-            Expression tree corresponding to the selector.
-
-        cases : List[Tuple[EX, EX]]
-            Pattern/values expression trees.
-
-        default: EX
-            Optional default value.
+    selector : EX
+        Expression tree corresponding to the selector.
+    cases : List[Tuple[EX, EX]]
+        Pattern/values expression trees.
+    default: EX
+        Optional default value.
 
     Returns
     -------
-        ET
+    ET
     """
     if len(cases) == 0:
         raise ExprSyntaxError('create_case', cases)
@@ -542,12 +530,12 @@ def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: EX = None) ->
 def create_make(
     type_: suite.NamedType, *args: List[EX], modifiers: Union[ET, List[ET]] = None
 ) -> ET:
-    """
+    r"""
     Return the expression tree for making a structured value.
 
     Parameters
     ----------
-    type : suite.NamedType
+    type\_ : suite.NamedType
         Type to be instantiated.
     args : List[EX]
         Values of the type instance.
@@ -556,7 +544,7 @@ def create_make(
 
     Returns
     -------
-        ET
+    ET
     """
     if len(args) < 1:
         raise ExprSyntaxError('create_make', args)
@@ -567,23 +555,21 @@ def create_make(
 
 
 def create_flatten(type_: suite.NamedType, arg: EX, modifiers: Union[ET, List[ET]] = None) -> ET:
-    """
+    r"""
     Return the expression tree for flattening a structured value.
 
     Parameters
     ----------
-        type : suite.NamedType
-            Type to be instantiated.
-
-        arg : EX
-            Value to flatten.
-
-        modifiers : Union[ET, List[ET]]
-            Optional list of higher order constructs.
+    type\_ : suite.NamedType
+        Type to be instantiated.
+    arg : EX
+        Value to flatten.
+    modifiers : Union[ET, List[ET]]
+        Optional list of higher order constructs.
 
     Returns
     -------
-        ET
+    ET
     """
     _check_object(type_, 'create_flatten', 'type', suite.NamedType)
     arg, type_ = _normalize_tree((arg, type_))
@@ -598,20 +584,21 @@ def create_scalar_to_vector(size: EX, *args: List[EX]) -> ET:
     """
     Return the expression tree for the operator scalar_to_vector.
 
-    Note: interface change with respect to the SCADE Creation Library, the parameter size
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library, the parameter size
     has moved from the last position to the first one.
 
     Parameters
     ----------
-        size: EX
-            Size of the vector.
-
-        args : List[EX]
-            Input values.
+    size: EX
+        Size of the vector.
+    args : List[EX]
+        Input values.
 
     Returns
     -------
-        ET
+    ET
     """
     if len(args) == 0:
         raise ExprSyntaxError('create_scalar_to_vector', args)
@@ -627,12 +614,12 @@ def create_data_array(*args: List[EX]) -> ET:
 
     Parameters
     ----------
-        args : List[EX]
-            Values of the array.
+    args : List[EX]
+        Values of the array.
 
     Returns
     -------
-        ET
+    ET
     """
     if len(args) == 0:
         raise ExprSyntaxError('create_data_array', args)
@@ -644,17 +631,19 @@ def create_data_struct(*args: List[Tuple[str, EX]]) -> ET:
     """
     Return the expression tree for the operator data_struct.
 
-    Note: interface change with respect to the SCADE Creation Library, the pairs name/value
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library, the pairs name/value
     are now embedded in a list of tuples.
 
     Parameters
     ----------
-        cases : List[Tuple[str, EX]]
-            Label/values expression trees.
+    args : List[Tuple[str, EX]]
+        Label/values expression trees.
 
     Returns
     -------
-        ET
+    ET
     """
     length = len(args)
     if length == 0:
@@ -676,15 +665,14 @@ def create_prj(flow: EX, path: LX) -> ET:
 
     Parameters
     ----------
-        flow : EX
-            Input flow of the projection.
-
-        path : Union[EX, List[EX]]
-            Elements of the path, either label or index.
+    flow : EX
+        Input flow of the projection.
+    path : Union[EX, List[EX]]
+        Elements of the path, either label or index.
 
     Returns
     -------
-        ET
+    ET
     """
     flow = _normalize_tree(flow)
     path = _normalize_tree_ex(path)
@@ -698,18 +686,16 @@ def create_prj_dyn(flow: EX, path: LX, default: EX) -> ET:
 
     Parameters
     ----------
-        flow : EX
-            Input flow of the projection.
-
-        path : Union[EX, List[EX]]
-            Elements of the path, either label, index or variable.
-
-        default : EX
-            Default value for the projection when the path is incorrect.
+    flow : EX
+        Input flow of the projection.
+    path : Union[EX, List[EX]]
+        Elements of the path, either label, index or variable.
+    default : EX
+        Default value for the projection when the path is incorrect.
 
     Returns
     -------
-        ET
+    ET
     """
     flow, default = _normalize_tree((flow, default))
     path = _normalize_tree_ex(path)
@@ -723,18 +709,16 @@ def create_change_ith(flow: EX, path: LX, value: EX) -> ET:
 
     Parameters
     ----------
-        flow : EX
-            Input flow of the projection.
-
-        path : Union[EX, List[EX]]
-            Elements of the path, either label, index or variable.
-
-        value : EX
-            Value to assign.
+    flow : EX
+        Input flow of the projection.
+    path : Union[EX, List[EX]]
+        Elements of the path, either label, index or variable.
+    value : EX
+        Value to assign.
 
     Returns
     -------
-        ET
+    ET
     """
     flow, value = _normalize_tree((flow, value))
     path = _normalize_tree_ex(path)
@@ -751,12 +735,12 @@ def create_pre(*args: List[EX]) -> ET:
 
     Parameters
     ----------
-        args : List[EX]
-            Input flows.
+    args : List[EX]
+        Input flows.
 
     Returns
     -------
-        ET
+    ET
     """
     if len(args) == 0:
         raise ExprSyntaxError('create_pre', '')
@@ -768,20 +752,21 @@ def create_init(flows: LX, inits: LX) -> ET:
     """
     Return the expression tree for the operator init.
 
-    Note: interface change with respect to the SCADE Creation Library, the flows
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library, the flows
     and their initial values are now specified in two separate lists.
 
     Parameters
     ----------
-        flows : Union[EX, List[EX]]
-            Input flows.
-
-        inits : Union[EX, List[EX]]
-            Initial values.
+    flows : Union[EX, List[EX]]
+        Input flows.
+    inits : Union[EX, List[EX]]
+        Initial values.
 
     Returns
     -------
-        ET
+    ET
     """
     norm_flows = _normalize_tree_ex(flows)
     norm_inits = _normalize_tree_ex(inits)
@@ -799,23 +784,23 @@ def create_fby(flows: LX, delay: EX, inits: LX) -> ET:
     """
     Return the expression tree for the operator init.
 
-    Note: interface change with respect to the SCADE Creation Library, the flows
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library, the flows
     and their initial values are now specified in two separate lists.
 
     Parameters
     ----------
-        flows : Union[EX, List[EX]]
-            Input flows.
-
-        delay : EX
-            Delay of the operator.
-
-        inits : Union[EX, List[EX]]
-            Initial values.
+    flows : Union[EX, List[EX]]
+        Input flows.
+    delay : EX
+        Delay of the operator.
+    inits : Union[EX, List[EX]]
+        Initial values.
 
     Returns
     -------
-        ET
+    ET
     """
     norm_flows = _normalize_tree_ex(flows)
     norm_inits = _normalize_tree_ex(inits)
@@ -834,15 +819,14 @@ def create_times(number: EX, flow: EX) -> ET:
 
     Parameters
     ----------
-        number : EX
-            Number of cycles.
-
-        flow : EX
-            Input flow.
+    number : EX
+        Number of cycles.
+    flow : EX
+        Input flow.
 
     Returns
     -------
-        ET
+    ET
     """
     number, flow = _normalize_tree((number, flow))
     return _Predefined(Eck.TIMES, [number, flow], [], [])
@@ -857,18 +841,16 @@ def create_slice(array: EX, start: EX, end: EX) -> ET:
 
     Parameters
     ----------
-        array : EX
-            Input array.
-
-        start : EX
-            Start index of the slice.
-
-        end : EX
-            End index of the slice.
+    array : EX
+        Input array.
+    start : EX
+        Start index of the slice.
+    end : EX
+        End index of the slice.
 
     Returns
     -------
-        ET
+    ET
     """
     array, start, end = _normalize_tree((array, start, end))
     return _Predefined(Eck.SLICE, [array, start, end], [], [])
@@ -880,12 +862,12 @@ def create_concat(*args: List[EX]) -> ET:
 
     Parameters
     ----------
-        args : List[EX]
-            Input arrays to concatenate.
+    args : List[EX]
+        Input arrays to concatenate.
 
     Returns
     -------
-        ET
+    ET
     """
     if len(args) < 2:
         raise ExprSyntaxError('create_concat', args)
@@ -899,12 +881,12 @@ def create_reverse(flow: EX) -> ET:
 
     Parameters
     ----------
-        flow : EX
-            Input flow.
+    flow : EX
+        Input flow.
 
     Returns
     -------
-        ET
+    ET
     """
     flow = _normalize_tree(flow)
     return _Predefined(Eck.REVERSE, [flow], [], [])
@@ -916,18 +898,16 @@ def create_transpose(array: EX, dim1: EX, dim2: EX) -> ET:
 
     Parameters
     ----------
-        array : EX
-            Input array.
-
-        dim1 : EX
-            First dimension.
-
-        dim2 : EX
-            Second dimension.
+    array : EX
+        Input array.
+    dim1 : EX
+        First dimension.
+    dim2 : EX
+        Second dimension.
 
     Returns
     -------
-        ET
+    ET
     """
     array, dim1, dim2 = _normalize_tree((array, dim1, dim2))
     return _Predefined(Eck.TRANSPOSE, [array, dim1, dim2], [], [])
@@ -942,12 +922,12 @@ def create_restart(every: EX) -> ET:
 
     Parameters
     ----------
-        every : EX
-            Input condition.
+    every : EX
+        Input condition.
 
     Returns
     -------
-        ET
+    ET
     """
     every = _normalize_tree(every)
     return _Predefined(Eck.RESTART, [every], [], [])
@@ -959,15 +939,14 @@ def create_activate(every: EX, *args: List[EX]) -> ET:
 
     Parameters
     ----------
-        every : EX
-            Input condition.
-
-        args: List[EX]
-            Initial values.
+    every : EX
+        Input condition.
+    args: List[EX]
+        Initial values.
 
     Returns
     -------
-        ET
+    ET
     """
     every = _normalize_tree(every)
     # args may be empty
@@ -981,15 +960,14 @@ def create_activate_no_init(every: EX, *args: List[EX]) -> ET:
 
     Parameters
     ----------
-        every : EX
-            Input condition.
-
-        args: List[EX]
-            Default values.
+    every : EX
+        Input condition.
+    args: List[EX]
+        Default values.
 
     Returns
     -------
-        ET
+    ET
     """
     every = _normalize_tree(every)
     # args may be empty
@@ -1006,12 +984,12 @@ def create_map(size: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
+    size : EX
+        Number of iterations.
 
     Returns
     -------
-        ET
+    ET
     """
     size = _normalize_tree(size)
     return _Predefined(Eck.MAP, [size], [], [])
@@ -1023,12 +1001,12 @@ def create_mapi(size: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
+    size : EX
+        Number of iterations.
 
     Returns
     -------
-        ET
+    ET
     """
     size = _normalize_tree(size)
     return _Predefined(Eck.MAPI, [size], [], [])
@@ -1040,12 +1018,12 @@ def create_fold(size: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
+    size : EX
+        Number of iterations.
 
     Returns
     -------
-        ET
+    ET
     """
     size = _normalize_tree(size)
     return _Predefined(Eck.FOLD, [size], [], [])
@@ -1057,12 +1035,12 @@ def create_foldi(size: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
+    size : EX
+        Number of iterations.
 
     Returns
     -------
-        ET
+    ET
     """
     size = _normalize_tree(size)
     return _Predefined(Eck.FOLDI, [size], [], [])
@@ -1074,15 +1052,15 @@ def create_mapfold(size: EX, acc: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
+    size : EX
+        Number of iterations.
 
-        acc : EX
-            Number of accumulators.
+    acc : EX
+        Number of accumulators.
 
     Returns
     -------
-        ET
+    ET
     """
     size, acc = _normalize_tree((size, acc))
     return _Predefined(Eck.MAPFOLD, [size, acc], [], [])
@@ -1094,15 +1072,15 @@ def create_mapfoldi(size: EX, acc: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
+    size : EX
+        Number of iterations.
 
-        acc : EX
-            Number of accumulators.
+    acc : EX
+        Number of accumulators.
 
     Returns
     -------
-        ET
+    ET
     """
     size, acc = _normalize_tree((size, acc))
     return _Predefined(Eck.MAPFOLDI, [size, acc], [], [])
@@ -1114,15 +1092,14 @@ def create_foldw(size: EX, condition: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
-
-        condition : EX
-            Initial value of the iteration condition.
+    size : EX
+        Number of iterations.
+    condition : EX
+        Initial value of the iteration condition.
 
     Returns
     -------
-        ET
+    ET
     """
     size, condition = _normalize_tree((size, condition))
     return _Predefined(Eck.FOLDW, [size, condition], [], [])
@@ -1134,15 +1111,14 @@ def create_foldwi(size: EX, condition: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
-
-        condition : EX
-            Initial value of the iteration condition.
+    size : EX
+        Number of iterations.
+    condition : EX
+        Initial value of the iteration condition.
 
     Returns
     -------
-        ET
+    ET
     """
     size, condition = _normalize_tree((size, condition))
     return _Predefined(Eck.FOLDWI, [size, condition], [], [])
@@ -1154,18 +1130,16 @@ def create_mapw(size: EX, condition: EX, default: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
-
-        condition : EX
-            Initial value of the iteration condition.
-
-        default : EX
-            Default value of the iteration.
+    size : EX
+        Number of iterations.
+    condition : EX
+        Initial value of the iteration condition.
+    default : EX
+        Default value of the iteration.
 
     Returns
     -------
-        ET
+    ET
     """
     size, condition, default = _normalize_tree((size, condition, default))
     return _Predefined(Eck.MAPW, [size, condition, default], [], [])
@@ -1177,18 +1151,16 @@ def create_mapwi(size: EX, condition: EX, default: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
-
-        condition : EX
-            Initial value of the iteration condition.
-
-        default : EX
-            Default value of the iteration.
+    size : EX
+        Number of iterations.
+    condition : EX
+        Initial value of the iteration condition.
+    default : EX
+        Default value of the iteration.
 
     Returns
     -------
-        ET
+    ET
     """
     size, condition, default = _normalize_tree((size, condition, default))
     return _Predefined(Eck.MAPWI, [size, condition, default], [], [])
@@ -1200,21 +1172,18 @@ def create_mapfoldw(size: EX, acc: EX, condition: EX, default: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
-
-        acc : EX
-            Number of accumulators.
-
-        condition : EX
-            Initial value of the iteration condition.
-
-        default : EX
-            Default value of the iteration.
+    size : EX
+        Number of iterations.
+    acc : EX
+        Number of accumulators.
+    condition : EX
+        Initial value of the iteration condition.
+    default : EX
+        Default value of the iteration.
 
     Returns
     -------
-        ET
+    ET
     """
     size, acc, condition, default = _normalize_tree((size, acc, condition, default))
     return _Predefined(Eck.MAPFOLDW, [size, acc, condition, default], [], [])
@@ -1226,21 +1195,18 @@ def create_mapfoldwi(size: EX, acc: EX, condition: EX, default: EX) -> ET:
 
     Parameters
     ----------
-        size : EX
-            Number of iterations.
-
-        acc : EX
-            Number of accumulators.
-
-        condition : EX
-            Initial value of the iteration condition.
-
-        default : EX
-            Default value of the iteration.
+    size : EX
+        Number of iterations.
+    acc : EX
+        Number of accumulators.
+    condition : EX
+        Initial value of the iteration condition.
+    default : EX
+        Default value of the iteration.
 
     Returns
     -------
-        ET
+    ET
     """
     size, acc, condition, default = _normalize_tree((size, acc, condition, default))
     return _Predefined(Eck.MAPFOLDWI, [size, acc, condition, default], [], [])
@@ -1326,20 +1292,21 @@ def _find_expr_id(expr: suite.Expression, index: int) -> suite.ExprId:
     """
     Return the instance of ExprId corresponding to the pin index of an equation.
 
-    Note: the function is not complete for now and requires to
+    Notes
+    -----
+    The function is not complete for now and requires to
     be specified more precisely.
 
     Parameters
     ----------
-        expr : suite.Expression
-            Expression to consider, either an ExprId or ExprCall.
-
-        index : int
-            Pin number.
+    expr : suite.Expression
+        Expression to consider, either an ExprId or ExprCall.
+    index : int
+        Pin number.
 
     Returns
     -------
-        suite.ExprId
+    suite.ExprId
     """
     if isinstance(expr, suite.ExprId):
         # the expression itself!
