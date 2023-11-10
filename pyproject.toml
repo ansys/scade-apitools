@@ -90,6 +90,9 @@ known-first-party = ["ansys", "conftest", "test_utils"]
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["D",]
+
 [tool.coverage.run]
 source = ["ansys.scade"]
 
