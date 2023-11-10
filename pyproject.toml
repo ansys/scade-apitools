@@ -85,10 +85,10 @@ indent-style = "tab"
 [tool.ruff.isort]
 combine-as-imports = true
 force-sort-within-sections = true
-known-first-party = ["ansys"]
+known-first-party = ["ansys", "conftest", "test_utils"]
 
-[tool.ruff.pydocstyle]
-multi-line-summary-second-line = true
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
 
 [tool.coverage.run]
 source = ["ansys.scade"]
