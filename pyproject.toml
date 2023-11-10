@@ -78,6 +78,15 @@ ignore = [
     "D204"  # One blank line required after class docstring.
 ]
 
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "tab"
+
+[tool.ruff.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+known-first-party = ["ansys"]
+
 [tool.coverage.run]
 source = ["ansys.scade"]
 

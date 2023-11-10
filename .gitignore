@@ -165,5 +165,7 @@ docstd/
 doc/source/_examples/
 doc/source/api/
 
-# vscode
+# Ignore project files
 .vscode
+.sln
+.pyproj
