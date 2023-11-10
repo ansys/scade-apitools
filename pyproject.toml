@@ -87,6 +87,9 @@ combine-as-imports = true
 force-sort-within-sections = true
 known-first-party = ["ansys"]
 
+[tool.ruff.pydocstyle]
+multi-line-summary-second-line = true
+
 [tool.coverage.run]
 source = ["ansys.scade"]
 
