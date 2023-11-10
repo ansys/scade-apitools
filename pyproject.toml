@@ -10,7 +10,7 @@ readme="README.rst"
 
 # only 3.7. and 3.10
 requires-python = ">=3.7,!=3.8.*,!=3.9.*,<3.11"
-license = {file = "LICENSE"}
+license = {file = "LICENSES/MIT.txt"}
 authors = [
     {name = "Ansys, Inc.", email = "pyansys.core@ansys.com"},
 ]
@@ -44,7 +44,7 @@ doc = [
     "sphinx==7.2.5",
     # TODO: update this version once sphinx-autoapi includes single-page option,
     # see "sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi@feat/single-page-option"
-    "sphinx-autoapi==3.0.0", 
+    "sphinx-autoapi==3.0.0",
     "sphinx-copybutton==0.5.2",
     "sphinx-jinja==2.0.2",
     "sphinx_design==0.5.0",
@@ -59,7 +59,7 @@ Source = "https://github.com/ansys/scade-apitools"
 Issues = "https://github.com/ansys/scade-apitools/issues"
 Discussions = "https://github.com/ansys/scade-apitools/discussions"
 Documentation = "https://apitools.scade.docs.pyansys.com"
-Issues = "https://github.com/ansys/scade-apitools/releases"
+Releases = "https://github.com/ansys/scade-apitools/releases"
 Homepage = "https://www.ansys.com/products/embedded-software/ansys-scade-suite"
 
 
