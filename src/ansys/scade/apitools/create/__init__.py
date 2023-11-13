@@ -23,10 +23,9 @@
 
 """Collection of functions to create or update Scade models."""
 
-from enum import Enum
 
 # ignore F401: functions made available for modules, not used here
-from .data_def import (  # _noqa: F401
+from .data_def import (  # noqa: F401
     AK,
     DK,
     IT,
@@ -62,7 +61,7 @@ from .data_def import (  # _noqa: F401
     set_variable_default,
     set_variable_last,
 )
-from .declaration import (  # _noqa: F401
+from .declaration import (  # noqa: F401
     VK,
     IllegalIOError,
     ParamImportedError,
@@ -84,7 +83,7 @@ from .declaration import (  # _noqa: F401
     set_specialized_operator,
     set_type_constraint,
 )
-from .expression import (  # _noqa: F401
+from .expression import (  # noqa: F401
     EmptyTreeError,
     ExprSyntaxError,
     TypeIdentifierError,
@@ -127,17 +126,17 @@ from .expression import (  # _noqa: F401
     create_transpose,
     create_unary,
 )
-from .project import (  # _noqa: F401
+from .project import (  # noqa: F401
     create_configuration,
     create_file_ref,
     create_folder,
     create_prop,
     save_project,
 )
-from .scade import (  # _noqa: F401
+from .scade import (  # noqa: F401
     add_element_to_project,
     add_imported_to_project,
     add_simulation_file_to_project,
     save_all,
 )
-from .type import create_sized, create_structure, create_table  # _noqa: F401
+from .type import create_sized, create_structure, create_table  # noqa: F401

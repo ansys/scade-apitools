@@ -24,5 +24,5 @@
 """Information on the current version of SCADE."""
 
 # ignore F401: functions made available for modules, not used here
-from .install import get_scade_home, get_scade_version  # _noqa: F401
-from .runtime import ide, print  # _noqa: F401
+from .install import get_scade_home, get_scade_version  # noqa: F401
+from .runtime import ide, print  # noqa: F401

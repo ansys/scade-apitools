@@ -23,10 +23,9 @@
 
 """Collection of functions for the accessing the expressions."""
 
-from enum import Enum
 
 # ignore F401: functions made available for modules, not used here
-from .access import (  # _noqa: F401
+from .access import (  # noqa: F401
     ActivateNoInitOp,
     ActivateOp,
     ArrayOp,
@@ -64,4 +63,4 @@ from .access import (  # _noqa: F401
     UnaryOp,
     accessor,
 )
-from .predef import Eck  # _noqa: F401
+from .predef import Eck  # noqa: F401

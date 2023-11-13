@@ -11,16 +11,13 @@ from typing import Tuple
 
 import pytest
 
-# fmt: off
 # shall modify sys.path to access SCACE APIs
-# ignore F401: module not used here
-import ansys.scade.apitools  # noqa: F401
+from ansys.scade.apitools import scade
 
-import scade  # isort: skip
-import scade.model.project.stdproject as project  # isort: skip
-import scade.model.suite as suite  # isort: skip
-
-# fmt: on
+# must be imported after apitools
+# isort: split
+import scade.model.project.stdproject as project
+import scade.model.suite as suite
 
 
 def pytest_configure(config):
