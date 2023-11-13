@@ -60,11 +60,14 @@ def get_scade_dirs(min='00.0', max='99.9'):
         for company in 'Esterel Technologies', 'Ansys Inc':
             try:
                 hklm = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, 'SOFTWARE\%s\SCADE' % company)
-                for i in range(reg.QueryInfoKey(hklm)[0]):
-                    name = reg.EnumKey(hklm, i)
+            except OSError:
+                continue
+            for i in range(reg.QueryInfoKey(hklm)[0]):
+                name = reg.EnumKey(hklm, i)
+                try:
                     dir, _ = reg.QueryValueEx(reg.OpenKey(hklm, name), 'InstallDir')
                     names.append((name, dir))
-            except FileNotFoundError:
+                except FileNotFoundError:
                     pass
     dirs = []
     for name, dir in sorted(names, key=lambda x: x[0]):
