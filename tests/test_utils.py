@@ -19,9 +19,9 @@ def get_resources_dir() -> Path:
 
 def cmp_log(log_file, lines) -> bool:
     """Return True if the file is identical to a list of strings."""
-    l = list(open(log_file))
-    l = [line.strip('\n') for line in l]
-    return l == lines
+    log_lines = list(open(log_file))
+    log_lines = [line.strip('\n') for line in log_lines]
+    return log_lines == lines
 
 
 def cmp_file(fromfile: str, tofile: str, n=3, linejunk=None):

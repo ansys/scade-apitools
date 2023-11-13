@@ -30,13 +30,16 @@ def test_ide_print(capsys):
     # print some text with ide_print and print and compare the results
     args = ['abc', 'd\ne', 'f g']
     # ignore prior outputs if any
-    captured = capsys.readouterr()
+    _ = capsys.readouterr()
     # standard print
     print(*args, sep='-', end='.\n')
     builtin_result = capsys.readouterr().out
+    _ = capsys.readouterr().out
     # ide_print
     runtime.ide_print(*args, sep='-', end='.\n')
     ide_result = capsys.readouterr().out
-    # scade.output does not behave aas expected in pytest environment
+    assert ide_result
+    # scade.output does not behave as expected in pytest environment
     # --> not testable
     # assert builtin_result == ide_result
+    assert builtin_result

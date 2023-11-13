@@ -90,7 +90,7 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            folder = create.create_folder(conf, 'some name')
+            _ = create.create_folder(conf, 'some name')
 
     nominal_file_ref_data = [
         ('', '$(VAR)\\Root File.txt'),
@@ -125,7 +125,7 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            folder = create.create_file_ref(conf, 'some.name')
+            _ = create.create_file_ref(conf, 'some.name')
 
     nominal_prop_data = [
         ('', 'PROJECT_NO_CONF', ['1'], None),
@@ -166,7 +166,7 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            folder = create.create_prop(conf, None, 'some.name', ['some value'])
+            _ = create.create_prop(conf, None, 'some.name', ['some value'])
 
     nominal_configuration_data = [
         'KCG',
@@ -199,7 +199,7 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            configuration = create.create_configuration(conf, 'some name')
+            _ = create.create_configuration(conf, 'some name')
 
     robustness_project_data = [
         'Default',
@@ -215,4 +215,4 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            configuration = create.save_project(conf)
+            _ = create.save_project(conf)

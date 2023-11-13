@@ -18,6 +18,13 @@ repos:
   - id: codespell
     additional_dependencies:
       - tomli
+    exclude: >
+        (?x)^(
+            .*\.etp|
+            .*\.vsw|
+            .*\.scade|
+            .*\.xscade
+        )$
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.4.0

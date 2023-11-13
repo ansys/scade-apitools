@@ -51,15 +51,6 @@ if platform.system() == 'Windows':
 
 
 def run_example(project: Path, script: Path) -> CompletedProcess:
-    """Run the script on the project and retrieve stderr/stdout."""
-    exe = get_scade_home() / 'SCADE' / 'bin' / 'scade.exe'
-
-    cmd = [str(exe), '-script', script.as_posix(), project.as_posix()]
-    cp = run(cmd, capture_output=True)
-    return cp
-
-
-def run_example(project: Path, script: Path) -> CompletedProcess:
     """
     Run the script on the project and retrieve stderr/stdout.
 

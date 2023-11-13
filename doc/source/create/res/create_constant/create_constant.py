@@ -19,11 +19,11 @@ def main():
     cst_n = create.create_constant(model, 'N', 'int32', 42)
     # constant N2: int32 = N * N
     tree = create.create_nary('*', cst_n, cst_n)
-    cst_n2 = create.create_constant(model, 'N2', 'int32', tree)
+    create.create_constant(model, 'N2', 'int32', tree)
     # save the Scade model
     create.save_all()
 
-    # add one of the ocnstants to the project file
+    # add one of the constants to the project file
     create.add_element_to_project(project, cst_n)
     # save the project file
     create.save_project(project)

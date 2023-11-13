@@ -59,7 +59,7 @@ class TestGetPragmaJson:
         object_ = session.model.get_object_from_path(path)
         assert object_
         with pytest.raises(TypeError):
-            value = prop.get_pragma_json(object_, id)
+            _ = prop.get_pragma_json(object_, id)
 
 
 @pytest.mark.project(get_resources_dir() / 'resources' / 'JsonPragma' / 'JsonPragma.etp')
@@ -155,7 +155,7 @@ class TestGetPragmaTool:
         object_ = session.model.get_object_from_path(path)
         assert object_
         with pytest.raises(TypeError):
-            value = prop.get_pragma_tool_text(object_, id, key)
+            _ = prop.get_pragma_tool_text(object_, id, key)
 
 
 @pytest.mark.project(get_resources_dir() / 'resources' / 'ToolPragma' / 'ToolPragma.etp')
@@ -180,7 +180,6 @@ class TestSetPragmaTool:
     def test_set_pragma_tool(self, tmp_project_session, path, id, key, value, expected):
         # project/session must have been duplicated to a temporary directory
         project, session = tmp_project_session
-        pathname = project.pathname
         object_ = session.model.get_object_from_path(path)
         assert object_
         if value is None:

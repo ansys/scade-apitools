@@ -1,5 +1,7 @@
 # Copyright © 2023 ANSYS, Inc. Unauthorized use, distribution or duplication is prohibited.
 
+"""Sphinx lexer for SCADE One."""
+
 from pygments import token
 from pygments.lexer import RegexLexer, words
 
