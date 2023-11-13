@@ -34,7 +34,7 @@ import sys
 repo = Path(__file__).parent.parent.parent
 sys.path.append(str(repo / 'src'))
 
-from ansys.scade.apitools import declare_project
+from ansys.scade.apitools import declare_project  # noqa: E402
 
 # expect exactly two parameters in that order
 project, script = sys.argv[1:]

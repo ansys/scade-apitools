@@ -15,7 +15,7 @@ from sphinx.highlighting import lexers
 from ansys.scade.apitools import __version__
 
 sys.path.append('.')
-from _lexers.swan import SwanLexer
+from _lexers.swan import SwanLexer  # noqa: E402
 
 # Project information
 project = "ansys-scade-apitools"
