@@ -167,5 +167,5 @@ doc/source/api/
 
 # Ignore project files
 .vscode
-.sln
-.pyproj
+*.sln
+*.pyproj
