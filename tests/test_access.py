@@ -515,7 +515,7 @@ def test_type_expression_robustness(model):
     assert isinstance(equation, suite.Equation)
     with pytest.raises(ValueError):
         # the second parameter of flatten is a reference to a type
-        expression = expr.accessor(equation.right.parameters[1])
+        _ = expr.accessor(equation.right.parameters[1])
 
 
 # robustness test, clock activate is not supported
@@ -524,7 +524,7 @@ def test_clock_activate_robustness(model):
     assert isinstance(equation, suite.Equation)
     with pytest.raises(ValueError):
         # the higher order operator is not supported
-        expression = expr.accessor(equation.right)
+        _ = expr.accessor(equation.right)
 
 
 # robustness test, clock expressions are not supported
@@ -533,4 +533,4 @@ def test_clock_expressions_robustness(model):
     assert isinstance(equation, suite.Equation)
     with pytest.raises(ValueError):
         # the higher order operator is not supported
-        expression = expr.accessor(equation.right)
+        _ = expr.accessor(equation.right)

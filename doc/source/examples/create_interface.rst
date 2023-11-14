@@ -54,7 +54,7 @@ The function ``main`` allows the script to be used by the wrapper script::
 
         """
         # load the SCADE project and model
-        # note: the script shall be launched with a single projet
+        # note: the script shall be launched with a single project
         project = std.get_roots()[0]
         session = suite.get_roots()[0]
         # the description file is in the same directory

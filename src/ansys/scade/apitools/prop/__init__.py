@@ -24,7 +24,7 @@
 """Collection of functions for the storage of settings and properties."""
 
 # ignore F401: functions made available for modules, not used here
-from .pragma import (  # _noqa: F401
+from .pragma import (  # noqa: F401
     find_pragma,
     find_pragma_tool,
     get_pragma_json,

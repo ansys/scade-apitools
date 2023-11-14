@@ -307,7 +307,7 @@ def is_scalar(type_: suite.Type, target: str = 'C') -> bool:
     if isinstance(leaf_type, suite.Table) or isinstance(leaf_type, suite.Structure):
         return False
     if is_imported(leaf_type):
-        if not target in ['C', 'Ada']:
+        if target not in ['C', 'Ada']:
             # raise an exception
             raise ValueError("The target '%s' must be 'C' or 'Ada'" % target)
         else:

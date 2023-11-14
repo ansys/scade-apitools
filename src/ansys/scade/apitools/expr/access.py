@@ -1030,7 +1030,7 @@ class OpCall(CallExpression):
     Notes
     -----
     The design differs slightly from the meta-model. The class
-    :class:`~OpCall` is no more aggreated by the class :class:`~CallExpression`
+    :class:`~OpCall` is no more aggregated by the class :class:`~CallExpression`
     but derives from it: This leads to a simpler design.
 
     Parameters
@@ -1070,7 +1070,7 @@ class OpOp(CallExpression):
     Notes
     -----
     The design differs slightly from the meta-model. The class
-    :class:`~OpOp` is no more aggreated by the class :class:`~CallExpression`
+    :class:`~OpOp` is no more aggregated by the class :class:`~CallExpression`
     but derives from it: This leads to a simpler design.
 
     Parameters
@@ -1351,7 +1351,7 @@ map_operators.update({_: BinaryOp for _ in BINARY_OPS})
 map_operators.update({_: NAryOp for _ in NARY_OPS})
 
 
-def _modifier_accessor(modifier: suite.Expression, call: ExpressionCall) -> ExpressionCall:
+def _modifier_accessor(modifier: suite.Expression, call: CallExpression) -> CallExpression:
     if modifier:
         call = _modifier_accessor(modifier.modifier, call)
         class_ = MAP_HIGHER_ORDER.get(Eck(modifier.predef_opr))

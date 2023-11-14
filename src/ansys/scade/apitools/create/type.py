@@ -212,7 +212,7 @@ def create_sized(signed: bool, size: EX) -> TT:
     -------
     TT
     """
-    if isinstance(size, int) and not size in [8, 16, 32, 64]:
+    if isinstance(size, int) and size not in [8, 16, 32, 64]:
         raise _syntax_error('_create_sized', size)
     return _Sized(signed, size)
 

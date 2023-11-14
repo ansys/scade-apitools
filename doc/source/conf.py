@@ -15,7 +15,10 @@ from sphinx.highlighting import lexers
 from ansys.scade.apitools import __version__
 
 sys.path.append('.')
-from _lexers.swan import SwanLexer
+from _lexers.swan import SwanLexer  # noqa: E402
+
+sys.path.append("../../tools/update_doc")
+from update_doc import update_doc  # noqa: E402
 
 # Project information
 project = "ansys-scade-apitools"
@@ -159,7 +162,7 @@ autoapi_template_dir = get_autoapi_templates_dir_relative_path(Path(__file__))
 suppress_warnings = ["autoapi.python_import_resolution"]
 autoapi_python_use_implicit_namespaces = True
 autoapi_keep_files = True
-autoapi_render_in_single_page = ["class", "enum", "exception"]
+autoapi_render_in_single_page = ["class", "enum", "exception", "function"]
 exclude_patterns = ["autoapi"]
 
 # TODO: remove ignore links after public release
@@ -168,3 +171,6 @@ linkcheck_ignore = [
     "https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml",
     "https://pypi.org/project/ansys-scade-apitools",
 ]
+
+# update the examples
+update_doc(Path(os.getcwd()).parent.parent)

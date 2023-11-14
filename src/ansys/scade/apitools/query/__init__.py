@@ -24,7 +24,7 @@
 """Collection of queries for SCADE Suite models."""
 
 # ignore F401: functions made available for modules, not used here
-from .type import (  # _noqa: F401
+from .type import (  # noqa: F401
     get_cell_type,
     get_leaf_alias,
     get_leaf_type,

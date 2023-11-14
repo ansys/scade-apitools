@@ -508,7 +508,7 @@ def create_graphical_operator(
     name : str
         Name of the operator.
     path : Path
-        Path of the file to store the oprator.
+        Path of the file to store the operator.
 
         This parameter is optional if the package's owner is a package.
         When path is None and owner is the model, the operator is
@@ -554,7 +554,7 @@ def create_textual_operator(
     name : str
         Name of the operator.
     path : Path
-        Path of the file to store the oprator.
+        Path of the file to store the operator.
 
         This parameter is optional if the package's owner is a package.
         When path is None and owner is the model, the operator is
@@ -565,6 +565,7 @@ def create_textual_operator(
         Optional Path of the file defining the symbol of the operator.
     state : bool
         True if the operator is a node.
+
     Returns
     -------
     suite.Operator
@@ -601,7 +602,7 @@ def create_imported_operator(
     file : Path
         Optional file defining the imported operator.
     path : Path
-        Path of the file to store the oprator.
+        Path of the file to store the operator.
 
         This parameter is optional if the package's owner is a package.
         When path is None and owner is the model, the operator is
@@ -709,7 +710,7 @@ def add_operator_inputs(
     insert_before : suite.LocalVariable
         Insertion point of the inputs.
 
-        When this parameter is not None, it shall be an existing input of the oprator.
+        When this parameter is not None, it shall be an existing input of the operator.
         The inputs are inserted before this input. Otherwise, the inputs are added at the end.
 
     Returns
@@ -741,7 +742,7 @@ def add_operator_hidden(
     insert_before : suite.LocalVariable
         Insertion point of the inputs.
 
-        When this parameter is not None, it shall be an existing hidden input of the oprator.
+        When this parameter is not None, it shall be an existing hidden input of the operator.
         The hidden inputs are inserted before this input.
         Otherwise, the hidden inputs are added at the end.
 
@@ -774,7 +775,7 @@ def add_operator_outputs(
     insert_before : suite.LocalVariable
         Insertion point of the outputs.
 
-        When this parameter is not None, it shall be an existing output of the oprator.
+        When this parameter is not None, it shall be an existing output of the operator.
         The outputs are inserted before this input.
         Otherwise, the outputs are added at the end.
 
@@ -800,7 +801,7 @@ def add_operator_parameters(
     insert_before : suite.Constant
         Insertion point of the parameter.
 
-        When this parameter is not None, it shall be an existing parameter of the oprator.
+        When this parameter is not None, it shall be an existing parameter of the operator.
         The parameters are inserted before this parameter.
         Otherwise, the parameters are added at the end.
 
@@ -858,7 +859,7 @@ def set_specialized_operator(operator: suite.Operator, imported: suite.Operator)
 
 def set_type_constraint(type_: suite.NamedType, name: str):
     r"""
-    Set the constaint of a polymorphic type.
+    Set the constraint of a polymorphic type.
 
     Parameters
     ----------
@@ -868,7 +869,7 @@ def set_type_constraint(type_: suite.NamedType, name: str):
         Name of the constraint.
     """
     _check_object(type_, 'declare_type_constraint', 'type', suite.NamedType)
-    if not name in _constraints:
+    if name not in _constraints:
         raise Exception('%s: Unknown constraint' % name)
     type_.constraint = _get_type_constraint(type_, name)
 

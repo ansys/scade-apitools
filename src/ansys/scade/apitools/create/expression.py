@@ -1248,18 +1248,18 @@ class EmptyTreeError(Exception):
 def _is_int(number: str) -> bool:
     # trivial test first
     try:
-        i = int(number)
+        _ = int(number)
         return True
-    except:
+    except ValueError:
         pass
     tokens = number.split('_', 1)
     if len(tokens) != 2:
         return False
     if tokens[1] in {'i8', 'i16', 'i32', 'i64', 'ui8', 'ui16', 'ui32', 'ui64'}:
         try:
-            r = int(tokens[0])
+            _ = int(tokens[0])
             return True
-        except:
+        except ValueError:
             pass
     return False
 
@@ -1267,16 +1267,16 @@ def _is_int(number: str) -> bool:
 def _is_real(number: str) -> bool:
     # trivial test first
     try:
-        r = float(number)
+        _ = float(number)
         return True
-    except:
+    except ValueError:
         pass
     tokens = number.split('_', 1)
     if len(tokens) == 2 and tokens[1] in ('f32', 'f64'):
         try:
-            r = float(tokens[0])
+            _ = float(tokens[0])
             return True
-        except:
+        except ValueError:
             pass
     return False
 

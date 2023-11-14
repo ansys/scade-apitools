@@ -45,7 +45,7 @@ def main():
     nc = create.create_if_tree(c, c1, c2, (start_position[0], positions[2][1] + 80))
     na = create.create_if_tree(a, nb, nc, (start_position[0], positions[0][1] + 80))
 
-    block = create.add_data_def_if_block(operator, 'IB', na, diagram, block_position, block_size)
+    create.add_data_def_if_block(operator, 'IB', na, diagram, block_position, block_size)
 
     create.save_all()
 

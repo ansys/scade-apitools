@@ -22,12 +22,12 @@ def main():
     tree = create.create_structure(('x', 'float32'), ('y', 'float32'))
     point = create.create_named_type(model, 'Point', tree)
     tree = create.create_table(9, point)
-    polyline = create.create_named_type(model, 'polyline', tree)
+    create.create_named_type(model, 'polyline', tree)
 
     # add an array of anonymous (x, y)
     tree_struct = create.create_structure(('x', 'float32'), ('y', 'float32'))
     tree_table = create.create_table(9, tree_struct)
-    polyline2 = create.create_named_type(model, 'polyline2', tree_table)
+    create.create_named_type(model, 'polyline2', tree_table)
 
     create.save_all()
 
