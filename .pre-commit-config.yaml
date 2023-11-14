@@ -33,6 +33,7 @@ repos:
   - id: debug-statements
   - id: check-yaml
   - id: trailing-whitespace
+    exclude: (?x)^(.*\.tot)$
 
 - repo: local
   hooks:
