@@ -17,6 +17,9 @@ from ansys.scade.apitools import __version__
 sys.path.append('.')
 from _lexers.swan import SwanLexer  # noqa: E402
 
+sys.path.append("../../tools/update_doc")
+from update_doc import update_doc  # noqa: E402
+
 # Project information
 project = "ansys-scade-apitools"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
@@ -168,3 +171,6 @@ linkcheck_ignore = [
     "https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml",
     "https://pypi.org/project/ansys-scade-apitools",
 ]
+
+# update the examples
+update_doc(Path(os.getcwd()).parent.parent)
