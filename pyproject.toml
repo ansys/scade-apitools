@@ -32,7 +32,7 @@ keywords=["Scade", "Api", "Tools"]
 [project.optional-dependencies]
 build = [
     "build==0.8.0",
-    "twine==4.0.1"
+    "twine==4.0.2"
 ]
 tests = [
     "pytest==7.1.2",
