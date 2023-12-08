@@ -31,7 +31,7 @@ keywords=["Scade", "Api", "Tools"]
 
 [project.optional-dependencies]
 build = [
-    "build==0.8.0",
+    "build==1.0.3",
     "twine==4.0.1"
 ]
 tests = [
