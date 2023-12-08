@@ -1,24 +1,5 @@
-# MIT License
-#
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
 
 """
 Test suite for create/project.py.
@@ -109,7 +90,7 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            folder = create.create_folder(conf, 'some name')
+            _ = create.create_folder(conf, 'some name')
 
     nominal_file_ref_data = [
         ('', '$(VAR)\\Root File.txt'),
@@ -144,7 +125,7 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            folder = create.create_file_ref(conf, 'some.name')
+            _ = create.create_file_ref(conf, 'some.name')
 
     nominal_prop_data = [
         ('', 'PROJECT_NO_CONF', ['1'], None),
@@ -185,7 +166,7 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            folder = create.create_prop(conf, None, 'some.name', ['some value'])
+            _ = create.create_prop(conf, None, 'some.name', ['some value'])
 
     nominal_configuration_data = [
         'KCG',
@@ -218,7 +199,7 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            configuration = create.create_configuration(conf, 'some name')
+            _ = create.create_configuration(conf, 'some name')
 
     robustness_project_data = [
         'Default',
@@ -234,4 +215,4 @@ class TestCreateProject:
         project, _ = project_session
         conf = find_configuration(project, name)
         with pytest.raises(TypeError):
-            configuration = create.save_project(conf)
+            _ = create.save_project(conf)

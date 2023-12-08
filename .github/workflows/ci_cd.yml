@@ -66,9 +66,9 @@ jobs:
     steps:
       - name: "Install Git and clone project"
         uses: actions/checkout@v3
-    
+
       # - uses: ansys/actions/tests-pytest@v4
-      - uses: ./tests-pytest
+      - uses: ./.github/test-pytest-with-scade/
         with:
           pytest-extra-args: "--cov=ansys --cov-report=term --cov-branch --cov-report=html:.cov/html"
           scade-version: ${{ matrix.scade-version }}
@@ -86,7 +86,7 @@ jobs:
         run: |
           sudo apt-get install zip
           zip -r examples.zip ./examples
-      
+
       - name: "Upload zip to artifacts"
         uses: actions/upload-artifact@v3
         with:
@@ -117,7 +117,7 @@ jobs:
           doc-artifact-name: 'documentation-html'
           cname: ${{ env.DOCUMENTATION_CNAME }}
           token: ${{ secrets.GITHUB_TOKEN }}
-  
+
   release-github:
     name: "Release to GitHub"
     runs-on: ubuntu-latest

@@ -1,6 +1,7 @@
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +24,7 @@
 """Collection of functions for the storage of settings and properties."""
 
 # ignore F401: functions made available for modules, not used here
-from .pragma import (  # _noqa: F401
+from .pragma import (  # noqa: F401
     find_pragma,
     find_pragma_tool,
     get_pragma_json,

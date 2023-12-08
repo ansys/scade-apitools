@@ -7,7 +7,7 @@ Reminder
 --------
 
 Most of the SCADE Python APIs available in the SCADE IDE are proxies to internal C++ or Java kernels.
-The most popular are the following ones: 
+The most popular are the following ones:
 
 * SCADE Suite
 * SCADE Test
@@ -81,7 +81,9 @@ If none of the above uses cases applies, the script cannot be executed.
 
 Example of interactive session with a standard installation of Python:
 
-1. Interactive session ::
+1. Interactive session
+
+.. code:: python
 
     > where python.exe
     C:\Users\jhenry\AppData\Local\Programs\Python\Python310\python.exe
@@ -91,10 +93,14 @@ Example of interactive session with a standard installation of Python:
 
 2. Preamble to activate a SCADE environment on a given project
 
+.. code:: python
+
     >>> from ansys.scade.apitools import declare_project
     >>> declare_project(r'C:\Program Files\ANSYS Inc\v232\SCADE\examples\ABC_N\ABC_N.etp')
 
 3. Regular script: Load the declared projects and access their pathname
+
+.. code:: python
 
     >>> from scade.model.project.stdproject import get_roots as get_projects
     >>> for project in get_projects():

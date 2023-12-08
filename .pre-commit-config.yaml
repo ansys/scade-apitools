@@ -1,49 +1,45 @@
 repos:
 
-- repo: https://github.com/psf/black
-  rev: 22.3.0
+- repo: https://github.com/ansys/pre-commit-hooks
+  rev: v0.2.0
   hooks:
-  - id: black
+    - id: add-license-headers
+      args: ["./"]
 
-- repo: https://github.com/pycqa/isort
-  # https://stackoverflow.com/questions/75269700/pre-commit-fails-to-install-isort-5-11-4-with-error-runtimeerror-the-poetry-co/75295105#75295105
-  rev: 5.11.5
+- repo: https://github.com/charliermarsh/ruff-pre-commit
+  rev: v0.1.2
   hooks:
-  - id: isort
-
-- repo: https://github.com/PyCQA/flake8
-  rev: 5.0.4
-  hooks:
-  - id: flake8
-    additional_dependencies: [pep8-naming]
+    - id: ruff
+      args: [--fix]
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.1.0
+  rev: v2.2.6
   hooks:
   - id: codespell
+    additional_dependencies:
+      - tomli
     exclude: >
         (?x)^(
             .*\.etp|
             .*\.vsw|
             .*\.scade|
-            .*\.xscade|
-            \.tox |
-            tests/resources/.*\.xml
+            .*\.xscade
         )$
 
-
-- repo: https://github.com/pycqa/pydocstyle
-  rev: 6.3.0
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
   hooks:
-  - id: pydocstyle
-    additional_dependencies: [toml]
-    exclude: "tests/"
+  - id: check-merge-conflict
+  - id: debug-statements
+  - id: check-yaml
+  - id: trailing-whitespace
+    exclude: (?x)^(.*\.tot)$
 
 - repo: local
   hooks:
-  # generate the scripts execution outputs and diagram png files
+  # Generate the scripts execution outputs and diagram png files
   # in the documentation directory.
-  # raise an error when there are changes or obsolete files
+  # Raise an error when there are changes or obsolete files.
   - id: update_examples
     name: update_examples
     language: python

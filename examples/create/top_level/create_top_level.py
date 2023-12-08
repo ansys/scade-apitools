@@ -1,3 +1,5 @@
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+
 """
 Example for creating a graphical top-level operator.
 
@@ -169,7 +171,7 @@ def add_operator(project: std.Project, model: suite.Model, name: str) -> suite.O
 def main():
     """Create a top-level operator which calls the existing root operators."""
     # load the SCADE project and model
-    # note: the script shall be launched with a single projet
+    # note: the script shall be launched with a single project
     project = std.get_roots()[0]
     model = suite.get_roots()[0].model
     # create the top-level operator instance

@@ -1,5 +1,5 @@
-User's Guide
-------------
+User guide
+-----------
 
 .. toctree::
    :maxdepth: 1

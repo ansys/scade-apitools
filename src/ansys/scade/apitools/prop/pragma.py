@@ -1,6 +1,7 @@
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -58,14 +59,15 @@ def find_pragma(object_: suite.Object, id: str) -> suite.Pragma:
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element to search the pragma.
-        id : str
-            Identifier of the pragma.
+    object\_ : suite.Object
+        Element to search the pragma.
+    id : str
+        Identifier of the pragma.
+
     Returns
     -------
-        suite.Pragma
-            Found pragma.
+    suite.Pragma
+        Found pragma.
 
     .. seealso:: Example :ref:`pragma <ex__pragma>`
     """
@@ -81,14 +83,15 @@ def remove_pragma(object_: suite.Object, id: str) -> bool:
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element to search the pragma.
-        id : str
-            Identifier of the pragma.
+    object\_ : suite.Object
+        Element to search the pragma.
+    id : str
+        Identifier of the pragma.
+
     Returns
     -------
-        bool
-            The pragma is found.
+    bool
+        The pragma is found.
 
     .. seealso:: Example :ref:`pragma <ex__pragma>`
     """
@@ -115,10 +118,11 @@ def get_pragma_text(object_: suite.Object, id: str) -> str:
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element to search the pragma.
-        id : str
-            Identifier of the pragma.
+    object\_ : suite.Object
+        Element to search the pragma.
+    id : str
+        Identifier of the pragma.
+
     Returns
     -------
         str
@@ -149,16 +153,17 @@ def set_pragma_text(object_: suite.Object, id: str, text: str) -> bool:
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element to search the pragma.
-        id : str
-            Identifier of the pragma.
-        text : str
-            New value of the pragma.
+    object\_ : suite.Object
+        Element to search the pragma.
+    id : str
+        Identifier of the pragma.
+    text : str
+        New value of the pragma.
+
     Returns
     -------
-        bool
-            The model is modified.
+    bool
+        The model is modified.
 
     .. seealso:: Example :ref:`pragma <ex__pragma>`
     """
@@ -190,16 +195,17 @@ def find_pragma_tool(object_: suite.Object, id: str, key: str) -> suite.TextPrag
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element to search the pragma.
-        id : str
-            Identifier of the pragma.
-        key : str
-            First token of the pragma.
+    object\_ : suite.Object
+        Element to search the pragma.
+    id : str
+        Identifier of the pragma.
+    key : str
+        First token of the pragma.
+
     Returns
     -------
-        suite.TextPragma
-            Found pragma.
+    suite.TextPragma
+        Found pragma.
 
     .. seealso:: Example :ref:`pragma_tool <ex__pragma_tool>`
     """
@@ -222,16 +228,17 @@ def remove_pragma_tool(object_: suite.Object, id: str, key: str) -> bool:
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element to search the pragma.
-        id : str
-            Identifier of the pragma.
-        key : str
-            First token of the pragma.
+    object\_ : suite.Object
+        Element to search the pragma.
+    id : str
+        Identifier of the pragma.
+    key : str
+        First token of the pragma.
+
     Returns
     -------
-        bool
-            The pragma is found.
+    bool
+        The pragma is found.
 
     .. seealso:: Example :ref:`pragma_tool <ex__pragma_tool>`
     """
@@ -252,16 +259,17 @@ def get_pragma_tool_text(object_: suite.Object, id: str, key: str) -> str:
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element to search the pragma.
-        id : str
-            Identifier of the pragma.
-        key : str
-            First token of the pragma.
+    object\_ : suite.Object
+        Element to search the pragma.
+    id : str
+        Identifier of the pragma.
+    key : str
+        First token of the pragma.
+
     Returns
     -------
-        str
-            Text of the found pragma or "".
+    str
+        Text of the found pragma or "".
 
     .. seealso:: Example :ref:`pragma_tool <ex__pragma_tool>`
     """
@@ -281,18 +289,19 @@ def set_pragma_tool_text(object_: suite.Object, id: str, key: str, text: str) ->
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element to search the pragma.
-        id : str
-            Identifier of the pragma.
-        text : str
-            New value of the pragma.
-        key : str
-            First token of the pragma.
+    object\_ : suite.Object
+        Element to search the pragma.
+    id : str
+        Identifier of the pragma.
+    text : str
+        New value of the pragma.
+    key : str
+        First token of the pragma.
+
     Returns
     -------
-        bool
-            The model is modified.
+    bool
+        The model is modified.
 
     .. seealso:: Example :ref:`pragma_tool <ex__pragma_tool>`
     """
@@ -319,16 +328,17 @@ def get_pragma_json(object_: suite.Object, id: str) -> object:
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element the pragma shall be retrieved from.
-        id : str
-            Identifier of the pragma.
+    object\_ : suite.Object
+        Element the pragma shall be retrieved from.
+    id : str
+        Identifier of the pragma.
+
     Returns
     -------
-        object
-            Python object corresponding to the JSON document stored in the
-            pragma, or ``{}`` if there is no pragma, or ``None`` if the
-            pragma does not contain a valid JSON document.
+    object
+        Python object corresponding to the JSON document stored in the
+        pragma, or ``{}`` if there is no pragma, or ``None`` if the
+        pragma does not contain a valid JSON document.
 
     .. seealso:: Example :ref:`pragma_json <ex__pragma_json>`
     """
@@ -348,16 +358,17 @@ def set_pragma_json(object_: suite.Object, id: str, data: object) -> bool:
 
     Parameters
     ----------
-        object\_ : suite.Object
-            Element the pragma shall be attached to.
-        id : str
-            Identifier of the pragma.
-        data : object
-            Python object to be serialized to a JSON document.
+    object\_ : suite.Object
+        Element the pragma shall be attached to.
+    id : str
+        Identifier of the pragma.
+    data : object
+        Python object to be serialized to a JSON document.
+
     Returns
     -------
-        bool
-            The object is modified.
+    bool
+        The object is modified.
 
     .. seealso:: Example :ref:`pragma_json <ex__pragma_json>`
     """

@@ -1,6 +1,7 @@
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -57,7 +58,10 @@ def get_scade_dirs(min='00.0', max='99.9'):
     names = []
     if platform.system() == 'Windows':
         for company in 'Esterel Technologies', 'Ansys Inc':
-            hklm = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, 'SOFTWARE\%s\SCADE' % company)
+            try:
+                hklm = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, 'SOFTWARE\%s\SCADE' % company)
+            except OSError:
+                continue
             for i in range(reg.QueryInfoKey(hklm)[0]):
                 name = reg.EnumKey(hklm, i)
                 try:
@@ -131,15 +135,12 @@ if platform.system() == 'Windows':
     if not importlib.util.find_spec("scade_env"):
         add_scade_to_sys_path()
 
-    # ignore F401: declare_project made available for modules, not used here
+    from scade_env import load_project as declare_project
+
     # import also _scade_api and scade, to avoid import order constraint in client files
-
-    from scade_env import load_project as declare_project  # noqa: F401
-
-    # some fake statement to prevent isort to change the order of the next import directives
-    _ = 0
-    import _scade_api  # noqa: F401
-    import scade  # noqa: F401
+    # isort: split
+    import _scade_api
+    import scade
 else:
     # allow importing the file on other systems
     # for documentation generation, for example

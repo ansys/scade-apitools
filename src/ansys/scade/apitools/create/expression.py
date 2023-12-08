@@ -1,6 +1,7 @@
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -435,14 +436,13 @@ def create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None)
 
     Parameters
     ----------
-        op : str
-            Operator: & | | | ^ | # | + | *
+    op : str
+        Operator: & | | | ^ | # | + | *
+    args : List[EX]
+        Operands: expression trees.
 
-        *args : List[EX]
-            Operands: expression trees.
-
-        modifiers : Union[ET, List[ET]]
-            Optional list of higher order constructs, to be provided as keyword parameter.
+    modifiers : Union[ET, List[ET]]
+        Optional list of higher order constructs, to be provided as keyword parameter.
 
     Returns
     -------
@@ -462,7 +462,7 @@ def create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None)
 
 
 def create_if(condition: EX, then: LX, else_: LX) -> ET:
-    """
+    r"""
     Return the expression tree for the operator if-then-else.
 
     Note: interface change with respect to the SCADE Creation Library, the flows
@@ -476,7 +476,7 @@ def create_if(condition: EX, then: LX, else_: LX) -> ET:
         then : Union[EX, List[EX]]
             List of expressions trees when condition is true.
 
-        else_ : Union[EX, List[EX]]
+        else\_ : Union[EX, List[EX]]
             List of expressions trees when condition is false.
 
     Returns
@@ -547,14 +547,12 @@ def create_make(
 
     Parameters
     ----------
-        type : suite.NamedType
-            Type to be instantiated.
-
-        *args : List[EX]
-            Values of the type instance.
-
-        modifiers : Union[ET, List[ET]]
-            Optional list of higher order constructs, to be provided as keyword parameter.
+    type : suite.NamedType
+        Type to be instantiated.
+    args : List[EX]
+        Values of the type instance.
+    modifiers : Union[ET, List[ET]]
+        Optional list of higher order constructs, to be provided as keyword parameter.
 
     Returns
     -------
@@ -1284,18 +1282,18 @@ class EmptyTreeError(Exception):
 def _is_int(number: str) -> bool:
     # trivial test first
     try:
-        i = int(number)
+        _ = int(number)
         return True
-    except:
+    except ValueError:
         pass
     tokens = number.split('_', 1)
     if len(tokens) != 2:
         return False
     if tokens[1] in {'i8', 'i16', 'i32', 'i64', 'ui8', 'ui16', 'ui32', 'ui64'}:
         try:
-            r = int(tokens[0])
+            _ = int(tokens[0])
             return True
-        except:
+        except ValueError:
             pass
     return False
 
@@ -1303,16 +1301,16 @@ def _is_int(number: str) -> bool:
 def _is_real(number: str) -> bool:
     # trivial test first
     try:
-        r = float(number)
+        _ = float(number)
         return True
-    except:
+    except ValueError:
         pass
     tokens = number.split('_', 1)
     if len(tokens) == 2 and tokens[1] in ('f32', 'f64'):
         try:
-            r = float(tokens[0])
+            _ = float(tokens[0])
             return True
-        except:
+        except ValueError:
             pass
     return False
 

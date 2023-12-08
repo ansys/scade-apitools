@@ -1,24 +1,5 @@
-# MIT License
-#
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
 
 """
 Test suite for create/expression.py.
@@ -73,13 +54,13 @@ def test_create_call_nominal(name: str, args, inst_args, expected: str):
 def test_create_call_robustness():
     constant = suite.Constant()
     with pytest.raises(TypeError):
-        tree = create.create_call(constant, [])
+        _ = create.create_call(constant, [])
 
 
 def test_create_higher_order_call_robustness():
     constant = suite.Constant()
     with pytest.raises(TypeError):
-        tree = create.create_higher_order_call(constant, [], [])
+        _ = create.create_higher_order_call(constant, [], [])
 
 
 create_unary_data = [
@@ -110,7 +91,7 @@ def test_create_unary(symbol, arg, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_unary(symbol, arg)
+            _ = create.create_unary(symbol, arg)
 
 
 create_binary_data = [
@@ -157,7 +138,7 @@ def test_create_binary(symbol: str, arg1, arg2, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_binary(symbol, arg1, arg2)
+            _ = create.create_binary(symbol, arg1, arg2)
 
 
 create_nary_data = [
@@ -189,7 +170,7 @@ def test_create_nary(symbol: str, args, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_nary(symbol, *args)
+            _ = create.create_nary(symbol, *args)
 
 
 create_if_data = [
@@ -213,7 +194,7 @@ def test_create_if(id: str, condition, thens, elses, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_if(condition, thens, elses)
+            _ = create.create_if(condition, thens, elses)
 
 
 create_case_data = [
@@ -245,7 +226,7 @@ def test_create_case(id: str, selector, args, default, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_case(selector, args, default)
+            _ = create.create_case(selector, args, default)
 
 
 create_make_data = [
@@ -270,7 +251,7 @@ def test_create_make(name: str, args, class_, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_make(type_, *args)
+            _ = create.create_make(type_, *args)
 
 
 create_flatten_data = [
@@ -293,7 +274,7 @@ def test_create_flatten(name: str, arg, class_, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_flatten(type_, arg)
+            _ = create.create_flatten(type_, arg)
 
 
 create_scalar_to_vector_data = [
@@ -315,7 +296,7 @@ def test_create_scalar_to_vector(size, args, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_scalar_to_vector(size, *args)
+            _ = create.create_scalar_to_vector(size, *args)
 
 
 create_data_array_data = [
@@ -337,7 +318,7 @@ def test_create_data_array(id: str, args, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_data_array(*args)
+            _ = create.create_data_array(*args)
 
 
 create_data_struct_data = [
@@ -362,7 +343,7 @@ def test_create_data_struct(id: str, args, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_data_struct(*args)
+            _ = create.create_data_struct(*args)
 
 
 create_prj_data = [
@@ -389,7 +370,7 @@ def test_create_prj(name: str, path, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_prj(c, path)
+            _ = create.create_prj(c, path)
 
 
 create_prj_dyn_data = [
@@ -415,7 +396,7 @@ def test_create_prj_dyn(name: str, path, default, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_prj_dyn(c, path, default)
+            _ = create.create_prj_dyn(c, path, default)
 
 
 create_change_ith_data = [
@@ -441,7 +422,7 @@ def test_create_change_ith(name: str, path, value, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_change_ith(c, path, value)
+            _ = create.create_change_ith(c, path, value)
 
 
 create_pre_data = [
@@ -463,7 +444,7 @@ def test_create_pre(flows, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_pre(*flows)
+            _ = create.create_pre(*flows)
 
 
 create_init_data = [
@@ -488,7 +469,7 @@ def test_create_init(flows, inits, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_init(flows, inits)
+            _ = create.create_init(flows, inits)
 
 
 create_fby_data = [
@@ -513,7 +494,7 @@ def test_create_fby(flows, delay, inits, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_fby(flows, delay, inits)
+            _ = create.create_fby(flows, delay, inits)
 
 
 create_times_data = [
@@ -570,7 +551,7 @@ def test_create_concat(names, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            tree = create.create_concat(*arrays)
+            _ = create.create_concat(*arrays)
 
 
 create_reverse_data = [
@@ -751,7 +732,7 @@ def test_normalize_tree_value(tree, expected_value, expected_kind):
     else:
         # robustness
         with pytest.raises(expected_value):
-            tree = _normalize_tree(tree)
+            _ = _normalize_tree(tree)
 
 
 # additional tests with Scade model elements
@@ -778,7 +759,7 @@ def test_normalize_tree_reference(class_: str, name: str, expected):
     else:
         # robustness
         with pytest.raises(expected):
-            expr = _normalize_tree(tree)
+            _ = _normalize_tree(tree)
 
 
 # additional tests with Scade model elements

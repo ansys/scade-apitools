@@ -1,28 +1,35 @@
 """Sphinx documentation configuration file."""
 from datetime import datetime
 import os
+from pathlib import Path
 import sys
 
-from ansys_sphinx_theme import ansys_favicon, get_version_match
-from ansys_sphinx_theme import pyansys_logo_black as logo
+from ansys_sphinx_theme import (
+    ansys_favicon,
+    get_autoapi_templates_dir_relative_path,
+    get_version_match,
+    pyansys_logo_black,
+)
 from sphinx.highlighting import lexers
 
-sys.path.append('.')
-from _lexers.swan import SwanLexer
+from ansys.scade.apitools import __version__
 
-# allow custom extensions
-sys.path.append(os.path.abspath("./_ext"))
+sys.path.append('.')
+from _lexers.swan import SwanLexer  # noqa: E402
+
+sys.path.append("../../tools/update_doc")
+from update_doc import update_doc  # noqa: E402
 
 # Project information
 project = "ansys-scade-apitools"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
 author = "ANSYS, Inc."
-release = version = "0.1.dev0"
+release = version = __version__
 
 # Select desired logo, theme, and declare the html title
-html_logo = logo
+html_logo = pyansys_logo_black
 html_theme = "ansys_sphinx_theme"
-html_short_title = html_title = "pyscade-apitools"
+html_short_title = html_title = "Ansys SCADE API Tools"
 
 # multi-version documentation
 cname = os.getenv("DOCUMENTATION_CNAME", "apitools.scade.docs.pyansys.com")
@@ -45,16 +52,15 @@ html_theme_options = {
 
 # Sphinx extensions
 extensions = [
-    "sphinx.ext.autodoc",
-    # "sphinx.ext.autodoc.typehints",
-    "sphinx.ext.autosummary",
+    "autoapi.extension",
+    "sphinx.ext.autodoc.typehints",
     "sphinx.ext.napoleon",
-    # JH "numpydoc",
+    "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
-    # "sphinx_gallery.gen_gallery",
-    # apitools examples
-    'ex',
+    "sphinx_jinja",
+    "sphinx_design",
+    # "sphinx_gallery.gen_gallery",# apitools examples
 ]
 
 # Print the type annotations from the signature in the description only
@@ -76,7 +82,7 @@ add_module_names = False
 
 # Intersphinx mapping
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/dev", None),
+    "python": ("https://docs.python.org/3.11", None),
     # kept here as an example
     # "scipy": ("https://docs.scipy.org/doc/scipy/reference", None),
     # "numpy": ("https://numpy.org/devdocs", None),
@@ -96,12 +102,14 @@ numpydoc_validate = True
 numpydoc_validation_checks = {
     "GL06",  # Found unknown section
     "GL07",  # Sections are in the wrong order.
-    "GL08",  # The object does not have a docstring
+    # Disabled the docstring validation as most of the methods doesn't have the docstring
+    # TODO: Add docstring and enable GL08 validation
+    # "GL08",  # The object does not have a docstring
     "GL09",  # Deprecation warning should precede extended summary
     "GL10",  # reST directives {directives} must be followed by two colons
     "SS01",  # No summary found
     "SS02",  # Summary does not start with a capital letter
-    # "SS03", # Summary does not end with a period
+    "SS03",  # Summary does not end with a period
     "SS04",  # Summary contains heading whitespaces
     # "SS05", # Summary must start with infinitive verb, not third person
     "RT02",  # The first line of the Returns section should contain only the
@@ -116,7 +124,6 @@ html_favicon = ansys_favicon
 
 # static path
 html_static_path = ["_static"]
-html_css_files = ["custom.css"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -126,3 +133,44 @@ source_suffix = ".rst"
 
 # The master toctree document.
 master_doc = "index"
+
+
+# Configuration for Sphinx autoapi
+def prepare_jinja_env(jinja_env) -> None:
+    """
+    Customize the jinja env.
+
+    Notes
+    -----
+    See https://jinja.palletsprojects.com/en/3.0.x/api/#jinja2.Environment
+    """
+    jinja_env.globals["project_name"] = project
+
+
+autoapi_prepare_jinja_env = prepare_jinja_env
+autoapi_type = "python"
+autoapi_dirs = ["../../src/ansys"]
+autoapi_root = "api"
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "special-members",
+]
+autoapi_template_dir = get_autoapi_templates_dir_relative_path(Path(__file__))
+suppress_warnings = ["autoapi.python_import_resolution"]
+autoapi_python_use_implicit_namespaces = True
+autoapi_keep_files = True
+autoapi_render_in_single_page = ["class", "enum", "exception", "function"]
+exclude_patterns = ["autoapi"]
+
+# TODO: remove ignore links after public release
+linkcheck_ignore = [
+    "https://github.com/ansys/scade-apitools",
+    "https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml",
+    "https://pypi.org/project/ansys-scade-apitools",
+]
+
+# update the examples
+update_doc(Path(os.getcwd()).parent.parent)

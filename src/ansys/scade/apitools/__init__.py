@@ -1,6 +1,7 @@
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -31,12 +32,20 @@ try:
 except ModuleNotFoundError:
     import importlib_metadata
 
-# ignore F401: declare_project made available for modules, not used here
-from ansys.scade.apitools.auto_scade_env import _scade_api, declare_project, scade  # noqa: F401
-from ansys.scade.apitools.info import ide, print
-
 try:
     __version__ = importlib_metadata.version(__name__.replace(".", "-"))
-except importlib_metadata.PackageNotFoundError:
-    # may happen in GH action Code Style
+except (importlib_metadata.PackageNotFoundError, AttributeError):
+    # Handle the case where version cannot be determined
     __version__ = None
+
+# Importing specific names instead of wildcard imports for clarity
+try:
+    from ansys.scade.apitools.auto_scade_env import _scade_api, declare_project, scade
+    from ansys.scade.apitools.info import ide, print
+except ImportError:
+    # Handle import errors gracefully
+    _scade_api = None
+    declare_project = None
+    scade = None
+    ide = None
+    print = None

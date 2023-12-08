@@ -1,3 +1,5 @@
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+
 """
 Example for ansys.scade.apitools.expr.DataStructOp.
 
@@ -21,4 +23,4 @@ assert isinstance(ex, DataStructOp)
 output('kind: %s\n' % ex.code)
 output('instance name: %s\n' % ex.name)
 # the parameters are local variables, dump the pairs
-output('fields: {%s}\n' % ','.join(['%s: %s' % (l, f.path.name) for l, f in ex.data]))
+output('fields: {%s}\n' % ','.join(['%s: %s' % (v, f.path.name) for v, f in ex.data]))

@@ -1,20 +1,104 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
 
-[tool.black]
+[project]
+name="ansys-scade-apitools"
+version="0.1.dev0"
+description ="An extension library for SCADE Python APIs."
+readme="README.rst"
+
+# only 3.7. and 3.10
+requires-python = ">=3.7,!=3.8.*,!=3.9.*,<3.11"
+license = {file = "LICENSES/MIT.txt"}
+authors = [
+    {name = "Ansys, Inc.", email = "pyansys.core@ansys.com"},
+]
+maintainers = [
+    {name = "Ansys, Inc.", email = "pyansys.core@ansys.com"},
+]
+dependencies=[
+    "importlib-metadata >= 1.0; python_version < '3.8'",
+    "importlib-metadata >= 4.0; python_version >= '3.8'",
+]
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+]
+keywords=["Scade", "Api", "Tools"]
+
+[project.optional-dependencies]
+build = [
+    "build==0.8.0",
+    "twine==4.0.1"
+]
+tests = [
+    "pytest==7.1.2",
+    "pytest-cov==3.0.0"
+]
+doc = [
+    "ansys-sphinx-theme==0.12.5",
+    "numpydoc==1.6.0",
+    "sphinx==7.2.5",
+    # TODO: update this version once sphinx-autoapi includes single-page option,
+    # see "sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi@feat/single-page-option"
+    "sphinx-autoapi==3.0.0",
+    "sphinx-copybutton==0.5.2",
+    "sphinx-jinja==2.0.2",
+    "sphinx_design==0.5.0",
+]
+
+
+[tool.flit.module]
+name = "ansys.scade.apitools"
+
+[project.urls]
+Source = "https://github.com/ansys/scade-apitools"
+Issues = "https://github.com/ansys/scade-apitools/issues"
+Discussions = "https://github.com/ansys/scade-apitools/discussions"
+Documentation = "https://apitools.scade.docs.pyansys.com"
+Releases = "https://github.com/ansys/scade-apitools/releases"
+Homepage = "https://www.ansys.com/products/embedded-software/ansys-scade-suite"
+
+
+[tool.ruff]
 line-length = 99
-skip-string-normalization = true
+select = [
+    "E",    # pycodestyle, see https://beta.ruff.rs/docs/rules/#pycodestyle-e-w
+    "D",    # pydocstyle, see https://beta.ruff.rs/docs/rules/#pydocstyle-d
+    "F",    # pyflakes, see https://beta.ruff.rs/docs/rules/#pyflakes-f
+    "I",    # isort, see https://beta.ruff.rs/docs/rules/#isort-i
+    "N",    # pep8-naming, see https://beta.ruff.rs/docs/rules/#pep8-naming-n
+]
+ignore = [
+    "E501",  # Line too long. Ignoring this so "ruff.formatter" manages line length.
+    "D203",  # One blank line required before class docstring.
+    "D204"  # One blank line required after class docstring.
+]
 
-[tool.isort]
-profile = "black"
-force_sort_within_sections = true
-line_length = 99
-default_section = "THIRDPARTY"
-src_paths = ["doc", "src", "tests", "tools", "examples"]
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "tab"
+
+[tool.ruff.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+known-first-party = ["ansys", "conftest", "test_utils"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["D",]
 
 [tool.coverage.run]
 source = ["ansys.scade"]
 
 [tool.coverage.report]
 show_missing = true
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+addopts = "-ra --cov=ansys.scade --cov-report html:.cov/html --cov-branch --cov-report xml:.cov/xml --cov-report term -vv"

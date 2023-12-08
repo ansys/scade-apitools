@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2021 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2021 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ import sys
 repo = Path(__file__).parent.parent.parent
 sys.path.append(str(repo / 'src'))
 
-from ansys.scade.apitools import declare_project
+from ansys.scade.apitools import declare_project  # noqa: E402
 
 # expect exactly two parameters in that order
 project, script = sys.argv[1:]

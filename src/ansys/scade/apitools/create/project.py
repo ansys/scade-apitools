@@ -1,6 +1,7 @@
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -233,7 +234,7 @@ def _create_empty_project(pathname: str, configuration: str, products: List[str]
             Name of the configuration: a project must have at least one configuration.
 
         products: List[str]
-            optional list of tags identifiying the nature of the project.
+            optional list of tags identifying the nature of the project.
             For example, ``SC`` indicates a SCADE Suite project.
     """
     if products is None:
@@ -321,7 +322,7 @@ def _find_file_ref(project: std.Project, pathname: str) -> std.FileRef:
             Path of the project to search.
 
     Returns
-    ----------
+    -------
         std.FileRef
     """
     path = abspath(pathname)
@@ -341,7 +342,7 @@ def _get_elements(parent: Union[std.Project, std.Folder]) -> List[std.Element]:
             Input project or folder.
 
     Returns
-    ----------
+    -------
         List[std.Element]
     """
     return parent.roots if isinstance(parent, std.Project) else parent.elements

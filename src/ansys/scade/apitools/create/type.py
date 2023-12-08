@@ -1,6 +1,7 @@
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -213,18 +214,18 @@ def create_sized(signed: bool, size: EX) -> TT:
     -------
         TT
     """
-    if isinstance(size, int) and not size in [8, 16, 32, 64]:
+    if isinstance(size, int) and size not in [8, 16, 32, 64]:
         raise _syntax_error('_create_sized', size)
     return _Sized(signed, size)
 
 
 def create_table(dimensions: Union[EX, List[EX]], type_: TX) -> TT:
-    """
+    r"""
     Return the type tree for a structure.
 
     Parameters
     ----------
-        type_ : TX
+        type\_ : TX
             Type tree defining the type of the array elements.
 
         dimensions : Union[EX, List[EX]]
@@ -252,8 +253,8 @@ def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
 
     Parameters
     ----------
-        *fields : List[Tuple[str, TX]]
-            Name/type expression trees.
+    fields : List[Tuple[str, TX]]
+        Name/type expression trees.
 
     Returns
     -------

@@ -1,24 +1,5 @@
-# MIT License
-#
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
 
 """
 Test suite for pragma.py.
@@ -78,7 +59,7 @@ class TestGetPragmaJson:
         object_ = session.model.get_object_from_path(path)
         assert object_
         with pytest.raises(TypeError):
-            value = prop.get_pragma_json(object_, id)
+            _ = prop.get_pragma_json(object_, id)
 
 
 @pytest.mark.project(get_resources_dir() / 'resources' / 'JsonPragma' / 'JsonPragma.etp')
@@ -174,7 +155,7 @@ class TestGetPragmaTool:
         object_ = session.model.get_object_from_path(path)
         assert object_
         with pytest.raises(TypeError):
-            value = prop.get_pragma_tool_text(object_, id, key)
+            _ = prop.get_pragma_tool_text(object_, id, key)
 
 
 @pytest.mark.project(get_resources_dir() / 'resources' / 'ToolPragma' / 'ToolPragma.etp')
@@ -199,7 +180,6 @@ class TestSetPragmaTool:
     def test_set_pragma_tool(self, tmp_project_session, path, id, key, value, expected):
         # project/session must have been duplicated to a temporary directory
         project, session = tmp_project_session
-        pathname = project.pathname
         object_ = session.model.get_object_from_path(path)
         assert object_
         if value is None:

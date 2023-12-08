@@ -1,6 +1,7 @@
-# MIT License
+# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
 #
-# Copyright (c) 2023 ANSYS, Inc. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -1019,7 +1020,7 @@ class OpCall(CallExpression):
             Expression to wrap.
 
     Note: The design differs slightly from the meta-model. The class
-    :class:`~OpCall` is no more aggreated by the class :class:`~CallExpression`
+    :class:`~OpCall` is no more aggregated by the class :class:`~CallExpression`
     but derives from it: This leads to a simpler design.
     """
 
@@ -1060,7 +1061,7 @@ class OpOp(CallExpression):
             Operator call expression.
 
     Note: The design differs slightly from the meta-model. The class
-    :class:`~OpOp` is no more aggreated by the class :class:`~CallExpression`
+    :class:`~OpOp` is no more aggregated by the class :class:`~CallExpression`
     but derives from it: This leads to a simpler design.
     """
 
@@ -1339,7 +1340,7 @@ map_operators.update({_: BinaryOp for _ in BINARY_OPS})
 map_operators.update({_: NAryOp for _ in NARY_OPS})
 
 
-def _modifier_accessor(modifier: suite.Expression, call: ExpressionCall) -> ExpressionCall:
+def _modifier_accessor(modifier: suite.Expression, call: CallExpression) -> CallExpression:
     if modifier:
         call = _modifier_accessor(modifier.modifier, call)
         class_ = MAP_HIGHER_ORDER.get(Eck(modifier.predef_opr))
