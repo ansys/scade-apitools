@@ -36,7 +36,7 @@ build = [
 ]
 tests = [
     "pytest==7.1.2",
-    "pytest-cov==3.0.0"
+    "pytest-cov==4.1.0"
 ]
 doc = [
     "ansys-sphinx-theme==0.12.5",
