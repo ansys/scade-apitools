@@ -169,7 +169,7 @@ def add_imported_to_project(
         Path of the file to be added to the project.
     folder : std.Folder
         Parent folder of the file to add to the project.
-    default: bool
+    default : bool
         When True, the file is added to the default folder
         for SCADE Simulation files, according to the element.
 
