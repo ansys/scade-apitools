@@ -41,7 +41,7 @@ tests = [
 doc = [
     "ansys-sphinx-theme==0.12.5",
     "numpydoc==1.6.0",
-    "sphinx==7.2.5",
+    "sphinx==7.2.6",
     # TODO: update this version once sphinx-autoapi includes single-page option,
     # see "sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi@feat/single-page-option"
     "sphinx-autoapi==3.0.0",
