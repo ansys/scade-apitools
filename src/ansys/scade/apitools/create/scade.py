@@ -110,7 +110,7 @@ def add_element_to_project(
         tagged as ``NONROOT`` for SCADE.
     folder : std.Folder
         Parent folder of the file to add to the project.
-    default: bool
+    default : bool
         When True, the file is added to one of the default folders
         for SCADE Suite files.
 
@@ -163,7 +163,7 @@ def add_imported_to_project(
     ----------
     project : std.Project
         Project to modify.
-    element: Union[suite.NamedType, suite.Operator]
+    element : Union[suite.NamedType, suite.Operator]
         Imported element.
     path : str
         Path of the file to be added to the project.
@@ -221,7 +221,7 @@ def add_simulation_file_to_project(
         Kind of the added file.
     folder : std.Folder
         Parent folder of the file to add to the project.
-    default: bool
+    default : bool
         When True, the file is added to the default folder
         for SCADE Simulation files, according to kind.
 
@@ -361,7 +361,7 @@ def _link_storage_element(owner: suite.Package, element: suite.StorageElement, p
         Owner of the storage element.
     element : suite.StorageELement
         Element to add to the storage unit.
-    path: Path
+    path : Path
         Path of the storage unit.
 
     Returns
@@ -407,7 +407,7 @@ def _add_pending_link(object_: suite.Object, role: str, link: suite.Object):
         Source of the association.
     role : str
         Name of the association end.
-    link: suite.Object
+    link : suite.Object
         Destination of the association.
     """
     global _pending_links
