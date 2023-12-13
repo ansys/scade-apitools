@@ -178,21 +178,20 @@ def _normalize_tree(any: TX) -> TT:
 
 
 def _build_type(tree: TX, context: suite.Object) -> suite.Type:
-    r"""
+    """
     Build a type from an extended type tree.
 
     Parameters
     ----------
-        tree : TX
-            Description of the type expressed as an extended type tree:
-
-        context : suite.Object
-            Context of the creation of the type, used create the instances of the
-            types, find the predefined types or resolve polymorphic types (TODO).
+    tree : TX
+        Description of the type expressed as an extended type tree:
+    context : suite.Object
+        Context of the creation of the type, used create the instances of the
+        types, find the predefined types or resolve polymorphic types (TODO).
 
     Returns
     -------
-        suite.Type
+    suite.Type
     """
     tree = _normalize_tree(tree)
     return tree._build_type(context)
@@ -204,15 +203,14 @@ def create_sized(signed: bool, size: EX) -> TT:
 
     Parameters
     ----------
-        signed : bool
-            Indicates whether the type is signed or not.
-
-        size : EX
-            Size of the type expressed as an expression tree.
+    signed : bool
+        Indicates whether the type is signed or not.
+    size : EX
+        Size of the type expressed as an expression tree.
 
     Returns
     -------
-        TT
+    TT
     """
     if isinstance(size, int) and size not in [8, 16, 32, 64]:
         raise _syntax_error('_create_sized', size)
@@ -225,16 +223,15 @@ def create_table(dimensions: Union[EX, List[EX]], type_: TX) -> TT:
 
     Parameters
     ----------
-        type\_ : TX
-            Type tree defining the type of the array elements.
-
-        dimensions : Union[EX, List[EX]]
-            Dimensions of the array, either a single expression tree or
-            a list of expression trees.
+    type\_ : TX
+        Type tree defining the type of the array elements.
+    dimensions : Union[EX, List[EX]]
+        Dimensions of the array, either a single expression tree or
+        a list of expression trees.
 
     Returns
     -------
-        TT
+    TT
     """
     if not isinstance(dimensions, list):
         dimensions = [dimensions]
@@ -248,7 +245,9 @@ def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
     """
     Return the type tree for a structure.
 
-    Note: interface change with respect to the SCADE Creation Library,
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library,
     the pairs pattern/value are now embedded in a list of tuples.
 
     Parameters
@@ -258,7 +257,7 @@ def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
 
     Returns
     -------
-        TT
+    TT
     """
     if len(fields) == 0:
         raise _syntax_error('create_structure', fields)
@@ -326,15 +325,14 @@ def _get_predefined_type(context: suite.Object, name: str) -> suite.NamedType:
 
     Parameters
     ----------
-        context : suite.Object
-            Any object from which we can derive the owning session.
-
-        name : str
-            Name of the type.
+    context : suite.Object
+        Any object from which we can derive the owning session.
+    name : str
+        Name of the type.
 
     Returns
     -------
-        suite.NamedType
+    suite.NamedType
     """
     global _predefined_types
 
@@ -353,15 +351,14 @@ def _get_type_constraint(context: suite.Object, name: str) -> suite.TypeConstrai
 
     Parameters
     ----------
-        context : suite.Object
-            Any object from which we can derive the owning session.
-
-        name : str
-            Name of the type.
+    context : suite.Object
+        Any object from which we can derive the owning session.
+    name : str
+        Name of the type.
 
     Returns
     -------
-        suite.TypeConstraint
+    suite.TypeConstraint
     """
     global _type_constraints
 
@@ -383,11 +380,10 @@ def _object_link_type(object_: suite.TypedObject, type_: suite.Type):
 
     Parameters
     ----------
-        object\_ : suite.TypedObject
-            Input object.
-
-        type\_ : suite.Type
-            Type of the object.
+    object\_ : suite.TypedObject
+        Input object.
+    type\_ : suite.Type
+        Type of the object.
     """
     if type_:
         global _pending_links

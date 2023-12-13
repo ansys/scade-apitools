@@ -22,11 +22,11 @@
 # SOFTWARE.
 
 """
-Provide load_project from scade_env.
+Provide ``scade_env.load_project``, renamed to ``declare_project``.
 
 Search for a scade installation compatible with the Python version
-and add it to sys.path if not already present.
-Present means scade_env.pyd is accessible from sys.path.
+and add it to ``sys.path`` if not already present.
+Present means ``scade_env.pyd`` is accessible from sys.path.
 """
 
 import importlib
@@ -42,7 +42,7 @@ else:
     pass
 
 
-def resolve_venv(home: Path) -> Path:
+def _resolve_venv(home: Path) -> Path:
     """Return the virtual environment's target, if any."""
     cfg = home / 'pyvenv.cfg'
     if cfg.exists():
@@ -53,7 +53,7 @@ def resolve_venv(home: Path) -> Path:
     return None
 
 
-def get_scade_dirs(min='00.0', max='99.9'):
+def _get_scade_dirs(min='00.0', max='99.9'):
     """Return the list of SCADE installation directories."""
     names = []
     if platform.system() == 'Windows':
@@ -77,7 +77,7 @@ def get_scade_dirs(min='00.0', max='99.9'):
     return dirs
 
 
-def get_python_scade_versions(python_version: str):
+def _get_python_scade_versions(python_version: str):
     """Return the highest SCADE installation compatible with a version of Python."""
     # [min, max[ releases for a given version of Python
     releases = {
@@ -89,11 +89,11 @@ def get_python_scade_versions(python_version: str):
     return interval
 
 
-def get_compatible_scade_home(version: str) -> Path:
+def _get_compatible_scade_home(version: str) -> Path:
     """Return the most recent version of SCADE compatible with the input Python version."""
-    interval = get_python_scade_versions(version)
+    interval = _get_python_scade_versions(version)
     if interval:
-        dirs = get_scade_dirs(*interval)
+        dirs = _get_scade_dirs(*interval)
         if dirs:
             # ordered list, get the most recent compatible version
             # and leave a message for who might read it
@@ -102,14 +102,14 @@ def get_compatible_scade_home(version: str) -> Path:
     return None
 
 
-def add_scade_to_sys_path():
+def _add_scade_to_sys_path():
     """Add to sys.path an installed SCADE release compatible with the current interpreter."""
     # resolve virtual environments to get SCADE's Python interpreter
     home = Path(sys.executable).parent.parent
-    _wrapped_home = resolve_venv(home)
+    _wrapped_home = _resolve_venv(home)
     while _wrapped_home:
         home = _wrapped_home
-        _wrapped_home = resolve_venv(home)
+        _wrapped_home = _resolve_venv(home)
 
     if home.name == 'contrib':
         # python.exe is located in <SCADE install>/contrib/Python3x
@@ -118,7 +118,7 @@ def add_scade_to_sys_path():
         # last chance, try the most recent installation of SCADE
         major, minor, _, _, _ = sys.version_info
         version = '%d.%d' % (major, minor)
-        home = get_compatible_scade_home(version)
+        home = _get_compatible_scade_home(version)
 
     if not home:  # pragma no cover
         # wrong installation or SCADE not available on the computer
@@ -133,7 +133,7 @@ def add_scade_to_sys_path():
 if platform.system() == 'Windows':
     # scade_env.pyd is in <scade installation>/SCADE/bin
     if not importlib.util.find_spec("scade_env"):
-        add_scade_to_sys_path()
+        _add_scade_to_sys_path()
 
     from scade_env import load_project as declare_project
 

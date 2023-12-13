@@ -64,25 +64,22 @@ def create_package(
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the package, either the model itself or a package.
+    owner : suite.Package
+        Owner of the package, either the model itself or a package.
+    name : str
+        Name of the package.
+    path : Path
+        Path of the file to store the package.
 
-        name : str
-            Name of the package.
-
-        path : Path
-            Path of the file to store the package.
-
-            This parameter is optional if the package's owner is a package.
-            When path is None and owner is the model, the package is
-            stored in the model's default file.
-
-        visibility : VK
-            Accessibility of the package, either public or private.
+        This parameter is optional if the package's owner is a package.
+        When path is None and owner is the model, the package is
+        stored in the model's default file.
+    visibility : VK
+        Accessibility of the package, either public or private.
 
     Returns
     -------
-        suite.Package
+    suite.Package
     """
 
     def add_tree_diagram(package, kind):
@@ -124,28 +121,24 @@ def create_named_type(
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the type, either the model itself or a package.
+    owner : suite.Package
+        Owner of the type, either the model itself or a package.
+    name : str
+        Name of the type.
+    definition : TX
+        Definition of the type expressed as a type tree.
+    path : Path
+        Path of the file to store the type.
 
-        name : str
-            Name of the type.
-
-        definition : TX
-            Definition of the type expressed as a type tree.
-
-        path : Path
-            Path of the file to store the type.
-
-            This parameter is ignored if the owner is a package.
-            When path is None and owner is the model, the type is
-            stored in the model's default file.
-
-        visibility : VK
-            Accessibility of the type, either public or private.
+        This parameter is ignored if the owner is a package.
+        When path is None and owner is the model, the type is
+        stored in the model's default file.
+    visibility : VK
+        Accessibility of the type, either public or private.
 
     Returns
     -------
-        suite.NamedType
+    suite.NamedType
     """
     _check_object(owner, 'create_named_type', 'owner', suite.Package)
 
@@ -181,25 +174,23 @@ def create_imported_type(
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the type, either the model itself or a package.
+    owner : suite.Package
+        Owner of the type, either the model itself or a package.
+    name : str
+        Name of the type.
+    path : Path
+        Path of the file to store the type.
 
-        name : str
-            Name of the type.
+        This parameter is ignored if the owner is a package.
+        When path is None and owner is the model, the type is
+        stored in the model's default file.
 
-        path : Path
-            Path of the file to store the type.
-
-            This parameter is ignored if the owner is a package.
-            When path is None and owner is the model, the type is
-            stored in the model's default file.
-
-        visibility : VK
-            Accessibility of the type, either public or private.
+    visibility : VK
+        Accessibility of the type, either public or private.
 
     Returns
     -------
-        suite.NamedType
+    suite.NamedType
     """
     _check_object(owner, 'create_imported_type', 'owner', suite.Package)
 
@@ -233,28 +224,24 @@ def create_enumeration(
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the type, either the model itself or a package.
+    owner : suite.Package
+        Owner of the type, either the model itself or a package.
+    name : str
+        Name of the type.
+    values : List[str]
+        List of the enumeration values.
+    path : Path
+        Path of the file to store the type.
 
-        name : str
-            Name of the type.
-
-        values : List[str]
-            List of the enumeration values.
-
-        path : Path
-            Path of the file to store the type.
-
-            This parameter is ignored if the owner is a package.
-            When path is None and owner is the model, the type is
-            stored in the model's default file.
-
-        visibility : VK
-            Accessibility of the type, either public or private.
+        This parameter is ignored if the owner is a package.
+        When path is None and owner is the model, the type is
+        stored in the model's default file.
+    visibility : VK
+        Accessibility of the type, either public or private.
 
     Returns
     -------
-        suite.NamedType
+    suite.NamedType
     """
     _check_object(owner, 'create_enumeration', 'owner', suite.Package)
 
@@ -290,20 +277,17 @@ def add_enumeration_values(type_: suite.NamedType, values: List[str], insert_bef
 
     Parameters
     ----------
-        type\_ : suite.NamedType
-            Named type defining the enumeration.
+    type\_ : suite.NamedType
+        Named type defining the enumeration.
+    values : List[str]
+        List of the enumeration values to add.
+    insert_before : str
+        Insertion point of the values.
 
-        values : List[str]
-            List of the enumeration values to add.
-
-        insert_before : str
-            Insertion point of the values.
-
-            When this parameter is not None, and exists, the values are inserted
-            before this value. Otherwise, the values are added at the end.
-
-        visibility : str
-            Either 'Public' or 'Private'.
+        When this parameter is not None, and exists, the values are inserted
+        before this value. Otherwise, the values are added at the end.
+    visibility : str
+        Either 'Public' or 'Private'.
     """
     _check_object(type_, 'add_enumeration_values', 'type_', suite.NamedType)
 
@@ -342,31 +326,26 @@ def create_constant(
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the constant, either the model itself or a package.
+    owner : suite.Package
+        Owner of the constant, either the model itself or a package.
+    name : str
+        Name of the constant.
+    type\_ : TX
+        Definition of the type expressed as a type tree.
+    value : EX
+        Expression tree defining the value.
+    path : Path
+        Path of the file to store the constant.
 
-        name : str
-            Name of the constant.
-
-        type\_ : TX
-            Definition of the type expressed as a type tree.
-
-        value : EX
-            Expression tree defining the value.
-
-        path : Path
-            Path of the file to store the constant.
-
-            This parameter is ignored if the owner is a package.
-            When path is None and owner is the model, the constant is
-            stored in the model's default file.
-
-        visibility : VK
-            Accessibility of the constant, either public or private.
+        This parameter is ignored if the owner is a package.
+        When path is None and owner is the model, the constant is
+        stored in the model's default file.
+    visibility : VK
+        Accessibility of the constant, either public or private.
 
     Returns
     -------
-        suite.Constant
+    suite.Constant
     """
     _check_object(owner, 'create_constant', 'owner', suite.Package)
 
@@ -400,28 +379,24 @@ def create_imported_constant(
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the type, either the model itself or a package.
+    owner : suite.Package
+        Owner of the type, either the model itself or a package.
+    name : str
+        Name of the constant.
+    type\_ : TX
+        Definition of the type expressed as a type tree.
+    path : Path
+        Path of the file to store the constant.
 
-        name : str
-            Name of the constant.
-
-        type\_ : TX
-            Definition of the type expressed as a type tree.
-
-        path : Path
-            Path of the file to store the constant.
-
-            This parameter is ignored if the owner is a package.
-            When path is None and owner is the model, the constant is
-            stored in the model's default file.
-
-        visibility : VK
-            Accessibility of the constant, either public or private.
+        This parameter is ignored if the owner is a package.
+        When path is None and owner is the model, the constant is
+        stored in the model's default file.
+    visibility : VK
+        Accessibility of the constant, either public or private.
 
     Returns
     -------
-        suite.NamedType
+    suite.NamedType
     """
     _check_object(owner, 'create_imported_constant', 'owner', suite.Package)
 
@@ -452,25 +427,22 @@ def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path = None)
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the sensor, either the model itself or a package.
+    owner : suite.Package
+        Owner of the sensor, either the model itself or a package.
+    name : str
+        Name of the sensor.
+    type\_ : TX
+        Definition of the type expressed as a type tree.
+    path : Path
+        Path of the file to store the constant.
 
-        name : str
-            Name of the sensor.
-
-        type\_ : TX
-            Definition of the type expressed as a type tree.
-
-        path : Path
-            Path of the file to store the constant.
-
-            This parameter is ignored if the owner is a package.
-            When path is None and owner is the model, the constant is
-            stored in the model's default file.
+        This parameter is ignored if the owner is a package.
+        When path is None and owner is the model, the constant is
+        stored in the model's default file.
 
     Returns
     -------
-        suite.Sensor
+    suite.Sensor
     """
     _check_object(owner, 'create_sensor', 'owner', suite.Package)
 
@@ -531,31 +503,26 @@ def create_graphical_operator(
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the operator, either the model itself or a package.
+    owner : suite.Package
+        Owner of the operator, either the model itself or a package.
+    name : str
+        Name of the operator.
+    path : Path
+        Path of the file to store the operator.
 
-        name : str
-            Name of the operator.
-
-        path : Path
-            Path of the file to store the operator.
-
-            This parameter is optional if the package's owner is a package.
-            When path is None and owner is the model, the operator is
-            stored in the model's default file.
-
-        visibility : VK
-            Accessibility of the operator, either public or private.
-
-        symbol_file : Path
-            Optional Path of the file defining the symbol of the operator.
-
-        state : bool
-            True if the operator is a node.
+        This parameter is optional if the package's owner is a package.
+        When path is None and owner is the model, the operator is
+        stored in the model's default file.
+    visibility : VK
+        Accessibility of the operator, either public or private.
+    symbol_file : Path
+        Optional Path of the file defining the symbol of the operator.
+    state : bool
+        True if the operator is a node.
 
     Returns
     -------
-        suite.Operator
+    suite.Operator
     """
     operator = _create_operator(owner, name, path, visibility, symbol_file, state)
 
@@ -582,31 +549,26 @@ def create_textual_operator(
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the operator, either the model itself or a package.
+    owner : suite.Package
+        Owner of the operator, either the model itself or a package.
+    name : str
+        Name of the operator.
+    path : Path
+        Path of the file to store the operator.
 
-        name : str
-            Name of the operator.
-
-        path : Path
-            Path of the file to store the operator.
-
-            This parameter is optional if the package's owner is a package.
-            When path is None and owner is the model, the operator is
-            stored in the model's default file.
-
-        visibility : VK
-            Accessibility of the operator, either public or private.
-
-        symbol_file : Path
-            Optional Path of the file defining the symbol of the operator.
-
-        state : bool
-            True if the operator is a node.
+        This parameter is optional if the package's owner is a package.
+        When path is None and owner is the model, the operator is
+        stored in the model's default file.
+    visibility : VK
+        Accessibility of the operator, either public or private.
+    symbol_file : Path
+        Optional Path of the file defining the symbol of the operator.
+    state : bool
+        True if the operator is a node.
 
     Returns
     -------
-        suite.Operator
+    suite.Operator
     """
     operator = _create_operator(owner, name, path, visibility, symbol_file, state)
 
@@ -633,34 +595,28 @@ def create_imported_operator(
 
     Parameters
     ----------
-        owner : suite.Package
-            Owner of the operator, either the model itself or a package.
+    owner : suite.Package
+        Owner of the operator, either the model itself or a package.
+    name : str
+        Name of the operator.
+    file : Path
+        Optional file defining the imported operator.
+    path : Path
+        Path of the file to store the operator.
 
-        name : str
-            Name of the operator.
-
-        file : Path
-            Optional file defining the imported operator.
-
-        path : Path
-            Path of the file to store the operator.
-
-            This parameter is optional if the package's owner is a package.
-            When path is None and owner is the model, the operator is
-            stored in the model's default file.
-
-        visibility : VK
-            Accessibility of the operator, either public or private.
-
-        symbol_file : Path
-            Optional Path of the file defining the symbol of the operator.
-
-        state : bool
-            True if the operator is a node.
+        This parameter is optional if the package's owner is a package.
+        When path is None and owner is the model, the operator is
+        stored in the model's default file.
+    visibility : VK
+        Accessibility of the operator, either public or private.
+    symbol_file : Path
+        Optional Path of the file defining the symbol of the operator.
+    state : bool
+        True if the operator is a node.
 
     Returns
     -------
-        suite.Operator
+    suite.Operator
     """
     operator = _create_operator(owner, name, path, visibility, symbol_file, state)
     operator.imported = True
@@ -740,26 +696,26 @@ def add_operator_inputs(
 
     Return the added inputs.
 
-    Note: interface change with respect to the SCADE Creation Library,
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library,
     the pairs name/type tree are now embedded in a list of tuples.
 
     Parameters
     ----------
-        operator : suite.Operator
-            Input operator.
+    operator : suite.Operator
+        Input operator.
+    vars : List[Tuple[str, TX]]
+        Name/type expression trees.
+    insert_before : suite.LocalVariable
+        Insertion point of the inputs.
 
-        vars : List[Tuple[str, TX]]
-            Name/type expression trees.
-
-        insert_before : suite.LocalVariable
-            Insertion point of the inputs.
-
-            When this parameter is not None, it shall be an existing input of the operator.
-            The inputs are inserted before this input. Otherwise, the inputs are added at the end.
+        When this parameter is not None, it shall be an existing input of the operator.
+        The inputs are inserted before this input. Otherwise, the inputs are added at the end.
 
     Returns
     -------
-        List[suite.LocalVariable]
+    List[suite.LocalVariable]
     """
     return _add_operator_ios(operator, operator.inputs, vars, insert_before)
 
@@ -772,27 +728,27 @@ def add_operator_hidden(
 
     Return the added hidden inputs.
 
-    Note: interface change with respect to the SCADE Creation Library,
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library,
     the pairs name/type tree are now embedded in a list of tuples.
 
     Parameters
     ----------
-        operator : suite.Operator
-            Input operator.
+    operator : suite.Operator
+        Input operator.
+    vars : List[Tuple[str, TX]]
+        Name/type expression trees.
+    insert_before : suite.LocalVariable
+        Insertion point of the inputs.
 
-        vars : List[Tuple[str, TX]]
-            Name/type expression trees.
-
-        insert_before : suite.LocalVariable
-            Insertion point of the inputs.
-
-            When this parameter is not None, it shall be an existing hidden input of the operator.
-            The hidden inputs are inserted before this input.
-            Otherwise, the hidden inputs are added at the end.
+        When this parameter is not None, it shall be an existing hidden input of the operator.
+        The hidden inputs are inserted before this input.
+        Otherwise, the hidden inputs are added at the end.
 
     Returns
     -------
-        List[suite.LocalVariable]
+    List[suite.LocalVariable]
     """
     return _add_operator_ios(operator, operator.hiddens, vars, insert_before)
 
@@ -805,27 +761,27 @@ def add_operator_outputs(
 
     Return the added outputs.
 
-    Note: interface change with respect to the SCADE Creation Library,
+    Notes
+    -----
+    Interface change with respect to the SCADE Creation Library,
     the pairs name/type tree are now embedded in a list of tuples.
 
     Parameters
     ----------
-        operator : suite.Operator
-            Input operator.
+    operator : suite.Operator
+        Input operator.
+    vars : List[Tuple[str, TX]]
+        Name/type expression trees.
+    insert_before : suite.LocalVariable
+        Insertion point of the outputs.
 
-        vars : List[Tuple[str, TX]]
-            Name/type expression trees.
-
-        insert_before : suite.LocalVariable
-            Insertion point of the outputs.
-
-            When this parameter is not None, it shall be an existing output of the operator.
-            The outputs are inserted before this input.
-            Otherwise, the outputs are added at the end.
+        When this parameter is not None, it shall be an existing output of the operator.
+        The outputs are inserted before this input.
+        Otherwise, the outputs are added at the end.
 
     Returns
     -------
-        List[suite.LocalVariable]
+    List[suite.LocalVariable]
     """
     return _add_operator_ios(operator, operator.outputs, vars, insert_before)
 
@@ -844,6 +800,7 @@ def add_operator_parameters(
         Name of the parameters to create.
     insert_before : suite.Constant
         Insertion point of the parameter.
+
         When this parameter is not None, it shall be an existing parameter of the operator.
         The parameters are inserted before this parameter.
         Otherwise, the parameters are added at the end.
@@ -884,11 +841,10 @@ def set_specialized_operator(operator: suite.Operator, imported: suite.Operator)
 
     Parameters
     ----------
-        operator : suite.Operator
-            Specializing operator.
-
-        imported : suite.Operator
-            Specialized imported operator.
+    operator : suite.Operator
+        Specializing operator.
+    imported : suite.Operator
+        Specialized imported operator.
     """
     _check_object(operator, 'set_specialized_operator', 'operator', suite.Operator)
     _check_object(imported, 'set_specialized_operator', 'imported', suite.Operator)
@@ -907,11 +863,10 @@ def set_type_constraint(type_: suite.NamedType, name: str):
 
     Parameters
     ----------
-        type\_ : suite.NamedType
-            Input polymorphic type.
-
-        name : str
-            Name of the constraint.
+    type\_ : suite.NamedType
+        Input polymorphic type.
+    name : str
+        Name of the constraint.
     """
     _check_object(type_, 'declare_type_constraint', 'type', suite.NamedType)
     if name not in _constraints:

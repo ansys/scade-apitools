@@ -125,8 +125,8 @@ def get_pragma_text(object_: suite.Object, id: str) -> str:
 
     Returns
     -------
-        str
-            Text of the found pragma or "".
+    str
+        Text of the found pragma or "".
 
     .. seealso:: Example :ref:`pragma <ex__pragma>`
     """

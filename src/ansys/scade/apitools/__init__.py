@@ -21,11 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""
-scade.
-
-apitools
-"""
+"""Library of high-level functions on top of SCADE Python APIs."""
 
 try:
     import importlib.metadata as importlib_metadata

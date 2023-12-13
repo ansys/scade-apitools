@@ -503,7 +503,7 @@ def add_diagram_missing_edges(diagram: suite.NetDiagram) -> List[suite.Edge]:
 
     Returns
     -------
-        List[suite.Edge]
+    List[suite.Edge]
     """
     _check_object(diagram, 'add_missing_edges', 'diagram', suite.NetDiagram)
 
@@ -1322,7 +1322,7 @@ def create_when_branch(
 
     Returns
     -------
-        WhenBranch
+    WhenBranch
     """
     return WhenBranch(pattern, position, size, display, label_width)
 

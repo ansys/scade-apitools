@@ -40,7 +40,7 @@ def test_get_compatible_scade_home(tc):
     versions, status = tc
     homes = []
     for version in versions:
-        home = apitools.auto_scade_env.get_compatible_scade_home(version)
+        home = apitools.auto_scade_env._get_compatible_scade_home(version)
         if home:
             homes.append(home)
     assert (len(homes) != 0) == status
