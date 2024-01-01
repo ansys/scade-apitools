@@ -35,7 +35,7 @@ build = [
     "twine==4.0.1"
 ]
 tests = [
-    "pytest==7.1.2",
+    "pytest==7.4.4",
     "pytest-cov==3.0.0"
 ]
 doc = [
