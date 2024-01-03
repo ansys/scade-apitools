@@ -23,7 +23,7 @@ The script should perform several actions:
 * Create the interface
 * Reference the new files in the project
 
-The template project has one prerequisite: It shall contain the definition
+The template project has one prerequisite. It must contain the definition
 of all the types referenced in the interface to be created.
 
 The content of the script is described exhaustively hereafter.
