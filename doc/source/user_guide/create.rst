@@ -68,7 +68,7 @@ This script adds a new package to a project:
       # create a package in the project's directory
       path = Path(project.pathname).parent / 'MyPackage.xscade'
       package = create.create_package(session.model, 'MyPackage', path)
-      # save the SCADE model
+      # save the Scade model
       create.save_all()
 
       # add the package to the project file
@@ -79,7 +79,7 @@ This script adds a new package to a project:
   if __name__ == '__main__':
       main()
 
-When run on an empty project, the new SCADE model is as follows:
+When run on an empty project, the new Scade model is as follows:
 
 .. figure:: ../_static/assets/img/create_package_s.png
 
@@ -198,7 +198,7 @@ flexibility by accepting any of these types:
 
 * :py:class:`ExpressionTree (ET) <create.expression.ExpressionTree>` instance
 * ``scade.model.suite.ConstVar`` instance
-* SCADE literal, such as ``'true'`` and ``'3.14_f32'``
+* Scade literal, such as ``'true'`` and ``'3.14_f32'``
 * Python literal, such as ``True``, ``42``, ``3.14``, and ``'c'``
 
 The following example adds two constants to a model. The first one, ``N``, is an

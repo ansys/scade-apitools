@@ -1,3 +1,5 @@
+.. _contribute_SCADE_API_tools:
+
 Contribute
 ##########
 

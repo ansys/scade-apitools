@@ -1,14 +1,12 @@
 Examples
 ========
 
-Overview
---------
-The examples are organized by SCADE models. These models are not necessarily correct,
-they intend to provide some data to be processed by the scripts.
+This section provides examples that are organized by Scade models. These models are not
+necessarily correct. They simply provide some data to be processed by the scripts.
 
 The overall structure of an example script is as follows:
 
-* Retrieve one or more SCADE model elements from the project.
+* Retrieve one or more Scade model elements from the project.
 * Apply a command from ``ansys.scade.apitools`` to these elements.
 * Print some feedback.
 
@@ -19,11 +17,11 @@ The overall structure of an example script is as follows:
 Run the examples
 ----------------
 
-Refer to :ref:`SCADE scripting <scripting scade>` for a reminder on SCADE Python scripts.
+For a reminder on SCADE Python scripts, see :ref:`SCADE scripting <scripting scade>` .
 
 SCADE GUI
 ~~~~~~~~~
-The examples associated to a SCADE model are referenced in the project:
+The examples associated with a Scade model are referenced in the project:
 
 * Load the model with the SCADE Suite.
 * From the **FileView**, open any script.
@@ -44,7 +42,7 @@ Python
 
 The model used to run the example must be declared prior to the script execution.
 
-* Change the current directory to the considered example's directory. For example, ```examples/query_type``.
+* Change the current directory to the considered example's directory. For example, ``examples/query_type``.
 
 .. code:: bash
 
