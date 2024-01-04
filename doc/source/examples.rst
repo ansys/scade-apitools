@@ -12,7 +12,7 @@ The overall structure of an example script is as follows:
 
 .. note::
     The examples for the :py:mod:`create <ansys.scade.apitools.create>`
-    module have a different design, described in the appropriate example section.
+    module have a different design, described in the appropriate example sections.
 
 Run the examples
 ----------------
@@ -40,7 +40,7 @@ considered example's directory and running the ``scade.exe -script`` command:
 Python
 ~~~~~~
 
-The model used to run the example must be declared prior to the script execution.
+You must declare the model to use to run the example prior to executing the script.
 
 #. Change the current directory to the considered example's directory. For example, ``examples/query_type``.
 
@@ -48,7 +48,7 @@ The model used to run the example must be declared prior to the script execution
 
        > cd examples\query_type
 
-#. Run a Python 3.7 or 3.10 session depending on the release of SCADE installed on your computer.
+#. Run a Python 3.7 or 3.10 session, depending on the SCADE release installed on your computer.
 
    .. code:: bash
 

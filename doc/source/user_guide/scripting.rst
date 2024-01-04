@@ -15,19 +15,19 @@ These are the most popular ones:
 
 For more information, see *API Capabilities by SCADE Products* in the SCADE documentation.
 
-This provides advantages that won't be discussed here, but it has also a few constraints:
+This provides advantages that won't be discussed here. However, it also has a few constraints:
 
-* The scripts can't be run outside of the context of a SCADE Release, on Windows.
-* The version of the Python interpreter must be the one delivered with SCADE Suite:
+* The scripts can't be run outside of the context of a SCADE release on Windows.
+* The version of the Python interpreter must be the one delivered with the SCADE Suite:
 
-  * Python 3.7 for releases prior to 2023 R2 (directory SCADE/contrib/Python37)
-  * Python 3.10 starting from 2023 R2 (directory SCADE/contrib/Python310)
+  * Python 3.7 for releases prior to 2023 R2 (The directory is ``SCADE/contrib/Python37``.)
+  * Python 3.10 starting from 2023 R2 (The directory is ``SCADE/contrib/Python310``.)
 
 SCADE environment
 -----------------
 
 The SCADE Python scripts, and formerly TCL scripts, are intended to be run from a SCADE
-environment, either in the SCADE IDE or from the command line, using the ``scade.exe -script``
+environment, either in the SCADE IDE or from the command line using the ``scade.exe -script``
 command.
 
 The operating mode when running a script is identical in both environments.
@@ -36,18 +36,18 @@ The operating mode when running a script is identical in both environments.
   on the command line. There is no command to dynamically load a project and its related
   semantic data, such as SCADE Suite models or SCADE Test procedures.
 
-* SCADE creates the instance of a Python interpreter and dynamically adds commands to address
+* SCADE creates an instance of a Python interpreter and dynamically adds commands to address
   the loaded data through the ``scade`` module. As mentioned in the preceding bullet, it is
-  not possible to use an interpreter other than the one delivered in SCADE/contrib or to
-  specify a virtual environment based on it.
+  not possible to use an interpreter other than the one delivered in the ``SCADE/contrib``
+  directory or to specify a virtual environment based on it.
 
   The IDE provides additional features for queries and reporting,
   including the ``scade.selection`` and ``scade.report`` functions.
 
 * The interpreter is deleted once the execution of the scripts ends.
 
-SCADE custom extensions are another advanced kinds of scripts in the IDE. These scripts
-are run at startup or when a workspace is loaded, and they live until the app ends or
+SCADE custom extensions are another advanced kind of scripts in the IDE. These scripts
+are run at startup or when a workspace is loaded. They live until the app ends or
 the project is closed. Python interpreters have more functions to extend the user interface
 with GUI artifacts such as toolbars, menus, and property pages.
 
@@ -56,15 +56,15 @@ Python environment
 
 The behaviors described in the previous section have been used for a couple of decades
 for TCL scripts, and more recently, Python scripts. Python allows developing much more
-complex components and benefits from powerful IDEs such as PyCharm, VS Code, and PTVS (Python
-Tools for Visual Studio). Although it is not possible to develop GUI scripts in Python IDEs,
-SCADE provides some workarounds to the preceding constraints for command line scripts to allow
-usage of these IDEs.
+complex components and benefits from powerful IDEs such as PyCharm, Visual Studio Code,
+and PTVS (Python Tools for Visual Studio). Although it is not possible to develop GUI
+scripts in Python IDEs, SCADE provides some workarounds to the preceding constraints
+for command line scripts to allow for using these IDEs.
 
-In addition to the directories to be added to ``PYTHONPATH``, there is a ``scade_env`` module
-that must be imported before accessing any SCADE Python module. The ``scade_env`` module
-emulates the context of the ``scade.exe -script`` command. It allows you to declare all the
-projects to load before using the SCADE APIs.
+In addition to the directories to be added to the ``PYTHONPATH`` environment variable,
+there is a ``scade_env`` module that must be imported before accessing any SCADE Python
+module. The ``scade_env`` module emulates the context of the ``scade.exe -script`` command.
+It allows you to declare all the projects to load before using the SCADE APIs.
 
 .. note::
    The import of the ``scade_env`` module and the declaration of projects are ignored when
@@ -76,18 +76,20 @@ Advanced usage with API tools
 -----------------------------
 
 Once the constraints of the SCADE Python APIs and their usage in a Python environment are understood,
-it is possible to simplify and extend the domain of usage of the scripts in batch mode.
+it is possible to simplify and extend the domain of script usage in batch mode.
 
 The ``ansys.scade.apitools`` module imports the ``scade_env`` module and exposes its ``load_project``
 function, which it renames to ``declare_project`` to avoid ambiguities.
-Setting ``PYTHONPATH`` as specified in the documentation becomes optional.
-When ``PYTHONPATH`` does not refer to a SCADE environment, ``apitools`` has several strategies to find and
-dynamically add the required SCADE directories to ``sys.path``, depending on ``sys.executable``:
+Setting the ``PYTHONPATH`` environment variable as specified in the documentation becomes optional.
+When the ``PYTHONPATH`` environment variable does not refer to a SCADE environment, the ``ansys.scade.apitools``
+module has several strategies to find and dynamically add the required SCADE directories to ``sys.path``,
+depending on ``sys.executable``:
 
-* Interpreter delivered in ``SCADE/contrib/PythonXxx``: The directories are relative to its location.
+* Interpreter delivered in the ``SCADE/contrib/PythonXxx`` directory: The directories are relative to
+  the interpretor's location.
 * Interpreter of a virtual environment on top of an interpreter delivered with SCADE: The virtual
   environment is resolved. The behavior is then the same as described previously.
-* Independent interpreter: ``apitools`` selects the most recent version of SCADE installed on the
+* Independent interpreter: The ``ansys.scade.apitools`` module selects the most recent version of SCADE installed on the
   computer that is compatible with the current interpreter:
 
   * Python 3.7: from 2021 R1 to 2023 R1.

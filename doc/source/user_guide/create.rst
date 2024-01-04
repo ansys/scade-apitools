@@ -18,23 +18,24 @@ meaning that you do not have to make several function calls to complete a single
 Usage notes
 -----------
 
-  * The current version only supports creating elements in an existing project or SCADE model. The edition
-    of a model, for example deleting elements, requires more functions that might be added later.
-  * Annotations are not supported yet.
-  * The SCADE Python API is derived from the existing *SCADE Creation Library* (*SCL*), available for TCL and Python.
+* The current version only supports creating elements in an existing project or Scade model. The edition
+  of a model, for example deleting elements, requires more functions that might be added later.
+* Annotations are not supported yet.
+* The SCADE Python API is derived from the existing *SCADE Creation Library* (*SCL*), available for TCL and Python.
 
-    * Functions have been renamed accordingly to PEP8.
-    * While most of the interfaces are identical, there are a few changes for providing more Pythonics way of
-      accomplishing tasks.
-    * You can migrate existing applications to use the SCADE Python API or continue to use *SCL*, which is
-      to be re-implemented on top of the SCADE Python API.
+  * Functions have been renamed accordingly to PEP8.
+  * While most of the interfaces are identical, there are a few changes for providing more Pythonics way of
+    accomplishing tasks.
+  * You can migrate existing applications to use the SCADE Python API or continue to use *SCL*, which is
+    to be re-implemented on top of the SCADE Python API.
 
-  * The functions are all accessible from :py:mod:`create <ansys.scade.apitools.create>`, regardless the submodule they are defined in.
+  * The functions are all accessible from :py:mod:`create <ansys.scade.apitools.create>`, regardless of
+    the submodule that they are defined in.
 
 Script architecture
 -------------------
 
-A script that modifies a SCADE model usually has the following architecture:
+A script that modifies a Scade model usually follows this architecture:
 
 * Load an existing project: This gives access to two separate sets of data:
 
@@ -90,8 +91,8 @@ The new file is added to the project at the default location:
 Debugging of a creation script
 ------------------------------
 
-To ease debugging, you should embed the script in an environment that first makes a copy of
-the original model.
+To ease debugging of a creation script, you should embed the script in an environment
+that first makes a copy of the original model.
 
 The following script, compatible with any Python IDE, makes a copy of the original model, declares
 the result project, and calls the original script's ``main`` function:
@@ -130,8 +131,9 @@ Trees
 
 The library does not support the creation of intermediate elements, which eliminates the risk of
 incorrect models because of partial or missing links.
-For example, it is not possible to create an instance of ``ExprId`` linked to a constant
+For example, it is not possible to create an ``ExprId`` instance linked to a constant
 but not contained by any model element.
+
 Some parts, such as types or expressions, can be quite large. You can use functions for creating
 such trees in an incremental way, which are compiled when creating the related model
 element. These intermediate structures, or trees, are used for creating:
@@ -144,11 +146,11 @@ element. These intermediate structures, or trees, are used for creating:
 Type tree (TT)
 ^^^^^^^^^^^^^^
 
-A :py:class:`TypeTree (TT) <create.type.TypeTree>` instance represents any SCADE type.
+A :py:class:`TypeTree <create.type.TypeTree>` instance represents any SCADE type.
 :py:class:`Extended type trees (EX) <create.type.TX>` provide more flexibility by
 accepting any of the following types:
 
-* :py:class:`TypeTree (TT) <create.type.TypeTree>` instance
+* :py:class:`TypeTree <create.type.TypeTree>` instance
 * ``scade.model.suite.Type`` instance
 * Name of a predefined type, such as ``'bool'``, ``'int32'``, and ``'float64'``
 
@@ -182,8 +184,7 @@ Although not advised, combining type trees is possible:
     polyline2 = create.create_named_type(model, 'polyline2', tree_table)
 
 For comprehensive information on functions for creating any type of tree, see
-:py:mod:`create.type <ansys.scade.apitools.create.type>` in the API reference
-documentation.
+:py:mod:`create.type <ansys.scade.apitools.create.type>`.
 
 ..
   :py:func:`create.declaration.create_named_type`
@@ -193,10 +194,10 @@ Expression tree (ET)
 
 An :py:class:`ExpressionTree <create.expression.ExpressionTree>` instance represents
 any SCADE expression made of operators and operands. To create an extended expression
-(EX) tree, you an use the :py:meth:`create.expression.EX` method. It provide more
+(EX) tree, you can use the :py:meth:`create.expression.EX` method. It provide more
 flexibility by accepting any of these types:
 
-* :py:class:`ExpressionTree (ET) <create.expression.ExpressionTree>` instance
+* :py:class:`ExpressionTree <create.expression.ExpressionTree>` instance
 * ``scade.model.suite.ConstVar`` instance
 * Scade literal, such as ``'true'`` and ``'3.14_f32'``
 * Python literal, such as ``True``, ``42``, ``3.14``, and ``'c'``
@@ -214,5 +215,4 @@ an expression tree to specify its value.
     cst_n2 = create.create_constant(model, 'N2', 'int32', tree)
 
 For comprehensive information on functions for creating an expression tree, see
-:py:mod:`create.expression <ansys.scade.apitools.create.expression>` in the API
-reference documentation.
+:py:mod:`create.expression <ansys.scade.apitools.create.expression>`.

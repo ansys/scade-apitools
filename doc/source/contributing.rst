@@ -73,7 +73,7 @@ source and enhance it.
 
 Test
 ----
-Ansys SCADE API Tools uses ``tox`` for testing. This tool allows you to
+Ansys SCADE API Tools uses `tox`_ for testing. This tool allows you to
 automate common development tasks (similar to ``Makefile``), but it is oriented
 towards Python development.
 
@@ -95,7 +95,7 @@ Use raw testing
 ^^^^^^^^^^^^^^^
 If required, from the command line, you can call style commands like
 `black`_, `isort`_, and `flake8`_. You can also call unit testing commands like `pytest`_.
-However, running these commands do not guarantee that your project is being tested in an
+However, running these commands does not guarantee that your project is being tested in an
 isolated environment, which is the reason why tools like ``tox`` exist.
 
 Use ``pre-commit``
