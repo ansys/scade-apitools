@@ -1,10 +1,10 @@
 when_block
-=============
+==========
 
 Overview
 --------
 
-This small example creates the following when block and illustrates the usage of the branch trees.
+This small example creates the following when block and demonstrates the use of the branch trees.
 
 .. figure:: /examples/create/create_when_block.png
 

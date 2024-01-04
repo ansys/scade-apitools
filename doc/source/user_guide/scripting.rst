@@ -101,27 +101,27 @@ This example starts an interactive session with a standard installation of Pytho
 
 1. Start an interactive session:
 
-.. code:: python
+   .. code:: python
 
-    > where python.exe
-    C:\Users\jhenry\AppData\Local\Programs\Python\Python310\python.exe
-    > python.exe
-    Python 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)] on win32
-    Type "help", "copyright", "credits" or "license" for more information.
+       > where python.exe
+       C:\Users\jhenry\AppData\Local\Programs\Python\Python310\python.exe
+       > python.exe
+       Python 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)] on win32
+       Type "help", "copyright", "credits" or "license" for more information.
 
 2. Preamble to activate a SCADE environment on a given project.
 
-.. code:: python
+   .. code:: python
 
-    >>> from ansys.scade.apitools import declare_project
-    >>> declare_project(r'C:\Program Files\ANSYS Inc\v232\SCADE\examples\ABC_N\ABC_N.etp')
+       >>> from ansys.scade.apitools import declare_project
+       >>> declare_project(r'C:\Program Files\ANSYS Inc\v232\SCADE\examples\ABC_N\ABC_N.etp')
 
 3. Run a regular script that loads the declared projects and accesses their pathnames.
 
-.. code:: python
+   .. code:: python
 
-    >>> from scade.model.project.stdproject import get_roots as get_projects
-    >>> for project in get_projects():
-    ...     print(project.pathname)
-    ...
-    C:/Program Files/ANSYS Inc/v232/SCADE/examples/ABC_N/ABC_N.etp
+       >>> from scade.model.project.stdproject import get_roots as get_projects
+       >>> for project in get_projects():
+       ...     print(project.pathname)
+       ...
+       C:/Program Files/ANSYS Inc/v232/SCADE/examples/ABC_N/ABC_N.etp

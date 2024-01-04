@@ -18,7 +18,7 @@ Ansys SCADE, starting from 2021 R2:
 Install in user mode
 --------------------
 The following steps are for installing Ansys SCADE API Tools in user mode. If you want to
-contribute to Ansys SCADE API Tools, see :ref:`contribute_SCADE_API_tools`_ for the steps
+contribute to Ansys SCADE API Tools, see :ref:`contribute_SCADE_API_tools` for the steps
 for installing in developer mode.
 
 #. Before installing Ansys SCADE API Tools in user mode, run this command to ensure that

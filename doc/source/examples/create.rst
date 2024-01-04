@@ -1,20 +1,20 @@
 create
 ======
 
-These complete examples illustrate the usage of the creation functions.
+These end-to-end examples show how to use create functions.
 
 They provide hints about the setup of a test environment and correspond to frequent requests.
 
-These examples illustrate the usage of the intermediate structures introduced to create
+These examples demonstrate the usage of the intermediate structures introduced to create
 complex types and expressions, as well as the creation of control blocks.
 
-It might be a good idea to run the examples step by step with a debugger to get
-a better understanding of the code.
+To get a better understanding of the code, you might want to run the examples step by step with
+a debugger.
 
 Test environment
 ----------------
 
-The examples modify a project. Each example comes with a wrapper script which runs the example
+The examples modify a project. Each example comes with a wrapper script that runs the example
 on a copy of the input model.
 
 The wrapper scripts, named ``debug_<name of the script>.py``, are  designed to be used in

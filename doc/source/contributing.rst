@@ -60,7 +60,7 @@ source and enhance it.
 
 #. Install the project in editable mode:
 
-    .. code:: bash
+   .. code:: bash
 
       python -m pip install --editable .
 
@@ -96,7 +96,7 @@ Use raw testing
 If required, from the command line, you can call style commands like
 `black`_, `isort`_, and `flake8`_. You can also call unit testing commands like `pytest`_.
 However, running these commands do not guarantee that your project is being tested in an
-isolated environment, which is the reason why tools like ```tox`` exist.
+isolated environment, which is the reason why tools like ``tox`` exist.
 
 Use ``pre-commit``
 ^^^^^^^^^^^^^^^^^^
@@ -131,7 +131,7 @@ This way, it's not possible for you to push code that fails the style checks::
 
 Build documentation
 -------------------
-For building documentation, you can either run the usual rules provided in the
+For building documentation, you can run the usual rules provided in the
 `Sphinx`_ ``make`` file. Here are some examples:
 
 .. code:: bash

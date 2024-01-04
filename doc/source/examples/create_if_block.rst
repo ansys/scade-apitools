@@ -1,10 +1,10 @@
-when_block
-=============
+if_block
+========
 
 Overview
 --------
 
-This small example creates the following if block and illustrates the usage of the if trees.
+This small example creates the following if block and demonstrates the use of the if trees.
 
 .. figure:: /examples/create/create_if_block.png
 

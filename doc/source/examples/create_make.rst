@@ -1,10 +1,10 @@
-Make
+make
 ====
 
 Overview
 --------
 
-Apply a design pattern to an existing project to create new operators and diagrams.
+This example applies a design pattern to an existing project to create new operators and diagrams.
 
 The design pattern used in this example is very simple. It outputs a structure flow
 containing pairs made of a default value and a status, depending on the input.
@@ -66,10 +66,10 @@ Checks
 ------
 
 The ``process_operator`` function retrieves the model elements from
-their path and verifies they are consistent with the pattern to apply.
+their path and verifies that they are consistent with the pattern to apply.
 
-The ``fill_diagram`` function is then called to apply the pattern
-and save the model before returning it::
+It then calls the ``fill_diagram`` function to apply the pattern and save the
+model before returning it::
 
     def process_operator(model: suite.Model, name: str, name_then: str, name_else: str):
         """
