@@ -1,4 +1,4 @@
-make
+Make
 ====
 
 Overview
@@ -6,10 +6,10 @@ Overview
 
 Apply a design pattern to an existing project to create new operators and diagrams.
 
-The design pattern used in this example is very simple: output a structure flow
+The design pattern used in this example is very simple. It outputs a structure flow
 containing pairs made of a default value and a status, depending on the input.
 
-The input model shall contain the declaration of the output structure as well as
+The input model contains the declaration of the output structure as well as
 the operator and its interface, with an empty graphical diagram:
 
 .. code-block:: swan
@@ -33,7 +33,7 @@ the operator and its interface, with an empty graphical diagram:
         tel
     end;
 
-The script shall produce the following diagram:
+The script produces the following diagram:
 
 .. figure:: /examples/create/create_make.png
 
@@ -42,7 +42,7 @@ The content of the script is described exhaustively hereafter.
 Import directives and main
 --------------------------
 
-The function ``main`` allows the script to be used by the wrapper script::
+The ``main`` function allows the script to be used by the wrapper script::
 
     import scade.model.suite as suite
 
@@ -65,11 +65,11 @@ The function ``main`` allows the script to be used by the wrapper script::
 Checks
 ------
 
-The function ``process_operator`` retrieves the model elements from
+The ``process_operator`` function retrieves the model elements from
 their path and verifies they are consistent with the pattern to apply.
 
-Then it calls the function ``fill_diagram`` to apply the pattern,
-and saves the model before returning::
+The ``fill_diagram`` function is then called to apply the pattern
+and save the model before returning it::
 
     def process_operator(model: suite.Model, name: str, name_then: str, name_else: str):
         """
@@ -129,7 +129,7 @@ and saves the model before returning::
 Diagram
 -------
 
-The function ``fill_diagram`` creates the equations in the diagram, at hard-coded positions.
+The ``fill_diagram`` function creates the equations in the diagram at hard-coded positions.
 
 There are as many textual expressions as there are elements in the structure type.
 These are a sequence of (default value, status).
@@ -190,7 +190,7 @@ Define the positions of the equations and default sizes::
 Inputs of the make equation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create the equations and cache the defined flows in the list ``parameters``::
+Create the equations and cache the defined flows in the ``parameters`` list::
 
         x_text = x_make - w_text - 1000
         # parameters for make: list of the internal variables defined by the textual expressions
@@ -228,7 +228,6 @@ Main equation
 
 Create the equation for ``make``, using the parameters defined previously::
 
-        # 2. Equation for make
         tree = create.create_make(output.type, *parameters)
         eq = create.add_data_def_equation(
             operator, diagram, [output.type], tree, (x_make, y_make), (w_make, h_make)
@@ -241,7 +240,6 @@ Output
 
 Create the equation defining the output::
 
-        # 3. Equation for output
         x_output = x_make + w_make + 2500
         y_output = y_make + h_make / 2 - h_output / 2
         eq = create.add_data_def_equation(
@@ -253,5 +251,4 @@ Edges
 
 Finally, create all the missing edges from the new equations::
 
-        # 4. create automatically the graphical connections, with default positions
         create.add_diagram_missing_edges(diagram)
