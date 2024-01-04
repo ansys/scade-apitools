@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Information on the current version of SCADE."""
+"""Provides information on the current version of SCADE."""
 
 # ignore F401: functions made available for modules, not used here
 from .install import get_scade_home, get_scade_version  # noqa: F401

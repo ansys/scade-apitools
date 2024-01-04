@@ -564,7 +564,7 @@ def add_data_def_assertion(
     data_def : suite.DataDef
         Input scope, which is an operator, state, or action.
     diagram : suite.Diagram
-        Diagram containing the equation. Options are ``GRAPHICAL``, "TEXTUAL", and ``None``.
+        Diagram containing the equation. Options are ``GRAPHICAL``, ``TEXTUAL``, and ``None``.
         Note: The diagram can't be ``None`` if the scope contains at least one diagram.
     name : str
         Name of the assertion.
@@ -639,7 +639,7 @@ def add_data_def_state_machine(
         Position of the state machine, expressed in 1/100th of mm.
         This value is ignored if the diagram is not a graphical diagram.
         Otherwise, it must be specified.
-    size : Tuple[float, float]
+    size : Tuple[float, float], default: None
         Size of the state machine, expressed in 1/100th of mm.
         This value is ignored if your diagram is not a graphical diagram.
         Otherwise, it must be specified.

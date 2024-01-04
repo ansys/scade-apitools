@@ -22,7 +22,7 @@
 # SOFTWARE.
 
 """
-Functions to add elements to a SCADE project (etp file).
+Provides functions for adding elements to a SCADE project (ETP file).
 
 The functions do not check semantic errors, like adding two files with the same path.
 """

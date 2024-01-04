@@ -22,7 +22,7 @@
 # SOFTWARE.
 
 """
-Set of helpers for SCADE model creation functions.
+Provides helpers for SCADE model creation functions.
 
 * Persistence
 * Predefined types

@@ -7,13 +7,12 @@ necessarily correct. They simply provide some data for the scripts to process.
 The overall structure of an example script is as follows:
 
 * Retrieve one or more Scade model elements from the project.
-* Apply a command from the  Ansys SCADE API to these elements.
+* Apply a command from ``ansys.scade.apitools`` to these elements.
 * Print some feedback.
 
 .. note::
     The examples for the :py:mod:`create <ansys.scade.apitools.create>`
-    module have a different design, which is described in its API reference
-    documentation.
+    module have a different design, described in the appropriate example section.
 
 Run the examples
 ----------------

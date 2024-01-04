@@ -22,7 +22,7 @@
 # SOFTWARE.
 
 """
-Helpers to create type trees.
+Provide helpers for creating type trees.
 
 Expression trees are intermediate structures to declare any arbitrary complex
 types, and then create the corresponding SCADE Suite type in the context of a

@@ -22,7 +22,7 @@
 # SOFTWARE.
 
 """
-Helpers to create expression trees.
+Provides helpers for creating expression trees.
 
 Expression trees are intermediate structures to declare any arbitrary complex
 expressions, and then create the corresponding SCADE Suite expressions in the
