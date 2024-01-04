@@ -72,8 +72,8 @@ def create_package(
         Path of the file for storing the package. This parameter is optional
         if the package's owner is a package. When the path is ``None`` and the
         owner is the model, the package is stored in the model's default file.
-    visibility : VK
-        Accessibility of the package. Options are ``'private'" and "'public'".
+    visibility : VK, default: PUBLIC
+        Accessibility of the package. Options are ``'Private'`` and ``'Public'``.
 
     Returns
     -------
@@ -324,8 +324,8 @@ def create_constant(
         Expression tree defining the value.
     path : Path, default: None
         Path of the file for storing the constant. This parameter is ignored if
-        the owner is a package. When path is ``None`` and owner is the model, the
-        constant is stored in the model's default file.
+        the owner is a package. When the path is ``None`` and owner is the model,
+        theconstant is stored in the model's default file.
     visibility : VK
         Accessibility of the constant. Options are ``'Private'`` and ``'Public'``.
 
