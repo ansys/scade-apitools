@@ -86,7 +86,7 @@ module has several strategies to find and dynamically add the required SCADE dir
 depending on ``sys.executable``:
 
 * Interpreter delivered in the ``SCADE/contrib/PythonXxx`` directory: The directories are relative to
-  the interpretor's location.
+  the interpreter's location.
 * Interpreter of a virtual environment on top of an interpreter delivered with SCADE: The virtual
   environment is resolved. The behavior is then the same as described previously.
 * Independent interpreter: The ``ansys.scade.apitools`` module selects the most recent version of SCADE installed on the
