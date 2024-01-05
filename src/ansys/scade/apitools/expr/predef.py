@@ -22,9 +22,9 @@
 # SOFTWARE.
 
 """
-Numeric values for the attribute ``predef_opr`` from the ``suite.ExprCall``.
+Provides numeric values for the ``predef_opr`` attribute from the ``suite.ExprCall``.
 
-Cf. the SCADE Suite documentation:
+For more information, see the SCADE Suite documentation:
 ``5 Specific Commands for Python Scripting > Access to Predefined Operators in Python Scripts.``
 """
 
@@ -32,7 +32,7 @@ from enum import Enum
 
 
 class Eck(Enum):
-    """Code of predefined operators."""
+    """Provides an enum of predefined operators."""
 
     NONE = 1
     AND = 2

@@ -154,8 +154,8 @@ accepting any of the following types:
 * ``scade.model.suite.Type`` instance
 * Name of a predefined type, such as ``'bool'``, ``'int32'``, and ``'float64'``
 
-There are functions to create complex expression trees, such as structures or arrays, cf.
-:py:mod:`create.type <ansys.scade.apitools.create.type>`.
+There are functions to create complex expression trees, such as structures or arrays.
+For more information, see :py:mod:`create.type <ansys.scade.apitools.create.type>`.
 
 This example adds a simple type to a model:
 
@@ -214,5 +214,5 @@ an expression tree to specify its value.
     tree = create.create_nary('*', cst_n, cst_n)
     cst_n2 = create.create_constant(model, 'N2', 'int32', tree)
 
-For comprehensive information on functions for creating an expression tree, see
+For more information on functions for creating an expression tree, see
 :py:mod:`create.expression <ansys.scade.apitools.create.expression>`.

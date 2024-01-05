@@ -24,7 +24,7 @@
 """
 Provides functions for adding elements to a SCADE project (ETP file).
 
-The functions do not check semantic errors, like adding two files with the same path.
+These functions do not check for semantic errors, like adding two files with the same path.
 """
 
 from os.path import abspath
@@ -37,28 +37,25 @@ def create_folder(
     owner: Union[std.Project, std.Folder], path: Union[str, List[str]], extensions: str = ''
 ) -> std.Folder:
     """
-    Create an instance of Folder.
+    Create a folder.
 
-    A folder shall have a name and be either a root folder of a project or
-    a sub-folder of another folder.
-
-    Notes
-    -----
-    Returns the folder with the given name if it exists.
+    A folder has a name and must be either a root folder of a project or
+    a subfolder of another folder.
 
     Parameters
     ----------
     owner : std.Project or std.Folder
-        Owner of the folder, either the project itself or a folder.
+        Owner of the folder, which is either the project itself or a folder.
     path : Union[str, List[str]]
-        Either the name of the folder. When a path is provided, the function
-        creates the intermediate folders which do not exist.
+        Path to or name of the folder. When a path is provided, the function
+        creates the intermediate folders that do not exist.
     extensions: str
-        String defining the extensions associated to the folder.
+        String defining the extensions associated with the folder.
 
     Returns
     -------
     std.Folder
+        Folder with the given path or name if this folder exists.
     """
     _check_object(owner, 'create_folder', 'owner', (std.Project, std.Folder))
 
@@ -92,17 +89,17 @@ def create_folder(
 
 def create_file_ref(owner: Union[std.Project, std.Folder], persist_as: str) -> std.FileRef:
     """
-    Create an instance of FileRef.
+    Create file reference.
 
-    A file reference shall have a pathname and be a file of either a project or a folder.
+    A file reference has a pathname and must be a file of either a project or a folder.
 
     Parameters
     ----------
     owner : std.Project or std.Folder
-        Owner of the file, either the project itself or a folder.
+        Owner of the file, which is either the project itself or a folder.
     persist_as : str
-        String representation of the reference to the file to be stored in the project's file,
-        either a relative reference to the project or an absolute path.
+        String representation of the reference to the file to store in the project's file.
+        The string can be either a relative reference to the project or an absolute path.
 
     Returns
     -------
@@ -125,9 +122,9 @@ def create_file_ref(owner: Union[std.Project, std.Folder], persist_as: str) -> s
 
 def create_configuration(owner: std.Project, name: str) -> std.Configuration:
     """
-    Create an instance of Configuration.
+    Create a configuration.
 
-    A configuration shall have a name and belongs to a project.
+    A configuration has a name and belongs to a project.
 
     Parameters
     ----------
@@ -153,18 +150,18 @@ def create_prop(
     owner: std.Annotable, configuration: std.Configuration, name: str, values: List[str]
 ) -> std.Prop:
     """
-    Create an instance of Prop.
+    Create a property.
 
-    The properties are attached to a project, folder or file reference.
+    Properties are attached to a project, folder, or file reference.
 
-    They have a name, a list of values and can be associated to a configuration.
+    They have a name and a list of values. They can be associated with a configuration.
 
     Parameters
     ----------
     owner : std.Annotable
-        Element the property is attached to.
+        Element to attach the property to.
     configuration : str
-        Configuration to associate to the property otherwise ``None``.
+        Configuration to associate with the property or ``None``.
     name : str
         Name of the property.
     values : List[str]
@@ -215,19 +212,18 @@ def _create_empty_project(pathname: str, configuration: str, products: List[str]
     """
     Create the smallest project file as possible on the disk.
 
-    This is an advanced usage, it is advised to use one of the SCADE Project Wizards
-    to create projects for a given context: SCADE Suite, SCADE Test, etc.
-
-    This function can be used to create initial projects for running scripts.
+    This method, which is for advanced usage, can be used to create initial projects
+    for running scripts. Typically, you should use one of the SCADE Project Wizards
+    to create projects for a given context, such as SCADE Suite or SCADE Test.
 
     Parameters
     ----------
     pathname : str
         Path of the project.
     configuration : str
-        Name of the configuration: a project must have at least one configuration.
-    products: List[str]
-        optional list of tags identifying the nature of the project.
+        Name of the configuration. A project must have at least one configuration.
+    products: List[str], default: None
+        List of tags identifying the nature of the project.
         For example, ``SC`` indicates a SCADE Suite project.
     """
     if products is None:
@@ -289,7 +285,7 @@ def _create_empty_project(pathname: str, configuration: str, products: List[str]
 
 
 def _check_object(object_, context: str, name: str, classes: Tuple[Any, ...]):
-    """Check the type of a parameter and raise TypeError if not correct."""
+    """Check the type of a parameter and raise a ``TypeError`` if it is not correct."""
     if not isinstance(object_, classes):
         cls = type(object_).__name__
         # classes is either a type or a tuple of types
@@ -326,7 +322,7 @@ def _find_file_ref(project: std.Project, pathname: str) -> std.FileRef:
 
 def _get_elements(parent: Union[std.Project, std.Folder]) -> List[std.Element]:
     """
-    Return the contained elements of a project or a folder.
+    Get the contained elements of a project or a folder.
 
     Parameters
     ----------

@@ -53,7 +53,7 @@ def add_data_def_signals(data_def: suite.DataDef, names: List[str]) -> List[suit
     data_def : suite.DataDef
         Input scope, which is an operator, state, or action.
     names : List[str]
-        Names of the signals to create.
+        Names of the signals to add.
 
     Returns
     -------
@@ -105,7 +105,7 @@ def add_data_def_locals(
     Notes
     -----
     This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs name/type tree are now embedded in a list of tuples.
+    The pairs "name"/"type" tree are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -131,7 +131,7 @@ def add_data_def_probes(
     Notes
     -----
     This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs name/type tree are now embedded in a list of tuples.
+    The pairs "name"/"type" tree are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -172,7 +172,7 @@ def set_variable_default(variable: suite.LocalVariable, tree: EX) -> suite.Expre
 
 def set_variable_last(variable: suite.LocalVariable, tree: EX) -> suite.Expression:
     """
-    Set the last value of a variable.
+    Set the last value of an input variable.
 
     Parameters
     ----------
@@ -317,11 +317,12 @@ def add_data_def_equation(
     data_def : suite.DataDef
         Input scope, which is an operator, state, or action.
     diagram : suite.Diagram
-        Diagram containing the equation. Options are ``"graphical"``, ``"textual"``, and ``None``.
-        Note: The diagram can't be ``None`` if the scope contains at least one diagram.
+        Diagram containing the equation. Options are ``'GRAPHICAL'``, ``'TEXTUAL'``,
+        and ``"None"``. Note: The diagram can't be ``None`` if the scope contains at
+        least one diagram.
     lefts : List[Union[suite.LocalVariable, TX]]
         List of variables defined by the equation. The elements can be either an
-        existing local variable or a type tree to create a new internal
+        existing local variable or a type tree to create an internal
         variable on the fly when the diagram is a graphical diagram.
     right : EX
         Expression of the equation.
@@ -337,7 +338,7 @@ def add_data_def_equation(
         Whether the graphical representation is symmetrical.
     rotation : int, default: 0
         Rotation angle of the equation, expressed in degrees.
-        Options are ``0``, ``90``, ``180`` and ``270``.
+        Options are ``0``, ``90``, ``180``, and ``270``.
     textual : bool, default: False
         Whether the equation is a textual. If ``False``, the equation is
         a graphical representation.
@@ -433,8 +434,9 @@ def add_diagram_edge(
     Parameters
     ----------
     diagram : suite.NetDiagram
-        Diagram containing the source and destination equations.
-        Note: The diagram can't be ``None`` if the scope contains at least one diagram.
+        Diagram containing the source and destination equations. Options are
+        ``'GRAPHICAL'``, ``'TEXTUAL'``, and ``"None"``. Note: The diagram can't
+        be ``None`` if the scope contains at least one diagram.
     src : suite.Equation
         Source equation of the edge.
     left : suite.LocalVariable
@@ -442,7 +444,7 @@ def add_diagram_edge(
     dst : suite.Equation
         Target equation of the edge.
     expr: Union[suite.Expression]
-        Parameter to connect to the edge, or input pin index.
+        Parameter to connect to the edge or the input pin index of the target equation.
     points : List[Tuple(int, int)], default: None
         Coordinates of the segments composing the edge, expressed in 1/100th of mm.
         When ``None``, the value is set to ``[(0, 0), (0, 0)]`` so that the SCADE Editor
@@ -564,14 +566,15 @@ def add_data_def_assertion(
     data_def : suite.DataDef
         Input scope, which is an operator, state, or action.
     diagram : suite.Diagram
-        Diagram containing the equation. Options are ``GRAPHICAL``, ``TEXTUAL``, and ``None``.
-        Note: The diagram can't be ``None`` if the scope contains at least one diagram.
+        Diagram containing the equation. Options are ``'GRAPHICAL'``, ``'TEXTUAL'``,
+        and ``"None"``. Note: The diagram can't be ``None`` if the scope contains at
+        least one diagram.
     name : str
         Name of the assertion.
     expr : EX
         Expression of the assertion.
-    kind : VK, default: ASSUME
-        Kind of the assertion. Options are ``ASSUME`` and ``GUARANTEE``.
+    kind : AK, default: ASSUME
+        Kind of the assertion.
     position : Tuple[float, float], default: None
         Position of the assertion, expressed in 1/100th of mm.
         This value is ignored if the diagram is not a graphical diagram.
@@ -633,8 +636,9 @@ def add_data_def_state_machine(
     name : str
         Name of the state machine.
     diagram : suite.Diagram
-        Diagram containing the state machine.  Options are ``GRAPHICAL``, ``TEXTUAL``, and ``None``.
-        Note: The diagram can't be ``None`` if the scope contains at least one diagram.
+        Diagram containing the state machine. Options are ``'GRAPHICAL'``, ``'TEXTUAL'``,
+        and ``"None"``. Note: The diagram can't be ``None`` if the scope contains at
+        least one diagram.
     position : Tuple[float, float], default: None
         Position of the state machine, expressed in 1/100th of mm.
         This value is ignored if the diagram is not a graphical diagram.
@@ -721,9 +725,9 @@ def add_state_machine_state(
         This value is considered if and only if the state machine
         has a graphical representation.
     kind : SK, default: NORMAL
-        Kind of the state. Options are ``"Final"``, ``"Initial"``, and ``"Normal"``.
+        Kind of the state.
     display : DK, default: GRAPHICAL
-        Layout of the state. Options are ``"graphical"``, ``"textual"``, and ``None``.
+        Layout of the state.
 
     Returns
     -------
@@ -820,7 +824,7 @@ class _Fork(TD):
 
 
 class TK(Enum):
-    """Provides an enum with transition kinds."""
+    """Provides an enum of transition kinds."""
 
     WEAK = 'Weak'
     STRONG = 'Strong'
@@ -933,7 +937,7 @@ def add_state_transition(state: suite.State, kind: TK, tree: TR) -> suite.Transi
     state : EX
         Source of the transition.
     kind : TK
-        Kind of transition. Options are ``"Strong"``, ``"Synchro"``, and ``"Weak"``.
+        Kind of transition.
     tree : TR
         Transition tree, which is the intermediate structure describing the transition.
 
@@ -1041,7 +1045,7 @@ def add_transition_equation(
 
 
 class IfTree:
-    """Provides an intermediate structure to describe the structure of an if block."""
+    """Provides an intermediate structure for describing the structure of an if block."""
 
     def __init__(self, position: Tuple[float, float] = None):
         """Store the attributes."""
@@ -1156,7 +1160,7 @@ def create_if_action(
     size : Tuple[float, float], default: None
         Size of the action.
     display : DK, default: GRAPHICAL
-        Layout of the action. Options are ``GRAPHICAL``, ``TEXTUAL``, and ``SPLIT``.
+        Layout of the action.
 
 
     Returns
@@ -1170,7 +1174,7 @@ def create_if_tree(
     expression: EX, then: IT, else_: IT, position: Tuple[float, float] = None, label_width: int = 0
 ) -> IT:
     r"""
-    Create a decision in the intermediate if tree structure.
+    Create a decision in the intermediate structure if it is a tree structure.
 
     The graphical properties are expressed 1/100th of mm.
 
@@ -1224,8 +1228,9 @@ def add_data_def_if_block(
     if_tree : IfTree
         Intermediate tree to describe the structure of the if block.
     diagram : suite.Diagram
-        Diagram containing the if block. Options are ``"GRAPHICAL"``, ``"TEXTUAL"``,
-        and ``"None"``. Note: The diagram can't be ``None`` if the scope contains at least one diagram.
+        Diagram containing the if block. Options are ``'GRAPHICAL'``, ``'TEXTUAL'``,
+        and ``"None"``. Note: The diagram can't be ``None`` if the scope contains at
+        least one diagram.
     position : Tuple[float, float], default: None
         Position of the if block.
     size : Tuple[float, float], default: None
@@ -1313,7 +1318,7 @@ def create_when_branch(
     size : Tuple[float, float], default: None
         Size of the action.
     display : DK, default: GRAPHICAL
-        Layout of the action. Options are ``GRAPHICAL``, ``TEXTUAL``, and ``SPLIT``.
+        Layout of the action.
     label_width : int
         Optional width of the label containing the pattern.
 
@@ -1355,8 +1360,9 @@ def add_data_def_when_block(
         List of intermediate structures describing the branches.
         There must be at least one branch.
     diagram : suite.Diagram, default: None
-        Diagram containing the block. Options are ``GRAPHICAL``, ``TEXTUAL``, and ``None``.
-        Note: The diagram can't be ``None`` if the scope contains at least one diagram.
+        Diagram containing the block. Options are ``GRAPHICAL``, ``TEXTUAL``, and
+        ``None``. Note: The diagram can't be ``None`` if the scope contains at least
+        one diagram.
     position : Tuple[float, float] default: None
         Position of the block.
     size : Tuple[float, float] default: None

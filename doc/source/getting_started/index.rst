@@ -1,7 +1,6 @@
 Getting started
 ===============
-To use Ansys SCADE API Tools, you must have a valid license for the Ansys SCADE
-Suite.
+To use Ansys SCADE API Tools, you must have a valid license for Ansys SCADE.
 
 For information on getting a licensed copy, see the
 `Ansys SCADE Suite <https://www.ansys.com/products/embedded-software/ansys-scade-suite>`_

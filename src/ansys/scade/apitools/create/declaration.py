@@ -22,7 +22,7 @@
 # SOFTWARE.
 
 """
-Provides creation functions for Scade model declarations.
+Provides create functions for Scade model declarations.
 
 * Package
 * Type
@@ -57,7 +57,7 @@ def create_package(
     owner: suite.Package, name: str, path: Path = None, visibility: VK = VK.PUBLIC
 ) -> suite.Package:
     """
-    Create a ``Package`` instance.
+    Create a package.
 
     A package has a name and is either stored in a separate file
     or in its owner's file, if the owner is not the model.
@@ -73,7 +73,7 @@ def create_package(
         if the package's owner is a package. When the path is ``None`` and the
         owner is the model, the package is stored in the model's default file.
     visibility : VK, default: PUBLIC
-        Accessibility of the package. Options are ``'Private'`` and ``'Public'``.
+        Accessibility of the package.
 
     Returns
     -------
@@ -113,9 +113,9 @@ def create_named_type(
     symbol_files: List[Path] = None,
 ) -> suite.NamedType:
     """
-    Create a ``NamedType`` instance.
+    Create a named type.
 
-    The type has a name and a definition.
+    A named type has a name and a definition.
 
     Parameters
     ----------
@@ -130,7 +130,7 @@ def create_named_type(
         owner is a package. When the path is ``None`` and owner is the model, the
         type is stored in the model's default file.
     visibility : VK, default: PUBLIC
-        Accessibility of the type. Options are ``'Private'`` and ``'Public'``.
+        Accessibility of the type.
 
     Returns
     -------
@@ -164,9 +164,9 @@ def create_imported_type(
     owner: suite.Package, name: str, path: Path = None, visibility: VK = VK.PUBLIC
 ) -> suite.NamedType:
     """
-    Create an imported ``NamedType`` instance.
+    Create an imported named type.
 
-    The imported type has a name and a definition.
+    The type has a name and a definition.
 
     Parameters
     ----------
@@ -179,7 +179,7 @@ def create_imported_type(
         owner is a package. When the path is ``None`` and owner is the model, the
         type is stored in the model's default file.
     visibility : VK
-        Accessibility of the type. Options are ``'Private'`` and ``'Public'``.
+        Accessibility of the type.
 
     Returns
     -------
@@ -211,9 +211,9 @@ def create_enumeration(
     visibility: VK = VK.PUBLIC,
 ) -> suite.NamedType:
     """
-    Create a ``NamedType`` instance defined by an enumeration.
+    Create a named type defined by an enumeration.
 
-    A type has a name and a list of values.
+    The type has a name and a list of values.
 
     Parameters
     ----------
@@ -228,7 +228,7 @@ def create_enumeration(
         the owner is a package. When the path is ``None`` and owner is the model,
         the type is stored in the model's default file.
     visibility : VK
-        Accessibility of the type. Options are ``'Private'`` and ``'Public'``.
+        Accessibility of the type.
 
     Returns
     -------
@@ -308,7 +308,7 @@ def create_constant(
     visibility: VK = VK.PUBLIC,
 ) -> suite.Constant:
     r"""
-    Create a ``Constant`` instance.
+    Create a constant.
 
     A constant has a name, type, and value.
 
@@ -327,7 +327,7 @@ def create_constant(
         the owner is a package. When the path is ``None`` and owner is the model,
         theconstant is stored in the model's default file.
     visibility : VK
-        Accessibility of the constant. Options are ``'Private'`` and ``'Public'``.
+        Accessibility of the constant.
 
     Returns
     -------
@@ -359,9 +359,9 @@ def create_imported_constant(
     owner: suite.Package, name: str, type_: TX, path: Path = None, visibility: VK = VK.PUBLIC
 ):
     r"""
-    Create an imported ``Constant`` instance.
+    Create an imported constant.
 
-    An imported constant has a name and a type.
+    The constant has a name and a type.
 
     Parameters
     ----------
@@ -376,7 +376,7 @@ def create_imported_constant(
         the owner is a package. When the path is ``None`` and owner is the model,
         the constant is stored in the model's default file.
     visibility : VK
-        Accessibility of the constant. Options are ``'Private'`` and ``'Public'``.
+        Accessibility of the constant.
 
     Returns
     -------
@@ -405,9 +405,9 @@ def create_imported_constant(
 
 def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path = None) -> suite.Sensor:
     r"""
-    Create a ``Sensor`` instance.
+    Create a sensor.
 
-    A sensor has a name and a type.
+    The sensor has a name and a type.
 
     Parameters
     ----------
@@ -453,7 +453,7 @@ def _create_operator(
     symbol_file: Path = None,
     state: bool = False,
 ) -> suite.Operator:
-    """Core function for creating an ``Operator`` instance."""
+    """Core function for creating an operator."""
     _check_object(owner, 'create_operator', 'owner', suite.Package)
 
     operator = suite.Operator(owner)
@@ -479,9 +479,9 @@ def create_graphical_operator(
     state: bool = False,
 ) -> suite.Operator:
     """
-    Create an ``Operator`` instance with a graphical diagram.
+    Create an operator with a graphical diagram.
 
-    An operator has a name.
+    The operator has a name.
 
     Parameters
     ----------
@@ -494,7 +494,7 @@ def create_graphical_operator(
         if the package's owner is a package. When the path is ``None`` and owner
         is the model, the operator is stored in the model's default file.
     visibility : VK, default: PUBLIC
-        Accessibility of the operator. Options are ``'Private'`` and ``'Public'``.
+        Accessibility of the operator.
     symbol_file : Path, default: None
         Path of the file defining the symbol of the operator.
     state : bool, default: False
@@ -523,9 +523,9 @@ def create_textual_operator(
     state: bool = False,
 ) -> suite.Operator:
     """
-    Create an ``Operator`` instance with a textual diagram.
+    Create an operator with a textual diagram.
 
-    An operator has a name.
+    The operator has a name.
 
     Parameters
     ----------
@@ -538,7 +538,7 @@ def create_textual_operator(
         the package's owner is a package. When the path is ``None`` and owner is
         the model, the operator is stored in the model's default file.
     visibility : VK, default: PUBLIC
-        Accessibility of the operator.  Options are ``'Private'`` and ``'Public'``.
+        Accessibility of the operator.
     symbol_file : Path, default: None
         Path of the file defining the symbol of the operator.
     state : bool, default: False
@@ -567,9 +567,9 @@ def create_imported_operator(
     state: bool = False,
 ) -> suite.Operator:
     """
-    Create an imported ``Operator`` instance.
+    Create an imported operator.
 
-    An operator has a name.
+    The operator has a name.
 
     Parameters
     ----------
@@ -584,7 +584,7 @@ def create_imported_operator(
         the package's owner is a package. When the path is ``None`` and owner
         is the model, the operator isstored in the model's default file.
     visibility : VK, default: Public
-        Accessibility of the operator. Options are ``'Private'`` and ``'Public'``.
+        Accessibility of the operator.
     symbol_file : Path, default: None
         Path of the file defining the symbol of the operator.
     state : bool, default: False
@@ -673,7 +673,7 @@ def add_operator_inputs(
     Notes
     -----
     This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs name/type tree are now embedded in a list of tuples.
+    The pairs "name"/"type" tree are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -703,7 +703,7 @@ def add_operator_hidden(
     Notes
     -----
     This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs name/type tree are now embedded in a list of tuples.
+    The pairs "name"/"type" tree are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -733,7 +733,7 @@ def add_operator_outputs(
     Notes
     -----
     This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs name/type tree are now embedded in a list of tuples.
+    The pairs "name"/"type" tree are now embedded in a list of tuples.
 
     Parameters
     ----------

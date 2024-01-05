@@ -12,12 +12,12 @@ The overall structure of an example script is as follows:
 
 .. note::
     The examples for the :py:mod:`create <ansys.scade.apitools.create>`
-    module have a different design, described in the appropriate example sections.
+    package have a different design, described in the appropriate example sections.
 
 Run the examples
 ----------------
 
-For a reminder on SCADE Python scripts, see :ref:`SCADE scripting <scripting scade>` .
+For a reminder on SCADE Python scripts, see :ref:`SCADE scripting <scripting scade>`.
 
 SCADE GUI
 ~~~~~~~~~
