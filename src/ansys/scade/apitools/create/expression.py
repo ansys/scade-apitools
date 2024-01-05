@@ -96,7 +96,7 @@ LX = Union[EX, List[EX]]
 
 
 class _Value(ET):
-    """Literal value."""
+    """Provides a literal value."""
 
     def __init__(self, value: str, kind: str, **kwargs):
         """Literal value."""
@@ -176,7 +176,7 @@ class _Call(ET):
 
 
 class _Predefined(_Call):
-    """Provides calls to a predefined operator."""
+    """Provides a calls to a predefined operator."""
 
     def __init__(self, eck: Eck, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -190,7 +190,7 @@ class _Predefined(_Call):
 
 
 class _Operator(_Call):
-    """Provides calls to a user operator."""
+    """Provides a call to a user operator."""
 
     def __init__(self, operator: suite.Operator, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1222,7 +1222,7 @@ def _create_sequence(flows: List[EX]) -> ET:
 
 
 class ExprSyntaxError(Exception):
-    """Generic exception for syntax errors in expression trees."""
+    """Provides the generic exception for syntax errors in expression trees."""
 
     def __init__(self, context, item):
         """Provide a customized message."""
@@ -1230,7 +1230,7 @@ class ExprSyntaxError(Exception):
 
 
 class TypeIdentifierError(Exception):
-    """Exception for incorrect identifiers."""
+    """Provides the exception for incorrect identifiers."""
 
     def __init__(self, context, item):
         """Provide a customized message."""
@@ -1238,7 +1238,7 @@ class TypeIdentifierError(Exception):
 
 
 class EmptyTreeError(Exception):
-    """Exception for empty expression trees."""
+    """Provides the exception for empty expression trees."""
 
     def __init__(self):
         """Provide a customized message."""
@@ -1294,7 +1294,7 @@ def _find_expr_id(expr: suite.Expression, index: int) -> suite.ExprId:
 
     Notes
     -----
-    The function is not complete for now and must be specified more precisely.
+    This function is not currently complete and must be specified more precisely.
 
     Parameters
     ----------
