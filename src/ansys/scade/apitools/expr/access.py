@@ -63,12 +63,12 @@ class Present(Expression):
 
     The format is ``'<signal>``.
 
+    See the :ref:`present <ex__present>` example.
+
     Parameters
     ----------
     expression :
         Signal expression to wrap.
-
-    See the :ref:`present <ex__present>` example.
     """
 
     def __init__(self, expression: suite.ExprId):
@@ -88,12 +88,12 @@ class Last(Expression):
 
     The format is ``last '<variable>``.
 
+    See the :ref:`last <ex__last>` example.
+
     Parameters
     ----------
     expression :
         Last variable expression to wrap.
-
-    See the :ref:`last <ex__last>` example.
     """
 
     def __init__(self, expression: suite.ExprId):
@@ -113,12 +113,12 @@ class IdExpression(Expression):
 
     The format is ``<path>``.
 
+    See the :ref:`id_expression <ex__id_expression>` example.
+
     Parameters
     ----------
     expression :
         Reference expression to wrap.
-
-    See the :ref:`id_expression <ex__id_expression>` example.
     """
 
     def __init__(self, expression: suite.ExprId):
@@ -137,12 +137,12 @@ class ConstValue(Expression):
 
     The format is ``<value>``.
 
+    See the :ref:`const_value <ex__const_value>` example.
+
     Parameters
     ----------
     expression :
         Literal to wrap.
-
-    See the :ref:`const_value <ex__const_value>` example.
     """
 
     def __init__(self, expression: suite.ConstValue):

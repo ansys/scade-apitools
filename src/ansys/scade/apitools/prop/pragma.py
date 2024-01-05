@@ -57,6 +57,8 @@ def find_pragma(object_: suite.Object, id: str) -> suite.Pragma:
     r"""
     Get the pragma ID of an object.
 
+    See the :ref:`pragma <ex__pragma>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
@@ -68,8 +70,6 @@ def find_pragma(object_: suite.Object, id: str) -> suite.Pragma:
     -------
     suite.Pragma
         ID of the pragma or ``None`` if not found.
-
-    See the :ref:`pragma <ex__pragma>` example.
     """
     # return next([_ for _ in object_.pragmas if _.id == id], None)
     return object_.find_pragma(id)
@@ -79,14 +79,14 @@ def remove_pragma(object_: suite.Object, id: str) -> bool:
     r"""
     Remove the pragma ID from an object.
 
+    See the :ref:`pragma <ex__pragma>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
         Element to search for the pragma.
     id : str
         ID of the pragma.
-
-    See the :ref:`pragma <ex__pragma>` example.
 
     Returns
     -------
@@ -114,14 +114,14 @@ def get_pragma_text(object_: suite.Object, id: str) -> str:
     * Raise the ``TypeError`` exception when the pragma exists
       but is not textual.
 
+    See the :ref:`pragma <ex__pragma>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
         Element to search for the pragma.
     id : str
         ID of the pragma.
-
-    See the :ref:`pragma <ex__pragma>` example.
 
     Returns
     -------
@@ -149,6 +149,8 @@ def set_pragma_text(object_: suite.Object, id: str, text: str) -> bool:
     * Create a new pragma when no pragma ID exists yet.
     * Return whether the model is modified.
 
+    See the :ref:`pragma <ex__pragma>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
@@ -157,8 +159,6 @@ def set_pragma_text(object_: suite.Object, id: str, text: str) -> bool:
         ID of the pragma.
     text : str
         New ID of the pragma.
-
-    See the :ref:`pragma <ex__pragma>` example.
 
     Returns
     -------
@@ -191,6 +191,8 @@ def find_pragma_tool(object_: suite.Object, id: str, key: str) -> suite.TextPrag
     r"""
     Get the pragma for an object.
 
+    See the :ref:`pragma_tool <ex__pragma_tool>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
@@ -199,8 +201,6 @@ def find_pragma_tool(object_: suite.Object, id: str, key: str) -> suite.TextPrag
         ID of the pragma.
     key : str
         First token of the pragma.
-
-    See the :ref:`pragma_tool <ex__pragma_tool>` example.
 
     Returns
     -------
@@ -222,6 +222,8 @@ def remove_pragma_tool(object_: suite.Object, id: str, key: str) -> bool:
     r"""
     Remove the pragma from an object.
 
+    See the  :ref:`pragma_tool <ex__pragma_tool>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
@@ -230,8 +232,6 @@ def remove_pragma_tool(object_: suite.Object, id: str, key: str) -> bool:
         ID of the pragma.
     key : str
         First token of the pragma.
-
-    See the  :ref:`pragma_tool <ex__pragma_tool>` example.
 
     Returns
     -------
@@ -253,6 +253,8 @@ def get_pragma_tool_text(object_: suite.Object, id: str, key: str) -> str:
     * Raise the ``TypeError`` exception when the pragma exists
       but is not textual.
 
+    See the :ref:`pragma_tool <ex__pragma_tool>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
@@ -261,8 +263,6 @@ def get_pragma_tool_text(object_: suite.Object, id: str, key: str) -> str:
         ID of the pragma.
     key : str
         First token of the pragma.
-
-    See the :ref:`pragma_tool <ex__pragma_tool>` example.
 
     Returns
     -------
@@ -283,6 +283,8 @@ def set_pragma_tool_text(object_: suite.Object, id: str, key: str, text: str) ->
     * Create a pragma when no pragma ID if no pragma with the given key exists.
     * Return whether the model is modified.
 
+    See the :ref:`pragma_tool <ex__pragma_tool>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
@@ -293,8 +295,6 @@ def set_pragma_tool_text(object_: suite.Object, id: str, key: str, text: str) ->
         New value of the pragma.
     key : str
         First token of the pragma.
-
-    See the :ref:`pragma_tool <ex__pragma_tool>` example.
 
     Returns
     -------
@@ -322,14 +322,14 @@ def get_pragma_json(object_: suite.Object, id: str) -> object:
     r"""
     Deserialize a text pragma containing a JSON document to a Python object.
 
+    See the :ref:`pragma_json <ex__pragma_json>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
         Element to get the pragma from.
     id : str
         ID of the pragma.
-
-    See the :ref:`pragma_json <ex__pragma_json>` example.
 
     Returns
     -------
@@ -352,6 +352,8 @@ def set_pragma_json(object_: suite.Object, id: str, data: object) -> bool:
     An existing pragma with the same ID is updated with the text
     or deleted if the object is ``None`` or empty.
 
+    See the :ref:`pragma_json <ex__pragma_json>` example.
+
     Parameters
     ----------
     object\_ : suite.Object
@@ -360,8 +362,6 @@ def set_pragma_json(object_: suite.Object, id: str, data: object) -> bool:
         ID of the pragma.
     data : object
         Python object to serialize to a JSON document.
-
-    See the :ref:`pragma_json <ex__pragma_json>` example.
 
     Returns
     -------
