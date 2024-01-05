@@ -50,7 +50,7 @@ Notes: The typing is relaxed in this module to ease the constructs.
      Union[EX, List[EX]]
 
   When the expressions accept an arbitrary number of input flows, such as
-  if-then-else or fby, it is allowed to provide either one expression tree or a list
+  if-then-else or fby, you can provide either one expression tree or a list
   of expression trees.
 
 """
@@ -176,7 +176,7 @@ class _Call(ET):
 
 
 class _Predefined(_Call):
-    """Calls a predefined operator."""
+    """Provides calls to a predefined operator."""
 
     def __init__(self, eck: Eck, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -190,7 +190,7 @@ class _Predefined(_Call):
 
 
 class _Operator(_Call):
-    """Calls a user operator."""
+    """Provides calls to a user operator."""
 
     def __init__(self, operator: suite.Operator, *args, **kwargs):
         super().__init__(*args, **kwargs)

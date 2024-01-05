@@ -205,7 +205,7 @@ def find_pragma_tool(object_: suite.Object, id: str, key: str) -> suite.TextPrag
     Returns
     -------
     suite.TextPragma
-        Found pragma or ``None`` if not found
+        Found pragma or ``None`` if not found.
     """
     for pragma in object_.pragmas:
         if pragma.id == id:
