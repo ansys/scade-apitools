@@ -277,7 +277,7 @@ def _create_internal(data_def: suite.DataDef, tree: TX) -> suite.LocalVariable:
 
     Notes
     -----
-    The algorithm is inefficient. You should computethe name
+    The algorithm is inefficient. You should compute the name
     of the internal variables with a cache in the client code.
 
     """
@@ -317,9 +317,9 @@ def add_data_def_equation(
     data_def : suite.DataDef
         Input scope, which is an operator, state, or action.
     diagram : suite.Diagram
-        Diagram containing the equation. Options are ``'GRAPHICAL'``, ``'TEXTUAL'``,
-        and ``"None"``. Note: The diagram can't be ``None`` if the scope contains at
-        least one diagram.
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
     lefts : List[Union[suite.LocalVariable, TX]]
         List of variables defined by the equation. The elements can be either an
         existing local variable or a type tree to create an internal
@@ -434,9 +434,9 @@ def add_diagram_edge(
     Parameters
     ----------
     diagram : suite.NetDiagram
-        Diagram containing the source and destination equations. Options are
-        ``'GRAPHICAL'``, ``'TEXTUAL'``, and ``"None"``. Note: The diagram can't
-        be ``None`` if the scope contains at least one diagram.
+        Diagram containing the source and destination equations. The diagram specified
+        can be either graphical or textual, or it can be ``None``. However, it cannot be
+        ``None`` if the scope contains at least one diagram.
     src : suite.Equation
         Source equation of the edge.
     left : suite.LocalVariable
@@ -566,9 +566,9 @@ def add_data_def_assertion(
     data_def : suite.DataDef
         Input scope, which is an operator, state, or action.
     diagram : suite.Diagram
-        Diagram containing the equation. Options are ``'GRAPHICAL'``, ``'TEXTUAL'``,
-        and ``"None"``. Note: The diagram can't be ``None`` if the scope contains at
-        least one diagram.
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
     name : str
         Name of the assertion.
     expr : EX
@@ -636,9 +636,9 @@ def add_data_def_state_machine(
     name : str
         Name of the state machine.
     diagram : suite.Diagram
-        Diagram containing the state machine. Options are ``'GRAPHICAL'``, ``'TEXTUAL'``,
-        and ``"None"``. Note: The diagram can't be ``None`` if the scope contains at
-        least one diagram.
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
     position : Tuple[float, float], default: None
         Position of the state machine, expressed in 1/100th of mm.
         This value is ignored if the diagram is not a graphical diagram.
@@ -1228,9 +1228,9 @@ def add_data_def_if_block(
     if_tree : IfTree
         Intermediate tree to describe the structure of the if block.
     diagram : suite.Diagram
-        Diagram containing the if block. Options are ``'GRAPHICAL'``, ``'TEXTUAL'``,
-        and ``"None"``. Note: The diagram can't be ``None`` if the scope contains at
-        least one diagram.
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
     position : Tuple[float, float], default: None
         Position of the if block.
     size : Tuple[float, float], default: None
@@ -1360,9 +1360,9 @@ def add_data_def_when_block(
         List of intermediate structures describing the branches.
         There must be at least one branch.
     diagram : suite.Diagram, default: None
-        Diagram containing the block. Options are ``GRAPHICAL``, ``TEXTUAL``, and
-        ``None``. Note: The diagram can't be ``None`` if the scope contains at least
-        one diagram.
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
     position : Tuple[float, float] default: None
         Position of the block.
     size : Tuple[float, float] default: None

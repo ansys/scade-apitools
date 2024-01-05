@@ -37,12 +37,12 @@ def get_type_name(type_: suite.Type) -> str:
     r"""
     Get the name of a type or a string representation.
 
+    See the :ref:`get_type_name <ex__get_type_name>` example.
+
     Parameters
     ----------
     type\_ : suite.Type
         Input type.
-
-    See the :ref:`get_type_name <ex__get_type_name>` example.
 
     Returns
     -------
@@ -59,12 +59,12 @@ def get_leaf_alias(type_: suite.Type) -> suite.Type:
     r"""
     Get the closest alias of the input's type definition.
 
+    See the :ref:`get_leaf_alias <ex__get_leaf_alias>` example.
+
     Parameters
     ----------
     type\_ : suite.Type
         Input type.
-
-    See the :ref:`get_leaf_alias <ex__get_leaf_alias>` example.
 
     Returns
     -------
@@ -81,12 +81,12 @@ def get_leaf_type(type_: suite.Type) -> suite.Type:
     r"""
     Get the definition of the input type, bypassing the aliases.
 
+    See the :ref:`get_leaf_type <ex__get_leaf_type>` example.
+
     Parameters
     ----------
     type\_ : suite.Type
         Input type.
-
-    See the :ref:`get_leaf_type <ex__get_leaf_type>` example.
 
     Returns
     -------
@@ -104,6 +104,8 @@ def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
     r"""
     Get the type of the elements of an array, optionally multi-dimensional.
 
+    See the :ref:`get_cell_type <ex__get_cell_type>` example.
+
     Parameters
     ----------
     type\_ : suite.Type
@@ -111,8 +113,6 @@ def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
     skip_alias : bool, default: False
         Whether the aliased arrays are considered as dimensions
         of the input array.
-
-    See the :ref:`get_cell_type <ex__get_cell_type>` example.
 
     Returns
     -------
@@ -179,12 +179,12 @@ def is_array(type_: suite.Type) -> bool:
     r"""
     Determine if the input type is an array.
 
+    See the :ref:`is_array <ex__is_array>` example.
+
     Parameters
     ----------
     type\_ : suite.Type
         Input type.
-
-    See the :ref:`is_array <ex__is_array>` example.
 
     Returns
     -------
@@ -200,12 +200,12 @@ def is_structure(type_: suite.Type) -> bool:
     r"""
     Determine if the input type is a structure.
 
+    See the :ref:`is_structure <ex__is_structure>` example.
+
     Parameters
     ----------
     type\_ : suite.Type
         Input type.
-
-    See the :ref:`is_structure <ex__is_structure>` example.
 
     Returns
     -------
@@ -221,12 +221,12 @@ def is_enum(type_: suite.Type) -> bool:
     r"""
     Determine if the input type is an enumeration.
 
+    See the :ref:`is_enum <ex__is_enum>` example.
+
     Parameters
     ----------
     type\_ : suite.Type
         Input type.
-
-    See the :ref:`is_enum <ex__is_enum>` example.
 
     Returns
     -------
@@ -242,12 +242,12 @@ def is_predefined(type_: suite.Type) -> bool:
     r"""
     Determine if the input type is predefined.
 
+    See the :ref:`is_predefined <ex__is_predefined>` example.
+
     Parameters
     ----------
     type\_ : suite.Type
         Input type.
-
-    See the :ref:`is_predefined <ex__is_predefined>` example.
 
     Returns
     -------
@@ -261,14 +261,14 @@ def is_predefined(type_: suite.Type) -> bool:
 
 def is_imported(type_: suite.Type) -> bool:
     r"""
-    Dewtermine if the input type is imported.
+    Determine if the input type is imported.
+
+    See the :ref:`is_imported <ex__is_imported>` example.
 
     Parameters
     ----------
     type\_ : suite.Type
         Input type.
-
-    See the :ref:`is_imported <ex__is_imported>` example.
 
     Returns
     -------
@@ -284,6 +284,8 @@ def is_scalar(type_: suite.Type, target: str = 'C') -> bool:
     r"""
     Determine if the input type is scalar.
 
+    See the :ref:`is_scalar <ex__is_scalar>` example.
+
     Parameters
     ----------
     type\_ : suite.Type
@@ -291,8 +293,6 @@ def is_scalar(type_: suite.Type, target: str = 'C') -> bool:
     target :
         Target language to consider if the input type is imported.
         Options are ``'C'`` and ``'Ada'``.
-
-    See the :ref:`is_scalar <ex__is_scalar>` example.
 
     Returns
     -------
