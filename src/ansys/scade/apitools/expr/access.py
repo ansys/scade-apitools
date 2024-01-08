@@ -157,7 +157,9 @@ class ConstValue(Expression):
 
 class TextExpression(Expression):
     """
-    Provides an expression with the ``any text which can't compile`` syntax error.
+    Provides an expression with a syntax error.
+    
+    The format is ``any text which can't compile``.
 
     Parameters
     ----------
@@ -842,12 +844,12 @@ class IfThenElseOp(CallExpression):
 
     @property
     def then(self) -> list[Expression]:
-        """Flows when the condition is ``True``."""
+        """Flows when the condition is true."""
         return self._then
 
     @property
     def else_(self) -> list[Expression]:
-        """Flows when the condition is ``False``."""
+        """Flows when the condition is false."""
         return self._else
 
 
@@ -942,7 +944,7 @@ class InitOp(CallExpression):
 
     @property
     def inits(self) -> list[Expression]:
-        """Initialization values of the flows."""
+        """Initial values of the flows."""
         return self._inits
 
 

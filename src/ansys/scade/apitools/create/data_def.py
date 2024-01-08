@@ -105,7 +105,7 @@ def add_data_def_locals(
     Notes
     -----
     This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs "name"/"type" tree are now embedded in a list of tuples.
+    The pairs "name"/"type tree" are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -131,7 +131,7 @@ def add_data_def_probes(
     Notes
     -----
     This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs "name"/"type" tree are now embedded in a list of tuples.
+    The pairs "name"/"type tree" are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -172,7 +172,7 @@ def set_variable_default(variable: suite.LocalVariable, tree: EX) -> suite.Expre
 
 def set_variable_last(variable: suite.LocalVariable, tree: EX) -> suite.Expression:
     """
-    Set the last value of an input variable.
+    Set the last value of a variable.
 
     Parameters
     ----------

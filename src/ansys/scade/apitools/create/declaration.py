@@ -73,7 +73,7 @@ def create_package(
         if the package's owner is a package. When the path is ``None`` and the
         owner is the model, the package is stored in the model's default file.
     visibility : VK, default: PUBLIC
-        Accessibility of the package.
+        Accessibility of the package, which is either public or private.
 
     Returns
     -------

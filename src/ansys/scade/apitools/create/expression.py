@@ -89,7 +89,7 @@ ET = ExpressionTree
 """Short name for an ``ExpressionTree`` instance to simplify the declarations."""
 
 EX = Union[bool, int, float, str, suite.ConstVar, suite.NamedType, ET]
-"""Extended expression tree to simply use of the create functions."""
+"""Extended expression tree to simplify use of the create functions."""
 
 LX = Union[EX, List[EX]]
 """Extended lists of expression trees to simply the use of create functions."""
@@ -117,7 +117,7 @@ class _Value(ET):
 
 
 class _Reference(ET):
-    """Creates a reference to a SCADE constant variable."""
+    """Provides a reference to a SCADE constant or variable."""
 
     def __init__(self, reference: suite.ConstVar, **kwargs):
         """Initialize a constant, sensor, or local variable."""
