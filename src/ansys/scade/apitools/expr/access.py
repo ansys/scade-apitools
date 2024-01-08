@@ -158,7 +158,7 @@ class ConstValue(Expression):
 class TextExpression(Expression):
     """
     Provides an expression with a syntax error.
-    
+
     The format is ``any text which can't compile``.
 
     Parameters
