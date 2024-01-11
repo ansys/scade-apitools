@@ -1,6 +1,6 @@
 ﻿# MIT License
 
-# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2023 - 2024 ANSYS, Inc. and/or its affiliates.
 # SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
 
 """Unit tests fixtures."""

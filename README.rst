@@ -42,182 +42,36 @@ Overview
 --------
 Ansys SCADE API Tools is an extension library for SCADE Python APIs.
 
-Documentation and Issues
-------------------------
-For more information, see the `Documentation page`_.
-
-Feel free to post issues and other questions at `apitools Issues`_.
-This is the best place to post questions and code.
-
-Installation
+Requirements
 ------------
 The ``ansys-scade-apitools`` package supports only the versions of Python delivered with
 Ansys SCADE, starting from 2021 R2:
 
-* 2021 R2 -> 2023 R1: Python 3.7
-* 2023 R2 ->: Python 3.10
+* 2021 R2 through 2023 R1: Python 3.7
+* 2023 R2 and later: Python 3.10
 
-Ansys SCADE API Tools has two installation modes: user and developer.
+Ansys SCADE API Tools has two installation modes: user and developer. To install for use,
+see `Getting started <https://apitools.scade.docs.pyansys.com/version/stable/getting_started/index.html>`_.
+To install for development, see `Contribute <https://apitools.scade.docs.pyansys.com/version/stable/contributing.html>`_.
 
-Install in user mode
-^^^^^^^^^^^^^^^^^^^^
+Documentation and issues
+------------------------
+Documentation for the latest stable release of Ansys SCADE API Tools is hosted at
+`Ansys SCADE API Tools documentation <https://apitools.scade.docs.pyansys.com/version/stable/index.html>`_.
 
-Before installing Ansys SCADE API Tools in user mode, make sure you have the latest version of
-`pip`_ with:
+In the upper right corner of the documentation's title bar, there is an option for
+switching from viewing the documentation for the latest stable release to viewing the
+documentation for the development version or previously released versions.
 
-.. code:: bash
+On the `Ansys Scade API Tools Issues <https://github.com/ansys/scade-apitools/issues>`_
+page, you can create issues to report bugs and request new features. On the `Discussions <https://discuss.ansys.com/>`_
+page on the Ansys Developer portal, you can post questions, share ideas, and get community feedback.
 
-   python -m pip install -U pip
+License
+~~~~~~~
+Ansys Scade API Tools is licensed under the MIT license.
 
-Then, install Ansys SCADE API Tools with:
-
-.. code:: bash
-
-    python -m pip install ansys-scade-apitools
-
-Install in developer mode
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Installing Ansys SCADE apitools in developer mode allows
-you to modify the source and enhance it.
-
-.. note::
-
-   Before contributing to the project, please refer to the `PyAnsys Developer's guide`_. You will
-   need to follow these steps:
-
-#. Clone the ``ansys-scade-apitools`` repository:
-
-   .. code:: bash
-
-      git clone https://github.com/ansys/scade-apitools
-
-#. Create a fresh-clean Python 3.10 environment and activate it:
-
-   It is advised to use the interpreter delivered with Ansys SCADE, for example
-   ``C:\Program Files\ANSYS Inc\v232\SCADE\contrib\Python310\python.exe``.
-
-   .. code:: bash
-
-      # Create a virtual environment
-      python -m venv .venv
-
-      # Activate it in a POSIX system
-      source .venv/bin/activate
-
-      # Activate it in Windows CMD environment
-      .venv\Scripts\activate.bat
-
-      # Activate it in Windows Powershell
-      .venv\Scripts\Activate.ps1
-
-#. Make sure you have the latest required build system and doc, testing, and CI tools:
-
-   .. code:: bash
-
-      python -m pip install -U pip     # Upgrading pip
-      python -m pip install tox        # Installing tox (optional)
-      python -m pip install .[build]   # for building the wheels
-      python -m pip install .[tests]   # for testing the package
-      python -m pip install .[doc]     # for building the documentation
-
-
-#. Install the project in editable mode:
-
-    .. code:: bash
-
-      python -m pip install --editable .
-
-#. Finally, verify your development installation by running:
-
-   .. code:: bash
-
-      tox
-
-
-Testing
--------
-
-This project takes advantage of `tox`_. This tool allows to automate common
-development tasks (similar to Makefile) but it is oriented towards Python
-development.
-
-Using tox
-^^^^^^^^^
-
-While Makefile has rules, `tox`_ has environments. In fact, ``tox`` creates its
-own virtual environment so that anything being tested is isolated from the project
-to guarantee the project's integrity.
-
-The following environments commands are provided:
-
-- **tox -e style**: will check for coding style quality.
-- **tox -e py**: checks for unit tests.
-- **tox -e py-coverage**: checks for unit testing and code coverage.
-- **tox -e doc**: checks for documentation building process.
-
-
-Raw testing
-^^^^^^^^^^^
-
-If required, from the command line, you can call style commands, including
-`black`_, `isort`_, and `flake8`_, and unit testing commands like `pytest`_.
-However, this does not guarantee that your project is being tested in an isolated
-environment, which is the reason why tools like `tox`_ exist.
-
-
-Using ``pre-commit``
-^^^^^^^^^^^^^^^^^^^^
-
-The style checks take advantage of `pre-commit`_. Developers are not forced but
-encouraged to install this tool via:
-
-.. code:: bash
-
-    python -m pip install pre-commit && pre-commit install
-
-
-Documentation
--------------
-
-For building documentation, you can either run the usual rules provided in the
-`Sphinx`_ Makefile, such as:
-
-.. code:: bash
-
-    make -C doc/ html && your_browser_name doc/html/index.html
-
-However, the recommended way of checking documentation integrity is to use
-``tox``:
-
-.. code:: bash
-
-    tox -e doc && your_browser_name .tox/doc_out/index.html
-
-
-Distributing
-------------
-
-If you would like to create either source or wheel files, start by installing
-the building requirements and then executing the build module:
-
-.. code:: bash
-
-    python -m pip install .[build]
-    python -m build
-    python -m twine check dist/*
-
-
-.. LINKS AND REFERENCES
-.. _black: https://github.com/psf/black
-.. _flake8: https://flake8.pycqa.org/en/latest/
-.. _isort: https://github.com/PyCQA/isort
-.. _pip: https://pypi.org/project/pip/
-.. _pre-commit: https://pre-commit.com/
-.. _PyAnsys Developer's guide: https://dev.docs.pyansys.com/
-.. _pytest: https://docs.pytest.org/en/stable/
-.. _Sphinx: https://www.sphinx-doc.org/en/master/
-.. _tox: https://tox.wiki/
-.. _apitools Issues: https://github.com/ansys/scade-apitools/issues
-.. _Documentation page: https://apitools.scade.docs.pyansys.com/
-.. _wheel file: https://github.com/ansys/scade-apitools/releases
+This toolkit makes no commercial claim over Ansys whatsoever. The use of this toolkit
+requires a legally licensed copy of the Ansys SCADE Suite. For more information,
+see the `Ansys SCADE Suite <https://www.ansys.com/products/embedded-software/ansys-scade-suite>`_
+page on the Ansys website.

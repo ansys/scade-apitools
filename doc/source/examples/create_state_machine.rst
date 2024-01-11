@@ -4,7 +4,7 @@ state_machine
 Overview
 --------
 
-This small example creates the following state machine and illustrates the usage of the transition trees.
+This small example creates the following state machine and demonstrates the use of the transition trees.
 
 .. figure:: /examples/create/create_state_machine.png
 

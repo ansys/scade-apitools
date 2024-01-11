@@ -1,4 +1,4 @@
-# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2023 - 2024 ANSYS, Inc. and/or its affiliates.
 # SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
@@ -22,7 +22,7 @@
 # SOFTWARE.
 
 """
-Set of helpers for SCADE model creation functions.
+Provides helpers for SCADE model creation functions.
 
 * Persistence
 * Predefined types
@@ -52,7 +52,7 @@ _pending_links = []
 List of pending associations to be set once an object is built.
 
 * Each element of the list is a tuple (src: Object, role: str, link: Object).
-* The list is reset by the function link_pendings.
+* The list is reset by the ``link_pendings`` function.
 """
 
 
@@ -61,7 +61,7 @@ List of pending associations to be set once an object is built.
 
 
 class Sfk(Enum):
-    """Simulation file kind."""
+    """Provides kinds of simulation files."""
 
     C = 1  # Source File for C
     OBJECT = 2  # Object File
@@ -71,7 +71,7 @@ class Sfk(Enum):
 
 
 def save_all():
-    """Save all the modified files of Scade models."""
+    """Save all modified files of Scade models."""
     global _modified_files
 
     for unit in _modified_files:
@@ -90,28 +90,28 @@ def add_element_to_project(
     Add the file defining the storage element to the project.
 
     The file is added if and only if it is not already present.
-    If it is present, the parameters folder and default are ignored.
+    If the file is present, the ``folder`` and ``default`` parameters
+    are ignored.
 
-    The file is added to:
-
-    * The specified folder when not None.
-    * Or one of the default folders  "Model Files" or "Separate Files"
-      depending on the nature of the storage unit when default is True.
-    * Otherwise to the project as a root element.
+    * When the ``folder`` parameter is not ``None``, the file is added to the
+      folder specified.
+    * When the ``default`` parameter is ``True``, the file is added to either the
+      "Model Files" or "Separate Files" folder, depending on the nature of the
+      storage unit.
+    * Otherwise, the file is added to the project as a root element.
 
     Parameters
     ----------
     project : std.Project
         Project to modify.
     element : suite.StorageELement
-        Element which storage unit must be added to the project.
-
-        If the storage unit is not root, the added file is
+        Element with storage unit to add to the project.
+        If the storage unit is not a root element, the added file is
         tagged as ``NONROOT`` for SCADE.
-    folder : std.Folder
+    folder : std.Folder, default: None
         Parent folder of the file to add to the project.
-    default : bool
-        When True, the file is added to one of the default folders
+    default : bool, default: True
+        Whether to add the file to one of the default folders
         for SCADE Suite files.
 
     Returns
@@ -147,17 +147,17 @@ def add_imported_to_project(
     default: bool = True,
 ) -> std.FileRef:
     """
-    Add imported source file, associated to the SCADE imported element, to the project.
+    Add an imported source file, associated with the SCADE imported element, to the project.
 
     The file is added if and only if it is not already present.
-    If it is present, the parameters folder ad default are ignored.
+    If the file is present, the ``folder`` and ``default`` parameters are ignored.
 
-    The file is added to:
-
-    * The specified folder when not None.
-    * Or one of the default folders  "External Code" or "External Type Definitions",
-      depending on nature of element.
-    * Otherwise to the project as a root element.
+    * When the ``folder`` parameter is not ``None``, the file is added to the
+      folder specified.
+    * When the ``default`` parameter is ``True``, the file is added to either the
+      "External Code" or "External Type Definitions" folder, depending on the nature
+      of the element.
+    * Otherwise, the file is added to the project as a root element.
 
     Parameters
     ----------
@@ -166,11 +166,11 @@ def add_imported_to_project(
     element : Union[suite.NamedType, suite.Operator]
         Imported element.
     path : str
-        Path of the file to be added to the project.
+        Path of the file to add to the project.
     folder : std.Folder
         Parent folder of the file to add to the project.
-    default : bool
-        When True, the file is added to the default folder
+    default : bool, default: True
+        Whether to add the file is added to the default folder
         for SCADE Simulation files, according to the element.
 
     Returns
@@ -265,7 +265,7 @@ def add_simulation_file_to_project(
 
 def _get_owner_model(object_: suite.Object) -> suite.Model:
     r"""
-    Return the model owning an object.
+    Get the model owning an object.
 
     Parameters
     ----------
@@ -293,11 +293,12 @@ def _get_owner_model(object_: suite.Object) -> suite.Model:
 
 def _get_model_project(model: suite.Model) -> std.Project:
     """
-    Return the project adssociated to a model or None if model is a library.
+    Get the project adssociated with a model or ``None`` if the model is a library.
 
     Notes
     -----
-    This is an alternative to model.project which raises a crash in some circumstances.
+    This function is an alternative to ``model.project``, which causes a crash
+    in some circumstances.
 
     Parameters
     ----------
@@ -314,11 +315,11 @@ def _get_model_project(model: suite.Model) -> std.Project:
 
 def _get_default_file(model: suite.Model) -> Path:
     """
-    Return the default file to store model level declarations.
+    Get the default file to store model-level declarations.
 
     Notes
     -----
-    This is either the value of the projet's tool property ``@SCADE:DEFAULTFILE``
+    This function returns either the value of the projet's tool property, ``@SCADE:DEFAULTFILE``,
     or the path of the model with the suffix ``.xscade``.
 
     Parameters
@@ -345,15 +346,15 @@ def _get_default_file(model: suite.Model) -> Path:
 
 def _link_storage_element(owner: suite.Package, element: suite.StorageElement, path: Path):
     """
-    Link a storage element to the storage unit specified by path.
+    Link a storage element to the storage unit specified by a path.
 
     * The owner is either a package or a model.
     * The storage unit is created if it does not exist
 
     Notes
     -----
-    Element can by any model declaration if owner is a model,
-    else element must be a package or an operator.
+    The element can by any model declaration if the owner is a model.
+    Otherwise, the element must be a package or an operator.
 
     Parameters
     ----------
@@ -393,13 +394,13 @@ def _link_storage_element(owner: suite.Package, element: suite.StorageElement, p
 
 def _add_pending_link(object_: suite.Object, role: str, link: suite.Object):
     r"""
-    Bufferize the elements of a an association.
+    Buffer the elements of an association.
 
-    This is used while creating some complex data. Each link from data elements
-    shall be create once the complex data is built and connected to its owner.
+    This function is used while creating some complex data. Each link from data elements
+    is created once the complex data is built and connected to its owner.
 
     Indeed, if an error occurs while creating the data, it can be difficult to
-    delete links to already exiting data, for example types.
+    delete links to already exiting data, such as types.
 
     Parameters
     ----------
@@ -416,7 +417,7 @@ def _add_pending_link(object_: suite.Object, role: str, link: suite.Object):
 
 
 def _link_pendings():
-    """Flush the pending_links buffer."""
+    """Flush the pending links buffer."""
     global _pending_links
 
     for object_, role, link in _pending_links:

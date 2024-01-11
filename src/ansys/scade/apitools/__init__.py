@@ -1,4 +1,4 @@
-# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2023 - 2024 ANSYS, Inc. and/or its affiliates.
 # SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Library of high-level functions on top of SCADE Python APIs."""
+"""Provides a library of high-level functions on top of SCADE Python APIs."""
 
 try:
     import importlib.metadata as importlib_metadata

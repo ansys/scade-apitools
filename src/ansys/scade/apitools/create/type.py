@@ -1,4 +1,4 @@
-# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2023 - 2024 ANSYS, Inc. and/or its affiliates.
 # SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
@@ -22,26 +22,26 @@
 # SOFTWARE.
 
 """
-Helpers to create type trees.
+Provide helpers for creating type trees.
 
 Expression trees are intermediate structures to declare any arbitrary complex
-types, and then create the corresponding SCADE Suite type in the context of a
-model element, for example the type of a constant.
+types. They create the corresponding SCADE Suite type in the context of a
+model element, such as the type of a constant.
 
 This module provides functions to create a type tree for any type of the Scade
 language. Thus, the intermediate structures or classes defining the type trees
 can be opaque.
 
-Notes: the typing is relaxed in this module to ease the constructs.
+Notes: The typing is relaxed in this module to ease the constructs.
 
 * ``TT`` is an alias for ``TypeTree`` to shorten the declarations.
 
-* ``TX``, standing for extended type tree, is defined as::
+* ``TX``, which stands for extended type tree, is defined as follows::
 
      Union[str, suite.Type, TT]
 
   This enhances the usability of these functions by accepting some values,
-  such as existing types or name of predefined types as valid type trees.
+  such as existing types or name of predefined types, as valid type trees.
 
 """
 
@@ -55,7 +55,7 @@ from .scade import _add_pending_link, _get_owner_model
 
 # type trees
 class TypeTree:
-    """Top-level abstract class for type trees."""
+    """Provides the top-level abstract class for type trees."""
 
     def _build_type(self, context: suite.Object) -> suite.Type:
         """Build a SCADE Suite type from the type tree."""
@@ -64,10 +64,10 @@ class TypeTree:
 
 
 TT = TypeTree
-"""Short name for TypeTree to simplify the declarations."""
+"""Short name for a ``TypeTree`` instance to simplify the declarations."""
 
 TX = Union[str, suite.Type, TT]
-"""Extended type tree to simply the usage of the creation functions."""
+"""Extended type tree to simply the use of the create functions."""
 
 
 class _Type(TT):
@@ -83,10 +83,10 @@ class _Type(TT):
 
 
 class _Predefined(TT):
-    """Predefined type."""
+    """Provides the predefined type."""
 
     def __init__(self, name: str):
-        """Shall be the name of a predefined type."""
+        """Initialize a predefined type."""
         self.name = name
 
     def _build_type(self, context: suite.Object) -> suite.Type:
@@ -95,7 +95,7 @@ class _Predefined(TT):
 
 
 class _Sized(TT):
-    """Sized type."""
+    """Provides the sized type."""
 
     def __init__(self, signed: bool, size: EX):
         self.signed = signed
@@ -111,7 +111,7 @@ class _Sized(TT):
 
 
 class _Table(TT):
-    """Multi-dimensional array."""
+    """Provides the multi-dimensional array."""
 
     def __init__(self, dimensions: List[EX], type_: TT):
         self.dimensions = dimensions
@@ -130,7 +130,7 @@ class _Table(TT):
 
 
 class _Structure(TT):
-    """Structure."""
+    """Provides the structure."""
 
     def __init__(self, fields: List[Tuple[str, TT]]):
         self.fields = fields
@@ -151,7 +151,7 @@ class _Structure(TT):
 
 
 def _normalize_tree(any: TX) -> TT:
-    """Create type tree instances from predefined or SCADE objects."""
+    """Create type tree instances from predefined types or SCADE objects."""
     if any is None or isinstance(any, TT):
         return any
     # SCADE objects
@@ -184,10 +184,11 @@ def _build_type(tree: TX, context: suite.Object) -> suite.Type:
     Parameters
     ----------
     tree : TX
-        Description of the type expressed as an extended type tree:
+        Type expressed as an extended type tree.
     context : suite.Object
-        Context of the creation of the type, used create the instances of the
-        types, find the predefined types or resolve polymorphic types (TODO).
+        Context of the creation of the type. This parameter is used to
+        create the instances of the types, find the predefined types, or
+        resolve polymorphic types (TODO).
 
     Returns
     -------
@@ -199,12 +200,12 @@ def _build_type(tree: TX, context: suite.Object) -> suite.Type:
 
 def create_sized(signed: bool, size: EX) -> TT:
     """
-    Return the type tree for a sized type.
+    Get the type tree for a sized type.
 
     Parameters
     ----------
     signed : bool
-        Indicates whether the type is signed or not.
+        Whether the type is signed.
     size : EX
         Size of the type expressed as an expression tree.
 
@@ -219,14 +220,14 @@ def create_sized(signed: bool, size: EX) -> TT:
 
 def create_table(dimensions: Union[EX, List[EX]], type_: TX) -> TT:
     r"""
-    Return the type tree for a structure.
+    Get the type tree for a structure.
 
     Parameters
     ----------
     type\_ : TX
         Type tree defining the type of the array elements.
     dimensions : Union[EX, List[EX]]
-        Dimensions of the array, either a single expression tree or
+        Dimensions of the array, which is either a single expression tree or
         a list of expression trees.
 
     Returns
@@ -243,12 +244,12 @@ def create_table(dimensions: Union[EX, List[EX]], type_: TX) -> TT:
 
 def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
     """
-    Return the type tree for a structure.
+    Get the type tree for a structure.
 
     Notes
     -----
-    Interface change with respect to the SCADE Creation Library,
-    the pairs pattern/value are now embedded in a list of tuples.
+    This is an interface change with respect to the **SCADE Creation Library**.
+    The pairs "pattern"/"value" are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -326,7 +327,7 @@ def _get_predefined_type(context: suite.Object, name: str) -> suite.NamedType:
     Parameters
     ----------
     context : suite.Object
-        Any object from which we can derive the owning session.
+        Object from which the owning session can be derived.
     name : str
         Name of the type.
 
@@ -347,12 +348,12 @@ def _get_predefined_type(context: suite.Object, name: str) -> suite.NamedType:
 
 def _get_type_constraint(context: suite.Object, name: str) -> suite.TypeConstraint:
     """
-    Return a type constraint instance from a name for a given context.
+    Get a type constraint instance from a name for a given context.
 
     Parameters
     ----------
     context : suite.Object
-        Any object from which we can derive the owning session.
+        Object from which the owning session can be derived.
     name : str
         Name of the type.
 
@@ -375,8 +376,8 @@ def _object_link_type(object_: suite.TypedObject, type_: suite.Type):
     r"""
     Set the type of an object.
 
-    * The association object : type is buffered.
-    * The composition object : build_type is updated immediately when required.
+    * For an association object, the type is buffered.
+    * For a composition object, the build type is updated immediately when required.
 
     Parameters
     ----------

@@ -1,4 +1,4 @@
-# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2023 - 2024 ANSYS, Inc. and/or its affiliates.
 # SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
@@ -22,7 +22,7 @@
 # SOFTWARE.
 
 """
-Creation functions for Scade operator definitions.
+Provides create functions for Scade operator definitions.
 
 * Interface
 * Behavior
@@ -51,14 +51,14 @@ def add_data_def_signals(data_def: suite.DataDef, names: List[str]) -> List[suit
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     names : List[str]
-        Names of the signals to be created.
+        Names of the signals to add.
 
     Returns
     -------
     List[suite.LocalVariable]
-        Return the added signals.
+        List of added signals.
     """
     _check_object(data_def, 'add_data_def_signals', 'data_def', suite.DataDef)
 
@@ -104,20 +104,20 @@ def add_data_def_locals(
 
     Notes
     -----
-    Interface change with respect to the SCADE Creation Library,
-    the pairs name/type tree are now embedded in a list of tuples.
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "name"/"type tree" are now embedded in a list of tuples.
 
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     vars : List[Tuple[str, TX]]
         Name/type expression trees.
 
     Returns
     -------
     List[suite.LocalVariable]
-        Return the added variables.
+        List of added variables.
     """
     return _add_data_def_variables(data_def, vars, False)
 
@@ -130,20 +130,20 @@ def add_data_def_probes(
 
     Notes
     -----
-    Interface change with respect to the SCADE Creation Library,
-    the pairs name/type tree are now embedded in a list of tuples.
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "name"/"type tree" are now embedded in a list of tuples.
 
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     vars : List[Tuple[str, TX]]
         Name/type expression trees.
 
     Returns
     -------
     List[suite.LocalVariable]
-        Return the added probes.
+        List of added probes.
     """
     return _add_data_def_variables(data_def, vars, True)
 
@@ -166,7 +166,6 @@ def set_variable_default(variable: suite.LocalVariable, tree: EX) -> suite.Expre
     Returns
     -------
     suite.Expression
-        Return the expression.
     """
     return _set_variable_expression(variable, 'default', tree)
 
@@ -185,7 +184,6 @@ def set_variable_last(variable: suite.LocalVariable, tree: EX) -> suite.Expressi
     Returns
     -------
     suite.Expression
-        Return the expression.
     """
     return _set_variable_expression(variable, 'last', tree)
 
@@ -231,14 +229,13 @@ def add_data_def_text_diagram(data_def: suite.DataDef, name: str) -> suite.TextD
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     name : str
         Name of the diagram.
 
     Returns
     -------
     suite.TextDiagram
-        Return the diagram.
     """
     diagram = _add_data_def_diagram(data_def, suite.TextDiagram, name)
     diagram.landscape = False
@@ -252,14 +249,13 @@ def add_data_def_net_diagram(data_def: suite.DataDef, name: str) -> suite.NetDia
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     name : str
         Name of the diagram.
 
     Returns
     -------
     suite.NetDiagram
-        Return the diagram.
     """
     diagram = _add_data_def_diagram(data_def, suite.NetDiagram, name)
     diagram.landscape = True
@@ -271,7 +267,7 @@ def add_data_def_net_diagram(data_def: suite.DataDef, name: str) -> suite.NetDia
 
 
 def _num_to_str(values: List[Union[int, float]]) -> List[str]:
-    """SCADE graphical coordinates shall be strings: position, size, points."""
+    """SCADE graphical coordinates are strings: position, size, points."""
     return [str(_) for _ in values]
 
 
@@ -281,8 +277,8 @@ def _create_internal(data_def: suite.DataDef, tree: TX) -> suite.LocalVariable:
 
     Notes
     -----
-    The algorithm is inefficient, it is adivsed the name
-    of the internal variables is computed with a cache in the client code.
+    The algorithm is inefficient. You should compute the name
+    of the internal variables with a cache in the client code.
 
     """
     # default name for the internal variable
@@ -319,31 +315,33 @@ def add_data_def_equation(
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     diagram : suite.Diagram
-        Diagram containing the equation: either graphical, textual or None.
-        Note: the diagram can't be None if the scope contains at least one diagram.
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
     lefts : List[Union[suite.LocalVariable, TX]]
         List of variables defined by the equation. The elements can be either an
-        existing local variable or a type tree, to create on the fly a new internal
-        variable, when diagram is a graphical diagram.
+        existing local variable or a type tree to create an internal
+        variable on the fly when the diagram is a graphical diagram.
     right : EX
         Expression of the equation.
-    position : Tuple[float, float]
+    position : Tuple[float, float], default: None
         Position of the equation, expressed in 1/100th of mm.
-        This value is ignored if diagram is not a graphical diagram,
-        otherwise it must be specified.
-    size : Tuple[float, float]
+        This value is ignored if the diagram is not a graphical diagram.
+        Otherwise, it must be specified.
+    size : Tuple[float, float], default: None
         Size of the equation, expressed in 1/100th of mm.
-        This value is ignored if diagram is not a graphical diagram,
-        otherwise it must be specified.
-    symmetrical : bool
-        Indicates whether the graphical representation is symmetrical.
-    rotation : int
+        This value is ignored if the diagram is not a graphical diagram.
+        Otherwise, it must be specified.
+    symmetrical : bool, default: False
+        Whether the graphical representation is symmetrical.
+    rotation : int, default: 0
         Rotation angle of the equation, expressed in degrees.
-        The value shall be one of 0, 90, 180 or 270.
-    textual : bool
-        Indicates whether the equation is a textual or has a graphical representation.
+        Options are ``0``, ``90``, ``180``, and ``270``.
+    textual : bool, default: False
+        Whether the equation is a textual. If ``False``, the equation is
+        a graphical representation.
 
     Returns
     -------
@@ -426,7 +424,7 @@ def add_diagram_edge(
       in the source equation.
 
     * The destination of the edge is identified by the parameter of the
-      expression of the target equation. It shall be an instance of ExprId
+      expression of the target equation. It is an ``ExprId`` instance
       referring to the left variable.
 
       To ease the creation of graphical diagrams, the destination of the edge
@@ -436,19 +434,20 @@ def add_diagram_edge(
     Parameters
     ----------
     diagram : suite.NetDiagram
-        Diagram containing the source and destination equations.
-        Note: the diagram can't be None if the scope contains at least one diagram.
+        Diagram containing the source and destination equations. The diagram specified
+        can be either graphical or textual, or it can be ``None``. However, it cannot be
+        ``None`` if the scope contains at least one diagram.
     src : suite.Equation
         Source equation of the edge.
     left : suite.LocalVariable
-        Local variable associated of the edge.
+        Local variable associated with the edge.
     dst : suite.Equation
         Target equation of the edge.
     expr: Union[suite.Expression]
-        Parameter to be connected to the edge, or input pin index.
-    points : List[Tuple(int, int)]
+        Parameter to connect to the edge or the input pin index of the target equation.
+    points : List[Tuple(int, int)], default: None
         Coordinates of the segments composing the edge, expressed in 1/100th of mm.
-        When None, the value is set to [(0, 0), (0, 0)], so that the SCADE Editor
+        When ``None``, the value is set to ``[(0, 0), (0, 0)]`` so that the SCADE Editor
         computes default positions when the model is loaded.
 
     Returns
@@ -545,7 +544,7 @@ def add_diagram_missing_edges(diagram: suite.NetDiagram) -> List[suite.Edge]:
 
 
 class AK(Enum):
-    """Assertion kind: either assume or guarantee."""
+    """Provides an enum of assertion kinds."""
 
     ASSUME = 'Assume'
     GUARANTEE = 'Guarantee'
@@ -565,20 +564,21 @@ def add_data_def_assertion(
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     diagram : suite.Diagram
-        Diagram containing the equation: either graphical, textual or None.
-        Note: the diagram can't be None if the scope contains at least one diagram.
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
     name : str
         Name of the assertion.
     expr : EX
         Expression of the assertion.
-    kind : VK
-        Kind of the assertion, either assume or guarantee.
-    position : Tuple[float, float]
+    kind : AK, default: ASSUME
+        Kind of the assertion.
+    position : Tuple[float, float], default: None
         Position of the assertion, expressed in 1/100th of mm.
-        This value is ignored if diagram is not a graphical diagram,
-        otherwise it must be specified.
+        This value is ignored if the diagram is not a graphical diagram.
+        Otherwise, it must be specified.
 
     Returns
     -------
@@ -632,20 +632,21 @@ def add_data_def_state_machine(
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     name : str
         Name of the state machine.
     diagram : suite.Diagram
-        Diagram containing the state machine: either graphical, textual or None.
-        Note: the diagram can't be None if the scope contains at least one diagram.
-    position : Tuple[float, float]
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
+    position : Tuple[float, float], default: None
         Position of the state machine, expressed in 1/100th of mm.
-        This value is ignored if diagram is not a graphical diagram,
-        otherwise it must be specified.
-    size : Tuple[float, float]
+        This value is ignored if the diagram is not a graphical diagram.
+        Otherwise, it must be specified.
+    size : Tuple[float, float], default: None
         Size of the state machine, expressed in 1/100th of mm.
-        This value is ignored if diagram is not a graphical diagram,
-        otherwise it must be specified.
+        This value is ignored if your diagram is not a graphical diagram.
+        Otherwise, it must be specified.
 
     Returns
     -------
@@ -683,7 +684,7 @@ def add_data_def_state_machine(
 
 
 class SK(Enum):
-    """State kind: either normal, initial, or final."""
+    """Provides an enum of state kinds."""
 
     NORMAL = 'Normal'
     INITIAL = 'Initial'
@@ -691,7 +692,7 @@ class SK(Enum):
 
 
 class DK(Enum):
-    """Display kind: either normal, initial, or final."""
+    """Provides an enum of display kinds."""
 
     GRAPHICAL = 'EmbeddedGraphical'
     TEXTUAL = 'EmbeddedTextual'
@@ -715,18 +716,18 @@ def add_state_machine_state(
         Input state machine.
     name : str.StateMachine
         Name of the state.
-    position : Tuple[float, float]
+    position : Tuple[float, float], default: None
         Position of the state, expressed in 1/100th of mm.
         This value is considered if and only if the state machine
         has a graphical representation.
-    size : Tuple[float, float]
+    size : Tuple[float, float], default: None
         Size of the state, expressed in 1/100th of mm.
         This value is considered if and only if the state machine
         has a graphical representation.
-    kind : SK
-        Kind of the state, either normal, initial, or final.
-    display : DK
-        Layout of the state, either graphical, textual, or split.
+    kind : SK, default: NORMAL
+        Kind of the state.
+    display : DK, default: GRAPHICAL
+        Layout of the state.
 
     Returns
     -------
@@ -765,17 +766,17 @@ def add_state_machine_state(
 
 # transition trees
 class TransitionDestination:
-    """Top-level abstract class for transition destinations."""
+    """Provides the top-level abstract class for transition destinations."""
 
     pass
 
 
 TD = TransitionDestination
-"""Short name for TransitionDestination to simplify the declarations."""
+"""Short name for a ``TransitionDestination`` instance to simplify the declarations."""
 
 
 class TransitionTree:
-    """Intermediate class for transitions."""
+    """Provides the intermediate class for transitions."""
 
     def __init__(
         self,
@@ -802,11 +803,11 @@ class TransitionTree:
 
 
 TR = TransitionTree
-"""Short name for TransitionTree to simplify the declarations."""
+"""Short name for a ``TransitionTree`` instance to simplify the declarations."""
 
 
 class _State(TD):
-    """Destination state."""
+    """Provides the destination state."""
 
     def __init__(self, state: suite.State, reset: bool):
         """Store the attributes."""
@@ -815,7 +816,7 @@ class _State(TD):
 
 
 class _Fork(TD):
-    """Forked Transitions."""
+    """Provides forked transitions."""
 
     def __init__(self, transitions: List[TransitionTree]):
         """Store the attributes."""
@@ -823,7 +824,7 @@ class _Fork(TD):
 
 
 class TK(Enum):
-    """Transition kind: either weak, strong, or synchro."""
+    """Provides an enum of transition kinds."""
 
     WEAK = 'Weak'
     STRONG = 'Strong'
@@ -842,9 +843,9 @@ def create_transition_state(
     polyline: bool = True,
 ) -> TR:
     """
-    Create an intermediate transition structure which targets a state.
+    Create an intermediate transition structure that targets a state.
 
-    The graphical properties are expressed  1/100th of mm.
+    The graphical properties are expressed 1/100th of mm.
 
     They are considered if and only if the owning state machine
     has a graphical representation.
@@ -856,21 +857,21 @@ def create_transition_state(
     state : suite.State
         Target state of the transition.
     reset : bool
-        Indicates whether the transition resets the targtet state.
+        Whether the transition resets the targtet state.
     priority : int
         Priority of the transition.
-    points : List[Tuple[float, float]]
+    points : List[Tuple[float, float]], default: None
         Points of the transition.
-    label_position : Tuple[float, float]
+    label_position : Tuple[float, float], default: None
         Position of the label.
-    label_size : Tuple[float, float]
+    label_size : Tuple[float, float], default: None
         Size of the label.
-    slash_position : Tuple[float, float]
+    slash_position : Tuple[float, float], default: None
         Position of the separator between the trigger and the action
         of the transition.
-    polyline : bool.
-        Indicates whether the representation is a list of segments or
-        a Bezier curve.
+    polyline : bool, default: True
+        Whether the representation is a list of segments. If ``False``,
+        the representation is a Bezier curve.
 
     Returns
     -------
@@ -893,7 +894,7 @@ def create_transition_fork(
     """
     Create an intermediate transition structure with forked transitions.
 
-    The graphical properties are expressed  1/100th of mm.
+    The graphical properties are expressed 1/100th of mm.
 
     They are considered if and only if the owning state machine
     has a graphical representation.
@@ -906,18 +907,18 @@ def create_transition_fork(
         Transitions forked from this transition.
     priority : int
         Priority of the transition.
-    points : List[Tuple[float, float]]
+    points : List[Tuple[float, float]], default: None
         Points of the transition.
-    label_position : Tuple[float, float]
+    label_position : Tuple[float, float], default: None
         Position of the label.
-    label_size : Tuple[float, float]
-        Size of the label.
-    slash_position : Tuple[float, float]
+    label_size : Tuple[float, float], default: None
+        Size of the label, default: None
+    slash_position : Tuple[float, float], default: None
         Position of the separator between the trigger and the action
         of the transition.
-    polyline : bool
-        Indicates whether the representation is a list of segments or
-        a Bezier curve.
+    polyline : bool, default: True
+        Indicates whether the representation is a list of segments. If ``False``,
+        the representation is a Bezier curve.
 
     Returns
     -------
@@ -936,9 +937,9 @@ def add_state_transition(state: suite.State, kind: TK, tree: TR) -> suite.Transi
     state : EX
         Source of the transition.
     kind : TK
-        Kind of the transition, either weak, strong, or synchro.
+        Kind of transition.
     tree : TR
-        Transition tree: intermediate structure describing the transition.
+        Transition tree, which is the intermediate structure describing the transition.
 
     Returns
     -------
@@ -1044,7 +1045,7 @@ def add_transition_equation(
 
 
 class IfTree:
-    """Intermediate structure to describe the structure of an if block."""
+    """Provides an intermediate structure for describing the structure of an if block."""
 
     def __init__(self, position: Tuple[float, float] = None):
         """Store the attributes."""
@@ -1059,11 +1060,11 @@ class IfTree:
 
 
 IT = IfTree
-"""Short name for IfTree to simplify the declarations."""
+"""Short name for an ``IfTree`` instance to simplify the declarations."""
 
 
 class _Node(IT):
-    """Intermediate structure to describe a decision of an if tree."""
+    """Provides an intermediate structure to describe a decision of an if tree."""
 
     def __init__(
         self,
@@ -1104,7 +1105,7 @@ class _Node(IT):
 
 
 class _Action(IT):
-    """Leaf action of an if tree."""
+    """Provides the leaf action of an if tree."""
 
     def __init__(
         self,
@@ -1145,21 +1146,21 @@ def create_if_action(
     display: DK = DK.GRAPHICAL,
 ) -> IT:
     """
-    Create a leaf action in the intermediate if tree structure.
+    Create a leaf action in the intermediate structure if it is a tree structure.
 
-    The graphical properties are expressed  1/100th of mm.
+    The graphical properties are expressed 1/100th of mm.
 
     They are considered if and only if the owning if block
     has a graphical representation.
 
     Parameters
     ----------
-    position : Tuple[float, float]
+    position : Tuple[float, float], default: None
         Position of the action.
-    size : Tuple[float, float]
+    size : Tuple[float, float], default: None
         Size of the action.
-    display : DK
-        Layout of the action, either graphical, textual, or split.
+    display : DK, default: GRAPHICAL
+        Layout of the action.
 
 
     Returns
@@ -1173,14 +1174,14 @@ def create_if_tree(
     expression: EX, then: IT, else_: IT, position: Tuple[float, float] = None, label_width: int = 0
 ) -> IT:
     r"""
-    Create a decision in the intermediate if tree structure.
+    Create a decision in the intermediate structure if it is a tree structure.
 
-    The graphical properties are expressed  1/100th of mm.
+    The graphical properties are expressed 1/100th of mm.
 
     They are considered if and only if the owning if block
     has a graphical representation.
 
-    Hint for the graphical properties: The size of a node is 80x80: consider
+    Hint for the graphical properties: The size of a node is 80x80. Consider
     this offset to have consistent values between if nodes and actions.
 
     Parameters
@@ -1188,12 +1189,12 @@ def create_if_tree(
     expression : EX
         Extended expression tree defining the condition of the decision.
     then : IT
-        Sub-decision tree to consider when the condition is true.
+        Sub-decision tree to consider when the condition is ``True``.
     else\_ : IT
-        Sub-decision tree to consider when the condition is false.
-    position : Tuple[float, float]
+        Sub-decision tree to consider when the condition is ``False``.
+    position : Tuple[float, float], default: None
         Position of the decision.
-    label_width : int
+    label_width : int, default: 0
         Size of the label.
 
     Returns
@@ -1214,24 +1215,25 @@ def add_data_def_if_block(
     """
     Create an if block in a scope.
 
-    The graphical properties are expressed  1/100th of mm.
+    The graphical properties are expressed 1/100th of mm.
 
     They are considered if and only if diagram is a graphical diagram.
 
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     name : str
         Name of the if block.
     if_tree : IfTree
         Intermediate tree to describe the structure of the if block.
     diagram : suite.Diagram
-        Diagram containing the if block: either graphical, textual or None.
-        Note: the diagram can't be None if the scope contains at least one diagram.
-    position : Tuple[float, float]
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
+    position : Tuple[float, float], default: None
         Position of the if block.
-    size : Tuple[float, float]
+    size : Tuple[float, float], default: None
         Size of the if block.
 
     Returns
@@ -1274,7 +1276,7 @@ def add_data_def_if_block(
 
 
 class WhenBranch:
-    """Intermediate class for when branches."""
+    """Provides the intermediate class for when branches."""
 
     def __init__(
         self,
@@ -1302,7 +1304,7 @@ def create_when_branch(
     """
     Create an intermediate structure for a when branch.
 
-    The graphical properties are expressed  1/100th of mm.
+    The graphical properties are expressed 1/100th of mm.
 
     They are considered if and only if the owning when block
     has a graphical representation.
@@ -1311,12 +1313,12 @@ def create_when_branch(
     ----------
     pattern : EX
         Value of the branch.
-    position : Tuple[float, float]
+    position : Tuple[float, float], default: None
         Position of the action.
-    size : Tuple[float, float]
+    size : Tuple[float, float], default: None
         Size of the action.
-    display : DK
-        Layout of the action, either graphical, textual, or split.
+    display : DK, default: GRAPHICAL
+        Layout of the action.
     label_width : int
         Optional width of the label containing the pattern.
 
@@ -1341,7 +1343,7 @@ def add_data_def_when_block(
     """
     Add a new when block in a scope.
 
-    The graphical properties are expressed  1/100th of mm.
+    The graphical properties are expressed 1/100th of mm.
 
     They are considered if and only if the owning when block
     has a graphical representation.
@@ -1349,7 +1351,7 @@ def add_data_def_when_block(
     Parameters
     ----------
     data_def : suite.DataDef
-        Input scope, either an operator, a state or an action.
+        Input scope, which is an operator, state, or action.
     name : str
         Name of the block.
     when : EX
@@ -1357,17 +1359,18 @@ def add_data_def_when_block(
     branches : List[WhenBranch]
         List of intermediate structures describing the branches.
         There must be at least one branch.
-    diagram : suite.Diagram
-        Diagram containing the block: either graphical, textual or None.
-        Note: the diagram can't be None if the scope contains at least one diagram.
-    position : Tuple[float, float]
+    diagram : suite.Diagram, default: None
+        Diagram containing the equation. The diagram specified can be either graphical
+        or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+        contains at least one diagram.
+    position : Tuple[float, float] default: None
         Position of the block.
-    size : Tuple[float, float]
+    size : Tuple[float, float] default: None
         Size of the block.
-    label_width : int
-        Optional width of the label containing the pattern.
-    start_position : Tuple[float, float]
-        Optional, start position of the branches, relative to the block.
+    start_position : Tuple[float, float], default: (450, 582)
+        Start position of the branches relative to the block.
+    label_width : int, default: 0
+        Width of the label containing the pattern.
 
     Returns
     -------
@@ -1416,7 +1419,7 @@ def add_when_block_branches(
     branches: List[WhenBranch],
 ) -> List[suite.WhenBranch]:
     """
-    Add a new branches to a when block.
+    Add new branches to a when block.
 
     Parameters
     ----------
@@ -1489,8 +1492,8 @@ def add_diagram_equation_set(
         Input diagram.
     name : str
         Name of the equation set.
-    elements : List[suite.Presentable]
-        Optional list of elements to add to the equation set.
+    elements : List[suite.Presentable], default: None
+        List of elements to add to the equation set.
 
     Returns
     -------

@@ -1,4 +1,4 @@
-# Copyright (C) 2023 ANSYS, Inc. and/or its affiliates.
+# Copyright (C) 2023 - 2024 ANSYS, Inc. and/or its affiliates.
 # SPDX-FileCopyrightText: 2023 ANSYS, Inc. All rights reserved.
 # SPDX-License-Identifier: MIT
 #
@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Access to SCADE runtime info."""
+"""Provides access to SCADE runtime information."""
 
 import builtins
 import sys
@@ -29,11 +29,11 @@ import sys
 import scade
 
 ide = 'activate' in dir(scade)
-"""Indicate whether the script runs with the SCADE Studio environment."""
+"""Whether the script runs with the SCADE Studio environment."""
 
 
 def ide_print(*args, sep=' ', end='\n', file=sys.stdout, flush=False):
-    """Alternative to print based on scade.output."""
+    """Print based on scade.output."""
     if file == sys.stdout or file == sys.stderr:
         if sep is None:
             sep = ' '
