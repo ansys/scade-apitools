@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Access to SCADE installation info."""
+"""Provides access to SCADE installation information."""
 
 import inspect
 import os
@@ -32,9 +32,9 @@ import scade_env
 
 def get_scade_home() -> Path:
     """
-    Return the SCADE installation directory.
+    Get the SCADE installation directory.
 
-    For example: C:/Program Files/ANSYS Inc/v232/SCADE
+    For example, ``C:/Program Files/ANSYS Inc/v232/SCADE``.
     """
     # when run from a SCADE environment, use the built-in environment variable SCADE
     # when the script is run through python.exe instead od scade.exe -script.
@@ -50,7 +50,7 @@ def get_scade_home() -> Path:
 
 
 def get_scade_properties() -> Dict[str, str]:
-    """Return the content of <home>/common/scade.properties as a dictionary."""
+    """Get the content of the properties in ``<home>/common/scade.properties`` as a dictionary."""
     scade_home = get_scade_home()
     # the file must exist for any release of SCADE using Python 3.7, at least until 2023 R2
     with (scade_home / 'common' / 'scade.properties').open() as f:
@@ -60,6 +60,9 @@ def get_scade_properties() -> Dict[str, str]:
 
 
 def get_scade_version() -> int:
-    """Return the version of SCADE, for example 232 for 2023 R2."""
+    """Get the version of SCADE.
+
+    For example, ``232`` for SCADE 2023 R2.
+    """
     props = get_scade_properties()
     return int(props['SCADE_STUDIO_NUMBER'][:3])

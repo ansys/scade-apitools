@@ -1,10 +1,8 @@
 Examples
 ========
 
-Overview
---------
-The examples are organized by SCADE models. These models are not necessarily correct,
-they intend to provide some data to be processed by the scripts.
+This section provides examples organized by Scade models. These models are not
+necessarily correct. They simply provide some data for the scripts to process.
 
 The overall structure of an example script is as follows:
 
@@ -12,27 +10,28 @@ The overall structure of an example script is as follows:
 * Apply a command from ``ansys.scade.apitools`` to these elements.
 * Print some feedback.
 
-Note: The examples for the module :py:mod:`create <ansys.scade.apitools.create>`
-have a different design, described in the appropriate section.
+.. note::
+    The examples for the :py:mod:`create <ansys.scade.apitools.create>`
+    package have a different design, described in the appropriate example sections.
 
 Run the examples
 ----------------
 
-Refer to :ref:`SCADE scripting <scripting scade>` for a reminder on SCADE Python scripts.
+For a reminder on SCADE Python scripts, see :ref:`SCADE scripting <scripting scade>`.
 
 SCADE GUI
 ~~~~~~~~~
-The examples associated to a Scade model are referenced in the project:
+The examples associated with a Scade model are referenced in the project:
 
 * Load the model with the SCADE Suite.
-* Open any script from the `FileView`.
-* Execute the script with the command `Tools/Execute script`.
-* Observe the result in the tab `Script` from the window `Output`.
+* From the **FileView**, open any script.
+* To execute the script, select **Tools > Execute script**.
+* In the **Output** window, observe the result on the **Script** tab.
 
 SCADE CLI
 ~~~~~~~~~
-
-The easiest way consists in setting the current directory to the considered example's directory and run ``scade.exe -script``
+The easiest way to use the SCADE CLI consists of setting the current directory to the
+considered example's directory and running the ``scade.exe -script`` command:
 
 .. code:: bash
 
@@ -41,34 +40,34 @@ The easiest way consists in setting the current directory to the considered exam
 Python
 ~~~~~~
 
-The model used to run the example must be declared prior to the script execution.
+You must declare the model to use to run the example prior to executing the script.
 
-* Change the current directory to the considered example's directory, for example `examples/query_type` .
+#. Change the current directory to the considered example's directory. For example, ``examples/query_type``.
 
-.. code:: bash
+   .. code:: bash
 
-    > cd examples\query_type
+       > cd examples\query_type
 
-* Run a Python 3.7 or 3.10 session depending on the release of SCADE  installed on your computer.
+#. Run a Python 3.7 or 3.10 session, depending on the SCADE release installed on your computer.
 
-.. code:: bash
+   .. code:: bash
 
-    > where python.exe
-    C:\Users\jhenry\AppData\Local\Programs\Python\Python310\python.exe
-    > python.exe
+       > where python.exe
+       C:\Users\jhenry\AppData\Local\Programs\Python\Python310\python.exe
+       > python.exe
 
-* Declare the project.
+#. Declare the project.
 
-.. code:: python
+   .. code:: python
 
-    >>> from ansys.scade.apitools import declare_project
-    >>> declare_project('QueryType.etp')
+       >>> from ansys.scade.apitools import declare_project
+       >>> declare_project('QueryType.etp')
 
-* Copy/paste the content of a script or run it as follows:
+#. Copy/paste the content of a script or run it as follows:
 
-.. code:: python
+   .. code:: python
 
-    >>> exec(open('get_type_name.py').read())
+       >>> exec(open('get_type_name.py').read())
 
 Examples
 --------

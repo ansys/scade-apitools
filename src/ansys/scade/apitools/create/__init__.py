@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Collection of functions to create or update Scade models."""
+"""Provides a collection of functions for creating or updating Scade models."""
 
 
 # ignore F401: functions made available for modules, not used here

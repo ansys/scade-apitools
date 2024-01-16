@@ -1,4 +1,4 @@
-interface
+Interface
 =========
 
 Overview
@@ -10,7 +10,7 @@ This example demonstrates the basic features of a creation script.
 It reads from a text file the description of operators and their interface: inputs and outputs.
 
 The syntax of the description file is very simple.
-Each line declares an operator, an input or an output, as shown in the following example::
+Each line declares an operator, an input or an output, as shown in this example::
 
     N op1
     I i1 int
@@ -19,11 +19,11 @@ Each line declares an operator, an input or an output, as shown in the following
 
 The script should perform several actions:
 
-* Create the operators
-* Create the interface
-* Reference the new files in the project
+* Create the operators.
+* Create the interface.
+* Reference the new files in the project.
 
-The template project has one prerequisite: It shall contain the definition
+The template project has one prerequisite. It must contain the definition
 of all the types referenced in the interface to be created.
 
 The content of the script is described exhaustively hereafter.
@@ -31,7 +31,7 @@ The content of the script is described exhaustively hereafter.
 Import directives and main
 --------------------------
 
-The function ``main`` allows the script to be used by the wrapper script::
+The ``main`` function allows the script to be used by the wrapper script::
 
     from pathlib import Path
 
@@ -72,7 +72,7 @@ The function ``main`` allows the script to be used by the wrapper script::
 Cache
 -----
 
-The script caches all the types in the global dictionary ``types``::
+The script caches all the types in the ``types`` global dictionary::
 
     # global cache for the predefined and existing types
     types = {}
@@ -81,7 +81,7 @@ The script caches all the types in the global dictionary ``types``::
     def cache_types(session: suite.Session):
         """
         Cache all the predefined and user types of a Scade model
-        and its libraries into a dictionary, by path.
+        and its libraries into a dictionary by path.
 
         Parameters
         ----------
@@ -104,12 +104,13 @@ The script caches all the types in the global dictionary ``types``::
 Helper for operators
 --------------------
 
-This utility function adds an operator to the model, in a separate file
-with the same name, and located in the project's directory::
+The ``add_operator`` utility function adds an operator to the model in a separate
+storage file in the project. This file has the same name and is located in the
+project's directory::
 
     def add_operator(project: std.Project, model: suite.Model, name: str) -> suite.Operator:
         """
-        Add a new operator to the model, and add its separate storage file in the project.
+        Add a new operator to the model and add its separate storage file in the project.
 
         Parameters
         ----------
@@ -137,9 +138,8 @@ with the same name, and located in the project's directory::
 Interface
 ---------
 
-This is the main function of the example, which parses the description file and creates the
-operators and their interface.
-This function saves the project and the model before returning. ::
+The ``create_interface`` function is the main one of the example. It parses the description file
+and creates the operators and their interface. It also saves the project and the model before returning it. ::
 
     def create_interface(project: std.Project, model: suite.Model, description: Path):
         """

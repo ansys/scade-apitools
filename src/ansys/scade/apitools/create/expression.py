@@ -21,35 +21,35 @@
 # SOFTWARE.
 
 """
-Helpers to create expression trees.
+Provides helpers for creating expression trees.
 
 Expression trees are intermediate structures to declare any arbitrary complex
-expressions, and then create the corresponding SCADE Suite expressions in the
-context of a model element, for example the right part of an equation or the
+expressions. They create the corresponding SCADE Suite expressions in the
+context of a model element, such as the right part of an equation or the
 default value of an output.
 
 This module provides functions to create an expression tree for any expression
-of the Scade language, including higher order constructs. Thus, the intermediate
+of the Scade language, including higher-order constructs. Thus, the intermediate
 structures or classes defining the expression trees can be opaque.
 
-Notes: the typing is relaxed in this module to ease the constructs.
+Notes: The typing is relaxed in this module to ease the constructs.
 
 * ``ET`` is an alias for ``ExpressionTree`` to shorten the declarations.
 
-* ``EX``, standing for extended expression tree, is defined as::
+* ``EX``, which stands for extended expression tree, is defined as follows::
 
      Union[bool, int, float, str, suite.ConstVar, suite.NamedType, ET]
 
   This enhances the usability of these functions by accepting some values,
-  such as Python literals, string values or SCADE Python objects, as valid
+  such as Python literals, string values, or SCADE Python objects, as valid
   expression trees.
 
-* ``LX``, standing for extended lists of expression trees, is defined as::
+* ``LX``, which stands for extended lists of expression trees, is defined as follows::
 
      Union[EX, List[EX]]
 
-  When the expressions accept an arbitrary number of input flows, for example
-  if-then-else or fby, it is allowed to provide either one expression tree or a list
+  When the expressions accept an arbitrary number of input flows, such as
+  if-then-else or fby, you can provide either one expression tree or a list
   of expression trees.
 
 """
@@ -65,7 +65,7 @@ from .scade import _add_pending_link
 
 # expression trees
 class ExpressionTree:
-    """Top-level abstract class for expression trees."""
+    """Provides the top-level abstract class for expression trees."""
 
     def __init__(self, label: str = ''):
         """Any expression can have a label."""
@@ -85,17 +85,17 @@ class ExpressionTree:
 
 
 ET = ExpressionTree
-"""Short name for Expression Tree to simplify the declarations."""
+"""Short name for an ``ExpressionTree`` instance to simplify the declarations."""
 
 EX = Union[bool, int, float, str, suite.ConstVar, suite.NamedType, ET]
-"""Extended expression tree to simply the usage of the creation functions."""
+"""Extended expression tree to simplify use of the create functions."""
 
 LX = Union[EX, List[EX]]
-"""Extended lists of expression trees to simply the usage of the creation functions."""
+"""Extended lists of expression trees to simply the use of create functions."""
 
 
 class _Value(ET):
-    """Literal value."""
+    """Provides a literal value."""
 
     def __init__(self, value: str, kind: str, **kwargs):
         """Literal value."""
@@ -116,10 +116,10 @@ class _Value(ET):
 
 
 class _Reference(ET):
-    """Reference to a SCADE ConstVar."""
+    """Provides a reference to a SCADE constant or variable."""
 
     def __init__(self, reference: suite.ConstVar, **kwargs):
-        """Shall be a constant, sensor or local variable."""
+        """Initialize a constant, sensor, or local variable."""
         super().__init__(**kwargs)
         self.reference = reference
 
@@ -132,10 +132,10 @@ class _Reference(ET):
 
 
 class _Type(ET):
-    """Reference to a type."""
+    """Creates a reference to a type."""
 
     def __init__(self, type_: suite.NamedType, **kwargs):
-        """Shall be a named type."""
+        """Initialize a named type."""
         super().__init__(**kwargs)
         self.type = type_
 
@@ -147,7 +147,7 @@ class _Type(ET):
 
 
 class _Call(ET):
-    """Base class for expression calls."""
+    """Provides the base class for expression calls."""
 
     def __init__(
         self, args: List[ET], inst_args: List[ET], modifiers: List[ET], name: str = '', **kwargs
@@ -175,7 +175,7 @@ class _Call(ET):
 
 
 class _Predefined(_Call):
-    """Call to a predefined operator."""
+    """Provides a calls to a predefined operator."""
 
     def __init__(self, eck: Eck, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -189,7 +189,7 @@ class _Predefined(_Call):
 
 
 class _Operator(_Call):
-    """Call to a user operator."""
+    """Provides a call to a user operator."""
 
     def __init__(self, operator: suite.Operator, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -315,7 +315,7 @@ def create_call(operator: suite.Operator, args: LX, inst_args: LX = None) -> ET:
     Parameters
     ----------
     op : suite.Operator
-        Called operator
+        Operator to call.
     args : Union[EX, List[EX]]
         Parameters: expression trees.
     inst_args : Union[EX, List[EX]]
@@ -342,11 +342,11 @@ def create_higher_order_call(
     Parameters
     ----------
     op : suite.Operator
-        Called operator
+        Operator to call.
     args : Union[EX, List[EX]]
         Parameters: expression trees.
     modifiers : Union[ET, List[ET]]
-        Higher order constructs: expression trees.
+        Higher-order constructs: expression trees.
     inst_args : Union[EX, List[EX]]
         Instance parameters: expression trees.
 
@@ -368,16 +368,16 @@ def create_higher_order_call(
 
 def create_unary(op: str, tree: EX, modifiers: Union[ET, List[ET]] = None) -> ET:
     """
-    Return the expression tree for an unary operator.
+    Return the expression tree for a unary operator.
 
     Parameters
     ----------
     op : str
-        Operator: - | + | !
+        Unary operator to call: - | + | !
     tree : EX
         Operand: expression tree.
-    modifiers : Union[ET, LIST[ET]]
-        Optional list of higher order constructs.
+    modifiers : Union[ET, LIST[ET]], default: None
+        List of higher-order constructs.
 
     Returns
     -------
@@ -398,13 +398,13 @@ def create_binary(op: str, tree1: EX, tree2: EX, modifiers: Union[ET, List[ET]] 
     Parameters
     ----------
     op : str
-        Operator: & | | | ^ | # | + | - | * | / | : | % | < | <= | > | >= | = | <>
+        Binary operator to call: & | | | ^ | # | + | - | * | / | : | % | < | <= | > | >= | = | <>
     tree1 : EX
         First operand: expression tree.
     tree2 : EX
         Second operand: expression tree.
-    modifiers : Union[ET, List[ET]]
-        Optional list of higher order constructs.
+    modifiers : Union[ET, List[ET]], default: None
+        List of higher-order constructs.
 
     Returns
     -------
@@ -425,11 +425,11 @@ def create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None)
     Parameters
     ----------
     op : str
-        Operator: & | | | ^ | # | + | *
+        Nary operator to call: & | | | ^ | # | + | *
     args : List[EX]
         Operands: expression trees.
-    modifiers : Union[ET, List[ET]]
-        Optional list of higher order constructs, to be provided as keyword parameter.
+    modifiers : Union[ET, List[ET]], default: None
+        List of higher-order constructs, to be provided as keyword parameter.
 
     Returns
     -------
@@ -450,21 +450,21 @@ def create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None)
 
 def create_if(condition: EX, then: LX, else_: LX) -> ET:
     r"""
-    Return the expression tree for the operator if-then-else.
+    Return the expression tree for the if-then-else operator.
 
     Notes
     -----
-    Interface change with respect to the SCADE Creation Library, the flows
-    'then' and the flows 'else' are now specified in two separate lists.
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The ``then`` flows and ``else`` flows are now specified in two separate lists.
 
     Parameters
     ----------
     condition : EX
         Expression tree corresponding to the condition of the selector.
     then : Union[EX, List[EX]]
-        List of expressions trees when condition is true.
+        List of expressions trees when the condition is ``True``.
     else\_ : Union[EX, List[EX]]
-        List of expressions trees when condition is false.
+        List of expressions trees when the condition is ``False``.
 
     Returns
     -------
@@ -485,12 +485,13 @@ def create_if(condition: EX, then: LX, else_: LX) -> ET:
 
 def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: EX = None) -> ET:
     """
-    Return the expression tree for the operator case.
+    Return the expression tree for the case operator.
 
     Notes
     -----
-    Interface change with respect to the SCADE Creation Library, the pairs pattern/value
-    are now embedded in a list of tuples, and the default value is optional.
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "pattern"/"value" are now embedded in a list of tuples, and the
+    default value is optional.
 
     Parameters
     ----------
@@ -498,8 +499,8 @@ def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: EX = None) ->
         Expression tree corresponding to the selector.
     cases : List[Tuple[EX, EX]]
         Pattern/values expression trees.
-    default: EX
-        Optional default value.
+    default: EX, default:None
+        Default value.
 
     Returns
     -------
@@ -535,11 +536,11 @@ def create_make(
     Parameters
     ----------
     type\_ : suite.NamedType
-        Type to be instantiated.
+        Type to instantiate.
     args : List[EX]
         Values of the type instance.
-    modifiers : Union[ET, List[ET]]
-        Optional list of higher order constructs, to be provided as keyword parameter.
+    modifiers : Union[ET, List[ET]], default: None
+        List of higher-order constructs, which is provided as a keyword parameter.
 
     Returns
     -------
@@ -560,11 +561,11 @@ def create_flatten(type_: suite.NamedType, arg: EX, modifiers: Union[ET, List[ET
     Parameters
     ----------
     type\_ : suite.NamedType
-        Type to be instantiated.
+        Type to instantiate.
     arg : EX
         Value to flatten.
-    modifiers : Union[ET, List[ET]]
-        Optional list of higher order constructs.
+    modifiers : Union[ET, List[ET]], default: None
+        List of higher-order constructs.
 
     Returns
     -------
@@ -581,12 +582,12 @@ def create_flatten(type_: suite.NamedType, arg: EX, modifiers: Union[ET, List[ET
 
 def create_scalar_to_vector(size: EX, *args: List[EX]) -> ET:
     """
-    Return the expression tree for the operator scalar_to_vector.
+    Return the expression tree for the scalar-to-vector operator.
 
     Notes
     -----
-    Interface change with respect to the SCADE Creation Library, the parameter size
-    has moved from the last position to the first one.
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The parameter size has moved from the last position to the first one.
 
     Parameters
     ----------
@@ -609,7 +610,7 @@ def create_scalar_to_vector(size: EX, *args: List[EX]) -> ET:
 
 def create_data_array(*args: List[EX]) -> ET:
     """
-    Return the expression tree for the operator data_array.
+    Return the expression tree for the data array operator.
 
     Parameters
     ----------
@@ -628,12 +629,12 @@ def create_data_array(*args: List[EX]) -> ET:
 
 def create_data_struct(*args: List[Tuple[str, EX]]) -> ET:
     """
-    Return the expression tree for the operator data_struct.
+    Return the expression tree for the data strictire operator.
 
     Notes
     -----
-    Interface change with respect to the SCADE Creation Library, the pairs name/value
-    are now embedded in a list of tuples.
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "name"/"value" are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -660,14 +661,14 @@ def create_data_struct(*args: List[Tuple[str, EX]]) -> ET:
 
 def create_prj(flow: EX, path: LX) -> ET:
     """
-    Return the expression tree for the operator projection.
+    Return the expression tree for the projection operator.
 
     Parameters
     ----------
     flow : EX
         Input flow of the projection.
     path : Union[EX, List[EX]]
-        Elements of the path, either label or index.
+        Elements of the path, which is either the label or index.
 
     Returns
     -------
@@ -681,14 +682,14 @@ def create_prj(flow: EX, path: LX) -> ET:
 
 def create_prj_dyn(flow: EX, path: LX, default: EX) -> ET:
     """
-    Return the expression tree for the operator dynamic projection.
+    Return the expression tree for the dynamic projection operator.
 
     Parameters
     ----------
     flow : EX
         Input flow of the projection.
     path : Union[EX, List[EX]]
-        Elements of the path, either label, index or variable.
+        Elements of the path, which is a label, index, or variable.
     default : EX
         Default value for the projection when the path is incorrect.
 
@@ -704,14 +705,14 @@ def create_prj_dyn(flow: EX, path: LX, default: EX) -> ET:
 
 def create_change_ith(flow: EX, path: LX, value: EX) -> ET:
     """
-    Return the expression tree for the operator with.
+    Return the expression tree for the with operator.
 
     Parameters
     ----------
     flow : EX
         Input flow of the projection.
     path : Union[EX, List[EX]]
-        Elements of the path, either label, index or variable.
+        Elements of the path, which is a label, index, or variable.
     value : EX
         Value to assign.
 
@@ -730,7 +731,7 @@ def create_change_ith(flow: EX, path: LX, value: EX) -> ET:
 
 def create_pre(*args: List[EX]) -> ET:
     """
-    Return the expression tree for the operator pre.
+    Return the expression tree for the pre operator.
 
     Parameters
     ----------
@@ -749,12 +750,12 @@ def create_pre(*args: List[EX]) -> ET:
 
 def create_init(flows: LX, inits: LX) -> ET:
     """
-    Return the expression tree for the operator init.
+    Return the expression tree for the init operator.
 
     Notes
     -----
-    Interface change with respect to the SCADE Creation Library, the flows
-    and their initial values are now specified in two separate lists.
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The flows and their initial values are now specified in two separate lists.
 
     Parameters
     ----------
@@ -781,12 +782,12 @@ def create_init(flows: LX, inits: LX) -> ET:
 
 def create_fby(flows: LX, delay: EX, inits: LX) -> ET:
     """
-    Return the expression tree for the operator init.
+    Return the expression tree for the init operator.
 
     Notes
     -----
-    Interface change with respect to the SCADE Creation Library, the flows
-    and their initial values are now specified in two separate lists.
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The flows and their initial values are now specified in two separate lists.
 
     Parameters
     ----------
@@ -814,7 +815,7 @@ def create_fby(flows: LX, delay: EX, inits: LX) -> ET:
 
 def create_times(number: EX, flow: EX) -> ET:
     """
-    Return the expression tree for the operator times.
+    Return the expression tree for the times operator.
 
     Parameters
     ----------
@@ -836,7 +837,7 @@ def create_times(number: EX, flow: EX) -> ET:
 
 def create_slice(array: EX, start: EX, end: EX) -> ET:
     """
-    Return the expression tree for the operator slice.
+    Return the expression tree for the slice operator.
 
     Parameters
     ----------
@@ -857,7 +858,7 @@ def create_slice(array: EX, start: EX, end: EX) -> ET:
 
 def create_concat(*args: List[EX]) -> ET:
     """
-    Return the expression tree for the operator concat.
+    Return the expression tree for the concat operator.
 
     Parameters
     ----------
@@ -876,7 +877,7 @@ def create_concat(*args: List[EX]) -> ET:
 
 def create_reverse(flow: EX) -> ET:
     """
-    Return the expression tree for the operator reverse.
+    Return the expression tree for the reverse operator.
 
     Parameters
     ----------
@@ -893,7 +894,7 @@ def create_reverse(flow: EX) -> ET:
 
 def create_transpose(array: EX, dim1: EX, dim2: EX) -> ET:
     """
-    Return the expression tree for the operator transpose.
+    Return the expression tree for the transpose operator.
 
     Parameters
     ----------
@@ -917,7 +918,7 @@ def create_transpose(array: EX, dim1: EX, dim2: EX) -> ET:
 
 def create_restart(every: EX) -> ET:
     """
-    Return the expression tree for the higher order construct restart.
+    Return the expression tree for the higher-order construct for restarting.
 
     Parameters
     ----------
@@ -934,7 +935,7 @@ def create_restart(every: EX) -> ET:
 
 def create_activate(every: EX, *args: List[EX]) -> ET:
     """
-    Return the expression tree for the higher order construct activate with initial values.
+    Return the expression tree for the higher-order construct for activating with initial values.
 
     Parameters
     ----------
@@ -955,7 +956,7 @@ def create_activate(every: EX, *args: List[EX]) -> ET:
 
 def create_activate_no_init(every: EX, *args: List[EX]) -> ET:
     """
-    Return the expression tree for the higher order construct activate with default values.
+    Return the expression tree for the higher-order construct for activating with default values.
 
     Parameters
     ----------
@@ -979,7 +980,7 @@ def create_activate_no_init(every: EX, *args: List[EX]) -> ET:
 
 def create_map(size: EX) -> ET:
     """
-    Return the expression tree for the higher order construct map.
+    Return the expression tree for the higher-order construct for map creation.
 
     Parameters
     ----------
@@ -996,7 +997,7 @@ def create_map(size: EX) -> ET:
 
 def create_mapi(size: EX) -> ET:
     """
-    Return the expression tree for the higher order construct mapi.
+    Return the expression tree for the higher-order construct for mapi creation.
 
     Parameters
     ----------
@@ -1013,7 +1014,7 @@ def create_mapi(size: EX) -> ET:
 
 def create_fold(size: EX) -> ET:
     """
-    Return the expression tree for the higher order construct fold.
+    Return the expression tree for the higher-order construct for fold creation.
 
     Parameters
     ----------
@@ -1030,7 +1031,7 @@ def create_fold(size: EX) -> ET:
 
 def create_foldi(size: EX) -> ET:
     """
-    Return the expression tree for the higher order construct foldi.
+    Return the expression tree for the higher-order construct for foldi creation.
 
     Parameters
     ----------
@@ -1047,13 +1048,12 @@ def create_foldi(size: EX) -> ET:
 
 def create_mapfold(size: EX, acc: EX) -> ET:
     """
-    Return the expression tree for the higher order construct mapfold.
+    Return the expression tree for the higher-order construct for mapfold creation.
 
     Parameters
     ----------
     size : EX
         Number of iterations.
-
     acc : EX
         Number of accumulators.
 
@@ -1067,7 +1067,7 @@ def create_mapfold(size: EX, acc: EX) -> ET:
 
 def create_mapfoldi(size: EX, acc: EX) -> ET:
     """
-    Return the expression tree for the higher order construct mapfoldi.
+    Return the expression tree for the higher-order construct for mapfoldi creation.
 
     Parameters
     ----------
@@ -1087,7 +1087,7 @@ def create_mapfoldi(size: EX, acc: EX) -> ET:
 
 def create_foldw(size: EX, condition: EX) -> ET:
     """
-    Return the expression tree for the higher order construct foldw.
+    Return the expression tree for the higher-order construct for foldw creation.
 
     Parameters
     ----------
@@ -1106,7 +1106,7 @@ def create_foldw(size: EX, condition: EX) -> ET:
 
 def create_foldwi(size: EX, condition: EX) -> ET:
     """
-    Return the expression tree for the higher order construct foldwi.
+    Return the expression tree for the higher-order construct for foldwi creation.
 
     Parameters
     ----------
@@ -1125,7 +1125,7 @@ def create_foldwi(size: EX, condition: EX) -> ET:
 
 def create_mapw(size: EX, condition: EX, default: EX) -> ET:
     """
-    Return the expression tree for the higher order construct mapw.
+    Return the expression tree for the higher-order construct for mapw creation.
 
     Parameters
     ----------
@@ -1146,7 +1146,7 @@ def create_mapw(size: EX, condition: EX, default: EX) -> ET:
 
 def create_mapwi(size: EX, condition: EX, default: EX) -> ET:
     """
-    Return the expression tree for the higher order construct mapdwi.
+    Return the expression tree for the higher-order construct for mapdwi creation.
 
     Parameters
     ----------
@@ -1167,7 +1167,7 @@ def create_mapwi(size: EX, condition: EX, default: EX) -> ET:
 
 def create_mapfoldw(size: EX, acc: EX, condition: EX, default: EX) -> ET:
     """
-    Return the expression tree for the higher order construct mapfoldw.
+    Return the expression tree for the higher-order construct for mapfoldw creation.
 
     Parameters
     ----------
@@ -1190,7 +1190,7 @@ def create_mapfoldw(size: EX, acc: EX, condition: EX, default: EX) -> ET:
 
 def create_mapfoldwi(size: EX, acc: EX, condition: EX, default: EX) -> ET:
     """
-    Return the expression tree for the higher order construct mapfoldwi.
+    Return the expression tree for the higher-order construct for mapfoldwi creation.
 
     Parameters
     ----------
@@ -1221,7 +1221,7 @@ def _create_sequence(flows: List[EX]) -> ET:
 
 
 class ExprSyntaxError(Exception):
-    """Generic exception for syntax errors in expression trees."""
+    """Provides the generic exception for syntax errors in expression trees."""
 
     def __init__(self, context, item):
         """Provide a customized message."""
@@ -1229,7 +1229,7 @@ class ExprSyntaxError(Exception):
 
 
 class TypeIdentifierError(Exception):
-    """Exception for incorrect identifiers."""
+    """Provides the exception for incorrect identifiers."""
 
     def __init__(self, context, item):
         """Provide a customized message."""
@@ -1237,7 +1237,7 @@ class TypeIdentifierError(Exception):
 
 
 class EmptyTreeError(Exception):
-    """Exception for empty expression trees."""
+    """Provides the exception for empty expression trees."""
 
     def __init__(self):
         """Provide a customized message."""
@@ -1289,12 +1289,11 @@ def _is_bool(value: str) -> bool:
 # TODO: move to query
 def _find_expr_id(expr: suite.Expression, index: int) -> suite.ExprId:
     """
-    Return the instance of ExprId corresponding to the pin index of an equation.
+    Return the ``ExprId`` instance corresponding to the pin index of an equation.
 
     Notes
     -----
-    The function is not complete for now and requires to
-    be specified more precisely.
+    This function is not currently complete and must be specified more precisely.
 
     Parameters
     ----------

@@ -4,15 +4,14 @@ top_level
 Overview
 --------
 
-Example for creating a top-level operator which calls all existing root operators.
+This example is for creating a top-level operator that calls all existing root operators.
 
-The interface of the top-level operator is the union of the
-model's sensors and inputs/outputs of the called operators.
+The interface of the top-level operator is the union of the model's sensors and the inputs/outputs
+of the called operators.
 
-The semantics parts of the example are quite simple.
-Most of the statements are related to the computation of positions and sizes.
-However, this is not so complex, and one can reuse the example as a
-foundation for further scripts.
+The semantic parts of the example are quite simple. Most of the statements are related to the
+computation of positions and sizes. However, this is not so complex, and you can reuse this
+example as a foundation for additional scripts.
 
 The input model has the following call graph:
 
@@ -25,8 +24,8 @@ The resulting top-level operator is as follows:
 Import directives and main
 --------------------------
 
-The function ``main`` allows the script to be used by the wrapper script.
-It saves the project and the model before returning.::
+The ``main`` function allows the script to be used by the wrapper script.
+It saves the project and the model before returning it.::
 
     from pathlib import Path
 
@@ -58,8 +57,8 @@ It saves the project and the model before returning.::
 Helper for operators
 --------------------
 
-This utility function adds an operator to the model, in a separate file
-with the same name, and located in the project's directory::
+The ``add_operator`` utility function adds an operator to the model in a separate storage file.
+This file has the same name and is located in the project's directory::
 
     def add_operator(project: std.Project, model: suite.Model, name: str) -> suite.Operator:
         """
@@ -91,15 +90,16 @@ with the same name, and located in the project's directory::
 Top-level operator
 ------------------
 
-The function ``fill_top_level`` is the main function of the example, which
+The ``fill_top_level`` function is the main one of this example. It
 creates the interface and the graphical equations of the new operator.
 
 The algorithm caches the interface of the root operator in two dictionaries,
 ``map_inputs`` and ``map_outputs``.
-The dictionary ``map_inputs`` is initialized with all existing sensors and
+The ``map_inputs`` dictionary is initialized with all existing sensors and
 then updated with the inputs of the called operators.
+
 When two operators have an input with the same name, only one input is created in the root operator.
-It is not accepted to have outputs with same names although this is not checked. ::
+Having outputs with same names is not acceptable, although this is not checked. ::
 
     def fill_top_level(model: suite.Model, root: suite.Operator):
         """

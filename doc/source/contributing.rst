@@ -1,61 +1,108 @@
+.. _contribute_SCADE_API_tools:
+
 Contribute
 ##########
 
-Overall guidance on contributing to a PyAnsys library appears in the
-`Contributing <https://dev.docs.pyansys.com/how-to/contributing.html>`_ topic
-in the *PyAnsys Developer's Guide*. Ensure that you are thoroughly familiar
-with this guide before attempting to contribute to Ansys Scade API Tools.
+Overall guidance on contributing to a PyAnsys library appears in
+`Contributing <https://dev.docs.pyansys.com/how-to/contributing.html>`_
+in the *PyAnsys developer's guide*. Ensure that you are thoroughly familiar
+with this guide before attempting to contribute to Ansys SCADE API Tools.
 
-The following contribution information is specific to Ansys Scade API Tools.
+The following contribution information is specific to Ansys SCADE API Tools.
 
-Clone the repository
---------------------
+Install in developer mode
+-------------------------
 
-To clone and install the latest Ansys Scade API Tools release in development mode, run
-these commands:
+Installing Ansys SCADE API Tools in developer mode allows you to modify the
+source and enhance it.
 
-.. code::
+#. Clone the ``ansys-scade-apitools`` repository:
 
-    git clone https://github.com/ansys/scade-apitools
-    cd scade-apitools
-    python -m pip install --upgrade pip
-    pip install -e .
+   .. code:: bash
+
+      git clone https://github.com/ansys/scade-apitools
+
+#. Access the ``scade-apitools`` directory where the repository has been cloned:
+
+   .. code:: bash
+
+      cd scade-apitools
+
+#. Create a clean Python 3.10 environment and activate it:
+
+   You should use the interpreter delivered with Ansys SCADE. For example,
+   ``C:\Program Files\ANSYS Inc\v232\SCADE\contrib\Python310\python.exe``.
+
+   .. code:: bash
+
+      # Create a virtual environment
+      python -m venv .venv
+
+      # Activate it in a POSIX system
+      source .venv/bin/activate
+
+      # Activate it in Windows CMD environment
+      .venv\Scripts\activate.bat
+
+      # Activate it in Windows Powershell
+      .venv\Scripts\Activate.ps1
+
+#. Make sure that you have the latest required build system, documentation, testing,
+   and CI tools:
+
+   .. code:: bash
+
+      python -m pip install -U pip     # Upgrading pip
+      python -m pip install tox        # Installing tox (optional)
+      python -m pip install .[build]   # for building the wheels
+      python -m pip install .[tests]   # for testing the package
+      python -m pip install .[doc]     # for building the documentation
+
+#. Install the project in editable mode:
+
+   .. code:: bash
+
+      python -m pip install --editable .
+
+#. Use `tox`_ to verify your development installation:
+
+   .. code:: bash
+
+      tox
 
 
-Post issues
------------
+Test
+----
+Ansys SCADE API Tools uses `tox`_ for testing. This tool allows you to
+automate common development tasks (similar to ``Makefile``), but it is oriented
+towards Python development.
 
-Use the `Ansys Scade API Tools Issues <https://github.com/ansys/scade-apitools/issues>`_
-page to submit questions, report bugs, and request new features. When possible, you
-should use these issue templates:
+Use ``tox``
+^^^^^^^^^^^
 
-* Bug, problem, error: For filing a bug report
-* Documentation error: For requesting modifications to the documentation
-* Adding an example: For proposing a new example
-* New feature: For requesting enhancements to the code
+While ``Makefile`` has rules, ``tox`` has environments. In fact, ``tox`` creates its
+own virtual environment so that anything being tested is isolated from the project
+to guarantee the project's integrity.
 
-If your issue does not fit into one of these template categories, you can click
-the link for opening a blank issue.
+The following ``tox`` commands are provided:
 
-To reach the project support team, email `pyansys.core@ansys.com <pyansys.core@ansys.com>`_.
+- ``tox -e style``: Checks for coding style quality.
+- ``tox -e py``: Checks for unit tests.
+- ``tox -e py-coverage``: Checks for unit testing and code coverage.
+- ``tox -e doc``: Checks for the documentation-building process.
 
-View documentation
-------------------
+Use raw testing
+^^^^^^^^^^^^^^^
+If required, from the command line, you can call style commands like
+`black`_, `isort`_, and `flake8`_. You can also call unit testing commands like `pytest`_.
+However, running these commands does not guarantee that your project is being tested in an
+isolated environment, which is the reason why tools like ``tox`` exist.
 
-Documentation for the latest stable release of Ansys Scade API Tools is hosted at
-`Ansys Scade API Tools Documentation <https://apitools.scade.docs.pyansys.com/>`_.
-
-In the upper right corner of the documentation's title bar, there is an option
-for switching from viewing the documentation for the latest stable release
-to viewing the documentation for the development version or previously
-released versions.
-
-Adhere to code style
---------------------
-
-Ansys Scade API Tools follows the PEP8 standard as outlined in
+Use ``pre-commit``
+^^^^^^^^^^^^^^^^^^
+Ansys SCADE API Tools follows the PEP8 standard as outlined in
 `PEP 8 <https://dev.docs.pyansys.com/coding-style/pep8.html>`_ in
-the *PyAnsys Developer's Guide* and implements style checking using
+the *PyAnsys developer's guide* and implements style checking using
 `pre-commit <https://pre-commit.com/>`_.
 
 To ensure your code meets minimum code styling standards, run these commands::
@@ -81,3 +128,65 @@ This way, it's not possible for you to push code that fails the style checks::
   check yaml...............................................................Passed
   trim trailing whitespace.................................................Passed
   update_examples..........................................................Passed
+
+Build documentation
+-------------------
+For building documentation, you can run the usual rules provided in the
+`Sphinx`_ ``make`` file. Here are some examples:
+
+.. code:: bash
+
+    #  build and view the doc from the POSIX system
+    make -C doc/ html && your_browser_name doc/html/index.html
+
+    # build and view the doc from a Windows environment
+    .\doc\make.bat clean
+    .\doc\make.bat html
+    start .\doc\_build\html\index.html
+
+However, the recommended way of checking documentation integrity is to use
+``tox``:
+
+.. code:: bash
+
+    tox -e doc && your_browser_name .tox/doc_out/index.html
+
+Distribute
+----------
+If you would like to create either source or wheel files, start by installing
+the building requirements and then executing the build module:
+
+.. code:: bash
+
+    python -m pip install .[build]
+    python -m build
+    python -m twine check dist/*
+
+Post issues
+-----------
+
+Use the `Ansys SCADE API Tools Issues <https://github.com/ansys/scade-apitools/issues>`_
+page to submit questions, report bugs, and request new features. When possible, use
+these templates:
+
+* Bug, problem, error: For filing a bug report
+* Documentation error: For requesting modifications to the documentation
+* Adding an example: For proposing a new example
+* New feature: For requesting enhancements to the code
+
+If your issue does not fit into one of these template categories, click
+the link for opening a blank issue.
+
+To reach the project support team, email `pyansys.core@ansys.com <pyansys.core@ansys.com>`_.
+
+.. LINKS AND REFERENCES
+
+.. _tox: https://tox.wiki/
+.. _black: https://github.com/psf/black
+.. _flake8: https://flake8.pycqa.org/en/latest/
+.. _isort: https://github.com/PyCQA/isort
+.. _pip: https://pypi.org/project/pip/
+.. _pre-commit: https://pre-commit.com/
+.. _pytest: https://docs.pytest.org/en/stable/
+.. _Sphinx: https://www.sphinx-doc.org/en/master/
+.. _wheel file: https://github.com/ansys/scade-apitools/releases

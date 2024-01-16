@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Collection of functions for the storage of settings and properties."""
+"""Provides a collection of functions for the storage of settings and properties."""
 
 # ignore F401: functions made available for modules, not used here
 from .pragma import (  # noqa: F401

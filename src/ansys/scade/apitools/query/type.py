@@ -21,9 +21,9 @@
 # SOFTWARE.
 
 """
-Queries for SCADE Suite types.
+Provides queries for SCADE Suite types.
 
-The main purpose is to get the nature of a type regardless its aliases
+The main purpose of this module is to get the nature of a type regardless of its aliases
 and not raise an exception if a type is ``None``.
 """
 
@@ -34,7 +34,9 @@ from .. import prop
 
 def get_type_name(type_: suite.Type) -> str:
     r"""
-    Return the name of a type or a string representation.
+    Get the name of a type or a string representation.
+
+    See the :ref:`get_type_name <ex__get_type_name>` example.
 
     Parameters
     ----------
@@ -45,8 +47,6 @@ def get_type_name(type_: suite.Type) -> str:
     -------
     str
         Name of a type or a string representation.
-
-    .. seealso:: Example :ref:`get_type_name <ex__get_type_name>`
     """
     if isinstance(type_, suite.NamedType):
         return type_.name
@@ -56,9 +56,9 @@ def get_type_name(type_: suite.Type) -> str:
 
 def get_leaf_alias(type_: suite.Type) -> suite.Type:
     r"""
-    Return the closest alias of the input's type definition.
+    Get the closest alias of the input's type definition.
 
-    Return the input type itself if it is not an alias, e.g. an instance of ``NamedType``.
+    See the :ref:`get_leaf_alias <ex__get_leaf_alias>` example.
 
     Parameters
     ----------
@@ -68,10 +68,8 @@ def get_leaf_alias(type_: suite.Type) -> suite.Type:
     Returns
     -------
     suite.Type
-        Closest alias of the input's type definition, or the input type
-        if it is not an alias.
-
-    .. seealso:: Example :ref:`get_leaf_alias <ex__get_leaf_alias>`
+        Closest alias of the input's type definition or the input type
+        itself if it is not an alias, such as an instance of ``NamedType``.
     """
     while isinstance(type_, suite.NamedType) and isinstance(type_.type, suite.NamedType):
         type_ = type_.type
@@ -80,10 +78,9 @@ def get_leaf_alias(type_: suite.Type) -> suite.Type:
 
 def get_leaf_type(type_: suite.Type) -> suite.Type:
     r"""
-    Return the definition of the input type, bypassing the aliases.
+    Get the definition of the input type, bypassing the aliases.
 
-    Return the input type itself if it is not an alias, e.g. an instance
-    of ``NamedType``, or a predefined type.
+    See the :ref:`get_leaf_type <ex__get_leaf_type>` example.
 
     Parameters
     ----------
@@ -93,10 +90,9 @@ def get_leaf_type(type_: suite.Type) -> suite.Type:
     Returns
     -------
     suite.Type
-        Definition of the input type. It is not a named type unless
-        it is predefined.
-
-    .. seealso:: Example :ref:`get_leaf_type <ex__get_leaf_type>`
+        Definition of the input type or the input type itself itself if it
+        is not an alias, such as an instance of ``NamedType`` or a predefined
+        type. It is not a named type unless it is predefined.
     """
     while isinstance(type_, suite.NamedType) and type_.type:
         type_ = type_.type
@@ -105,14 +101,16 @@ def get_leaf_type(type_: suite.Type) -> suite.Type:
 
 def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
     r"""
-    Return the type of the elements of an array, optionally multi-dimensional.
+    Get the type of the elements of an array, optionally multi-dimensional.
+
+    See the :ref:`get_cell_type <ex__get_cell_type>` example.
 
     Parameters
     ----------
     type\_ : suite.Type
         Input type, which must be an array.
-    skip_alias : bool
-        When ``True``, the aliased arrays are considered as dimensions
+    skip_alias : bool, default: False
+        Whether the aliased arrays are considered as dimensions
         of the input array.
 
     Returns
@@ -129,8 +127,8 @@ def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
             Vector = Real ^2;
             Matrix = Vector ^3;
 
-    ``get_cell_type`` applied to Matrix returns Vector
-    if skip_alias is False otherwise Real.
+    Applying the ``get_cell_type`` function to a matrix returns a vector
+    if ``skip_alias=False``. Otherwise, a Real`` value is returned.
 
     ..
         ``get_cell_type`` applied to ``Matrix`` returns ``Vector``
@@ -157,7 +155,6 @@ def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
                 print(cell_type.name)
                 Real
 
-    .. seealso:: Example :ref:`get_cell_type <ex__get_cell_type>`
     """
     # get the underlying array type
     leaf_type = get_leaf_type(type_)
@@ -179,7 +176,9 @@ def get_cell_type(type_: suite.Type, skip_alias=False) -> suite.Type:
 
 def is_array(type_: suite.Type) -> bool:
     r"""
-    Return whether the input type is an array.
+    Determine if the input type is an array.
+
+    See the :ref:`is_array <ex__is_array>` example.
 
     Parameters
     ----------
@@ -189,9 +188,7 @@ def is_array(type_: suite.Type) -> bool:
     Returns
     -------
     bool
-        ``type_`` is an array.
-
-    .. seealso:: Example :ref:`is_array <ex__is_array>`
+        ``True`` when the input type is an array, ``False`` otherwise.
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -200,7 +197,9 @@ def is_array(type_: suite.Type) -> bool:
 
 def is_structure(type_: suite.Type) -> bool:
     r"""
-    Return whether the input type is a structure.
+    Determine if the input type is a structure.
+
+    See the :ref:`is_structure <ex__is_structure>` example.
 
     Parameters
     ----------
@@ -210,9 +209,7 @@ def is_structure(type_: suite.Type) -> bool:
     Returns
     -------
     bool
-        ``type_`` is a structure.
-
-    .. seealso:: Example :ref:`is_structure <ex__is_structure>`
+        ``True`` when the input type is a structure, ``False`` otherwise.
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -221,7 +218,9 @@ def is_structure(type_: suite.Type) -> bool:
 
 def is_enum(type_: suite.Type) -> bool:
     r"""
-    Return whether the input type is an enumeration.
+    Determine if the input type is an enumeration.
+
+    See the :ref:`is_enum <ex__is_enum>` example.
 
     Parameters
     ----------
@@ -231,9 +230,7 @@ def is_enum(type_: suite.Type) -> bool:
     Returns
     -------
     bool
-        ``type_`` is an enumeration.
-
-    .. seealso:: Example :ref:`is_enum <ex__is_enum>`
+        ``True`` when the input type is a enumeration, ``False`` otherwise.
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -242,7 +239,9 @@ def is_enum(type_: suite.Type) -> bool:
 
 def is_predefined(type_: suite.Type) -> bool:
     r"""
-    Return whether the input type is predefined.
+    Determine if the input type is predefined.
+
+    See the :ref:`is_predefined <ex__is_predefined>` example.
 
     Parameters
     ----------
@@ -252,9 +251,7 @@ def is_predefined(type_: suite.Type) -> bool:
     Returns
     -------
     bool
-        ``type_`` is predefined.
-
-    .. seealso:: Example :ref:`is_predefined <ex__is_predefined>`
+        ``True`` when the input type is predefined, ``False`` otherwise.
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -263,7 +260,9 @@ def is_predefined(type_: suite.Type) -> bool:
 
 def is_imported(type_: suite.Type) -> bool:
     r"""
-    Return whether the input type is imported.
+    Determine if the input type is imported.
+
+    See the :ref:`is_imported <ex__is_imported>` example.
 
     Parameters
     ----------
@@ -273,9 +272,7 @@ def is_imported(type_: suite.Type) -> bool:
     Returns
     -------
     bool
-        ``type_`` is imported.
-
-    .. seealso:: Example :ref:`is_imported <ex__is_imported>`
+        ``True`` when the input type is imported, ``False`` otherwise.
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
@@ -284,22 +281,22 @@ def is_imported(type_: suite.Type) -> bool:
 
 def is_scalar(type_: suite.Type, target: str = 'C') -> bool:
     r"""
-    Return whether the input type is scalar.
+    Determine if the input type is scalar.
+
+    See the :ref:`is_scalar <ex__is_scalar>` example.
 
     Parameters
     ----------
     type\_ : suite.Type
         Input type.
     target :
-        Target language to consider if ``type_`` is imported.
-        Must be either ``'C'`` or ``'Ada'``.
+        Target language to consider if the input type is imported.
+        Options are ``'C'`` and ``'Ada'``.
 
     Returns
     -------
     bool
-        ``type_`` is scalar.
-
-    .. seealso:: Example :ref:`is_scalar <ex__is_scalar>`
+        ``True`` when the input type is scalar, ``False`` otherwise.
     """
     # get the underlying definition
     leaf_type = get_leaf_type(type_)
