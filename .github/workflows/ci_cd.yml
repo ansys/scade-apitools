@@ -81,8 +81,6 @@ jobs:
       - uses: ansys/actions/doc-build@v5
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
-          # DBG
-          check-links: false
 
       - name: "Zipping the examples directory"
         run: |
