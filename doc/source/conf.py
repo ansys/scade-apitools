@@ -163,7 +163,8 @@ suppress_warnings = ["autoapi.python_import_resolution"]
 autoapi_python_use_implicit_namespaces = True
 autoapi_keep_files = True
 autoapi_render_in_single_page = ["class", "enum", "exception", "function"]
-exclude_patterns = ["autoapi"]
+autoapi_python_class_content = "both"
+autoapi_member_order = "alphabetical"
 
 # TODO: remove ignore links after public release
 linkcheck_ignore = [
