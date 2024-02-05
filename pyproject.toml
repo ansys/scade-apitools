@@ -35,11 +35,11 @@ build = [
     "twine==4.0.2"
 ]
 tests = [
-    "pytest==7.4.4",
+    "pytest==8.0.0",
     "pytest-cov==4.1.0"
 ]
 doc = [
-    "ansys-sphinx-theme==0.13.1",
+    "ansys-sphinx-theme==0.13.2",
     "numpydoc==1.6.0",
     "sphinx==7.2.6",
     # TODO: update this version once sphinx-autoapi includes single-page option,
