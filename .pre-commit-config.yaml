@@ -4,7 +4,6 @@ repos:
   rev: v0.2.8
   hooks:
     - id: add-license-headers
-      args: ["./"]
 
 - repo: https://github.com/charliermarsh/ruff-pre-commit
   rev: v0.1.2
