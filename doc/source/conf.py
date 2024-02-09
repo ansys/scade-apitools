@@ -172,6 +172,8 @@ linkcheck_ignore = [
     "https://github.com/ansys/scade-apitools",
     "https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml",
     "https://pypi.org/project/ansys-scade-apitools",
+    # The link below takes a long time to check
+    "https://www.ansys.com/products/embedded-software/ansys-scade-suite",
 ]
 
 # update the examples
