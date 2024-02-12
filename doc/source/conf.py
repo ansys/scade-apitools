@@ -72,8 +72,8 @@ add_module_names = False
 
 # autoclass_content: keep default
 # autodoc/autosummary flags
-autoclass_content = "both"
-autosummary_generate = True
+#autoclass_content = "both"
+#autosummary_generate = True
 # autodoc_class_signature: can't be used with enums
 # autodoc_class_signature = 'separated'
 
@@ -165,7 +165,7 @@ suppress_warnings = ["autoapi.python_import_resolution"]
 autoapi_python_use_implicit_namespaces = True
 autoapi_keep_files = True
 autoapi_render_in_single_page = ["class", "enum", "exception", "function"]
-autoapi_python_class_content = "both"
+#autoapi_python_class_content = "both"
 autoapi_member_order = "alphabetical"
 
 # TODO: remove ignore links after public release
