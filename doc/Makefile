@@ -13,6 +13,7 @@ help:
 
 .PHONY: help Makefile
 
+# Install dependencies for sphinx-autoapi
 .install-deps:
 	@python -m pip freeze | grep -q "sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi" && is_custom_sphinx_autoapi_installed="yes" || is_custom_sphinx_autoapi_installed="no"
 	@if [ "$$is_custom_sphinx_autoapi_installed" != "yes" ]; then \
@@ -31,7 +32,7 @@ pdf: .install-deps
 	(test -f $(BUILDDIR)/latex/*.pdf && echo pdf exists) || exit 1
 
 # Customized clean due to examples gallery
-clean:
+clean: .install-deps
 	rm -rf $(BUILDDIR)/*
 	rm -rf $(SOURCEDIR)/examples
 	find . -type d -name "api" -exec rm -rf {} +

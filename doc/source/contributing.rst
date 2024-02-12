@@ -181,7 +181,7 @@ To reach the project support team, email `pyansys.core@ansys.com <pyansys.core@a
 
 .. LINKS AND REFERENCES
 
-.. _tox: https://tox.wiki/
+.. _tox: https://tox.wiki/en/4.12.0/
 .. _black: https://github.com/psf/black
 .. _flake8: https://flake8.pycqa.org/en/latest/
 .. _isort: https://github.com/PyCQA/isort

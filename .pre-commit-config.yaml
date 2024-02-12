@@ -4,6 +4,8 @@ repos:
   rev: v0.2.8
   hooks:
     - id: add-license-headers
+      args:
+      - --start_year=2023
 
 - repo: https://github.com/charliermarsh/ruff-pre-commit
   rev: v0.1.2
@@ -26,7 +28,7 @@ repos:
         )$
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.4.0
+  rev: v4.5.0
   hooks:
   - id: check-merge-conflict
   - id: debug-statements
