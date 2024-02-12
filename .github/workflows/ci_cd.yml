@@ -128,7 +128,7 @@ jobs:
       - uses: ansys/actions/release-github@v5
         with:
           library-name: ${{ env.LIBRARY_NAME }}
-          additional-artifacts: 'examples.zip'
+          additional-artifacts: 'examples'
 
   doc-deploy-stable:
     name: "Deploy stable documentation"
