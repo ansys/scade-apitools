@@ -72,8 +72,8 @@ add_module_names = False
 
 # autoclass_content: keep default
 # autodoc/autosummary flags
-#autoclass_content = "both"
-#autosummary_generate = True
+autoclass_content = "both"
+autosummary_generate = True
 # autodoc_class_signature: can't be used with enums
 # autodoc_class_signature = 'separated'
 
