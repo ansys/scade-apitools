@@ -175,6 +175,7 @@ linkcheck_ignore = [
     "https://pypi.org/project/ansys-scade-apitools",
     # The link below takes a long time to check
     "https://www.ansys.com/products/embedded-software/ansys-scade-suite",
+    "https://www.ansys.com/*"
 ]
 
 # update the examples
