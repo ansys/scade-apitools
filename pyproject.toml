@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name="ansys-scade-apitools"
-version="0.1.dev0"
+version="0.4.0"
 description ="An extension library for SCADE Python APIs."
 readme="README.rst"
 
