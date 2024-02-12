@@ -52,13 +52,13 @@ html_theme_options = {
 
 # Sphinx extensions
 extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
     "autoapi.extension",
-    "sphinx.ext.autodoc.typehints",
-    "sphinx.ext.napoleon",
+    "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
-    "sphinx_jinja",
     "sphinx_design",
     # "sphinx_gallery.gen_gallery",# apitools examples
 ]
@@ -71,7 +71,9 @@ autodoc_mock_imports = ['scade', 'scade_env', '_scade_api']
 add_module_names = False
 
 # autoclass_content: keep default
-# autoclass_content = 'both'
+# autodoc/autosummary flags
+autoclass_content = "both"
+autosummary_generate = True
 # autodoc_class_signature: can't be used with enums
 # autodoc_class_signature = 'separated'
 
@@ -170,6 +172,8 @@ linkcheck_ignore = [
     "https://github.com/ansys/scade-apitools",
     "https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml",
     "https://pypi.org/project/ansys-scade-apitools",
+    # The link below takes a long time to check
+    "https://www.ansys.com/products/embedded-software/ansys-scade-suite",
 ]
 
 # update the examples
