@@ -67,8 +67,7 @@ jobs:
       - name: "Install Git and clone project"
         uses: actions/checkout@v4
 
-      # - uses: ansys/actions/tests-pytest@v4
-      - uses: ./.github/test-pytest-with-scade/
+      - uses: ansys/scade-actions/scade-tests-pytest@v1
         with:
           pytest-extra-args: "--cov=ansys --cov-report=term --cov-branch --cov-report=html:.cov/html"
           scade-version: ${{ matrix.scade-version }}
