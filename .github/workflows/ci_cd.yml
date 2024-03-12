@@ -78,6 +78,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: ansys/scade-apitools
+          files: .cov/xml
 
   doc-build:
     name: "Build documentation"
