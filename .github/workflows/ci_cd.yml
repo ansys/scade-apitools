@@ -74,10 +74,11 @@ jobs:
           scade-version: ${{ matrix.scade-version }}
 
       - name: "Upload coverage reports to Codecov"
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@v4
         env:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: ansys/scade-apitools
+          fail_ci_if_error: true
 
   doc-build:
     name: "Build documentation"
