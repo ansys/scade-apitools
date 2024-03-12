@@ -70,14 +70,15 @@ jobs:
       - uses: ansys/scade-actions/scade-tests-pytest@v1
         with:
           checkout: false
-          pytest-extra-args: "--cov=ansys --cov-report=term --cov-branch --cov-report=html:.cov/html"
+          pytest-extra-args: "--cov=ansys --cov-report=term --cov-branch --cov-report=html:.cov/html --cov-report=xml:.cov/xml"
           scade-version: ${{ matrix.scade-version }}
 
       - name: "Upload coverage reports to Codecov"
-        uses: codecov/codecov-action@v4.0.1
-        env:
+        uses: codecov/codecov-action@v4
+        with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: ansys/scade-apitools
+          files: .cov/xml
 
   doc-build:
     name: "Build documentation"
