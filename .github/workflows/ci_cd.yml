@@ -78,7 +78,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: ansys/scade-apitools
-          fail_ci_if_error: true
 
   doc-build:
     name: "Build documentation"
