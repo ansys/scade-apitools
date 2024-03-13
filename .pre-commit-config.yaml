@@ -1,14 +1,14 @@
 repos:
 
 - repo: https://github.com/ansys/pre-commit-hooks
-  rev: v0.2.8
+  rev: v0.2.9
   hooks:
     - id: add-license-headers
       args:
       - --start_year=2023
 
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.1.2
+  rev: v0.3.2
   hooks:
     - id: ruff
       args: [--fix]
