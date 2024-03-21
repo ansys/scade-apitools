@@ -9,13 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=source
 set BUILDDIR=_build
-
-REM TODO: these lines of code should be removed once the feature branch is merged
-for /f %%i in ('pip freeze ^| findstr /c:"sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi"') do set is_custom_sphinx_autoapi_installed=%%i
-if NOT "%is_custom_sphinx_autoapi_installed%" == "sphinx-autoapi" (
-	python -m pip uninstall --yes sphinx-autoapi
-	python -m pip install "sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi@feat/single-page-stable")
-REM TODO: these lines of code should be removed once the feature branch is merged
+set APIDIR=api
 
 if "%1" == "" goto help
 if "%1" == "clean" goto clean
@@ -32,12 +26,13 @@ if errorlevel 9009 (
 	echo.http://sphinx-doc.org/
 	exit /b 1
 )
+
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
 goto end
 
 :clean
 rmdir /s /q %BUILDDIR% > /NUL 2>&1
-for /d /r %SOURCEDIR% %%d in (_autosummary) do @if exist "%%d" rmdir /s /q "%%d"
+for /d /r %SOURCEDIR% %%d in (%APIDIR) do @if exist "%%d" rmdir /s /q "%%d"
 goto end
 
 :help
