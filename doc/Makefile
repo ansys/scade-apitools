@@ -15,16 +15,17 @@ help:
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: .install-deps Makefile
+%: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-pdf: .install-deps
+
+# Customized clean due to examples gallery
+clean:
+	rm -rf $(BUILDDIR)/*
+	rm -rf $(SOURCEDIR)/examples
+
+# Customized pdf for svg format images
+pdf:
 	@$(SPHINXBUILD) -M latex "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	cd $(BUILDDIR)/latex && latexmk -r latexmkrc -pdf *.tex -interaction=nonstopmode || true
 	(test -f $(BUILDDIR)/latex/*.pdf && echo pdf exists) || exit 1
-
-# Customized clean due to examples gallery
-clean: .install-deps
-	rm -rf $(BUILDDIR)/*
-	rm -rf $(SOURCEDIR)/examples
-	find . -type d -name "api" -exec rm -rf {} +
