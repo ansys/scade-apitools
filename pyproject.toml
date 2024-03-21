@@ -39,13 +39,13 @@ tests = [
     "pytest-cov==4.1.0"
 ]
 doc = [
-    "ansys-sphinx-theme==0.13.2",
+    "ansys-sphinx-theme==0.14.1",
     "autodoc_pydantic==2.0.1",
     "jupyter_sphinx==0.5.3",
     "nbsphinx==0.9.3",
     "numpydoc==1.6.0",
     "sphinx==7.2.6",
-    "sphinx-autoapi==3.0.0",
+    "sphinx-autoapi==3.1.a2",
     "sphinx-autodoc-typehints==1.25.3",
     "sphinxcontrib-globalsubs==0.1.1",
     "sphinxcontrib-httpdomain==1.8.1",

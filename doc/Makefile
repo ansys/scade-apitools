@@ -6,6 +6,7 @@ SPHINXOPTS    = -j auto
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = _build
+APIDIR        = api
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -13,26 +14,19 @@ help:
 
 .PHONY: help Makefile
 
-# Install dependencies for sphinx-autoapi
-.install-deps:
-	@python -m pip freeze | grep -q "sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi" && is_custom_sphinx_autoapi_installed="yes" || is_custom_sphinx_autoapi_installed="no"
-	@if [ "$$is_custom_sphinx_autoapi_installed" != "yes" ]; then \
-		python -m pip uninstall --yes sphinx-autoapi; \
-		python -m pip install "sphinx-autoapi @ git+https://github.com/ansys/sphinx-autoapi@feat/single-page-stable"; \
-	fi
-
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: .install-deps Makefile
+%: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-pdf: .install-deps
+
+# Customized clean due to examples gallery
+clean:
+	rm -rf $(BUILDDIR)/*
+	find . -type d -name $(APIDIR) -exec rm -rf {} +
+
+# Customized pdf for svg format images
+pdf:
 	@$(SPHINXBUILD) -M latex "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	cd $(BUILDDIR)/latex && latexmk -r latexmkrc -pdf *.tex -interaction=nonstopmode || true
 	(test -f $(BUILDDIR)/latex/*.pdf && echo pdf exists) || exit 1
-
-# Customized clean due to examples gallery
-clean: .install-deps
-	rm -rf $(BUILDDIR)/*
-	rm -rf $(SOURCEDIR)/examples
-	find . -type d -name "api" -exec rm -rf {} +
