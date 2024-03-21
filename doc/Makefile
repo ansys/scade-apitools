@@ -7,6 +7,7 @@ SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = _build
 APIDIR        = api
+EXAMPLESDIR   = _examples
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -24,6 +25,7 @@ help:
 clean:
 	rm -rf $(BUILDDIR)/*
 	find . -type d -name $(APIDIR) -exec rm -rf {} +
+	find . -type d -name $(EXAMPLESDIR) -exec rm -rf {} +
 
 # Customized pdf for svg format images
 pdf:
