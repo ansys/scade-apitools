@@ -1,0 +1,49 @@
+.. py:function:: add_state_machine_state(sm, name, position = None, size = None, kind = SK.NORMAL, display = DK.GRAPHICAL)
+
+   
+   Create a state in a state machine.
+
+
+   :Parameters:
+
+       **sm** : :obj:`suite.StateMachine`
+           Input state machine.
+
+       **name** : :obj:`str.StateMachine`
+           Name of the state.
+
+       **position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Position of the state, expressed in 1/100th of mm.
+           This value is considered if and only if the state machine
+           has a graphical representation.
+
+       **size** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Size of the state, expressed in 1/100th of mm.
+           This value is considered if and only if the state machine
+           has a graphical representation.
+
+       **kind** : :obj:`SK`, default: :obj:`NORMAL`
+           Kind of the state.
+
+       **display** : :obj:`DK`, default: :obj:`GRAPHICAL`
+           Layout of the state.
+
+   :Returns:
+
+       :obj:`suite.State`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

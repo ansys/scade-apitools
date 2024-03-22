@@ -1,0 +1,33 @@
+create_mapi
+===========
+
+.. py:function:: create_mapi(size)
+
+   
+   Return the expression tree for the higher-order construct for mapi creation.
+
+
+   :Parameters:
+
+       **size** : :obj:`EX`
+           Number of iterations.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

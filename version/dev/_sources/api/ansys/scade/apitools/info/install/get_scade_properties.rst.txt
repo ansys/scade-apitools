@@ -1,0 +1,25 @@
+get_scade_properties
+====================
+
+.. py:function:: get_scade_properties()
+
+   
+   Get the content of the properties in ``<home>/common/scade.properties`` as a dictionary.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

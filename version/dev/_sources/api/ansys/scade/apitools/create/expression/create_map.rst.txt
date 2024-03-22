@@ -1,0 +1,33 @@
+create_map
+==========
+
+.. py:function:: create_map(size)
+
+   
+   Return the expression tree for the higher-order construct for map creation.
+
+
+   :Parameters:
+
+       **size** : :obj:`EX`
+           Number of iterations.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,34 @@
+.. py:function:: create_table(dimensions, type_)
+
+   
+   Get the type tree for a structure.
+
+
+   :Parameters:
+
+       **type\_** : :obj:`TX`
+           Type tree defining the type of the array elements.
+
+       **dimensions** : :obj:`Union`\[:obj:`EX`, :obj:`List`\[:obj:`EX`]]
+           Dimensions of the array, which is either a single expression tree or
+           a list of expression trees.
+
+   :Returns:
+
+       :obj:`TT`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

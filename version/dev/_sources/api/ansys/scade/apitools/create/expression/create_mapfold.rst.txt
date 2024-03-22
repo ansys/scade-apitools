@@ -1,0 +1,36 @@
+create_mapfold
+==============
+
+.. py:function:: create_mapfold(size, acc)
+
+   
+   Return the expression tree for the higher-order construct for mapfold creation.
+
+
+   :Parameters:
+
+       **size** : :obj:`EX`
+           Number of iterations.
+
+       **acc** : :obj:`EX`
+           Number of accumulators.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

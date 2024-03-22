@@ -1,0 +1,33 @@
+create_pre
+==========
+
+.. py:function:: create_pre(*args)
+
+   
+   Return the expression tree for the pre operator.
+
+
+   :Parameters:
+
+       **args** : :obj:`List`\[:obj:`EX`]
+           Input flows.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
