@@ -169,3 +169,6 @@ doc/source/api/
 .vscode
 *.sln
 *.pyproj
+
+!vocabularies
+!vocabularies/**
