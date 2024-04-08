@@ -39,7 +39,7 @@ tests = [
     "pytest-cov==5.0.0"
 ]
 doc = [
-    "ansys-sphinx-theme==0.15.0",
+    "ansys-sphinx-theme==0.15.1",
     "autodoc_pydantic==2.1.0",
     "jupyter_sphinx==0.5.3",
     "nbsphinx==0.9.3",
