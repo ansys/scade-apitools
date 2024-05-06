@@ -59,6 +59,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     "sphinx_design",
+    "sphinx_jinja",
     # "sphinx_gallery.gen_gallery",# apitools examples
 ]
 
@@ -158,7 +159,7 @@ autoapi_options = [
     "special-members",
 ]
 autoapi_template_dir = get_autoapi_templates_dir_relative_path(Path(__file__))
-suppress_warnings = ["autoapi.python_import_resolution"]
+suppress_warnings = ["autoapi.python_import_resolution", "config.cache"]
 autoapi_python_use_implicit_namespaces = True
 autoapi_keep_files = True
 autoapi_own_page_level =  "function"
