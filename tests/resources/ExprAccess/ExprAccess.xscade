@@ -57,6 +57,27 @@
 						<ed:Type oid="!ed/3d0/1885/35A4/643d1bde52bf"/>
 					</pragmas>
 				</Type>
+				<Type name="Enumeration">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="VALUE1">
+									<pragmas>
+										<ed:Value oid="!ed/620/6F59/84B4/665431f83006"/>
+									</pragmas>
+								</Value>
+								<Value name="VALUE2">
+									<pragmas>
+										<ed:Value oid="!ed/627/6F59/84B4/6654320049ea"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/61f/6F59/84B4/665431ec6dd9"/>
+					</pragmas>
+				</Type>
 				<Operator kind="node" name="ExprId">
 					<inputs>
 						<Variable name="variable">
@@ -4879,13 +4900,13 @@
 								<ed:Equation oid="!ed/7a2/6922/880C/6439340b7765"/>
 							</pragmas>
 						</Equation>
-						<!-- caseOp = ( case flowSwitch of  | 1 :   flowCase1 | 2 :   flowCase2 | _ :   flowDe... -->
+						<!-- caseOp = ( case flowSwitch of  | 1 :   flowCase1 | VALUE1 :   flowCase2 | _ :   f... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="caseOp"/>
 							</lefts>
 							<right>
-								<!-- ( case flowSwitch of  | 1 :   flowCase1 | 2 :   flowCase2 | _ :   flowDefault) -->
+								<!-- ( case flowSwitch of  | 1 :   flowCase1 | VALUE1 :   flowCase2 | _ :   flowDefaul... -->
 								<CaseOp name="1">
 									<switch>
 										<IdExpression>
@@ -4904,7 +4925,7 @@
 												</IdExpression>
 											</flow>
 										</Case>
-										<Case pattern="2">
+										<Case pattern="VALUE1">
 											<flow>
 												<IdExpression>
 													<path>
