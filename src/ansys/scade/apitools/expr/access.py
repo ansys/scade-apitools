@@ -35,6 +35,7 @@ an accessor from any SCADE Suite expression.
 from __future__ import annotations
 
 from collections import namedtuple
+from typing import Optional
 
 import scade.model.suite as suite
 
@@ -887,7 +888,7 @@ class CaseOp(CallExpression):
         super().__init__(expression)
         self._switch = accessor(expression.parameters[0])
         flows = [accessor(_) for _ in expression.parameters[1].parameters]
-        patterns = [_.value for _ in expression.parameters[2].parameters]
+        patterns = [accessor(_) for _ in expression.parameters[2].parameters]
         self._default = flows.pop() if len(flows) > len(patterns) else None
         self._cases: list = [(pattern, flow) for pattern, flow in zip(patterns, flows)]
 
@@ -897,12 +898,12 @@ class CaseOp(CallExpression):
         return self._switch
 
     @property
-    def cases(self) -> list[tuple[str, Expression]]:
-        """Pairs (``str``, :class:`~Expression`) to build the structure."""
+    def cases(self) -> list[tuple[Expression, Expression]]:
+        """Pairs (:class:`~Expression`, :class:`~Expression`) to build the case."""
         return self._cases
 
     @property
-    def default(self) -> Expression:
+    def default(self) -> Optional[Expression]:
         """Value to use as default when not ``None``."""
         return self._default
 
@@ -1224,7 +1225,7 @@ class IteratorOp(OpOp):
 
     # TODO CREATE: mapfold with N accumulators...
     @property
-    def accumulator_count(self) -> Expression:
+    def accumulator_count(self) -> Optional[Expression]:
         """Number of accumulators when suitable, otherwise ``None``."""
         return self._accumulator_count
 
@@ -1264,7 +1265,7 @@ class PartialIteratorOp(IteratorOp):
         return self._if
 
     @property
-    def defaults(self) -> list[Expression]:
+    def defaults(self) -> Optional[list[Expression]]:
         """Default values when suitable, otherwise ``None``."""
         return self._defaults
 

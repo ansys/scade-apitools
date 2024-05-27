@@ -45,6 +45,6 @@ output('instance name: %s\n' % ex.name)
 # the selector is a local variable, dump the name
 output('switch: %s\n' % ex.switch.path.name)
 # the parameters are local variables, dump the pairs
-output('cases: {%s}\n' % ','.join(['%s: %s' % (v, f.path.name) for v, f in ex.cases]))
+output('cases: {%s}\n' % ','.join(['%s: %s' % (v.value, f.path.name) for v, f in ex.cases]))
 # the default is a local variable, dump the name
 output('default: %s\n' % ex.default.path.name)
