@@ -222,7 +222,13 @@ def test_case_op(model):
     assert expression.expression == equation.right
     assert isinstance(expression, expr.CaseOp)
     assert expression.switch.path.name == 'flowSwitch'
-    cases = [((pattern.value if isinstance(pattern, expr.ConstValue) else pattern.path.name), flow.path.name) for pattern, flow in expression.cases]
+    cases = [
+        (
+            (pattern.value if isinstance(pattern, expr.ConstValue) else pattern.path.name),
+            flow.path.name,
+        )
+        for pattern, flow in expression.cases
+    ]
     assert cases == [('1', 'flowCase1'), ('VALUE1', 'flowCase2')]
     assert expression.default.path.name == 'flowDefault'
 
