@@ -22,7 +22,6 @@
 
 """Provides a collection of functions for the accessing the expressions."""
 
-
 # ignore F401: functions made available for modules, not used here
 from .access import (  # noqa: F401
     ActivateNoInitOp,
