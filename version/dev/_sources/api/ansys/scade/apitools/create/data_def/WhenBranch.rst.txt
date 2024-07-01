@@ -1,0 +1,45 @@
+
+
+:class:`WhenBranch`
+===================
+
+.. py:class:: ansys.scade.apitools.create.data_def.WhenBranch(pattern, position = None, size = None, display = DK.GRAPHICAL, label_width = 0)
+
+   Provides the intermediate class for when branches.
+
+
+   Store the attributes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import WhenBranch
+
+
+
+
+
+

@@ -1,0 +1,236 @@
+
+
+Eck
+===
+
+Module: *ansys.scade.apitools.expr.predef*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.predef
+
+.. autoclass:: Eck
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Eck.NONE
+      ~Eck.AND
+      ~Eck.OR
+      ~Eck.XOR
+      ~Eck.NOT
+      ~Eck.SHARP
+      ~Eck.PLUS
+      ~Eck.SUB
+      ~Eck.NEG
+      ~Eck.MUL
+      ~Eck.REAL2INT
+      ~Eck.INT2REAL
+      ~Eck.SLASH
+      ~Eck.DIV
+      ~Eck.MOD
+      ~Eck.PRJ
+      ~Eck.CHANGE_ITH
+      ~Eck.LESS
+      ~Eck.LEQUAL
+      ~Eck.GREAT
+      ~Eck.GEQUAL
+      ~Eck.EQUAL
+      ~Eck.NEQUAL
+      ~Eck.PRE
+      ~Eck.WHEN
+      ~Eck.FOLLOW
+      ~Eck.FBY
+      ~Eck.IF
+      ~Eck.CASE
+      ~Eck.SEQ_EXPR
+      ~Eck.BLD_STRUCT
+      ~Eck.MAP
+      ~Eck.FOLD
+      ~Eck.MAPFOLD
+      ~Eck.MAPI
+      ~Eck.FOLDI
+      ~Eck.SCALAR_TO_VECTOR
+      ~Eck.BLD_VECTOR
+      ~Eck.PRJ_DYN
+      ~Eck.MAKE
+      ~Eck.FLATTEN
+      ~Eck.MERGE
+      ~Eck.REVERSE
+      ~Eck.TRANSPOSE
+      ~Eck.TIMES
+      ~Eck.MATCH
+      ~Eck.SLICE
+      ~Eck.CONCAT
+      ~Eck.ACTIVATE
+      ~Eck.RESTART
+      ~Eck.FOLDW
+      ~Eck.FOLDWI
+      ~Eck.ACTIVATE_NOINIT
+      ~Eck.CLOCKED_ACTIVATE
+      ~Eck.CLOCKED_NOT
+      ~Eck.POS
+      ~Eck.MAPW
+      ~Eck.MAPWI
+      ~Eck.NUMERIC_CAST
+      ~Eck.MAPFOLDI
+      ~Eck.MAPFOLDW
+      ~Eck.MAPFOLDWI
+      ~Eck.LAND
+      ~Eck.LOR
+      ~Eck.LXOR
+      ~Eck.LNOT
+      ~Eck.LSL
+      ~Eck.LSR
+
+   
+   ..
+      autoattribute:: Eck.NONE
+   ..
+      autoattribute:: Eck.AND
+   ..
+      autoattribute:: Eck.OR
+   ..
+      autoattribute:: Eck.XOR
+   ..
+      autoattribute:: Eck.NOT
+   ..
+      autoattribute:: Eck.SHARP
+   ..
+      autoattribute:: Eck.PLUS
+   ..
+      autoattribute:: Eck.SUB
+   ..
+      autoattribute:: Eck.NEG
+   ..
+      autoattribute:: Eck.MUL
+   ..
+      autoattribute:: Eck.REAL2INT
+   ..
+      autoattribute:: Eck.INT2REAL
+   ..
+      autoattribute:: Eck.SLASH
+   ..
+      autoattribute:: Eck.DIV
+   ..
+      autoattribute:: Eck.MOD
+   ..
+      autoattribute:: Eck.PRJ
+   ..
+      autoattribute:: Eck.CHANGE_ITH
+   ..
+      autoattribute:: Eck.LESS
+   ..
+      autoattribute:: Eck.LEQUAL
+   ..
+      autoattribute:: Eck.GREAT
+   ..
+      autoattribute:: Eck.GEQUAL
+   ..
+      autoattribute:: Eck.EQUAL
+   ..
+      autoattribute:: Eck.NEQUAL
+   ..
+      autoattribute:: Eck.PRE
+   ..
+      autoattribute:: Eck.WHEN
+   ..
+      autoattribute:: Eck.FOLLOW
+   ..
+      autoattribute:: Eck.FBY
+   ..
+      autoattribute:: Eck.IF
+   ..
+      autoattribute:: Eck.CASE
+   ..
+      autoattribute:: Eck.SEQ_EXPR
+   ..
+      autoattribute:: Eck.BLD_STRUCT
+   ..
+      autoattribute:: Eck.MAP
+   ..
+      autoattribute:: Eck.FOLD
+   ..
+      autoattribute:: Eck.MAPFOLD
+   ..
+      autoattribute:: Eck.MAPI
+   ..
+      autoattribute:: Eck.FOLDI
+   ..
+      autoattribute:: Eck.SCALAR_TO_VECTOR
+   ..
+      autoattribute:: Eck.BLD_VECTOR
+   ..
+      autoattribute:: Eck.PRJ_DYN
+   ..
+      autoattribute:: Eck.MAKE
+   ..
+      autoattribute:: Eck.FLATTEN
+   ..
+      autoattribute:: Eck.MERGE
+   ..
+      autoattribute:: Eck.REVERSE
+   ..
+      autoattribute:: Eck.TRANSPOSE
+   ..
+      autoattribute:: Eck.TIMES
+   ..
+      autoattribute:: Eck.MATCH
+   ..
+      autoattribute:: Eck.SLICE
+   ..
+      autoattribute:: Eck.CONCAT
+   ..
+      autoattribute:: Eck.ACTIVATE
+   ..
+      autoattribute:: Eck.RESTART
+   ..
+      autoattribute:: Eck.FOLDW
+   ..
+      autoattribute:: Eck.FOLDWI
+   ..
+      autoattribute:: Eck.ACTIVATE_NOINIT
+   ..
+      autoattribute:: Eck.CLOCKED_ACTIVATE
+   ..
+      autoattribute:: Eck.CLOCKED_NOT
+   ..
+      autoattribute:: Eck.POS
+   ..
+      autoattribute:: Eck.MAPW
+   ..
+      autoattribute:: Eck.MAPWI
+   ..
+      autoattribute:: Eck.NUMERIC_CAST
+   ..
+      autoattribute:: Eck.MAPFOLDI
+   ..
+      autoattribute:: Eck.MAPFOLDW
+   ..
+      autoattribute:: Eck.MAPFOLDWI
+   ..
+      autoattribute:: Eck.LAND
+   ..
+      autoattribute:: Eck.LOR
+   ..
+      autoattribute:: Eck.LXOR
+   ..
+      autoattribute:: Eck.LNOT
+   ..
+      autoattribute:: Eck.LSL
+   ..
+      autoattribute:: Eck.LSR
+   
+   

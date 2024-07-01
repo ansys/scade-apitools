@@ -1,0 +1,177 @@
+
+
+
+
+IfThenElseOp
+============
+
+.. py:class:: IfThenElseOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.IfThenElseOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides a vector from a flow and a size.
+
+   The format is ``if <if> then <then>, ..., <then> else <else>, ..., <else>``.
+
+   See the :ref:`if_then_else_op <ex__if_then_else_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The design differs slightly from the meta-model. Because the then/else
+   parts must be groups of flows, the :class:`~IfThenElseOp` class exposes directly
+   the list of then/else flows instead of a flow that is an instance of the
+   :class:`~ListExpression` class.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: IfThenElseOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~else_`
+            - Flows when the condition is false.
+          * - :py:attr:`~if_`
+            - Condition of the expression.
+          * - :py:attr:`~then`
+            - Flows when the condition is true.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import IfThenElseOp
+
+
+Property detail
+---------------
+.. py:property:: else_
+   :canonical: ansys.scade.apitools.expr.access.IfThenElseOp.else_
+   :type: list[Expression]
+
+
+   
+   Flows when the condition is false.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: if_
+   :canonical: ansys.scade.apitools.expr.access.IfThenElseOp.if_
+   :type: Expression
+
+
+   
+   Condition of the expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: then
+   :canonical: ansys.scade.apitools.expr.access.IfThenElseOp.then
+   :type: list[Expression]
+
+
+   
+   Flows when the condition is true.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

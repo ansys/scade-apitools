@@ -1,0 +1,6 @@
+ansys.scade.apitools.query.type.get\_type\_name
+===============================================
+
+.. currentmodule:: ansys.scade.apitools.query.type
+
+.. autofunction:: get_type_name
