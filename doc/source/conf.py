@@ -48,6 +48,7 @@ html_theme_options = {
     "ansys_sphinx_theme_autoapi": {
         "project": project,
         "own_page_level": "function",
+        "class_content": "both", # documentation in https://sphinxdocs.ansys.com/version/stable/user-guide/autoapi.html
     },
 }
 
@@ -55,13 +56,12 @@ html_theme_options = {
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
-    "autoapi.extension",
     "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     "sphinx_design",
-    "sphinx_jinja",
+    "ansys_sphinx_theme.extension.autoapi",
     # "sphinx_gallery.gen_gallery",# apitools examples
 ]
 
@@ -71,7 +71,6 @@ autodoc_typehints = 'description'
 autodoc_mock_imports = ['scade', 'scade_env', '_scade_api']
 # Purpose of this option?
 add_module_names = False
-autoapi_python_class_content = "both"
 
 # autoclass_content: keep default
 # autodoc_class_signature: can't be used with enums
