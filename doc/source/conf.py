@@ -6,9 +6,7 @@ import sys
 
 from ansys_sphinx_theme import (
     ansys_favicon,
-    get_autoapi_templates_dir_relative_path,
     get_version_match,
-    pyansys_logo_black,
 )
 from sphinx.highlighting import lexers
 
@@ -27,7 +25,6 @@ author = "ANSYS, Inc."
 release = version = __version__
 
 # Select desired logo, theme, and declare the html title
-html_logo = pyansys_logo_black
 html_theme = "ansys_sphinx_theme"
 html_short_title = html_title = "Ansys SCADE API Tools"
 
@@ -47,19 +44,24 @@ html_theme_options = {
         "json_url": f"https://{cname}/versions.json",
         "version_match": get_version_match(version),
     },
+    "logo" : "pyansys",
+    "ansys_sphinx_theme_autoapi": {
+        "project": project,
+        "own_page_level": "function",
+        "class_content": "both", # documentation in https://sphinxdocs.ansys.com/version/stable/user-guide/autoapi.html
+    },
 }
 
 # Sphinx extensions
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
-    "autoapi.extension",
     "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     "sphinx_design",
-    "sphinx_jinja",
+    "ansys_sphinx_theme.extension.autoapi",
     # "sphinx_gallery.gen_gallery",# apitools examples
 ]
 
@@ -69,7 +71,6 @@ autodoc_typehints = 'description'
 autodoc_mock_imports = ['scade', 'scade_env', '_scade_api']
 # Purpose of this option?
 add_module_names = False
-autoapi_python_class_content = "both"
 
 # autoclass_content: keep default
 # autodoc_class_signature: can't be used with enums
@@ -134,35 +135,7 @@ source_suffix = ".rst"
 # The master toctree document.
 master_doc = "index"
 
-
-# Configuration for Sphinx autoapi
-def prepare_jinja_env(jinja_env) -> None:
-    """
-    Customize the jinja env.
-
-    Notes
-    -----
-    See https://jinja.palletsprojects.com/en/3.0.x/api/#jinja2.Environment
-    """
-    jinja_env.globals["project_name"] = project
-
-
-autoapi_prepare_jinja_env = prepare_jinja_env
-autoapi_type = "python"
-autoapi_dirs = ["../../src/ansys"]
-autoapi_root = "api"
-autoapi_options = [
-    "members",
-    "undoc-members",
-    "show-inheritance",
-    "show-module-summary",
-    "special-members",
-]
-autoapi_template_dir = get_autoapi_templates_dir_relative_path(Path(__file__))
 suppress_warnings = ["autoapi.python_import_resolution", "config.cache"]
-autoapi_python_use_implicit_namespaces = True
-autoapi_keep_files = True
-autoapi_own_page_level =  "function"
 #autoapi_python_class_content = "both"
 autoapi_member_order = "alphabetical"
 
