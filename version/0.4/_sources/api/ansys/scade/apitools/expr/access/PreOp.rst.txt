@@ -1,0 +1,121 @@
+
+
+
+
+PreOp
+=====
+
+.. py:class:: PreOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.PreOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides the previous value of flows.
+
+   The format is ``pre <flow>, ..., <flow>``.
+
+   See the :ref:`pre_op <ex__pre_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The design differs slightly from the meta-model. Because the input
+   must be a group of flows, the :class:`~PreOp` class does not inherit
+   from the :class:`~FlowOp` class. It exposes directly the lists of flows instead of
+   having a flow that is an instance of a :class:`~ListExpression` class.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: PreOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~flows`
+            - Flows after the first cycle.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import PreOp
+
+
+Property detail
+---------------
+.. py:property:: flows
+   :canonical: ansys.scade.apitools.expr.access.PreOp.flows
+   :type: list[Expression]
+
+
+   
+   Flows after the first cycle.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

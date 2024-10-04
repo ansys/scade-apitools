@@ -1,0 +1,33 @@
+.. py:function:: create_foldwi(size, condition)
+
+   
+   Return the expression tree for the higher-order construct for foldwi creation.
+
+
+   :Parameters:
+
+       **size** : :obj:`EX`
+           Number of iterations.
+
+       **condition** : :obj:`EX`
+           Initial value of the iteration condition.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

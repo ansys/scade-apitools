@@ -1,0 +1,52 @@
+.. py:function:: add_imported_to_project(project, element, path, folder = None, default = True)
+
+   
+   Add an imported source file, associated with the SCADE imported element, to the project.
+
+   The file is added if and only if it is not already present.
+   If the file is present, the ``folder`` and ``default`` parameters are ignored.
+
+   * When the ``folder`` parameter is not ``None``, the file is added to the
+     folder specified.
+   * When the ``default`` parameter is ``True``, the file is added to either the
+     "External Code" or "External Type Definitions" folder, depending on the nature
+     of the element.
+   * Otherwise, the file is added to the project as a root element.
+
+   :Parameters:
+
+       **project** : :obj:`std.Project`
+           Project to modify.
+
+       **element** : :obj:`Union`\[:obj:`suite.NamedType`, :obj:`suite.Operator`]
+           Imported element.
+
+       **path** : :class:`python:str`
+           Path of the file to add to the project.
+
+       **folder** : :obj:`std.Folder`
+           Parent folder of the file to add to the project.
+
+       **default** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:True`
+           Whether to add the file is added to the default folder
+           for SCADE Simulation files, according to the element.
+
+   :Returns:
+
+       :obj:`std.FileRef`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

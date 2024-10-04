@@ -1,0 +1,30 @@
+.. py:function:: create_reverse(flow)
+
+   
+   Return the expression tree for the reverse operator.
+
+
+   :Parameters:
+
+       **flow** : :obj:`EX`
+           Input flow.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
