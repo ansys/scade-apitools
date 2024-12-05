@@ -1,0 +1,39 @@
+.. py:function:: create_mapfoldwi(size, acc, condition, default)
+
+   
+   Return the expression tree for the higher-order construct for mapfoldwi creation.
+
+
+   :Parameters:
+
+       **size** : :obj:`EX`
+           Number of iterations.
+
+       **acc** : :obj:`EX`
+           Number of accumulators.
+
+       **condition** : :obj:`EX`
+           Initial value of the iteration condition.
+
+       **default** : :obj:`EX`
+           Default value of the iteration.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

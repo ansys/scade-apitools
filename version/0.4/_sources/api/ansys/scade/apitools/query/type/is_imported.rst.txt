@@ -1,0 +1,31 @@
+.. py:function:: is_imported(type_)
+
+   
+   Determine if the input type is imported.
+
+   See the :ref:`is_imported <ex__is_imported>` example.
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.Type`
+           Input type.
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           ``True`` when the input type is imported, ``False`` otherwise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

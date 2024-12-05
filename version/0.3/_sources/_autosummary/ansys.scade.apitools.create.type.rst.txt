@@ -1,0 +1,50 @@
+ansys.scade.apitools.create.type
+================================
+
+.. currentmodule:: ansys.scade.apitools.create
+
+.. automodule:: ansys.scade.apitools.create.type
+
+   
+   
+   .. rubric:: Module Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      TT
+      TX
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      create_sized
+      create_structure
+      create_table
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      TT
+      TypeTree
+   
+   
+
+   
+   
+   
+
+
+

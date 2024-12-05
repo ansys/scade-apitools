@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.expression.LX
+=========================================
+
+.. currentmodule:: ansys.scade.apitools.create.expression
+
+.. autodata:: LX

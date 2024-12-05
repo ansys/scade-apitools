@@ -1,0 +1,116 @@
+
+
+
+
+
+The ``scade.py`` module
+=======================
+
+.. py:module:: ansys.scade.apitools.create.scade
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: scade
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Enums
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~Sfk`
+            - Provides kinds of simulation files.
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~add_element_to_project`
+            - Add the file defining the storage element to the project.
+
+
+          * - :py:attr:`~add_imported_to_project`
+            - Add an imported source file, associated with the SCADE imported element, to the project.
+
+
+          * - :py:attr:`~add_simulation_file_to_project`
+            - Add a file to the project and tag it appropriately for the SCADE simulation.
+
+
+          * - :py:attr:`~save_all`
+            - Save all modified files of Scade models.
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    ≔ Sfk<Sfk>
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    𝑓(x) add_element_to_project<add_element_to_project>
+    𝑓(x) add_imported_to_project<add_imported_to_project>
+    𝑓(x) add_simulation_file_to_project<add_simulation_file_to_project>
+    𝑓(x) save_all<save_all>
+
+
+
+
+
+
+Description
+-----------
+
+Provides helpers for SCADE model creation functions.
+
+* Persistence
+* Predefined types
+* Type trees
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

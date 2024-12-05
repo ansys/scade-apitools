@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.project.create\_prop
+================================================
+
+.. currentmodule:: ansys.scade.apitools.create.project
+
+.. autofunction:: create_prop

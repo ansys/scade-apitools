@@ -1,0 +1,34 @@
+.. py:function:: find_pragma(object_, id)
+
+   
+   Get the pragma ID of an object.
+
+   See the :ref:`pragma <ex__pragma>` example.
+
+   :Parameters:
+
+       **object\_** : :obj:`suite.Object`
+           Element to search for the pragma.
+
+       **id** : :class:`python:str`
+           ID of the pragma.
+
+   :Returns:
+
+       :obj:`suite.Pragma`
+           ID of the pragma or ``None`` if not found.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

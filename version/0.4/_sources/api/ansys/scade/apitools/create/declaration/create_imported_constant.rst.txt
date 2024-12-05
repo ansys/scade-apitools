@@ -1,0 +1,45 @@
+.. py:function:: create_imported_constant(owner, name, type_, path = None, visibility = VK.PUBLIC)
+
+   
+   Create an imported constant.
+
+   The constant has a name and a type.
+
+   :Parameters:
+
+       **owner** : :obj:`suite.Package`
+           Owner of the type, which is either the model itself or a package.
+
+       **name** : :class:`python:str`
+           Name of the constant.
+
+       **type\_** : :obj:`TX`
+           Definition of the type expressed as a type tree.
+
+       **path** : :obj:`Path`, default: :data:`python:None`
+           Path of the file for storing the constant. This parameter is ignored if
+           the owner is a package. When the path is ``None`` and owner is the model,
+           the constant is stored in the model's default file.
+
+       **visibility** : :obj:`VK`
+           Accessibility of the constant.
+
+   :Returns:
+
+       :obj:`suite.NamedType`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
