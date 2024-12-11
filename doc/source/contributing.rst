@@ -89,9 +89,9 @@ The following ``tox`` commands are provided:
 - ``tox -e style``: Checks for coding style quality.
 - ``tox -e tests``: Checks for unit tests.
 - ``tox -e tests-coverage``: Checks for unit testing and code coverage.
-* ``tox -e doc``: Checks for the documentation-building process.
-   * ``tox -e doc-html``: Builds the HTML documentation.
-   * ``tox -e doc-links``: Checks for broken links in the documentation.
+- ``tox -e doc``: Checks for the documentation-building process.
+   - ``tox -e doc-html``: Builds the HTML documentation.
+   - ``tox -e doc-links``: Checks for broken links in the documentation.
 
 Use raw testing
 ^^^^^^^^^^^^^^^
