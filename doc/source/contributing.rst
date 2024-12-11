@@ -89,7 +89,9 @@ The following ``tox`` commands are provided:
 - ``tox -e style``: Checks for coding style quality.
 - ``tox -e tests``: Checks for unit tests.
 - ``tox -e tests-coverage``: Checks for unit testing and code coverage.
-- ``tox -e doc-html``: Checks for the documentation-building process.
+* ``tox -e doc``: Checks for the documentation-building process.
+   * ``tox -e doc-html``: Builds the HTML documentation.
+   * ``tox -e doc-links``: Checks for broken links in the documentation.
 
 Use raw testing
 ^^^^^^^^^^^^^^^
@@ -118,11 +120,10 @@ This way, it's not possible for you to push code that fails the style checks::
 
   $ pre-commit install
   $ git commit -am "added my cool feature"
-  black....................................................................Passed
-  isort....................................................................Passed
-  flake8...................................................................Passed
+  Add License Headers......................................................Passed
+  ruff.....................................................................Passed
+  ruff-format..............................................................Passed
   codespell................................................................Passed
-  pydocstyle...............................................................Passed
   check for merge conflicts................................................Passed
   debug statements (python)................................................Passed
   check yaml...............................................................Passed
