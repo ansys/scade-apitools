@@ -1,4 +1,5 @@
 """Sphinx documentation configuration file."""
+
 from datetime import datetime
 import os
 from pathlib import Path
@@ -46,11 +47,11 @@ html_theme_options = {
         "version_match": switcher_version,
     },
     'check_switcher': False,
-    "logo" : "pyansys",
+    "logo": "pyansys",
     "ansys_sphinx_theme_autoapi": {
         "project": project,
         "own_page_level": "function",
-        "class_content": "both", # documentation in https://sphinxdocs.ansys.com/version/stable/user-guide/autoapi.html
+        "class_content": "both",  # documentation in https://sphinxdocs.ansys.com/version/stable/user-guide/autoapi.html
         'member_order': 'alphabetical',
     },
 }
@@ -125,7 +126,7 @@ linkcheck_ignore = [
     "https://pypi.org/project/ansys-scade-apitools",
     # The link below takes a long time to check
     "https://www.ansys.com/products/embedded-software/ansys-scade-suite",
-    "https://www.ansys.com/*"
+    "https://www.ansys.com/*",
 ]
 
 if switcher_version != 'dev':

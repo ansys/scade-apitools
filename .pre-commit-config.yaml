@@ -23,6 +23,8 @@ repos:
   rev: v2.3.0
   hooks:
   - id: codespell
+    args:
+    - -L textIn
     additional_dependencies:
       - tomli
     exclude: >

@@ -83,8 +83,7 @@ ignore = [
 ]
 
 [tool.ruff.format]
-quote-style = "single"
-indent-style = "tab"
+quote-style = "preserve"
 
 [tool.ruff.isort]
 combine-as-imports = true

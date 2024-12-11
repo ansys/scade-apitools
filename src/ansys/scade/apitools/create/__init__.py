@@ -22,7 +22,6 @@
 
 """Provides a collection of functions for creating or updating Scade models."""
 
-
 # ignore F401: functions made available for modules, not used here
 from .data_def import (  # noqa: F401
     AK,
