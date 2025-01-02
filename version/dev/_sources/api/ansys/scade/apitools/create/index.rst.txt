@@ -1,0 +1,117 @@
+
+
+
+
+
+
+The ``create`` package
+==========================
+
+.. py:module:: ansys.scade.apitools.create
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: create
+.. tab-set::
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def`
+            - Provides create functions for Scade operator definitions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration`
+            - Provides create functions for Scade model declarations.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression`
+            - Provides helpers for creating expression trees.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.project`
+            - Provides functions for adding elements to a SCADE project (ETP file).
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.scade`
+            - Provides helpers for SCADE model creation functions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.type`
+            - Provide helpers for creating type trees.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-fa-file"></span> data_def</api/ansys/scade/apitools/create/data_def/index>
+    <span class="nf nf-fa-file"></span> declaration</api/ansys/scade/apitools/create/declaration/index>
+    <span class="nf nf-fa-file"></span> expression</api/ansys/scade/apitools/create/expression/index>
+    <span class="nf nf-fa-file"></span> project</api/ansys/scade/apitools/create/project/index>
+    <span class="nf nf-fa-file"></span> scade</api/ansys/scade/apitools/create/scade/index>
+    <span class="nf nf-fa-file"></span> type</api/ansys/scade/apitools/create/type/index>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+
+Provides a collection of functions for creating or updating Scade models.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+

@@ -1,0 +1,6 @@
+ansys.scade.apitools.prop.pragma.find\_pragma
+=============================================
+
+.. currentmodule:: ansys.scade.apitools.prop.pragma
+
+.. autofunction:: find_pragma

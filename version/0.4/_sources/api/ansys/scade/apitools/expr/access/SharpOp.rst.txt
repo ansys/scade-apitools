@@ -1,0 +1,115 @@
+
+
+
+
+SharpOp
+=======
+
+.. py:class:: SharpOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.SharpOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides a sharp expression with two or more flows.
+
+   The format is ``#(<flow>, ..., <flow>)``.
+
+   See the :ref:`sharp_op <ex__sharp_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: SharpOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~flows`
+            - Operands of the operator.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import SharpOp
+
+
+Property detail
+---------------
+.. py:property:: flows
+   :canonical: ansys.scade.apitools.expr.access.SharpOp.flows
+   :type: list[Expression]
+
+
+   
+   Operands of the operator.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

@@ -1,0 +1,106 @@
+
+
+
+
+
+
+:class:`TransitionTree`
+=======================
+
+.. py:class:: ansys.scade.apitools.create.data_def.TransitionTree(trigger, target, priority, points = None, label_position = None, label_size = None, slash_position = None, polyline = True)
+
+   Provides the intermediate class for transitions.
+
+
+   Store the attributes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: TransitionTree
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+
+   .. tab-item:: Attributes
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~trigger`
+            - 
+          * - :py:attr:`~target`
+            - 
+          * - :py:attr:`~priority`
+            - 
+          * - :py:attr:`~points`
+            - 
+          * - :py:attr:`~label_position`
+            - 
+          * - :py:attr:`~label_size`
+            - 
+          * - :py:attr:`~slash_position`
+            - 
+          * - :py:attr:`~polyline`
+            - 
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import TransitionTree
+
+
+Attribute detail
+----------------
+
+.. py:attribute:: trigger
+
+.. py:attribute:: target
+
+.. py:attribute:: priority
+
+.. py:attribute:: points
+
+.. py:attribute:: label_position
+
+.. py:attribute:: label_size
+
+.. py:attribute:: slash_position
+
+.. py:attribute:: polyline
+
+
+
+
+

@@ -1,0 +1,116 @@
+
+
+
+
+
+The ``create`` package 
+==========================
+
+.. py:module:: ansys.scade.apitools.create
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: create
+.. tab-set::
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~ansys.scade.apitools.create.data_def`
+            - Provides create functions for Scade operator definitions.
+
+
+          * - :py:attr:`~ansys.scade.apitools.create.declaration`
+            - Provides create functions for Scade model declarations.
+
+
+          * - :py:attr:`~ansys.scade.apitools.create.expression`
+            - Provides helpers for creating expression trees.
+
+
+          * - :py:attr:`~ansys.scade.apitools.create.project`
+            - Provides functions for adding elements to a SCADE project (ETP file).
+
+
+          * - :py:attr:`~ansys.scade.apitools.create.scade`
+            - Provides helpers for SCADE model creation functions.
+
+
+          * - :py:attr:`~ansys.scade.apitools.create.type`
+            - Provide helpers for creating type trees.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🗎 data_def<data_def/index.rst>
+    🗎 declaration<declaration/index.rst>
+    🗎 expression<expression/index.rst>
+    🗎 project<project/index.rst>
+    🗎 scade<scade/index.rst>
+    🗎 type<type/index.rst>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+
+Provides a collection of functions for creating or updating Scade models.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+

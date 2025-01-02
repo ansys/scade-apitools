@@ -1,0 +1,41 @@
+.. py:function:: create_case(selector, cases, default = None)
+
+   
+   Return the expression tree for the case operator.
+
+
+   :Parameters:
+
+       **selector** : :obj:`EX`
+           Expression tree corresponding to the selector.
+
+       **cases** : :obj:`List`\[:obj:`Tuple`\[:obj:`EX`, :obj:`EX`]]
+           Pattern/values expression trees.
+
+       **default: EX, default:None**
+           Default value.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   This is an interface change with respect to the *SCADE Creation Library*.
+   The pairs "pattern"/"value" are now embedded in a list of tuples, and the
+   default value is optional.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.add\_state\_machine\_state
+================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: add_state_machine_state
