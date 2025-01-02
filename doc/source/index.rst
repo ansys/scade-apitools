@@ -10,6 +10,7 @@ Ansys SCADE API Tools
    api/index
    examples
    contributing
+   changelog
 
 Indices and tables
 -------------------
