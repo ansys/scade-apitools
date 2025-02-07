@@ -10,7 +10,7 @@ repos:
   hooks:
     - id: add-license-headers
       args:
-      - --start_year=2024
+      - --start_year=2023
 
 - repo: https://github.com/charliermarsh/ruff-pre-commit
   rev: v0.8.0
