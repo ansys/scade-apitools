@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.set\_variable\_default
+============================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: set_variable_default

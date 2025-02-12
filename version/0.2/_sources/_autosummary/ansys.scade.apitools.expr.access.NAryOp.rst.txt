@@ -1,0 +1,41 @@
+
+
+NAryOp
+======
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: NAryOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~NAryOp.code
+      ~NAryOp.name
+      ~NAryOp.operands
+
+   
+   ..
+      autoattribute:: NAryOp.code
+   ..
+      autoattribute:: NAryOp.name
+   ..
+      autoattribute:: NAryOp.operands
+   
+   
