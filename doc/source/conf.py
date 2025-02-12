@@ -1,4 +1,5 @@
 """Sphinx documentation configuration file."""
+
 from datetime import datetime
 import os
 from pathlib import Path
@@ -23,6 +24,7 @@ project = "ansys-scade-apitools"
 copyright = f"(c) {datetime.now().year} ANSYS, Inc. All rights reserved"
 author = "ANSYS, Inc."
 release = version = __version__
+switcher_version = get_version_match(version)
 
 # Select desired logo, theme, and declare the html title
 html_theme = "ansys_sphinx_theme"
@@ -42,44 +44,26 @@ html_theme_options = {
     ],
     "switcher": {
         "json_url": f"https://{cname}/versions.json",
-        "version_match": get_version_match(version),
+        "version_match": switcher_version,
     },
-    "logo" : "pyansys",
+    'check_switcher': False,
+    "logo": "pyansys",
     "ansys_sphinx_theme_autoapi": {
         "project": project,
         "own_page_level": "function",
-        "class_content": "both", # documentation in https://sphinxdocs.ansys.com/version/stable/user-guide/autoapi.html
+        "class_content": "both",  # documentation in https://sphinxdocs.ansys.com/version/stable/user-guide/autoapi.html
+        'member_order': 'alphabetical',
     },
 }
 
 # Sphinx extensions
 extensions = [
-    "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
-    "sphinx_autodoc_typehints",
     "numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     "sphinx_design",
     "ansys_sphinx_theme.extension.autoapi",
-    # "sphinx_gallery.gen_gallery",# apitools examples
 ]
-
-# Print the type annotations from the signature in the description only
-autodoc_typehints = 'description'
-# When the documentation is run on Linux systems
-autodoc_mock_imports = ['scade', 'scade_env', '_scade_api']
-# Purpose of this option?
-add_module_names = False
-
-# autoclass_content: keep default
-# autodoc_class_signature: can't be used with enums
-# autodoc_class_signature = 'separated'
-
-# sphinx_gallery_conf = {
-#     "examples_dirs": "../examples",   # path to your example scripts
-#     "gallery_dirs": "examples",  # path where the gallery generated output will be saved
-# }
 
 # Intersphinx mapping
 intersphinx_mapping = {
@@ -135,10 +119,6 @@ source_suffix = ".rst"
 # The master toctree document.
 master_doc = "index"
 
-suppress_warnings = ["autoapi.python_import_resolution", "config.cache"]
-#autoapi_python_class_content = "both"
-autoapi_member_order = "alphabetical"
-
 # TODO: remove ignore links after public release
 linkcheck_ignore = [
     "https://github.com/ansys/scade-apitools",
@@ -146,8 +126,11 @@ linkcheck_ignore = [
     "https://pypi.org/project/ansys-scade-apitools",
     # The link below takes a long time to check
     "https://www.ansys.com/products/embedded-software/ansys-scade-suite",
-    "https://www.ansys.com/*"
+    "https://www.ansys.com/*",
 ]
+
+if switcher_version != 'dev':
+    linkcheck_ignore.append(f'https://github.com/ansys/scade-apitools/releases/tag/v{__version__}')
 
 # update the examples
 update_doc(Path(os.getcwd()).parent.parent)

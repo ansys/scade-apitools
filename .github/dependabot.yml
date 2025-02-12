@@ -7,6 +7,10 @@ updates:
     labels:
       - "maintenance"
       - "dependencies"
+    assignees:
+      - "pyansys-ci-bot"
+    commit-message:
+      prefix: "build(deps)"
     groups:
       dependencies:
           patterns:
@@ -18,6 +22,10 @@ updates:
       interval: monthly
     labels:
       - "maintenance"
+    assignees:
+      - "pyansys-ci-bot"
+    commit-message:
+      prefix: "ci"
     groups:
        actions:
           patterns:
