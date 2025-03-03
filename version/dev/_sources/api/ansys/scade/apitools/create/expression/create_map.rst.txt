@@ -1,0 +1,33 @@
+ansys.scade.apitools.create.expression.create_map
+=================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_map(size: EX) -> ET
+
+   
+   Return the expression tree for the higher-order construct for map creation.
+
+
+   :Parameters:
+
+       **size** : :obj:`EX`
+           Number of iterations.
+
+
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

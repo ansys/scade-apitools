@@ -1,0 +1,31 @@
+.. py:function:: get_type_name(type_)
+
+   
+   Get the name of a type or a string representation.
+
+   See the :ref:`get_type_name <ex__get_type_name>` example.
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.Type`
+           Input type.
+
+   :Returns:
+
+       :class:`python:str`
+           Name of a type or a string representation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

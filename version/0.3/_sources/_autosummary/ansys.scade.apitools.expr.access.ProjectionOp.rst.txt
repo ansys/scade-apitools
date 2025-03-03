@@ -1,0 +1,44 @@
+
+
+ProjectionOp
+============
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: ProjectionOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProjectionOp.code
+      ~ProjectionOp.flow
+      ~ProjectionOp.name
+      ~ProjectionOp.with_
+
+   
+   ..
+      autoattribute:: ProjectionOp.code
+   ..
+      autoattribute:: ProjectionOp.flow
+   ..
+      autoattribute:: ProjectionOp.name
+   ..
+      autoattribute:: ProjectionOp.with_
+   
+   
