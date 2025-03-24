@@ -1,0 +1,6 @@
+ansys.scade.apitools.prop.pragma.set\_pragma\_text
+==================================================
+
+.. currentmodule:: ansys.scade.apitools.prop.pragma
+
+.. autofunction:: set_pragma_text

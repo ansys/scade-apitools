@@ -1,0 +1,39 @@
+.. py:function:: create_binary(op, tree1, tree2, modifiers = None)
+
+   
+   Return the expression tree for a binary operator.
+
+
+   :Parameters:
+
+       **op** : :class:`python:str`
+           Binary operator to call: & | | | ^ | # | + | - | * | / | : | % | < | <= | > | >= | = | <>
+
+       **tree1** : :obj:`EX`
+           First operand: expression tree.
+
+       **tree2** : :obj:`EX`
+           Second operand: expression tree.
+
+       **modifiers** : :obj:`Union`\[:obj:`ET`, :obj:`List`\[:obj:`ET`]], default: :data:`python:None`
+           List of higher-order constructs.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

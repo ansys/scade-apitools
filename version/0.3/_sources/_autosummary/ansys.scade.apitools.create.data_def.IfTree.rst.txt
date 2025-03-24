@@ -1,0 +1,25 @@
+
+
+IfTree
+======
+
+Module: *ansys.scade.apitools.create.data_def*
+
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autoclass:: IfTree
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   

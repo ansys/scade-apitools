@@ -1,0 +1,114 @@
+
+
+
+
+
+
+:class:`ProjectionOp`
+=====================
+
+.. py:class:: ansys.scade.apitools.expr.access.ProjectionOp(expression: scade.model.suite.ExprCall, flow: scade.model.suite.Expression, with_expressions: list[scade.model.suite.Expression])
+
+   Bases: :py:obj:`FlowOp`
+
+
+   Provides the abstract class for static projection/assignment of a flow.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+   flow :
+       Expression operand.
+   with_expressions :
+       Path of the expression.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: ProjectionOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~with_`
+            - Path of the expression.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ProjectionOp
+
+Property detail
+---------------
+
+.. py:property:: with_
+   :type: list[Expression]
+
+
+   
+   Path of the expression.
+
+   The elements are either labels or indexes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

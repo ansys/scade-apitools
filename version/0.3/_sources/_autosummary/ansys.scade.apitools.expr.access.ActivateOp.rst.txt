@@ -1,0 +1,47 @@
+
+
+ActivateOp
+==========
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: ActivateOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ActivateOp.code
+      ~ActivateOp.defaults
+      ~ActivateOp.every
+      ~ActivateOp.name
+      ~ActivateOp.operator
+
+   
+   ..
+      autoattribute:: ActivateOp.code
+   ..
+      autoattribute:: ActivateOp.defaults
+   ..
+      autoattribute:: ActivateOp.every
+   ..
+      autoattribute:: ActivateOp.name
+   ..
+      autoattribute:: ActivateOp.operator
+   
+   

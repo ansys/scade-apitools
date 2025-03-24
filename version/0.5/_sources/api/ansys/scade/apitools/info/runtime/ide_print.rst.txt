@@ -1,0 +1,25 @@
+ansys.scade.apitools.info.runtime.ide_print
+===========================================
+
+.. py:function:: ansys.scade.apitools.info.runtime.ide_print(*args, sep=' ', end='\n', file=sys.stdout, flush=False)
+
+   
+   Print based on scade.output.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
