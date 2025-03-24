@@ -36,6 +36,7 @@ to some expected result, nor easy to maintain.
 Anyways, the result projects can be exmined after the execution of the tests, for a deep analysis.
 """
 
+from pathlib import Path
 from typing import List, Union
 
 import pytest
@@ -119,7 +120,7 @@ class TestCreateProject:
     @pytest.mark.parametrize(
         'path, persist_as',
         nominal_file_ref_data,
-        ids=['%s-%s' % (_[0], _[1]) for _ in nominal_file_ref_data],
+        ids=['%s-%s' % (_[0], Path(_[1]).name) for _ in nominal_file_ref_data],
     )
     def test_create_file_ref(self, tmp_project_session, path, persist_as):
         # project/session must have been duplicated to a temporary directory

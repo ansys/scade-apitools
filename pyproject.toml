@@ -8,8 +8,8 @@ version="0.5.dev0"
 description ="An extension library for SCADE Python APIs."
 readme="README.rst"
 
-# only 3.7. and 3.10
-requires-python = ">=3.7,!=3.8.*,!=3.9.*,<3.11"
+# only 3.7, 3.10, or >= 3.12
+requires-python = ">=3.7,!=3.8.*,!=3.9.*,!=3.11.*"
 license = {file = "LICENSE"}
 authors = [
     {name = "Ansys, Inc.", email = "pyansys.core@ansys.com"},
@@ -35,8 +35,10 @@ build = [
     "twine==6.1.0"
 ]
 tests = [
-    "pytest==8.3.4",
-    "pytest-cov==6.0.0"
+    "pytest==7.4.0; python_version < '3.8'",
+    "pytest-cov==4.1.0; python_version < '3.8'",
+    "pytest==8.3.4; python_version >= '3.8'",
+    "pytest-cov==6.0.0; python_version >= '3.8'",
 ]
 doc = [
     "ansys-sphinx-theme[autoapi]==1.3.2",
