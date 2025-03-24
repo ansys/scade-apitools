@@ -50,7 +50,7 @@ def test_auto_scade_env():
     'tc',
     [
         (['2.7', '3.8'], False),
-        (['3.4', '3.7', '3.10'], True),
+        (['3.4', '3.7', '3.10', '3.12', '3.13'], True),
     ],
 )
 def test_get_compatible_scade_home(tc):

@@ -58,7 +58,7 @@ def _get_scade_dirs(min='00.0', max='99.9'):
     if platform.system() == 'Windows':
         for company in 'Esterel Technologies', 'Ansys Inc':
             try:
-                hklm = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, 'SOFTWARE\%s\SCADE' % company)
+                hklm = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, r'SOFTWARE\%s\SCADE' % company)
             except OSError:
                 continue
             for i in range(reg.QueryInfoKey(hklm)[0]):
@@ -82,9 +82,11 @@ def _get_python_scade_versions(python_version: str):
     releases = {
         '3.4': ('19.2', '21.2'),
         '3.7': ('21.2', '23.2'),
-        '3.10': ('23.2', '99.9'),
+        '3.10': ('23.2', '26.1'),
+        '3.12': ('26.1', '99.9'),
     }
-    interval = releases.get(python_version)
+    # starting 26.1, usage of 3.12 ABI
+    interval = releases.get(python_version) if python_version < '3.12' else ('26.1', '99.9')
     return interval
 
 
@@ -122,6 +124,7 @@ def _add_scade_to_sys_path():
     if not home:  # pragma no cover
         # wrong installation or SCADE not available on the computer
         print('Use a Python interpreter delivered with SCADE.')
+        assert False
     else:
         # regular SCADE installation
         _base = home / 'SCADE'
