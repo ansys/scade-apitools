@@ -28,11 +28,12 @@ and add it to ``sys.path`` if not already present.
 Present means ``scade_env.pyd`` is accessible from ``sys.path``.
 """
 
-import importlib
+import importlib.util
 from pathlib import Path
 import platform
 import re
 import sys
+from typing import Optional
 
 if platform.system() == 'Windows':
     import winreg as reg
@@ -41,7 +42,7 @@ else:
     pass
 
 
-def _resolve_venv(home: Path) -> Path:
+def _resolve_venv(home: Path) -> Optional[Path]:
     """Get the virtual environment's target, if any."""
     cfg = home / 'pyvenv.cfg'
     if cfg.exists():
@@ -76,23 +77,25 @@ def _get_scade_dirs(min='00.0', max='99.9'):
     return dirs
 
 
-def _get_python_scade_versions(python_version: str):
+def _get_python_scade_versions(major: int, minor: int):
     """Get the highest SCADE installation compatible with a version of Python."""
     # [min, max[ releases for a given version of Python
     releases = {
-        '3.4': ('19.2', '21.2'),
-        '3.7': ('21.2', '23.2'),
-        '3.10': ('23.2', '26.1'),
-        '3.12': ('26.1', '99.9'),
+        4: ('19.2', '21.2'),
+        7: ('21.2', '23.2'),
+        10: ('23.2', '26.1'),
+        12: ('26.1', '99.9'),
     }
+    if major != 3:
+        return None
     # starting 26.1, usage of 3.12 ABI
-    interval = releases.get(python_version) if python_version < '3.12' else ('26.1', '99.9')
+    interval = releases.get(minor) if minor < 12 else ('26.1', '99.9')
     return interval
 
 
-def _get_compatible_scade_home(version: str) -> Path:
+def _get_compatible_scade_home(major: int, minor: int) -> Optional[Path]:
     """Get the most recent version of SCADE compatible with the input Python version."""
-    interval = _get_python_scade_versions(version)
+    interval = _get_python_scade_versions(major, minor)
     if interval:
         dirs = _get_scade_dirs(*interval)
         if dirs:
@@ -118,8 +121,7 @@ def _add_scade_to_sys_path():
     else:
         # last chance, try the most recent installation of SCADE
         major, minor, _, _, _ = sys.version_info
-        version = '%d.%d' % (major, minor)
-        home = _get_compatible_scade_home(version)
+        home = _get_compatible_scade_home(major, minor)
 
     if not home:  # pragma no cover
         # wrong installation or SCADE not available on the computer

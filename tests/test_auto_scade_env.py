@@ -36,7 +36,7 @@ Test strategy:
 import pytest
 
 # shall modify sys.path to access SCADE APIs
-import ansys.scade.apitools as apitools
+from ansys.scade.apitools.auto_scade_env import _get_compatible_scade_home
 
 
 def test_auto_scade_env():
@@ -47,19 +47,18 @@ def test_auto_scade_env():
 
 
 @pytest.mark.parametrize(
-    'tc',
+    'versions, status',
     [
-        (['2.7', '3.8'], False),
-        (['3.4', '3.7', '3.10', '3.12', '3.13'], True),
+        ([(2, 7), (3, 8)], False),
+        ([(3, 4), (3, 7), (3, 10), (3, 12), (3, 13)], True),
     ],
 )
-def test_get_compatible_scade_home(tc):
-    # make sure at least one SCADE version is available for one of 3.4, 3.7, 3.10
+def test_get_compatible_scade_home(versions, status):
+    # make sure at least one SCADE version is available for one of 3.4, 3.7, 3.10, etc.
     # and not available for a few other versions
-    versions, status = tc
     homes = []
-    for version in versions:
-        home = apitools.auto_scade_env._get_compatible_scade_home(version)
+    for major, minor in versions:
+        home = _get_compatible_scade_home(major, minor)
         if home:
             homes.append(home)
     assert (len(homes) != 0) == status
