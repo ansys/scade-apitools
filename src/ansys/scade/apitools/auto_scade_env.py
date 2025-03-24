@@ -88,8 +88,10 @@ def _get_python_scade_versions(major: int, minor: int):
     }
     if major != 3:
         return None
-    # starting 26.1, usage of 3.12 ABI
-    interval = releases.get(minor) if minor < 12 else ('26.1', '99.9')
+    if minor > 12:
+        # starting 3.12, SCADE uses the Python Limited API
+        minor = 12
+    interval = releases.get(minor)
     return interval
 
 
