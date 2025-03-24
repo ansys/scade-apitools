@@ -126,7 +126,6 @@ def _add_scade_to_sys_path():
     if not home:  # pragma no cover
         # wrong installation or SCADE not available on the computer
         print('Use a Python interpreter delivered with SCADE.')
-        assert False
     else:
         # regular SCADE installation
         _base = home / 'SCADE'
