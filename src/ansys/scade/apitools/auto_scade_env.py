@@ -47,7 +47,7 @@ def _resolve_venv(home: Path) -> Optional[Path]:
     cfg = home / 'pyvenv.cfg'
     if cfg.exists():
         for line in cfg.open('r'):
-            m = re.match('^home\s*=\s*(.*)$', line)
+            m = re.match(r'^home\s*=\s*(.*)$', line)
             if m:
                 return Path(m.groups()[0]).parent
     return None
