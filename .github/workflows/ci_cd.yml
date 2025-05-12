@@ -12,7 +12,6 @@ env:
   MAIN_PYTHON_VERSION: '3.10'
   DOCUMENTATION_CNAME: 'apitools.scade.docs.pyansys.com'
   LIBRARY_NAME: 'ansys-scade-apitools'
-  LIBRARY_NAMESPACE: 'ansys.scade.apitools'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -59,7 +58,6 @@ jobs:
       - uses: ansys/actions/build-wheelhouse@v9
         with:
           library-name: ${{ env.LIBRARY_NAME }}
-          # library-namespace: ${{ env.LIBRARY_NAMESPACE }}
           operating-system: ${{ matrix.os }}
           python-version: ${{ matrix.python-version }}
 
@@ -146,12 +144,19 @@ jobs:
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
     steps:
 
-      - name: "Release to public PyPI"
-        uses: ansys/actions/release-pypi-public@v9
+      - name: "Download the library artifacts from build-library step"
+        uses: actions/download-artifact@v4
         with:
-          library-name: ${{ env.LIBRARY_NAME }}
-          twine-username: "__token__"
-          twine-token: ${{ secrets.PYPI_TOKEN }}
+          name: ${{ env.LIBRARY_NAME }}-artifacts
+          path: ${{ env.LIBRARY_NAME }}-artifacts
+
+      - name: "Upload artifacts to PyPI using trusted publisher"
+        uses: pypa/gh-action-pypi-publish@v1.12.4
+        with:
+          repository-url: "https://upload.pypi.org/legacy/"
+          print-hash: true
+          packages-dir: ${{ env.LIBRARY_NAME }}-artifacts
+          skip-existing: false
 
       - name: "Release to GitHub"
         uses: ansys/actions/release-github@v9
