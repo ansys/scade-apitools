@@ -1,0 +1,36 @@
+ansys.scade.apitools.create.project
+===================================
+
+.. currentmodule:: ansys.scade.apitools.create
+
+.. automodule:: ansys.scade.apitools.create.project
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      create_configuration
+      create_file_ref
+      create_folder
+      create_prop
+      save_project
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

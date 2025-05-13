@@ -1,0 +1,57 @@
+
+
+
+
+IllegalIOError
+==============
+
+.. py:exception:: IllegalIOError(context, io, role)
+   :canonical: ansys.scade.apitools.create.declaration.IllegalIOError
+
+
+
+Bases: :py:obj:`Exception`
+
+
+   Provides the exception for the wrong IO specification.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.declaration import IllegalIOError
+
+
+
+
+

@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.scade.add\_simulation\_file\_to\_project
+====================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.scade
+
+.. autofunction:: add_simulation_file_to_project

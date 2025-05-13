@@ -1,0 +1,62 @@
+ansys.scade.apitools.create.data_def.add_diagram_edge
+=====================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_diagram_edge(diagram: scade.model.suite.NetDiagram, src: scade.model.suite.Equation, left: scade.model.suite.LocalVariable, dst: scade.model.suite.Equation, expr: Union[int, scade.model.suite.Expression], points: List[Tuple[int, int]] = None) -> scade.model.suite.Edge
+
+   
+   Add a graphical edge between two equations in a graphical diagram.
+
+   * The source of the edge is identified by the local variable defined
+     in the source equation.
+
+   * The destination of the edge is identified by the parameter of the
+     expression of the target equation. It is an ``ExprId`` instance
+     referring to the left variable.
+
+     To ease the creation of graphical diagrams, the destination of the edge
+     can be specified with an integer, representing the input pin index of
+     the target equation.
+
+   :Parameters:
+
+       **diagram** : :obj:`suite.NetDiagram`
+           Diagram containing the source and destination equations. The diagram specified
+           can be either graphical or textual, or it can be ``None``. However, it cannot be
+           ``None`` if the scope contains at least one diagram.
+
+       **src** : :obj:`suite.Equation`
+           Source equation of the edge.
+
+       **left** : :obj:`suite.LocalVariable`
+           Local variable associated with the edge.
+
+       **dst** : :obj:`suite.Equation`
+           Target equation of the edge.
+
+       **expr: Union[suite.Expression]**
+           Parameter to connect to the edge or the input pin index of the target equation.
+
+       **points** : :obj:`List`\[:obj:`Tuple`\(:class:`python:int`, :class:`python:int`)], default: :data:`python:None`
+           Coordinates of the segments composing the edge, expressed in 1/100th of mm.
+           When ``None``, the value is set to ``[(0, 0), (0, 0)]`` so that the SCADE Editor
+           computes default positions when the model is loaded.
+
+
+
+   :Returns:
+
+       :obj:`suite.Edge`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

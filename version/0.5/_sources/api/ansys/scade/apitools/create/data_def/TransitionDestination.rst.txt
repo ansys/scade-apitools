@@ -1,0 +1,45 @@
+
+
+
+
+
+
+:class:`TransitionDestination`
+==============================
+
+.. py:class:: ansys.scade.apitools.create.data_def.TransitionDestination
+
+   
+   Provides the top-level abstract class for transition destinations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import TransitionDestination
+
+
+
+
+

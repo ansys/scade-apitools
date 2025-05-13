@@ -1,0 +1,41 @@
+
+
+BinaryOp
+========
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: BinaryOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BinaryOp.code
+      ~BinaryOp.name
+      ~BinaryOp.operands
+
+   
+   ..
+      autoattribute:: BinaryOp.code
+   ..
+      autoattribute:: BinaryOp.name
+   ..
+      autoattribute:: BinaryOp.operands
+   
+   

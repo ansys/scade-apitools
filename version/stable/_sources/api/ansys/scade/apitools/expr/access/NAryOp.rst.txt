@@ -1,0 +1,123 @@
+
+
+
+
+
+
+:class:`NAryOp`
+===============
+
+.. py:class:: ansys.scade.apitools.expr.access.NAryOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`AryOp`
+
+
+   Provides an expression with two or more operands.
+
+   The format is ``<operand> <operator> <operand> <operator> ... <operator> <operand>``,
+   where ``<operator>`` is one of these:
+
+   * ``@``
+   * ``and``, ``or``, ``xor``
+   * ``+``, ``*``
+   * ``land``, ``lor``
+
+   See the :ref:`n_ary_op <ex__n_ary_op>` example.
+
+   Notes
+   -----
+   The ``xor`` operator is binary, but it is stored as a nary operator in the XSCADE files.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: NAryOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~operands`
+            - Operand of the operator.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import NAryOp
+
+Property detail
+---------------
+
+.. py:property:: operands
+   :type: list[Expression]
+
+
+   
+   Operand of the operator.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

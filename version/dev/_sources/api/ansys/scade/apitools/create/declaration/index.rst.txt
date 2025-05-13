@@ -1,0 +1,207 @@
+
+
+
+
+
+
+The ``declaration.py`` module
+=============================
+
+.. py:module:: ansys.scade.apitools.create.declaration
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: declaration
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Enums
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.VK`
+            - Visibility kind.
+
+
+
+    .. tab-item:: Exceptions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.IllegalIOError`
+            - Provides the exception for the wrong IO specification.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.ParamImportedError`
+            - Provides the exception for the wrong imported operator specification.
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.add_enumeration_values`
+            - Add enumeration values to an enumeration type.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.add_operator_hidden`
+            - Add hidden inputs to an operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.add_operator_inputs`
+            - Add inputs to an operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.add_operator_outputs`
+            - Add outputs to an operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.add_operator_parameters`
+            - Add parameters to an operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_constant`
+            - Create a constant.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_enumeration`
+            - Create a named type defined by an enumeration.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_graphical_operator`
+            - Create an operator with a graphical diagram.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_imported_constant`
+            - Create an imported constant.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_imported_operator`
+            - Create an imported operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_imported_type`
+            - Create an imported named type.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_named_type`
+            - Create a named type.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_package`
+            - Create a package.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_sensor`
+            - Create a sensor.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.create_textual_operator`
+            - Create an operator with a textual diagram.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.set_specialized_operator`
+            - Declare a specialization of an imported operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.declaration.set_type_constraint`
+            - Set the constraint of a polymorphic type.
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-cod-symbol_enum"></span> VK</api/ansys/scade/apitools/create/declaration/VK>
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-lightning_bolt"></span> IllegalIOError</api/ansys/scade/apitools/create/declaration/IllegalIOError>
+    <span class="nf nf-md-lightning_bolt"></span> ParamImportedError</api/ansys/scade/apitools/create/declaration/ParamImportedError>
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> add_enumeration_values</api/ansys/scade/apitools/create/declaration/add_enumeration_values>
+    <span class="nf nf-md-function_variant"></span> add_operator_hidden</api/ansys/scade/apitools/create/declaration/add_operator_hidden>
+    <span class="nf nf-md-function_variant"></span> add_operator_inputs</api/ansys/scade/apitools/create/declaration/add_operator_inputs>
+    <span class="nf nf-md-function_variant"></span> add_operator_outputs</api/ansys/scade/apitools/create/declaration/add_operator_outputs>
+    <span class="nf nf-md-function_variant"></span> add_operator_parameters</api/ansys/scade/apitools/create/declaration/add_operator_parameters>
+    <span class="nf nf-md-function_variant"></span> create_constant</api/ansys/scade/apitools/create/declaration/create_constant>
+    <span class="nf nf-md-function_variant"></span> create_enumeration</api/ansys/scade/apitools/create/declaration/create_enumeration>
+    <span class="nf nf-md-function_variant"></span> create_graphical_operator</api/ansys/scade/apitools/create/declaration/create_graphical_operator>
+    <span class="nf nf-md-function_variant"></span> create_imported_constant</api/ansys/scade/apitools/create/declaration/create_imported_constant>
+    <span class="nf nf-md-function_variant"></span> create_imported_operator</api/ansys/scade/apitools/create/declaration/create_imported_operator>
+    <span class="nf nf-md-function_variant"></span> create_imported_type</api/ansys/scade/apitools/create/declaration/create_imported_type>
+    <span class="nf nf-md-function_variant"></span> create_named_type</api/ansys/scade/apitools/create/declaration/create_named_type>
+    <span class="nf nf-md-function_variant"></span> create_package</api/ansys/scade/apitools/create/declaration/create_package>
+    <span class="nf nf-md-function_variant"></span> create_sensor</api/ansys/scade/apitools/create/declaration/create_sensor>
+    <span class="nf nf-md-function_variant"></span> create_textual_operator</api/ansys/scade/apitools/create/declaration/create_textual_operator>
+    <span class="nf nf-md-function_variant"></span> set_specialized_operator</api/ansys/scade/apitools/create/declaration/set_specialized_operator>
+    <span class="nf nf-md-function_variant"></span> set_type_constraint</api/ansys/scade/apitools/create/declaration/set_type_constraint>
+
+
+
+
+
+
+Description
+-----------
+
+Provides create functions for Scade model declarations.
+
+* Package
+* Type
+* Constant
+* Sensor
+* Operator
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

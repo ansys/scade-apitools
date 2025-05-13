@@ -1,0 +1,120 @@
+
+
+
+
+OpOp
+====
+
+.. py:class:: OpOp(expression, operator)
+   :canonical: ansys.scade.apitools.expr.access.OpOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides the abstract class for higher-order operators.
+
+
+   :Parameters:
+
+       **expression**
+           Higher-order expression to wrap.
+
+       **operator**
+           Operator call expression.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The design differs slightly from the meta-model. The :class:`~OpOp` class is
+   no longer aggregated by the :class:`~CallExpression` class but derives from it.
+   This leads to a simpler design.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: OpOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~operator`
+            - Underlying expression.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import OpOp
+
+
+Property detail
+---------------
+.. py:property:: operator
+   :canonical: ansys.scade.apitools.expr.access.OpOp.operator
+   :type: CallExpression
+
+
+   
+   Underlying expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
