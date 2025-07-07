@@ -28,7 +28,7 @@ Provides create functions for Scade operator definitions.
 """
 
 from enum import Enum
-from typing import List, Tuple, Union
+from typing import List, Optional, Sequence, Tuple, Union
 
 import scade.model.suite as suite
 
@@ -265,7 +265,7 @@ def add_data_def_net_diagram(data_def: suite.DataDef, name: str) -> suite.NetDia
 # equations and edges
 
 
-def _num_to_str(values: List[Union[int, float]]) -> List[str]:
+def _num_to_str(values: Sequence[Union[int, float]]) -> List[str]:
     """SCADE graphical coordinates are strings: position, size, points."""
     return [str(_) for _ in values]
 
@@ -299,11 +299,11 @@ def _create_internal(data_def: suite.DataDef, tree: TX) -> suite.LocalVariable:
 
 def add_data_def_equation(
     data_def: suite.DataDef,
-    diagram: suite.Diagram,
-    lefts: List[Union[suite.LocalVariable, TX]],
-    right: EX,
-    position: Tuple[float, float] = None,
-    size: Tuple[float, float] = None,
+    diagram: Optional[suite.Diagram],
+    lefts: Sequence[Union[suite.LocalVariable, TX]],
+    right: Optional[EX],
+    position: Tuple[float, float] = (0, 0),
+    size: Tuple[float, float] = (0, 0),
     symmetrical: bool = False,
     rotation: int = 0,
     textual: bool = False,
@@ -315,21 +315,21 @@ def add_data_def_equation(
     ----------
     data_def : suite.DataDef
         Input scope, which is an operator, state, or action.
-    diagram : suite.Diagram
+    diagram : suite.Diagram | None
         Diagram containing the equation. The diagram specified can be either graphical
         or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
         contains at least one diagram.
-    lefts : List[Union[suite.LocalVariable, TX]]
+    lefts : Sequence[Union[suite.LocalVariable, TX]]
         List of variables defined by the equation. The elements can be either an
         existing local variable or a type tree to create an internal
         variable on the fly when the diagram is a graphical diagram.
-    right : EX
+    right : EX | None
         Expression of the equation.
-    position : Tuple[float, float], default: None
+    position : Tuple[float, float], default: (0, 0))
         Position of the equation, expressed in 1/100th of mm.
         This value is ignored if the diagram is not a graphical diagram.
         Otherwise, it must be specified.
-    size : Tuple[float, float], default: None
+    size : Tuple[float, float], default: (0, 0)
         Size of the equation, expressed in 1/100th of mm.
         This value is ignored if the diagram is not a graphical diagram.
         Otherwise, it must be specified.
@@ -376,7 +376,8 @@ def add_data_def_equation(
 
         equation.lefts.append(variable)
 
-    equation.right = _build_expression(right, data_def)
+    if right is not None:
+        equation.right = _build_expression(right, data_def)
 
     # graphical part
     if diagram and not isinstance(data_def, suite.Operator):
@@ -414,7 +415,7 @@ def add_diagram_edge(
     left: suite.LocalVariable,
     dst: suite.Equation,
     expr: Union[int, suite.Expression],
-    points: List[Tuple[int, int]] = None,
+    points: Optional[List[Tuple[int, int]]] = None,
 ) -> suite.Edge:
     """
     Add a graphical edge between two equations in a graphical diagram.
@@ -444,7 +445,7 @@ def add_diagram_edge(
         Target equation of the edge.
     expr: Union[suite.Expression]
         Parameter to connect to the edge or the input pin index of the target equation.
-    points : List[Tuple(int, int)], default: None
+    points : List[Tuple(int, int)] | None, default: None
         Coordinates of the segments composing the edge, expressed in 1/100th of mm.
         When ``None``, the value is set to ``[(0, 0), (0, 0)]`` so that the SCADE Editor
         computes default positions when the model is loaded.
@@ -551,11 +552,11 @@ class AK(Enum):
 
 def add_data_def_assertion(
     data_def: suite.DataDef,
-    diagram: suite.Diagram,
+    diagram: Optional[suite.Diagram],
     name: str,
     expr: EX,
     kind: AK = AK.ASSUME,
-    position: Tuple[float, float] = None,
+    position: Tuple[float, float] = (0, 0),
 ) -> suite.Assertion:
     """
     Create an assertion in a scope.
@@ -564,7 +565,7 @@ def add_data_def_assertion(
     ----------
     data_def : suite.DataDef
         Input scope, which is an operator, state, or action.
-    diagram : suite.Diagram
+    diagram : suite.Diagram | None
         Diagram containing the equation. The diagram specified can be either graphical
         or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
         contains at least one diagram.
@@ -574,7 +575,7 @@ def add_data_def_assertion(
         Expression of the assertion.
     kind : AK, default: ASSUME
         Kind of the assertion.
-    position : Tuple[float, float], default: None
+    position : Tuple[float, float], default: (0, 0)
         Position of the assertion, expressed in 1/100th of mm.
         This value is ignored if the diagram is not a graphical diagram.
         Otherwise, it must be specified.
@@ -622,8 +623,8 @@ def add_data_def_state_machine(
     data_def: suite.DataDef,
     name: str,
     diagram: suite.Diagram,
-    position: Tuple[float, float] = None,
-    size: Tuple[float, float] = None,
+    position: Tuple[float, float] = (0, 0),
+    size: Tuple[float, float] = (0, 0),
 ) -> suite.StateMachine:
     """
     Create a state machine in a scope.
@@ -701,8 +702,8 @@ class DK(Enum):
 def add_state_machine_state(
     sm: suite.StateMachine,
     name: str,
-    position: Tuple[float, float] = None,
-    size: Tuple[float, float] = None,
+    position: Tuple[float, float] = (0, 0),
+    size: Tuple[float, float] = (0, 0),
     kind: SK = SK.NORMAL,
     display: DK = DK.GRAPHICAL,
 ) -> suite.State:
@@ -715,11 +716,11 @@ def add_state_machine_state(
         Input state machine.
     name : str.StateMachine
         Name of the state.
-    position : Tuple[float, float], default: None
+    position : Tuple[float, float], default: (0, 0)
         Position of the state, expressed in 1/100th of mm.
         This value is considered if and only if the state machine
         has a graphical representation.
-    size : Tuple[float, float], default: None
+    size : Tuple[float, float], default: (0, 0)
         Size of the state, expressed in 1/100th of mm.
         This value is considered if and only if the state machine
         has a graphical representation.
@@ -779,13 +780,13 @@ class TransitionTree:
 
     def __init__(
         self,
-        trigger: EX,
+        trigger: Optional[EX],
         target: TD,
         priority: int,
-        points: List[Tuple[float, float]] = None,
-        label_position: Tuple[float, float] = None,
-        label_size: Tuple[float, float] = None,
-        slash_position: Tuple[float, float] = None,
+        points: Optional[List[Tuple[float, float]]] = None,
+        label_position: Tuple[float, float] = (0, 0),
+        label_size: Tuple[float, float] = (0, 0),
+        slash_position: Tuple[float, float] = (0, 0),
         polyline: bool = True,
     ):
         """Store the attributes."""
@@ -793,11 +794,11 @@ class TransitionTree:
         self.target = target
         self.priority = priority
         # the points must be provided for graphical representations
-        self.points = points
+        self.points = points if points else []
         # the positions and sizes are optional
-        self.label_position = label_position if label_position else [0, 0]
-        self.label_size = label_size if label_size else [0, 0]
-        self.slash_position = slash_position if slash_position else [0, 0]
+        self.label_position = label_position
+        self.label_size = label_size
+        self.slash_position = slash_position
         self.polyline = polyline
 
 
@@ -831,14 +832,14 @@ class TK(Enum):
 
 
 def create_transition_state(
-    trigger: EX,
+    trigger: Optional[EX],
     state: suite.State,
     reset: bool,
     priority: int,
-    points: List[Tuple[float, float]] = None,
-    label_position: Tuple[float, float] = None,
-    label_size: Tuple[float, float] = None,
-    slash_position: Tuple[float, float] = None,
+    points: Optional[List[Tuple[float, float]]] = None,
+    label_position: Tuple[float, float] = (0, 0),
+    label_size: Tuple[float, float] = (0, 0),
+    slash_position: Tuple[float, float] = (0, 0),
     polyline: bool = True,
 ) -> TR:
     """
@@ -851,7 +852,7 @@ def create_transition_state(
 
     Parameters
     ----------
-    trigger : EX
+    trigger : EX | None
         Extended expression tree defining the trigger of the transition.
     state : suite.State
         Target state of the transition.
@@ -859,13 +860,13 @@ def create_transition_state(
         Whether the transition resets the targtet state.
     priority : int
         Priority of the transition.
-    points : List[Tuple[float, float]], default: None
+    points : List[Tuple[float, float]] | None, default: None
         Points of the transition.
-    label_position : Tuple[float, float], default: None
+    label_position : Tuple[float, float], default: (0, 0)
         Position of the label.
-    label_size : Tuple[float, float], default: None
+    label_size : Tuple[float, float], default: (0, 0)
         Size of the label.
-    slash_position : Tuple[float, float], default: None
+    slash_position : Tuple[float, float], default: (0, 0)
         Position of the separator between the trigger and the action
         of the transition.
     polyline : bool, default: True
@@ -881,13 +882,13 @@ def create_transition_state(
 
 
 def create_transition_fork(
-    trigger: EX,
+    trigger: Optional[EX],
     forks: List[TR],
     priority: int,
-    points: List[Tuple[float, float]] = None,
-    label_position: Tuple[float, float] = None,
-    label_size: Tuple[float, float] = None,
-    slash_position: Tuple[float, float] = None,
+    points: Optional[List[Tuple[float, float]]] = None,
+    label_position: Tuple[float, float] = (0, 0),
+    label_size: Tuple[float, float] = (0, 0),
+    slash_position: Tuple[float, float] = (0, 0),
     polyline: bool = True,
 ) -> TR:
     """
@@ -900,19 +901,19 @@ def create_transition_fork(
 
     Parameters
     ----------
-    trigger : EX
+    trigger : EX | None
         Extended expression tree defining the trigger of the transition.
     forks : List[TR]
         Transitions forked from this transition.
     priority : int
         Priority of the transition.
-    points : List[Tuple[float, float]], default: None
+    points : List[Tuple[float, float]] | None, default: None
         Points of the transition.
-    label_position : Tuple[float, float], default: None
+    label_position : Tuple[float, float], default: (0, 0)
         Position of the label.
-    label_size : Tuple[float, float], default: None
+    label_size : Tuple[float, float], default: (0, 0)
         Size of the label, default: None
-    slash_position : Tuple[float, float], default: None
+    slash_position : Tuple[float, float], default: (0, 0)
         Position of the separator between the trigger and the action
         of the transition.
     polyline : bool, default: True
@@ -1007,7 +1008,7 @@ def _build_transition(src: Union[suite.State, suite.Transition], tree: TR) -> su
 def add_transition_equation(
     transition: suite.Transition,
     lefts: List[Union[suite.LocalVariable, TX]],
-    right: EX,
+    right: Optional[EX],
 ) -> suite.Equation:
     """
     Create an equation in a transition.
@@ -1023,7 +1024,7 @@ def add_transition_equation(
         Input transition.
     lefts : List[suite.LocalVariable]
         List of variables defined by the equation.
-    right : EX
+    right : EX | None
         Expression of the equation.
 
     Returns
@@ -1046,11 +1047,11 @@ def add_transition_equation(
 class IfTree:
     """Provides an intermediate structure for describing the structure of an if block."""
 
-    def __init__(self, position: Tuple[float, float] = None):
+    def __init__(self, position: Tuple[float, float] = (0, 0)):
         """Store the attributes."""
-        self.position = position if position else (0, 0)
+        self.position = position
         # name to be used if a diagram needs to be created
-        self.name = None
+        self.name = ''
 
     def _build(self, context: suite.Object, diagram: suite.Diagram) -> suite.IfBranch:
         """Build an if branch from the tree."""
@@ -1070,7 +1071,7 @@ class _Node(IT):
         expression: EX,
         then: IT,
         else_: IT,
-        position: Tuple[float, float] = None,
+        position: Tuple[float, float] = (0, 0),
         label_width: int = 0,
     ):
         """Store the attributes."""
@@ -1108,8 +1109,8 @@ class _Action(IT):
 
     def __init__(
         self,
-        position: Tuple[float, float] = None,
-        size: Tuple[float, float] = None,
+        position: Tuple[float, float] = (0, 0),
+        size: Tuple[float, float] = (0, 0),
         display: DK = DK.GRAPHICAL,
     ):
         """Store the attributes."""
@@ -1140,8 +1141,8 @@ class _Action(IT):
 
 
 def create_if_action(
-    position: Tuple[float, float] = None,
-    size: Tuple[float, float] = None,
+    position: Tuple[float, float] = (0, 0),
+    size: Tuple[float, float] = (0, 0),
     display: DK = DK.GRAPHICAL,
 ) -> IT:
     """
@@ -1154,9 +1155,9 @@ def create_if_action(
 
     Parameters
     ----------
-    position : Tuple[float, float], default: None
+    position : Tuple[float, float], default: (0, 0)
         Position of the action.
-    size : Tuple[float, float], default: None
+    size : Tuple[float, float], default: (0, 0)
         Size of the action.
     display : DK, default: GRAPHICAL
         Layout of the action.
@@ -1170,7 +1171,11 @@ def create_if_action(
 
 
 def create_if_tree(
-    expression: EX, then: IT, else_: IT, position: Tuple[float, float] = None, label_width: int = 0
+    expression: EX,
+    then: IT,
+    else_: IT,
+    position: Tuple[float, float] = (0, 0),
+    label_width: int = 0,
 ) -> IT:
     r"""
     Create a decision in the intermediate structure if it is a tree structure.
@@ -1191,7 +1196,7 @@ def create_if_tree(
         Sub-decision tree to consider when the condition is ``True``.
     else\_ : IT
         Sub-decision tree to consider when the condition is ``False``.
-    position : Tuple[float, float], default: None
+    position : Tuple[float, float], default: (0, 0)
         Position of the decision.
     label_width : int, default: 0
         Size of the label.
@@ -1208,8 +1213,8 @@ def add_data_def_if_block(
     name: str,
     if_tree: IfTree,
     diagram: suite.Diagram,
-    position: Tuple[float, float] = None,
-    size: Tuple[float, float] = None,
+    position: Tuple[float, float] = (0, 0),
+    size: Tuple[float, float] = (0, 0),
 ) -> suite.IfBlock:
     """
     Create an if block in a scope.
@@ -1230,9 +1235,9 @@ def add_data_def_if_block(
         Diagram containing the equation. The diagram specified can be either graphical
         or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
         contains at least one diagram.
-    position : Tuple[float, float], default: None
+    position : Tuple[float, float], default: (0, 0)
         Position of the if block.
-    size : Tuple[float, float], default: None
+    size : Tuple[float, float], default: (0, 0)
         Size of the if block.
 
     Returns
@@ -1280,23 +1285,23 @@ class WhenBranch:
     def __init__(
         self,
         pattern: EX,
-        position: Tuple[float, float] = None,
-        size: Tuple[float, float] = None,
+        position: Tuple[float, float] = (0, 0),
+        size: Tuple[float, float] = (0, 0),
         display: DK = DK.GRAPHICAL,
         label_width: int = 0,
     ):
         """Store the attributes."""
         self.pattern = pattern
-        self.position = position if position else [0, 0]
-        self.size = size if size else [0, 0]
+        self.position = position
+        self.size = size
         self.display = display
         self.label_width = label_width
 
 
 def create_when_branch(
     pattern: EX,
-    position: Tuple[float, float] = None,
-    size: Tuple[float, float] = None,
+    position: Tuple[float, float] = (0, 0),
+    size: Tuple[float, float] = (0, 0),
     display: DK = DK.GRAPHICAL,
     label_width: int = 0,
 ) -> WhenBranch:
@@ -1312,9 +1317,9 @@ def create_when_branch(
     ----------
     pattern : EX
         Value of the branch.
-    position : Tuple[float, float], default: None
+    position : Tuple[float, float], default: (0, 0)
         Position of the action.
-    size : Tuple[float, float], default: None
+    size : Tuple[float, float], default: (0, 0)
         Size of the action.
     display : DK, default: GRAPHICAL
         Layout of the action.
@@ -1333,9 +1338,9 @@ def add_data_def_when_block(
     name: str,
     when: EX,
     branches: List[WhenBranch],
-    diagram: suite.Diagram = None,
-    position: Tuple[float, float] = None,
-    size: Tuple[float, float] = None,
+    diagram: Optional[suite.Diagram] = None,
+    position: Tuple[float, float] = (0, 0),
+    size: Tuple[float, float] = (0, 0),
     start_position: Tuple[float, float] = (450, 582),
     label_width: int = 0,
 ) -> suite.WhenBlock:
@@ -1358,13 +1363,13 @@ def add_data_def_when_block(
     branches : List[WhenBranch]
         List of intermediate structures describing the branches.
         There must be at least one branch.
-    diagram : suite.Diagram, default: None
+    diagram : suite.Diagram | None, default: None
         Diagram containing the equation. The diagram specified can be either graphical
         or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
         contains at least one diagram.
-    position : Tuple[float, float] default: None
+    position : Tuple[float, float] default: (0, 0))
         Position of the block.
-    size : Tuple[float, float] default: None
+    size : Tuple[float, float] default: (0, 0)
         Size of the block.
     start_position : Tuple[float, float], default: (450, 582)
         Start position of the branches relative to the block.
@@ -1480,7 +1485,7 @@ def add_when_block_branches(
 
 
 def add_diagram_equation_set(
-    diagram: suite.NetDiagram, name: str, elements: List[suite.Presentable] = None
+    diagram: suite.NetDiagram, name: str, elements: Optional[List[suite.Presentable]] = None
 ) -> suite.EquationSet:
     """
     Add a new equation set to a graphical diagram.
@@ -1491,7 +1496,7 @@ def add_diagram_equation_set(
         Input diagram.
     name : str
         Name of the equation set.
-    elements : List[suite.Presentable], default: None
+    elements : List[suite.Presentable] | None, default: None
         List of elements to add to the equation set.
 
     Returns

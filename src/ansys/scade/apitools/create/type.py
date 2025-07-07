@@ -241,7 +241,7 @@ def create_table(dimensions: Union[EX, List[EX]], type_: TX) -> TT:
     return _Table(dimensions, type_)
 
 
-def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
+def create_structure(*fields: Tuple[str, TX]) -> TT:
     """
     Get the type tree for a structure.
 
@@ -252,7 +252,7 @@ def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
 
     Parameters
     ----------
-    fields : List[Tuple[str, TX]]
+    *fields : Tuple[str, TX]
         Name/type expression trees.
 
     Returns
@@ -261,8 +261,8 @@ def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
     """
     if len(fields) == 0:
         raise _syntax_error('create_structure', fields)
-    fields = [(_[0], _normalize_tree(_[1])) for _ in fields]
-    return _Structure(fields)
+    normalized_fields = [(_[0], _normalize_tree(_[1])) for _ in fields]
+    return _Structure(normalized_fields)
 
 
 # ----------------------------------------------------------------------------

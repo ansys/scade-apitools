@@ -38,6 +38,7 @@ Anyways, the result models can be exmined after the execution of the tests, for 
 
 from os.path import abspath
 from pathlib import Path
+from typing import Optional
 
 import pytest
 
@@ -53,7 +54,7 @@ from ansys.scade.apitools.create.project import std
 from test_utils import get_resources_dir
 
 
-def _get_path(project: std.Project, rel_path: str) -> Path:
+def _get_path(project: std.Project, rel_path: str) -> Optional[Path]:
     """Return the absolute path with respect to the project and make sure the directory exists."""
     if rel_path:
         path = Path(abspath(Path(project.pathname).parent / rel_path))

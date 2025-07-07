@@ -36,6 +36,9 @@ to some expected result, nor easy to maintain.
 Anyways, the result models can be exmined after the execution of the tests, for a deep analysis.
 """
 
+# ignore F401: used in type annotations as `# type` comments
+from typing import List, Tuple  # noqa: F401
+
 import pytest
 
 import ansys.scade.apitools.create as create
@@ -201,8 +204,8 @@ class TestCreateDataDef:
         tree = create.create_if(cond, [a, b], [c, d])
         # graphical part
         diagram = scope.presentation_element.diagram
-        position = [13864, 4763]
-        size = [1006, 979]
+        position = (13864, 4763)
+        size = (1006, 979)
         equation = create.add_data_def_equation(scope, diagram, [l1, l2], tree, position, size)
 
         # input edges: the source equation is the unique one defining the variable
@@ -303,7 +306,7 @@ class TestCreateDataDef:
         equation = create.add_data_def_equation(scope, None, [o], i)
         # minimal test
         assert equation.to_string() == 'out = in'
-        # take the opportunity if this test case to create an assertion
+        # take the opportunity of this test case to create an assertion
         assertion = create.add_data_def_assertion(scope, None, 'AssumeFalse', False)
         assert assertion.to_string() == 'assume AssumeFalse : false'
 
@@ -320,16 +323,16 @@ class TestCreateDataDef:
         scope = model.get_object_from_path(path)
         diagram = next((_ for _ in scope.diagrams if _.name == 'Misc'))
         # source equation, with default values for textual expression
-        position = [3201, 2355]
-        size = [212, 317]
+        position = (3201, 2355)
+        size = (212, 317)
         src = create.add_data_def_equation(scope, diagram, ['bool'], True, position, size)
         left = src.lefts[0]
         assert left.is_internal()
         # minimal test
         assert src.to_string() == '%s = true' % left.name
         # target equation, with default values for terminator
-        position = [7832, 2222]
-        size = [503, 503]
+        position = (7832, 2222)
+        size = (503, 503)
         dst = create.add_data_def_equation(scope, diagram, '_', left, position, size)
         assert dst.terminator
         # minimal test
@@ -338,7 +341,7 @@ class TestCreateDataDef:
         edges = create.add_diagram_missing_edges(diagram)
         assert len(edges) == 1
         # take the opportunity if this test case to create an assertion
-        position = [1799, 3361]
+        position = (1799, 3361)
         assertion = create.add_data_def_assertion(scope, diagram, 'A1', True, position=position)
         assert assertion.to_string() == 'assume A1 : true'
 
@@ -364,13 +367,13 @@ class TestCreateDataDef:
             scope = scope.action
         diagram = next((_ for _ in scope.diagrams if _.name == name)) if name else None
         # hard coded SM with three states
-        position = [500, 500]
-        size = [15000, 9000]
+        position = (500, 500)
+        size = (15000, 9000)
         name = 'SM%s' % diagram.name.replace('Diagram', '') if diagram else 'SM'
         sm = create.add_data_def_state_machine(scope, name, diagram, position, size)
         # states
-        positions = [[6000, 1000], [1000, 7000], [11000, 7000]]
-        size = [4000, 2000]
+        positions = [(6000, 1000), (1000, 7000), (11000, 7000)]
+        size = (4000, 2000)
         states = []
         for kind, display, position in zip(create.SK, create.DK, positions):
             state = create.add_state_machine_state(sm, kind.value, position, size, kind, display)
@@ -390,7 +393,7 @@ class TestCreateDataDef:
         # create a transition from initial to final
         # let the tool compute default positions/size for the label
         # no help from the tool for the points, we must provide consistent positions
-        points = [(5000, 8000), (7000, 7000), (9000, 9000), (11000, 8000)]
+        points = [(5000, 8000), (7000, 7000), (9000, 9000), (11000, 8000)]  # type: List[Tuple[float, float]]
         tree = create.create_transition_state(True, final, False, 1, points, polyline=False)
         create.add_state_transition(initial, create.TK.STRONG, tree)
 
@@ -439,16 +442,16 @@ class TestCreateDataDef:
         # retrieve the variable used for the selector
         e = session.model.get_object_from_path('P::WhenBlocks/e/')
         # create the branches
-        positions = [[2300, 2000], [7000, 3500], [2300, 4500]]
-        size = [4000, 1000]
+        positions = [(2300, 2000), (7000, 3500), (2300, 4500)]
+        size = (4000, 1000)
         branches = []
         for pattern, display, position in zip(e.type.type.values, create.DK, positions):
             branch = create.create_when_branch(pattern.name, position, size, display)
             branches.append(branch)
         # create the block with two branches
         name = 'WB%s' % diagram.name.replace('Diagram', '') if diagram else 'WB'
-        block_position = [500, 500]
-        block_size = [11000, 6000]
+        block_position = (500, 500)
+        block_size = (11000, 6000)
         block = create.add_data_def_when_block(
             scope, name, e, branches[:2], diagram, block_position, block_size
         )
