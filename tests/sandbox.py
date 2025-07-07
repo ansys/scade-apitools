@@ -37,7 +37,7 @@ if __name__ == '__main__':
         name = 'ChildPackagePackageUpperFolder'
         path = _get_path(project, 'NewChildPackageUpperFolder.xscade')
         package = create.create_package(owner, name, path)
-        create.add_unit_to_project(project, package.defined_in, folder=None, default=True)
+        create.add_element_to_project(project, package, folder=None, default=True)
         # the created package must be accessible
         package_path = '%s%s::' % (owner.get_full_path(), name)
         print('package_path', package_path)

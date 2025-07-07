@@ -105,7 +105,7 @@ def test_data_array_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.DataArrayOp)
-    data = [_.path.name for _ in expression.data]
+    data = [_.path.name for _ in expression.data if isinstance(_, expr.IdExpression)]
     assert data == ['v%d' % _ for _ in range(3)]
 
 
@@ -115,8 +115,9 @@ def test_transpose_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.TransposeOp)
+    assert isinstance(expression.array, expr.IdExpression)
     assert expression.array.path.name == 'arrayTranspose'
-    dimensions = [_.value for _ in expression.dimensions]
+    dimensions = [_.value for _ in expression.dimensions if isinstance(_, expr.ConstValue)]
     assert dimensions == ['%d' % _ for _ in range(1, 3)]
 
 
@@ -126,8 +127,11 @@ def test_slice_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.SliceOp)
+    assert isinstance(expression.array, expr.IdExpression)
     assert expression.array.path.name == 'arraySlice'
+    assert isinstance(expression.from_index, expr.ConstValue)
     assert expression.from_index.value == '1'
+    assert isinstance(expression.to_index, expr.ConstValue)
     assert expression.to_index.value == '3'
 
 
@@ -137,10 +141,14 @@ def test_prj_dyn_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.PrjDynOp)
+    assert isinstance(expression.array, expr.IdExpression)
     assert expression.array.path.name == 'arrayPrjDyn'
     indexes = expression.indexes
+    assert isinstance(indexes[0], expr.ConstValue)
     assert indexes[0].value == '1'
+    assert isinstance(indexes[1], expr.Label)
     assert indexes[1].name == 'label'
+    assert isinstance(expression.default, expr.ConstValue)
     assert expression.default.value == '42'
 
 
@@ -150,8 +158,9 @@ def test_scalar_to_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.ScalarToVectorOp)
-    names = [_.path.name for _ in expression.flows]
+    names = [_.path.name for _ in expression.flows if isinstance(_, expr.IdExpression)]
     assert names == ['flowScalarToVector']
+    assert isinstance(expression.size, expr.ConstValue)
     assert expression.size.value == '42'
 
 
@@ -161,9 +170,12 @@ def test_prj_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.PrjOp)
+    assert isinstance(expression.flow, expr.IdExpression)
     assert expression.flow.path.name == 'flowPrj'
     with_ = expression.with_
+    assert isinstance(with_[0], expr.Label)
     assert with_[0].name == 'label'
+    assert isinstance(with_[1], expr.ConstValue)
     assert with_[1].value == '2'
 
 
@@ -173,11 +185,16 @@ def test_chg_ith_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.ChgIthOp)
+    assert isinstance(expression.flow, expr.IdExpression)
     assert expression.flow.path.name == 'flowChgIth'
+    assert isinstance(expression.value, expr.IdExpression)
     assert expression.value.path.name == 'valueChgIth'
     with_ = expression.with_
+    assert isinstance(with_[0], expr.ConstValue)
     assert with_[0].value == '31'
+    assert isinstance(with_[1], expr.Label)
     assert with_[1].name == 'label'
+    assert isinstance(with_[2], expr.ConstValue)
     assert with_[2].value == '9'
 
 
@@ -187,7 +204,7 @@ def test_make_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.MakeOp)
-    names = [_.path.name for _ in expression.flows]
+    names = [_.path.name for _ in expression.flows if isinstance(_, expr.IdExpression)]
     assert names == ['flowMake%d' % _ for _ in range(1, 3)]
     assert expression.type_.name == 'Structure'
 
@@ -198,6 +215,7 @@ def test_flatten_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.FlattenOp)
+    assert isinstance(expression.flow, expr.IdExpression)
     assert expression.flow.path.name == 'flowFlatten'
     assert expression.type_.name == 'Structure'
 
@@ -208,10 +226,11 @@ def test_if_then_else_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.IfThenElseOp)
+    assert isinstance(expression.if_, expr.IdExpression)
     assert expression.if_.path.name == 'flowIf'
-    names = [_.path.name for _ in expression.then]
+    names = [_.path.name for _ in expression.then if isinstance(_, expr.IdExpression)]
     assert names == ['flowThen']
-    names = [_.path.name for _ in expression.else_]
+    names = [_.path.name for _ in expression.else_ if isinstance(_, expr.IdExpression)]
     assert names == ['flowElse']
 
 
@@ -221,15 +240,24 @@ def test_case_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.CaseOp)
+    assert isinstance(expression.switch, expr.IdExpression)
     assert expression.switch.path.name == 'flowSwitch'
     cases = [
         (
-            (pattern.value if isinstance(pattern, expr.ConstValue) else pattern.path.name),
+            (
+                pattern.value
+                if isinstance(pattern, expr.ConstValue)
+                else pattern.path.name
+                if isinstance(pattern, expr.IdExpression)
+                else None
+            ),
             flow.path.name,
         )
         for pattern, flow in expression.cases
+        if isinstance(flow, expr.IdExpression)
     ]
     assert cases == [('1', 'flowCase1'), ('VALUE1', 'flowCase2')]
+    assert isinstance(expression.default, expr.IdExpression)
     assert expression.default.path.name == 'flowDefault'
 
 
@@ -239,8 +267,9 @@ def test_init_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.InitOp)
-    assert [_.path.name for _ in expression.flows] == ['flowInit']
-    assert [_.value for _ in expression.inits] == ['42']
+    names = [_.path.name for _ in expression.flows if isinstance(_, expr.IdExpression)]
+    assert names == ['flowInit']
+    assert [_.value for _ in expression.inits if isinstance(_, expr.ConstValue)] == ['42']
 
 
 def test_pre_op(model):
@@ -249,7 +278,8 @@ def test_pre_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.PreOp)
-    assert [_.path.name for _ in expression.flows] == ['flowPre']
+    names = [_.path.name for _ in expression.flows if isinstance(_, expr.IdExpression)]
+    assert names == ['flowPre']
 
 
 def test_fby_op(model):
@@ -258,9 +288,11 @@ def test_fby_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.FbyOp)
-    assert [_.path.name for _ in expression.flows] == ['flowFby']
+    names = [_.path.name for _ in expression.flows if isinstance(_, expr.IdExpression)]
+    assert names == ['flowFby']
+    assert isinstance(expression.delay, expr.ConstValue)
     assert expression.delay.value == '1'
-    assert [_.value for _ in expression.inits] == ['42']
+    assert [_.value for _ in expression.inits if isinstance(_, expr.ConstValue)] == ['42']
 
 
 unary_data = [
@@ -284,6 +316,7 @@ def test_unary_op(model, path, code, expected):
     assert expression.expression == equation.right
     assert isinstance(expression, expr.UnaryOp)
     assert expression.code.name == code
+    assert isinstance(expression.operand, expr.IdExpression)
     assert expression.operand.path.name == expected
 
 
@@ -311,7 +344,7 @@ def test_nary_op(model, path, code, expected):
     assert expression.expression == equation.right
     assert isinstance(expression, expr.NAryOp)
     assert expression.code.name == code
-    names = [_.path.name for _ in expression.operands]
+    names = [_.path.name for _ in expression.operands if isinstance(_, expr.IdExpression)]
     assert names == ['%s%d' % (expected, _) for _ in range(1, len(equation.right.parameters) + 1)]
 
 
@@ -344,7 +377,7 @@ def test_binary_op(model, path, code, expected):
     assert expression.expression == equation.right
     assert isinstance(expression, expr.BinaryOp)
     assert expression.code.name == code
-    names = [_.path.name for _ in expression.operands]
+    names = [_.path.name for _ in expression.operands if isinstance(_, expr.IdExpression)]
     assert names == ['%s%d' % (expected, _) for _ in range(1, len(equation.right.parameters) + 1)]
 
 
@@ -354,6 +387,7 @@ def test_numeric_cast_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.NumericCastOp)
+    assert isinstance(expression.flow, expr.IdExpression)
     assert expression.flow.path.name == 'operand'
     assert expression.type_.name == 'int32'
 
@@ -364,7 +398,7 @@ def test_sharp_op(model):
     expression = expr.accessor(equation.right)
     assert expression.expression == equation.right
     assert isinstance(expression, expr.SharpOp)
-    names = [_.path.name for _ in expression.flows]
+    names = [_.path.name for _ in expression.flows if isinstance(_, expr.IdExpression)]
     assert names == ['operand%d' % _ for _ in range(1, len(equation.right.parameters) + 1)]
 
 
@@ -376,9 +410,10 @@ def test_op_call(model):
     assert isinstance(expression, expr.OpCall)
     assert expression.operator.name == 'Operator'
     assert expression.name == 'Toulouse'
-    names = [_.path.name for _ in expression.call_parameters]
+    names = [_.path.name for _ in expression.call_parameters if isinstance(_, expr.IdExpression)]
     assert names == ['callParameter%d' % _ for _ in range(1, len(equation.right.parameters) + 1)]
     assert len(expression.instance_parameters) == 1
+    assert isinstance(expression.instance_parameters[0], expr.ConstValue)
     assert expression.instance_parameters[0].value == '42'
 
 
@@ -389,16 +424,19 @@ def test_restart_op(model):
     assert isinstance(expression, expr.RestartOp)
     # called operator
     call = expression.operator
+    assert isinstance(call, expr.OpCall)
     assert call.expression == equation.right
     assert call.operator.name == 'Operator'
     assert call.name == '1'
-    names = [_.path.name for _ in call.call_parameters]
+    names = [_.path.name for _ in call.call_parameters if isinstance(_, expr.IdExpression)]
     count = len(equation.right.parameters)
     assert names == ['callParameterRestart%d' % _ for _ in range(1, count + 1)]
     assert len(call.instance_parameters) == 1
+    assert isinstance(call.instance_parameters[0], expr.ConstValue)
     assert call.instance_parameters[0].value == '42'
     # higher order
     assert expression.expression == equation.right.modifier
+    assert isinstance(expression.every, expr.IdExpression)
     assert expression.every.path.name == 'everyRestart'
 
 
@@ -409,18 +447,22 @@ def test_activate_op(model):
     assert isinstance(expression, expr.ActivateOp)
     # called operator
     call = expression.operator
+    assert isinstance(call, expr.OpCall)
     assert call.expression == equation.right
     assert call.operator.name == 'Operator'
     assert call.name == '2'
-    names = [_.path.name for _ in call.call_parameters]
+    names = [_.path.name for _ in call.call_parameters if isinstance(_, expr.IdExpression)]
     count = len(equation.right.parameters)
     assert names == ['callParameterActivate%d' % _ for _ in range(1, count + 1)]
     assert len(call.instance_parameters) == 1
+    assert isinstance(call.instance_parameters[0], expr.ConstValue)
     assert call.instance_parameters[0].value == '31'
     # higher order
     assert expression.expression == equation.right.modifier
+    assert isinstance(expression.every, expr.IdExpression)
     assert expression.every.path.name == 'everyActivate'
-    assert [_.value for _ in expression.defaults] == ['9', 'false', "'j'"]
+    defaults = [_.value for _ in expression.defaults if isinstance(_, expr.ConstValue)]
+    assert defaults == ['9', 'false', "'j'"]
 
 
 def test_activate_no_init_op(model):
@@ -430,18 +472,21 @@ def test_activate_no_init_op(model):
     assert isinstance(expression, expr.ActivateNoInitOp)
     # called operator
     call = expression.operator
+    assert isinstance(call, expr.OpCall)
     assert call.expression == equation.right
     assert call.operator.name == 'Operator'
     assert call.name == '3'
-    names = [_.path.name for _ in call.call_parameters]
+    names = [_.path.name for _ in call.call_parameters if isinstance(_, expr.IdExpression)]
     count = len(equation.right.parameters)
     assert names == ['callParameterActivateNoInit%d' % _ for _ in range(1, count + 1)]
     assert len(call.instance_parameters) == 1
-    assert call.instance_parameters[0].value == '9'
+    assert isinstance(call.instance_parameters[0], expr.ConstValue)
     # higher order
     assert expression.expression == equation.right.modifier
+    assert isinstance(expression.every, expr.IdExpression)
     assert expression.every.path.name == 'everyActivateNoInit'
-    assert [_.value for _ in expression.defaults] == ['true', '31', "'h'"]
+    defaults = [_.value for _ in expression.defaults if isinstance(_, expr.ConstValue)]
+    assert defaults == ['true', '31', "'h'"]
 
 
 iterator_data = [
@@ -466,17 +511,22 @@ def test_iterator_op(model, path, param, inst_param, size, nacc):
     assert isinstance(expression, expr.IteratorOp)
     # called operator
     call = expression.operator
+    assert isinstance(call, expr.OpCall)
     assert call.expression == equation.right
     assert call.operator.name == 'Operator'
+    assert isinstance(call.call_parameters[0], expr.IdExpression)
     assert call.call_parameters[0].path.name == 'callParameter%s' % param
     assert len(call.instance_parameters) == 1
+    assert isinstance(call.instance_parameters[0], expr.IdExpression)
     assert call.instance_parameters[0].path.name == inst_param
     # higher order
     assert expression.expression == equation.right.modifier
+    assert isinstance(expression.size, expr.ConstValue)
     assert expression.size.value == size
     if nacc is None:
         assert expression.accumulator_count is None
     else:
+        assert isinstance(expression.accumulator_count, expr.ConstValue)
         assert expression.accumulator_count.value == nacc
 
 
@@ -502,22 +552,29 @@ def test_partial_iterator_op(model, path, param, inst_param, size, defaults, nac
     assert isinstance(expression, expr.PartialIteratorOp)
     # called operator
     call = expression.operator
+    assert isinstance(call, expr.OpCall)
     assert call.expression == equation.right
     assert call.operator.name == 'Operator'
+    assert isinstance(call.call_parameters[0], expr.IdExpression)
     assert call.call_parameters[0].path.name == 'callParameter%s' % param
     assert len(call.instance_parameters) == 1
+    assert isinstance(call.instance_parameters[0], expr.ConstValue)
     assert call.instance_parameters[0].value == inst_param
     # higher order
     assert expression.expression == equation.right.modifier
+    assert isinstance(expression.size, expr.IdExpression)
     assert expression.size.path.name == size
+    assert isinstance(expression.if_, expr.IdExpression)
     assert expression.if_.path.name == 'if%s' % param
     if defaults is None:
         assert expression.defaults is None
     else:
-        assert [_.value for _ in expression.defaults] == defaults
+        assert expression.defaults is not None
+        assert [_.value for _ in expression.defaults if isinstance(_, expr.ConstValue)] == defaults
     if nacc is None:
         assert expression.accumulator_count is None
     else:
+        assert isinstance(expression.accumulator_count, expr.ConstValue)
         assert expression.accumulator_count.value == nacc
 
 
@@ -529,7 +586,7 @@ def test_list_expression(model):
     # the second parameter of if-then-else is a sequence
     expression = expr.accessor(equation.right.parameters[1])
     assert isinstance(expression, expr.ListExpression)
-    names = [_.path.name for _ in expression.items]
+    names = [_.path.name for _ in expression.items if isinstance(_, expr.IdExpression)]
     assert names == ['flowThen']
 
 
