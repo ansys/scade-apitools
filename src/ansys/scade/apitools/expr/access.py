@@ -310,7 +310,7 @@ class TransposeOp(ArrayOp):
         """Initialize the instance from the Scade expression."""
         assert Eck(expression.predef_opr) == Eck.TRANSPOSE
         super().__init__(expression)
-        self._dimensions = (accessor(expression.parameters[1]), expression.parameters[2])
+        self._dimensions = (accessor(expression.parameters[1]), accessor(expression.parameters[2]))
 
     @property
     def dimensions(self) -> tuple[Expression, Expression]:
