@@ -27,14 +27,23 @@ The tests of this module operate on an empty model: these constructs must not
 be used for real scripts.
 """
 
+from typing import Optional
+
 import pytest
 
 import ansys.scade.apitools.create as create
-from ansys.scade.apitools.create.expression import EX, _build_expression, _normalize_tree
+from ansys.scade.apitools.create.expression import (
+    EX,
+    _build_expression,
+    _normalize_tree,
+    _Reference,
+    _Type,
+    _Value,
+)
 from ansys.scade.apitools.create.scade import _link_pendings, suite
 
 
-def _tree_to_string(tree: EX, context: suite.Object = None) -> str:
+def _tree_to_string(tree: EX, context: Optional[suite.Object] = None) -> str:
     """Build an expression from a tree and return textual representation."""
     expr = _build_expression(tree, context)
     # link pending references so that to_string gives the expected result
@@ -744,10 +753,11 @@ ids = [str(_[0]) for _ in normalize_tree_value_data]
 def test_normalize_tree_value(tree, expected_value, expected_kind):
     if isinstance(expected_value, str):
         # nominal
-        tree = _normalize_tree(tree)
+        norm_tree = _normalize_tree(tree)
         # tree must be an instance of _Value
-        assert tree.value == expected_value
-        assert tree.kind == expected_kind
+        assert isinstance(norm_tree, _Value)
+        assert norm_tree.value == expected_value
+        assert norm_tree.kind == expected_kind
     else:
         # robustness
         with pytest.raises(expected_value):
@@ -767,14 +777,15 @@ ids = [str(_[1]) for _ in normalize_tree_reference_data]
 
 
 @pytest.mark.parametrize('class_, name, expected', normalize_tree_reference_data, ids=ids)
-def test_normalize_tree_reference(class_: str, name: str, expected):
+def test_normalize_tree_reference(class_: type, name: str, expected):
     object_ = class_()
     object_.name = name
     tree = object_
     if isinstance(expected, str):
         # nominal
-        tree = _normalize_tree(tree)
-        assert tree.reference.name == expected
+        norm_tree = _normalize_tree(tree)
+        assert isinstance(norm_tree, _Reference)
+        assert norm_tree.reference.name == expected
     else:
         # robustness
         with pytest.raises(expected):
@@ -790,13 +801,14 @@ ids = [str(_[1]) for _ in normalize_tree_type_data]
 
 
 @pytest.mark.parametrize('class_, name, expected', normalize_tree_type_data, ids=ids)
-def test_normalize_tree_type(class_: str, name: str, expected):
+def test_normalize_tree_type(class_: type, name: str, expected):
     object_ = class_()
     object_.name = name
     tree = object_
     # nominal
-    tree = _normalize_tree(tree)
-    assert tree.type.name == expected
+    norm_tree = _normalize_tree(tree)
+    assert isinstance(norm_tree, _Type)
+    assert norm_tree.type.name == expected
 
 
 # additional tests with a tree

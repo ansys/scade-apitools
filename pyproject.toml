@@ -71,6 +71,8 @@ Homepage = "https://www.ansys.com/products/embedded-software/ansys-scade-suite"
 
 [tool.ruff]
 line-length = 99
+
+[tool.ruff.lint]
 select = [
     "E",    # pycodestyle, see https://beta.ruff.rs/docs/rules/#pycodestyle-e-w
     "D",    # pydocstyle, see https://beta.ruff.rs/docs/rules/#pydocstyle-d
@@ -87,7 +89,7 @@ ignore = [
 [tool.ruff.format]
 quote-style = "preserve"
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 combine-as-imports = true
 force-sort-within-sections = true
 known-first-party = ["ansys", "conftest", "test_utils"]

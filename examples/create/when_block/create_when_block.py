@@ -47,7 +47,7 @@ def main():
 
     # hard coded WB with three actions
     positions = [(2300, 2000), (7000, 3500), (2300, 4500)]
-    size = [4000, 1000]
+    size = (4000, 1000)
     branches = []
     for pattern, position in zip(e.type.type.values, positions):
         branch = create.create_when_branch(pattern.name, position, size)

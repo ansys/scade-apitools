@@ -24,7 +24,7 @@
 
 from pathlib import Path
 from shutil import copytree, rmtree
-from typing import Tuple
+from typing import Any, Generator, Tuple
 
 import pytest
 
@@ -73,7 +73,8 @@ def load_project(pathname: Path) -> project.Project:
 
     Note: Undocumented API.
     """
-    project_ = scade.load_project(str(pathname))
+    # scade is a CPython module defined dynamically
+    project_ = scade.load_project(str(pathname))  # type: ignore
     return project_
 
 
@@ -94,7 +95,9 @@ def project_session(request) -> Tuple[project.Project, suite.Session]:
 
 
 @pytest.fixture(scope='class')
-def tmp_project_session(tmpdir, request) -> Tuple[project.Project, suite.Session]:
+def tmp_project_session(
+    tmpdir, request
+) -> Generator[Tuple[project.Project, suite.Session], Any, Any]:
     """
     Load a temporary copy of the project, and save it once the test is terminated.
 
@@ -110,13 +113,13 @@ def tmp_project_session(tmpdir, request) -> Tuple[project.Project, suite.Session
     # duplicate the project to edit it safely
     target_dir = tmpdir / request.cls.__name__
     copytree(pathname.parent, target_dir)
-    pathname = str(target_dir / pathname.name)
-    print('loading', pathname)
-    project_ = load_project(pathname)
-    session = load_session(pathname)
+    path = target_dir / pathname.name
+    print('loading', path)
+    project_ = load_project(path)
+    session = load_session(path)
     yield project_, session
     # finalize the test: save both project and model
     # note: the xscade files must have been declared as modified
-    print('saving', pathname)
-    project_.save(pathname)
+    print('saving', path)
+    project_.save(str(path))
     session.save_model2()

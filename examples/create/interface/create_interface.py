@@ -41,6 +41,7 @@ Usage::
 """
 
 from pathlib import Path
+from typing import Optional
 
 import scade.model.project.stdproject as std
 import scade.model.suite as suite
@@ -148,7 +149,7 @@ def create_interface(project: std.Project, model: suite.Model, description: Path
     create.save_all()
 
 
-def main(description: Path = None):
+def main(description: Optional[Path] = None):
     """
     Create the operators and their interface into the model.
 
@@ -165,8 +166,9 @@ def main(description: Path = None):
     # note: the script shall be launched with a single project
     project = std.get_roots()[0]
     session = suite.get_roots()[0]
-    # the description file is in the same directory
-    description = Path(__file__).with_name('interface.txt')
+    if not description:
+        # the description file is in the same directory
+        description = Path(__file__).with_name('interface.txt')
     # cache all the types of the model and its libraries
     cache_types(session)
     # create the interface from the description file

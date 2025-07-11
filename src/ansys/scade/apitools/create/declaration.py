@@ -32,7 +32,7 @@ Provides create functions for Scade model declarations.
 
 from enum import Enum
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 import scade.model.suite as suite
 
@@ -53,7 +53,7 @@ class VK(Enum):
 
 
 def create_package(
-    owner: suite.Package, name: str, path: Path = None, visibility: VK = VK.PUBLIC
+    owner: suite.Package, name: str, path: Optional[Path] = None, visibility: VK = VK.PUBLIC
 ) -> suite.Package:
     """
     Create a package.
@@ -67,7 +67,7 @@ def create_package(
         Owner of the package, which is either the model itself or a package.
     name : str
         Name of the package.
-    path : Path, default: None
+    path : Path | None, default: None
         Path of the file for storing the package. This parameter is optional
         if the package's owner is a package. When the path is ``None`` and the
         owner is the model, the package is stored in the model's default file.
@@ -89,7 +89,8 @@ def create_package(
 
     package = suite.Package(owner)
     package.name = name
-    _scade_api.add(owner, 'package', package)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(owner, 'package', package)  # type: ignore
     # create the hidden diagrams for tree views
     add_tree_diagram(package, 'Constants')
     add_tree_diagram(package, 'Types')
@@ -107,9 +108,9 @@ def create_named_type(
     owner: suite.Package,
     name: str,
     definition: TX,
-    path: Path = None,
+    path: Optional[Path] = None,
     visibility: VK = VK.PUBLIC,
-    symbol_files: List[Path] = None,
+    symbol_files: Optional[List[Path]] = None,
 ) -> suite.NamedType:
     """
     Create a named type.
@@ -124,12 +125,14 @@ def create_named_type(
         Name of the type.
     definition : TX
         Definition of the type expressed as a type tree.
-    path : Path, default: None
+    path : Path | None, default: None
         Path of the file for storing the type. This parameter is ignored if the
         owner is a package. When the path is ``None`` and owner is the model, the
         type is stored in the model's default file.
     visibility : VK, default: PUBLIC
         Accessibility of the type.
+    symbol_files : List[Path] | None, default: None
+        List of symbof files (SSL) associated to the type.
 
     Returns
     -------
@@ -139,7 +142,8 @@ def create_named_type(
 
     named_type = suite.NamedType(owner)
     named_type.name = name
-    _scade_api.add(owner, 'namedType', named_type)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(owner, 'namedType', named_type)  # type: ignore
 
     # other properties
     named_type.visibility = visibility.value
@@ -160,7 +164,7 @@ def create_named_type(
 
 
 def create_imported_type(
-    owner: suite.Package, name: str, path: Path = None, visibility: VK = VK.PUBLIC
+    owner: suite.Package, name: str, path: Optional[Path] = None, visibility: VK = VK.PUBLIC
 ) -> suite.NamedType:
     """
     Create an imported named type.
@@ -173,7 +177,7 @@ def create_imported_type(
         Owner of the type, which is either the model itself or a package.
     name : str
         Name of the type.
-    path : Path, default: None
+    path : Path | None, default: None
         Path of the file for storing the type. This parameter is ignored if the
         owner is a package. When the path is ``None`` and owner is the model, the
         type is stored in the model's default file.
@@ -188,7 +192,8 @@ def create_imported_type(
 
     named_type = suite.NamedType(owner)
     named_type.name = name
-    _scade_api.add(owner, 'namedType', named_type)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(owner, 'namedType', named_type)  # type: ignore
     named_type.kind = 'Imported'
 
     # other properties
@@ -206,7 +211,7 @@ def create_enumeration(
     owner: suite.Package,
     name: str,
     values: List[str],
-    path: Path = None,
+    path: Optional[Path] = None,
     visibility: VK = VK.PUBLIC,
 ) -> suite.NamedType:
     """
@@ -222,7 +227,7 @@ def create_enumeration(
         Name of the type.
     values : List[str]
         List of the enumeration values.
-    path : Path, default: None
+    path : Path | None, default: None
         Path of the file for storing the type. This parameter is ignored if
         the owner is a package. When the path is ``None`` and owner is the model,
         the type is stored in the model's default file.
@@ -237,20 +242,21 @@ def create_enumeration(
 
     named_type = suite.NamedType(owner)
     named_type.name = name
-    _scade_api.add(owner, 'namedType', named_type)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(owner, 'namedType', named_type)  # type: ignore
 
     # other properties
     named_type.visibility = visibility.value
 
-    enum = suite.Enumeration(owner)
+    enumeration = suite.Enumeration(owner)
     constants = []
     for value in values:
         constant = suite.Constant(owner)
         constant.name = value
         constants.append(constant)
-    enum.values = constants
+    enumeration.values = constants
 
-    _object_link_type(named_type, enum)
+    _object_link_type(named_type, enumeration)
     _link_pendings()
 
     if isinstance(owner, suite.Model):
@@ -261,7 +267,9 @@ def create_enumeration(
     return named_type
 
 
-def add_enumeration_values(type_: suite.NamedType, values: List[str], insert_before: str):
+def add_enumeration_values(
+    type_: suite.NamedType, values: List[str], insert_before: Optional[str]
+):
     r"""
     Add enumeration values to an enumeration type.
 
@@ -271,30 +279,33 @@ def add_enumeration_values(type_: suite.NamedType, values: List[str], insert_bef
         Named type defining the enumeration.
     values : List[str]
         List of the enumeration values to add.
-    insert_before : str
+    insert_before : str | None
         Insertion point of the values. When this parameter is not ``None``
         and exists, the values are inserted before this value. Otherwise,
         the values are added at the end.
     """
     _check_object(type_, 'add_enumeration_values', 'type_', suite.NamedType)
 
-    enum = type_.definition
-    _check_object(enum, 'add_enumeration_values', 'type_', suite.Enumeration)
+    enumeration = type_.definition
+    _check_object(enumeration, 'add_enumeration_values', 'type_', suite.Enumeration)
+    assert isinstance(enumeration, suite.Enumeration)
 
-    index = len(enum.values)  # default
+    index = len(enumeration.values)  # default
     if insert_before is not None:
-        for value in enum.values:
+        for value in enumeration.values:
             if value.name == insert_before:
-                index = value.value_range
+                index = int(value.value_range)
                 break
 
     for value in values:
-        constant = suite.Constant(enum)
+        constant = suite.Constant(enumeration)
         constant.name = value
         # workaround, use a string
-        constant.value_range = str(index)
+        # TODO: what is this workaround?
+        constant.value_range = index
         index = index + 1
-        _scade_api.add(enum, 'value', constant)
+        # _scade_api is a CPython module defined dynamically
+        _scade_api.add(enumeration, 'value', constant)  # type: ignore
     _set_modified(type_)
 
 
@@ -303,7 +314,7 @@ def create_constant(
     name: str,
     type_: TX,
     value: EX,
-    path: Path = None,
+    path: Optional[Path] = None,
     visibility: VK = VK.PUBLIC,
 ) -> suite.Constant:
     r"""
@@ -321,7 +332,7 @@ def create_constant(
         Definition of the type expressed as a type tree.
     value : EX
         Expression tree defining the value.
-    path : Path, default: None
+    path : Path | None, default: None
         Path of the file for storing the constant. This parameter is ignored if
         the owner is a package. When the path is ``None`` and owner is the model,
         theconstant is stored in the model's default file.
@@ -336,7 +347,8 @@ def create_constant(
 
     constant = suite.Constant(owner)
     constant.name = name
-    _scade_api.add(owner, 'constant', constant)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(owner, 'constant', constant)  # type: ignore
     value = _normalize_tree(value)
     constant.value = value._build_expression(owner)
 
@@ -355,7 +367,11 @@ def create_constant(
 
 
 def create_imported_constant(
-    owner: suite.Package, name: str, type_: TX, path: Path = None, visibility: VK = VK.PUBLIC
+    owner: suite.Package,
+    name: str,
+    type_: TX,
+    path: Optional[Path] = None,
+    visibility: VK = VK.PUBLIC,
 ):
     r"""
     Create an imported constant.
@@ -386,7 +402,8 @@ def create_imported_constant(
     constant = suite.Constant(owner)
     constant.name = name
     constant.imported = True
-    _scade_api.add(owner, 'constant', constant)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(owner, 'constant', constant)  # type: ignore
 
     # other properties
     constant.visibility = visibility.value
@@ -402,7 +419,9 @@ def create_imported_constant(
     return constant
 
 
-def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path = None) -> suite.Sensor:
+def create_sensor(
+    owner: suite.Package, name: str, type_: TX, path: Optional[Path] = None
+) -> suite.Sensor:
     r"""
     Create a sensor.
 
@@ -416,7 +435,7 @@ def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path = None)
         Name of the sensor.
     type\_ : TX
         Definition of the type expressed as a type tree.
-    path : Path, default: None
+    path : Path | None, default: None
         Path of the file for storing the constant. This parameter is ignored if the
         owner is a package. When the path is ``None`` and owner is the model, the
         constant is stored in the model's default file.
@@ -429,7 +448,8 @@ def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path = None)
 
     sensor = suite.Sensor(owner)
     sensor.name = name
-    _scade_api.add(owner, 'sensor', sensor)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(owner, 'sensor', sensor)  # type: ignore
 
     # no other properties
 
@@ -447,9 +467,9 @@ def create_sensor(owner: suite.Package, name: str, type_: TX, path: Path = None)
 def _create_operator(
     owner: suite.Package,
     name: str,
-    path: Path,
+    path: Optional[Path],
     visibility: VK = VK.PUBLIC,
-    symbol_file: Path = None,
+    symbol_file: Optional[Path] = None,
     state: bool = False,
 ) -> suite.Operator:
     """Core function for creating an operator."""
@@ -457,7 +477,8 @@ def _create_operator(
 
     operator = suite.Operator(owner)
     operator.name = name
-    _scade_api.add(owner, 'operator', operator)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(owner, 'operator', operator)  # type: ignore
 
     # other properties
     operator.visibility = visibility.value
@@ -472,9 +493,9 @@ def _create_operator(
 def create_graphical_operator(
     owner: suite.Package,
     name: str,
-    path: Path,
+    path: Optional[Path],
     visibility: VK = VK.PUBLIC,
-    symbol_file: Path = None,
+    symbol_file: Optional[Path] = None,
     state: bool = False,
 ) -> suite.Operator:
     """
@@ -488,7 +509,7 @@ def create_graphical_operator(
         Owner of the operator, which is either the model itself or a package.
     name : str
         Name of the operator.
-    path : Path, default: None
+    path : Path | None, default: None
         Path of the file for storing the operator. This parameter is optional
         if the package's owner is a package. When the path is ``None`` and owner
         is the model, the operator is stored in the model's default file.
@@ -508,7 +529,8 @@ def create_graphical_operator(
     diagram = suite.NetDiagram(operator)
     diagram.name = operator.name
     diagram.landscape = True
-    _scade_api.add(operator, 'diagram', diagram)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(operator, 'diagram', diagram)  # type: ignore
 
     return operator
 
@@ -516,9 +538,9 @@ def create_graphical_operator(
 def create_textual_operator(
     owner: suite.Package,
     name: str,
-    path: Path,
+    path: Optional[Path],
     visibility: VK = VK.PUBLIC,
-    symbol_file: Path = None,
+    symbol_file: Optional[Path] = None,
     state: bool = False,
 ) -> suite.Operator:
     """
@@ -532,13 +554,13 @@ def create_textual_operator(
         Owner of the operator, which is either the model itself or a package.
     name : str
         Name of the operator.
-    path : Path, default: None
+    path : Path | None, default: None
         Path of the file for storing the operator. This parameter is optional if
         the package's owner is a package. When the path is ``None`` and owner is
         the model, the operator is stored in the model's default file.
     visibility : VK, default: PUBLIC
         Accessibility of the operator.
-    symbol_file : Path, default: None
+    symbol_file : Path | None, default: None
         Path of the file defining the symbol of the operator.
     state : bool, default: False
         Whether the operator is a node.
@@ -552,7 +574,8 @@ def create_textual_operator(
     diagram = suite.TextDiagram(operator)
     diagram.name = operator.name
     diagram.landscape = False
-    _scade_api.add(operator, 'diagram', diagram)
+    # _scade_api is a CPython module defined dynamically
+    _scade_api.add(operator, 'diagram', diagram)  # type: ignore
 
     return operator
 
@@ -560,9 +583,9 @@ def create_textual_operator(
 def create_imported_operator(
     owner: suite.Package,
     name: str,
-    path: Path,
+    path: Optional[Path],
     visibility: VK = VK.PUBLIC,
-    symbol_file: Path = None,
+    symbol_file: Optional[Path] = None,
     state: bool = False,
 ) -> suite.Operator:
     """
@@ -578,13 +601,13 @@ def create_imported_operator(
         Name of the operator.
     file : Path
         File defining the imported operator.
-    path : Path
+    path : Path | None
         Path of the file to store the operator. This parameter is optional if
         the package's owner is a package. When the path is ``None`` and owner
         is the model, the operator isstored in the model's default file.
     visibility : VK, default: Public
         Accessibility of the operator.
-    symbol_file : Path, default: None
+    symbol_file : Path | None, default: None
         Path of the file defining the symbol of the operator.
     state : bool, default: False
         Whether the operator is a node.
@@ -629,7 +652,7 @@ def _add_operator_ios(
     operator: suite.Operator,
     ios: List[suite.LocalVariable],
     vars: List[Tuple[str, TX]],
-    insert_before: suite.LocalVariable,
+    insert_before: Optional[suite.LocalVariable],
 ) -> List[suite.LocalVariable]:
     """Core function to create operator I/Os."""
     context = 'add_operator_ios'
@@ -664,7 +687,9 @@ def _add_operator_ios(
 
 
 def add_operator_inputs(
-    operator: suite.Operator, vars: List[Tuple[str, TX]], insert_before: suite.LocalVariable
+    operator: suite.Operator,
+    vars: List[Tuple[str, TX]],
+    insert_before: Optional[suite.LocalVariable] = None,
 ) -> List[suite.LocalVariable]:
     """
     Add inputs to an operator.
@@ -680,7 +705,7 @@ def add_operator_inputs(
         Input operator.
     vars : List[Tuple[str, TX]]
         Name/type expression trees.
-    insert_before : suite.LocalVariable
+    insert_before : suite.LocalVariable | None, default: None
         Insertion point of the inputs. When this parameter is not ``None``, it is
         an existing input of the operator. The inputs are inserted before this input.
         Otherwise, the inputs are added at the end.
@@ -694,7 +719,9 @@ def add_operator_inputs(
 
 
 def add_operator_hidden(
-    operator: suite.Operator, vars: List[Tuple[str, TX]], insert_before: suite.LocalVariable
+    operator: suite.Operator,
+    vars: List[Tuple[str, TX]],
+    insert_before: Optional[suite.LocalVariable] = None,
 ) -> List[suite.LocalVariable]:
     """
     Add hidden inputs to an operator.
@@ -710,7 +737,7 @@ def add_operator_hidden(
         Input operator.
     vars : List[Tuple[str, TX]]
         Name/type expression trees.
-    insert_before : suite.LocalVariable
+    insert_before : suite.LocalVariable | None, default: None
         Insertion point of the inputs. When this parameter is not ``None``, it is
         an existing hidden input of the operator. The hidden inputs are inserted
         before this input. Otherwise, the hidden inputs are added at the end.
@@ -724,7 +751,9 @@ def add_operator_hidden(
 
 
 def add_operator_outputs(
-    operator: suite.Operator, vars: List[Tuple[str, TX]], insert_before: suite.LocalVariable
+    operator: suite.Operator,
+    vars: List[Tuple[str, TX]],
+    insert_before: Optional[suite.LocalVariable] = None,
 ) -> List[suite.LocalVariable]:
     """
     Add outputs to an operator.
@@ -740,7 +769,7 @@ def add_operator_outputs(
         Input operator.
     vars : List[Tuple[str, TX]]
         Name/type expression trees.
-    insert_before : suite.LocalVariable
+    insert_before : suite.LocalVariable | None, default: None
         Insertion point of the outputs. When this parameter is not ``None``, it is
         an existing output of the operator. The outputs are inserted before this input.
         Otherwise, the outputs are added at the end.
@@ -754,7 +783,9 @@ def add_operator_outputs(
 
 
 def add_operator_parameters(
-    operator: suite.Operator, parameters: List[str], insert_before: suite.Constant
+    operator: suite.Operator,
+    parameters: List[str],
+    insert_before: Optional[suite.Constant] = None,
 ) -> List[suite.Constant]:
     """
     Add parameters to an operator.
@@ -765,7 +796,7 @@ def add_operator_parameters(
         Input operator.
     parameters : List[str]
         Name of the parameters to create.
-    insert_before : suite.Constant
+    insert_before : suite.Constant | None, default: None
         Insertion point of the parameter. When this parameter is not ``None``, it is
         an existing parameter of the operator. The parameters are inserted before
         this parameter. Otherwise, the parameters are added at the end.

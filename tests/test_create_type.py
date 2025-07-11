@@ -37,6 +37,8 @@ Note: Most of the functions of the module are tested though calls to higher
 level functions and thus, are not addressed here.
 """
 
+from typing import List, Union
+
 import pytest
 
 import ansys.scade.apitools.create as create
@@ -45,7 +47,7 @@ from ansys.scade.apitools.create.type import TX, _build_type, _normalize_tree
 from test_utils import get_resources_dir
 
 
-def _pre_process_type_tree(model, tree):
+def _pre_process_type_tree(model, tree: Union[TX, List[TX]]) -> Union[TX, List[TX]]:
     """Replace all occurrences of '@path' by the corresponding model element."""
     if isinstance(tree, list):
         return [_pre_process_type_tree(model, _) for _ in tree]
@@ -180,7 +182,7 @@ class TestCreateType:
     ids = [str(_[0]) for _ in build_type_data]
 
     @pytest.mark.parametrize('tree, expected', build_type_data, ids=ids)
-    def test_build_type(self, project_session, tree, expected):
+    def test_build_type(self, project_session, tree: str, expected):
         _, session = project_session
         tree = _pre_process_type_tree(session.model, tree)
         if isinstance(expected, str):
@@ -189,4 +191,4 @@ class TestCreateType:
         else:
             # robustness
             with pytest.raises(expected):
-                tree = _normalize_tree(tree)
+                _ = _normalize_tree(tree)

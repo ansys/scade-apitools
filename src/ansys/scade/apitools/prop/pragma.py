@@ -46,6 +46,7 @@ Notes\:
 """
 
 import json
+from typing import Optional
 
 import scade.model.suite as suite
 
@@ -96,7 +97,9 @@ def remove_pragma(object_: suite.Object, id: str) -> bool:
     # the modification status
     pragma = object_.find_pragma(id)
     if pragma:
-        pragma.object = None
+        # remove the pragma from its owner
+        # None is a legal value for the underlying implementation
+        pragma.object = None  # type: ignore
         return True
     return False
 
@@ -186,7 +189,7 @@ def set_pragma_text(object_: suite.Object, id: str, text: str) -> bool:
 # Accessors for tool pragmas
 
 
-def find_pragma_tool(object_: suite.Object, id: str, key: str) -> suite.TextPragma:
+def find_pragma_tool(object_: suite.Object, id: str, key: str) -> Optional[suite.TextPragma]:
     r"""
     Get the pragma for an object.
 
@@ -239,12 +242,14 @@ def remove_pragma_tool(object_: suite.Object, id: str, key: str) -> bool:
     """
     pragma = find_pragma_tool(object_, id, key)
     if pragma:
-        pragma.object = None
+        # remove the pragma from its owner
+        # None is a legal value for the underlying implementation
+        pragma.object = None  # type: ignore
         return True
     return False
 
 
-def get_pragma_tool_text(object_: suite.Object, id: str, key: str) -> str:
+def get_pragma_tool_text(object_: suite.Object, id: str, key: str) -> Optional[str]:
     r"""
     Get the text of the pragma for an object.
 

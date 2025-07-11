@@ -39,7 +39,8 @@ def ide_print(*args, sep=' ', end='\n', file=sys.stdout, flush=False):
         if end is None:
             end = '\n'
         text = sep.join([str(_) for _ in args])
-        scade.output(text + end)
+        # scade.output is defined dynamically
+        scade.output(text + end)  # type: ignore
     else:
         builtins.print(*args, sep, end, file, flush)
 
