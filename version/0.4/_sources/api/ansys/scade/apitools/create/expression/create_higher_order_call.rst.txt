@@ -1,0 +1,39 @@
+.. py:function:: create_higher_order_call(operator, args, modifiers, inst_args = None)
+
+   
+   Return the expression tree for a call to an operator.
+
+
+   :Parameters:
+
+       **op** : :obj:`suite.Operator`
+           Operator to call.
+
+       **args** : :obj:`Union`\[:obj:`EX`, :obj:`List`\[:obj:`EX`]]
+           Parameters: expression trees.
+
+       **modifiers** : :obj:`Union`\[:obj:`ET`, :obj:`List`\[:obj:`ET`]]
+           Higher-order constructs: expression trees.
+
+       **inst_args** : :obj:`Union`\[:obj:`EX`, :obj:`List`\[:obj:`EX`]]
+           Instance parameters: expression trees.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

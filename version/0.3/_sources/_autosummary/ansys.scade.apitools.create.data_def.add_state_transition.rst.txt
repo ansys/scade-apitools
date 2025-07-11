@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.add\_state\_transition
+============================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: add_state_transition

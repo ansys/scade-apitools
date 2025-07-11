@@ -1,0 +1,16 @@
+ansys.scade.apitools.create.expression.create_fold
+==================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_fold(size: EX) -> ET
+
+   Return the expression tree for the higher-order construct for fold creation.
+
+   Parameters
+   ----------
+   size : EX
+       Number of iterations.
+
+   Returns
+   -------
+   ET
+

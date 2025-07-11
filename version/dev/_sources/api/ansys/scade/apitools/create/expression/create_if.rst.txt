@@ -1,0 +1,25 @@
+ansys.scade.apitools.create.expression.create_if
+================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_if(condition: EX, then: LX, else_: LX) -> ET
+
+   Return the expression tree for the if-then-else operator.
+
+   Notes
+   -----
+   This is an interface change with respect to the *SCADE Creation Library*.
+   The ``then`` flows and ``else`` flows are now specified in two separate lists.
+
+   Parameters
+   ----------
+   condition : EX
+       Expression tree corresponding to the condition of the selector.
+   then : Union[EX, List[EX]]
+       List of expressions trees when the condition is ``True``.
+   else\_ : Union[EX, List[EX]]
+       List of expressions trees when the condition is ``False``.
+
+   Returns
+   -------
+   ET
+

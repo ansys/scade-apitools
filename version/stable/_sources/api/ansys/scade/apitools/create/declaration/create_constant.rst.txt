@@ -1,0 +1,51 @@
+ansys.scade.apitools.create.declaration.create_constant
+=======================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.create_constant(owner: scade.model.suite.Package, name: str, type_: ansys.scade.apitools.create.type.TX, value: ansys.scade.apitools.create.expression.EX, path: pathlib.Path = None, visibility: VK = VK.PUBLIC) -> scade.model.suite.Constant
+
+   
+   Create a constant.
+
+   A constant has a name, type, and value.
+
+   :Parameters:
+
+       **owner** : :obj:`suite.Package`
+           Owner of the constant, which is either the model itself or a package.
+
+       **name** : :class:`python:str`
+           Name of the constant.
+
+       **type\_** : :obj:`TX`
+           Definition of the type expressed as a type tree.
+
+       **value** : :obj:`EX`
+           Expression tree defining the value.
+
+       **path** : :obj:`Path`, default: :data:`python:None`
+           Path of the file for storing the constant. This parameter is ignored if
+           the owner is a package. When the path is ``None`` and owner is the model,
+           theconstant is stored in the model's default file.
+
+       **visibility** : :obj:`VK`
+           Accessibility of the constant.
+
+
+
+   :Returns:
+
+       :obj:`suite.Constant`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
