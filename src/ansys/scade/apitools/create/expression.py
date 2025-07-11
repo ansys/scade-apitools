@@ -454,14 +454,14 @@ def create_binary(
 
 
 def create_nary(op: str, *args: EX, modifiers: Union[ET, List[ET], None] = None) -> ET:
-    """
+    r"""
     Return the expression tree for a nary operator.
 
     Parameters
     ----------
     op : str
         Nary operator to call: & | | | ^ | # | + | *
-    *args : EX
+    \*args : EX
         Operands: expression trees.
     modifiers : Union[ET, List[ET], None], default: None
         List of higher-order constructs, to be provided as keyword parameter.
@@ -572,7 +572,7 @@ def create_make(
     ----------
     type\_ : suite.NamedType
         Type to instantiate.
-    *args : EX
+    \*args : EX
         Values of the type instance.
     modifiers : Union[ET, List[ET], None], default: None
         List of higher-order constructs, which is provided as a keyword parameter.
@@ -620,7 +620,7 @@ def create_flatten(
 
 
 def create_scalar_to_vector(size: EX, *args: EX) -> ET:
-    """
+    r"""
     Return the expression tree for the scalar-to-vector operator.
 
     Notes
@@ -632,7 +632,7 @@ def create_scalar_to_vector(size: EX, *args: EX) -> ET:
     ----------
     size: EX
         Size of the vector.
-    *args : EX
+    \*args : EX
         Input values.
 
     Returns
@@ -648,12 +648,12 @@ def create_scalar_to_vector(size: EX, *args: EX) -> ET:
 
 
 def create_data_array(*args: EX) -> ET:
-    """
+    r"""
     Return the expression tree for the data array operator.
 
     Parameters
     ----------
-    *args : EX
+    \*args : EX
         Values of the array.
 
     Returns
@@ -667,7 +667,7 @@ def create_data_array(*args: EX) -> ET:
 
 
 def create_data_struct(*args: Tuple[str, EX]) -> ET:
-    """
+    r"""
     Return the expression tree for the data strictire operator.
 
     Notes
@@ -677,7 +677,7 @@ def create_data_struct(*args: Tuple[str, EX]) -> ET:
 
     Parameters
     ----------
-    *args : Tuple[str, EX]
+    \*args : Tuple[str, EX]
         Label/values expression trees.
 
     Returns
@@ -769,12 +769,12 @@ def create_change_ith(flow: EX, path: LX, value: EX) -> ET:
 
 
 def create_pre(*args: EX) -> ET:
-    """
+    r"""
     Return the expression tree for the pre operator.
 
     Parameters
     ----------
-    *args : EX
+    \*args : EX
         Input flows.
 
     Returns
@@ -896,12 +896,12 @@ def create_slice(array: EX, start: EX, end: EX) -> ET:
 
 
 def create_concat(*args: EX) -> ET:
-    """
+    r"""
     Return the expression tree for the concat operator.
 
     Parameters
     ----------
-    *args : EX
+    \*args : EX
         Input arrays to concatenate.
 
     Returns

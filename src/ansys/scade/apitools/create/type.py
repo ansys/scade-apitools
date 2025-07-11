@@ -242,7 +242,7 @@ def create_table(dimensions: Union[EX, List[EX]], type_: TX) -> TT:
 
 
 def create_structure(*fields: Tuple[str, TX]) -> TT:
-    """
+    r"""
     Get the type tree for a structure.
 
     Notes
@@ -252,7 +252,7 @@ def create_structure(*fields: Tuple[str, TX]) -> TT:
 
     Parameters
     ----------
-    *fields : Tuple[str, TX]
+    \*fields : Tuple[str, TX]
         Name/type expression trees.
 
     Returns
