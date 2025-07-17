@@ -390,8 +390,6 @@ def _link_storage_element(
         unit = _create_unit(model, path, persist_as)
         element.storage_unit = unit
         _modified_files.add(unit)
-    else:
-        assert owner != model
     if owner != model:
         _set_modified(owner)
 

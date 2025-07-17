@@ -54,6 +54,7 @@ Notes: The typing is relaxed in this module to ease the constructs.
 
 """
 
+from abc import ABC, abstractmethod
 from typing import List, Optional, Sequence, Tuple, Union
 
 import scade.model.suite as suite
@@ -64,17 +65,17 @@ from .scade import _add_pending_link
 
 
 # expression trees
-class ExpressionTree:
+class ExpressionTree(ABC):
     """Provides the top-level abstract class for expression trees."""
 
     def __init__(self, label: str = ''):
         """Any expression can have a label."""
         self.label = label
 
+    @abstractmethod
     def _build_expression(self, context: suite.Object) -> suite.Expression:
         """Build a SCADE Suite expression from the expression tree."""
-        # must be overridden
-        assert False  # pragma no cover
+        raise NotImplementedError  # pragma no cover
 
     def _set_label(self, expr: suite.Expression, context: suite.Object):
         """Add the label to the expression, if any."""
@@ -1359,7 +1360,6 @@ def _find_expr_id(expr: suite.Expression, index: int) -> Optional[suite.ExprId]:
         return None
 
     # expr is an ExprCall
-    assert isinstance(expr, suite.ExprCall)
     params = expr.parameters
     code = Eck(expr.predef_opr)
     if code == Eck.IF:

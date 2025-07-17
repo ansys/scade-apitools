@@ -76,7 +76,7 @@ def create_folder(
         folder = std.Folder(owner)
         folder.owner = owner
     else:
-        assert isinstance(owner, std.Folder)
+        # assert isinstance(owner, std.Folder)
         folder = std.Folder(owner.project)
         folder.folder = owner
 
@@ -110,7 +110,7 @@ def create_file_ref(owner: Union[std.Project, std.Folder], persist_as: str) -> s
         file_ref = std.FileRef(owner)
         file_ref.owner = owner
     else:
-        assert isinstance(owner, std.Folder)
+        # assert isinstance(owner, std.Folder)
         file_ref = std.FileRef(owner.project)
         file_ref.folder = owner
 

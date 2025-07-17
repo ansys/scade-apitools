@@ -44,6 +44,7 @@ Notes: The typing is relaxed in this module to ease the constructs.
 
 """
 
+from abc import ABC, abstractmethod
 from typing import List, Tuple, Union
 
 import scade.model.suite as suite
@@ -53,13 +54,13 @@ from .scade import _add_pending_link, _get_owner_model
 
 
 # type trees
-class TypeTree:
+class TypeTree(ABC):
     """Provides the top-level abstract class for type trees."""
 
+    @abstractmethod
     def _build_type(self, context: suite.Object) -> suite.Type:
         """Build a SCADE Suite type from the type tree."""
-        # must be overridden
-        assert False  # pragma no cover
+        raise NotImplementedError  # pragma no cover
 
 
 TT = TypeTree

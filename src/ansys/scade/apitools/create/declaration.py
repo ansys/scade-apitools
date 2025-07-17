@@ -288,7 +288,7 @@ def add_enumeration_values(
 
     enumeration = type_.definition
     _check_object(enumeration, 'add_enumeration_values', 'type_', suite.Enumeration)
-    assert isinstance(enumeration, suite.Enumeration)
+    assert isinstance(enumeration, suite.Enumeration)  # nosec B101  # addresses linter
 
     index = len(enumeration.values)  # default
     if insert_before is not None:

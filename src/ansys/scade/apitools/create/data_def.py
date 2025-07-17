@@ -27,6 +27,7 @@ Provides create functions for Scade operator definitions.
 * Behavior
 """
 
+from abc import ABC, abstractmethod
 from enum import Enum
 from typing import List, Optional, Sequence, Tuple, Union
 
@@ -998,7 +999,7 @@ def _build_transition(src: Union[suite.State, suite.Transition], tree: TR) -> su
         transition.target = td.state
         transition.reset_target = td.reset
     else:
-        assert isinstance(td, _Fork)
+        assert isinstance(td, _Fork)  # nosec B101  # addresses linter
         for fork in td.transitions:
             _build_transition(transition, fork)
 
@@ -1044,7 +1045,7 @@ def add_transition_equation(
 # if blocks
 
 
-class IfTree:
+class IfTree(ABC):
     """Provides an intermediate structure for describing the structure of an if block."""
 
     def __init__(self, position: Tuple[float, float] = (0, 0)):
@@ -1053,10 +1054,10 @@ class IfTree:
         # name to be used if a diagram needs to be created
         self.name = ''
 
+    @abstractmethod
     def _build(self, context: suite.Object, diagram: suite.Diagram) -> suite.IfBranch:
         """Build an if branch from the tree."""
-        # must be overridden
-        assert False  # pragma no cover
+        raise NotImplementedError  # pragma no cover
 
 
 IT = IfTree
