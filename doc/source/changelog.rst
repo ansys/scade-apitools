@@ -9,6 +9,22 @@ This document contains the release notes for the project.
 
 .. towncrier release notes start
 
+`0.5.1 <https://github.com/ansys/scade-apitools/releases/tag/v0.5.1>`_ - July 17, 2025
+======================================================================================
+
+.. tab-set::
+
+
+  .. tab-item:: Miscellaneous
+
+    .. list-table::
+        :header-rows: 0
+        :widths: auto
+
+        * - Fix: do not add `_`pattern to case constructs with default.
+          - `#118 <https://github.com/ansys/scade-apitools/pull/118>`_
+
+
 `0.5.0 <https://github.com/ansys/scade-apitools/releases/tag/v0.5.0>`_ - March 24, 2025
 =======================================================================================
 
