@@ -974,14 +974,14 @@ def create_restart(every: EX) -> ET:
 
 
 def create_activate(every: EX, *args: EX) -> ET:
-    """
+    r"""
     Return the expression tree for the higher-order construct for activating with initial values.
 
     Parameters
     ----------
     every : EX
         Input condition.
-    *args: EX
+    \*args: EX
         Initial values.
 
     Returns
@@ -995,14 +995,14 @@ def create_activate(every: EX, *args: EX) -> ET:
 
 
 def create_activate_no_init(every: EX, *args: EX) -> ET:
-    """
+    r"""
     Return the expression tree for the higher-order construct for activating with default values.
 
     Parameters
     ----------
     every : EX
         Input condition.
-    *args: EX
+    \*args: EX
         Default values.
 
     Returns
