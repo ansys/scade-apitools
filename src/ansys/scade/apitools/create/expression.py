@@ -516,7 +516,6 @@ def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: EX = None) ->
         patterns.append(_normalize_tree(pattern))
         inputs.append(_normalize_tree(input))
     if default:
-        patterns.append(_normalize_tree('_'))
         inputs.append(_normalize_tree(default))
     pattern_tree = _create_sequence(patterns)
     input_tree = _create_sequence(inputs)
