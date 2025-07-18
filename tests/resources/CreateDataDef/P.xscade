@@ -3,6 +3,21 @@
 	<declarations>
 		<Package name="P">
 			<declarations>
+				<Constant name="CST">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="false"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/275/7787/2D4C/687a31be791c"/>
+					</pragmas>
+				</Constant>
 				<Type name="Enumeration">
 					<definition>
 						<Enum>

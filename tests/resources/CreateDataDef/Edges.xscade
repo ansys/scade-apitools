@@ -87,6 +87,30 @@
 				<ed:Variable oid="!ed/ce/788E/4884/651d28653215"/>
 			</pragmas>
 		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/27f/7787/2D4C/687a360642f5"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/298/7787/2D4C/687a36516522"/>
+			</pragmas>
+		</Variable>
 	</locals>
 	<data>
 		<!-- a = ['a']; -->
@@ -385,6 +409,70 @@
 				<ed:StateMachine oid="!ed/15a/788E/4884/651d5c7a16f8"/>
 			</pragmas>
 		</StateMachine>
+		<!-- _L3 = (CST) -> (_L4); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<!-- (CST) -> (_L4) -->
+				<InitOp name="1">
+					<value>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="CST"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</value>
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L4"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+				</InitOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/27e/7787/2D4C/687a36066ea5"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = _L3; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L3"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/290/7787/2D4C/687a3638491c"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = false; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<ConstValue value="false"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/297/7787/2D4C/687a36513ea"/>
+			</pragmas>
+		</Equation>
 	</data>
 	<pragmas>
 		<ed:Operator oid="!ed/a8/788E/4884/651d18733969" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/8">
@@ -538,7 +626,7 @@
 								<Point x="15319" y="10028"/>
 							</positions>
 							<labelSize>
-								<Size width="1932" height="370"/>
+								<Size width="1931" height="370"/>
 							</labelSize>
 							<labelPos>
 								<Point x="12091" y="9657"/>
@@ -547,6 +635,46 @@
 								<Point x="12674" y="9657"/>
 							</slashPos>
 						</TransitionGE>
+						<EquationGE presentable="!ed/27e/7787/2D4C/687a36066ea5">
+							<position>
+								<Point x="15319" y="4815"/>
+							</position>
+							<size>
+								<Size width="1005" height="1005"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/290/7787/2D4C/687a3638491c">
+							<position>
+								<Point x="19526" y="5054"/>
+							</position>
+							<size>
+								<Size width="503" height="502"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/27e/7787/2D4C/687a36066ea5" dstEquation="!ed/290/7787/2D4C/687a3638491c">
+							<positions>
+								<Point x="16325" y="5318"/>
+								<Point x="18045" y="5318"/>
+								<Point x="18045" y="5318"/>
+								<Point x="19791" y="5318"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/297/7787/2D4C/687a36513ea">
+							<position>
+								<Point x="13018" y="5159"/>
+							</position>
+							<size>
+								<Size width="211" height="318"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/297/7787/2D4C/687a36513ea" dstEquation="!ed/27e/7787/2D4C/687a36066ea5">
+							<positions>
+								<Point x="13229" y="5318"/>
+								<Point x="14261" y="5318"/>
+								<Point x="14261" y="5318"/>
+								<Point x="15319" y="5318"/>
+							</positions>
+						</Edge>
 					</presentationElements>
 				</NetDiagram>
 				<NetDiagram name="WrongDiagram" landscape="true" format="A4 (210 297)" oid="!ed/114/788E/4884/651d292533a1">
@@ -578,6 +706,9 @@
 					</presentationElements>
 				</NetDiagram>
 			</diagrams>
+			<references>
+				<ConstVarRef path="CST" refOid="!ed/275/7787/2D4C/687a31be791c"/>
+			</references>
 		</ed:Operator>
 	</pragmas>
 </Operator>

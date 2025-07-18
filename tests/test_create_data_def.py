@@ -261,7 +261,7 @@ class TestCreateDataDef:
         # perform the test
         edges = create.add_diagram_missing_edges(diagram)
         assert len(edges) == expected
-        # restore reference to None for pins which have not beeb connected,
+        # restore reference to None for pins which have not been connected,
         # else the model is wrong
         connected_exprs = {_.right_expression for _ in edges}
         for expr in replaced_exprs - connected_exprs:
