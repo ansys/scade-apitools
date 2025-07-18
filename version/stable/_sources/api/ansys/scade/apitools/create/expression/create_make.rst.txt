@@ -1,0 +1,39 @@
+ansys.scade.apitools.create.expression.create_make
+==================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_make(type_: scade.model.suite.NamedType, *args: List[EX], modifiers: Union[ET, List[ET]] = None) -> ET
+
+   
+   Return the expression tree for making a structured value.
+
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.NamedType`
+           Type to instantiate.
+
+       **args** : :obj:`List`\[:obj:`EX`]
+           Values of the type instance.
+
+       **modifiers** : :obj:`Union`\[:obj:`ET`, :obj:`List`\[:obj:`ET`]], default: :data:`python:None`
+           List of higher-order constructs, which is provided as a keyword parameter.
+
+
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

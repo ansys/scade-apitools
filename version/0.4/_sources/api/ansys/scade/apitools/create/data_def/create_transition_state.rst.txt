@@ -1,0 +1,60 @@
+.. py:function:: create_transition_state(trigger, state, reset, priority, points = None, label_position = None, label_size = None, slash_position = None, polyline = True)
+
+   
+   Create an intermediate transition structure that targets a state.
+
+   The graphical properties are expressed 1/100th of mm.
+
+   They are considered if and only if the owning state machine
+   has a graphical representation.
+
+   :Parameters:
+
+       **trigger** : :obj:`EX`
+           Extended expression tree defining the trigger of the transition.
+
+       **state** : :obj:`suite.State`
+           Target state of the transition.
+
+       **reset** : :ref:`bool <python:bltin-boolean-values>`
+           Whether the transition resets the targtet state.
+
+       **priority** : :class:`python:int`
+           Priority of the transition.
+
+       **points** : :obj:`List`\[:obj:`Tuple`\[:class:`python:float`, :class:`python:float`]], default: :data:`python:None`
+           Points of the transition.
+
+       **label_position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Position of the label.
+
+       **label_size** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Size of the label.
+
+       **slash_position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Position of the separator between the trigger and the action
+           of the transition.
+
+       **polyline** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:True`
+           Whether the representation is a list of segments. If ``False``,
+           the representation is a Bezier curve.
+
+   :Returns:
+
+       :obj:`TR`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

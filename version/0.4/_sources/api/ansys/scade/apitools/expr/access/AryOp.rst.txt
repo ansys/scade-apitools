@@ -1,0 +1,61 @@
+
+
+
+
+AryOp
+=====
+
+.. py:class:: AryOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.AryOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides the abstract class for unary, binary, and nary operators.
+
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import AryOp
+
+
+
+
+

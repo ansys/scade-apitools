@@ -1,0 +1,47 @@
+
+
+SliceOp
+=======
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: SliceOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SliceOp.array
+      ~SliceOp.code
+      ~SliceOp.from_index
+      ~SliceOp.name
+      ~SliceOp.to_index
+
+   
+   ..
+      autoattribute:: SliceOp.array
+   ..
+      autoattribute:: SliceOp.code
+   ..
+      autoattribute:: SliceOp.from_index
+   ..
+      autoattribute:: SliceOp.name
+   ..
+      autoattribute:: SliceOp.to_index
+   
+   

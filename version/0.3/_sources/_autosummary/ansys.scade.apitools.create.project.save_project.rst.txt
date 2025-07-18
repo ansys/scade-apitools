@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.project.save\_project
+=================================================
+
+.. currentmodule:: ansys.scade.apitools.create.project
+
+.. autofunction:: save_project
