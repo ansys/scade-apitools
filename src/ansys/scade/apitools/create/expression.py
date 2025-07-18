@@ -92,7 +92,7 @@ EX = Union[bool, int, float, str, suite.ConstVar, suite.NamedType, ET]
 """Extended expression tree to simplify use of the create functions."""
 
 LX = Union[EX, Sequence[EX]]
-"""Extended collection of expression trees to simplify the use of create functions."""
+"""Extended sequence of expression trees to simplify the use of create functions."""
 
 
 class _Value(ET):
