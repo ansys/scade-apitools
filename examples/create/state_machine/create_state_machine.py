@@ -29,6 +29,8 @@ Usage::
 
 """
 
+from typing import List, Tuple
+
 import scade.model.suite as suite
 
 import ansys.scade.apitools.create as create
@@ -43,12 +45,12 @@ def main():
     # assume the operator has a graphical diagram
     diagram = operator.diagrams[0]
     # hard coded SM with three states
-    position = [500, 500]
-    size = [15000, 5000]
+    position = (500, 500)
+    size = (15000, 5000)
     sm = create.add_data_def_state_machine(operator, 'SM', diagram, position, size)
     # states
-    positions = [[6000, 1000], [1000, 4000], [11000, 4000]]
-    size = [4000, 1000]
+    positions = [(6000, 1000), (1000, 4000), (11000, 4000)]
+    size = (4000, 1000)
     states = []
     for kind, display, position in zip(create.SK, create.DK, positions):
         state = create.add_state_machine_state(sm, kind.value, position, size, kind, display)
@@ -59,7 +61,7 @@ def main():
     # create a transition from initial to final
     # let the tool compute default positions/size for the label
     # no help from the tool for the points, we must provide consistent positions
-    points = [(5000, 4500), (6000, 4000), (10000, 5000), (11000, 4500)]
+    points: List[Tuple[float, float]] = [(5000, 4500), (6000, 4000), (10000, 5000), (11000, 4500)]
     tree = create.create_transition_state(True, final, False, 1, points, polyline=False)
     create.add_state_transition(initial, create.TK.STRONG, tree)
 

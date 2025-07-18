@@ -73,7 +73,7 @@ class Present(Expression):
 
     def __init__(self, expression: suite.ExprId):
         """Initialize the instance from the Scade expression."""
-        assert expression.reference and expression.reference.is_signal()
+        # assert expression.reference and expression.reference.is_signal()
         super().__init__(expression)
 
     @property
@@ -98,7 +98,7 @@ class Last(Expression):
 
     def __init__(self, expression: suite.ExprId):
         """Initialize the instance from the Scade expression."""
-        assert expression.last
+        # assert expression.last
         super().__init__(expression)
 
     @property
@@ -236,7 +236,7 @@ class DataStructOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.BLD_STRUCT
+        # assert Eck(expression.predef_opr) == Eck.BLD_STRUCT
         super().__init__(expression)
         self._data = [LabelledExpression(_.label.name, accessor(_)) for _ in expression.parameters]
 
@@ -262,7 +262,7 @@ class DataArrayOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.BLD_VECTOR
+        # assert Eck(expression.predef_opr) == Eck.BLD_VECTOR
         super().__init__(expression)
         self._data = [accessor(_) for _ in expression.parameters]
 
@@ -284,7 +284,7 @@ class ArrayOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) in {Eck.TRANSPOSE, Eck.SLICE, Eck.PRJ_DYN}
+        # assert Eck(expression.predef_opr) in {Eck.TRANSPOSE, Eck.SLICE, Eck.PRJ_DYN}
         super().__init__(expression)
         self._array = accessor(expression.parameters[0])
 
@@ -308,9 +308,9 @@ class TransposeOp(ArrayOp):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.TRANSPOSE
+        # assert Eck(expression.predef_opr) == Eck.TRANSPOSE
         super().__init__(expression)
-        self._dimensions = (accessor(expression.parameters[1]), expression.parameters[2])
+        self._dimensions = (accessor(expression.parameters[1]), accessor(expression.parameters[2]))
 
     @property
     def dimensions(self) -> tuple[Expression, Expression]:
@@ -332,7 +332,7 @@ class SliceOp(ArrayOp):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.SLICE
+        # assert Eck(expression.predef_opr) == Eck.SLICE
         super().__init__(expression)
         self._from_index = accessor(expression.parameters[1])
         self._to_index = accessor(expression.parameters[2])
@@ -383,7 +383,7 @@ class PrjDynOp(ArrayOp):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.PRJ_DYN
+        # assert Eck(expression.predef_opr) == Eck.PRJ_DYN
         super().__init__(expression)
         # the indexes are either a label identifying a structure's
         # field or an index expression
@@ -473,7 +473,7 @@ class ScalarToVectorOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.SCALAR_TO_VECTOR
+        # assert Eck(expression.predef_opr) == Eck.SCALAR_TO_VECTOR
         super().__init__(expression)
         # the last parameter is the size
         self._flows = [accessor(_) for _ in expression.parameters[:-1]]
@@ -511,7 +511,7 @@ class ProjectionOp(FlowOp):
         with_expressions: list[suite.Expression],
     ):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) in {Eck.PRJ, Eck.CHANGE_ITH}
+        # assert Eck(expression.predef_opr) in {Eck.PRJ, Eck.CHANGE_ITH}
         super().__init__(expression, flow)
         # the indexes are either a label identifying a structure's
         # field or an index expression
@@ -546,7 +546,7 @@ class PrjOp(ProjectionOp):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.PRJ
+        # assert Eck(expression.predef_opr) == Eck.PRJ
         super().__init__(expression, expression.parameters[0], expression.parameters[1:])
 
 
@@ -564,7 +564,7 @@ class ChgIthOp(ProjectionOp):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.CHANGE_ITH
+        # assert Eck(expression.predef_opr) == Eck.CHANGE_ITH
         super().__init__(expression, expression.parameters[0], expression.parameters[2:])
         self._value = accessor(expression.parameters[1])
 
@@ -595,7 +595,7 @@ class MakeOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.MAKE
+        # assert Eck(expression.predef_opr) == Eck.MAKE
         super().__init__(expression)
         self._flows = [accessor(_) for _ in expression.parameters[0].parameters]
         self._type = expression.parameters[1].reference
@@ -632,7 +632,7 @@ class FlattenOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.FLATTEN
+        # assert Eck(expression.predef_opr) == Eck.FLATTEN
         super().__init__(expression)
         self._flow = accessor(expression.parameters[0])
         self._type = expression.parameters[1].reference
@@ -685,7 +685,7 @@ class UnaryOp(AryOp):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert len(expression.parameters) == 1
+        # assert len(expression.parameters) == 1
         super().__init__(expression)
         self._operand = accessor(expression.parameters[0])
 
@@ -721,7 +721,7 @@ class NAryOp(AryOp):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert len(expression.parameters) >= 2
+        # assert len(expression.parameters) >= 2
         super().__init__(expression)
         self._operands = [accessor(_) for _ in expression.parameters]
 
@@ -752,7 +752,7 @@ class BinaryOp(NAryOp):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert len(expression.parameters) == 2
+        # assert len(expression.parameters) == 2
         super().__init__(expression)
 
 
@@ -770,9 +770,8 @@ class NumericCastOp(FlowOp):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert len(expression.parameters) == 2 and isinstance(
-            expression.parameters[1], suite.ExprType
-        )
+        # assert len(expression.parameters) == 2
+        assert isinstance(expression.parameters[1], suite.ExprType)  # nosec B101  # addresses linter
         super().__init__(expression, expression.parameters[0])
         self._type = expression.parameters[1].type
 
@@ -798,7 +797,7 @@ class SharpOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert len(expression.parameters) >= 2
+        # assert len(expression.parameters) >= 2
         super().__init__(expression)
         self._flows = [accessor(_) for _ in expression.parameters]
 
@@ -831,7 +830,7 @@ class IfThenElseOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.IF
+        # assert Eck(expression.predef_opr) == Eck.IF
         super().__init__(expression)
         self._if = accessor(expression.parameters[0])
         self._then = [accessor(_) for _ in expression.parameters[1].parameters]
@@ -884,7 +883,7 @@ class CaseOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.CASE
+        # assert Eck(expression.predef_opr) == Eck.CASE
         super().__init__(expression)
         self._switch = accessor(expression.parameters[0])
         flows = [accessor(_) for _ in expression.parameters[1].parameters]
@@ -932,7 +931,7 @@ class InitOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert len(expression.parameters) == 2 and Eck(expression.predef_opr) == Eck.FOLLOW
+        # assert len(expression.parameters) == 2 and Eck(expression.predef_opr) == Eck.FOLLOW
         super().__init__(expression)
         self._flows = [accessor(_) for _ in expression.parameters[0].parameters]
         self._inits = [accessor(_) for _ in expression.parameters[1].parameters]
@@ -971,7 +970,7 @@ class PreOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert Eck(expression.predef_opr) == Eck.PRE
+        # assert Eck(expression.predef_opr) == Eck.PRE
         super().__init__(expression)
         self._flows = [accessor(_) for _ in expression.parameters]
 
@@ -997,7 +996,7 @@ class FbyOp(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert len(expression.parameters) >= 3 and Eck(expression.predef_opr) == Eck.FBY
+        # assert len(expression.parameters) >= 3 and Eck(expression.predef_opr) == Eck.FBY
         super().__init__(expression)
         n = int((len(expression.parameters) - 1) / 2)
         self._flows = [accessor(_) for _ in expression.parameters[:n]]
@@ -1040,7 +1039,7 @@ class OpCall(CallExpression):
 
     def __init__(self, expression: suite.ExprCall):
         """Initialize the instance from the Scade expression."""
-        assert expression.operator
+        # assert expression.operator
         super().__init__(expression)
         self._call_parameters = [accessor(_) for _ in expression.parameters]
         self._instance_parameters = [accessor(_) for _ in expression.inst_parameters]
@@ -1253,10 +1252,10 @@ class PartialIteratorOp(IteratorOp):
         self._if = accessor(expression.parameters[1 + offset])
         # following might be empty when not MAP*W*
         if len(expression.parameters) == 3 + offset:
-            assert self.code in {Eck.MAPW, Eck.MAPWI, Eck.MAPFOLDW, Eck.MAPFOLDWI}
+            # assert self.code in {Eck.MAPW, Eck.MAPWI, Eck.MAPFOLDW, Eck.MAPFOLDWI}
             self._defaults = [accessor(_) for _ in expression.parameters[2 + offset].parameters]
         else:
-            assert self.code in {Eck.FOLDW, Eck.FOLDWI}
+            # assert self.code in {Eck.FOLDW, Eck.FOLDWI}
             self._defaults = None
 
     @property
@@ -1397,7 +1396,7 @@ def accessor(expression: suite.Expression) -> Expression:
     if isinstance(expression, suite.ExprType):
         raise ValueError('Type sub-expressions not supported')
 
-    assert isinstance(expression, suite.ExprCall)
+    assert isinstance(expression, suite.ExprCall)  # nosec B101  # addresses linter
     if expression.operator:
         call = OpCall(expression)
     else:

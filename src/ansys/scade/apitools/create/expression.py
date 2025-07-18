@@ -54,7 +54,8 @@ Notes: The typing is relaxed in this module to ease the constructs.
 
 """
 
-from typing import List, Tuple, Union
+from abc import ABC, abstractmethod
+from typing import List, Optional, Sequence, Tuple, Union
 
 import scade.model.suite as suite
 
@@ -64,17 +65,17 @@ from .scade import _add_pending_link
 
 
 # expression trees
-class ExpressionTree:
+class ExpressionTree(ABC):
     """Provides the top-level abstract class for expression trees."""
 
     def __init__(self, label: str = ''):
         """Any expression can have a label."""
         self.label = label
 
+    @abstractmethod
     def _build_expression(self, context: suite.Object) -> suite.Expression:
         """Build a SCADE Suite expression from the expression tree."""
-        # must be overridden
-        assert False  # pragma no cover
+        raise NotImplementedError  # pragma no cover
 
     def _set_label(self, expr: suite.Expression, context: suite.Object):
         """Add the label to the expression, if any."""
@@ -90,16 +91,16 @@ ET = ExpressionTree
 EX = Union[bool, int, float, str, suite.ConstVar, suite.NamedType, ET]
 """Extended expression tree to simplify use of the create functions."""
 
-LX = Union[EX, List[EX]]
-"""Extended lists of expression trees to simply the use of create functions."""
+LX = Union[EX, Sequence[EX]]
+"""Extended sequence of expression trees to simplify the use of create functions."""
 
 
 class _Value(ET):
     """Provides a literal value."""
 
-    def __init__(self, value: str, kind: str, **kwargs):
+    def __init__(self, value: str, kind: str, label: str = ''):
         """Literal value."""
-        super().__init__(**kwargs)
+        super().__init__(label)
         self.value = value
         self.kind = kind
 
@@ -118,9 +119,9 @@ class _Value(ET):
 class _Reference(ET):
     """Provides a reference to a SCADE constant or variable."""
 
-    def __init__(self, reference: suite.ConstVar, **kwargs):
+    def __init__(self, reference: suite.ConstVar, label: str = ''):
         """Initialize a constant, sensor, or local variable."""
-        super().__init__(**kwargs)
+        super().__init__(label)
         self.reference = reference
 
     def _build_expression(self, context: suite.Object) -> suite.Expression:
@@ -134,9 +135,9 @@ class _Reference(ET):
 class _Type(ET):
     """Creates a reference to a type."""
 
-    def __init__(self, type_: suite.NamedType, **kwargs):
+    def __init__(self, type_: suite.NamedType, label: str = ''):
         """Initialize a named type."""
-        super().__init__(**kwargs)
+        super().__init__(label)
         self.type = type_
 
     def _build_expression(self, context: suite.Object) -> suite.Expression:
@@ -150,9 +151,14 @@ class _Call(ET):
     """Provides the base class for expression calls."""
 
     def __init__(
-        self, args: List[ET], inst_args: List[ET], modifiers: List[ET], name: str = '', **kwargs
+        self,
+        args: List[ET],
+        inst_args: List[ET],
+        modifiers: List[ET],
+        name: str = '',
+        label: str = '',
     ):
-        super().__init__(**kwargs)
+        super().__init__(label)
         self.args = args
         self.inst_args = inst_args
         self.modifiers = modifiers
@@ -177,8 +183,16 @@ class _Call(ET):
 class _Predefined(_Call):
     """Provides a calls to a predefined operator."""
 
-    def __init__(self, eck: Eck, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(
+        self,
+        eck: Eck,
+        args: List[ET],
+        inst_args: List[ET],
+        modifiers: List[ET],
+        name: str = '',
+        label: str = '',
+    ):
+        super().__init__(args, inst_args, modifiers, name, label)
         self.eck = eck
 
     def _build_expression(self, context: suite.Object) -> suite.Expression:
@@ -191,8 +205,16 @@ class _Predefined(_Call):
 class _Operator(_Call):
     """Provides a call to a user operator."""
 
-    def __init__(self, operator: suite.Operator, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(
+        self,
+        operator: suite.Operator,
+        args: List[ET],
+        inst_args: List[ET],
+        modifiers: List[ET],
+        name: str = '',
+        label: str = '',
+    ):
+        super().__init__(args, inst_args, modifiers, name, label)
         self.operator = operator
 
     def _build_expression(self, context: suite.Object) -> suite.Expression:
@@ -208,9 +230,10 @@ def _normalize_tree(any: EX) -> ET:
         return any
     # collections
     if isinstance(any, tuple) or isinstance(any, list):
+        # backward compatibility: use _normalize_trees instead for proper typing
         if len(any) == 0:
             raise EmptyTreeError()
-        return [_normalize_tree(_) for _ in any]
+        return [_normalize_tree(_) for _ in any]  # type: ignore
     # SCADE objects
     if isinstance(any, suite.ConstVar):
         return _Reference(any)
@@ -244,10 +267,17 @@ def _normalize_tree(any: EX) -> ET:
     raise ExprSyntaxError('_normalize_tree', any)
 
 
+def _normalize_trees(any: Sequence[EX]) -> List[ET]:
+    """Normalize a collection of expression trees."""
+    if len(any) == 0:
+        raise EmptyTreeError()
+    return [_normalize_tree(_) for _ in any]
+
+
 def _normalize_tree_ex(any: LX) -> List[ET]:
     """Normalize a collection of expression trees or a single one."""
     if isinstance(any, list):
-        return _normalize_tree(any)
+        return _normalize_trees(any)
     else:
         return [_normalize_tree(any)]
 
@@ -267,10 +297,11 @@ def _build_expression(tree: EX, context: suite.Object) -> suite.Expression:
     -------
     suite.Expression
     """
+    # backward compatibility: allow None expressions
     if tree is None:
         return None
-    tree = _normalize_tree(tree)
-    return tree._build_expression(context)
+    norm_tree = _normalize_tree(tree)
+    return norm_tree._build_expression(context)
 
 
 # association tables
@@ -308,7 +339,7 @@ _binary_ops = {
 _nary_ops = {'&': Eck.AND, '|': Eck.OR, '^': Eck.XOR, '#': Eck.SHARP, '+': Eck.PLUS, '*': Eck.MUL}
 
 
-def create_call(operator: suite.Operator, args: LX, inst_args: LX = None) -> ET:
+def create_call(operator: suite.Operator, args: LX, inst_args: Optional[LX] = None) -> ET:
     """
     Return the expression tree for a call to an operator.
 
@@ -318,7 +349,7 @@ def create_call(operator: suite.Operator, args: LX, inst_args: LX = None) -> ET:
         Operator to call.
     args : Union[EX, List[EX]]
         Parameters: expression trees.
-    inst_args : Union[EX, List[EX]]
+    inst_args : Union[EX, List[EX], None], default: None
         Instance parameters: expression trees.
 
     Returns
@@ -328,13 +359,16 @@ def create_call(operator: suite.Operator, args: LX, inst_args: LX = None) -> ET:
     if inst_args is None:
         inst_args = []
     _check_object(operator, 'create_call', 'operator', suite.Operator)
-    args = _normalize_tree_ex(args) if args else []
-    inst_args = _normalize_tree_ex(inst_args) if inst_args else []
-    return _Operator(operator, args, inst_args, [])
+    norm_args = _normalize_tree_ex(args) if args else []
+    norm_inst_args = _normalize_tree_ex(inst_args) if inst_args else []
+    return _Operator(operator, norm_args, norm_inst_args, [])
 
 
 def create_higher_order_call(
-    operator: suite.Operator, args: LX, modifiers: Union[ET, List[ET]], inst_args: LX = None
+    operator: suite.Operator,
+    args: LX,
+    modifiers: Union[ET, List[ET]],
+    inst_args: Optional[LX] = None,
 ) -> ET:
     """
     Return the expression tree for a call to an operator.
@@ -347,7 +381,7 @@ def create_higher_order_call(
         Parameters: expression trees.
     modifiers : Union[ET, List[ET]]
         Higher-order constructs: expression trees.
-    inst_args : Union[EX, List[EX]]
+    inst_args : Union[EX, List[EX], None], default: None
         Instance parameters: expression trees.
 
     Returns
@@ -357,16 +391,16 @@ def create_higher_order_call(
     if inst_args is None:
         inst_args = []
     _check_object(operator, 'create_higher_order_call', 'operator', suite.Operator)
-    args = _normalize_tree_ex(args) if args else []
-    inst_args = _normalize_tree_ex(inst_args) if inst_args else []
+    norm_args = _normalize_tree_ex(args) if args else []
+    norm_inst_args = _normalize_tree_ex(inst_args) if inst_args else []
     modifiers = modifiers if isinstance(modifiers, list) else [modifiers] if modifiers else []
-    return _Operator(operator, args, inst_args, modifiers)
+    return _Operator(operator, norm_args, norm_inst_args, modifiers)
 
 
 # arithmetic and logic
 
 
-def create_unary(op: str, tree: EX, modifiers: Union[ET, List[ET]] = None) -> ET:
+def create_unary(op: str, tree: EX, modifiers: Union[ET, List[ET], None] = None) -> ET:
     """
     Return the expression tree for a unary operator.
 
@@ -376,7 +410,7 @@ def create_unary(op: str, tree: EX, modifiers: Union[ET, List[ET]] = None) -> ET
         Unary operator to call: - | + | !
     tree : EX
         Operand: expression tree.
-    modifiers : Union[ET, LIST[ET]], default: None
+    modifiers : Union[ET, LIST[ET], None], default: None
         List of higher-order constructs.
 
     Returns
@@ -386,12 +420,14 @@ def create_unary(op: str, tree: EX, modifiers: Union[ET, List[ET]] = None) -> ET
     eck = _unary_ops.get(op)
     if eck is None:
         raise ExprSyntaxError('create_unary', op)
-    tree = _normalize_tree(tree)
+    norm_tree = _normalize_tree(tree)
     modifiers = modifiers if isinstance(modifiers, list) else [modifiers] if modifiers else []
-    return _Predefined(eck, [tree], [], modifiers)
+    return _Predefined(eck, [norm_tree], [], modifiers)
 
 
-def create_binary(op: str, tree1: EX, tree2: EX, modifiers: Union[ET, List[ET]] = None) -> ET:
+def create_binary(
+    op: str, tree1: EX, tree2: EX, modifiers: Union[ET, List[ET], None] = None
+) -> ET:
     """
     Return the expression tree for a binary operator.
 
@@ -403,7 +439,7 @@ def create_binary(op: str, tree1: EX, tree2: EX, modifiers: Union[ET, List[ET]] 
         First operand: expression tree.
     tree2 : EX
         Second operand: expression tree.
-    modifiers : Union[ET, List[ET]], default: None
+    modifiers : Union[ET, List[ET], None], default: None
         List of higher-order constructs.
 
     Returns
@@ -413,22 +449,22 @@ def create_binary(op: str, tree1: EX, tree2: EX, modifiers: Union[ET, List[ET]] 
     eck = _binary_ops.get(op)
     if eck is None:
         raise ExprSyntaxError('create_binary', op)
-    tree1, tree2 = _normalize_tree((tree1, tree2))
+    norm_tree1, norm_tree2 = _normalize_trees((tree1, tree2))
     modifiers = modifiers if isinstance(modifiers, list) else [modifiers] if modifiers else []
-    return _Predefined(eck, [tree1, tree2], [], modifiers)
+    return _Predefined(eck, [norm_tree1, norm_tree2], [], modifiers)
 
 
-def create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None) -> ET:
-    """
+def create_nary(op: str, *args: EX, modifiers: Union[ET, List[ET], None] = None) -> ET:
+    r"""
     Return the expression tree for a nary operator.
 
     Parameters
     ----------
     op : str
         Nary operator to call: & | | | ^ | # | + | *
-    args : List[EX]
+    \*args : EX
         Operands: expression trees.
-    modifiers : Union[ET, List[ET]], default: None
+    modifiers : Union[ET, List[ET], None], default: None
         List of higher-order constructs, to be provided as keyword parameter.
 
     Returns
@@ -440,9 +476,9 @@ def create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None)
         raise ExprSyntaxError('create_nary', op)
     if len(args) < 2:
         raise ExprSyntaxError('create_nary', args)
-    args = _normalize_tree(args)
+    norm_args = _normalize_trees(args)
     modifiers = modifiers if isinstance(modifiers, list) else [modifiers] if modifiers else []
-    return _Predefined(eck, args, [], modifiers)
+    return _Predefined(eck, norm_args, [], modifiers)
 
 
 # selectors
@@ -476,14 +512,14 @@ def create_if(condition: EX, then: LX, else_: LX) -> ET:
     if length == 0 or length != len(norm_else):
         raise ExprSyntaxError('create_if', then)
 
-    condition = _normalize_tree(condition)
+    norm_condition = _normalize_tree(condition)
     then_tree = _create_sequence(norm_then)
     else_tree = _create_sequence(norm_else)
 
-    return _Predefined(Eck.IF, [condition, then_tree, else_tree], [], [])
+    return _Predefined(Eck.IF, [norm_condition, then_tree, else_tree], [], [])
 
 
-def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: EX = None) -> ET:
+def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: Optional[EX] = None) -> ET:
     """
     Return the expression tree for the case operator.
 
@@ -499,7 +535,7 @@ def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: EX = None) ->
         Expression tree corresponding to the selector.
     cases : List[Tuple[EX, EX]]
         Pattern/values expression trees.
-    default: EX, default:None
+    default: EX | None, default:None
         Default value.
 
     Returns
@@ -509,7 +545,7 @@ def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: EX = None) ->
     if len(cases) == 0:
         raise ExprSyntaxError('create_case', cases)
 
-    selector = _normalize_tree(selector)
+    norm_selector = _normalize_tree(selector)
     patterns = []
     inputs = []
     for pattern, input in cases:
@@ -520,14 +556,14 @@ def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: EX = None) ->
     pattern_tree = _create_sequence(patterns)
     input_tree = _create_sequence(inputs)
 
-    return _Predefined(Eck.CASE, [selector, input_tree, pattern_tree], [], [])
+    return _Predefined(Eck.CASE, [norm_selector, input_tree, pattern_tree], [], [])
 
 
 # types
 
 
 def create_make(
-    type_: suite.NamedType, *args: List[EX], modifiers: Union[ET, List[ET]] = None
+    type_: suite.NamedType, *args: EX, modifiers: Union[ET, List[ET], None] = None
 ) -> ET:
     r"""
     Return the expression tree for making a structured value.
@@ -536,9 +572,9 @@ def create_make(
     ----------
     type\_ : suite.NamedType
         Type to instantiate.
-    args : List[EX]
+    \*args : EX
         Values of the type instance.
-    modifiers : Union[ET, List[ET]], default: None
+    modifiers : Union[ET, List[ET], None], default: None
         List of higher-order constructs, which is provided as a keyword parameter.
 
     Returns
@@ -548,12 +584,15 @@ def create_make(
     if len(args) < 1:
         raise ExprSyntaxError('create_make', args)
     _check_object(type_, 'create_make', 'type', suite.NamedType)
-    args, type_ = _normalize_tree((args, type_))
+    norm_type = _normalize_tree(type_)
+    norm_args = _normalize_trees(args)
     modifiers = modifiers if isinstance(modifiers, list) else [modifiers] if modifiers else []
-    return _Predefined(Eck.MAKE, [_create_sequence(args), type_], [], modifiers)
+    return _Predefined(Eck.MAKE, [_create_sequence(norm_args), norm_type], [], modifiers)
 
 
-def create_flatten(type_: suite.NamedType, arg: EX, modifiers: Union[ET, List[ET]] = None) -> ET:
+def create_flatten(
+    type_: suite.NamedType, arg: EX, modifiers: Union[ET, List[ET], None] = None
+) -> ET:
     r"""
     Return the expression tree for flattening a structured value.
 
@@ -563,7 +602,7 @@ def create_flatten(type_: suite.NamedType, arg: EX, modifiers: Union[ET, List[ET
         Type to instantiate.
     arg : EX
         Value to flatten.
-    modifiers : Union[ET, List[ET]], default: None
+    modifiers : Union[ET, List[ET], None], default: None
         List of higher-order constructs.
 
     Returns
@@ -571,16 +610,17 @@ def create_flatten(type_: suite.NamedType, arg: EX, modifiers: Union[ET, List[ET
     ET
     """
     _check_object(type_, 'create_flatten', 'type', suite.NamedType)
-    arg, type_ = _normalize_tree((arg, type_))
+    norm_type = _normalize_tree(type_)
+    norm_arg = _normalize_tree(arg)
     modifiers = modifiers if isinstance(modifiers, list) else [modifiers] if modifiers else []
-    return _Predefined(Eck.FLATTEN, [arg, type_], [], modifiers)
+    return _Predefined(Eck.FLATTEN, [norm_arg, norm_type], [], modifiers)
 
 
 # structures
 
 
-def create_scalar_to_vector(size: EX, *args: List[EX]) -> ET:
-    """
+def create_scalar_to_vector(size: EX, *args: EX) -> ET:
+    r"""
     Return the expression tree for the scalar-to-vector operator.
 
     Notes
@@ -592,7 +632,7 @@ def create_scalar_to_vector(size: EX, *args: List[EX]) -> ET:
     ----------
     size: EX
         Size of the vector.
-    args : List[EX]
+    \*args : EX
         Input values.
 
     Returns
@@ -601,19 +641,19 @@ def create_scalar_to_vector(size: EX, *args: List[EX]) -> ET:
     """
     if len(args) == 0:
         raise ExprSyntaxError('create_scalar_to_vector', args)
-    size = _normalize_tree(size)
-    args = _normalize_tree(args)
+    norm_size = _normalize_tree(size)
+    norm_args = _normalize_trees(args)
     # the size must be the last parameter
-    return _Predefined(Eck.SCALAR_TO_VECTOR, list(args) + [size], [], [])
+    return _Predefined(Eck.SCALAR_TO_VECTOR, norm_args + [norm_size], [], [])
 
 
-def create_data_array(*args: List[EX]) -> ET:
-    """
+def create_data_array(*args: EX) -> ET:
+    r"""
     Return the expression tree for the data array operator.
 
     Parameters
     ----------
-    args : List[EX]
+    \*args : EX
         Values of the array.
 
     Returns
@@ -622,12 +662,12 @@ def create_data_array(*args: List[EX]) -> ET:
     """
     if len(args) == 0:
         raise ExprSyntaxError('create_data_array', args)
-    args = _normalize_tree(args)
-    return _Predefined(Eck.BLD_VECTOR, args, [], [])
+    norm_args = _normalize_trees(args)
+    return _Predefined(Eck.BLD_VECTOR, norm_args, [], [])
 
 
-def create_data_struct(*args: List[Tuple[str, EX]]) -> ET:
-    """
+def create_data_struct(*args: Tuple[str, EX]) -> ET:
+    r"""
     Return the expression tree for the data strictire operator.
 
     Notes
@@ -637,7 +677,7 @@ def create_data_struct(*args: List[Tuple[str, EX]]) -> ET:
 
     Parameters
     ----------
-    args : List[Tuple[str, EX]]
+    \*args : Tuple[str, EX]
         Label/values expression trees.
 
     Returns
@@ -673,9 +713,9 @@ def create_prj(flow: EX, path: LX) -> ET:
     -------
     ET
     """
-    flow = _normalize_tree(flow)
-    path = _normalize_tree_ex(path)
-    parameters = [flow] + path
+    norm_flow = _normalize_tree(flow)
+    norm_path = _normalize_tree_ex(path)
+    parameters = [norm_flow] + norm_path
     return _Predefined(Eck.PRJ, parameters, [], [])
 
 
@@ -696,9 +736,9 @@ def create_prj_dyn(flow: EX, path: LX, default: EX) -> ET:
     -------
     ET
     """
-    flow, default = _normalize_tree((flow, default))
-    path = _normalize_tree_ex(path)
-    parameters = [flow] + path + [default]
+    norm_flow, norm_default = _normalize_trees((flow, default))
+    norm_path = _normalize_tree_ex(path)
+    parameters = [norm_flow] + norm_path + [norm_default]
     return _Predefined(Eck.PRJ_DYN, parameters, [], [])
 
 
@@ -719,22 +759,22 @@ def create_change_ith(flow: EX, path: LX, value: EX) -> ET:
     -------
     ET
     """
-    flow, value = _normalize_tree((flow, value))
-    path = _normalize_tree_ex(path)
-    parameters = [flow, value] + path
+    norm_flow, norm_value = _normalize_trees((flow, value))
+    norm_path = _normalize_tree_ex(path)
+    parameters = [norm_flow, norm_value] + norm_path
     return _Predefined(Eck.CHANGE_ITH, parameters, [], [])
 
 
 # time
 
 
-def create_pre(*args: List[EX]) -> ET:
-    """
+def create_pre(*args: EX) -> ET:
+    r"""
     Return the expression tree for the pre operator.
 
     Parameters
     ----------
-    args : List[EX]
+    \*args : EX
         Input flows.
 
     Returns
@@ -743,8 +783,8 @@ def create_pre(*args: List[EX]) -> ET:
     """
     if len(args) == 0:
         raise ExprSyntaxError('create_pre', '')
-    args = _normalize_tree(args)
-    return _Predefined(Eck.PRE, args, [], [])
+    norm_args = _normalize_trees(args)
+    return _Predefined(Eck.PRE, norm_args, [], [])
 
 
 def create_init(flows: LX, inits: LX) -> ET:
@@ -807,8 +847,8 @@ def create_fby(flows: LX, delay: EX, inits: LX) -> ET:
     if length == 0 or length != len(norm_inits):
         raise ExprSyntaxError('create_fby', flows)
 
-    delay = _normalize_tree(delay)
-    parameters = norm_flows + [delay] + norm_inits
+    norm_delay = _normalize_tree(delay)
+    parameters = norm_flows + [norm_delay] + norm_inits
     return _Predefined(Eck.FBY, parameters, [], [])
 
 
@@ -827,8 +867,8 @@ def create_times(number: EX, flow: EX) -> ET:
     -------
     ET
     """
-    number, flow = _normalize_tree((number, flow))
-    return _Predefined(Eck.TIMES, [number, flow], [], [])
+    norm_number, norm_flow = _normalize_trees((number, flow))
+    return _Predefined(Eck.TIMES, [norm_number, norm_flow], [], [])
 
 
 # array
@@ -851,17 +891,17 @@ def create_slice(array: EX, start: EX, end: EX) -> ET:
     -------
     ET
     """
-    array, start, end = _normalize_tree((array, start, end))
-    return _Predefined(Eck.SLICE, [array, start, end], [], [])
+    norm_array, norm_start, norm_end = _normalize_trees((array, start, end))
+    return _Predefined(Eck.SLICE, [norm_array, norm_start, norm_end], [], [])
 
 
-def create_concat(*args: List[EX]) -> ET:
-    """
+def create_concat(*args: EX) -> ET:
+    r"""
     Return the expression tree for the concat operator.
 
     Parameters
     ----------
-    args : List[EX]
+    \*args : EX
         Input arrays to concatenate.
 
     Returns
@@ -870,8 +910,8 @@ def create_concat(*args: List[EX]) -> ET:
     """
     if len(args) < 2:
         raise ExprSyntaxError('create_concat', args)
-    args = _normalize_tree(args)
-    return _Predefined(Eck.CONCAT, args, [], [])
+    norm_args = _normalize_trees(args)
+    return _Predefined(Eck.CONCAT, norm_args, [], [])
 
 
 def create_reverse(flow: EX) -> ET:
@@ -887,8 +927,8 @@ def create_reverse(flow: EX) -> ET:
     -------
     ET
     """
-    flow = _normalize_tree(flow)
-    return _Predefined(Eck.REVERSE, [flow], [], [])
+    norm_flow = _normalize_tree(flow)
+    return _Predefined(Eck.REVERSE, [norm_flow], [], [])
 
 
 def create_transpose(array: EX, dim1: EX, dim2: EX) -> ET:
@@ -908,8 +948,8 @@ def create_transpose(array: EX, dim1: EX, dim2: EX) -> ET:
     -------
     ET
     """
-    array, dim1, dim2 = _normalize_tree((array, dim1, dim2))
-    return _Predefined(Eck.TRANSPOSE, [array, dim1, dim2], [], [])
+    norm_array, norm_dim1, norm_dim2 = _normalize_trees((array, dim1, dim2))
+    return _Predefined(Eck.TRANSPOSE, [norm_array, norm_dim1, norm_dim2], [], [])
 
 
 # activation
@@ -928,50 +968,50 @@ def create_restart(every: EX) -> ET:
     -------
     ET
     """
-    every = _normalize_tree(every)
-    return _Predefined(Eck.RESTART, [every], [], [])
+    norm_every = _normalize_tree(every)
+    return _Predefined(Eck.RESTART, [norm_every], [], [])
 
 
-def create_activate(every: EX, *args: List[EX]) -> ET:
-    """
+def create_activate(every: EX, *args: EX) -> ET:
+    r"""
     Return the expression tree for the higher-order construct for activating with initial values.
 
     Parameters
     ----------
     every : EX
         Input condition.
-    args: List[EX]
+    \*args: EX
         Initial values.
 
     Returns
     -------
     ET
     """
-    every = _normalize_tree(every)
+    norm_every = _normalize_tree(every)
     # args may be empty
-    args = _normalize_tree(args) if args else args
-    return _Predefined(Eck.ACTIVATE, [every, _create_sequence(args)], [], [])
+    norm_args = _normalize_trees(args) if args else []
+    return _Predefined(Eck.ACTIVATE, [norm_every, _create_sequence(norm_args)], [], [])
 
 
-def create_activate_no_init(every: EX, *args: List[EX]) -> ET:
-    """
+def create_activate_no_init(every: EX, *args: EX) -> ET:
+    r"""
     Return the expression tree for the higher-order construct for activating with default values.
 
     Parameters
     ----------
     every : EX
         Input condition.
-    args: List[EX]
+    \*args: EX
         Default values.
 
     Returns
     -------
     ET
     """
-    every = _normalize_tree(every)
+    norm_every = _normalize_tree(every)
     # args may be empty
-    args = _normalize_tree(args) if args else args
-    return _Predefined(Eck.ACTIVATE_NOINIT, [every, _create_sequence(args)], [], [])
+    norm_args = _normalize_trees(args) if args else []
+    return _Predefined(Eck.ACTIVATE_NOINIT, [norm_every, _create_sequence(norm_args)], [], [])
 
 
 # iterators
@@ -990,8 +1030,8 @@ def create_map(size: EX) -> ET:
     -------
     ET
     """
-    size = _normalize_tree(size)
-    return _Predefined(Eck.MAP, [size], [], [])
+    norm_size = _normalize_tree(size)
+    return _Predefined(Eck.MAP, [norm_size], [], [])
 
 
 def create_mapi(size: EX) -> ET:
@@ -1007,8 +1047,8 @@ def create_mapi(size: EX) -> ET:
     -------
     ET
     """
-    size = _normalize_tree(size)
-    return _Predefined(Eck.MAPI, [size], [], [])
+    norm_size = _normalize_tree(size)
+    return _Predefined(Eck.MAPI, [norm_size], [], [])
 
 
 def create_fold(size: EX) -> ET:
@@ -1024,8 +1064,8 @@ def create_fold(size: EX) -> ET:
     -------
     ET
     """
-    size = _normalize_tree(size)
-    return _Predefined(Eck.FOLD, [size], [], [])
+    norm_size = _normalize_tree(size)
+    return _Predefined(Eck.FOLD, [norm_size], [], [])
 
 
 def create_foldi(size: EX) -> ET:
@@ -1041,8 +1081,8 @@ def create_foldi(size: EX) -> ET:
     -------
     ET
     """
-    size = _normalize_tree(size)
-    return _Predefined(Eck.FOLDI, [size], [], [])
+    norm_size = _normalize_tree(size)
+    return _Predefined(Eck.FOLDI, [norm_size], [], [])
 
 
 def create_mapfold(size: EX, acc: EX) -> ET:
@@ -1060,8 +1100,8 @@ def create_mapfold(size: EX, acc: EX) -> ET:
     -------
     ET
     """
-    size, acc = _normalize_tree((size, acc))
-    return _Predefined(Eck.MAPFOLD, [size, acc], [], [])
+    norm_size, norm_acc = _normalize_trees((size, acc))
+    return _Predefined(Eck.MAPFOLD, [norm_size, norm_acc], [], [])
 
 
 def create_mapfoldi(size: EX, acc: EX) -> ET:
@@ -1080,8 +1120,8 @@ def create_mapfoldi(size: EX, acc: EX) -> ET:
     -------
     ET
     """
-    size, acc = _normalize_tree((size, acc))
-    return _Predefined(Eck.MAPFOLDI, [size, acc], [], [])
+    norm_size, norm_acc = _normalize_trees((size, acc))
+    return _Predefined(Eck.MAPFOLDI, [norm_size, norm_acc], [], [])
 
 
 def create_foldw(size: EX, condition: EX) -> ET:
@@ -1099,8 +1139,8 @@ def create_foldw(size: EX, condition: EX) -> ET:
     -------
     ET
     """
-    size, condition = _normalize_tree((size, condition))
-    return _Predefined(Eck.FOLDW, [size, condition], [], [])
+    norm_size, norm_condition = _normalize_trees((size, condition))
+    return _Predefined(Eck.FOLDW, [norm_size, norm_condition], [], [])
 
 
 def create_foldwi(size: EX, condition: EX) -> ET:
@@ -1118,8 +1158,8 @@ def create_foldwi(size: EX, condition: EX) -> ET:
     -------
     ET
     """
-    size, condition = _normalize_tree((size, condition))
-    return _Predefined(Eck.FOLDWI, [size, condition], [], [])
+    norm_size, norm_condition = _normalize_trees((size, condition))
+    return _Predefined(Eck.FOLDWI, [norm_size, norm_condition], [], [])
 
 
 def create_mapw(size: EX, condition: EX, default: EX) -> ET:
@@ -1139,8 +1179,8 @@ def create_mapw(size: EX, condition: EX, default: EX) -> ET:
     -------
     ET
     """
-    size, condition, default = _normalize_tree((size, condition, default))
-    return _Predefined(Eck.MAPW, [size, condition, default], [], [])
+    norm_size, norm_condition, norm_default = _normalize_trees((size, condition, default))
+    return _Predefined(Eck.MAPW, [norm_size, norm_condition, norm_default], [], [])
 
 
 def create_mapwi(size: EX, condition: EX, default: EX) -> ET:
@@ -1160,8 +1200,8 @@ def create_mapwi(size: EX, condition: EX, default: EX) -> ET:
     -------
     ET
     """
-    size, condition, default = _normalize_tree((size, condition, default))
-    return _Predefined(Eck.MAPWI, [size, condition, default], [], [])
+    norm_size, norm_condition, norm_default = _normalize_trees((size, condition, default))
+    return _Predefined(Eck.MAPWI, [norm_size, norm_condition, norm_default], [], [])
 
 
 def create_mapfoldw(size: EX, acc: EX, condition: EX, default: EX) -> ET:
@@ -1183,8 +1223,10 @@ def create_mapfoldw(size: EX, acc: EX, condition: EX, default: EX) -> ET:
     -------
     ET
     """
-    size, acc, condition, default = _normalize_tree((size, acc, condition, default))
-    return _Predefined(Eck.MAPFOLDW, [size, acc, condition, default], [], [])
+    norm_size, norm_acc, norm_condition, norm_default = _normalize_trees(
+        (size, acc, condition, default)
+    )
+    return _Predefined(Eck.MAPFOLDW, [norm_size, norm_acc, norm_condition, norm_default], [], [])
 
 
 def create_mapfoldwi(size: EX, acc: EX, condition: EX, default: EX) -> ET:
@@ -1206,15 +1248,17 @@ def create_mapfoldwi(size: EX, acc: EX, condition: EX, default: EX) -> ET:
     -------
     ET
     """
-    size, acc, condition, default = _normalize_tree((size, acc, condition, default))
-    return _Predefined(Eck.MAPFOLDWI, [size, acc, condition, default], [], [])
+    norm_size, norm_acc, norm_condition, norm_default = _normalize_trees(
+        (size, acc, condition, default)
+    )
+    return _Predefined(Eck.MAPFOLDWI, [norm_size, norm_acc, norm_condition, norm_default], [], [])
 
 
 # ----------------------------------------------------------------------------
 # Helpers (private)
 
 
-def _create_sequence(flows: List[EX]) -> ET:
+def _create_sequence(flows: List[ET]) -> ET:
     """Create an expression tree for a group of flows."""
     return _Predefined(Eck.SEQ_EXPR, flows, [], [])
 
@@ -1286,7 +1330,7 @@ def _is_bool(value: str) -> bool:
 
 # TODO: modifiers
 # TODO: move to query
-def _find_expr_id(expr: suite.Expression, index: int) -> suite.ExprId:
+def _find_expr_id(expr: suite.Expression, index: int) -> Optional[suite.ExprId]:
     """
     Return the ``ExprId`` instance corresponding to the pin index of an equation.
 

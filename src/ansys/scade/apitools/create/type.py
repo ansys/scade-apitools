@@ -44,6 +44,7 @@ Notes: The typing is relaxed in this module to ease the constructs.
 
 """
 
+from abc import ABC, abstractmethod
 from typing import List, Tuple, Union
 
 import scade.model.suite as suite
@@ -53,13 +54,13 @@ from .scade import _add_pending_link, _get_owner_model
 
 
 # type trees
-class TypeTree:
+class TypeTree(ABC):
     """Provides the top-level abstract class for type trees."""
 
+    @abstractmethod
     def _build_type(self, context: suite.Object) -> suite.Type:
         """Build a SCADE Suite type from the type tree."""
-        # must be overridden
-        assert False  # pragma no cover
+        raise NotImplementedError  # pragma no cover
 
 
 TT = TypeTree
@@ -241,8 +242,8 @@ def create_table(dimensions: Union[EX, List[EX]], type_: TX) -> TT:
     return _Table(dimensions, type_)
 
 
-def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
-    """
+def create_structure(*fields: Tuple[str, TX]) -> TT:
+    r"""
     Get the type tree for a structure.
 
     Notes
@@ -252,7 +253,7 @@ def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
 
     Parameters
     ----------
-    fields : List[Tuple[str, TX]]
+    \*fields : Tuple[str, TX]
         Name/type expression trees.
 
     Returns
@@ -261,8 +262,8 @@ def create_structure(*fields: List[Tuple[str, TX]]) -> TT:
     """
     if len(fields) == 0:
         raise _syntax_error('create_structure', fields)
-    fields = [(_[0], _normalize_tree(_[1])) for _ in fields]
-    return _Structure(fields)
+    normalized_fields = [(_[0], _normalize_tree(_[1])) for _ in fields]
+    return _Structure(normalized_fields)
 
 
 # ----------------------------------------------------------------------------

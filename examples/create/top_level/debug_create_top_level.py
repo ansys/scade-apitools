@@ -44,6 +44,7 @@ if target_dir.exists():
 copytree(source_dir, target_dir)
 
 # declare the duplicated model
+assert declare_project  # nosec
 declare_project(str(target_dir / 'Project.etp'))
 
 # regular script

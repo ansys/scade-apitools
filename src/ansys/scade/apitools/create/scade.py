@@ -31,7 +31,7 @@ Provides helpers for SCADE model creation functions.
 from enum import Enum
 from os.path import abspath, relpath
 from pathlib import Path
-from typing import Union
+from typing import List, Optional, Union
 
 import scade.model.project.stdproject as std
 import scade.model.suite as suite
@@ -82,7 +82,7 @@ def save_all():
 def add_element_to_project(
     project: std.Project,
     element: suite.StorageElement,
-    folder: std.Folder = None,
+    folder: Optional[std.Folder] = None,
     default: bool = True,
 ) -> std.FileRef:
     """
@@ -107,7 +107,7 @@ def add_element_to_project(
         Element with storage unit to add to the project.
         If the storage unit is not a root element, the added file is
         tagged as ``NONROOT`` for SCADE.
-    folder : std.Folder, default: None
+    folder : std.Folder | None, default: None
         Parent folder of the file to add to the project.
     default : bool, default: True
         Whether to add the file to one of the default folders
@@ -119,7 +119,7 @@ def add_element_to_project(
     """
     unit = element.defined_in
     path = unit.sao_file_name
-    file_ref = _find_file_ref(project, Path(path))
+    file_ref = _find_file_ref(project, path)
     if not file_ref:
         if folder:
             parent = folder
@@ -142,7 +142,7 @@ def add_imported_to_project(
     project: std.Project,
     element: Union[suite.NamedType, suite.Operator],
     path: str,
-    folder: std.Folder = None,
+    folder: Optional[std.Folder] = None,
     default: bool = True,
 ) -> std.FileRef:
     """
@@ -166,8 +166,8 @@ def add_imported_to_project(
         Imported element.
     path : str
         Path of the file to add to the project.
-    folder : std.Folder
-        Parent folder of the file to add to the project.
+    folder : std.Folder | None
+        Parent folder of the file to add to the project, default: None.
     default : bool, default: True
         Whether to add the file is added to the default folder
         for SCADE Simulation files, according to the element.
@@ -195,7 +195,7 @@ def add_imported_to_project(
 
 
 def add_simulation_file_to_project(
-    project: std.Project, path: str, kind: Sfk, folder: std.Folder = None, default=True
+    project: std.Project, path: str, kind: Sfk, folder: Optional[std.Folder] = None, default=True
 ) -> std.FileRef:
     """
     Add a file to the project and tag it appropriately for the SCADE simulation.
@@ -218,7 +218,7 @@ def add_simulation_file_to_project(
         Path of the file to be added to the project.
     kind: Sfk
         Kind of the added file.
-    folder : std.Folder
+    folder : std.Folder | None, default: None
         Parent folder of the file to add to the project.
     default : bool
         When True, the file is added to the default folder
@@ -309,7 +309,8 @@ def _get_model_project(model: suite.Model) -> std.Project:
     std.Project
     """
     pathname = abspath(model.descriptor.model_file_name)
-    return next((_ for _ in std.get_roots() if abspath(_.pathname) == pathname), None)
+    projects: List[std.Project] = std.get_roots()
+    return next((_ for _ in projects if abspath(_.pathname) == pathname), None)
 
 
 def _get_default_file(model: suite.Model) -> Path:
@@ -343,7 +344,11 @@ def _get_default_file(model: suite.Model) -> Path:
     return path
 
 
-def _link_storage_element(owner: suite.Package, element: suite.StorageElement, path: Path):
+def _link_storage_element(
+    owner: suite.Package,
+    element: suite.StorageElement,
+    path: Optional[Path] = None,
+):
     """
     Link a storage element to the storage unit specified by a path.
 
@@ -361,7 +366,7 @@ def _link_storage_element(owner: suite.Package, element: suite.StorageElement, p
         Owner of the storage element.
     element : suite.StorageELement
         Element to add to the storage unit.
-    path : Path
+    path : Path | None, default: None
         Path of the storage unit.
 
     Returns
@@ -382,11 +387,9 @@ def _link_storage_element(owner: suite.Package, element: suite.StorageElement, p
             persist_as = str(Path(relpath(abspath(path), directory)).with_suffix(''))
         else:
             persist_as = ''
-        unit = _create_unit(model, str(path), persist_as)
+        unit = _create_unit(model, path, persist_as)
         element.storage_unit = unit
         _modified_files.add(unit)
-    else:
-        assert owner != model
     if owner != model:
         _set_modified(owner)
 
@@ -420,7 +423,8 @@ def _link_pendings():
     global _pending_links
 
     for object_, role, link in _pending_links:
-        _scade_api.set(object_, role, link)
+        # _scade_api is a CPython module defined dynamically
+        _scade_api.set(object_, role, link)  # type: ignore
     _pending_links = []
 
 

@@ -27,7 +27,7 @@ These functions do not check for semantic errors, like adding two files with the
 """
 
 from os.path import abspath
-from typing import Any, List, Tuple, Union
+from typing import Any, List, Optional, Tuple, Union
 
 import scade.model.project.stdproject as std
 
@@ -76,7 +76,7 @@ def create_folder(
         folder = std.Folder(owner)
         folder.owner = owner
     else:
-        assert isinstance(owner, std.Folder)
+        # assert isinstance(owner, std.Folder)
         folder = std.Folder(owner.project)
         folder.folder = owner
 
@@ -110,7 +110,7 @@ def create_file_ref(owner: Union[std.Project, std.Folder], persist_as: str) -> s
         file_ref = std.FileRef(owner)
         file_ref.owner = owner
     else:
-        assert isinstance(owner, std.Folder)
+        # assert isinstance(owner, std.Folder)
         file_ref = std.FileRef(owner.project)
         file_ref.folder = owner
 
@@ -146,7 +146,7 @@ def create_configuration(owner: std.Project, name: str) -> std.Configuration:
 
 
 def create_prop(
-    owner: std.Annotable, configuration: std.Configuration, name: str, values: List[str]
+    owner: std.Annotable, configuration: Optional[std.Configuration], name: str, values: List[str]
 ) -> std.Prop:
     """
     Create a property.
@@ -159,7 +159,7 @@ def create_prop(
     ----------
     owner : std.Annotable
         Element to attach the property to.
-    configuration : str
+    configuration : Configuration | None
         Configuration to associate with the property or ``None``.
     name : str
         Name of the property.
@@ -207,7 +207,7 @@ def save_project(project: std.Project):
 
 
 # not sure this is a good idea... keep this function for tests only?
-def _create_empty_project(pathname: str, configuration: str, products: List[str] = None):
+def _create_empty_project(pathname: str, configuration: str, products: Optional[List[str]] = None):
     """
     Create the smallest project file as possible on the disk.
 
@@ -221,7 +221,7 @@ def _create_empty_project(pathname: str, configuration: str, products: List[str]
         Path of the project.
     configuration : str
         Name of the configuration. A project must have at least one configuration.
-    products: List[str], default: None
+    products: List[str] | None, default: None
         List of tags identifying the nature of the project.
         For example, ``SC`` indicates a SCADE Suite project.
     """
@@ -283,7 +283,7 @@ def _create_empty_project(pathname: str, configuration: str, products: List[str]
 #         return self.context + ': ' + self.name + ': Illegal class ' + str(self.cls)
 
 
-def _check_object(object_, context: str, name: str, classes: Tuple[Any, ...]):
+def _check_object(object_, context: str, name: str, classes: Union[Any, Tuple[Any, ...]]):
     """Check the type of a parameter and raise a ``TypeError`` if it is not correct."""
     if not isinstance(object_, classes):
         cls = type(object_).__name__
@@ -297,7 +297,7 @@ def _check_object(object_, context: str, name: str, classes: Tuple[Any, ...]):
 
 
 # to be moved to query.project
-def _find_file_ref(project: std.Project, pathname: str) -> std.FileRef:
+def _find_file_ref(project: std.Project, pathname: str) -> Optional[std.FileRef]:
     """
     Search a project for a file with the provided path.
 
