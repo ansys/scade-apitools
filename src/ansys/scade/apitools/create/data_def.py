@@ -522,7 +522,10 @@ def add_diagram_missing_edges(diagram: suite.NetDiagram) -> List[suite.Edge]:
     pairs -= cache
     # create the graphical edges
     edges = []
-    for left, expr in pairs:
+    for const_var, expr in pairs:
+        if not isinstance(const_var, suite.LocalVariable):
+            continue
+        left = const_var
         # get the owning equation of the expression
         dst = expr.owner
         while not isinstance(dst, suite.Equation):
