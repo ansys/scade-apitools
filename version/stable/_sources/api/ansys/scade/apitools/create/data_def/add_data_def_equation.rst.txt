@@ -1,0 +1,42 @@
+ansys.scade.apitools.create.data_def.add_data_def_equation
+==========================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_data_def_equation(data_def: scade.model.suite.DataDef, diagram: Optional[scade.model.suite.Diagram], lefts: Sequence[Union[scade.model.suite.LocalVariable, ansys.scade.apitools.create.type.TX]], right: Optional[ansys.scade.apitools.create.expression.EX], position: Tuple[float, float] = (0, 0), size: Tuple[float, float] = (0, 0), symmetrical: bool = False, rotation: int = 0, textual: bool = False) -> scade.model.suite.Equation
+
+   Create an equation in a scope.
+
+   Parameters
+   ----------
+   data_def : suite.DataDef
+       Input scope, which is an operator, state, or action.
+   diagram : suite.Diagram | None
+       Diagram containing the equation. The diagram specified can be either graphical
+       or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+       contains at least one diagram.
+   lefts : Sequence[Union[suite.LocalVariable, TX]]
+       List of variables defined by the equation. The elements can be either an
+       existing local variable or a type tree to create an internal
+       variable on the fly when the diagram is a graphical diagram.
+   right : EX | None
+       Expression of the equation.
+   position : Tuple[float, float], default: (0, 0))
+       Position of the equation, expressed in 1/100th of mm.
+       This value is ignored if the diagram is not a graphical diagram.
+       Otherwise, it must be specified.
+   size : Tuple[float, float], default: (0, 0)
+       Size of the equation, expressed in 1/100th of mm.
+       This value is ignored if the diagram is not a graphical diagram.
+       Otherwise, it must be specified.
+   symmetrical : bool, default: False
+       Whether the graphical representation is symmetrical.
+   rotation : int, default: 0
+       Rotation angle of the equation, expressed in degrees.
+       Options are ``0``, ``90``, ``180``, and ``270``.
+   textual : bool, default: False
+       Whether the equation is a textual. If ``False``, the equation is
+       a graphical representation.
+
+   Returns
+   -------
+   suite.Equation
+

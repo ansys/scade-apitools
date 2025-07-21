@@ -1,0 +1,18 @@
+ansys.scade.apitools.create.expression.create_mapfold
+=====================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_mapfold(size: EX, acc: EX) -> ET
+
+   Return the expression tree for the higher-order construct for mapfold creation.
+
+   Parameters
+   ----------
+   size : EX
+       Number of iterations.
+   acc : EX
+       Number of accumulators.
+
+   Returns
+   -------
+   ET
+

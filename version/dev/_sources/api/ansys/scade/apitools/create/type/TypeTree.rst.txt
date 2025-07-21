@@ -1,0 +1,30 @@
+
+
+
+
+
+
+:class:`TypeTree`
+=================
+
+.. py:class:: ansys.scade.apitools.create.type.TypeTree
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Provides the top-level abstract class for type trees.
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.type import TypeTree
+
+
+
+
+

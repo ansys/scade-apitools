@@ -1,0 +1,41 @@
+
+
+
+
+
+
+:class:`ActivateOp`
+===================
+
+.. py:class:: ansys.scade.apitools.expr.access.ActivateOp(expression: scade.model.suite.ExprCall, operator: CallExpression)
+
+   Bases: :py:obj:`CondactOp`
+
+
+   Activation of an operator with initial values.
+
+   See the :ref:`activate_op <ex__activate_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Higher-order expression to wrap.
+   operator :
+       Operator call expression.
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ActivateOp
+
+
+
+
+

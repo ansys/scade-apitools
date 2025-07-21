@@ -1,0 +1,21 @@
+ansys.scade.apitools.create.type.create_structure
+=================================================
+
+.. py:function:: ansys.scade.apitools.create.type.create_structure(*fields: Tuple[str, TX]) -> TT
+
+   Get the type tree for a structure.
+
+   Notes
+   -----
+   This is an interface change with respect to the **SCADE Creation Library**.
+   The pairs "pattern"/"value" are now embedded in a list of tuples.
+
+   Parameters
+   ----------
+   \*fields : Tuple[str, TX]
+       Name/type expression trees.
+
+   Returns
+   -------
+   TT
+
