@@ -29,6 +29,17 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+  check-vulnerabilities:
+    name: "Check vulnerabilities"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ansys/actions/check-vulnerabilities@v10
+        with:
+          python-version: ${{ env.MAIN_PYTHON_VERSION }}
+          token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
+          python-package-name: ${{ env.LIBRARY_NAME }}
+          dev-mode: ${{ github.ref != 'refs/heads/main' }}
+
   code-style:
     name: "Code style"
     runs-on: ubuntu-latest
