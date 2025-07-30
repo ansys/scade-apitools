@@ -1,0 +1,19 @@
+ansys.scade.apitools.query.type.is_imported
+===========================================
+
+.. py:function:: ansys.scade.apitools.query.type.is_imported(type_: scade.model.suite.Type) -> bool
+
+   Determine if the input type is imported.
+
+   See the :ref:`is_imported <ex__is_imported>` example.
+
+   Parameters
+   ----------
+   type\_ : suite.Type
+       Input type.
+
+   Returns
+   -------
+   bool
+       ``True`` when the input type is imported, ``False`` otherwise.
+

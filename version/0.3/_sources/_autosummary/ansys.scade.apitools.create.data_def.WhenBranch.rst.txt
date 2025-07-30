@@ -1,0 +1,25 @@
+
+
+WhenBranch
+==========
+
+Module: *ansys.scade.apitools.create.data_def*
+
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autoclass:: WhenBranch
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   

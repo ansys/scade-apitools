@@ -1,0 +1,25 @@
+
+
+TransitionTree
+==============
+
+Module: *ansys.scade.apitools.create.data_def*
+
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autoclass:: TransitionTree
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   

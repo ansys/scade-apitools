@@ -1,0 +1,112 @@
+
+
+
+
+ArrayOp
+=======
+
+.. py:class:: ArrayOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.ArrayOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides the abstract class for array expressions.
+
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: ArrayOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~array`
+            - Array operand of the expression.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ArrayOp
+
+
+Property detail
+---------------
+.. py:property:: array
+   :canonical: ansys.scade.apitools.expr.access.ArrayOp.array
+   :type: Expression
+
+
+   
+   Array operand of the expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

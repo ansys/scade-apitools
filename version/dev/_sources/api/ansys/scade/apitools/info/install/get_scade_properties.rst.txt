@@ -1,0 +1,7 @@
+ansys.scade.apitools.info.install.get_scade_properties
+======================================================
+
+.. py:function:: ansys.scade.apitools.info.install.get_scade_properties() -> Dict[str, str]
+
+   Get the content of the properties in ``<home>/common/scade.properties`` as a dictionary.
+

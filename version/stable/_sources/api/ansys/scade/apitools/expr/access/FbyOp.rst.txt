@@ -1,0 +1,94 @@
+
+
+
+
+
+
+:class:`FbyOp`
+==============
+
+.. py:class:: ansys.scade.apitools.expr.access.FbyOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`CallExpression`
+
+
+   Provides the delay of flows.
+
+   The format is ``fby(<flow>, ..., <flow>; <delay>; <init>, ..., <init>)``.
+
+   See the :ref:`fby_op <ex__fby_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: FbyOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~delay`
+            - Delay of the expression.
+          * - :py:attr:`~flows`
+            - Flows after the first cycle.
+          * - :py:attr:`~inits`
+            - Initialization values of the flows.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import FbyOp
+
+Property detail
+---------------
+
+.. py:property:: delay
+   :type: Expression
+
+
+   Delay of the expression.
+
+
+.. py:property:: flows
+   :type: list[Expression]
+
+
+   Flows after the first cycle.
+
+
+.. py:property:: inits
+   :type: list[Expression]
+
+
+   Initialization values of the flows.
+
+
+
+
+
+
+

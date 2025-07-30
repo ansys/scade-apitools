@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.set\_type\_constraint
+=============================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: set_type_constraint

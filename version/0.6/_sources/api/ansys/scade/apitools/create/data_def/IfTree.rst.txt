@@ -1,0 +1,70 @@
+
+
+
+
+
+
+:class:`IfTree`
+===============
+
+.. py:class:: ansys.scade.apitools.create.data_def.IfTree(position: Tuple[float, float] = (0, 0))
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Provides an intermediate structure for describing the structure of an if block.
+
+   Store the attributes.
+
+
+
+.. py:currentmodule:: IfTree
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+
+   .. tab-item:: Attributes
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~name`
+            - 
+          * - :py:attr:`~position`
+            - 
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import IfTree
+
+
+Attribute detail
+----------------
+
+.. py:attribute:: name
+   :value: ''
+
+
+.. py:attribute:: position
+   :value: (0, 0)
+
+
+
+
+
+

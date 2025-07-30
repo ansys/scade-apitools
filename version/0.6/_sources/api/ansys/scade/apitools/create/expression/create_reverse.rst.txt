@@ -1,0 +1,16 @@
+ansys.scade.apitools.create.expression.create_reverse
+=====================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_reverse(flow: EX) -> ET
+
+   Return the expression tree for the reverse operator.
+
+   Parameters
+   ----------
+   flow : EX
+       Input flow.
+
+   Returns
+   -------
+   ET
+
