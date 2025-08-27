@@ -62,7 +62,6 @@ def create_folder(
         path = [path]
     for name in path[:-1]:
         # create the intermediate folders
-        print('create intermediate', name)
         owner = create_folder(owner, name)
     name = path[-1]
     # check for the existence of the folder
