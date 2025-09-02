@@ -616,6 +616,27 @@ def create_flatten(
     return _Predefined(Eck.FLATTEN, [norm_arg, norm_type], [], modifiers)
 
 
+def create_numeric_cast(type_: suite.NamedType, arg: EX) -> ET:
+    r"""
+    Return the expression tree for casting a numerical value.
+
+    Parameters
+    ----------
+    type\_ : suite.NamedType
+        Type to cast to.
+    arg : EX
+        Value to cast.
+
+    Returns
+    -------
+    ET
+    """
+    _check_object(type_, 'create_numeric_cast', 'type', suite.NamedType)
+    norm_type = _normalize_tree(type_)
+    norm_arg = _normalize_tree(arg)
+    return _Predefined(Eck.NUMERIC_CAST, [norm_arg, norm_type], [], [])
+
+
 # structures
 
 
