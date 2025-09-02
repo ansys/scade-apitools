@@ -30,7 +30,7 @@ This library provides sets of accessors for several kinds of textual pragmas:
 * Generic pragmas: Any text.
 * Core tools pragmas: The text has the form ``<key> [<text>]``. These core
   tools include ``kcg`` and ``mc``.
-* JSON pragmas: The text is an abribrary data formatted as JSON, usually
+* JSON pragmas: The text is an arbitrary data formatted as JSON, usually
   a dictionary.
 
 Notes\:
