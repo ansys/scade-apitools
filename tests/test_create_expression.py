@@ -305,6 +305,31 @@ def test_create_flatten(name: str, arg, class_, expected):
             _ = create.create_flatten(type_, arg)
 
 
+create_numeric_cast_data = [
+    # nominal
+    ("float64", 'f', suite.NamedType, "(f : float64)"),
+    ("int32", 'i', suite.NamedType, "(i : int32)"),
+    ("'T", 't', suite.NamedType, "(t : 'T)"),
+    # robustness
+    ('Constant', False, suite.Constant, TypeError),
+]
+ids = [_[0] for _ in create_numeric_cast_data]
+
+
+@pytest.mark.parametrize('name, arg, class_, expected', create_numeric_cast_data, ids=ids)
+def test_create_numeric_cast(name: str, arg, class_, expected):
+    type_ = class_()
+    type_.name = name
+    if isinstance(expected, str):
+        # nominal
+        tree = create.create_numeric_cast(type_, arg)
+        assert _tree_to_string(tree) == expected
+    else:
+        # robustness
+        with pytest.raises(expected):
+            _ = create.create_numeric_cast(type_, arg)
+
+
 create_scalar_to_vector_data = [
     # nominal
     (1, [42], '42 ^ 1'),
