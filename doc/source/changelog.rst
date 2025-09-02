@@ -9,6 +9,25 @@ This document contains the release notes for the project.
 
 .. towncrier release notes start
 
+`0.6.2 <https://github.com/ansys/scade-apitools/releases/tag/v0.6.2>`_ - September 02, 2025
+===========================================================================================
+
+.. tab-set::
+
+
+  .. tab-item:: Miscellaneous
+
+    .. list-table::
+        :header-rows: 0
+        :widths: auto
+
+        * - Fix: Remove debug trace
+          - `#127 <https://github.com/ansys/scade-apitools/pull/127>`_
+
+        * - Fix: Add a function to create numeric cast expressions
+          - `#131 <https://github.com/ansys/scade-apitools/pull/131>`_
+
+
 `0.6.0 <https://github.com/ansys/scade-apitools/releases/tag/v0.6.0>`_ - July 18, 2025
 ======================================================================================
 
