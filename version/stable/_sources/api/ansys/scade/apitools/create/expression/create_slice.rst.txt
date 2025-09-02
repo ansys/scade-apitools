@@ -1,0 +1,20 @@
+ansys.scade.apitools.create.expression.create_slice
+===================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_slice(array: EX, start: EX, end: EX) -> ET
+
+   Return the expression tree for the slice operator.
+
+   Parameters
+   ----------
+   array : EX
+       Input array.
+   start : EX
+       Start index of the slice.
+   end : EX
+       End index of the slice.
+
+   Returns
+   -------
+   ET
+

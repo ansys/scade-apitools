@@ -1,0 +1,34 @@
+.. py:function:: create_configuration(owner, name)
+
+   
+   Create a configuration.
+
+   A configuration has a name and belongs to a project.
+
+   :Parameters:
+
+       **owner** : :obj:`std.Project`
+           Project.
+
+       **name** : :class:`python:str`
+           Name of the configuration.
+
+   :Returns:
+
+       :obj:`std.Configuration`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

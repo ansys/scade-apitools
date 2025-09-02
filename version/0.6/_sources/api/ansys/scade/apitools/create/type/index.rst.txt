@@ -1,0 +1,154 @@
+
+
+
+
+
+
+The ``type.py`` module
+======================
+
+.. py:module:: ansys.scade.apitools.create.type
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: type
+.. tab-set::
+
+
+
+
+    .. tab-item:: Classes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.type.TypeTree`
+            - Provides the top-level abstract class for type trees.
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.type.create_sized`
+            - Get the type tree for a sized type.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.type.create_structure`
+            - Get the type tree for a structure.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.type.create_table`
+            - Get the type tree for a structure.
+
+
+
+
+    .. tab-item:: Constants
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~TT`
+            - Short name for a ``TypeTree`` instance to simplify the declarations.
+
+
+          * - :py:obj:`~TX`
+            - Extended type tree to simply the use of the create functions.
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-cod-symbol_class"></span> TypeTree</api/ansys/scade/apitools/create/type/TypeTree>
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> create_sized</api/ansys/scade/apitools/create/type/create_sized>
+    <span class="nf nf-md-function_variant"></span> create_structure</api/ansys/scade/apitools/create/type/create_structure>
+    <span class="nf nf-md-function_variant"></span> create_table</api/ansys/scade/apitools/create/type/create_table>
+
+
+
+
+
+
+Description
+-----------
+
+Provide helpers for creating type trees.
+
+Expression trees are intermediate structures to declare any arbitrary complex
+types. They create the corresponding SCADE Suite type in the context of a
+model element, such as the type of a constant.
+
+This module provides functions to create a type tree for any type of the Scade
+language. Thus, the intermediate structures or classes defining the type trees
+can be opaque.
+
+Notes: The typing is relaxed in this module to ease the constructs.
+
+* ``TT`` is an alias for ``TypeTree`` to shorten the declarations.
+
+* ``TX``, which stands for extended type tree, is defined as follows::
+
+     Union[str, suite.Type, TT]
+
+  This enhances the usability of these functions by accepting some values,
+  such as existing types or name of predefined types, as valid type trees.
+
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: TT
+
+   Short name for a ``TypeTree`` instance to simplify the declarations.
+
+
+.. py:data:: TX
+
+   Extended type tree to simply the use of the create functions.
+
+
+
+

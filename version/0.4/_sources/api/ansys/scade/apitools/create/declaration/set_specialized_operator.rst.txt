@@ -1,0 +1,29 @@
+.. py:function:: set_specialized_operator(operator, imported)
+
+   
+   Declare a specialization of an imported operator.
+
+
+   :Parameters:
+
+       **operator** : :obj:`suite.Operator`
+           Specializing operator.
+
+       **imported** : :obj:`suite.Operator`
+           Specialized imported operator.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
