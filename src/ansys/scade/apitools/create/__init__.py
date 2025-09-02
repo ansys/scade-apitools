@@ -113,6 +113,7 @@ from .expression import (  # noqa: F401
     create_mapw,
     create_mapwi,
     create_nary,
+    create_numeric_cast,
     create_pre,
     create_prj,
     create_prj_dyn,
