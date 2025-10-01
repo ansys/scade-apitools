@@ -1,0 +1,138 @@
+
+
+
+
+
+
+:class:`PrjDynOp`
+=================
+
+.. py:class:: ansys.scade.apitools.expr.access.PrjDynOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`ArrayOp`
+
+
+   Provides the dynamic projection of an array.
+
+   See the :ref:`prj_dyn_op <ex__prj_dyn_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: PrjDynOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~default`
+            - Default value of the projection.
+          * - :py:attr:`~indexes`
+            - Path of the projection.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import PrjDynOp
+
+Property detail
+---------------
+
+.. py:property:: default
+   :type: Expression
+
+
+   
+   Default value of the projection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: indexes
+   :type: list[Expression]
+
+
+   
+   Path of the projection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

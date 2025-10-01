@@ -1,0 +1,45 @@
+ansys.scade.apitools.create.project.create_prop
+===============================================
+
+.. py:function:: ansys.scade.apitools.create.project.create_prop(owner: scade.model.project.stdproject.Annotable, configuration: scade.model.project.stdproject.Configuration, name: str, values: List[str]) -> scade.model.project.stdproject.Prop
+
+   
+   Create a property.
+
+   Properties are attached to a project, folder, or file reference.
+
+   They have a name and a list of values. They can be associated with a configuration.
+
+   :Parameters:
+
+       **owner** : :obj:`std.Annotable`
+           Element to attach the property to.
+
+       **configuration** : :class:`python:str`
+           Configuration to associate with the property or ``None``.
+
+       **name** : :class:`python:str`
+           Name of the property.
+
+       **values** : :obj:`List`\[:class:`python:str`]
+           Values of the property as a list of strings.
+
+
+
+   :Returns:
+
+       :obj:`std.Prop`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,57 @@
+
+
+
+
+ParamImportedError
+==================
+
+.. py:exception:: ParamImportedError(context, item, text)
+   :canonical: ansys.scade.apitools.create.declaration.ParamImportedError
+
+
+
+Bases: :py:obj:`Exception`
+
+
+   Provides the exception for the wrong imported operator specification.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.declaration import ParamImportedError
+
+
+
+
+

@@ -1,0 +1,20 @@
+ansys.scade.apitools.create.expression.create_transpose
+=======================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_transpose(array: EX, dim1: EX, dim2: EX) -> ET
+
+   Return the expression tree for the transpose operator.
+
+   Parameters
+   ----------
+   array : EX
+       Input array.
+   dim1 : EX
+       First dimension.
+   dim2 : EX
+       Second dimension.
+
+   Returns
+   -------
+   ET
+

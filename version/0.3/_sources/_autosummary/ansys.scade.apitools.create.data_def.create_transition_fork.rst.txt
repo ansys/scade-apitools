@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.create\_transition\_fork
+==============================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: create_transition_fork

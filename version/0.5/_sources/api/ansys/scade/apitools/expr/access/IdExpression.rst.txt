@@ -1,0 +1,113 @@
+
+
+
+
+
+
+:class:`IdExpression`
+=====================
+
+.. py:class:: ansys.scade.apitools.expr.access.IdExpression(expression: scade.model.suite.ExprId)
+
+   Bases: :py:obj:`Expression`
+
+
+   Provides the constant, sensor, or local variable.
+
+   The format is ``<path>``.
+
+   See the :ref:`id_expression <ex__id_expression>` example.
+
+   Parameters
+   ----------
+   expression :
+       Reference expression to wrap.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: IdExpression
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~path`
+            - Local variable, sensor, or constant of the expression.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import IdExpression
+
+Property detail
+---------------
+
+.. py:property:: path
+   :type: scade.model.suite.ConstVar
+
+
+   
+   Local variable, sensor, or constant of the expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

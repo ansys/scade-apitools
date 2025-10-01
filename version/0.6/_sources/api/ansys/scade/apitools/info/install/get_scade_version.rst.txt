@@ -1,0 +1,9 @@
+ansys.scade.apitools.info.install.get_scade_version
+===================================================
+
+.. py:function:: ansys.scade.apitools.info.install.get_scade_version() -> int
+
+   Get the version of SCADE.
+
+   For example, ``232`` for SCADE 2023 R2.
+
