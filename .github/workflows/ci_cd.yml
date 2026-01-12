@@ -110,19 +110,6 @@ jobs:
         with:
           python-version: ${{ env.MAIN_PYTHON_VERSION }}
 
-      - name: "Zipping the examples directory"
-        run: |
-          sudo apt-get install zip
-          zip -r examples.zip ./examples
-
-      - name: "Upload zip to artifacts"
-        uses: actions/upload-artifact@v5
-        with:
-          name: examples
-          path: ./examples.zip
-          retention-days: 7
-          if-no-files-found: error
-
   build-library:
     name: "Build library basic example"
     runs-on: ubuntu-latest
@@ -176,7 +163,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           library-name: ${{ env.LIBRARY_NAME }}
-          additional-artifacts: 'examples'
 
   doc-deploy-dev:
     name: "Deploy development documentation"

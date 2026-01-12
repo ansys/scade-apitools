@@ -1,14 +1,17 @@
 """Sphinx documentation configuration file."""
 
 from datetime import datetime
+import logging
 import os
 from pathlib import Path
 import sys
+import zipfile
 
 from ansys_sphinx_theme import (
     ansys_favicon,
     get_version_match,
 )
+from sphinx.application import Sphinx
 from sphinx.highlighting import lexers
 
 from ansys.scade.apitools import __version__
@@ -133,3 +136,34 @@ if switcher_version != 'dev':
 
 # update the examples
 update_doc(Path(os.getcwd()).parent.parent)
+
+jinja_contexts = {
+    'assets_versions': {'version': switcher_version},
+}
+
+
+def zip_example_folder(app: Sphinx):
+    """Zip a specific folder and place it in the Sphinx output directory."""
+    root_dir = Path(app.srcdir).parent.parent
+    examples_dir = root_dir / 'examples'
+    zip_output_path = Path(app.outdir) / '_static' / 'examples.zip'
+
+    if not examples_dir.exists():
+        logging.error(f"Folder '{examples_dir}' does not exist.")
+        return
+
+    # ensure the output folder exists
+    Path(zip_output_path).parent.mkdir(parents=True, exist_ok=True)
+
+    # create the zip file with pathlib
+    with zipfile.ZipFile(zip_output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for file in examples_dir.glob('**/*'):
+            arcname = file.relative_to(examples_dir)
+            zipf.write(file, arcname)
+
+    logging.info(f"Zipped folder '{examples_dir}' -> '{zip_output_path}'")
+
+
+def setup(app):
+    """Register the function to run when Sphinx starts building."""
+    app.connect('builder-inited', zip_example_folder)
