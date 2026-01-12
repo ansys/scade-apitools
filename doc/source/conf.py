@@ -129,6 +129,7 @@ linkcheck_ignore = [
     # The link below takes a long time to check
     "https://www.ansys.com/products/embedded-software/ansys-scade-suite",
     "https://www.ansys.com/*",
+    'https://apitools.scade.docs.pyansys.com/version/*',
 ]
 
 if switcher_version != 'dev':
