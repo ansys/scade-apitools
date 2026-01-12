@@ -1,1 +1,1 @@
-SCADE installation directory: C:\Program Files\ANSYS Inc\v232\SCADE
+SCADE installation directory: C:\Program Files\ANSYS Inc\v252\SCADE
