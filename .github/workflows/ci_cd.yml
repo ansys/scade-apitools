@@ -1,6 +1,7 @@
 name: GitHub CI
 on:
   pull_request:
+    types: [opened, reopened, synchronize, edited, labeled]
   push:
     tags:
       - "*"
@@ -9,9 +10,9 @@ on:
   workflow_dispatch:
 
 env:
-  MAIN_PYTHON_VERSION: '3.10'
-  DOCUMENTATION_CNAME: 'apitools.scade.docs.pyansys.com'
-  LIBRARY_NAME: 'ansys-scade-apitools'
+  MAIN_PYTHON_VERSION: "3.10"
+  DOCUMENTATION_CNAME: "apitools.scade.docs.pyansys.com"
+  LIBRARY_NAME: "ansys-scade-apitools"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,127 +20,29 @@ concurrency:
 
 jobs:
 
-  pr-name:
-    if: github.event_name == 'pull_request'
-    name: Check the name of the PR
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check commit name
-        uses: ansys/actions/check-pr-title@v10
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-  check-vulnerabilities:
-    name: "Check vulnerabilities"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ansys/actions/check-vulnerabilities@v10
-        with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-          token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
-          python-package-name: ${{ env.LIBRARY_NAME }}
-          dev-mode: ${{ github.ref != 'refs/heads/main' }}
-
-  code-style:
-    name: "Code style"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ansys/actions/code-style@v10
-        with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-  doc-style:
-    name: "Documentation style"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ansys/actions/doc-style@v10
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-  smoke-tests:
-    name: "Build and Smoke tests"
-    runs-on: ${{ matrix.os }}
-    needs: [code-style]
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        python-version: ['3.10']
-    steps:
-      - uses: ansys/actions/build-wheelhouse@v10
-        with:
-          library-name: ${{ env.LIBRARY_NAME }}
-          operating-system: ${{ matrix.os }}
-          python-version: ${{ matrix.python-version }}
-
-  tests:
-    name: "Tests"
-    # runs-on: ${{ matrix.os }}
-    runs-on: [self-hosted, 'SCADE']
-    needs: [smoke-tests]
-    strategy:
-      matrix:
-        os: [windows-latest]
-        scade-version: ['25.2']
-      fail-fast: false
-    steps:
-      - name: "Install Git and clone project"
-        uses: actions/checkout@v6
-
-      - uses: ansys/scade-actions/scade-tests-pytest@v2
-        with:
-          checkout: false
-          pytest-extra-args: "--cov=ansys --cov-report=term --cov-branch --cov-report=html:.cov/html --cov-report=xml:.cov/xml"
-          scade-version: ${{ matrix.scade-version }}
-
-      - name: "Upload coverage reports to Codecov"
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: ansys/scade-apitools
-          files: .cov/xml
-          os: windows
-
-  doc-build:
-    name: "Build documentation"
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    needs: [doc-style]
-    steps:
-      - uses: ansys/actions/doc-build@v10
-        with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-  build-library:
-    name: "Build library basic example"
-    runs-on: ubuntu-latest
-    needs: [tests, doc-build]
-    steps:
-      - uses: ansys/actions/build-library@v10
-        with:
-          library-name: ${{ env.LIBRARY_NAME }}
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-
-  update-changelog:
-    name: "Update CHANGELOG (on release)"
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
-    runs-on: ubuntu-latest
+  sc:
+    uses: ansys/scade-actions/.github/workflows/scade-ext-workflow.yml@v3
     permissions:
+      attestations: write
       contents: write
+      id-token: write
       pull-requests: write
-    steps:
-      - uses: ansys/actions/doc-deploy-changelog@v10
-        with:
-          python-version: ${{ env.MAIN_PYTHON_VERSION }}
-          token: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
-          bot-user: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
-          bot-email: ${{ secrets.PYANSYS_CI_BOT_EMAIL }}
+    with:
+      documentation-cname: "apitools.scade.docs.pyansys.com"
+      library-name: "ansys-scade-apitools"
+      repository-name: "ansys/scade-apitools"
+      is-public: true
+      main-python-version: '3.10'
+      # strategies
+      build-wheelhouse-versions: "['3.10']"
+      python-tests-versions: "['3.10']"
+    secrets: inherit
 
   release:
     name: "Release project"
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
     runs-on: ubuntu-latest
-    needs: [build-library, update-changelog]
+    needs: [sc]
+    if: ${{ needs.sc.outputs.to-release }}
     permissions:
       id-token: write
       contents: write
@@ -163,33 +66,3 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           library-name: ${{ env.LIBRARY_NAME }}
-
-  doc-deploy-dev:
-    name: "Deploy development documentation"
-    # Deploy development only when merging or pushing to the 'main' branch
-    runs-on: ubuntu-latest
-    needs: [build-library]
-    if: github.event_name == 'push' && !contains(github.ref, 'refs/tags')
-    steps:
-      - uses: ansys/actions/doc-deploy-dev@v10
-        with:
-          doc-artifact-name: 'documentation-html'
-          cname: ${{ env.DOCUMENTATION_CNAME }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          bot-user: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
-          bot-email: ${{ secrets.PYANSYS_CI_BOT_EMAIL }}
-
-  doc-deploy-stable:
-    name: "Deploy stable documentation"
-    # Deploy release documentation when creating a new tag
-    runs-on: ubuntu-latest
-    needs: [release]
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags')
-    steps:
-      - uses: ansys/actions/doc-deploy-stable@v10
-        with:
-          doc-artifact-name: 'documentation-html'
-          cname: ${{ env.DOCUMENTATION_CNAME }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          bot-user: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
-          bot-email: ${{ secrets.PYANSYS_CI_BOT_EMAIL }}
