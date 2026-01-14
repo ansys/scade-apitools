@@ -25,10 +25,10 @@ jobs:
   sc:
     uses: ansys/scade-actions/.github/workflows/scade-ext-workflow.yml@v3
     permissions:
-      attestations: write
-      contents: write
-      id-token: write
-      pull-requests: write
+      attestations: write # needed for build-wheelhouse and build-library jobs
+      contents: write # needed for update-changelog, doc-deploy-pr, and release jobs
+      id-token: write # needed for build-wheelhouse and build-library jobs
+      pull-requests: write # needed for labeler, changelog-fragment, update-changelog, and doc-deploy-pr jobs
     with:
       documentation-cname: "apitools.scade.docs.pyansys.com"
       library-name: "ansys-scade-apitools"
@@ -50,8 +50,8 @@ jobs:
     needs: [sc]
     if: ${{ needs.sc.outputs.to-release }}
     permissions:
-      id-token: write
-      contents: write
+      id-token: write # mandatory for trusted publishing with pypa/gh-action-pypi-publish
+      contents: read
     steps:
       - name: "Download the library artifacts from build-library step"
         uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
