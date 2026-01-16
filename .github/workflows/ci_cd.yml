@@ -18,15 +18,17 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions: {}
+
 jobs:
 
   sc:
     uses: ansys/scade-actions/.github/workflows/scade-ext-workflow.yml@v3
     permissions:
-      attestations: write
-      contents: write
-      id-token: write
-      pull-requests: write
+      attestations: write # needed for build-wheelhouse and build-library jobs
+      contents: write # needed for update-changelog, doc-deploy-pr, release, doc-deploy-dev, and doc-deploy-stable jobs
+      id-token: write # needed for build-wheelhouse and build-library jobs
+      pull-requests: write # needed for labeler, changelog-fragment, update-changelog, and doc-deploy-pr jobs
     with:
       documentation-cname: "apitools.scade.docs.pyansys.com"
       library-name: "ansys-scade-apitools"
@@ -36,7 +38,11 @@ jobs:
       # strategies
       build-wheelhouse-versions: "['3.10']"
       python-tests-versions: "['3.10']"
-    secrets: inherit
+    secrets:
+      PYANSYS_CI_BOT_TOKEN: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
+      PYANSYS_CI_BOT_USERNAME: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
+      PYANSYS_CI_BOT_EMAIL: ${{ secrets.PYANSYS_CI_BOT_EMAIL }}
+      PYANSYS_PYPI_PRIVATE_PAT: ${{ secrets.PYANSYS_PYPI_PRIVATE_PAT }}
 
   release:
     name: "Release project"
@@ -44,25 +50,19 @@ jobs:
     needs: [sc]
     if: ${{ needs.sc.outputs.to-release }}
     permissions:
-      id-token: write
-      contents: write
+      id-token: write # mandatory for trusted publishing with pypa/gh-action-pypi-publish
+      contents: read
     steps:
       - name: "Download the library artifacts from build-library step"
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: ${{ env.LIBRARY_NAME }}-artifacts
           path: ${{ env.LIBRARY_NAME }}-artifacts
 
       - name: "Upload artifacts to PyPI using trusted publisher"
-        uses: pypa/gh-action-pypi-publish@v1.13.0
+        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
         with:
           repository-url: "https://upload.pypi.org/legacy/"
           print-hash: true
           packages-dir: ${{ env.LIBRARY_NAME }}-artifacts
           skip-existing: false
-
-      - name: "Release to GitHub"
-        uses: ansys/actions/release-github@v10
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          library-name: ${{ env.LIBRARY_NAME }}
