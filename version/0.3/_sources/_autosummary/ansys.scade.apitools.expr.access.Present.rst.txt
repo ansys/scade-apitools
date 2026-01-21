@@ -1,0 +1,35 @@
+
+
+Present
+=======
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: Present
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Present.signal
+
+   
+   ..
+      autoattribute:: Present.signal
+   
+   

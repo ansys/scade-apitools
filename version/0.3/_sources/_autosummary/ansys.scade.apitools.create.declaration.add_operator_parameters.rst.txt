@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.add\_operator\_parameters
+=================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: add_operator_parameters

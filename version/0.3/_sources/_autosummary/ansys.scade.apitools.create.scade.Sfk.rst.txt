@@ -1,0 +1,47 @@
+
+
+Sfk
+===
+
+Module: *ansys.scade.apitools.create.scade*
+
+
+.. currentmodule:: ansys.scade.apitools.create.scade
+
+.. autoclass:: Sfk
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Sfk.C
+      ~Sfk.OBJECT
+      ~Sfk.MACRO
+      ~Sfk.TYPE
+      ~Sfk.ADA
+
+   
+   ..
+      autoattribute:: Sfk.C
+   ..
+      autoattribute:: Sfk.OBJECT
+   ..
+      autoattribute:: Sfk.MACRO
+   ..
+      autoattribute:: Sfk.TYPE
+   ..
+      autoattribute:: Sfk.ADA
+   
+   

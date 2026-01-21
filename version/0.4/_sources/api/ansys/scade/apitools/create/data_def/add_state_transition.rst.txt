@@ -1,0 +1,36 @@
+.. py:function:: add_state_transition(state, kind, tree)
+
+   
+   Add a new transition starting from a state.
+
+
+   :Parameters:
+
+       **state** : :obj:`EX`
+           Source of the transition.
+
+       **kind** : :obj:`TK`
+           Kind of transition.
+
+       **tree** : :obj:`TR`
+           Transition tree, which is the intermediate structure describing the transition.
+
+   :Returns:
+
+       :obj:`suite.Transition`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,39 @@
+.. py:function:: create_folder(owner, path, extensions = '')
+
+   
+   Create a folder.
+
+   A folder has a name and must be either a root folder of a project or
+   a subfolder of another folder.
+
+   :Parameters:
+
+       **owner** : :obj:`std.Project` or :obj:`std.Folder`
+           Owner of the folder, which is either the project itself or a folder.
+
+       **path** : :obj:`Union`\[:class:`python:str`, :obj:`List`\[:class:`python:str`]]
+           Path to or name of the folder. When a path is provided, the function
+           creates the intermediate folders that do not exist.
+
+       **extensions: str**
+           String defining the extensions associated with the folder.
+
+   :Returns:
+
+       :obj:`std.Folder`
+           Folder with the given path or name if this folder exists.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

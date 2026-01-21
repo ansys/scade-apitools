@@ -1,0 +1,111 @@
+
+
+
+
+
+
+:class:`FlowOp`
+===============
+
+.. py:class:: ansys.scade.apitools.expr.access.FlowOp(expression: scade.model.suite.ExprCall, flow: scade.model.suite.Expression)
+
+   Bases: :py:obj:`CallExpression`
+
+
+   Provides an abstract class for flow expressions.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+   flow :
+       Expression operand.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: FlowOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~flow`
+            - Flow operand of the expression.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import FlowOp
+
+Property detail
+---------------
+
+.. py:property:: flow
+   :type: Expression
+
+
+   
+   Flow operand of the expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

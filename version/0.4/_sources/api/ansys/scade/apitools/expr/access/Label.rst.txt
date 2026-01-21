@@ -1,0 +1,112 @@
+
+
+
+
+Label
+=====
+
+.. py:class:: Label(expression)
+   :canonical: ansys.scade.apitools.expr.access.Label
+
+
+
+Bases: :py:obj:`Expression`
+
+
+   Provides the label of a projection.
+
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: Label
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~name`
+            - Name of the label.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import Label
+
+
+Property detail
+---------------
+.. py:property:: name
+   :canonical: ansys.scade.apitools.expr.access.Label.name
+   :type: str
+
+
+   
+   Name of the label.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

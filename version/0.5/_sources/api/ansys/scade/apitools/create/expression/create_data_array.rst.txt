@@ -1,0 +1,33 @@
+ansys.scade.apitools.create.expression.create_data_array
+========================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_data_array(*args: List[EX]) -> ET
+
+   
+   Return the expression tree for the data array operator.
+
+
+   :Parameters:
+
+       **args** : :obj:`List`\[:obj:`EX`]
+           Values of the array.
+
+
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

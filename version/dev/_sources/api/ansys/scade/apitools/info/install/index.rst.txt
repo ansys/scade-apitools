@@ -1,0 +1,86 @@
+
+
+
+
+
+
+The ``install.py`` module
+=========================
+
+.. py:module:: ansys.scade.apitools.info.install
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: install
+.. tab-set::
+
+
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.info.install.get_scade_home`
+            - Get the SCADE installation directory.
+
+
+          * - :py:obj:`~ansys.scade.apitools.info.install.get_scade_properties`
+            - Get the content of the properties in ``<home>/common/scade.properties`` as a dictionary.
+
+
+          * - :py:obj:`~ansys.scade.apitools.info.install.get_scade_version`
+            - Get the version of SCADE.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> get_scade_home</api/ansys/scade/apitools/info/install/get_scade_home>
+    <span class="nf nf-md-function_variant"></span> get_scade_properties</api/ansys/scade/apitools/info/install/get_scade_properties>
+    <span class="nf nf-md-function_variant"></span> get_scade_version</api/ansys/scade/apitools/info/install/get_scade_version>
+
+
+
+
+
+
+Description
+-----------
+
+Provides access to SCADE installation information.
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+
+
+NumericCastOp
+=============
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: NumericCastOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~NumericCastOp.code
+      ~NumericCastOp.flow
+      ~NumericCastOp.name
+      ~NumericCastOp.type_
+
+   
+   ..
+      autoattribute:: NumericCastOp.code
+   ..
+      autoattribute:: NumericCastOp.flow
+   ..
+      autoattribute:: NumericCastOp.name
+   ..
+      autoattribute:: NumericCastOp.type_
+   
+   

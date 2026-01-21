@@ -1,0 +1,76 @@
+
+
+
+
+
+
+:class:`ConstValue`
+===================
+
+.. py:class:: ansys.scade.apitools.expr.access.ConstValue(expression: scade.model.suite.ConstValue)
+
+   Bases: :py:obj:`Expression`
+
+
+   Provides the literal value.
+
+   The format is ``<value>``.
+
+   See the :ref:`const_value <ex__const_value>` example.
+
+   Parameters
+   ----------
+   expression :
+       Literal to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: ConstValue
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~value`
+            - Literal value.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ConstValue
+
+Property detail
+---------------
+
+.. py:property:: value
+   :type: str
+
+
+   Literal value.
+
+
+
+
+
+
+

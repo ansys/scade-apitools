@@ -1,0 +1,72 @@
+
+
+
+
+
+
+:class:`ListExpression`
+=======================
+
+.. py:class:: ansys.scade.apitools.expr.access.ListExpression(expression: scade.model.suite.Expression)
+
+   Bases: :py:obj:`Expression`
+
+
+   Provides a group of expressions.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: ListExpression
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~items`
+            - Expressions of the group.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ListExpression
+
+Property detail
+---------------
+
+.. py:property:: items
+   :type: list[Expression]
+
+
+   Expressions of the group.
+
+
+
+
+
+
+

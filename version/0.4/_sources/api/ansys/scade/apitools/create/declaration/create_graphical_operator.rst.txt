@@ -1,0 +1,48 @@
+.. py:function:: create_graphical_operator(owner, name, path, visibility = VK.PUBLIC, symbol_file = None, state = False)
+
+   
+   Create an operator with a graphical diagram.
+
+   The operator has a name.
+
+   :Parameters:
+
+       **owner** : :obj:`suite.Package`
+           Owner of the operator, which is either the model itself or a package.
+
+       **name** : :class:`python:str`
+           Name of the operator.
+
+       **path** : :obj:`Path`, default: :data:`python:None`
+           Path of the file for storing the operator. This parameter is optional
+           if the package's owner is a package. When the path is ``None`` and owner
+           is the model, the operator is stored in the model's default file.
+
+       **visibility** : :obj:`VK`, default: :obj:`PUBLIC`
+           Accessibility of the operator.
+
+       **symbol_file** : :obj:`Path`, default: :data:`python:None`
+           Path of the file defining the symbol of the operator.
+
+       **state** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:False`
+           Whether the operator is a node.
+
+   :Returns:
+
+       :obj:`suite.Operator`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

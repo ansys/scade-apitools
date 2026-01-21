@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.scade.save\_all
+===========================================
+
+.. currentmodule:: ansys.scade.apitools.create.scade
+
+.. autofunction:: save_all

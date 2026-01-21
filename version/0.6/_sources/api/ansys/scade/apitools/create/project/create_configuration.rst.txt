@@ -1,0 +1,20 @@
+ansys.scade.apitools.create.project.create_configuration
+========================================================
+
+.. py:function:: ansys.scade.apitools.create.project.create_configuration(owner: scade.model.project.stdproject.Project, name: str) -> scade.model.project.stdproject.Configuration
+
+   Create a configuration.
+
+   A configuration has a name and belongs to a project.
+
+   Parameters
+   ----------
+   owner : std.Project
+       Project.
+   name : str
+       Name of the configuration.
+
+   Returns
+   -------
+   std.Configuration
+

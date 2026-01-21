@@ -1,0 +1,19 @@
+ansys.scade.apitools.query.type.is_predefined
+=============================================
+
+.. py:function:: ansys.scade.apitools.query.type.is_predefined(type_: scade.model.suite.Type) -> bool
+
+   Determine if the input type is predefined.
+
+   See the :ref:`is_predefined <ex__is_predefined>` example.
+
+   Parameters
+   ----------
+   type\_ : suite.Type
+       Input type.
+
+   Returns
+   -------
+   bool
+       ``True`` when the input type is predefined, ``False`` otherwise.
+

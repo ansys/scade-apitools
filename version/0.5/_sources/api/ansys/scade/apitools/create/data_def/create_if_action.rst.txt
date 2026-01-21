@@ -1,0 +1,43 @@
+ansys.scade.apitools.create.data_def.create_if_action
+=====================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.create_if_action(position: Tuple[float, float] = None, size: Tuple[float, float] = None, display: DK = DK.GRAPHICAL) -> IT
+
+   
+   Create a leaf action in the intermediate structure if it is a tree structure.
+
+   The graphical properties are expressed 1/100th of mm.
+
+   They are considered if and only if the owning if block
+   has a graphical representation.
+
+   :Parameters:
+
+       **position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Position of the action.
+
+       **size** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Size of the action.
+
+       **display** : :obj:`DK`, default: :obj:`GRAPHICAL`
+           Layout of the action.
+
+
+
+   :Returns:
+
+       :obj:`IT`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

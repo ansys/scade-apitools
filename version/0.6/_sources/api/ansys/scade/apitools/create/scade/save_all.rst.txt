@@ -1,0 +1,7 @@
+ansys.scade.apitools.create.scade.save_all
+==========================================
+
+.. py:function:: ansys.scade.apitools.create.scade.save_all()
+
+   Save all modified files of Scade models.
+

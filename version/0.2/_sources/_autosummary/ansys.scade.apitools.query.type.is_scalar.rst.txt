@@ -1,0 +1,6 @@
+ansys.scade.apitools.query.type.is\_scalar
+==========================================
+
+.. currentmodule:: ansys.scade.apitools.query.type
+
+.. autofunction:: is_scalar

@@ -1,0 +1,20 @@
+ansys.scade.apitools.create.expression.create_call
+==================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_call(operator: scade.model.suite.Operator, args: LX, inst_args: Optional[LX] = None) -> ET
+
+   Return the expression tree for a call to an operator.
+
+   Parameters
+   ----------
+   op : suite.Operator
+       Operator to call.
+   args : Union[EX, List[EX]]
+       Parameters: expression trees.
+   inst_args : Union[EX, List[EX], None], default: None
+       Instance parameters: expression trees.
+
+   Returns
+   -------
+   ET
+

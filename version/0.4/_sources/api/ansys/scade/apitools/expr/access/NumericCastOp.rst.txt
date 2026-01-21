@@ -1,0 +1,113 @@
+
+
+
+
+NumericCastOp
+=============
+
+.. py:class:: NumericCastOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.NumericCastOp
+
+
+
+Bases: :py:obj:`FlowOp`
+
+
+   Provides the numeric cast of a flow.
+
+   See the :ref:`numeric_cast_op <ex__numeric_cast_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: NumericCastOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~type_`
+            - Conversion type.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import NumericCastOp
+
+
+Property detail
+---------------
+.. py:property:: type_
+   :canonical: ansys.scade.apitools.expr.access.NumericCastOp.type_
+   :type: scade.model.suite.Type
+
+
+   
+   Conversion type.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

@@ -1,0 +1,19 @@
+ansys.scade.apitools.create.type.create_table
+=============================================
+
+.. py:function:: ansys.scade.apitools.create.type.create_table(dimensions: Union[ansys.scade.apitools.create.expression.EX, List[ansys.scade.apitools.create.expression.EX]], type_: TX) -> TT
+
+   Get the type tree for a structure.
+
+   Parameters
+   ----------
+   type\_ : TX
+       Type tree defining the type of the array elements.
+   dimensions : Union[EX, List[EX]]
+       Dimensions of the array, which is either a single expression tree or
+       a list of expression trees.
+
+   Returns
+   -------
+   TT
+

@@ -1,0 +1,206 @@
+
+
+
+
+
+The ``declaration.py`` module
+=============================
+
+.. py:module:: ansys.scade.apitools.create.declaration
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: declaration
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Enums
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~VK`
+            - Visibility kind.
+
+
+
+    .. tab-item:: Exceptions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~IllegalIOError`
+            - Provides the exception for the wrong IO specification.
+
+
+          * - :py:attr:`~ParamImportedError`
+            - Provides the exception for the wrong imported operator specification.
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~add_enumeration_values`
+            - Add enumeration values to an enumeration type.
+
+
+          * - :py:attr:`~add_operator_hidden`
+            - Add hidden inputs to an operator.
+
+
+          * - :py:attr:`~add_operator_inputs`
+            - Add inputs to an operator.
+
+
+          * - :py:attr:`~add_operator_outputs`
+            - Add outputs to an operator.
+
+
+          * - :py:attr:`~add_operator_parameters`
+            - Add parameters to an operator.
+
+
+          * - :py:attr:`~create_constant`
+            - Create a constant.
+
+
+          * - :py:attr:`~create_enumeration`
+            - Create a named type defined by an enumeration.
+
+
+          * - :py:attr:`~create_graphical_operator`
+            - Create an operator with a graphical diagram.
+
+
+          * - :py:attr:`~create_imported_constant`
+            - Create an imported constant.
+
+
+          * - :py:attr:`~create_imported_operator`
+            - Create an imported operator.
+
+
+          * - :py:attr:`~create_imported_type`
+            - Create an imported named type.
+
+
+          * - :py:attr:`~create_named_type`
+            - Create a named type.
+
+
+          * - :py:attr:`~create_package`
+            - Create a package.
+
+
+          * - :py:attr:`~create_sensor`
+            - Create a sensor.
+
+
+          * - :py:attr:`~create_textual_operator`
+            - Create an operator with a textual diagram.
+
+
+          * - :py:attr:`~set_specialized_operator`
+            - Declare a specialization of an imported operator.
+
+
+          * - :py:attr:`~set_type_constraint`
+            - Set the constraint of a polymorphic type.
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    ≔ VK<VK>
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🗲 IllegalIOError<IllegalIOError>
+    🗲 ParamImportedError<ParamImportedError>
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    𝑓(x) add_enumeration_values<add_enumeration_values>
+    𝑓(x) add_operator_hidden<add_operator_hidden>
+    𝑓(x) add_operator_inputs<add_operator_inputs>
+    𝑓(x) add_operator_outputs<add_operator_outputs>
+    𝑓(x) add_operator_parameters<add_operator_parameters>
+    𝑓(x) create_constant<create_constant>
+    𝑓(x) create_enumeration<create_enumeration>
+    𝑓(x) create_graphical_operator<create_graphical_operator>
+    𝑓(x) create_imported_constant<create_imported_constant>
+    𝑓(x) create_imported_operator<create_imported_operator>
+    𝑓(x) create_imported_type<create_imported_type>
+    𝑓(x) create_named_type<create_named_type>
+    𝑓(x) create_package<create_package>
+    𝑓(x) create_sensor<create_sensor>
+    𝑓(x) create_textual_operator<create_textual_operator>
+    𝑓(x) set_specialized_operator<set_specialized_operator>
+    𝑓(x) set_type_constraint<set_type_constraint>
+
+
+
+
+
+
+Description
+-----------
+
+Provides create functions for Scade model declarations.
+
+* Package
+* Type
+* Constant
+* Sensor
+* Operator
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

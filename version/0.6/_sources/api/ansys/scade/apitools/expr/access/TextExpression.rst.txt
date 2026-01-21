@@ -1,0 +1,74 @@
+
+
+
+
+
+
+:class:`TextExpression`
+=======================
+
+.. py:class:: ansys.scade.apitools.expr.access.TextExpression(expression: scade.model.suite.ExprText)
+
+   Bases: :py:obj:`Expression`
+
+
+   Provides an expression with a syntax error.
+
+   The format is ``any text which can't compile``.
+
+   Parameters
+   ----------
+   expression :
+       Erroneous expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: TextExpression
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~text`
+            - Erroneous text.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import TextExpression
+
+Property detail
+---------------
+
+.. py:property:: text
+   :type: str
+
+
+   Erroneous text.
+
+
+
+
+
+
+

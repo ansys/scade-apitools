@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.create\_sensor
+======================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: create_sensor

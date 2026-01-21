@@ -1,0 +1,185 @@
+
+
+
+
+CaseOp
+======
+
+.. py:class:: CaseOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.CaseOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides the case expression.
+
+   Here is the format:
+
+   .. code::
+
+      ( case <switch> of ``
+        | <pattern> :   <flow>
+        | ...
+        | <pattern> :   <flow>
+        | _ :   <default>)
+
+   See the :ref:`case_op <ex__case_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The design differs slightly from the meta-model. The ``Case`` case used to
+   implement the ``case`` collection is replaced by a tuple (``pattern``, ``flow``).
+
+   A new property, ``default``, provides the optional default value.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: CaseOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~cases`
+            - Pairs (:class:`~Expression`, :class:`~Expression`) to build the case.
+          * - :py:attr:`~default`
+            - Value to use as default when not ``None``.
+          * - :py:attr:`~switch`
+            - Selector of the case expression.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import CaseOp
+
+
+Property detail
+---------------
+.. py:property:: cases
+   :canonical: ansys.scade.apitools.expr.access.CaseOp.cases
+   :type: list[tuple[Expression, Expression]]
+
+
+   
+   Pairs (:class:`~Expression`, :class:`~Expression`) to build the case.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: default
+   :canonical: ansys.scade.apitools.expr.access.CaseOp.default
+   :type: Optional[Expression]
+
+
+   
+   Value to use as default when not ``None``.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: switch
+   :canonical: ansys.scade.apitools.expr.access.CaseOp.switch
+   :type: Expression
+
+
+   
+   Selector of the case expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

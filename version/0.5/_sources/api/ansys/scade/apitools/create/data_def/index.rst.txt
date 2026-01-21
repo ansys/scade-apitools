@@ -1,0 +1,370 @@
+
+
+
+
+
+
+The ``data_def.py`` module
+==========================
+
+.. py:module:: ansys.scade.apitools.create.data_def
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: data_def
+.. tab-set::
+
+
+
+
+    .. tab-item:: Classes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.IfTree`
+            - Provides an intermediate structure for describing the structure of an if block.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.TransitionDestination`
+            - Provides the top-level abstract class for transition destinations.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.TransitionTree`
+            - Provides the intermediate class for transitions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.WhenBranch`
+            - Provides the intermediate class for when branches.
+
+
+
+    .. tab-item:: Enums
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.AK`
+            - Provides an enum of assertion kinds.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.DK`
+            - Provides an enum of display kinds.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.SK`
+            - Provides an enum of state kinds.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.TK`
+            - Provides an enum of transition kinds.
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_assertion`
+            - Create an assertion in a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_equation`
+            - Create an equation in a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_if_block`
+            - Create an if block in a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_locals`
+            - Add local variables to a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_net_diagram`
+            - Add a graphical diagram to a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_probes`
+            - Add probes to a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_signals`
+            - Add signals to a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_state_machine`
+            - Create a state machine in a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_text_diagram`
+            - Add a textal diagram to a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_data_def_when_block`
+            - Add a new when block in a scope.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_diagram_edge`
+            - Add a graphical edge between two equations in a graphical diagram.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_diagram_equation_set`
+            - Add a new equation set to a graphical diagram.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_diagram_missing_edges`
+            - Add the missing edges in a graphical diagram with default positions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_state_machine_state`
+            - Create a state in a state machine.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_state_transition`
+            - Add a new transition starting from a state.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_transition_equation`
+            - Create an equation in a transition.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.add_when_block_branches`
+            - Add new branches to a when block.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.create_if_action`
+            - Create a leaf action in the intermediate structure if it is a tree structure.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.create_if_tree`
+            - Create a decision in the intermediate structure if it is a tree structure.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.create_transition_fork`
+            - Create an intermediate transition structure with forked transitions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.create_transition_state`
+            - Create an intermediate transition structure that targets a state.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.create_when_branch`
+            - Create an intermediate structure for a when branch.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.set_variable_default`
+            - Set the default value of a variable.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.data_def.set_variable_last`
+            - Set the last value of a variable.
+
+
+
+
+    .. tab-item:: Constants
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~IT`
+            - Short name for an ``IfTree`` instance to simplify the declarations.
+
+
+          * - :py:obj:`~TD`
+            - Short name for a ``TransitionDestination`` instance to simplify the declarations.
+
+
+          * - :py:obj:`~TR`
+            - Short name for a ``TransitionTree`` instance to simplify the declarations.
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-cod-symbol_class"></span> IfTree</api/ansys/scade/apitools/create/data_def/IfTree>
+    <span class="nf nf-cod-symbol_class"></span> TransitionDestination</api/ansys/scade/apitools/create/data_def/TransitionDestination>
+    <span class="nf nf-cod-symbol_class"></span> TransitionTree</api/ansys/scade/apitools/create/data_def/TransitionTree>
+    <span class="nf nf-cod-symbol_class"></span> WhenBranch</api/ansys/scade/apitools/create/data_def/WhenBranch>
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-cod-symbol_enum"></span> AK</api/ansys/scade/apitools/create/data_def/AK>
+    <span class="nf nf-cod-symbol_enum"></span> DK</api/ansys/scade/apitools/create/data_def/DK>
+    <span class="nf nf-cod-symbol_enum"></span> SK</api/ansys/scade/apitools/create/data_def/SK>
+    <span class="nf nf-cod-symbol_enum"></span> TK</api/ansys/scade/apitools/create/data_def/TK>
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> add_data_def_assertion</api/ansys/scade/apitools/create/data_def/add_data_def_assertion>
+    <span class="nf nf-md-function_variant"></span> add_data_def_equation</api/ansys/scade/apitools/create/data_def/add_data_def_equation>
+    <span class="nf nf-md-function_variant"></span> add_data_def_if_block</api/ansys/scade/apitools/create/data_def/add_data_def_if_block>
+    <span class="nf nf-md-function_variant"></span> add_data_def_locals</api/ansys/scade/apitools/create/data_def/add_data_def_locals>
+    <span class="nf nf-md-function_variant"></span> add_data_def_net_diagram</api/ansys/scade/apitools/create/data_def/add_data_def_net_diagram>
+    <span class="nf nf-md-function_variant"></span> add_data_def_probes</api/ansys/scade/apitools/create/data_def/add_data_def_probes>
+    <span class="nf nf-md-function_variant"></span> add_data_def_signals</api/ansys/scade/apitools/create/data_def/add_data_def_signals>
+    <span class="nf nf-md-function_variant"></span> add_data_def_state_machine</api/ansys/scade/apitools/create/data_def/add_data_def_state_machine>
+    <span class="nf nf-md-function_variant"></span> add_data_def_text_diagram</api/ansys/scade/apitools/create/data_def/add_data_def_text_diagram>
+    <span class="nf nf-md-function_variant"></span> add_data_def_when_block</api/ansys/scade/apitools/create/data_def/add_data_def_when_block>
+    <span class="nf nf-md-function_variant"></span> add_diagram_edge</api/ansys/scade/apitools/create/data_def/add_diagram_edge>
+    <span class="nf nf-md-function_variant"></span> add_diagram_equation_set</api/ansys/scade/apitools/create/data_def/add_diagram_equation_set>
+    <span class="nf nf-md-function_variant"></span> add_diagram_missing_edges</api/ansys/scade/apitools/create/data_def/add_diagram_missing_edges>
+    <span class="nf nf-md-function_variant"></span> add_state_machine_state</api/ansys/scade/apitools/create/data_def/add_state_machine_state>
+    <span class="nf nf-md-function_variant"></span> add_state_transition</api/ansys/scade/apitools/create/data_def/add_state_transition>
+    <span class="nf nf-md-function_variant"></span> add_transition_equation</api/ansys/scade/apitools/create/data_def/add_transition_equation>
+    <span class="nf nf-md-function_variant"></span> add_when_block_branches</api/ansys/scade/apitools/create/data_def/add_when_block_branches>
+    <span class="nf nf-md-function_variant"></span> create_if_action</api/ansys/scade/apitools/create/data_def/create_if_action>
+    <span class="nf nf-md-function_variant"></span> create_if_tree</api/ansys/scade/apitools/create/data_def/create_if_tree>
+    <span class="nf nf-md-function_variant"></span> create_transition_fork</api/ansys/scade/apitools/create/data_def/create_transition_fork>
+    <span class="nf nf-md-function_variant"></span> create_transition_state</api/ansys/scade/apitools/create/data_def/create_transition_state>
+    <span class="nf nf-md-function_variant"></span> create_when_branch</api/ansys/scade/apitools/create/data_def/create_when_branch>
+    <span class="nf nf-md-function_variant"></span> set_variable_default</api/ansys/scade/apitools/create/data_def/set_variable_default>
+    <span class="nf nf-md-function_variant"></span> set_variable_last</api/ansys/scade/apitools/create/data_def/set_variable_last>
+
+
+
+
+
+
+Description
+-----------
+
+Provides create functions for Scade operator definitions.
+
+* Interface
+* Behavior
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: IT
+
+   
+   Short name for an ``IfTree`` instance to simplify the declarations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:data:: TD
+
+   
+   Short name for a ``TransitionDestination`` instance to simplify the declarations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:data:: TR
+
+   
+   Short name for a ``TransitionTree`` instance to simplify the declarations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+

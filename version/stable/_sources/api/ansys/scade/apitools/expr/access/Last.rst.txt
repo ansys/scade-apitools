@@ -1,0 +1,76 @@
+
+
+
+
+
+
+:class:`Last`
+=============
+
+.. py:class:: ansys.scade.apitools.expr.access.Last(expression: scade.model.suite.ExprId)
+
+   Bases: :py:obj:`Expression`
+
+
+   Provides the last of a local variable.
+
+   The format is ``last '<variable>``.
+
+   See the :ref:`last <ex__last>` example.
+
+   Parameters
+   ----------
+   expression :
+       Last variable expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: Last
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~variable`
+            - Local variable of the expression.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import Last
+
+Property detail
+---------------
+
+.. py:property:: variable
+   :type: scade.model.suite.LocalVariable
+
+
+   Local variable of the expression.
+
+
+
+
+
+
+

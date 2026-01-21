@@ -1,0 +1,69 @@
+
+
+
+
+BinaryOp
+========
+
+.. py:class:: BinaryOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.BinaryOp
+
+
+
+Bases: :py:obj:`NAryOp`
+
+
+   Provides an expression with two operands.
+
+   The format is ``<operand> <operator> <operand>``, where ``<operator>`` is one of these:
+
+   * ``-``, ``/``, ``mod``
+   * ``<``, ``<=``, ``>``, ``>=``, ``=``, ``<>``
+   * ``lxor``, ``lsl``, ``lsr``
+   * ``times``
+
+   See the :ref:`binary_op <ex__binary_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import BinaryOp
+
+
+
+
+

@@ -1,0 +1,33 @@
+.. py:function:: create_times(number, flow)
+
+   
+   Return the expression tree for the times operator.
+
+
+   :Parameters:
+
+       **number** : :obj:`EX`
+           Number of cycles.
+
+       **flow** : :obj:`EX`
+           Input flow.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

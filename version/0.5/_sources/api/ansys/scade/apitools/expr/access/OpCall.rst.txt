@@ -1,0 +1,171 @@
+
+
+
+
+
+
+:class:`OpCall`
+===============
+
+.. py:class:: ansys.scade.apitools.expr.access.OpCall(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`CallExpression`
+
+
+   Calls a user-defined operator.
+
+   The format is ``<operator><< <instance parameter>, ...>>(<call parameter>, ...)``.
+
+   Notes
+   -----
+   The design differs slightly from the meta-model. The :class:`~OpCall` class
+   is no longer aggregated by the :class:`~CallExpression` class but derives from it.
+   This leads to a simpler design.
+
+   Parameters
+   ----------
+   expression :
+       Expression to wrap.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: OpCall
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~call_parameters`
+            - Call parameters.
+          * - :py:attr:`~instance_parameters`
+            - Instance call parameters.
+          * - :py:attr:`~operator`
+            - User operator.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import OpCall
+
+Property detail
+---------------
+
+.. py:property:: call_parameters
+   :type: list[Expression]
+
+
+   
+   Call parameters.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: instance_parameters
+   :type: list[Expression]
+
+
+   
+   Instance call parameters.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: operator
+   :type: scade.model.suite.Operator
+
+
+   
+   User operator.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

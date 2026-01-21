@@ -1,0 +1,104 @@
+
+
+
+
+
+
+:class:`Sfk`
+============
+
+.. py:class:: ansys.scade.apitools.create.scade.Sfk
+
+   Bases: :py:obj:`enum.Enum`
+
+
+   
+   Provides kinds of simulation files.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+.. py:currentmodule:: Sfk
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+
+   .. tab-item:: Attributes
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~ADA`
+            - 
+          * - :py:attr:`~C`
+            - 
+          * - :py:attr:`~MACRO`
+            - 
+          * - :py:attr:`~OBJECT`
+            - 
+          * - :py:attr:`~TYPE`
+            - 
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.scade import Sfk
+
+
+Attribute detail
+----------------
+
+.. py:attribute:: ADA
+   :value: 5
+
+
+.. py:attribute:: C
+   :value: 1
+
+
+.. py:attribute:: MACRO
+   :value: 3
+
+
+.. py:attribute:: OBJECT
+   :value: 2
+
+
+.. py:attribute:: TYPE
+   :value: 4
+
+
+
+
+
+

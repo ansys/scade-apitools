@@ -1,0 +1,53 @@
+ansys.scade.apitools.create.data_def.add_data_def_if_block
+==========================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_data_def_if_block(data_def: scade.model.suite.DataDef, name: str, if_tree: IfTree, diagram: scade.model.suite.Diagram, position: Tuple[float, float] = None, size: Tuple[float, float] = None) -> scade.model.suite.IfBlock
+
+   
+   Create an if block in a scope.
+
+   The graphical properties are expressed 1/100th of mm.
+
+   They are considered if and only if diagram is a graphical diagram.
+
+   :Parameters:
+
+       **data_def** : :obj:`suite.DataDef`
+           Input scope, which is an operator, state, or action.
+
+       **name** : :class:`python:str`
+           Name of the if block.
+
+       **if_tree** : :obj:`IfTree`
+           Intermediate tree to describe the structure of the if block.
+
+       **diagram** : :obj:`suite.Diagram`
+           Diagram containing the equation. The diagram specified can be either graphical
+           or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+           contains at least one diagram.
+
+       **position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Position of the if block.
+
+       **size** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Size of the if block.
+
+
+
+   :Returns:
+
+       :obj:`suite.IfBlock`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

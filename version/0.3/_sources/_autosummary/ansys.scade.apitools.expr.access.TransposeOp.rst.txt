@@ -1,0 +1,44 @@
+
+
+TransposeOp
+===========
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: TransposeOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TransposeOp.array
+      ~TransposeOp.code
+      ~TransposeOp.dimensions
+      ~TransposeOp.name
+
+   
+   ..
+      autoattribute:: TransposeOp.array
+   ..
+      autoattribute:: TransposeOp.code
+   ..
+      autoattribute:: TransposeOp.dimensions
+   ..
+      autoattribute:: TransposeOp.name
+   
+   

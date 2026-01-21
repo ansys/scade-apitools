@@ -1,0 +1,51 @@
+
+
+
+
+
+
+:class:`EmptyTreeError`
+=======================
+
+.. py:exception:: ansys.scade.apitools.create.expression.EmptyTreeError
+
+   Bases: :py:obj:`Exception`
+
+
+   Provides the exception for empty expression trees.
+
+
+   Provide a customized message.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.expression import EmptyTreeError
+
+
+
+
+

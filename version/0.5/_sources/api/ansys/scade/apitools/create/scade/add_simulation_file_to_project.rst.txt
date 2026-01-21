@@ -1,0 +1,55 @@
+ansys.scade.apitools.create.scade.add_simulation_file_to_project
+================================================================
+
+.. py:function:: ansys.scade.apitools.create.scade.add_simulation_file_to_project(project: scade.model.project.stdproject.Project, path: str, kind: Sfk, folder: scade.model.project.stdproject.Folder = None, default=True) -> scade.model.project.stdproject.FileRef
+
+   
+   Add a file to the project and tag it appropriately for the SCADE simulation.
+
+   The file is added if and only if it is not already present.
+   If it is present, the parameters folder and default are ignored.
+
+   The file is added to:
+
+   * The specified folder when not None.
+   * Or one of the default folders  "External Code" or "External Type Definitions",
+     depending on the kind of the file.
+   * Otherwise to the project as a root element.
+
+   :Parameters:
+
+       **project** : :obj:`std.Project`
+           Project to modify.
+
+       **path** : :obj:`Path`
+           Path of the file to be added to the project.
+
+       **kind: Sfk**
+           Kind of the added file.
+
+       **folder** : :obj:`std.Folder`
+           Parent folder of the file to add to the project.
+
+       **default** : :ref:`bool <python:bltin-boolean-values>`
+           When True, the file is added to the default folder
+           for SCADE Simulation files, according to kind.
+
+
+
+   :Returns:
+
+       :obj:`std.FileRef`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

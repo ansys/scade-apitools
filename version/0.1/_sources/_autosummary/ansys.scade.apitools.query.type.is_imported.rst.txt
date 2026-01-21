@@ -1,0 +1,6 @@
+ansys.scade.apitools.query.type.is\_imported
+============================================
+
+.. currentmodule:: ansys.scade.apitools.query.type
+
+.. autofunction:: is_imported

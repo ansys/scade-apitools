@@ -1,0 +1,49 @@
+.. py:function:: create_if_tree(expression, then, else_, position = None, label_width = 0)
+
+   
+   Create a decision in the intermediate structure if it is a tree structure.
+
+   The graphical properties are expressed 1/100th of mm.
+
+   They are considered if and only if the owning if block
+   has a graphical representation.
+
+   Hint for the graphical properties: The size of a node is 80x80. Consider
+   this offset to have consistent values between if nodes and actions.
+
+   :Parameters:
+
+       **expression** : :obj:`EX`
+           Extended expression tree defining the condition of the decision.
+
+       **then** : :obj:`IT`
+           Sub-decision tree to consider when the condition is ``True``.
+
+       **else\_** : :obj:`IT`
+           Sub-decision tree to consider when the condition is ``False``.
+
+       **position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Position of the decision.
+
+       **label_width** : :class:`python:int`, default: 0
+           Size of the label.
+
+   :Returns:
+
+       :obj:`IT`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

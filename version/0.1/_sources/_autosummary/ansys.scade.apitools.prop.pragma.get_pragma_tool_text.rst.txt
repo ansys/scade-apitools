@@ -1,0 +1,6 @@
+ansys.scade.apitools.prop.pragma.get\_pragma\_tool\_text
+========================================================
+
+.. currentmodule:: ansys.scade.apitools.prop.pragma
+
+.. autofunction:: get_pragma_tool_text

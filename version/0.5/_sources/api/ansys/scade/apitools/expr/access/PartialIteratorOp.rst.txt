@@ -1,0 +1,140 @@
+
+
+
+
+
+
+:class:`PartialIteratorOp`
+==========================
+
+.. py:class:: ansys.scade.apitools.expr.access.PartialIteratorOp(expression: scade.model.suite.ExprCall, operator: CallExpression)
+
+   Bases: :py:obj:`IteratorOp`
+
+
+   Provides partial iteration of an operator.
+
+   See the :ref:`partial_iterator_op <ex__partial_iterator_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Higher-order expression to wrap.
+   operator :
+       Operator call expression.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: PartialIteratorOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~defaults`
+            - Default values when suitable, otherwise ``None``.
+          * - :py:attr:`~if_`
+            - Condition of the iterator.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import PartialIteratorOp
+
+Property detail
+---------------
+
+.. py:property:: defaults
+   :type: Optional[list[Expression]]
+
+
+   
+   Default values when suitable, otherwise ``None``.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: if_
+   :type: Expression
+
+
+   
+   Condition of the iterator.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

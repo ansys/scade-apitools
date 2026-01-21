@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.create\_textual\_operator
+=================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: create_textual_operator

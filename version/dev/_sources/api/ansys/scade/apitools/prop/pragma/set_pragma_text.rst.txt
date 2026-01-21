@@ -1,0 +1,27 @@
+ansys.scade.apitools.prop.pragma.set_pragma_text
+================================================
+
+.. py:function:: ansys.scade.apitools.prop.pragma.set_pragma_text(object_: scade.model.suite.Object, id: str, text: str) -> bool
+
+   Update the pragma ID of an object with a new ID.
+
+   * Delete the pragma when the text is empty.
+   * Create a new pragma when no pragma ID exists yet.
+   * Return whether the model is modified.
+
+   See the :ref:`pragma <ex__pragma>` example.
+
+   Parameters
+   ----------
+   object\_ : suite.Object
+       Element to search for the pragma.
+   id : str
+       ID of the pragma.
+   text : str
+       New ID of the pragma.
+
+   Returns
+   -------
+   bool
+       ``True`` when the model is modified, ``False`` otherwise.
+

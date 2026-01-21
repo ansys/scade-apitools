@@ -1,0 +1,149 @@
+
+
+
+
+
+
+The ``ansys.scade.apitools`` library
+====================================
+
+.. py:module:: ansys.scade.apitools
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: apitools
+.. tab-set::
+
+    .. tab-item:: Subpackages
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create`
+            - Provides a collection of functions for creating or updating Scade models.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr`
+            - Provides a collection of functions for the accessing the expressions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.info`
+            - Provides information on the current version of SCADE.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop`
+            - Provides a collection of functions for the storage of settings and properties.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query`
+            - Provides a collection of queries for SCADE Suite models.
+
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.auto_scade_env`
+            - Provides ``scade_env.load_project``, renamed to ``declare_project``.
+
+
+
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~__version__`
+            - 
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-package"></span> create</api/ansys/scade/apitools/create/index>
+    <span class="nf nf-md-package"></span> expr</api/ansys/scade/apitools/expr/index>
+    <span class="nf nf-md-package"></span> info</api/ansys/scade/apitools/info/index>
+    <span class="nf nf-md-package"></span> prop</api/ansys/scade/apitools/prop/index>
+    <span class="nf nf-md-package"></span> query</api/ansys/scade/apitools/query/index>
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-fa-file"></span> auto_scade_env</api/ansys/scade/apitools/auto_scade_env/index>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+
+Provides a library of high-level functions on top of SCADE Python APIs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: __version__
+
+
+

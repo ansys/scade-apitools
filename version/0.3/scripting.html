@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>SCADE scripting &#8212; pyscade-apitools</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'scripting';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://apitools.scade.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.3';
+        </script>
+    <link rel="shortcut icon" href="_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Create SCADE models" href="create.html" />
+    <link rel="prev" title="User’s Guide" href="guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  <link rel="canonical" href="https://apitools.scade.docs.pyansys.com/version/stable/scripting.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="guide.html">
+                        User’s Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/scade-apitools" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="index.html">pyscade-apitools</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="guide.html" accesskey="U">User’s Guide</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">SCADE scripting</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="guide.html">
+                        User’s Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="modules.html">
+                        Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/scade-apitools" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">SCADE scripting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create.html">Create SCADE models</a></li>
+</ul>
+
+    
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="scade-scripting">
+<span id="scripting-scade"></span><h1>SCADE scripting<a class="headerlink" href="#scade-scripting" title="Permalink to this heading">#</a></h1>
+<section id="reminder">
+<h2>Reminder<a class="headerlink" href="#reminder" title="Permalink to this heading">#</a></h2>
+<p>Most of the SCADE Python APIs available in the SCADE IDE are proxies to internal C++ or Java kernels.
+The most popular are the following ones:</p>
+<ul class="simple">
+<li><p>SCADE Suite</p></li>
+<li><p>SCADE Test</p></li>
+<li><p>SCADE Architect</p></li>
+</ul>
+<p>Refer to the section <em>API Capabilities by SCADE Products</em> of the SCADE documentation for details.</p>
+<p>This provides advantages that won’t be discussed here, but it has also a few constraints:</p>
+<ul class="simple">
+<li><p>The scripts can’t be run outside of the context of a SCADE Release, on Windows.</p></li>
+<li><p>The version of the Python interpreter must be the one delivered with SCADE Suite:</p>
+<ul>
+<li><p>Python 3.7 for releases prior to 2023 R2 (directory SCADE/contrib/Python37)</p></li>
+<li><p>Python 3.10 starting from 2023 R2 (directory SCADE/contrib/Python310)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="scade-environment">
+<h2>SCADE environment<a class="headerlink" href="#scade-environment" title="Permalink to this heading">#</a></h2>
+<p>The SCADE Python scripts, and formerly TCL scripts, are intended to be run from a SCADE environment, either the SCADE IDE or the command line through <code class="docutils literal notranslate"><span class="pre">scade.exe</span> <span class="pre">-script</span></code>.</p>
+<p>The operating mode is identical in both cases. When a script is run:</p>
+<ul>
+<li><p>The projects are already loaded: Workspace in the IDE or list on the command line.
+There is no command to load dynamically a project and its related semantic data, for example SCADE Suite models or SCADE Test procedures.</p></li>
+<li><p>SCADE creates the instance of a Python interpreter and adds dynamically commands to address the loaded data, through the module <code class="docutils literal notranslate"><span class="pre">scade</span></code>.
+As mentioned above, it is not possible to use another interpreter as the one delivered in SCADE/contrib, or to specify a virtual environment based on it.</p>
+<p>There are additional functions in the IDE to address features for queries or reporting, for example <code class="docutils literal notranslate"><span class="pre">scade.selection</span></code> or <code class="docutils literal notranslate"><span class="pre">scade.report</span></code>.</p>
+</li>
+<li><p>The interpreter is deleted once the execution of the scripts ends.</p></li>
+</ul>
+<p>There is another advanced kind of scripts in the IDE: SCADE custom extensions.
+These scripts are run at startup or when a workspace is loaded, and live until the application ends or the project is closed.
+The Python interpreters have more functions to extend the user interface with GUI artifacts such as toolbars, menus or property pages.</p>
+</section>
+<section id="python-environment">
+<h2>Python environment<a class="headerlink" href="#python-environment" title="Permalink to this heading">#</a></h2>
+<p>The usage described in the previous section has been used for a couple of decades for TCL scripts, and more recently, Python scripts.
+Python allows developing much more complex components and benefits from powerful IDEs such as PyCharm, VS Code or PTVS.
+Although it is not possible to develop GUI scripts in Python IDEs, SCADE provides some workarounds to the constraints exposed in the previous section for command line scripts,
+to allow the usage of these IDEs.</p>
+<p>In addition to the directories to be added to <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>, there is a module <code class="docutils literal notranslate"><span class="pre">scade_env</span></code> which <strong>must</strong> be imported before accessing any SCADE Python modules.
+This module emulates the context of <code class="docutils literal notranslate"><span class="pre">scade.exe</span> <span class="pre">-script</span></code>, and allows declaring all the projects to load before using the SCADE APIs.</p>
+<p><em>Note</em>: The import of this module and the declaration of projects are ignored when the script is run in a SCADE environment.</p>
+<p>Refer to the section <em>Executing Scripts in Python Environment</em> of the SCADE documentation for details.</p>
+</section>
+<section id="advanced-usage-with-api-tools">
+<h2>Advanced usage with API Tools<a class="headerlink" href="#advanced-usage-with-api-tools" title="Permalink to this heading">#</a></h2>
+<p>Once the constraints of the SCADE Python APIs and their usage in a Python environment are understood,
+it is possible to simplify and extend the domain of usage of the scripts, in batch mode.</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">ansys.scade.apitools</span></code> imports <code class="docutils literal notranslate"><span class="pre">scade_env</span></code> and exposes its function <code class="docutils literal notranslate"><span class="pre">load_project</span></code>, renamed to <code class="docutils literal notranslate"><span class="pre">declare_project</span></code> to avoid ambiguities.
+Setting <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> as specified in the documentation becomes optional.
+When <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> does not refer to a SCADE environment, <code class="docutils literal notranslate"><span class="pre">apitools</span></code> has several strategies to find and add dynamically the required SCADE directories to <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>,
+depending on <code class="docutils literal notranslate"><span class="pre">sys.executable</span></code>:</p>
+<ul class="simple">
+<li><p>Interpreter delivered in <code class="docutils literal notranslate"><span class="pre">SCADE/contrib/PythonXxx</span></code>: The directories are relative to its location.</p></li>
+<li><p>Interpreter of a virtual environment on top of an interpreter delivered with SCADE: The virtual environment is resolved, then same as above.</p></li>
+<li><p>Independent interpreter: <code class="docutils literal notranslate"><span class="pre">apitools</span></code> selects the most recent version of SCADE installed on the computer which is compatible with the current interpreter, then same as above:</p>
+<ul>
+<li><p>Python 3.7: from 2021 R1 to 2023 R1.</p></li>
+<li><p>Python 3.10: from 2023 R2.</p></li>
+</ul>
+</li>
+</ul>
+<p>If none of the above uses cases applies, the script cannot be executed.</p>
+<p>Example of interactive session with a standard installation of Python:</p>
+<ol class="arabic">
+<li><p>Interactive session</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">where</span> <span class="n">python</span><span class="o">.</span><span class="n">exe</span>
+<span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">jhenry</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Programs</span>\<span class="n">Python</span>\<span class="n">Python310</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span>
+<span class="o">&gt;</span> <span class="n">python</span><span class="o">.</span><span class="n">exe</span>
+<span class="n">Python</span> <span class="mf">3.10.10</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="mf">.10.10</span><span class="p">:</span><span class="n">aad5f6a</span><span class="p">,</span> <span class="n">Feb</span>  <span class="mi">7</span> <span class="mi">2023</span><span class="p">,</span> <span class="mi">17</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">36</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="mf">.1929</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Preamble to activate a SCADE environment on a given project</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.scade.apitools</span> <span class="kn">import</span> <span class="n">declare_project</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">declare_project</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Program Files\ANSYS Inc\v232\SCADE\examples\ABC_N\ABC_N.etp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Regular script: Load the declared projects and access their pathname</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scade.model.project.stdproject</span> <span class="kn">import</span> <span class="n">get_roots</span> <span class="k">as</span> <span class="n">get_projects</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">project</span> <span class="ow">in</span> <span class="n">get_projects</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">pathname</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">C:/Program Files/ANSYS Inc/v232/SCADE/examples/ABC_N/ABC_N.etp</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reminder">
+   Reminder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scade-environment">
+   SCADE environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-environment">
+   Python environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-usage-with-api-tools">
+   Advanced usage with API Tools
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="_sources/scripting.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+.. py:function:: create_concat(*args)
+
+   
+   Return the expression tree for the concat operator.
+
+
+   :Parameters:
+
+       **args** : :obj:`List`\[:obj:`EX`]
+           Input arrays to concatenate.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

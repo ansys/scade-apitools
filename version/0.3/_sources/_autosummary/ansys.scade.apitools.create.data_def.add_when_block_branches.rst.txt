@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.add\_when\_block\_branches
+================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: add_when_block_branches

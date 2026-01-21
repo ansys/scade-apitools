@@ -1,0 +1,6 @@
+ansys.scade.apitools.prop.pragma.remove\_pragma
+===============================================
+
+.. currentmodule:: ansys.scade.apitools.prop.pragma
+
+.. autofunction:: remove_pragma

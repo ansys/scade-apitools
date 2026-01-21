@@ -1,0 +1,67 @@
+ansys.scade.apitools.create.data_def.add_data_def_equation
+==========================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_data_def_equation(data_def: scade.model.suite.DataDef, diagram: scade.model.suite.Diagram, lefts: List[Union[scade.model.suite.LocalVariable, ansys.scade.apitools.create.type.TX]], right: ansys.scade.apitools.create.expression.EX, position: Tuple[float, float] = None, size: Tuple[float, float] = None, symmetrical: bool = False, rotation: int = 0, textual: bool = False) -> scade.model.suite.Equation
+
+   
+   Create an equation in a scope.
+
+
+   :Parameters:
+
+       **data_def** : :obj:`suite.DataDef`
+           Input scope, which is an operator, state, or action.
+
+       **diagram** : :obj:`suite.Diagram`
+           Diagram containing the equation. The diagram specified can be either graphical
+           or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+           contains at least one diagram.
+
+       **lefts** : :obj:`List`\[:obj:`Union`\[:obj:`suite.LocalVariable`, :obj:`TX`]]
+           List of variables defined by the equation. The elements can be either an
+           existing local variable or a type tree to create an internal
+           variable on the fly when the diagram is a graphical diagram.
+
+       **right** : :obj:`EX`
+           Expression of the equation.
+
+       **position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Position of the equation, expressed in 1/100th of mm.
+           This value is ignored if the diagram is not a graphical diagram.
+           Otherwise, it must be specified.
+
+       **size** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Size of the equation, expressed in 1/100th of mm.
+           This value is ignored if the diagram is not a graphical diagram.
+           Otherwise, it must be specified.
+
+       **symmetrical** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:False`
+           Whether the graphical representation is symmetrical.
+
+       **rotation** : :class:`python:int`, default: 0
+           Rotation angle of the equation, expressed in degrees.
+           Options are ``0``, ``90``, ``180``, and ``270``.
+
+       **textual** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:False`
+           Whether the equation is a textual. If ``False``, the equation is
+           a graphical representation.
+
+
+
+   :Returns:
+
+       :obj:`suite.Equation`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

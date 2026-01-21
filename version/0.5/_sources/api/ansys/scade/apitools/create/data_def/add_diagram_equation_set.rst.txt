@@ -1,0 +1,39 @@
+ansys.scade.apitools.create.data_def.add_diagram_equation_set
+=============================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_diagram_equation_set(diagram: scade.model.suite.NetDiagram, name: str, elements: List[scade.model.suite.Presentable] = None) -> scade.model.suite.EquationSet
+
+   
+   Add a new equation set to a graphical diagram.
+
+
+   :Parameters:
+
+       **diagram** : :obj:`suite.NetDiagram`
+           Input diagram.
+
+       **name** : :class:`python:str`
+           Name of the equation set.
+
+       **elements** : :obj:`List`\[:obj:`suite.Presentable`], default: :data:`python:None`
+           List of elements to add to the equation set.
+
+
+
+   :Returns:
+
+       :obj:`suite.EquationSet`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

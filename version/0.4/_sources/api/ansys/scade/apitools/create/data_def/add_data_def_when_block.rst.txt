@@ -1,0 +1,61 @@
+.. py:function:: add_data_def_when_block(data_def, name, when, branches, diagram = None, position = None, size = None, start_position = (450, 582), label_width = 0)
+
+   
+   Add a new when block in a scope.
+
+   The graphical properties are expressed 1/100th of mm.
+
+   They are considered if and only if the owning when block
+   has a graphical representation.
+
+   :Parameters:
+
+       **data_def** : :obj:`suite.DataDef`
+           Input scope, which is an operator, state, or action.
+
+       **name** : :class:`python:str`
+           Name of the block.
+
+       **when** : :obj:`EX`
+           Pattern of the block.
+
+       **branches** : :obj:`List`\[:obj:`WhenBranch`]
+           List of intermediate structures describing the branches.
+           There must be at least one branch.
+
+       **diagram** : :obj:`suite.Diagram`, default: :data:`python:None`
+           Diagram containing the equation. The diagram specified can be either graphical
+           or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+           contains at least one diagram.
+
+       **position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`] default: :data:`python:None`
+           Position of the block.
+
+       **size** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`] default: :data:`python:None`
+           Size of the block.
+
+       **start_position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: (450, 582)
+           Start position of the branches relative to the block.
+
+       **label_width** : :class:`python:int`, default: 0
+           Width of the label containing the pattern.
+
+   :Returns:
+
+       :obj:`suite.WhenBlock`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

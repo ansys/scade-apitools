@@ -1,0 +1,965 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The expression.py module &#8212; Ansys SCADE API Tools</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/ansys_sphinx_theme.css?v=0909a4fa" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+
+  <!-- Include desired assets -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
+
+  
+    <link href="../../../../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../../../../../_static/documentation_options.js?v=a4d987d4"></script>
+    <script src="../../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/ansys/scade/apitools/create/expression/index';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://apitools.scade.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="icon" href="../../../../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="ExpressionTree" href="ExpressionTree.html" />
+    <link rel="prev" title="ansys.scade.apitools.create.declaration.set_type_constraint" href="../declaration/set_type_constraint.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.5.dev0" />
+  <link rel="canonical" href="https://apitools.scade.docs.pyansys.com/version/stable/api/ansys/scade/apitools/create/expression/index.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="Ansys SCADE API Tools - Home"/>
+    <img src="../../../../../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark pst-js-only" alt="Ansys SCADE API Tools - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../../../index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../../../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../../../../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/scade-apitools" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../../../../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../../../index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../contributing.html">
+    Contribute
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/scade-apitools" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html"><span class="nf nf-md-package"></span> ansys.scade.apitools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html"> <span class="nf nf-md-package"></span> create</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../data_def/index.html"> <span class="nf nf-fa-file"></span> data_def</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../declaration/index.html"> <span class="nf nf-fa-file"></span> declaration</a></li>
+<li class="toctree-l3 current active has-children"><a class="current reference internal" href="#"> <span class="nf nf-fa-file"></span> expression</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="ExpressionTree.html"> <span class="nf nf-cod-symbol_class"></span> ExpressionTree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="EmptyTreeError.html"> <span class="nf nf-md-lightning_bolt"></span> EmptyTreeError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ExprSyntaxError.html"> <span class="nf nf-md-lightning_bolt"></span> ExprSyntaxError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="TypeIdentifierError.html"> <span class="nf nf-md-lightning_bolt"></span> TypeIdentifierError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_activate.html"> <span class="nf nf-md-function_variant"></span> create_activate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_activate_no_init.html"> <span class="nf nf-md-function_variant"></span> create_activate_no_init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_binary.html"> <span class="nf nf-md-function_variant"></span> create_binary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_call.html"> <span class="nf nf-md-function_variant"></span> create_call</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_case.html"> <span class="nf nf-md-function_variant"></span> create_case</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_change_ith.html"> <span class="nf nf-md-function_variant"></span> create_change_ith</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_concat.html"> <span class="nf nf-md-function_variant"></span> create_concat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_data_array.html"> <span class="nf nf-md-function_variant"></span> create_data_array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_data_struct.html"> <span class="nf nf-md-function_variant"></span> create_data_struct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_fby.html"> <span class="nf nf-md-function_variant"></span> create_fby</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_flatten.html"> <span class="nf nf-md-function_variant"></span> create_flatten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_fold.html"> <span class="nf nf-md-function_variant"></span> create_fold</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_foldi.html"> <span class="nf nf-md-function_variant"></span> create_foldi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_foldw.html"> <span class="nf nf-md-function_variant"></span> create_foldw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_foldwi.html"> <span class="nf nf-md-function_variant"></span> create_foldwi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_higher_order_call.html"> <span class="nf nf-md-function_variant"></span> create_higher_order_call</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_if.html"> <span class="nf nf-md-function_variant"></span> create_if</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_init.html"> <span class="nf nf-md-function_variant"></span> create_init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_make.html"> <span class="nf nf-md-function_variant"></span> create_make</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_map.html"> <span class="nf nf-md-function_variant"></span> create_map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_mapfold.html"> <span class="nf nf-md-function_variant"></span> create_mapfold</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_mapfoldi.html"> <span class="nf nf-md-function_variant"></span> create_mapfoldi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_mapfoldw.html"> <span class="nf nf-md-function_variant"></span> create_mapfoldw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_mapfoldwi.html"> <span class="nf nf-md-function_variant"></span> create_mapfoldwi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_mapi.html"> <span class="nf nf-md-function_variant"></span> create_mapi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_mapw.html"> <span class="nf nf-md-function_variant"></span> create_mapw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_mapwi.html"> <span class="nf nf-md-function_variant"></span> create_mapwi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_nary.html"> <span class="nf nf-md-function_variant"></span> create_nary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_numeric_cast.html"> <span class="nf nf-md-function_variant"></span> create_numeric_cast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_pre.html"> <span class="nf nf-md-function_variant"></span> create_pre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_prj.html"> <span class="nf nf-md-function_variant"></span> create_prj</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_prj_dyn.html"> <span class="nf nf-md-function_variant"></span> create_prj_dyn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_restart.html"> <span class="nf nf-md-function_variant"></span> create_restart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_reverse.html"> <span class="nf nf-md-function_variant"></span> create_reverse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_scalar_to_vector.html"> <span class="nf nf-md-function_variant"></span> create_scalar_to_vector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_slice.html"> <span class="nf nf-md-function_variant"></span> create_slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_times.html"> <span class="nf nf-md-function_variant"></span> create_times</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_transpose.html"> <span class="nf nf-md-function_variant"></span> create_transpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create_unary.html"> <span class="nf nf-md-function_variant"></span> create_unary</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../project/index.html"> <span class="nf nf-fa-file"></span> project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scade/index.html"> <span class="nf nf-fa-file"></span> scade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../type/index.html"> <span class="nf nf-fa-file"></span> type</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../expr/index.html"> <span class="nf nf-md-package"></span> expr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../info/index.html"> <span class="nf nf-md-package"></span> info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../prop/index.html"> <span class="nf nf-md-package"></span> prop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../query/index.html"> <span class="nf nf-md-package"></span> query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../auto_scade_env/index.html"> <span class="nf nf-fa-file"></span> auto_scade_env</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../../../../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../../../../../index.html" class="nav-link">API reference</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../../index.html" class="nav-link">The <code class="docutils literal notranslate"><span class="pre">ansys.scade.apitools</span></code> library</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">The <code class="docutils literal notranslate"><span class="pre">create</span></code> package</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">The <code class="docutils literal notranslate"><span class="pre">expression.py</span></code> module</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-ansys.scade.apitools.create.expression">
+<span id="the-expression-py-module"></span><h1>The <code class="docutils literal notranslate"><span class="pre">expression.py</span></code> module<a class="headerlink" href="#module-ansys.scade.apitools.create.expression" title="Link to this heading">#</a></h1>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Classes</label><div class="sd-tab-content docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ExpressionTree.html#ansys.scade.apitools.create.expression.ExpressionTree" title="ansys.scade.apitools.create.expression.ExpressionTree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExpressionTree</span></code></a></p></td>
+<td><p>Provides the top-level abstract class for expression trees.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Exceptions</label><div class="sd-tab-content docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="EmptyTreeError.html#ansys.scade.apitools.create.expression.EmptyTreeError" title="ansys.scade.apitools.create.expression.EmptyTreeError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EmptyTreeError</span></code></a></p></td>
+<td><p>Provides the exception for empty expression trees.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ExprSyntaxError.html#ansys.scade.apitools.create.expression.ExprSyntaxError" title="ansys.scade.apitools.create.expression.ExprSyntaxError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExprSyntaxError</span></code></a></p></td>
+<td><p>Provides the generic exception for syntax errors in expression trees.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="TypeIdentifierError.html#ansys.scade.apitools.create.expression.TypeIdentifierError" title="ansys.scade.apitools.create.expression.TypeIdentifierError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeIdentifierError</span></code></a></p></td>
+<td><p>Provides the exception for incorrect identifiers.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Functions</label><div class="sd-tab-content docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_activate.html#ansys.scade.apitools.create.expression.create_activate" title="ansys.scade.apitools.create.expression.create_activate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_activate</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for activating with initial values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_activate_no_init.html#ansys.scade.apitools.create.expression.create_activate_no_init" title="ansys.scade.apitools.create.expression.create_activate_no_init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_activate_no_init</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for activating with default values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_binary.html#ansys.scade.apitools.create.expression.create_binary" title="ansys.scade.apitools.create.expression.create_binary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_binary</span></code></a></p></td>
+<td><p>Return the expression tree for a binary operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_call.html#ansys.scade.apitools.create.expression.create_call" title="ansys.scade.apitools.create.expression.create_call"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_call</span></code></a></p></td>
+<td><p>Return the expression tree for a call to an operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_case.html#ansys.scade.apitools.create.expression.create_case" title="ansys.scade.apitools.create.expression.create_case"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_case</span></code></a></p></td>
+<td><p>Return the expression tree for the case operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_change_ith.html#ansys.scade.apitools.create.expression.create_change_ith" title="ansys.scade.apitools.create.expression.create_change_ith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_change_ith</span></code></a></p></td>
+<td><p>Return the expression tree for the with operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_concat.html#ansys.scade.apitools.create.expression.create_concat" title="ansys.scade.apitools.create.expression.create_concat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_concat</span></code></a></p></td>
+<td><p>Return the expression tree for the concat operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_data_array.html#ansys.scade.apitools.create.expression.create_data_array" title="ansys.scade.apitools.create.expression.create_data_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_data_array</span></code></a></p></td>
+<td><p>Return the expression tree for the data array operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_data_struct.html#ansys.scade.apitools.create.expression.create_data_struct" title="ansys.scade.apitools.create.expression.create_data_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_data_struct</span></code></a></p></td>
+<td><p>Return the expression tree for the data strictire operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_fby.html#ansys.scade.apitools.create.expression.create_fby" title="ansys.scade.apitools.create.expression.create_fby"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_fby</span></code></a></p></td>
+<td><p>Return the expression tree for the init operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_flatten.html#ansys.scade.apitools.create.expression.create_flatten" title="ansys.scade.apitools.create.expression.create_flatten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_flatten</span></code></a></p></td>
+<td><p>Return the expression tree for flattening a structured value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_fold.html#ansys.scade.apitools.create.expression.create_fold" title="ansys.scade.apitools.create.expression.create_fold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_fold</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for fold creation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_foldi.html#ansys.scade.apitools.create.expression.create_foldi" title="ansys.scade.apitools.create.expression.create_foldi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_foldi</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for foldi creation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_foldw.html#ansys.scade.apitools.create.expression.create_foldw" title="ansys.scade.apitools.create.expression.create_foldw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_foldw</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for foldw creation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_foldwi.html#ansys.scade.apitools.create.expression.create_foldwi" title="ansys.scade.apitools.create.expression.create_foldwi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_foldwi</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for foldwi creation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_higher_order_call.html#ansys.scade.apitools.create.expression.create_higher_order_call" title="ansys.scade.apitools.create.expression.create_higher_order_call"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_higher_order_call</span></code></a></p></td>
+<td><p>Return the expression tree for a call to an operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_if.html#ansys.scade.apitools.create.expression.create_if" title="ansys.scade.apitools.create.expression.create_if"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_if</span></code></a></p></td>
+<td><p>Return the expression tree for the if-then-else operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_init.html#ansys.scade.apitools.create.expression.create_init" title="ansys.scade.apitools.create.expression.create_init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_init</span></code></a></p></td>
+<td><p>Return the expression tree for the init operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_make.html#ansys.scade.apitools.create.expression.create_make" title="ansys.scade.apitools.create.expression.create_make"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_make</span></code></a></p></td>
+<td><p>Return the expression tree for making a structured value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_map.html#ansys.scade.apitools.create.expression.create_map" title="ansys.scade.apitools.create.expression.create_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_map</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for map creation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_mapfold.html#ansys.scade.apitools.create.expression.create_mapfold" title="ansys.scade.apitools.create.expression.create_mapfold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_mapfold</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for mapfold creation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_mapfoldi.html#ansys.scade.apitools.create.expression.create_mapfoldi" title="ansys.scade.apitools.create.expression.create_mapfoldi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_mapfoldi</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for mapfoldi creation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_mapfoldw.html#ansys.scade.apitools.create.expression.create_mapfoldw" title="ansys.scade.apitools.create.expression.create_mapfoldw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_mapfoldw</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for mapfoldw creation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_mapfoldwi.html#ansys.scade.apitools.create.expression.create_mapfoldwi" title="ansys.scade.apitools.create.expression.create_mapfoldwi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_mapfoldwi</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for mapfoldwi creation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_mapi.html#ansys.scade.apitools.create.expression.create_mapi" title="ansys.scade.apitools.create.expression.create_mapi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_mapi</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for mapi creation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_mapw.html#ansys.scade.apitools.create.expression.create_mapw" title="ansys.scade.apitools.create.expression.create_mapw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_mapw</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for mapw creation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_mapwi.html#ansys.scade.apitools.create.expression.create_mapwi" title="ansys.scade.apitools.create.expression.create_mapwi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_mapwi</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for mapdwi creation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_nary.html#ansys.scade.apitools.create.expression.create_nary" title="ansys.scade.apitools.create.expression.create_nary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_nary</span></code></a></p></td>
+<td><p>Return the expression tree for a nary operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_numeric_cast.html#ansys.scade.apitools.create.expression.create_numeric_cast" title="ansys.scade.apitools.create.expression.create_numeric_cast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_numeric_cast</span></code></a></p></td>
+<td><p>Return the expression tree for casting a numerical value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_pre.html#ansys.scade.apitools.create.expression.create_pre" title="ansys.scade.apitools.create.expression.create_pre"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_pre</span></code></a></p></td>
+<td><p>Return the expression tree for the pre operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_prj.html#ansys.scade.apitools.create.expression.create_prj" title="ansys.scade.apitools.create.expression.create_prj"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_prj</span></code></a></p></td>
+<td><p>Return the expression tree for the projection operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_prj_dyn.html#ansys.scade.apitools.create.expression.create_prj_dyn" title="ansys.scade.apitools.create.expression.create_prj_dyn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_prj_dyn</span></code></a></p></td>
+<td><p>Return the expression tree for the dynamic projection operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_restart.html#ansys.scade.apitools.create.expression.create_restart" title="ansys.scade.apitools.create.expression.create_restart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_restart</span></code></a></p></td>
+<td><p>Return the expression tree for the higher-order construct for restarting.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_reverse.html#ansys.scade.apitools.create.expression.create_reverse" title="ansys.scade.apitools.create.expression.create_reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_reverse</span></code></a></p></td>
+<td><p>Return the expression tree for the reverse operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_scalar_to_vector.html#ansys.scade.apitools.create.expression.create_scalar_to_vector" title="ansys.scade.apitools.create.expression.create_scalar_to_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_scalar_to_vector</span></code></a></p></td>
+<td><p>Return the expression tree for the scalar-to-vector operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_slice.html#ansys.scade.apitools.create.expression.create_slice" title="ansys.scade.apitools.create.expression.create_slice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_slice</span></code></a></p></td>
+<td><p>Return the expression tree for the slice operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_times.html#ansys.scade.apitools.create.expression.create_times" title="ansys.scade.apitools.create.expression.create_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_times</span></code></a></p></td>
+<td><p>Return the expression tree for the times operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="create_transpose.html#ansys.scade.apitools.create.expression.create_transpose" title="ansys.scade.apitools.create.expression.create_transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_transpose</span></code></a></p></td>
+<td><p>Return the expression tree for the transpose operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="create_unary.html#ansys.scade.apitools.create.expression.create_unary" title="ansys.scade.apitools.create.expression.create_unary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_unary</span></code></a></p></td>
+<td><p>Return the expression tree for a unary operator.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+Constants</label><div class="sd-tab-content docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#expression.ET" title="expression.ET"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ET</span></code></a></p></td>
+<td><p>Short name for an <code class="docutils literal notranslate"><span class="pre">ExpressionTree</span></code> instance to simplify the declarations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#expression.EX" title="expression.EX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EX</span></code></a></p></td>
+<td><p>Extended expression tree to simplify use of the create functions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#expression.LX" title="expression.LX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LX</span></code></a></p></td>
+<td><p>Extended sequence of expression trees to simplify the use of create functions.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
+<p>Provides helpers for creating expression trees.</p>
+<p>Expression trees are intermediate structures to declare any arbitrary complex
+expressions. They create the corresponding SCADE Suite expressions in the
+context of a model element, such as the right part of an equation or the
+default value of an output.</p>
+<p>This module provides functions to create an expression tree for any expression
+of the Scade language, including higher-order constructs. Thus, the intermediate
+structures or classes defining the expression trees can be opaque.</p>
+<p>Notes: The typing is relaxed in this module to ease the constructs.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ET</span></code> is an alias for <code class="docutils literal notranslate"><span class="pre">ExpressionTree</span></code> to shorten the declarations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EX</span></code>, which stands for extended expression tree, is defined as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">suite</span><span class="o">.</span><span class="n">ConstVar</span><span class="p">,</span> <span class="n">suite</span><span class="o">.</span><span class="n">NamedType</span><span class="p">,</span> <span class="n">ET</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This enhances the usability of these functions by accepting some values,
+such as Python literals, string values, or SCADE Python objects, as valid
+expression trees.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LX</span></code>, which stands for extended lists of expression trees, is defined as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Union</span><span class="p">[</span><span class="n">EX</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">EX</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>When the expressions accept an arbitrary number of input flows, such as
+if-then-else or fby, you can provide either one expression tree or a list
+of expression trees.</p>
+</li>
+</ul>
+</section>
+<section id="module-detail">
+<h2>Module detail<a class="headerlink" href="#module-detail" title="Link to this heading">#</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="expression.ET">
+<span class="sig-prename descclassname"><span class="pre">expression.</span></span><span class="sig-name descname"><span class="pre">ET</span></span><a class="headerlink" href="#expression.ET" title="Link to this definition">#</a></dt>
+<dd><p>Short name for an <code class="docutils literal notranslate"><span class="pre">ExpressionTree</span></code> instance to simplify the declarations.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="expression.EX">
+<span class="sig-prename descclassname"><span class="pre">expression.</span></span><span class="sig-name descname"><span class="pre">EX</span></span><a class="headerlink" href="#expression.EX" title="Link to this definition">#</a></dt>
+<dd><p>Extended expression tree to simplify use of the create functions.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="expression.LX">
+<span class="sig-prename descclassname"><span class="pre">expression.</span></span><span class="sig-name descname"><span class="pre">LX</span></span><a class="headerlink" href="#expression.LX" title="Link to this definition">#</a></dt>
+<dd><p>Extended sequence of expression trees to simplify the use of create functions.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-detail">Module detail</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expression.ET"><code class="docutils literal notranslate"><span class="pre">ET</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expression.EX"><code class="docutils literal notranslate"><span class="pre">EX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expression.LX"><code class="docutils literal notranslate"><span class="pre">LX</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../_sources/api/ansys/scade/apitools/create/expression/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+
+  <!-- Include desired assets -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../../../../../../_static/search.json";
+</script>
+
+
+<script src="../../../../../../_static/js/search.js"></script>
+  
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2026 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.3.2. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = ast_lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

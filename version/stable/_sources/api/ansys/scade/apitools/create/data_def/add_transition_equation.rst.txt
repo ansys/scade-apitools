@@ -1,0 +1,25 @@
+ansys.scade.apitools.create.data_def.add_transition_equation
+============================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_transition_equation(transition: scade.model.suite.Transition, lefts: List[Union[scade.model.suite.LocalVariable, ansys.scade.apitools.create.type.TX]], right: Optional[ansys.scade.apitools.create.expression.EX]) -> scade.model.suite.Equation
+
+   Create an equation in a transition.
+
+   Notes
+   -----
+   This function ensures the availability of a scope before creating the
+   equation. Indeed, the transitions do not have a scope, suite.DataDef, by default.
+
+   Parameters
+   ----------
+   transition : suite.Transition
+       Input transition.
+   lefts : List[suite.LocalVariable]
+       List of variables defined by the equation.
+   right : EX | None
+       Expression of the equation.
+
+   Returns
+   -------
+   suite.Equation
+

@@ -1,0 +1,56 @@
+prop_pragma
+===========
+
+project: PropPragma.etp
+
+
+.. raw:: html
+
+  <details>
+  <summary><a>pragma</a></summary>
+
+.. _ex__pragma:
+
+.. literalinclude :: /_examples/pragma.py
+
+Output:
+
+.. literalinclude :: /examples/prop_pragma/output_pragma.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>pragma_json</a></summary>
+
+.. _ex__pragma_json:
+
+.. literalinclude :: /_examples/pragma_json.py
+
+Output:
+
+.. literalinclude :: /examples/prop_pragma/output_pragma_json.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>pragma_tool</a></summary>
+
+.. _ex__pragma_tool:
+
+.. literalinclude :: /_examples/pragma_tool.py
+
+Output:
+
+.. literalinclude :: /examples/prop_pragma/output_pragma_tool.txt
+
+.. raw:: html
+
+  </details>

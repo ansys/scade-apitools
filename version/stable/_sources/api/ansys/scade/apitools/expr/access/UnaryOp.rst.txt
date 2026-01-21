@@ -1,0 +1,82 @@
+
+
+
+
+
+
+:class:`UnaryOp`
+================
+
+.. py:class:: ansys.scade.apitools.expr.access.UnaryOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`AryOp`
+
+
+   Provides an expression with one operand.
+
+   The format is ``<operator> <operand>``, where ``<operator>`` is one of
+   these:
+
+   * ``reverse``
+   * ``-``, ``+``
+   * ``not``
+   * ``lnot``
+
+   See the :ref:`unary_op <ex__unary_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: UnaryOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~operand`
+            - Operand of the operator.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import UnaryOp
+
+Property detail
+---------------
+
+.. py:property:: operand
+   :type: Expression
+
+
+   Operand of the operator.
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+ansys.scade.apitools.query.type.get_type_name
+=============================================
+
+.. py:function:: ansys.scade.apitools.query.type.get_type_name(type_: scade.model.suite.Type) -> str
+
+   Get the name of a type or a string representation.
+
+   See the :ref:`get_type_name <ex__get_type_name>` example.
+
+   Parameters
+   ----------
+   type\_ : suite.Type
+       Input type.
+
+   Returns
+   -------
+   str
+       Name of a type or a string representation.
+

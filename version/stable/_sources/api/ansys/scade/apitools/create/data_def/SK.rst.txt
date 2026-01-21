@@ -1,0 +1,74 @@
+
+
+
+
+
+
+:class:`SK`
+===========
+
+.. py:class:: ansys.scade.apitools.create.data_def.SK
+
+   Bases: :py:obj:`enum.Enum`
+
+
+   Provides an enum of state kinds.
+
+
+
+.. py:currentmodule:: SK
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+
+   .. tab-item:: Attributes
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~FINAL`
+            - 
+          * - :py:attr:`~INITIAL`
+            - 
+          * - :py:attr:`~NORMAL`
+            - 
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import SK
+
+
+Attribute detail
+----------------
+
+.. py:attribute:: FINAL
+   :value: 'Final'
+
+
+.. py:attribute:: INITIAL
+   :value: 'Initial'
+
+
+.. py:attribute:: NORMAL
+   :value: 'Normal'
+
+
+
+
+
+

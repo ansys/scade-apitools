@@ -1,0 +1,36 @@
+.. py:function:: create_unary(op, tree, modifiers = None)
+
+   
+   Return the expression tree for a unary operator.
+
+
+   :Parameters:
+
+       **op** : :class:`python:str`
+           Unary operator to call: - | + | !
+
+       **tree** : :obj:`EX`
+           Operand: expression tree.
+
+       **modifiers** : :obj:`Union`\[:obj:`ET`, :obj:`LIST`\[:obj:`ET`]], default: :data:`python:None`
+           List of higher-order constructs.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

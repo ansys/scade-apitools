@@ -1,0 +1,28 @@
+ansys.scade.apitools.create.declaration.create_enumeration
+==========================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.create_enumeration(owner: scade.model.suite.Package, name: str, values: List[str], path: Optional[pathlib.Path] = None, visibility: VK = VK.PUBLIC) -> scade.model.suite.NamedType
+
+   Create a named type defined by an enumeration.
+
+   The type has a name and a list of values.
+
+   Parameters
+   ----------
+   owner : suite.Package
+       Owner of the type, which is either the model itself or a package.
+   name : str
+       Name of the type.
+   values : List[str]
+       List of the enumeration values.
+   path : Path | None, default: None
+       Path of the file for storing the type. This parameter is ignored if
+       the owner is a package. When the path is ``None`` and owner is the model,
+       the type is stored in the model's default file.
+   visibility : VK
+       Accessibility of the type.
+
+   Returns
+   -------
+   suite.NamedType
+

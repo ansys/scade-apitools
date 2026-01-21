@@ -1,0 +1,126 @@
+
+
+
+
+
+
+The ``type.py`` module
+======================
+
+.. py:module:: ansys.scade.apitools.query.type
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: type
+.. tab-set::
+
+
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.get_cell_type`
+            - Get the type of the elements of an array, optionally multi-dimensional.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.get_leaf_alias`
+            - Get the closest alias of the input's type definition.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.get_leaf_type`
+            - Get the definition of the input type, bypassing the aliases.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.get_type_name`
+            - Get the name of a type or a string representation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.is_array`
+            - Determine if the input type is an array.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.is_enum`
+            - Determine if the input type is an enumeration.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.is_imported`
+            - Determine if the input type is imported.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.is_predefined`
+            - Determine if the input type is predefined.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.is_scalar`
+            - Determine if the input type is scalar.
+
+
+          * - :py:obj:`~ansys.scade.apitools.query.type.is_structure`
+            - Determine if the input type is a structure.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> get_cell_type</api/ansys/scade/apitools/query/type/get_cell_type>
+    <span class="nf nf-md-function_variant"></span> get_leaf_alias</api/ansys/scade/apitools/query/type/get_leaf_alias>
+    <span class="nf nf-md-function_variant"></span> get_leaf_type</api/ansys/scade/apitools/query/type/get_leaf_type>
+    <span class="nf nf-md-function_variant"></span> get_type_name</api/ansys/scade/apitools/query/type/get_type_name>
+    <span class="nf nf-md-function_variant"></span> is_array</api/ansys/scade/apitools/query/type/is_array>
+    <span class="nf nf-md-function_variant"></span> is_enum</api/ansys/scade/apitools/query/type/is_enum>
+    <span class="nf nf-md-function_variant"></span> is_imported</api/ansys/scade/apitools/query/type/is_imported>
+    <span class="nf nf-md-function_variant"></span> is_predefined</api/ansys/scade/apitools/query/type/is_predefined>
+    <span class="nf nf-md-function_variant"></span> is_scalar</api/ansys/scade/apitools/query/type/is_scalar>
+    <span class="nf nf-md-function_variant"></span> is_structure</api/ansys/scade/apitools/query/type/is_structure>
+
+
+
+
+
+
+Description
+-----------
+
+Provides queries for SCADE Suite types.
+
+The main purpose of this module is to get the nature of a type regardless of its aliases
+and not raise an exception if a type is ``None``.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

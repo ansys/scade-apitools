@@ -1,0 +1,33 @@
+ansys.scade.apitools.create.expression.create_pre
+=================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_pre(*args: List[EX]) -> ET
+
+   
+   Return the expression tree for the pre operator.
+
+
+   :Parameters:
+
+       **args** : :obj:`List`\[:obj:`EX`]
+           Input flows.
+
+
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

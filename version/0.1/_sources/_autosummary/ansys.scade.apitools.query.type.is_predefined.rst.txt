@@ -1,0 +1,6 @@
+ansys.scade.apitools.query.type.is\_predefined
+==============================================
+
+.. currentmodule:: ansys.scade.apitools.query.type
+
+.. autofunction:: is_predefined

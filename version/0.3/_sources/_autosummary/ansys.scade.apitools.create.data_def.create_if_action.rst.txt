@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.create\_if\_action
+========================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: create_if_action

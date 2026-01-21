@@ -1,0 +1,35 @@
+.. py:function:: create_file_ref(owner, persist_as)
+
+   
+   Create file reference.
+
+   A file reference has a pathname and must be a file of either a project or a folder.
+
+   :Parameters:
+
+       **owner** : :obj:`std.Project` or :obj:`std.Folder`
+           Owner of the file, which is either the project itself or a folder.
+
+       **persist_as** : :class:`python:str`
+           String representation of the reference to the file to store in the project's file.
+           The string can be either a relative reference to the project or an absolute path.
+
+   :Returns:
+
+       :obj:`std.FileRef`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

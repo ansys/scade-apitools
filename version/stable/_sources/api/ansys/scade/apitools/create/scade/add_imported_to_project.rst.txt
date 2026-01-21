@@ -1,0 +1,35 @@
+ansys.scade.apitools.create.scade.add_imported_to_project
+=========================================================
+
+.. py:function:: ansys.scade.apitools.create.scade.add_imported_to_project(project: scade.model.project.stdproject.Project, element: Union[scade.model.suite.NamedType, scade.model.suite.Operator], path: str, folder: Optional[scade.model.project.stdproject.Folder] = None, default: bool = True) -> scade.model.project.stdproject.FileRef
+
+   Add an imported source file, associated with the SCADE imported element, to the project.
+
+   The file is added if and only if it is not already present.
+   If the file is present, the ``folder`` and ``default`` parameters are ignored.
+
+   * When the ``folder`` parameter is not ``None``, the file is added to the
+     folder specified.
+   * When the ``default`` parameter is ``True``, the file is added to either the
+     "External Code" or "External Type Definitions" folder, depending on the nature
+     of the element.
+   * Otherwise, the file is added to the project as a root element.
+
+   Parameters
+   ----------
+   project : std.Project
+       Project to modify.
+   element : Union[suite.NamedType, suite.Operator]
+       Imported element.
+   path : str
+       Path of the file to add to the project.
+   folder : std.Folder | None
+       Parent folder of the file to add to the project, default: None.
+   default : bool, default: True
+       Whether to add the file is added to the default folder
+       for SCADE Simulation files, according to the element.
+
+   Returns
+   -------
+   std.FileRef
+

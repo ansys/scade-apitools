@@ -1,0 +1,111 @@
+
+
+
+
+
+
+:class:`ConditionalOp`
+======================
+
+.. py:class:: ansys.scade.apitools.expr.access.ConditionalOp(expression: scade.model.suite.ExprCall, operator: CallExpression)
+
+   Bases: :py:obj:`OpOp`
+
+
+   Provides the abstract class for restart and activate operators.
+
+   Parameters
+   ----------
+   expression :
+       Higher-order expression to wrap.
+   operator :
+       Operator call expression.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: ConditionalOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~every`
+            - Condition expression.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ConditionalOp
+
+Property detail
+---------------
+
+.. py:property:: every
+   :type: Expression
+
+
+   
+   Condition expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

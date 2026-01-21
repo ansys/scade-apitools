@@ -1,0 +1,93 @@
+
+
+
+
+VK
+==
+
+.. py:class:: VK
+   :canonical: ansys.scade.apitools.create.declaration.VK
+
+
+
+Bases: :py:obj:`enum.Enum`
+
+
+   Visibility kind.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: VK
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~PRIVATE`
+            - 
+          * - :py:attr:`~PUBLIC`
+            - 
+      
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.declaration import VK
+
+
+
+Attribute detail
+----------------
+.. py:attribute:: PRIVATE
+   :value: 'Private'
+
+   
+
+.. py:attribute:: PUBLIC
+   :value: 'Public'
+
+   
+
+
+

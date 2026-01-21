@@ -1,0 +1,113 @@
+
+
+
+
+TransposeOp
+===========
+
+.. py:class:: TransposeOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.TransposeOp
+
+
+
+Bases: :py:obj:`ArrayOp`
+
+
+   Provides for the transposition of an array.
+
+   See the :ref:`transpose_op <ex__transpose_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: TransposeOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~dimensions`
+            - Dimensions to transpose.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import TransposeOp
+
+
+Property detail
+---------------
+.. py:property:: dimensions
+   :canonical: ansys.scade.apitools.expr.access.TransposeOp.dimensions
+   :type: tuple[Expression, Expression]
+
+
+   
+   Dimensions to transpose.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

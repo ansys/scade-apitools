@@ -1,0 +1,93 @@
+
+
+
+
+
+
+:class:`InitOp`
+===============
+
+.. py:class:: ansys.scade.apitools.expr.access.InitOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`CallExpression`
+
+
+   Provides for the initialization of flows.
+
+   The format is ``<init>, ..., <init> -> <flow>, ..., <flow>``.
+
+   See the :ref:`init_op <ex__init_op>` example.
+
+   Notes
+   -----
+   The design differs slightly from the meta-model. Because the inputs
+   must be groups of flows, the :class:`~InitOp` class does not inherit
+   from the :class:`~FlowOp` class. It exposes directly the lists of flows and initial
+   values instead of having flows that are instances of the :class:`~ListExpression`
+   class.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: InitOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~flows`
+            - Flows after the first cycle.
+          * - :py:attr:`~inits`
+            - Initial values of the flows.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import InitOp
+
+Property detail
+---------------
+
+.. py:property:: flows
+   :type: list[Expression]
+
+
+   Flows after the first cycle.
+
+
+.. py:property:: inits
+   :type: list[Expression]
+
+
+   Initial values of the flows.
+
+
+
+
+
+
+

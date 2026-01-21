@@ -1,0 +1,31 @@
+.. py:function:: is_predefined(type_)
+
+   
+   Determine if the input type is predefined.
+
+   See the :ref:`is_predefined <ex__is_predefined>` example.
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.Type`
+           Input type.
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           ``True`` when the input type is predefined, ``False`` otherwise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

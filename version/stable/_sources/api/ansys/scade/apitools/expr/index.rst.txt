@@ -1,0 +1,79 @@
+
+
+
+
+
+
+The ``expr`` package
+========================
+
+.. py:module:: ansys.scade.apitools.expr
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: expr
+.. tab-set::
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access`
+            - Provides accessors for expressions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.predef`
+            - Provides numeric values for the ``predef_opr`` attribute from the ``suite.ExprCall``.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-fa-file"></span> access</api/ansys/scade/apitools/expr/access/index>
+    <span class="nf nf-fa-file"></span> predef</api/ansys/scade/apitools/expr/predef/index>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+Provides a collection of functions for the accessing the expressions.
+
+
+
+
+
+

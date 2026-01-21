@@ -1,0 +1,23 @@
+.. py:function:: get_scade_home()
+
+   
+   Get the SCADE installation directory.
+
+   For example, ``C:/Program Files/ANSYS Inc/v232/SCADE``.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

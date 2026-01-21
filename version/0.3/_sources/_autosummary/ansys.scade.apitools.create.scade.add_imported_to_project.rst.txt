@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.scade.add\_imported\_to\_project
+============================================================
+
+.. currentmodule:: ansys.scade.apitools.create.scade
+
+.. autofunction:: add_imported_to_project

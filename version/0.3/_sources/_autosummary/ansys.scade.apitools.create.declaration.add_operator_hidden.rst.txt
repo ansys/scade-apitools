@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.add\_operator\_hidden
+=============================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: add_operator_hidden

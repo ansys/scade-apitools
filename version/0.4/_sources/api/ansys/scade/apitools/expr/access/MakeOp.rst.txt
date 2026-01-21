@@ -1,0 +1,147 @@
+
+
+
+
+MakeOp
+======
+
+.. py:class:: MakeOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.MakeOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides the make of a structure.
+
+   The format is ``(make <type>)(<flow>, ..., <flow>)``.
+
+   See the :ref:`make_op <ex__make_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The design differs slightly from the meta-model. This class derives from
+   the :class:`~CallExpression` class.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: MakeOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~flows`
+            - Components of the structure.
+          * - :py:attr:`~type_`
+            - Type to build.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import MakeOp
+
+
+Property detail
+---------------
+.. py:property:: flows
+   :canonical: ansys.scade.apitools.expr.access.MakeOp.flows
+   :type: list[Expression]
+
+
+   
+   Components of the structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: type_
+   :canonical: ansys.scade.apitools.expr.access.MakeOp.type_
+   :type: scade.model.suite.NamedType
+
+
+   
+   Type to build.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

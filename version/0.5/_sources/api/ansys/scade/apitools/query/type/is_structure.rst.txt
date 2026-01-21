@@ -1,0 +1,34 @@
+ansys.scade.apitools.query.type.is_structure
+============================================
+
+.. py:function:: ansys.scade.apitools.query.type.is_structure(type_: scade.model.suite.Type) -> bool
+
+   
+   Determine if the input type is a structure.
+
+   See the :ref:`is_structure <ex__is_structure>` example.
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.Type`
+           Input type.
+
+
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           ``True`` when the input type is a structure, ``False`` otherwise.
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

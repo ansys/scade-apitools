@@ -1,0 +1,30 @@
+ansys.scade.apitools.create.declaration.create_graphical_operator
+=================================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.create_graphical_operator(owner: scade.model.suite.Package, name: str, path: Optional[pathlib.Path], visibility: VK = VK.PUBLIC, symbol_file: Optional[pathlib.Path] = None, state: bool = False) -> scade.model.suite.Operator
+
+   Create an operator with a graphical diagram.
+
+   The operator has a name.
+
+   Parameters
+   ----------
+   owner : suite.Package
+       Owner of the operator, which is either the model itself or a package.
+   name : str
+       Name of the operator.
+   path : Path | None, default: None
+       Path of the file for storing the operator. This parameter is optional
+       if the package's owner is a package. When the path is ``None`` and owner
+       is the model, the operator is stored in the model's default file.
+   visibility : VK, default: PUBLIC
+       Accessibility of the operator.
+   symbol_file : Path, default: None
+       Path of the file defining the symbol of the operator.
+   state : bool, default: False
+       Whether the operator is a node.
+
+   Returns
+   -------
+   suite.Operator
+

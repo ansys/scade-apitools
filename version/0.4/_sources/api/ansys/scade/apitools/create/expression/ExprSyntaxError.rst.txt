@@ -1,0 +1,57 @@
+
+
+
+
+ExprSyntaxError
+===============
+
+.. py:exception:: ExprSyntaxError(context, item)
+   :canonical: ansys.scade.apitools.create.expression.ExprSyntaxError
+
+
+
+Bases: :py:obj:`Exception`
+
+
+   Provides the generic exception for syntax errors in expression trees.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.expression import ExprSyntaxError
+
+
+
+
+

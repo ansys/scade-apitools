@@ -1,0 +1,20 @@
+ansys.scade.apitools.create.expression.create_mapw
+==================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_mapw(size: EX, condition: EX, default: EX) -> ET
+
+   Return the expression tree for the higher-order construct for mapw creation.
+
+   Parameters
+   ----------
+   size : EX
+       Number of iterations.
+   condition : EX
+       Initial value of the iteration condition.
+   default : EX
+       Default value of the iteration.
+
+   Returns
+   -------
+   ET
+

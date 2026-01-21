@@ -1,0 +1,30 @@
+.. py:function:: add_diagram_missing_edges(diagram)
+
+   
+   Add the missing edges in a graphical diagram with default positions.
+
+
+   :Parameters:
+
+       **diagram** : :obj:`suite.NetDiagram`
+           Input diagram.
+
+   :Returns:
+
+       :obj:`List`\[:obj:`suite.Edge`]
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

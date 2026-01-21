@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.add\_diagram\_missing\_edges
+==================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: add_diagram_missing_edges

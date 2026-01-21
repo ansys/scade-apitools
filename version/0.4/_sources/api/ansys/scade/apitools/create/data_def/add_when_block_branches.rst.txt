@@ -1,0 +1,33 @@
+.. py:function:: add_when_block_branches(when_block, branches)
+
+   
+   Add new branches to a when block.
+
+
+   :Parameters:
+
+       **when_block** : :obj:`suite.WhenBlock`
+           Input block.
+
+       **branches** : :obj:`List`\[:obj:`WhenBranch`]
+           List of intermediate structures describing the branches.
+
+   :Returns:
+
+       :obj:`List`\[:obj:`suite.WhenBranch`]
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

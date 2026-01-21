@@ -1,0 +1,19 @@
+ansys.scade.apitools.query.type.is_array
+========================================
+
+.. py:function:: ansys.scade.apitools.query.type.is_array(type_: scade.model.suite.Type) -> bool
+
+   Determine if the input type is an array.
+
+   See the :ref:`is_array <ex__is_array>` example.
+
+   Parameters
+   ----------
+   type\_ : suite.Type
+       Input type.
+
+   Returns
+   -------
+   bool
+       ``True`` when the input type is an array, ``False`` otherwise.
+

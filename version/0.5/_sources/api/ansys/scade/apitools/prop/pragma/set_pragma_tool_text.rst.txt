@@ -1,0 +1,46 @@
+ansys.scade.apitools.prop.pragma.set_pragma_tool_text
+=====================================================
+
+.. py:function:: ansys.scade.apitools.prop.pragma.set_pragma_tool_text(object_: scade.model.suite.Object, id: str, key: str, text: str) -> bool
+
+   
+   Update the pragma ID which text starts with ``key`` of ``object_`` with ``text``.
+
+   * Create a pragma when no pragma ID if no pragma with the given key exists.
+   * Return whether the model is modified.
+
+   See the :ref:`pragma_tool <ex__pragma_tool>` example.
+
+   :Parameters:
+
+       **object\_** : :obj:`suite.Object`
+           Element to search for the pragma.
+
+       **id** : :class:`python:str`
+           ID of the pragma.
+
+       **text** : :class:`python:str`
+           New value of the pragma.
+
+       **key** : :class:`python:str`
+           First token of the pragma.
+
+
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           ``True`` if the model is modified, ``False`` otherwise.
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,47 @@
+
+
+IteratorOp
+==========
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: IteratorOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~IteratorOp.accumulator_count
+      ~IteratorOp.code
+      ~IteratorOp.name
+      ~IteratorOp.operator
+      ~IteratorOp.size
+
+   
+   ..
+      autoattribute:: IteratorOp.accumulator_count
+   ..
+      autoattribute:: IteratorOp.code
+   ..
+      autoattribute:: IteratorOp.name
+   ..
+      autoattribute:: IteratorOp.operator
+   ..
+      autoattribute:: IteratorOp.size
+   
+   

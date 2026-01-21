@@ -1,0 +1,18 @@
+ansys.scade.apitools.create.data_def.add_data_def_text_diagram
+==============================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_data_def_text_diagram(data_def: scade.model.suite.DataDef, name: str) -> scade.model.suite.TextDiagram
+
+   Add a textal diagram to a scope.
+
+   Parameters
+   ----------
+   data_def : suite.DataDef
+       Input scope, which is an operator, state, or action.
+   name : str
+       Name of the diagram.
+
+   Returns
+   -------
+   suite.TextDiagram
+

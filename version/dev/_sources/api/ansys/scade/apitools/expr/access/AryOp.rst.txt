@@ -1,0 +1,37 @@
+
+
+
+
+
+
+:class:`AryOp`
+==============
+
+.. py:class:: ansys.scade.apitools.expr.access.AryOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`CallExpression`
+
+
+   Provides the abstract class for unary, binary, and nary operators.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import AryOp
+
+
+
+
+

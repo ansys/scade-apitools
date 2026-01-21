@@ -1,0 +1,6 @@
+ansys.scade.apitools.info.runtime.ide\_print
+============================================
+
+.. currentmodule:: ansys.scade.apitools.info.runtime
+
+.. autofunction:: ide_print

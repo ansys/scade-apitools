@@ -1,0 +1,113 @@
+
+
+
+
+
+
+:class:`Present`
+================
+
+.. py:class:: ansys.scade.apitools.expr.access.Present(expression: scade.model.suite.ExprId)
+
+   Bases: :py:obj:`Expression`
+
+
+   Provides the presence of a signal.
+
+   The format is ``'<signal>``.
+
+   See the :ref:`present <ex__present>` example.
+
+   Parameters
+   ----------
+   expression :
+       Signal expression to wrap.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: Present
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~signal`
+            - Signal of the expression.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import Present
+
+Property detail
+---------------
+
+.. py:property:: signal
+   :type: scade.model.suite.LocalVariable
+
+
+   
+   Signal of the expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

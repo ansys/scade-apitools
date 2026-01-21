@@ -1,0 +1,22 @@
+.. py:function:: save_all()
+
+   
+   Save all modified files of Scade models.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

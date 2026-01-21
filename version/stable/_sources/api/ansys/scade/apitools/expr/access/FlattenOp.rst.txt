@@ -1,0 +1,90 @@
+
+
+
+
+
+
+:class:`FlattenOp`
+==================
+
+.. py:class:: ansys.scade.apitools.expr.access.FlattenOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`CallExpression`
+
+
+   Provides flattening of a structure.
+
+   The format is ``(flatten <type>)(<flow>)``.
+
+   See the :ref:`flatten_op <ex__flatten_op>` example.
+
+   Notes
+   -----
+   The design differs slightly from the meta-model. This class derives from
+   the :class:`~CallExpression` class.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: FlattenOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~flow`
+            - Input flow.
+          * - :py:attr:`~type_`
+            - Type to build.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import FlattenOp
+
+Property detail
+---------------
+
+.. py:property:: flow
+   :type: Expression
+
+
+   Input flow.
+
+
+.. py:property:: type_
+   :type: scade.model.suite.NamedType
+
+
+   Type to build.
+
+
+
+
+
+
+

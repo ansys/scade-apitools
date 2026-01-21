@@ -1,0 +1,454 @@
+
+
+
+
+
+
+The ``access.py`` module
+========================
+
+.. py:module:: ansys.scade.apitools.expr.access
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: access
+.. tab-set::
+
+
+
+
+    .. tab-item:: Classes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.ActivateNoInitOp`
+            - Provides activation of an operator with default values.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.ActivateOp`
+            - Activation of an operator with initial values.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.ArrayOp`
+            - Provides the abstract class for array expressions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.AryOp`
+            - Provides the abstract class for unary, binary, and nary operators.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.BinaryOp`
+            - Provides an expression with two operands.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.CallExpression`
+            - Provides the abstract class for expression calls.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.CaseOp`
+            - Provides the case expression.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.ChgIthOp`
+            - Provides the static assignment of a flow.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.CondactOp`
+            - Provides the abstract class for activate operators.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.ConditionalOp`
+            - Provides the abstract class for restart and activate operators.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.ConstValue`
+            - Provides the literal value.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.DataArrayOp`
+            - Provides for construction of an array.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.DataStructOp`
+            - Provides for construction of a structure.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.Expression`
+            - Provides the top-level abstract class for the expression accessors.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.FbyOp`
+            - Provides the delay of flows.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.FlattenOp`
+            - Provides flattening of a structure.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.FlowOp`
+            - Provides an abstract class for flow expressions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.IdExpression`
+            - Provides the constant, sensor, or local variable.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.IfThenElseOp`
+            - Provides a vector from a flow and a size.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.InitOp`
+            - Provides for the initialization of flows.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.IteratorOp`
+            - Provides the base class for iteration operators.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.Label`
+            - Provides the label of a projection.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.LabelledExpression`
+            - 
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.Last`
+            - Provides the last of a local variable.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.ListExpression`
+            - Provides a group of expressions.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.MakeOp`
+            - Provides the make of a structure.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.NAryOp`
+            - Provides an expression with two or more operands.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.NumericCastOp`
+            - Provides the numeric cast of a flow.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.OpCall`
+            - Calls a user-defined operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.OpOp`
+            - Provides the abstract class for higher-order operators.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.PartialIteratorOp`
+            - Provides partial iteration of an operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.PreOp`
+            - Provides the previous value of flows.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.Present`
+            - Provides the presence of a signal.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.PrjDynOp`
+            - Provides the dynamic projection of an array.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.PrjOp`
+            - Provides the static projection of a flow.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.ProjectionOp`
+            - Provides the abstract class for static projection/assignment of a flow.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.RestartOp`
+            - Provides for restart of an operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.ScalarToVectorOp`
+            - Provides the vector from a flow and a size.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.SharpOp`
+            - Provides a sharp expression with two or more flows.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.SliceOp`
+            - Provides the slice of an array.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.TextExpression`
+            - Provides an expression with a syntax error.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.TransposeOp`
+            - Provides for the transposition of an array.
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.UnaryOp`
+            - Provides an expression with one operand.
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.expr.access.accessor`
+            - Build the accessor for a SCADE Suite expression.
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~map_operators`
+            - 
+
+
+
+    .. tab-item:: Constants
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~BINARY_OPS`
+            - 
+
+
+          * - :py:obj:`~MAP_HIGHER_ORDER`
+            - 
+
+
+          * - :py:obj:`~MAP_OPERATORS`
+            - 
+
+
+          * - :py:obj:`~NARY_OPS`
+            - 
+
+
+          * - :py:obj:`~UNARY_OPS`
+            - 
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-cod-symbol_class"></span> ActivateNoInitOp</api/ansys/scade/apitools/expr/access/ActivateNoInitOp>
+    <span class="nf nf-cod-symbol_class"></span> ActivateOp</api/ansys/scade/apitools/expr/access/ActivateOp>
+    <span class="nf nf-cod-symbol_class"></span> ArrayOp</api/ansys/scade/apitools/expr/access/ArrayOp>
+    <span class="nf nf-cod-symbol_class"></span> AryOp</api/ansys/scade/apitools/expr/access/AryOp>
+    <span class="nf nf-cod-symbol_class"></span> BinaryOp</api/ansys/scade/apitools/expr/access/BinaryOp>
+    <span class="nf nf-cod-symbol_class"></span> CallExpression</api/ansys/scade/apitools/expr/access/CallExpression>
+    <span class="nf nf-cod-symbol_class"></span> CaseOp</api/ansys/scade/apitools/expr/access/CaseOp>
+    <span class="nf nf-cod-symbol_class"></span> ChgIthOp</api/ansys/scade/apitools/expr/access/ChgIthOp>
+    <span class="nf nf-cod-symbol_class"></span> CondactOp</api/ansys/scade/apitools/expr/access/CondactOp>
+    <span class="nf nf-cod-symbol_class"></span> ConditionalOp</api/ansys/scade/apitools/expr/access/ConditionalOp>
+    <span class="nf nf-cod-symbol_class"></span> ConstValue</api/ansys/scade/apitools/expr/access/ConstValue>
+    <span class="nf nf-cod-symbol_class"></span> DataArrayOp</api/ansys/scade/apitools/expr/access/DataArrayOp>
+    <span class="nf nf-cod-symbol_class"></span> DataStructOp</api/ansys/scade/apitools/expr/access/DataStructOp>
+    <span class="nf nf-cod-symbol_class"></span> Expression</api/ansys/scade/apitools/expr/access/Expression>
+    <span class="nf nf-cod-symbol_class"></span> FbyOp</api/ansys/scade/apitools/expr/access/FbyOp>
+    <span class="nf nf-cod-symbol_class"></span> FlattenOp</api/ansys/scade/apitools/expr/access/FlattenOp>
+    <span class="nf nf-cod-symbol_class"></span> FlowOp</api/ansys/scade/apitools/expr/access/FlowOp>
+    <span class="nf nf-cod-symbol_class"></span> IdExpression</api/ansys/scade/apitools/expr/access/IdExpression>
+    <span class="nf nf-cod-symbol_class"></span> IfThenElseOp</api/ansys/scade/apitools/expr/access/IfThenElseOp>
+    <span class="nf nf-cod-symbol_class"></span> InitOp</api/ansys/scade/apitools/expr/access/InitOp>
+    <span class="nf nf-cod-symbol_class"></span> IteratorOp</api/ansys/scade/apitools/expr/access/IteratorOp>
+    <span class="nf nf-cod-symbol_class"></span> Label</api/ansys/scade/apitools/expr/access/Label>
+    <span class="nf nf-cod-symbol_class"></span> LabelledExpression</api/ansys/scade/apitools/expr/access/LabelledExpression>
+    <span class="nf nf-cod-symbol_class"></span> Last</api/ansys/scade/apitools/expr/access/Last>
+    <span class="nf nf-cod-symbol_class"></span> ListExpression</api/ansys/scade/apitools/expr/access/ListExpression>
+    <span class="nf nf-cod-symbol_class"></span> MakeOp</api/ansys/scade/apitools/expr/access/MakeOp>
+    <span class="nf nf-cod-symbol_class"></span> NAryOp</api/ansys/scade/apitools/expr/access/NAryOp>
+    <span class="nf nf-cod-symbol_class"></span> NumericCastOp</api/ansys/scade/apitools/expr/access/NumericCastOp>
+    <span class="nf nf-cod-symbol_class"></span> OpCall</api/ansys/scade/apitools/expr/access/OpCall>
+    <span class="nf nf-cod-symbol_class"></span> OpOp</api/ansys/scade/apitools/expr/access/OpOp>
+    <span class="nf nf-cod-symbol_class"></span> PartialIteratorOp</api/ansys/scade/apitools/expr/access/PartialIteratorOp>
+    <span class="nf nf-cod-symbol_class"></span> PreOp</api/ansys/scade/apitools/expr/access/PreOp>
+    <span class="nf nf-cod-symbol_class"></span> Present</api/ansys/scade/apitools/expr/access/Present>
+    <span class="nf nf-cod-symbol_class"></span> PrjDynOp</api/ansys/scade/apitools/expr/access/PrjDynOp>
+    <span class="nf nf-cod-symbol_class"></span> PrjOp</api/ansys/scade/apitools/expr/access/PrjOp>
+    <span class="nf nf-cod-symbol_class"></span> ProjectionOp</api/ansys/scade/apitools/expr/access/ProjectionOp>
+    <span class="nf nf-cod-symbol_class"></span> RestartOp</api/ansys/scade/apitools/expr/access/RestartOp>
+    <span class="nf nf-cod-symbol_class"></span> ScalarToVectorOp</api/ansys/scade/apitools/expr/access/ScalarToVectorOp>
+    <span class="nf nf-cod-symbol_class"></span> SharpOp</api/ansys/scade/apitools/expr/access/SharpOp>
+    <span class="nf nf-cod-symbol_class"></span> SliceOp</api/ansys/scade/apitools/expr/access/SliceOp>
+    <span class="nf nf-cod-symbol_class"></span> TextExpression</api/ansys/scade/apitools/expr/access/TextExpression>
+    <span class="nf nf-cod-symbol_class"></span> TransposeOp</api/ansys/scade/apitools/expr/access/TransposeOp>
+    <span class="nf nf-cod-symbol_class"></span> UnaryOp</api/ansys/scade/apitools/expr/access/UnaryOp>
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> accessor</api/ansys/scade/apitools/expr/access/accessor>
+
+
+
+
+
+
+Description
+-----------
+
+Provides accessors for expressions.
+
+This module wraps the expressions derived from ``suite.Expression`` using the classes
+corresponding to the XSCADE serialization, as exposed in the SCADE documentation:
+``SCADE Suite Metamodels for Java API > 12. Scade Language Metamodels > Expressions``.
+These classes allow accessing precisely each member of an expression.
+
+Use the :py:func:`~ansys.scade.apitools.expr.access.accessor` function to create
+an accessor from any SCADE Suite expression.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: BINARY_OPS
+
+.. py:data:: MAP_HIGHER_ORDER
+
+.. py:data:: MAP_OPERATORS
+
+.. py:data:: NARY_OPS
+
+.. py:data:: UNARY_OPS
+
+.. py:data:: map_operators
+
+
+

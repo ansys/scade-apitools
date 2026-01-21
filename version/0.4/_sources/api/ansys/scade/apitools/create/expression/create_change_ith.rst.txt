@@ -1,0 +1,36 @@
+.. py:function:: create_change_ith(flow, path, value)
+
+   
+   Return the expression tree for the with operator.
+
+
+   :Parameters:
+
+       **flow** : :obj:`EX`
+           Input flow of the projection.
+
+       **path** : :obj:`Union`\[:obj:`EX`, :obj:`List`\[:obj:`EX`]]
+           Elements of the path, which is a label, index, or variable.
+
+       **value** : :obj:`EX`
+           Value to assign.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

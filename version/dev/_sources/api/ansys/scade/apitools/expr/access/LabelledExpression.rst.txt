@@ -1,0 +1,61 @@
+
+
+
+
+
+
+:class:`LabelledExpression`
+===========================
+
+.. py:class:: ansys.scade.apitools.expr.access.LabelledExpression
+
+   Bases: :py:obj:`tuple`
+
+
+
+.. py:currentmodule:: LabelledExpression
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+
+   .. tab-item:: Attributes
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~flow`
+            - 
+          * - :py:attr:`~label`
+            - 
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import LabelledExpression
+
+
+Attribute detail
+----------------
+
+.. py:attribute:: flow
+
+.. py:attribute:: label
+
+
+
+
+

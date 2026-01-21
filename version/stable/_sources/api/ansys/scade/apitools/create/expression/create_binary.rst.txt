@@ -1,0 +1,22 @@
+ansys.scade.apitools.create.expression.create_binary
+====================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_binary(op: str, tree1: EX, tree2: EX, modifiers: Union[ET, List[ET], None] = None) -> ET
+
+   Return the expression tree for a binary operator.
+
+   Parameters
+   ----------
+   op : str
+       Binary operator to call: & | | | ^ | # | + | - | * | / | : | % | < | <= | > | >= | = | <>
+   tree1 : EX
+       First operand: expression tree.
+   tree2 : EX
+       Second operand: expression tree.
+   modifiers : Union[ET, List[ET], None], default: None
+       List of higher-order constructs.
+
+   Returns
+   -------
+   ET
+

@@ -1,0 +1,34 @@
+.. py:function:: remove_pragma(object_, id)
+
+   
+   Remove the pragma ID from an object.
+
+   See the :ref:`pragma <ex__pragma>` example.
+
+   :Parameters:
+
+       **object\_** : :obj:`suite.Object`
+           Element to search for the pragma.
+
+       **id** : :class:`python:str`
+           ID of the pragma.
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           ``True`` when the pragma is found, ``False`` otherwise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

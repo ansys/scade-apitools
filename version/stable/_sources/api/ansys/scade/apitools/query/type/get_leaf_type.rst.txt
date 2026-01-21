@@ -1,0 +1,21 @@
+ansys.scade.apitools.query.type.get_leaf_type
+=============================================
+
+.. py:function:: ansys.scade.apitools.query.type.get_leaf_type(type_: scade.model.suite.Type) -> scade.model.suite.Type
+
+   Get the definition of the input type, bypassing the aliases.
+
+   See the :ref:`get_leaf_type <ex__get_leaf_type>` example.
+
+   Parameters
+   ----------
+   type\_ : suite.Type
+       Input type.
+
+   Returns
+   -------
+   suite.Type
+       Definition of the input type or the input type itself itself if it
+       is not an alias, such as an instance of ``NamedType`` or a predefined
+       type. It is not a named type unless it is predefined.
+

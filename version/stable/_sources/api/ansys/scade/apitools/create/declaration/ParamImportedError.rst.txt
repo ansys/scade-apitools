@@ -1,0 +1,32 @@
+
+
+
+
+
+
+:class:`ParamImportedError`
+===========================
+
+.. py:exception:: ansys.scade.apitools.create.declaration.ParamImportedError(context, item, text)
+
+   Bases: :py:obj:`Exception`
+
+
+   Provides the exception for the wrong imported operator specification.
+
+   Provide a customized message.
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.declaration import ParamImportedError
+
+
+
+
+

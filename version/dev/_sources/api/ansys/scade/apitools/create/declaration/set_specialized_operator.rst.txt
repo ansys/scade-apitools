@@ -1,0 +1,14 @@
+ansys.scade.apitools.create.declaration.set_specialized_operator
+================================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.set_specialized_operator(operator: scade.model.suite.Operator, imported: scade.model.suite.Operator)
+
+   Declare a specialization of an imported operator.
+
+   Parameters
+   ----------
+   operator : suite.Operator
+       Specializing operator.
+   imported : suite.Operator
+       Specialized imported operator.
+

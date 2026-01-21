@@ -1,0 +1,37 @@
+ansys.scade.apitools.create.data_def.create_transition_fork
+===========================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.create_transition_fork(trigger: Optional[ansys.scade.apitools.create.expression.EX], forks: List[TR], priority: int, points: Optional[List[Tuple[float, float]]] = None, label_position: Tuple[float, float] = (0, 0), label_size: Tuple[float, float] = (0, 0), slash_position: Tuple[float, float] = (0, 0), polyline: bool = True) -> TR
+
+   Create an intermediate transition structure with forked transitions.
+
+   The graphical properties are expressed 1/100th of mm.
+
+   They are considered if and only if the owning state machine
+   has a graphical representation.
+
+   Parameters
+   ----------
+   trigger : EX | None
+       Extended expression tree defining the trigger of the transition.
+   forks : List[TR]
+       Transitions forked from this transition.
+   priority : int
+       Priority of the transition.
+   points : List[Tuple[float, float]] | None, default: None
+       Points of the transition.
+   label_position : Tuple[float, float], default: (0, 0)
+       Position of the label.
+   label_size : Tuple[float, float], default: (0, 0)
+       Size of the label, default: None
+   slash_position : Tuple[float, float], default: (0, 0)
+       Position of the separator between the trigger and the action
+       of the transition.
+   polyline : bool, default: True
+       Indicates whether the representation is a list of segments. If ``False``,
+       the representation is a Bezier curve.
+
+   Returns
+   -------
+   TR
+

@@ -1,0 +1,125 @@
+
+
+
+
+
+The ``type.py`` module
+======================
+
+.. py:module:: ansys.scade.apitools.query.type
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: type
+.. tab-set::
+
+
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~get_cell_type`
+            - Get the type of the elements of an array, optionally multi-dimensional.
+
+
+          * - :py:attr:`~get_leaf_alias`
+            - Get the closest alias of the input's type definition.
+
+
+          * - :py:attr:`~get_leaf_type`
+            - Get the definition of the input type, bypassing the aliases.
+
+
+          * - :py:attr:`~get_type_name`
+            - Get the name of a type or a string representation.
+
+
+          * - :py:attr:`~is_array`
+            - Determine if the input type is an array.
+
+
+          * - :py:attr:`~is_enum`
+            - Determine if the input type is an enumeration.
+
+
+          * - :py:attr:`~is_imported`
+            - Determine if the input type is imported.
+
+
+          * - :py:attr:`~is_predefined`
+            - Determine if the input type is predefined.
+
+
+          * - :py:attr:`~is_scalar`
+            - Determine if the input type is scalar.
+
+
+          * - :py:attr:`~is_structure`
+            - Determine if the input type is a structure.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    𝑓(x) get_cell_type<get_cell_type>
+    𝑓(x) get_leaf_alias<get_leaf_alias>
+    𝑓(x) get_leaf_type<get_leaf_type>
+    𝑓(x) get_type_name<get_type_name>
+    𝑓(x) is_array<is_array>
+    𝑓(x) is_enum<is_enum>
+    𝑓(x) is_imported<is_imported>
+    𝑓(x) is_predefined<is_predefined>
+    𝑓(x) is_scalar<is_scalar>
+    𝑓(x) is_structure<is_structure>
+
+
+
+
+
+
+Description
+-----------
+
+Provides queries for SCADE Suite types.
+
+The main purpose of this module is to get the nature of a type regardless of its aliases
+and not raise an exception if a type is ``None``.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

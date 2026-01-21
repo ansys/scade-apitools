@@ -1,0 +1,115 @@
+
+
+
+
+DataStructOp
+============
+
+.. py:class:: DataStructOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.DataStructOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides for construction of a structure.
+
+   The format is ``{ <label>: <expression>, ..., <label> : <expression> }``.
+
+   See the :ref:`data_struct_op <ex__data_struct_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: DataStructOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~data`
+            - Pairs (str, Expression) to build the structure.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import DataStructOp
+
+
+Property detail
+---------------
+.. py:property:: data
+   :canonical: ansys.scade.apitools.expr.access.DataStructOp.data
+   :type: list[LabelledExpression]
+
+
+   
+   Pairs (str, Expression) to build the structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

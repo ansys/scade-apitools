@@ -1,0 +1,24 @@
+ansys.scade.apitools.create.data_def.add_data_def_locals
+========================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_data_def_locals(data_def: scade.model.suite.DataDef, vars: List[Tuple[str, ansys.scade.apitools.create.type.TX]]) -> List[scade.model.suite.LocalVariable]
+
+   Add local variables to a scope.
+
+   Notes
+   -----
+   This is an interface change with respect to the *SCADE Creation Library*.
+   The pairs "name"/"type tree" are now embedded in a list of tuples.
+
+   Parameters
+   ----------
+   data_def : suite.DataDef
+       Input scope, which is an operator, state, or action.
+   vars : List[Tuple[str, TX]]
+       Name/type expression trees.
+
+   Returns
+   -------
+   List[suite.LocalVariable]
+       List of added variables.
+

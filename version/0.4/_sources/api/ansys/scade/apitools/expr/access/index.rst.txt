@@ -1,0 +1,486 @@
+
+
+
+
+
+The ``access.py`` module
+========================
+
+.. py:module:: ansys.scade.apitools.expr.access
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: access
+.. tab-set::
+
+
+
+
+    .. tab-item:: Classes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~ActivateNoInitOp`
+            - Provides activation of an operator with default values.
+
+
+          * - :py:attr:`~ActivateOp`
+            - Activation of an operator with initial values.
+
+
+          * - :py:attr:`~ArrayOp`
+            - Provides the abstract class for array expressions.
+
+
+          * - :py:attr:`~AryOp`
+            - Provides the abstract class for unary, binary, and nary operators.
+
+
+          * - :py:attr:`~BinaryOp`
+            - Provides an expression with two operands.
+
+
+          * - :py:attr:`~CallExpression`
+            - Provides the abstract class for expression calls.
+
+
+          * - :py:attr:`~CaseOp`
+            - Provides the case expression.
+
+
+          * - :py:attr:`~ChgIthOp`
+            - Provides the static assignment of a flow.
+
+
+          * - :py:attr:`~CondactOp`
+            - Provides the abstract class for activate operators.
+
+
+          * - :py:attr:`~ConditionalOp`
+            - Provides the abstract class for restart and activate operators.
+
+
+          * - :py:attr:`~ConstValue`
+            - Provides the literal value.
+
+
+          * - :py:attr:`~DataArrayOp`
+            - Provides for construction of an array.
+
+
+          * - :py:attr:`~DataStructOp`
+            - Provides for construction of a structure.
+
+
+          * - :py:attr:`~Expression`
+            - Provides the top-level abstract class for the expression accessors.
+
+
+          * - :py:attr:`~FbyOp`
+            - Provides the delay of flows.
+
+
+          * - :py:attr:`~FlattenOp`
+            - Provides flattening of a structure.
+
+
+          * - :py:attr:`~FlowOp`
+            - Provides an abstract class for flow expressions.
+
+
+          * - :py:attr:`~IdExpression`
+            - Provides the constant, sensor, or local variable.
+
+
+          * - :py:attr:`~IfThenElseOp`
+            - Provides a vector from a flow and a size.
+
+
+          * - :py:attr:`~InitOp`
+            - Provides for the initialization of flows.
+
+
+          * - :py:attr:`~IteratorOp`
+            - Provides the base class for iteration operators.
+
+
+          * - :py:attr:`~Label`
+            - Provides the label of a projection.
+
+
+          * - :py:attr:`~Last`
+            - Provides the last of a local variable.
+
+
+          * - :py:attr:`~ListExpression`
+            - Provides a group of expressions.
+
+
+          * - :py:attr:`~MakeOp`
+            - Provides the make of a structure.
+
+
+          * - :py:attr:`~NAryOp`
+            - Provides an expression with two or more operands.
+
+
+          * - :py:attr:`~NumericCastOp`
+            - Provides the numeric cast of a flow.
+
+
+          * - :py:attr:`~OpCall`
+            - Calls a user-defined operator.
+
+
+          * - :py:attr:`~OpOp`
+            - Provides the abstract class for higher-order operators.
+
+
+          * - :py:attr:`~PartialIteratorOp`
+            - Provides partial iteration of an operator.
+
+
+          * - :py:attr:`~PreOp`
+            - Provides the previous value of flows.
+
+
+          * - :py:attr:`~Present`
+            - Provides the presence of a signal.
+
+
+          * - :py:attr:`~PrjDynOp`
+            - Provides the dynamic projection of an array.
+
+
+          * - :py:attr:`~PrjOp`
+            - Provides the static projection of a flow.
+
+
+          * - :py:attr:`~ProjectionOp`
+            - Provides the abstract class for static projection/assignment of a flow.
+
+
+          * - :py:attr:`~RestartOp`
+            - Provides for restart of an operator.
+
+
+          * - :py:attr:`~ScalarToVectorOp`
+            - Provides the vector from a flow and a size.
+
+
+          * - :py:attr:`~SharpOp`
+            - Provides a sharp expression with two or more flows.
+
+
+          * - :py:attr:`~SliceOp`
+            - Provides the slice of an array.
+
+
+          * - :py:attr:`~TextExpression`
+            - Provides an expression with a syntax error.
+
+
+          * - :py:attr:`~TransposeOp`
+            - Provides for the transposition of an array.
+
+
+          * - :py:attr:`~UnaryOp`
+            - Provides an expression with one operand.
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~accessor`
+            - Build the accessor for a SCADE Suite expression.
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~LabelledExpression`
+            - Element of a structure.
+
+
+          * - :py:attr:`~map_operators`
+            - 
+
+
+
+    .. tab-item:: Constants
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~BINARY_OPS`
+            - 
+
+
+          * - :py:attr:`~MAP_HIGHER_ORDER`
+            - 
+
+
+          * - :py:attr:`~MAP_OPERATORS`
+            - 
+
+
+          * - :py:attr:`~NARY_OPS`
+            - 
+
+
+          * - :py:attr:`~UNARY_OPS`
+            - 
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🝆 ActivateNoInitOp<ActivateNoInitOp>
+    🝆 ActivateOp<ActivateOp>
+    🝆 ArrayOp<ArrayOp>
+    🝆 AryOp<AryOp>
+    🝆 BinaryOp<BinaryOp>
+    🝆 CallExpression<CallExpression>
+    🝆 CaseOp<CaseOp>
+    🝆 ChgIthOp<ChgIthOp>
+    🝆 CondactOp<CondactOp>
+    🝆 ConditionalOp<ConditionalOp>
+    🝆 ConstValue<ConstValue>
+    🝆 DataArrayOp<DataArrayOp>
+    🝆 DataStructOp<DataStructOp>
+    🝆 Expression<Expression>
+    🝆 FbyOp<FbyOp>
+    🝆 FlattenOp<FlattenOp>
+    🝆 FlowOp<FlowOp>
+    🝆 IdExpression<IdExpression>
+    🝆 IfThenElseOp<IfThenElseOp>
+    🝆 InitOp<InitOp>
+    🝆 IteratorOp<IteratorOp>
+    🝆 Label<Label>
+    🝆 Last<Last>
+    🝆 ListExpression<ListExpression>
+    🝆 MakeOp<MakeOp>
+    🝆 NAryOp<NAryOp>
+    🝆 NumericCastOp<NumericCastOp>
+    🝆 OpCall<OpCall>
+    🝆 OpOp<OpOp>
+    🝆 PartialIteratorOp<PartialIteratorOp>
+    🝆 PreOp<PreOp>
+    🝆 Present<Present>
+    🝆 PrjDynOp<PrjDynOp>
+    🝆 PrjOp<PrjOp>
+    🝆 ProjectionOp<ProjectionOp>
+    🝆 RestartOp<RestartOp>
+    🝆 ScalarToVectorOp<ScalarToVectorOp>
+    🝆 SharpOp<SharpOp>
+    🝆 SliceOp<SliceOp>
+    🝆 TextExpression<TextExpression>
+    🝆 TransposeOp<TransposeOp>
+    🝆 UnaryOp<UnaryOp>
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    𝑓(x) accessor<accessor>
+
+
+
+
+
+
+Description
+-----------
+
+Provides accessors for expressions.
+
+This module wraps the expressions derived from ``suite.Expression`` using the classes
+corresponding to the XSCADE serialization, as exposed in the SCADE documentation:
+``SCADE Suite Metamodels for Java API > 12. Scade Language Metamodels > Expressions``.
+These classes allow accessing precisely each member of an expression.
+
+Use the :py:func:`~ansys.scade.apitools.expr.access.accessor` function to create
+an accessor from any SCADE Suite expression.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: BINARY_OPS
+
+   
+
+.. py:data:: MAP_HIGHER_ORDER
+
+   
+
+.. py:data:: MAP_OPERATORS
+
+   
+
+.. py:data:: NARY_OPS
+
+   
+
+.. py:data:: UNARY_OPS
+
+   
+
+.. py:data:: LabelledExpression
+
+   
+   Element of a structure.
+
+   The format is ``<label>: <flow>``.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:data:: map_operators
+
+   
+
+
+
