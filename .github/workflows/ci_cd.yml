@@ -34,7 +34,7 @@ jobs:
       library-name: "ansys-scade-apitools"
       repository-name: "ansys/scade-apitools"
       is-public: true
-      main-python-version: '3.12'
+      main-python-version: '3.10'
       # strategies
       build-wheelhouse-versions: "['3.10']"
       python-tests-versions: "['3.10']"
