@@ -1,0 +1,32 @@
+ansys.scade.apitools.create.data_def.create_if_tree
+===================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.create_if_tree(expression: ansys.scade.apitools.create.expression.EX, then: IT, else_: IT, position: Tuple[float, float] = (0, 0), label_width: int = 0) -> IT
+
+   Create a decision in the intermediate structure if it is a tree structure.
+
+   The graphical properties are expressed 1/100th of mm.
+
+   They are considered if and only if the owning if block
+   has a graphical representation.
+
+   Hint for the graphical properties: The size of a node is 80x80. Consider
+   this offset to have consistent values between if nodes and actions.
+
+   Parameters
+   ----------
+   expression : EX
+       Extended expression tree defining the condition of the decision.
+   then : IT
+       Sub-decision tree to consider when the condition is ``True``.
+   else\_ : IT
+       Sub-decision tree to consider when the condition is ``False``.
+   position : Tuple[float, float], default: (0, 0)
+       Position of the decision.
+   label_width : int, default: 0
+       Size of the label.
+
+   Returns
+   -------
+   IT
+

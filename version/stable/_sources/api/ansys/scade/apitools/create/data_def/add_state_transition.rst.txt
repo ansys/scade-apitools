@@ -1,0 +1,20 @@
+ansys.scade.apitools.create.data_def.add_state_transition
+=========================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_state_transition(state: scade.model.suite.State, kind: TK, tree: TR) -> scade.model.suite.Transition
+
+   Add a new transition starting from a state.
+
+   Parameters
+   ----------
+   state : EX
+       Source of the transition.
+   kind : TK
+       Kind of transition.
+   tree : TR
+       Transition tree, which is the intermediate structure describing the transition.
+
+   Returns
+   -------
+   suite.Transition
+

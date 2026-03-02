@@ -1,0 +1,16 @@
+ansys.scade.apitools.create.expression.create_concat
+====================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_concat(*args: EX) -> ET
+
+   Return the expression tree for the concat operator.
+
+   Parameters
+   ----------
+   \*args : EX
+       Input arrays to concatenate.
+
+   Returns
+   -------
+   ET
+

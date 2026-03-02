@@ -1,0 +1,26 @@
+ansys.scade.apitools.prop.pragma.set_pragma_json
+================================================
+
+.. py:function:: ansys.scade.apitools.prop.pragma.set_pragma_json(object_: scade.model.suite.Object, id: str, data: object) -> bool
+
+   Serialize a Python object to a JSON document in a textual pragma.
+
+   An existing pragma with the same ID is updated with the text
+   or deleted if the object is ``None`` or empty.
+
+   See the :ref:`pragma_json <ex__pragma_json>` example.
+
+   Parameters
+   ----------
+   object\_ : suite.Object
+       Element to attach the pragma to.
+   id : str
+       ID of the pragma.
+   data : object
+       Python object to serialize to a JSON document.
+
+   Returns
+   -------
+   bool
+       ``True`` if the object is modified, ``False`` otherwise.
+

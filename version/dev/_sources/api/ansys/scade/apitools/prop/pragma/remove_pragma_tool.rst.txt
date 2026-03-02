@@ -1,0 +1,23 @@
+ansys.scade.apitools.prop.pragma.remove_pragma_tool
+===================================================
+
+.. py:function:: ansys.scade.apitools.prop.pragma.remove_pragma_tool(object_: scade.model.suite.Object, id: str, key: str) -> bool
+
+   Remove the pragma from an object.
+
+   See the  :ref:`pragma_tool <ex__pragma_tool>` example.
+
+   Parameters
+   ----------
+   object\_ : suite.Object
+       Element to search for the pragma.
+   id : str
+       ID of the pragma.
+   key : str
+       First token of the pragma.
+
+   Returns
+   -------
+   bool
+       ``True`` if the pragma is found, ``False`` otherwise.
+

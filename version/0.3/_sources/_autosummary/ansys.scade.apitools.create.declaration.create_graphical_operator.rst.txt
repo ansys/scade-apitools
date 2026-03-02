@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.create\_graphical\_operator
+===================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: create_graphical_operator
