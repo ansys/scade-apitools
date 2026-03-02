@@ -36,8 +36,8 @@ jobs:
       is-public: true
       main-python-version: '3.14'
       # strategies
-      build-wheelhouse-versions: "['3.14']"
-      python-tests-versions: "['3.10']"
+      build-wheelhouse-versions: "['3.7', '3.10', '3.12']"
+      python-tests-versions: "['3.7', '3.10', '3.12']"
     secrets:
       PYANSYS_CI_BOT_TOKEN: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
       PYANSYS_CI_BOT_USERNAME: ${{ secrets.PYANSYS_CI_BOT_USERNAME }}
