@@ -9,6 +9,22 @@ This document contains the release notes for the project.
 
 .. towncrier release notes start
 
+`0.7.1 <https://github.com/ansys/scade-apitools/releases/tag/v0.7.1>`_ - March 13, 2026
+=======================================================================================
+
+.. tab-set::
+
+
+  .. tab-item:: Maintenance
+
+    .. list-table::
+        :header-rows: 0
+        :widths: auto
+
+        * - Bump SCADE 2026 R1
+          - `#157 <https://github.com/ansys/scade-apitools/pull/157>`_
+
+
 `0.7.0 <https://github.com/ansys/scade-apitools/releases/tag/v0.7.0>`_ - March 12, 2026
 =======================================================================================
 
