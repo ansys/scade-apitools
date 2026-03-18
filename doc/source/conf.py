@@ -138,16 +138,12 @@ if switcher_version != 'dev':
 # update the examples
 update_doc(Path(os.getcwd()).parent.parent)
 
-jinja_contexts = {
-    'assets_versions': {'version': switcher_version},
-}
-
 
 def zip_example_folder(app: Sphinx):
     """Zip a specific folder and place it in the Sphinx output directory."""
     root_dir = Path(app.srcdir).parent.parent
     examples_dir = root_dir / 'examples'
-    zip_output_path = Path(app.outdir) / '_static' / 'examples.zip'
+    zip_output_path = Path(app.srcdir) / '_download' / 'examples.zip'
 
     if not examples_dir.exists():
         logging.error(f"Folder '{examples_dir}' does not exist.")
