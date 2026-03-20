@@ -118,7 +118,7 @@ celerybeat.pid
 
 # Environments
 .env
-.venv
+.venv*
 env/
 venv/
 ENV/
@@ -164,6 +164,7 @@ doc/source/_autosummary/
 docstd/
 doc/source/_examples/
 doc/source/api/
+doc/source/_download/
 
 # Ignore project files
 .vscode
