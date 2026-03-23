@@ -1,0 +1,6 @@
+ansys.scade.apitools.info.runtime.ide
+=====================================
+
+.. currentmodule:: ansys.scade.apitools.info.runtime
+
+.. autodata:: ide

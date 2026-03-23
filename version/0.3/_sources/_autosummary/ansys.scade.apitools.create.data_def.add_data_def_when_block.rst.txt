@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.add\_data\_def\_when\_block
+=================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: add_data_def_when_block

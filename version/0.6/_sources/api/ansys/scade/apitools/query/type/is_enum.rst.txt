@@ -1,0 +1,19 @@
+ansys.scade.apitools.query.type.is_enum
+=======================================
+
+.. py:function:: ansys.scade.apitools.query.type.is_enum(type_: scade.model.suite.Type) -> bool
+
+   Determine if the input type is an enumeration.
+
+   See the :ref:`is_enum <ex__is_enum>` example.
+
+   Parameters
+   ----------
+   type\_ : suite.Type
+       Input type.
+
+   Returns
+   -------
+   bool
+       ``True`` when the input type is a enumeration, ``False`` otherwise.
+

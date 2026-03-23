@@ -1,0 +1,80 @@
+
+
+
+
+
+
+:class:`OpOp`
+=============
+
+.. py:class:: ansys.scade.apitools.expr.access.OpOp(expression: scade.model.suite.ExprCall, operator: CallExpression)
+
+   Bases: :py:obj:`CallExpression`
+
+
+   Provides the abstract class for higher-order operators.
+
+   Notes
+   -----
+   The design differs slightly from the meta-model. The :class:`~OpOp` class is
+   no longer aggregated by the :class:`~CallExpression` class but derives from it.
+   This leads to a simpler design.
+
+   Parameters
+   ----------
+   expression :
+       Higher-order expression to wrap.
+   operator :
+       Operator call expression.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: OpOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~operator`
+            - Underlying expression.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import OpOp
+
+Property detail
+---------------
+
+.. py:property:: operator
+   :type: CallExpression
+
+
+   Underlying expression.
+
+
+
+
+
+
+
