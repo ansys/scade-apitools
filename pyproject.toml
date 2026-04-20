@@ -1,5 +1,8 @@
 [build-system]
-requires = ["flit_core >=3.2,<3.13"]
+requires = [
+    "flit_core >=3.9,<3.12; python_version < '3.8'",
+    "flit_core >=3.12,<4; python_version >= '3.8'",
+]
 build-backend = "flit_core.buildapi"
 
 [project]
@@ -62,9 +65,6 @@ doc = [
 ]
 
 
-[tool.flit.module]
-name = "ansys.scade.apitools"
-
 [project.urls]
 Source = "https://github.com/ansys/scade-apitools"
 Issues = "https://github.com/ansys/scade-apitools/issues"
@@ -74,25 +74,30 @@ Releases = "https://github.com/ansys/scade-apitools/releases"
 Homepage = "https://www.ansys.com/products/embedded-software/ansys-scade-suite"
 
 
+
+[tool.flit.module]
+name = "ansys.scade.apitools"
+
+
 [tool.ruff]
-line-length = 99
+line-length = 100
+fix = true
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
 
 [tool.ruff.lint]
 select = [
-    "E",    # pycodestyle, see https://beta.ruff.rs/docs/rules/#pycodestyle-e-w
-    "D",    # pydocstyle, see https://beta.ruff.rs/docs/rules/#pydocstyle-d
-    "F",    # pyflakes, see https://beta.ruff.rs/docs/rules/#pyflakes-f
-    "I",    # isort, see https://beta.ruff.rs/docs/rules/#isort-i
-    "N",    # pep8-naming, see https://beta.ruff.rs/docs/rules/#pep8-naming-n
+    "E",    # pycodestyle, see https://docs.astral.sh/ruff/rules/#pycodestyle-e-w
+    "D",    # pydocstyle, see https://docs.astral.sh/ruff/rules/#pydocstyle-d
+    "F",    # pyflakes, see https://docs.astral.sh/ruff/rules/#pyflakes-f
+    "I",    # isort, see https://docs.astral.sh/ruff/rules/#isort-i
+    "N",    # pep8-naming, see https://docs.astral.sh/ruff/rules/#pep8-naming-n
+    "PTH",  # flake8-use-pathlib, https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth
+    "TD",   # flake8-todos, https://docs.astral.sh/ruff/rules/#flake8-todos-td
 ]
-ignore = [
-    "E501",  # Line too long. Ignoring this so "ruff.formatter" manages line length.
-    "D203",  # One blank line required before class docstring.
-    "D204"  # One blank line required after class docstring.
-]
-
-[tool.ruff.format]
-quote-style = "preserve"
+ignore = []
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
@@ -105,15 +110,22 @@ convention = "numpy"
 [tool.ruff.lint.per-file-ignores]
 "tests/*.py" = ["D",]
 
+
 [tool.coverage.run]
-source = ["ansys.scade"]
+source = ["ansys.scade.apitools"]
+patch = ["subprocess"]
 
 [tool.coverage.report]
 show_missing = true
+exclude_also = [
+    "@(abc\\.)?abstractmethod",
+]
+
 
 [tool.pytest.ini_options]
 testpaths = "tests"
-addopts = "-ra --cov=ansys.scade --cov-report html:.cov/html --cov-branch --cov-report xml:.cov/xml --cov-report term -vv"
+addopts = "-ra --cov=ansys.scade.apitools --cov-report html:.cov/html --cov-branch --cov-report xml:.cov/xml --cov-report term -vv"
+
 
 [tool.towncrier]
 package = "ansys.scade.apitools"
@@ -140,17 +152,18 @@ name = "Fixed"
 showcontent = true
 
 [[tool.towncrier.type]]
-directory = "dependencies"
-name = "Dependencies"
+directory = "documentation"
+name = "Documentation"
 showcontent = true
 
 [[tool.towncrier.type]]
-directory = "miscellaneous"
-name = "Miscellaneous"
+directory = "test"
+name = "Test"
 showcontent = true
+
 [[tool.towncrier.type]]
-directory = "documentation"
-name = "Documentation"
+directory = "dependencies"
+name = "Dependencies"
 showcontent = true
 
 [[tool.towncrier.type]]
@@ -159,6 +172,31 @@ name = "Maintenance"
 showcontent = true
 
 [[tool.towncrier.type]]
-directory = "test"
-name = "Test"
+directory = "miscellaneous"
+name = "Miscellaneous"
 showcontent = true
+
+[tool.codespell]
+ignore-words-list = ["synopsys"]
+
+[tool.numpydoc_validation]
+checks = [
+    'GL06',  # Found unknown section
+    'GL07',  # Sections are in the wrong order.
+    'GL08',  # The object does not have a docstring
+    'GL09',  # Deprecation warning should precede extended summary
+    'GL10',  # reST directives {directives} must be followed by two colons
+    'SS01',  # No summary found
+    'SS02',  # Summary does not start with a capital letter
+    'SS03',  # Summary does not end with a period
+    'SS04',  # Summary contains heading whitespaces
+    # "SS05", # Summary must start with infinitive verb, not third person
+    'RT02',  # The first line of the Returns section should contain only the
+    # type, unless multiple values are being returned"
+]
+exclude = [
+    '\._',  # ignore private definitions
+    'conftest.',
+    'test.',
+]
+
