@@ -599,8 +599,6 @@ def create_imported_operator(
         Owner of the operator, which is either the model itself or a package.
     name : str
         Name of the operator.
-    file : Path
-        File defining the imported operator.
     path : Path | None
         Path of the file to store the operator. This parameter is optional if
         the package's owner is a package. When the path is ``None`` and owner
