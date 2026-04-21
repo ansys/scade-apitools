@@ -147,7 +147,8 @@ def create_named_type(
 
     # other properties
     named_type.visibility = visibility.value
-    # TODO: compute relative paths?
+    # TODO(JH): compute relative paths
+    # https://github.com/ansys/scade-apitools/issues/166
     if symbol_files:
         named_type.symbol_files = [str(_) for _ in symbol_files]
 
@@ -267,9 +268,7 @@ def create_enumeration(
     return named_type
 
 
-def add_enumeration_values(
-    type_: suite.NamedType, values: List[str], insert_before: Optional[str]
-):
+def add_enumeration_values(type_: suite.NamedType, values: List[str], insert_before: Optional[str]):
     r"""
     Add enumeration values to an enumeration type.
 
@@ -300,8 +299,6 @@ def add_enumeration_values(
     for value in values:
         constant = suite.Constant(enumeration)
         constant.name = value
-        # workaround, use a string
-        # TODO: what is this workaround?
         constant.value_range = index
         index = index + 1
         # _scade_api is a CPython module defined dynamically
@@ -694,11 +691,6 @@ def add_operator_inputs(
     """
     Add inputs to an operator.
 
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs "name"/"type" tree are now embedded in a list of tuples.
-
     Parameters
     ----------
     operator : suite.Operator
@@ -714,6 +706,11 @@ def add_operator_inputs(
     -------
     List[suite.LocalVariable]
         List of added inputs.
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "name"/"type" tree are now embedded in a list of tuples.
     """
     return _add_operator_ios(operator, operator.inputs, vars, insert_before)
 
@@ -725,11 +722,6 @@ def add_operator_hidden(
 ) -> List[suite.LocalVariable]:
     """
     Add hidden inputs to an operator.
-
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs "name"/"type" tree are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -746,6 +738,11 @@ def add_operator_hidden(
     -------
     List[suite.LocalVariable]
         List of the added hidden inputs.
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "name"/"type" tree are now embedded in a list of tuples.
     """
     return _add_operator_ios(operator, operator.hiddens, vars, insert_before)
 
@@ -757,11 +754,6 @@ def add_operator_outputs(
 ) -> List[suite.LocalVariable]:
     """
     Add outputs to an operator.
-
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs "name"/"type" tree are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -778,6 +770,11 @@ def add_operator_outputs(
     -------
     List[suite.LocalVariable]
         List of the added outputs.
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "name"/"type" tree are now embedded in a list of tuples.
     """
     return _add_operator_ios(operator, operator.outputs, vars, insert_before)
 

@@ -26,7 +26,7 @@ Provides functions for adding elements to a SCADE project (ETP file).
 These functions do not check for semantic errors, like adding two files with the same path.
 """
 
-from os.path import abspath
+from pathlib import Path
 from typing import Any, List, Optional, Tuple, Union
 
 import scade.model.project.stdproject as std
@@ -226,7 +226,7 @@ def _create_empty_project(pathname: str, configuration: str, products: Optional[
     """
     if products is None:
         products = []
-    f = open(pathname, 'w')
+    f = Path(pathname).open('w')
 
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     f.write('<Project id="1" oid_count="4" defaultConfiguration="2">\n')
@@ -311,9 +311,9 @@ def _find_file_ref(project: std.Project, pathname: str) -> Optional[std.FileRef]
     -------
     std.FileRef
     """
-    path = abspath(pathname)
+    path = Path(pathname).resolve()
     for file_ref in project.file_refs:
-        if path == abspath(file_ref.pathname):
+        if path == Path(file_ref.pathname).resolve():
             return file_ref
     return None
 

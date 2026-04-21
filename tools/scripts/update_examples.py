@@ -36,7 +36,6 @@ the documentation directory.
 """
 
 import filecmp
-import os
 from pathlib import Path
 import platform
 from subprocess import CompletedProcess, run
@@ -80,19 +79,19 @@ def update_file(context: str, tmp: Path, dst: Path) -> int:
     if tmp.exists():
         if not dst.exists():
             print('%s: creating %s' % (context, dst.name))
-            os.replace(tmp, dst)
+            tmp.replace(dst)
             exit_code = 1
         elif not filecmp.cmp(dst, tmp):
             print('%s: updating %s' % (context, dst.name))
-            os.replace(tmp, dst)
+            tmp.replace(dst)
             exit_code = 1
         else:
             # nothing to update
-            os.remove(tmp)
+            tmp.unlink()
     else:
         if dst.exists():
             print('%s: removing %s' % (context, dst.name))
-            os.remove(tmp)
+            tmp.unlink()
             exit_code = 1
 
     return exit_code
@@ -129,7 +128,7 @@ def update_examples(root: Path, png: bool) -> int:
             doc.mkdir(exist_ok=True)
         # make sure there is no trailing temporary file
         for tmp in doc.glob('*.tmp'):
-            os.remove(tmp)
+            tmp.unlink()
         old_txts = {_.stem for _ in doc.glob('output_*.txt')}
         txts = set()
         for script in scripts:

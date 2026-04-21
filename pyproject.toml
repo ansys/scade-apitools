@@ -84,7 +84,7 @@ line-length = 100
 fix = true
 
 [tool.ruff.format]
-quote-style = "single"
+quote-style = "preserve"
 indent-style = "space"
 
 [tool.ruff.lint]
@@ -183,7 +183,9 @@ ignore-words-list = ["synopsys"]
 checks = [
     'GL06',  # Found unknown section
     'GL07',  # Sections are in the wrong order.
-    'GL08',  # The object does not have a docstring
+    # Disabled the docstring validation as most of the methods doesn't have the docstring
+    # TODO: Add docstring and enable GL08 validation
+    # 'GL08',  # The object does not have a docstring
     'GL09',  # Deprecation warning should precede extended summary
     'GL10',  # reST directives {directives} must be followed by two colons
     'SS01',  # No summary found

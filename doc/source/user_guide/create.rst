@@ -62,13 +62,14 @@ This script adds a new package to a project:
 
   import ansys.scade.apitools.create as create
 
+
   def main():
       project = get_projects()[0]
       session = get_sessions()[0]
 
       # create a package in the project's directory
-      path = Path(project.pathname).parent / 'MyPackage.xscade'
-      package = create.create_package(session.model, 'MyPackage', path)
+      path = Path(project.pathname).parent / "MyPackage.xscade"
+      package = create.create_package(session.model, "MyPackage", path)
       # save the Scade model
       create.save_all()
 
@@ -77,7 +78,8 @@ This script adds a new package to a project:
       # save the project file
       create.save_project(project)
 
-  if __name__ == '__main__':
+
+  if __name__ == "__main__":
       main()
 
 When run on an empty project, the new Scade model is as follows:
@@ -114,14 +116,14 @@ the result project, and calls the original script's ``main`` function:
 
   # duplicate the model to a new directory
   dir = Path(__file__).parent
-  source_dir = dir / 'Model'
-  target_dir = dir / 'Result'
+  source_dir = dir / "Model"
+  target_dir = dir / "Result"
   if target_dir.exists():
       rmtree(target_dir)
   copytree(source_dir, target_dir)
 
   # declare the duplicated model
-  declare_project(str(target_dir / 'Model.etp'))
+  declare_project(str(target_dir / "Model.etp"))
 
   # regular script
   main()
@@ -162,26 +164,26 @@ This example adds a simple type to a model:
 .. code:: python
 
     # add a new type to the model, in the default file for root declarations
-    speed = create.create_named_type(model, 'Speed', 'float32', path=None)
+    speed = create.create_named_type(model, "Speed", "float32", path=None)
 
 This next example creates an array of points:
 
 .. code:: python
 
     # add an array of points
-    tree = create.create_structure(('x', 'float32'), ('y', 'float32'))
-    point = create.create_named_type(model, 'Point', tree)
+    tree = create.create_structure(("x", "float32"), ("y", "float32"))
+    point = create.create_named_type(model, "Point", tree)
     tree = create.create_table(9, point)
-    polyline = create.create_named_type(model, 'polyline', tree)
+    polyline = create.create_named_type(model, "polyline", tree)
 
 Although not advised, combining type trees is possible:
 
 .. code:: python
 
     # add an array of anonymous (x, y)
-    tree_struct = create.create_structure(('x', 'float32'), ('y', 'float32'))
+    tree_struct = create.create_structure(("x", "float32"), ("y", "float32"))
     tree_table = create.create_table(9, tree_struct)
-    polyline2 = create.create_named_type(model, 'polyline2', tree_table)
+    polyline2 = create.create_named_type(model, "polyline2", tree_table)
 
 For comprehensive information on functions for creating any type of tree, see
 :py:mod:`create.type <ansys.scade.apitools.create.type>`.
@@ -209,10 +211,10 @@ an expression tree to specify its value.
 .. code:: python
 
     # constant N: int32 = 42
-    cst_n = create.create_constant(model, 'N', 'int32', 42)
+    cst_n = create.create_constant(model, "N", "int32", 42)
     # constant N2: int32 = N * N
-    tree = create.create_nary('*', cst_n, cst_n)
-    cst_n2 = create.create_constant(model, 'N2', 'int32', tree)
+    tree = create.create_nary("*", cst_n, cst_n)
+    cst_n2 = create.create_constant(model, "N2", "int32", tree)
 
 For more information on functions for creating an expression tree, see
 :py:mod:`create.expression <ansys.scade.apitools.create.expression>`.

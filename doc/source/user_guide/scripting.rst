@@ -103,6 +103,8 @@ This example starts an interactive session with a standard installation of Pytho
 
 1. Start an interactive session:
 
+   .. blacken-docs:off
+
    .. code:: python
 
        > where python.exe
@@ -111,14 +113,22 @@ This example starts an interactive session with a standard installation of Pytho
        Python 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)] on win32
        Type "help", "copyright", "credits" or "license" for more information.
 
+   .. blacken-docs:on
+
 2. Preamble to activate a SCADE environment on a given project.
+
+   .. blacken-docs:off
 
    .. code:: python
 
        >>> from ansys.scade.apitools import declare_project
        >>> declare_project(r'C:\Program Files\ANSYS Inc\v232\SCADE\examples\ABC_N\ABC_N.etp')
 
+   .. blacken-docs:on
+
 3. Run a regular script that loads the declared projects and accesses their pathnames.
+
+   .. blacken-docs:off
 
    .. code:: python
 
@@ -127,3 +137,5 @@ This example starts an interactive session with a standard installation of Pytho
        ...     print(project.pathname)
        ...
        C:/Program Files/ANSYS Inc/v232/SCADE/examples/ABC_N/ABC_N.etp
+
+   .. blacken-docs:on

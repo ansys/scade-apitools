@@ -72,16 +72,24 @@ You must declare the model to use to run the example prior to executing the scri
 
 #. Declare the project.
 
+   .. blacken-docs:off
+
    .. code:: python
 
        >>> from ansys.scade.apitools import declare_project
        >>> declare_project('QueryType.etp')
 
+   .. blacken-docs:on
+
 #. Copy/paste the content of a script or run it as follows:
+
+   .. blacken-docs:off
 
    .. code:: python
 
        >>> exec(open('get_type_name.py').read())
+
+   .. blacken-docs:on
 
 Examples
 --------

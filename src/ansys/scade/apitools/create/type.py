@@ -246,11 +246,6 @@ def create_structure(*fields: Tuple[str, TX]) -> TT:
     r"""
     Get the type tree for a structure.
 
-    Notes
-    -----
-    This is an interface change with respect to the **SCADE Creation Library**.
-    The pairs "pattern"/"value" are now embedded in a list of tuples.
-
     Parameters
     ----------
     \*fields : Tuple[str, TX]
@@ -259,6 +254,11 @@ def create_structure(*fields: Tuple[str, TX]) -> TT:
     Returns
     -------
     TT
+
+    Notes
+    -----
+    This is an interface change with respect to the **SCADE Creation Library**.
+    The pairs "pattern"/"value" are now embedded in a list of tuples.
     """
     if len(fields) == 0:
         raise _syntax_error('create_structure', fields)
