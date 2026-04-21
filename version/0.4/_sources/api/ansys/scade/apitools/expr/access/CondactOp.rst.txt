@@ -1,0 +1,120 @@
+
+
+
+
+CondactOp
+=========
+
+.. py:class:: CondactOp(expression, operator)
+   :canonical: ansys.scade.apitools.expr.access.CondactOp
+
+
+
+Bases: :py:obj:`ConditionalOp`
+
+
+   Provides the abstract class for activate operators.
+
+
+   :Parameters:
+
+       **expression**
+           Higher-order expression to wrap.
+
+       **operator**
+           Operator call expression.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The design differs slightly from the meta-model. Because the flow
+   ``default`` must be a group of flows, the :class:`~CondactOp` class exposes directly
+   the list of default values instead of an instance of the :class:`~ListExpression` class.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: CondactOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~defaults`
+            - Initialization or default values.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import CondactOp
+
+
+Property detail
+---------------
+.. py:property:: defaults
+   :canonical: ansys.scade.apitools.expr.access.CondactOp.defaults
+   :type: list[Expression]
+
+
+   
+   Initialization or default values.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

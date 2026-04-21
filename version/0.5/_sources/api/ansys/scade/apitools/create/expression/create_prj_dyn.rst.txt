@@ -1,0 +1,39 @@
+ansys.scade.apitools.create.expression.create_prj_dyn
+=====================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_prj_dyn(flow: EX, path: LX, default: EX) -> ET
+
+   
+   Return the expression tree for the dynamic projection operator.
+
+
+   :Parameters:
+
+       **flow** : :obj:`EX`
+           Input flow of the projection.
+
+       **path** : :obj:`Union`\[:obj:`EX`, :obj:`List`\[:obj:`EX`]]
+           Elements of the path, which is a label, index, or variable.
+
+       **default** : :obj:`EX`
+           Default value for the projection when the path is incorrect.
+
+
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

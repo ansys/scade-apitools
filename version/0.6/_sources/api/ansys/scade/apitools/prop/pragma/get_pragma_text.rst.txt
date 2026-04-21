@@ -1,0 +1,26 @@
+ansys.scade.apitools.prop.pragma.get_pragma_text
+================================================
+
+.. py:function:: ansys.scade.apitools.prop.pragma.get_pragma_text(object_: scade.model.suite.Object, id: str) -> str
+
+   Get the text of the pragma ID for an object.
+
+   * Return an empty string if the pragma does not exist,
+     assuming this is the default value.
+   * Raise the ``TypeError`` exception when the pragma exists
+     but is not textual.
+
+   See the :ref:`pragma <ex__pragma>` example.
+
+   Parameters
+   ----------
+   object\_ : suite.Object
+       Element to search for the pragma.
+   id : str
+       ID of the pragma.
+
+   Returns
+   -------
+   str
+       Text of the found pragma or ``""``.
+

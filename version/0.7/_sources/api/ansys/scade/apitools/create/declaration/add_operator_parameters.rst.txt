@@ -1,0 +1,23 @@
+ansys.scade.apitools.create.declaration.add_operator_parameters
+===============================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.add_operator_parameters(operator: scade.model.suite.Operator, parameters: List[str], insert_before: Optional[scade.model.suite.Constant] = None) -> List[scade.model.suite.Constant]
+
+   Add parameters to an operator.
+
+   Parameters
+   ----------
+   operator : suite.Operator
+       Input operator.
+   parameters : List[str]
+       Name of the parameters to create.
+   insert_before : suite.Constant | None, default: None
+       Insertion point of the parameter. When this parameter is not ``None``, it is
+       an existing parameter of the operator. The parameters are inserted before
+       this parameter. Otherwise, the parameters are added at the end.
+
+   Returns
+   -------
+   List[suite.LocalVariable]
+       List of added parameters.
+

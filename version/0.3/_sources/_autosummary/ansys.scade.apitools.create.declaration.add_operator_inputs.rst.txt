@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.add\_operator\_inputs
+=============================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: add_operator_inputs

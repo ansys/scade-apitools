@@ -1,0 +1,23 @@
+ansys.scade.apitools.prop.pragma.find_pragma_tool
+=================================================
+
+.. py:function:: ansys.scade.apitools.prop.pragma.find_pragma_tool(object_: scade.model.suite.Object, id: str, key: str) -> Optional[scade.model.suite.TextPragma]
+
+   Get the pragma for an object.
+
+   See the :ref:`pragma_tool <ex__pragma_tool>` example.
+
+   Parameters
+   ----------
+   object\_ : suite.Object
+       Element to search for the pragma.
+   id : str
+       ID of the pragma.
+   key : str
+       First token of the pragma.
+
+   Returns
+   -------
+   suite.TextPragma
+       Found pragma or ``None`` if not found.
+

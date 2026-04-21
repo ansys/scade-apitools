@@ -1,0 +1,38 @@
+
+
+AK
+==
+
+Module: *ansys.scade.apitools.create.data_def*
+
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autoclass:: AK
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AK.ASSUME
+      ~AK.GUARANTEE
+
+   
+   ..
+      autoattribute:: AK.ASSUME
+   ..
+      autoattribute:: AK.GUARANTEE
+   
+   

@@ -1,0 +1,14 @@
+ansys.scade.apitools.create.declaration.set_type_constraint
+===========================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.set_type_constraint(type_: scade.model.suite.NamedType, name: str)
+
+   Set the constraint of a polymorphic type.
+
+   Parameters
+   ----------
+   type\_ : suite.NamedType
+       Input polymorphic type.
+   name : str
+       Name of the constraint.
+

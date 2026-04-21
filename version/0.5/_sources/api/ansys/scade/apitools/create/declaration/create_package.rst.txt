@@ -1,0 +1,46 @@
+ansys.scade.apitools.create.declaration.create_package
+======================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.create_package(owner: scade.model.suite.Package, name: str, path: pathlib.Path = None, visibility: VK = VK.PUBLIC) -> scade.model.suite.Package
+
+   
+   Create a package.
+
+   A package has a name and is either stored in a separate file
+   or in its owner's file, if the owner is not the model.
+
+   :Parameters:
+
+       **owner** : :obj:`suite.Package`
+           Owner of the package, which is either the model itself or a package.
+
+       **name** : :class:`python:str`
+           Name of the package.
+
+       **path** : :obj:`Path`, default: :data:`python:None`
+           Path of the file for storing the package. This parameter is optional
+           if the package's owner is a package. When the path is ``None`` and the
+           owner is the model, the package is stored in the model's default file.
+
+       **visibility** : :obj:`VK`, default: :obj:`PUBLIC`
+           Accessibility of the package, which is either public or private.
+
+
+
+   :Returns:
+
+       :obj:`suite.Package`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

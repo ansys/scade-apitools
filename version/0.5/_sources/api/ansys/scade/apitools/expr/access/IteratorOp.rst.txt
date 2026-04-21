@@ -1,0 +1,140 @@
+
+
+
+
+
+
+:class:`IteratorOp`
+===================
+
+.. py:class:: ansys.scade.apitools.expr.access.IteratorOp(expression: scade.model.suite.ExprCall, operator: CallExpression)
+
+   Bases: :py:obj:`OpOp`
+
+
+   Provides the base class for iteration operators.
+
+   See the :ref:`iterator_op <ex__iterator_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Higher-order expression to wrap.
+   operator :
+       Operator call expression.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: IteratorOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~accumulator_count`
+            - Number of accumulators when suitable, otherwise ``None``.
+          * - :py:attr:`~size`
+            - Size of the iterator.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import IteratorOp
+
+Property detail
+---------------
+
+.. py:property:: accumulator_count
+   :type: Optional[Expression]
+
+
+   
+   Number of accumulators when suitable, otherwise ``None``.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: size
+   :type: Expression
+
+
+   
+   Size of the iterator.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

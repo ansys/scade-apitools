@@ -1,0 +1,20 @@
+ansys.scade.apitools.create.expression.create_change_ith
+========================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_change_ith(flow: EX, path: LX, value: EX) -> ET
+
+   Return the expression tree for the with operator.
+
+   Parameters
+   ----------
+   flow : EX
+       Input flow of the projection.
+   path : Union[EX, List[EX]]
+       Elements of the path, which is a label, index, or variable.
+   value : EX
+       Value to assign.
+
+   Returns
+   -------
+   ET
+

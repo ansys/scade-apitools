@@ -1,0 +1,18 @@
+ansys.scade.apitools.create.declaration.add_enumeration_values
+==============================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.add_enumeration_values(type_: scade.model.suite.NamedType, values: List[str], insert_before: Optional[str])
+
+   Add enumeration values to an enumeration type.
+
+   Parameters
+   ----------
+   type\_ : suite.NamedType
+       Named type defining the enumeration.
+   values : List[str]
+       List of the enumeration values to add.
+   insert_before : str | None
+       Insertion point of the values. When this parameter is not ``None``
+       and exists, the values are inserted before this value. Otherwise,
+       the values are added at the end.
+

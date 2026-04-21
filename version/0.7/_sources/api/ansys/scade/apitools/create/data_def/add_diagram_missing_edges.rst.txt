@@ -1,0 +1,16 @@
+ansys.scade.apitools.create.data_def.add_diagram_missing_edges
+==============================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_diagram_missing_edges(diagram: scade.model.suite.NetDiagram) -> List[scade.model.suite.Edge]
+
+   Add the missing edges in a graphical diagram with default positions.
+
+   Parameters
+   ----------
+   diagram : suite.NetDiagram
+       Input diagram.
+
+   Returns
+   -------
+   List[suite.Edge]
+
