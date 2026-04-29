@@ -554,9 +554,7 @@ class TestCreateDataDef:
         diagram_equation_set_data,
         ids=[_[2] for _ in diagram_equation_set_data],
     )
-    def test_diagram_equation_set(
-        self, tmp_project_session, scope, diagram, name, vars, exception
-    ):
+    def test_diagram_equation_set(self, tmp_project_session, scope, diagram, name, vars, exception):
         # project/session must have been duplicated to a temporary directory
         project, session = tmp_project_session
         path = scope

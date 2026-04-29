@@ -40,6 +40,5 @@ from ansys.scade.apitools import declare_project  # noqa: E402
 project, script = sys.argv[1:]
 # setup the Scade environment
 declare_project(project)
-with open(script) as f:
-    text = f.read()
+text = Path(script).read_text()
 exec(text, globals())

@@ -102,11 +102,6 @@ def add_data_def_locals(
     """
     Add local variables to a scope.
 
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs "name"/"type tree" are now embedded in a list of tuples.
-
     Parameters
     ----------
     data_def : suite.DataDef
@@ -118,6 +113,11 @@ def add_data_def_locals(
     -------
     List[suite.LocalVariable]
         List of added variables.
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "name"/"type tree" are now embedded in a list of tuples.
     """
     return _add_data_def_variables(data_def, vars, False)
 
@@ -127,11 +127,6 @@ def add_data_def_probes(
 ) -> List[suite.LocalVariable]:
     """
     Add probes to a scope.
-
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs "name"/"type tree" are now embedded in a list of tuples.
 
     Parameters
     ----------
@@ -144,6 +139,11 @@ def add_data_def_probes(
     -------
     List[suite.LocalVariable]
         List of added probes.
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "name"/"type tree" are now embedded in a list of tuples.
     """
     return _add_data_def_variables(data_def, vars, True)
 
@@ -365,7 +365,8 @@ def add_data_def_equation(
         if left == '_':
             variable = suite.Variable(data_def)
             variable.name = '_'
-            # TODO: raise an error if len(lefts) != 1
+            # TODO(JH): raise an error if len(lefts) != 1
+            # https://github.com/ansys/scade-apitools/issues/166
             equation.terminator = True
         else:
             if isinstance(left, suite.LocalVariable):
@@ -444,7 +445,7 @@ def add_diagram_edge(
         Local variable associated with the edge.
     dst : suite.Equation
         Target equation of the edge.
-    expr: Union[suite.Expression]
+    expr: Union[int, suite.Expression]
         Parameter to connect to the edge or the input pin index of the target equation.
     points : List[Tuple(int, int)] | None, default: None
         Coordinates of the segments composing the edge, expressed in 1/100th of mm.
@@ -1017,11 +1018,6 @@ def add_transition_equation(
     """
     Create an equation in a transition.
 
-    Notes
-    -----
-    This function ensures the availability of a scope before creating the
-    equation. Indeed, the transitions do not have a scope, suite.DataDef, by default.
-
     Parameters
     ----------
     transition : suite.Transition
@@ -1034,6 +1030,11 @@ def add_transition_equation(
     Returns
     -------
     suite.Equation
+
+    Notes
+    -----
+    This function ensures the availability of a scope before creating the
+    equation. Indeed, the transitions do not have a scope, suite.DataDef, by default.
     """
     _check_object(transition, 'add_transition_equation', 'transition', suite.Transition)
 

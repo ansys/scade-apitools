@@ -70,7 +70,8 @@ def cache_types(session: suite.Session):
     # add the predefined types
     names = [
         'bool',
-        'char' 'int8',
+        'char',
+        'int8',
         'int16',
         'int32',
         'int64',

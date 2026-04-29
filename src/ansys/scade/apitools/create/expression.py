@@ -425,9 +425,7 @@ def create_unary(op: str, tree: EX, modifiers: Union[ET, List[ET], None] = None)
     return _Predefined(eck, [norm_tree], [], modifiers)
 
 
-def create_binary(
-    op: str, tree1: EX, tree2: EX, modifiers: Union[ET, List[ET], None] = None
-) -> ET:
+def create_binary(op: str, tree1: EX, tree2: EX, modifiers: Union[ET, List[ET], None] = None) -> ET:
     """
     Return the expression tree for a binary operator.
 
@@ -488,11 +486,6 @@ def create_if(condition: EX, then: LX, else_: LX) -> ET:
     r"""
     Return the expression tree for the if-then-else operator.
 
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The ``then`` flows and ``else`` flows are now specified in two separate lists.
-
     Parameters
     ----------
     condition : EX
@@ -505,6 +498,11 @@ def create_if(condition: EX, then: LX, else_: LX) -> ET:
     Returns
     -------
     ET
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The ``then`` flows and ``else`` flows are now specified in two separate lists.
     """
     norm_then = _normalize_tree_ex(then)
     norm_else = _normalize_tree_ex(else_)
@@ -523,12 +521,6 @@ def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: Optional[EX] 
     """
     Return the expression tree for the case operator.
 
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs "pattern"/"value" are now embedded in a list of tuples, and the
-    default value is optional.
-
     Parameters
     ----------
     selector : EX
@@ -541,6 +533,12 @@ def create_case(selector: EX, cases: List[Tuple[EX, EX]], default: Optional[EX] 
     Returns
     -------
     ET
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "pattern"/"value" are now embedded in a list of tuples, and the
+    default value is optional.
     """
     if len(cases) == 0:
         raise ExprSyntaxError('create_case', cases)
@@ -644,11 +642,6 @@ def create_scalar_to_vector(size: EX, *args: EX) -> ET:
     r"""
     Return the expression tree for the scalar-to-vector operator.
 
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The parameter size has moved from the last position to the first one.
-
     Parameters
     ----------
     size: EX
@@ -659,6 +652,11 @@ def create_scalar_to_vector(size: EX, *args: EX) -> ET:
     Returns
     -------
     ET
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The parameter size has moved from the last position to the first one.
     """
     if len(args) == 0:
         raise ExprSyntaxError('create_scalar_to_vector', args)
@@ -691,11 +689,6 @@ def create_data_struct(*args: Tuple[str, EX]) -> ET:
     r"""
     Return the expression tree for the data strictire operator.
 
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The pairs "name"/"value" are now embedded in a list of tuples.
-
     Parameters
     ----------
     \*args : Tuple[str, EX]
@@ -704,6 +697,11 @@ def create_data_struct(*args: Tuple[str, EX]) -> ET:
     Returns
     -------
     ET
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The pairs "name"/"value" are now embedded in a list of tuples.
     """
     length = len(args)
     if length == 0:
@@ -812,11 +810,6 @@ def create_init(flows: LX, inits: LX) -> ET:
     """
     Return the expression tree for the init operator.
 
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The flows and their initial values are now specified in two separate lists.
-
     Parameters
     ----------
     flows : Union[EX, List[EX]]
@@ -827,6 +820,11 @@ def create_init(flows: LX, inits: LX) -> ET:
     Returns
     -------
     ET
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The flows and their initial values are now specified in two separate lists.
     """
     norm_flows = _normalize_tree_ex(flows)
     norm_inits = _normalize_tree_ex(inits)
@@ -844,11 +842,6 @@ def create_fby(flows: LX, delay: EX, inits: LX) -> ET:
     """
     Return the expression tree for the init operator.
 
-    Notes
-    -----
-    This is an interface change with respect to the *SCADE Creation Library*.
-    The flows and their initial values are now specified in two separate lists.
-
     Parameters
     ----------
     flows : Union[EX, List[EX]]
@@ -861,6 +854,11 @@ def create_fby(flows: LX, delay: EX, inits: LX) -> ET:
     Returns
     -------
     ET
+
+    Notes
+    -----
+    This is an interface change with respect to the *SCADE Creation Library*.
+    The flows and their initial values are now specified in two separate lists.
     """
     norm_flows = _normalize_tree_ex(flows)
     norm_inits = _normalize_tree_ex(inits)
@@ -1349,8 +1347,9 @@ def _is_bool(value: str) -> bool:
     return value == 'true' or value == 'false'
 
 
-# TODO: modifiers
-# TODO: move to query
+# TODO(JH): 1. consider modifiers
+#           2. make the function public and move it to query
+# https://github.com/ansys/scade-apitools/issues/166
 def _find_expr_id(expr: suite.Expression, index: int) -> Optional[suite.ExprId]:
     """
     Return the ``ExprId`` instance corresponding to the pin index of an equation.
@@ -1413,5 +1412,4 @@ def _find_expr_id(expr: suite.Expression, index: int) -> Optional[suite.ExprId]:
         # ith parameter (TODO: check index vs [llength $params])
         # list params left unchanged
         pass
-    # TODO RESTART, ACTIVATE, ACTIVATE_NO_INIT, MAP/FOLD*
     return params[index]

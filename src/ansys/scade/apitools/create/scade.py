@@ -29,7 +29,7 @@ Provides helpers for SCADE model creation functions.
 """
 
 from enum import Enum
-from os.path import abspath, relpath
+from os.path import relpath
 from pathlib import Path
 from typing import List, Optional, Union
 
@@ -308,9 +308,9 @@ def _get_model_project(model: suite.Model) -> std.Project:
     -------
     std.Project
     """
-    pathname = abspath(model.descriptor.model_file_name)
+    path = Path(model.descriptor.model_file_name).resolve()
     projects: List[std.Project] = std.get_roots()
-    return next((_ for _ in projects if abspath(_.pathname) == pathname), None)
+    return next((_ for _ in projects if Path(_.pathname).resolve() == path), None)
 
 
 def _get_default_file(model: suite.Model) -> Path:
@@ -384,7 +384,7 @@ def _link_storage_element(
     if path is not None:
         if owner != model:
             directory = Path(owner.defined_in.sao_file_name).parent
-            persist_as = str(Path(relpath(abspath(path), directory)).with_suffix(''))
+            persist_as = str(Path(relpath(path.resolve(), directory)).with_suffix(''))
         else:
             persist_as = ''
         unit = _create_unit(model, path, persist_as)
@@ -467,7 +467,7 @@ def _create_unit(model: suite.Model, path: Path, persist_as: str) -> suite.Stora
     global _modified_files
 
     for unit in model.model_storage_units:
-        if abspath(unit.sao_file_name) == abspath(path):
+        if Path(unit.sao_file_name).resolve() == path.resolve():
             _modified_files.add(unit)
             return unit
     unit = suite.StorageUnit(model)

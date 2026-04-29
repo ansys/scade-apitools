@@ -36,7 +36,6 @@ to some expected result, nor easy to maintain.
 Anyways, the result models can be exmined after the execution of the tests, for a deep analysis.
 """
 
-from os.path import abspath
 from pathlib import Path
 from typing import Optional
 
@@ -57,7 +56,7 @@ from test_utils import get_resources_dir
 def _get_path(project: std.Project, rel_path: str) -> Optional[Path]:
     """Return the absolute path with respect to the project and make sure the directory exists."""
     if rel_path:
-        path = Path(abspath(Path(project.pathname).parent / rel_path))
+        path = Path(project.pathname).resolve().parent / rel_path
         path.parent.mkdir(exist_ok=True)
     else:
         path = None

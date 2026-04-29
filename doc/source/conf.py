@@ -79,30 +79,6 @@ intersphinx_mapping = {
     # "grpc": ("https://grpc.github.io/grpc/python/", None),
 }
 
-# numpydoc configuration
-numpydoc_show_class_members = False
-numpydoc_xref_param_type = True
-
-# Consider enabling numpydoc validation. See:
-# https://numpydoc.readthedocs.io/en/latest/validation.html#
-numpydoc_validate = True
-numpydoc_validation_checks = {
-    "GL06",  # Found unknown section
-    "GL07",  # Sections are in the wrong order.
-    # Disabled the docstring validation as most of the methods doesn't have the docstring
-    # TODO: Add docstring and enable GL08 validation
-    # "GL08",  # The object does not have a docstring
-    "GL09",  # Deprecation warning should precede extended summary
-    "GL10",  # reST directives {directives} must be followed by two colons
-    "SS01",  # No summary found
-    "SS02",  # Summary does not start with a capital letter
-    "SS03",  # Summary does not end with a period
-    "SS04",  # Summary contains heading whitespaces
-    # "SS05", # Summary must start with infinitive verb, not third person
-    "RT02",  # The first line of the Returns section should contain only the
-    # type, unless multiple values are being returned"
-}
-
 # lexer for Scade
 lexers['swan'] = SwanLexer(startinline=True)
 
@@ -121,22 +97,20 @@ source_suffix = ".rst"
 # The master toctree document.
 master_doc = "index"
 
-# TODO: remove ignore links after public release
+linkcheck_exclude_documents = ['changelog']
 linkcheck_ignore = [
-    "https://github.com/ansys/scade-apitools",
-    "https://github.com/ansys/scade-apitools/actions/workflows/ci_cd.yml",
-    "https://pypi.org/project/ansys-scade-apitools",
     # The link below takes a long time to check
+    'https://github.com/ansys/pre-commit-hooks/.*',
+    'https://ansyshelp.ansys.com/*',
     "https://www.ansys.com/products/embedded-software/ansys-scade-suite",
     "https://www.ansys.com/*",
-    'https://apitools.scade.docs.pyansys.com/version/*',
 ]
 
 if switcher_version != 'dev':
     linkcheck_ignore.append(f'https://github.com/ansys/scade-apitools/releases/tag/v{__version__}')
 
 # update the examples
-update_doc(Path(os.getcwd()).parent.parent)
+update_doc(Path.cwd().parent.parent)
 
 
 def zip_example_folder(app: Sphinx):
