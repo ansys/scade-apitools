@@ -97,8 +97,11 @@ source_suffix = ".rst"
 # The master toctree document.
 master_doc = "index"
 
+linkcheck_exclude_documents = ['changelog']
 linkcheck_ignore = [
     # The link below takes a long time to check
+    'https://github.com/ansys/pre-commit-hooks/.*',
+    'https://ansyshelp.ansys.com/*',
     "https://www.ansys.com/products/embedded-software/ansys-scade-suite",
     "https://www.ansys.com/*",
 ]
