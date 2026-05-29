@@ -1,0 +1,30 @@
+.. py:function:: create_fold(size)
+
+   
+   Return the expression tree for the higher-order construct for fold creation.
+
+
+   :Parameters:
+
+       **size** : :obj:`EX`
+           Number of iterations.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,18 @@
+ansys.scade.apitools.create.expression.create_activate_no_init
+==============================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_activate_no_init(every: EX, *args: EX) -> ET
+
+   Return the expression tree for the higher-order construct for activating with default values.
+
+   Parameters
+   ----------
+   every : EX
+       Input condition.
+   \*args: EX
+       Default values.
+
+   Returns
+   -------
+   ET
+

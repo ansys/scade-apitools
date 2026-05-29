@@ -1,0 +1,23 @@
+ansys.scade.apitools.create.expression.create_scalar_to_vector
+==============================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_scalar_to_vector(size: EX, *args: EX) -> ET
+
+   Return the expression tree for the scalar-to-vector operator.
+
+   Notes
+   -----
+   This is an interface change with respect to the *SCADE Creation Library*.
+   The parameter size has moved from the last position to the first one.
+
+   Parameters
+   ----------
+   size: EX
+       Size of the vector.
+   \*args : EX
+       Input values.
+
+   Returns
+   -------
+   ET
+

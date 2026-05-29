@@ -1,0 +1,62 @@
+
+
+
+
+PrjOp
+=====
+
+.. py:class:: PrjOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.PrjOp
+
+
+
+Bases: :py:obj:`ProjectionOp`
+
+
+   Provides the static projection of a flow.
+
+   See the example :ref:`prj_op <ex__prj_op>`.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import PrjOp
+
+
+
+
+

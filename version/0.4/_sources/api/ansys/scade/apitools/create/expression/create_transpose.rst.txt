@@ -1,0 +1,36 @@
+.. py:function:: create_transpose(array, dim1, dim2)
+
+   
+   Return the expression tree for the transpose operator.
+
+
+   :Parameters:
+
+       **array** : :obj:`EX`
+           Input array.
+
+       **dim1** : :obj:`EX`
+           First dimension.
+
+       **dim2** : :obj:`EX`
+           Second dimension.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

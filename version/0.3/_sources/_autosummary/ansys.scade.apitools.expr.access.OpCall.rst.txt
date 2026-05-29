@@ -1,0 +1,47 @@
+
+
+OpCall
+======
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: OpCall
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~OpCall.call_parameters
+      ~OpCall.code
+      ~OpCall.instance_parameters
+      ~OpCall.name
+      ~OpCall.operator
+
+   
+   ..
+      autoattribute:: OpCall.call_parameters
+   ..
+      autoattribute:: OpCall.code
+   ..
+      autoattribute:: OpCall.instance_parameters
+   ..
+      autoattribute:: OpCall.name
+   ..
+      autoattribute:: OpCall.operator
+   
+   

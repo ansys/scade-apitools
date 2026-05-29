@@ -1,0 +1,31 @@
+.. py:function:: is_array(type_)
+
+   
+   Determine if the input type is an array.
+
+   See the :ref:`is_array <ex__is_array>` example.
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.Type`
+           Input type.
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           ``True`` when the input type is an array, ``False`` otherwise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

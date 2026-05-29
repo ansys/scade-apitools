@@ -1,0 +1,90 @@
+info
+====
+
+project: Info.etp
+
+
+.. raw:: html
+
+  <details>
+  <summary><a>get_scade_home</a></summary>
+
+.. _ex__get_scade_home:
+
+.. literalinclude :: /_examples/get_scade_home.py
+
+Output:
+
+.. literalinclude :: /examples/info/output_get_scade_home.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>get_scade_properties</a></summary>
+
+.. _ex__get_scade_properties:
+
+.. literalinclude :: /_examples/get_scade_properties.py
+
+Output:
+
+.. literalinclude :: /examples/info/output_get_scade_properties.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>get_scade_version</a></summary>
+
+.. _ex__get_scade_version:
+
+.. literalinclude :: /_examples/get_scade_version.py
+
+Output:
+
+.. literalinclude :: /examples/info/output_get_scade_version.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>ide</a></summary>
+
+.. _ex__ide:
+
+.. literalinclude :: /_examples/ide.py
+
+Output:
+
+.. literalinclude :: /examples/info/output_ide.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>print</a></summary>
+
+.. _ex__print:
+
+.. literalinclude :: /_examples/print.py
+
+Output:
+
+.. literalinclude :: /examples/info/output_print.txt
+
+.. raw:: html
+
+  </details>

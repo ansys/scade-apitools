@@ -1,0 +1,36 @@
+ansys.scade.apitools.create.data_def.add_data_def_signals
+=========================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_data_def_signals(data_def: scade.model.suite.DataDef, names: List[str]) -> List[scade.model.suite.LocalVariable]
+
+   
+   Add signals to a scope.
+
+
+   :Parameters:
+
+       **data_def** : :obj:`suite.DataDef`
+           Input scope, which is an operator, state, or action.
+
+       **names** : :obj:`List`\[:class:`python:str`]
+           Names of the signals to add.
+
+
+
+   :Returns:
+
+       :obj:`List`\[:obj:`suite.LocalVariable`]
+           List of added signals.
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

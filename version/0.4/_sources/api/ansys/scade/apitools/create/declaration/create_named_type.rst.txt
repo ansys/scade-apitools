@@ -1,0 +1,45 @@
+.. py:function:: create_named_type(owner, name, definition, path = None, visibility = VK.PUBLIC, symbol_files = None)
+
+   
+   Create a named type.
+
+   A named type has a name and a definition.
+
+   :Parameters:
+
+       **owner** : :obj:`suite.Package`
+           Owner of the type, which is either the model itself or a package.
+
+       **name** : :class:`python:str`
+           Name of the type.
+
+       **definition** : :obj:`TX`
+           Definition of the type expressed as a type tree.
+
+       **path** : :obj:`Path`, default: :data:`python:None`
+           Path of the file for storing the type. This parameter is ignored if the
+           owner is a package. When the path is ``None`` and owner is the model, the
+           type is stored in the model's default file.
+
+       **visibility** : :obj:`VK`, default: :obj:`PUBLIC`
+           Accessibility of the type.
+
+   :Returns:
+
+       :obj:`suite.NamedType`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

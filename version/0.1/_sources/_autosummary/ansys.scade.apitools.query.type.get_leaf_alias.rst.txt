@@ -1,0 +1,6 @@
+ansys.scade.apitools.query.type.get\_leaf\_alias
+================================================
+
+.. currentmodule:: ansys.scade.apitools.query.type
+
+.. autofunction:: get_leaf_alias

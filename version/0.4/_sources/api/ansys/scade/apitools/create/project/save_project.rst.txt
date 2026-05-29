@@ -1,0 +1,27 @@
+.. py:function:: save_project(project)
+
+   
+   Save the project.
+
+   The path of the project is specified in project.pathname.
+
+   :Parameters:
+
+       **project** : :obj:`std.Project`
+           Project to save.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

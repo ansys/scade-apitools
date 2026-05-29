@@ -1,0 +1,33 @@
+ansys.scade.apitools.expr.access.accessor
+=========================================
+
+.. py:function:: ansys.scade.apitools.expr.access.accessor(expression: scade.model.suite.Expression) -> Expression
+
+   
+   Build the accessor for a SCADE Suite expression.
+
+
+   :Parameters:
+
+       **expression** : :obj:`suite.Expression`
+           Expression to wrap.
+
+
+
+   :Returns:
+
+       :obj:`Expression`
+           Expression accessor.
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,38 @@
+
+
+VK
+==
+
+Module: *ansys.scade.apitools.create.declaration*
+
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autoclass:: VK
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~VK.PUBLIC
+      ~VK.PRIVATE
+
+   
+   ..
+      autoattribute:: VK.PUBLIC
+   ..
+      autoattribute:: VK.PRIVATE
+   
+   

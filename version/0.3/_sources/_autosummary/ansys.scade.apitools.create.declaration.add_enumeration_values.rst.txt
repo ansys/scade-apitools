@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.add\_enumeration\_values
+================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: add_enumeration_values

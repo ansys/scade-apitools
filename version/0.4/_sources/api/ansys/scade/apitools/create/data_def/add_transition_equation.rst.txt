@@ -1,0 +1,40 @@
+.. py:function:: add_transition_equation(transition, lefts, right)
+
+   
+   Create an equation in a transition.
+
+
+   :Parameters:
+
+       **transition** : :obj:`suite.Transition`
+           Input transition.
+
+       **lefts** : :obj:`List`\[:obj:`suite.LocalVariable`]
+           List of variables defined by the equation.
+
+       **right** : :obj:`EX`
+           Expression of the equation.
+
+   :Returns:
+
+       :obj:`suite.Equation`
+           ..
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   This function ensures the availability of a scope before creating the
+   equation. Indeed, the transitions do not have a scope, suite.DataDef, by default.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,150 @@
+
+
+
+
+
+The ``ansys.scade.apitools`` library
+====================================
+
+.. py:module:: ansys.scade.apitools
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: apitools
+.. tab-set::
+
+    .. tab-item:: Subpackages
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~ansys.scade.apitools.create`
+            - Provides a collection of functions for creating or updating Scade models.
+
+
+          * - :py:attr:`~ansys.scade.apitools.expr`
+            - Provides a collection of functions for the accessing the expressions.
+
+
+          * - :py:attr:`~ansys.scade.apitools.info`
+            - Provides information on the current version of SCADE.
+
+
+          * - :py:attr:`~ansys.scade.apitools.prop`
+            - Provides a collection of functions for the storage of settings and properties.
+
+
+          * - :py:attr:`~ansys.scade.apitools.query`
+            - Provides a collection of queries for SCADE Suite models.
+
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~ansys.scade.apitools.auto_scade_env`
+            - Provides ``scade_env.load_project``, renamed to ``declare_project``.
+
+
+
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~__version__`
+            - 
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🖿 create<create/index.rst>
+    🖿 expr<expr/index.rst>
+    🖿 info<info/index.rst>
+    🖿 prop<prop/index.rst>
+    🖿 query<query/index.rst>
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🗎 auto_scade_env<auto_scade_env/index.rst>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+
+Provides a library of high-level functions on top of SCADE Python APIs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: __version__
+
+   
+
+
+

@@ -1,0 +1,34 @@
+.. py:function:: create_data_struct(*args)
+
+   
+   Return the expression tree for the data strictire operator.
+
+
+   :Parameters:
+
+       **args** : :obj:`List`\[:obj:`Tuple`\[:class:`python:str`, :obj:`EX`]]
+           Label/values expression trees.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   This is an interface change with respect to the *SCADE Creation Library*.
+   The pairs "name"/"value" are now embedded in a list of tuples.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

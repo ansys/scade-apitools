@@ -1,0 +1,56 @@
+
+
+
+
+ExpressionTree
+==============
+
+.. py:class:: ExpressionTree(label = '')
+   :canonical: ansys.scade.apitools.create.expression.ExpressionTree
+
+
+
+
+
+   Provides the top-level abstract class for expression trees.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.expression import ExpressionTree
+
+
+
+
+

@@ -1,0 +1,21 @@
+ansys.scade.apitools.create.expression.create_data_struct
+=========================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_data_struct(*args: Tuple[str, EX]) -> ET
+
+   Return the expression tree for the data strictire operator.
+
+   Notes
+   -----
+   This is an interface change with respect to the *SCADE Creation Library*.
+   The pairs "name"/"value" are now embedded in a list of tuples.
+
+   Parameters
+   ----------
+   \*args : Tuple[str, EX]
+       Label/values expression trees.
+
+   Returns
+   -------
+   ET
+

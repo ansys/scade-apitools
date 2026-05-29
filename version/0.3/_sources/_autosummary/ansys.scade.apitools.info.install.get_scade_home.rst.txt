@@ -1,0 +1,6 @@
+ansys.scade.apitools.info.install.get\_scade\_home
+==================================================
+
+.. currentmodule:: ansys.scade.apitools.info.install
+
+.. autofunction:: get_scade_home

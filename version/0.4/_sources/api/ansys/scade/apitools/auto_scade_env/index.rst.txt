@@ -1,0 +1,82 @@
+
+
+
+
+
+The ``auto_scade_env.py`` module
+================================
+
+.. py:module:: ansys.scade.apitools.auto_scade_env
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: auto_scade_env
+.. tab-set::
+
+
+
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~declare_project`
+            - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+Provides ``scade_env.load_project``, renamed to ``declare_project``.
+
+Search for a SCADE installation compatible with the Python version
+and add it to ``sys.path`` if not already present.
+Present means ``scade_env.pyd`` is accessible from ``sys.path``.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: declare_project
+
+   
+
+
+

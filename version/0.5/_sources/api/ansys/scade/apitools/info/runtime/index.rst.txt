@@ -1,0 +1,143 @@
+
+
+
+
+
+
+The ``runtime.py`` module
+=========================
+
+.. py:module:: ansys.scade.apitools.info.runtime
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: runtime
+.. tab-set::
+
+
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.info.runtime.ide_print`
+            - Print based on scade.output.
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ide`
+            - Whether the script runs with the SCADE Studio environment.
+
+
+          * - :py:obj:`~print`
+            - Emulation of print for SCADE Studio environment.
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> ide_print</api/ansys/scade/apitools/info/runtime/ide_print>
+
+
+
+
+
+
+Description
+-----------
+
+Provides access to SCADE runtime information.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: ide
+
+   
+   Whether the script runs with the SCADE Studio environment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:data:: print
+
+   
+   Emulation of print for SCADE Studio environment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+

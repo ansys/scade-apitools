@@ -1,0 +1,56 @@
+
+
+
+
+IfTree
+======
+
+.. py:class:: IfTree(position = None)
+   :canonical: ansys.scade.apitools.create.data_def.IfTree
+
+
+
+
+
+   Provides an intermediate structure for describing the structure of an if block.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import IfTree
+
+
+
+
+

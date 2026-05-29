@@ -1,0 +1,113 @@
+
+
+
+
+
+
+:class:`DataArrayOp`
+====================
+
+.. py:class:: ansys.scade.apitools.expr.access.DataArrayOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`CallExpression`
+
+
+   Provides for construction of an array.
+
+   The format is ``[ <expression>, ..., <expression> ]``.
+
+   See the :ref:`data_array_op <ex__data_array_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: DataArrayOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~data`
+            - Values to build the array.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import DataArrayOp
+
+Property detail
+---------------
+
+.. py:property:: data
+   :type: list[Expression]
+
+
+   
+   Values to build the array.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

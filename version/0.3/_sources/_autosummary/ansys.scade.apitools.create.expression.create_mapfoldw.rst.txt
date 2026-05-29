@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.expression.create\_mapfoldw
+=======================================================
+
+.. currentmodule:: ansys.scade.apitools.create.expression
+
+.. autofunction:: create_mapfoldw

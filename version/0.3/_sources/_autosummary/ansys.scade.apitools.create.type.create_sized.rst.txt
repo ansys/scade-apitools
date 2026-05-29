@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.type.create\_sized
+==============================================
+
+.. currentmodule:: ansys.scade.apitools.create.type
+
+.. autofunction:: create_sized

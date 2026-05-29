@@ -1,0 +1,82 @@
+
+
+
+
+
+The ``predef.py`` module
+========================
+
+.. py:module:: ansys.scade.apitools.expr.predef
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: predef
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Enums
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~Eck`
+            - Provides an enum of predefined operators.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    ≔ Eck<Eck>
+
+
+
+
+
+
+
+
+Description
+-----------
+
+Provides numeric values for the ``predef_opr`` attribute from the ``suite.ExprCall``.
+
+For more information, see the SCADE Suite documentation:
+``5 Specific Commands for Python Scripting > Access to Predefined Operators in Python Scripts.``
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

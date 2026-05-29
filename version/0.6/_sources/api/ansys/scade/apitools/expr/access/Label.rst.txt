@@ -1,0 +1,72 @@
+
+
+
+
+
+
+:class:`Label`
+==============
+
+.. py:class:: ansys.scade.apitools.expr.access.Label(expression: scade.model.suite.ConstValue)
+
+   Bases: :py:obj:`Expression`
+
+
+   Provides the label of a projection.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: Label
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~name`
+            - Name of the label.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import Label
+
+Property detail
+---------------
+
+.. py:property:: name
+   :type: str
+
+
+   Name of the label.
+
+
+
+
+
+
+

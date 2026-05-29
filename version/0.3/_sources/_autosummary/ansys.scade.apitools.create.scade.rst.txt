@@ -1,0 +1,42 @@
+ansys.scade.apitools.create.scade
+=================================
+
+.. currentmodule:: ansys.scade.apitools.create
+
+.. automodule:: ansys.scade.apitools.create.scade
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      add_element_to_project
+      add_imported_to_project
+      add_simulation_file_to_project
+      save_all
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+   
+      Sfk
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,30 @@
+.. py:function:: create_foldi(size)
+
+   
+   Return the expression tree for the higher-order construct for foldi creation.
+
+
+   :Parameters:
+
+       **size** : :obj:`EX`
+           Number of iterations.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

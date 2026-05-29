@@ -1,0 +1,6 @@
+ansys.scade.apitools.expr.access.accessor
+=========================================
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autofunction:: accessor

@@ -1,0 +1,25 @@
+
+
+TypeTree
+========
+
+Module: *ansys.scade.apitools.create.type*
+
+
+.. currentmodule:: ansys.scade.apitools.create.type
+
+.. autoclass:: TypeTree
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   

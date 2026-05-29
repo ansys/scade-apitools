@@ -1,0 +1,23 @@
+ansys.scade.apitools.create.expression.create_init
+==================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_init(flows: LX, inits: LX) -> ET
+
+   Return the expression tree for the init operator.
+
+   Notes
+   -----
+   This is an interface change with respect to the *SCADE Creation Library*.
+   The flows and their initial values are now specified in two separate lists.
+
+   Parameters
+   ----------
+   flows : Union[EX, List[EX]]
+       Input flows.
+   inits : Union[EX, List[EX]]
+       Initial values.
+
+   Returns
+   -------
+   ET
+

@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.type.TX
+===================================
+
+.. currentmodule:: ansys.scade.apitools.create.type
+
+.. autodata:: TX

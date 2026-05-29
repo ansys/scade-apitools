@@ -1,0 +1,18 @@
+ansys.scade.apitools.create.expression.create_prj
+=================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_prj(flow: EX, path: LX) -> ET
+
+   Return the expression tree for the projection operator.
+
+   Parameters
+   ----------
+   flow : EX
+       Input flow of the projection.
+   path : Union[EX, List[EX]]
+       Elements of the path, which is either the label or index.
+
+   Returns
+   -------
+   ET
+

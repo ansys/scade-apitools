@@ -1,0 +1,55 @@
+ansys.scade.apitools.create.scade.add_element_to_project
+========================================================
+
+.. py:function:: ansys.scade.apitools.create.scade.add_element_to_project(project: scade.model.project.stdproject.Project, element: scade.model.suite.StorageElement, folder: scade.model.project.stdproject.Folder = None, default: bool = True) -> scade.model.project.stdproject.FileRef
+
+   
+   Add the file defining the storage element to the project.
+
+   The file is added if and only if it is not already present.
+   If the file is present, the ``folder`` and ``default`` parameters
+   are ignored.
+
+   * When the ``folder`` parameter is not ``None``, the file is added to the
+     folder specified.
+   * When the ``default`` parameter is ``True``, the file is added to either the
+     "Model Files" or "Separate Files" folder, depending on the nature of the
+     storage unit.
+   * Otherwise, the file is added to the project as a root element.
+
+   :Parameters:
+
+       **project** : :obj:`std.Project`
+           Project to modify.
+
+       **element** : :obj:`suite.StorageELement`
+           Element with storage unit to add to the project.
+           If the storage unit is not a root element, the added file is
+           tagged as ``NONROOT`` for SCADE.
+
+       **folder** : :obj:`std.Folder`, default: :data:`python:None`
+           Parent folder of the file to add to the project.
+
+       **default** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:True`
+           Whether to add the file to one of the default folders
+           for SCADE Suite files.
+
+
+
+   :Returns:
+
+       :obj:`std.FileRef`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

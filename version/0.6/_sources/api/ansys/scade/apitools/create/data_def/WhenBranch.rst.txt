@@ -1,0 +1,81 @@
+
+
+
+
+
+
+:class:`WhenBranch`
+===================
+
+.. py:class:: ansys.scade.apitools.create.data_def.WhenBranch(pattern: ansys.scade.apitools.create.expression.EX, position: Tuple[float, float] = (0, 0), size: Tuple[float, float] = (0, 0), display: DK = DK.GRAPHICAL, label_width: int = 0)
+
+   Provides the intermediate class for when branches.
+
+   Store the attributes.
+
+
+
+.. py:currentmodule:: WhenBranch
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+
+   .. tab-item:: Attributes
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~display`
+            - 
+          * - :py:attr:`~label_width`
+            - 
+          * - :py:attr:`~pattern`
+            - 
+          * - :py:attr:`~position`
+            - 
+          * - :py:attr:`~size`
+            - 
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import WhenBranch
+
+
+Attribute detail
+----------------
+
+.. py:attribute:: display
+
+.. py:attribute:: label_width
+   :value: 0
+
+
+.. py:attribute:: pattern
+
+.. py:attribute:: position
+   :value: (0, 0)
+
+
+.. py:attribute:: size
+   :value: (0, 0)
+
+
+
+
+
+

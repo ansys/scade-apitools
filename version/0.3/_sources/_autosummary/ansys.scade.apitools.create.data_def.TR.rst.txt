@@ -1,0 +1,25 @@
+
+
+TR
+==
+
+Module: *ansys.scade.apitools.create.data_def*
+
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autoclass:: TR
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   

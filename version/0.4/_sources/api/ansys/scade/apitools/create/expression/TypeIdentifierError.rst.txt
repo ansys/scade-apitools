@@ -1,0 +1,57 @@
+
+
+
+
+TypeIdentifierError
+===================
+
+.. py:exception:: TypeIdentifierError(context, item)
+   :canonical: ansys.scade.apitools.create.expression.TypeIdentifierError
+
+
+
+Bases: :py:obj:`Exception`
+
+
+   Provides the exception for incorrect identifiers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.expression import TypeIdentifierError
+
+
+
+
+

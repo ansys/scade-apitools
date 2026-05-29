@@ -1,0 +1,30 @@
+ansys.scade.apitools.create.data_def.add_data_def_state_machine
+===============================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_data_def_state_machine(data_def: scade.model.suite.DataDef, name: str, diagram: scade.model.suite.Diagram, position: Tuple[float, float] = (0, 0), size: Tuple[float, float] = (0, 0)) -> scade.model.suite.StateMachine
+
+   Create a state machine in a scope.
+
+   Parameters
+   ----------
+   data_def : suite.DataDef
+       Input scope, which is an operator, state, or action.
+   name : str
+       Name of the state machine.
+   diagram : suite.Diagram
+       Diagram containing the equation. The diagram specified can be either graphical
+       or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+       contains at least one diagram.
+   position : Tuple[float, float], default: None
+       Position of the state machine, expressed in 1/100th of mm.
+       This value is ignored if the diagram is not a graphical diagram.
+       Otherwise, it must be specified.
+   size : Tuple[float, float], default: None
+       Size of the state machine, expressed in 1/100th of mm.
+       This value is ignored if your diagram is not a graphical diagram.
+       Otherwise, it must be specified.
+
+   Returns
+   -------
+   suite.StateMachine
+

@@ -1,0 +1,100 @@
+
+
+
+
+TK
+==
+
+.. py:class:: TK
+   :canonical: ansys.scade.apitools.create.data_def.TK
+
+
+
+Bases: :py:obj:`enum.Enum`
+
+
+   Provides an enum of transition kinds.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: TK
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~STRONG`
+            - 
+          * - :py:attr:`~SYNCHRO`
+            - 
+          * - :py:attr:`~WEAK`
+            - 
+      
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import TK
+
+
+
+Attribute detail
+----------------
+.. py:attribute:: STRONG
+   :value: 'Strong'
+
+   
+
+.. py:attribute:: SYNCHRO
+   :value: 'Synchro'
+
+   
+
+.. py:attribute:: WEAK
+   :value: 'Weak'
+
+   
+
+
+

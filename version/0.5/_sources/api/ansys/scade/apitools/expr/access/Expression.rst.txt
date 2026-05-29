@@ -1,0 +1,83 @@
+
+
+
+
+
+
+:class:`Expression`
+===================
+
+.. py:class:: ansys.scade.apitools.expr.access.Expression(expression: scade.model.suite.Expression)
+
+   Provides the top-level abstract class for the expression accessors.
+
+   Parameters
+   ----------
+   expression : suite.Expression
+       Expression to wrap.
+
+
+   Store the wrapped expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: Expression
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+
+   .. tab-item:: Attributes
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~expression`
+            - 
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import Expression
+
+
+Attribute detail
+----------------
+
+.. py:attribute:: expression
+
+
+
+
+

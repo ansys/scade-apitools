@@ -1,0 +1,48 @@
+.. py:function:: create_constant(owner, name, type_, value, path = None, visibility = VK.PUBLIC)
+
+   
+   Create a constant.
+
+   A constant has a name, type, and value.
+
+   :Parameters:
+
+       **owner** : :obj:`suite.Package`
+           Owner of the constant, which is either the model itself or a package.
+
+       **name** : :class:`python:str`
+           Name of the constant.
+
+       **type\_** : :obj:`TX`
+           Definition of the type expressed as a type tree.
+
+       **value** : :obj:`EX`
+           Expression tree defining the value.
+
+       **path** : :obj:`Path`, default: :data:`python:None`
+           Path of the file for storing the constant. This parameter is ignored if
+           the owner is a package. When the path is ``None`` and owner is the model,
+           theconstant is stored in the model's default file.
+
+       **visibility** : :obj:`VK`
+           Accessibility of the constant.
+
+   :Returns:
+
+       :obj:`suite.Constant`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

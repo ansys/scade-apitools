@@ -1,0 +1,30 @@
+.. py:function:: accessor(expression)
+
+   
+   Build the accessor for a SCADE Suite expression.
+
+
+   :Parameters:
+
+       **expression** : :obj:`suite.Expression`
+           Expression to wrap.
+
+   :Returns:
+
+       :obj:`Expression`
+           Expression accessor.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

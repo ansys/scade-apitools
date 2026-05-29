@@ -1,0 +1,47 @@
+
+
+FbyOp
+=====
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: FbyOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FbyOp.code
+      ~FbyOp.delay
+      ~FbyOp.flows
+      ~FbyOp.inits
+      ~FbyOp.name
+
+   
+   ..
+      autoattribute:: FbyOp.code
+   ..
+      autoattribute:: FbyOp.delay
+   ..
+      autoattribute:: FbyOp.flows
+   ..
+      autoattribute:: FbyOp.inits
+   ..
+      autoattribute:: FbyOp.name
+   
+   

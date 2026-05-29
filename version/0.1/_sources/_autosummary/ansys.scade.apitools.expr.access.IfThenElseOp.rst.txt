@@ -1,0 +1,47 @@
+
+
+IfThenElseOp
+============
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: IfThenElseOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~IfThenElseOp.code
+      ~IfThenElseOp.else_
+      ~IfThenElseOp.if_
+      ~IfThenElseOp.name
+      ~IfThenElseOp.then
+
+   
+   ..
+      autoattribute:: IfThenElseOp.code
+   ..
+      autoattribute:: IfThenElseOp.else_
+   ..
+      autoattribute:: IfThenElseOp.if_
+   ..
+      autoattribute:: IfThenElseOp.name
+   ..
+      autoattribute:: IfThenElseOp.then
+   
+   

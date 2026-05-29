@@ -1,0 +1,46 @@
+.. py:function:: create_when_branch(pattern, position = None, size = None, display = DK.GRAPHICAL, label_width = 0)
+
+   
+   Create an intermediate structure for a when branch.
+
+   The graphical properties are expressed 1/100th of mm.
+
+   They are considered if and only if the owning when block
+   has a graphical representation.
+
+   :Parameters:
+
+       **pattern** : :obj:`EX`
+           Value of the branch.
+
+       **position** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Position of the action.
+
+       **size** : :obj:`Tuple`\[:class:`python:float`, :class:`python:float`], default: :data:`python:None`
+           Size of the action.
+
+       **display** : :obj:`DK`, default: :obj:`GRAPHICAL`
+           Layout of the action.
+
+       **label_width** : :class:`python:int`
+           Optional width of the label containing the pattern.
+
+   :Returns:
+
+       :obj:`WhenBranch`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,432 @@
+
+
+
+
+
+
+The ``expression.py`` module
+============================
+
+.. py:module:: ansys.scade.apitools.create.expression
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+
+
+.. py:currentmodule:: expression
+.. tab-set::
+
+
+
+
+    .. tab-item:: Classes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.ExpressionTree`
+            - Provides the top-level abstract class for expression trees.
+
+
+
+
+    .. tab-item:: Exceptions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.EmptyTreeError`
+            - Provides the exception for empty expression trees.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.ExprSyntaxError`
+            - Provides the generic exception for syntax errors in expression trees.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.TypeIdentifierError`
+            - Provides the exception for incorrect identifiers.
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_activate`
+            - Return the expression tree for the higher-order construct for activating with initial values.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_activate_no_init`
+            - Return the expression tree for the higher-order construct for activating with default values.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_binary`
+            - Return the expression tree for a binary operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_call`
+            - Return the expression tree for a call to an operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_case`
+            - Return the expression tree for the case operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_change_ith`
+            - Return the expression tree for the with operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_concat`
+            - Return the expression tree for the concat operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_data_array`
+            - Return the expression tree for the data array operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_data_struct`
+            - Return the expression tree for the data strictire operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_fby`
+            - Return the expression tree for the init operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_flatten`
+            - Return the expression tree for flattening a structured value.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_fold`
+            - Return the expression tree for the higher-order construct for fold creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_foldi`
+            - Return the expression tree for the higher-order construct for foldi creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_foldw`
+            - Return the expression tree for the higher-order construct for foldw creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_foldwi`
+            - Return the expression tree for the higher-order construct for foldwi creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_higher_order_call`
+            - Return the expression tree for a call to an operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_if`
+            - Return the expression tree for the if-then-else operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_init`
+            - Return the expression tree for the init operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_make`
+            - Return the expression tree for making a structured value.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_map`
+            - Return the expression tree for the higher-order construct for map creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_mapfold`
+            - Return the expression tree for the higher-order construct for mapfold creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_mapfoldi`
+            - Return the expression tree for the higher-order construct for mapfoldi creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_mapfoldw`
+            - Return the expression tree for the higher-order construct for mapfoldw creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_mapfoldwi`
+            - Return the expression tree for the higher-order construct for mapfoldwi creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_mapi`
+            - Return the expression tree for the higher-order construct for mapi creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_mapw`
+            - Return the expression tree for the higher-order construct for mapw creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_mapwi`
+            - Return the expression tree for the higher-order construct for mapdwi creation.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_nary`
+            - Return the expression tree for a nary operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_pre`
+            - Return the expression tree for the pre operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_prj`
+            - Return the expression tree for the projection operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_prj_dyn`
+            - Return the expression tree for the dynamic projection operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_restart`
+            - Return the expression tree for the higher-order construct for restarting.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_reverse`
+            - Return the expression tree for the reverse operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_scalar_to_vector`
+            - Return the expression tree for the scalar-to-vector operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_slice`
+            - Return the expression tree for the slice operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_times`
+            - Return the expression tree for the times operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_transpose`
+            - Return the expression tree for the transpose operator.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.expression.create_unary`
+            - Return the expression tree for a unary operator.
+
+
+
+
+    .. tab-item:: Constants
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ET`
+            - Short name for an ``ExpressionTree`` instance to simplify the declarations.
+
+
+          * - :py:obj:`~EX`
+            - Extended expression tree to simplify use of the create functions.
+
+
+          * - :py:obj:`~LX`
+            - Extended lists of expression trees to simply the use of create functions.
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-cod-symbol_class"></span> ExpressionTree</api/ansys/scade/apitools/create/expression/ExpressionTree>
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-lightning_bolt"></span> EmptyTreeError</api/ansys/scade/apitools/create/expression/EmptyTreeError>
+    <span class="nf nf-md-lightning_bolt"></span> ExprSyntaxError</api/ansys/scade/apitools/create/expression/ExprSyntaxError>
+    <span class="nf nf-md-lightning_bolt"></span> TypeIdentifierError</api/ansys/scade/apitools/create/expression/TypeIdentifierError>
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> create_activate</api/ansys/scade/apitools/create/expression/create_activate>
+    <span class="nf nf-md-function_variant"></span> create_activate_no_init</api/ansys/scade/apitools/create/expression/create_activate_no_init>
+    <span class="nf nf-md-function_variant"></span> create_binary</api/ansys/scade/apitools/create/expression/create_binary>
+    <span class="nf nf-md-function_variant"></span> create_call</api/ansys/scade/apitools/create/expression/create_call>
+    <span class="nf nf-md-function_variant"></span> create_case</api/ansys/scade/apitools/create/expression/create_case>
+    <span class="nf nf-md-function_variant"></span> create_change_ith</api/ansys/scade/apitools/create/expression/create_change_ith>
+    <span class="nf nf-md-function_variant"></span> create_concat</api/ansys/scade/apitools/create/expression/create_concat>
+    <span class="nf nf-md-function_variant"></span> create_data_array</api/ansys/scade/apitools/create/expression/create_data_array>
+    <span class="nf nf-md-function_variant"></span> create_data_struct</api/ansys/scade/apitools/create/expression/create_data_struct>
+    <span class="nf nf-md-function_variant"></span> create_fby</api/ansys/scade/apitools/create/expression/create_fby>
+    <span class="nf nf-md-function_variant"></span> create_flatten</api/ansys/scade/apitools/create/expression/create_flatten>
+    <span class="nf nf-md-function_variant"></span> create_fold</api/ansys/scade/apitools/create/expression/create_fold>
+    <span class="nf nf-md-function_variant"></span> create_foldi</api/ansys/scade/apitools/create/expression/create_foldi>
+    <span class="nf nf-md-function_variant"></span> create_foldw</api/ansys/scade/apitools/create/expression/create_foldw>
+    <span class="nf nf-md-function_variant"></span> create_foldwi</api/ansys/scade/apitools/create/expression/create_foldwi>
+    <span class="nf nf-md-function_variant"></span> create_higher_order_call</api/ansys/scade/apitools/create/expression/create_higher_order_call>
+    <span class="nf nf-md-function_variant"></span> create_if</api/ansys/scade/apitools/create/expression/create_if>
+    <span class="nf nf-md-function_variant"></span> create_init</api/ansys/scade/apitools/create/expression/create_init>
+    <span class="nf nf-md-function_variant"></span> create_make</api/ansys/scade/apitools/create/expression/create_make>
+    <span class="nf nf-md-function_variant"></span> create_map</api/ansys/scade/apitools/create/expression/create_map>
+    <span class="nf nf-md-function_variant"></span> create_mapfold</api/ansys/scade/apitools/create/expression/create_mapfold>
+    <span class="nf nf-md-function_variant"></span> create_mapfoldi</api/ansys/scade/apitools/create/expression/create_mapfoldi>
+    <span class="nf nf-md-function_variant"></span> create_mapfoldw</api/ansys/scade/apitools/create/expression/create_mapfoldw>
+    <span class="nf nf-md-function_variant"></span> create_mapfoldwi</api/ansys/scade/apitools/create/expression/create_mapfoldwi>
+    <span class="nf nf-md-function_variant"></span> create_mapi</api/ansys/scade/apitools/create/expression/create_mapi>
+    <span class="nf nf-md-function_variant"></span> create_mapw</api/ansys/scade/apitools/create/expression/create_mapw>
+    <span class="nf nf-md-function_variant"></span> create_mapwi</api/ansys/scade/apitools/create/expression/create_mapwi>
+    <span class="nf nf-md-function_variant"></span> create_nary</api/ansys/scade/apitools/create/expression/create_nary>
+    <span class="nf nf-md-function_variant"></span> create_pre</api/ansys/scade/apitools/create/expression/create_pre>
+    <span class="nf nf-md-function_variant"></span> create_prj</api/ansys/scade/apitools/create/expression/create_prj>
+    <span class="nf nf-md-function_variant"></span> create_prj_dyn</api/ansys/scade/apitools/create/expression/create_prj_dyn>
+    <span class="nf nf-md-function_variant"></span> create_restart</api/ansys/scade/apitools/create/expression/create_restart>
+    <span class="nf nf-md-function_variant"></span> create_reverse</api/ansys/scade/apitools/create/expression/create_reverse>
+    <span class="nf nf-md-function_variant"></span> create_scalar_to_vector</api/ansys/scade/apitools/create/expression/create_scalar_to_vector>
+    <span class="nf nf-md-function_variant"></span> create_slice</api/ansys/scade/apitools/create/expression/create_slice>
+    <span class="nf nf-md-function_variant"></span> create_times</api/ansys/scade/apitools/create/expression/create_times>
+    <span class="nf nf-md-function_variant"></span> create_transpose</api/ansys/scade/apitools/create/expression/create_transpose>
+    <span class="nf nf-md-function_variant"></span> create_unary</api/ansys/scade/apitools/create/expression/create_unary>
+
+
+
+
+
+
+Description
+-----------
+
+Provides helpers for creating expression trees.
+
+Expression trees are intermediate structures to declare any arbitrary complex
+expressions. They create the corresponding SCADE Suite expressions in the
+context of a model element, such as the right part of an equation or the
+default value of an output.
+
+This module provides functions to create an expression tree for any expression
+of the Scade language, including higher-order constructs. Thus, the intermediate
+structures or classes defining the expression trees can be opaque.
+
+Notes: The typing is relaxed in this module to ease the constructs.
+
+* ``ET`` is an alias for ``ExpressionTree`` to shorten the declarations.
+
+* ``EX``, which stands for extended expression tree, is defined as follows::
+
+     Union[bool, int, float, str, suite.ConstVar, suite.NamedType, ET]
+
+  This enhances the usability of these functions by accepting some values,
+  such as Python literals, string values, or SCADE Python objects, as valid
+  expression trees.
+
+* ``LX``, which stands for extended lists of expression trees, is defined as follows::
+
+     Union[EX, List[EX]]
+
+  When the expressions accept an arbitrary number of input flows, such as
+  if-then-else or fby, you can provide either one expression tree or a list
+  of expression trees.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+Module detail
+-------------
+
+.. py:data:: ET
+
+   
+   Short name for an ``ExpressionTree`` instance to simplify the declarations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:data:: EX
+
+   
+   Extended expression tree to simplify use of the create functions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:data:: LX
+
+   
+   Extended lists of expression trees to simply the use of create functions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+

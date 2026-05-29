@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.create\_imported\_operator
+==================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: create_imported_operator

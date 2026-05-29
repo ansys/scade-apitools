@@ -1,0 +1,141 @@
+
+
+
+
+PrjDynOp
+========
+
+.. py:class:: PrjDynOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.PrjDynOp
+
+
+
+Bases: :py:obj:`ArrayOp`
+
+
+   Provides the dynamic projection of an array.
+
+   See the :ref:`prj_dyn_op <ex__prj_dyn_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: PrjDynOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~default`
+            - Default value of the projection.
+          * - :py:attr:`~indexes`
+            - Path of the projection.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import PrjDynOp
+
+
+Property detail
+---------------
+.. py:property:: default
+   :canonical: ansys.scade.apitools.expr.access.PrjDynOp.default
+   :type: Expression
+
+
+   
+   Default value of the projection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: indexes
+   :canonical: ansys.scade.apitools.expr.access.PrjDynOp.indexes
+   :type: list[Expression]
+
+
+   
+   Path of the projection.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

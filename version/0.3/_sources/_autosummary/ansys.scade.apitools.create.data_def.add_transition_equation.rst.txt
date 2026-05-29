@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.add\_transition\_equation
+===============================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: add_transition_equation

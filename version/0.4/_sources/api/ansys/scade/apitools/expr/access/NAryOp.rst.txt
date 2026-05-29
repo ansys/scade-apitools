@@ -1,0 +1,124 @@
+
+
+
+
+NAryOp
+======
+
+.. py:class:: NAryOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.NAryOp
+
+
+
+Bases: :py:obj:`AryOp`
+
+
+   Provides an expression with two or more operands.
+
+   The format is ``<operand> <operator> <operand> <operator> ... <operator> <operand>``,
+   where ``<operator>`` is one of these:
+
+   * ``@``
+   * ``and``, ``or``, ``xor``
+   * ``+``, ``*``
+   * ``land``, ``lor``
+
+   See the :ref:`n_ary_op <ex__n_ary_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The ``xor`` operator is binary, but it is stored as a nary operator in the XSCADE files.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: NAryOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~operands`
+            - Operand of the operator.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import NAryOp
+
+
+Property detail
+---------------
+.. py:property:: operands
+   :canonical: ansys.scade.apitools.expr.access.NAryOp.operands
+   :type: list[Expression]
+
+
+   
+   Operand of the operator.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

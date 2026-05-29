@@ -1,0 +1,36 @@
+.. py:function:: add_diagram_equation_set(diagram, name, elements = None)
+
+   
+   Add a new equation set to a graphical diagram.
+
+
+   :Parameters:
+
+       **diagram** : :obj:`suite.NetDiagram`
+           Input diagram.
+
+       **name** : :class:`python:str`
+           Name of the equation set.
+
+       **elements** : :obj:`List`\[:obj:`suite.Presentable`], default: :data:`python:None`
+           List of elements to add to the equation set.
+
+   :Returns:
+
+       :obj:`suite.EquationSet`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,45 @@
+ansys.scade.apitools.create.declaration.add_operator_hidden
+===========================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.add_operator_hidden(operator: scade.model.suite.Operator, vars: List[Tuple[str, ansys.scade.apitools.create.type.TX]], insert_before: scade.model.suite.LocalVariable) -> List[scade.model.suite.LocalVariable]
+
+   
+   Add hidden inputs to an operator.
+
+
+   :Parameters:
+
+       **operator** : :obj:`suite.Operator`
+           Input operator.
+
+       **vars** : :obj:`List`\[:obj:`Tuple`\[:class:`python:str`, :obj:`TX`]]
+           Name/type expression trees.
+
+       **insert_before** : :obj:`suite.LocalVariable`
+           Insertion point of the inputs. When this parameter is not ``None``, it is
+           an existing hidden input of the operator. The hidden inputs are inserted
+           before this input. Otherwise, the hidden inputs are added at the end.
+
+
+
+   :Returns:
+
+       :obj:`List`\[:obj:`suite.LocalVariable`]
+           List of the added hidden inputs.
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   This is an interface change with respect to the *SCADE Creation Library*.
+   The pairs "name"/"type" tree are now embedded in a list of tuples.
+
+
+
+   ..
+       !! processed by numpydoc !!

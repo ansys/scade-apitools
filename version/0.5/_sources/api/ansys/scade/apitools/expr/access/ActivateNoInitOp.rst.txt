@@ -1,0 +1,60 @@
+
+
+
+
+
+
+:class:`ActivateNoInitOp`
+=========================
+
+.. py:class:: ansys.scade.apitools.expr.access.ActivateNoInitOp(expression: scade.model.suite.ExprCall, operator: CallExpression)
+
+   Bases: :py:obj:`CondactOp`
+
+
+   Provides activation of an operator with default values.
+
+   See the :ref:`activate_no_init_op <ex__activate_no_init_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Higher-order expression to wrap.
+   operator :
+       Operator call expression.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ActivateNoInitOp
+
+
+
+
+

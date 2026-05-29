@@ -1,0 +1,42 @@
+.. py:function:: create_sensor(owner, name, type_, path = None)
+
+   
+   Create a sensor.
+
+   The sensor has a name and a type.
+
+   :Parameters:
+
+       **owner** : :obj:`suite.Package`
+           Owner of the sensor, which is either the model itself or a package.
+
+       **name** : :class:`python:str`
+           Name of the sensor.
+
+       **type\_** : :obj:`TX`
+           Definition of the type expressed as a type tree.
+
+       **path** : :obj:`Path`, default: :data:`python:None`
+           Path of the file for storing the constant. This parameter is ignored if the
+           owner is a package. When the path is ``None`` and owner is the model, the
+           constant is stored in the model's default file.
+
+   :Returns:
+
+       :obj:`suite.Sensor`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

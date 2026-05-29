@@ -1,0 +1,23 @@
+.. py:function:: get_scade_version()
+
+   
+   Get the version of SCADE.
+
+   For example, ``232`` for SCADE 2023 R2.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

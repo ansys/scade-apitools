@@ -1,0 +1,39 @@
+ansys.scade.apitools.create.expression.create_nary
+==================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_nary(op: str, *args: List[EX], modifiers: Union[ET, List[ET]] = None) -> ET
+
+   
+   Return the expression tree for a nary operator.
+
+
+   :Parameters:
+
+       **op** : :class:`python:str`
+           Nary operator to call: & | | | ^ | # | + | *
+
+       **args** : :obj:`List`\[:obj:`EX`]
+           Operands: expression trees.
+
+       **modifiers** : :obj:`Union`\[:obj:`ET`, :obj:`List`\[:obj:`ET`]], default: :data:`python:None`
+           List of higher-order constructs, to be provided as keyword parameter.
+
+
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,40 @@
+ansys.scade.apitools.create.data_def.add_data_def_when_block
+============================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_data_def_when_block(data_def: scade.model.suite.DataDef, name: str, when: ansys.scade.apitools.create.expression.EX, branches: List[WhenBranch], diagram: Optional[scade.model.suite.Diagram] = None, position: Tuple[float, float] = (0, 0), size: Tuple[float, float] = (0, 0), start_position: Tuple[float, float] = (450, 582), label_width: int = 0) -> scade.model.suite.WhenBlock
+
+   Add a new when block in a scope.
+
+   The graphical properties are expressed 1/100th of mm.
+
+   They are considered if and only if the owning when block
+   has a graphical representation.
+
+   Parameters
+   ----------
+   data_def : suite.DataDef
+       Input scope, which is an operator, state, or action.
+   name : str
+       Name of the block.
+   when : EX
+       Pattern of the block.
+   branches : List[WhenBranch]
+       List of intermediate structures describing the branches.
+       There must be at least one branch.
+   diagram : suite.Diagram | None, default: None
+       Diagram containing the equation. The diagram specified can be either graphical
+       or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+       contains at least one diagram.
+   position : Tuple[float, float] default: (0, 0))
+       Position of the block.
+   size : Tuple[float, float] default: (0, 0)
+       Size of the block.
+   start_position : Tuple[float, float], default: (450, 582)
+       Start position of the branches relative to the block.
+   label_width : int, default: 0
+       Width of the label containing the pattern.
+
+   Returns
+   -------
+   suite.WhenBlock
+

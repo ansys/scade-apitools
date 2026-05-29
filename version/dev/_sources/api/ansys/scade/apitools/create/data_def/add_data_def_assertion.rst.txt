@@ -1,0 +1,30 @@
+ansys.scade.apitools.create.data_def.add_data_def_assertion
+===========================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_data_def_assertion(data_def: scade.model.suite.DataDef, diagram: Optional[scade.model.suite.Diagram], name: str, expr: ansys.scade.apitools.create.expression.EX, kind: AK = AK.ASSUME, position: Tuple[float, float] = (0, 0)) -> scade.model.suite.Assertion
+
+   Create an assertion in a scope.
+
+   Parameters
+   ----------
+   data_def : suite.DataDef
+       Input scope, which is an operator, state, or action.
+   diagram : suite.Diagram | None
+       Diagram containing the equation. The diagram specified can be either graphical
+       or textual, or it can be ``None``. However, it cannot be ``None`` if the scope
+       contains at least one diagram.
+   name : str
+       Name of the assertion.
+   expr : EX
+       Expression of the assertion.
+   kind : AK, default: ASSUME
+       Kind of the assertion.
+   position : Tuple[float, float], default: (0, 0)
+       Position of the assertion, expressed in 1/100th of mm.
+       This value is ignored if the diagram is not a graphical diagram.
+       Otherwise, it must be specified.
+
+   Returns
+   -------
+   suite.Assertion
+

@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.declaration.set\_specialized\_operator
+==================================================================
+
+.. currentmodule:: ansys.scade.apitools.create.declaration
+
+.. autofunction:: set_specialized_operator

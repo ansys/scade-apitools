@@ -1,0 +1,38 @@
+ansys.scade.apitools.create.project.create_file_ref
+===================================================
+
+.. py:function:: ansys.scade.apitools.create.project.create_file_ref(owner: Union[scade.model.project.stdproject.Project, scade.model.project.stdproject.Folder], persist_as: str) -> scade.model.project.stdproject.FileRef
+
+   
+   Create file reference.
+
+   A file reference has a pathname and must be a file of either a project or a folder.
+
+   :Parameters:
+
+       **owner** : :obj:`std.Project` or :obj:`std.Folder`
+           Owner of the file, which is either the project itself or a folder.
+
+       **persist_as** : :class:`python:str`
+           String representation of the reference to the file to store in the project's file.
+           The string can be either a relative reference to the project or an absolute path.
+
+
+
+   :Returns:
+
+       :obj:`std.FileRef`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

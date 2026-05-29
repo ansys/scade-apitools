@@ -1,0 +1,92 @@
+
+
+
+
+
+
+The ``prop`` package
+========================
+
+.. py:module:: ansys.scade.apitools.prop
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: prop
+.. tab-set::
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma`
+            - Provides accessors for textual pragmas.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-fa-file"></span> pragma</api/ansys/scade/apitools/prop/pragma/index>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+
+Provides a collection of functions for the storage of settings and properties.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+

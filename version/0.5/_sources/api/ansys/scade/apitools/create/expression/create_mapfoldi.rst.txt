@@ -1,0 +1,36 @@
+ansys.scade.apitools.create.expression.create_mapfoldi
+======================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_mapfoldi(size: EX, acc: EX) -> ET
+
+   
+   Return the expression tree for the higher-order construct for mapfoldi creation.
+
+
+   :Parameters:
+
+       **size** : :obj:`EX`
+           Number of iterations.
+
+       **acc** : :obj:`EX`
+           Number of accumulators.
+
+
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

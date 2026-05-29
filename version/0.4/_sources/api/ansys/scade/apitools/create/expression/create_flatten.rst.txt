@@ -1,0 +1,36 @@
+.. py:function:: create_flatten(type_, arg, modifiers = None)
+
+   
+   Return the expression tree for flattening a structured value.
+
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.NamedType`
+           Type to instantiate.
+
+       **arg** : :obj:`EX`
+           Value to flatten.
+
+       **modifiers** : :obj:`Union`\[:obj:`ET`, :obj:`List`\[:obj:`ET`]], default: :data:`python:None`
+           List of higher-order constructs.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

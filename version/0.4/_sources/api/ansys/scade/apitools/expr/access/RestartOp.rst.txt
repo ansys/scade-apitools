@@ -1,0 +1,65 @@
+
+
+
+
+RestartOp
+=========
+
+.. py:class:: RestartOp(expression, operator)
+   :canonical: ansys.scade.apitools.expr.access.RestartOp
+
+
+
+Bases: :py:obj:`ConditionalOp`
+
+
+   Provides for restart of an operator.
+
+   See the :ref:`restart_op <ex__restart_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Higher-order expression to wrap.
+
+       **operator**
+           Operator call expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import RestartOp
+
+
+
+
+

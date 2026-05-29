@@ -1,0 +1,64 @@
+
+
+
+
+
+
+:class:`ExpressionTree`
+=======================
+
+.. py:class:: ansys.scade.apitools.create.expression.ExpressionTree(label: str = '')
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Provides the top-level abstract class for expression trees.
+
+   Any expression can have a label.
+
+
+
+.. py:currentmodule:: ExpressionTree
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+
+   .. tab-item:: Attributes
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~label`
+            - 
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.expression import ExpressionTree
+
+
+Attribute detail
+----------------
+
+.. py:attribute:: label
+   :value: ''
+
+
+
+
+
+

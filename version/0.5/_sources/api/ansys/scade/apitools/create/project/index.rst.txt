@@ -1,0 +1,100 @@
+
+
+
+
+
+
+The ``project.py`` module
+=========================
+
+.. py:module:: ansys.scade.apitools.create.project
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: project
+.. tab-set::
+
+
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.project.create_configuration`
+            - Create a configuration.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.project.create_file_ref`
+            - Create file reference.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.project.create_folder`
+            - Create a folder.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.project.create_prop`
+            - Create a property.
+
+
+          * - :py:obj:`~ansys.scade.apitools.create.project.save_project`
+            - Save the project.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> create_configuration</api/ansys/scade/apitools/create/project/create_configuration>
+    <span class="nf nf-md-function_variant"></span> create_file_ref</api/ansys/scade/apitools/create/project/create_file_ref>
+    <span class="nf nf-md-function_variant"></span> create_folder</api/ansys/scade/apitools/create/project/create_folder>
+    <span class="nf nf-md-function_variant"></span> create_prop</api/ansys/scade/apitools/create/project/create_prop>
+    <span class="nf nf-md-function_variant"></span> save_project</api/ansys/scade/apitools/create/project/save_project>
+
+
+
+
+
+
+Description
+-----------
+
+Provides functions for adding elements to a SCADE project (ETP file).
+
+These functions do not check for semantic errors, like adding two files with the same path.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

@@ -1,0 +1,171 @@
+
+
+
+
+FbyOp
+=====
+
+.. py:class:: FbyOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.FbyOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides the delay of flows.
+
+   The format is ``fby(<flow>, ..., <flow>; <delay>; <init>, ..., <init>)``.
+
+   See the :ref:`fby_op <ex__fby_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: FbyOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~delay`
+            - Delay of the expression.
+          * - :py:attr:`~flows`
+            - Flows after the first cycle.
+          * - :py:attr:`~inits`
+            - Initialization values of the flows.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import FbyOp
+
+
+Property detail
+---------------
+.. py:property:: delay
+   :canonical: ansys.scade.apitools.expr.access.FbyOp.delay
+   :type: Expression
+
+
+   
+   Delay of the expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: flows
+   :canonical: ansys.scade.apitools.expr.access.FbyOp.flows
+   :type: list[Expression]
+
+
+   
+   Flows after the first cycle.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: inits
+   :canonical: ansys.scade.apitools.expr.access.FbyOp.inits
+   :type: list[Expression]
+
+
+   
+   Initialization values of the flows.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

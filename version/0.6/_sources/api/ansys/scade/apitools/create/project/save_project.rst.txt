@@ -1,0 +1,14 @@
+ansys.scade.apitools.create.project.save_project
+================================================
+
+.. py:function:: ansys.scade.apitools.create.project.save_project(project: scade.model.project.stdproject.Project)
+
+   Save the project.
+
+   The path of the project is specified in project.pathname.
+
+   Parameters
+   ----------
+   project : std.Project
+       Project to save.
+

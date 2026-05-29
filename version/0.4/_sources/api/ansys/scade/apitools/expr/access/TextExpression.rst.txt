@@ -1,0 +1,113 @@
+
+
+
+
+TextExpression
+==============
+
+.. py:class:: TextExpression(expression)
+   :canonical: ansys.scade.apitools.expr.access.TextExpression
+
+
+
+Bases: :py:obj:`Expression`
+
+
+   Provides an expression with a syntax error.
+
+   The format is ``any text which can't compile``.
+
+   :Parameters:
+
+       **expression**
+           Erroneous expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: TextExpression
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~text`
+            - Erroneous text.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import TextExpression
+
+
+Property detail
+---------------
+.. py:property:: text
+   :canonical: ansys.scade.apitools.expr.access.TextExpression.text
+   :type: str
+
+
+   
+   Erroneous text.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

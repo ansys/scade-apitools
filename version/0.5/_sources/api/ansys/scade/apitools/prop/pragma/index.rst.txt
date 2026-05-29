@@ -1,0 +1,144 @@
+
+
+
+
+
+
+The ``pragma.py`` module
+========================
+
+.. py:module:: ansys.scade.apitools.prop.pragma
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: pragma
+.. tab-set::
+
+
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.find_pragma`
+            - Get the pragma ID of an object.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.find_pragma_tool`
+            - Get the pragma for an object.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.get_pragma_json`
+            - Deserialize a text pragma containing a JSON document to a Python object.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.get_pragma_text`
+            - Get the text of the pragma ID for an object.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.get_pragma_tool_text`
+            - Get the text of the pragma for an object.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.remove_pragma`
+            - Remove the pragma ID from an object.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.remove_pragma_tool`
+            - Remove the pragma from an object.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.set_pragma_json`
+            - Serialize a Python object to a JSON document in a textual pragma.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.set_pragma_text`
+            - Update the pragma ID of an object with a new ID.
+
+
+          * - :py:obj:`~ansys.scade.apitools.prop.pragma.set_pragma_tool_text`
+            - Update the pragma ID which text starts with ``key`` of ``object_`` with ``text``.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-md-function_variant"></span> find_pragma</api/ansys/scade/apitools/prop/pragma/find_pragma>
+    <span class="nf nf-md-function_variant"></span> find_pragma_tool</api/ansys/scade/apitools/prop/pragma/find_pragma_tool>
+    <span class="nf nf-md-function_variant"></span> get_pragma_json</api/ansys/scade/apitools/prop/pragma/get_pragma_json>
+    <span class="nf nf-md-function_variant"></span> get_pragma_text</api/ansys/scade/apitools/prop/pragma/get_pragma_text>
+    <span class="nf nf-md-function_variant"></span> get_pragma_tool_text</api/ansys/scade/apitools/prop/pragma/get_pragma_tool_text>
+    <span class="nf nf-md-function_variant"></span> remove_pragma</api/ansys/scade/apitools/prop/pragma/remove_pragma>
+    <span class="nf nf-md-function_variant"></span> remove_pragma_tool</api/ansys/scade/apitools/prop/pragma/remove_pragma_tool>
+    <span class="nf nf-md-function_variant"></span> set_pragma_json</api/ansys/scade/apitools/prop/pragma/set_pragma_json>
+    <span class="nf nf-md-function_variant"></span> set_pragma_text</api/ansys/scade/apitools/prop/pragma/set_pragma_text>
+    <span class="nf nf-md-function_variant"></span> set_pragma_tool_text</api/ansys/scade/apitools/prop/pragma/set_pragma_tool_text>
+
+
+
+
+
+
+Description
+-----------
+
+Provides accessors for textual pragmas.
+
+A textual pragma is made of an identifier, usually related to a tool, and a text.
+The syntax and semantic of the text are specific to each tool.
+This library provides sets of accessors for several kinds of textual pragmas:
+
+* Generic pragmas: Any text.
+* Core tools pragmas: The text has the form ``<key> [<text>]``. These core
+  tools include ``kcg`` and ``mc``.
+* JSON pragmas: The text is an abribrary data formatted as JSON, usually
+  a dictionary.
+
+Notes\:
+
+* This module assumes that the pragmas of a model element are unique per
+  ``<id>`` or per ``(<id>, <key>)`` for core tools pragmas.
+* This module assumes that the value of a pragma that is not present is empty,
+  instead of raising an exception. Thus, it automatically removes a pragma
+  when its new value is empty.
+* This module wraps some existing functions of the SCADE Suite Python API
+  that are not documented or listed in the Script Wizard's tables.
+* The editing functions return whether the model is modified.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

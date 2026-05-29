@@ -1,0 +1,464 @@
+
+
+
+
+
+
+:class:`Eck`
+============
+
+.. py:class:: ansys.scade.apitools.expr.predef.Eck
+
+   Bases: :py:obj:`enum.Enum`
+
+
+   Provides an enum of predefined operators.
+
+
+
+.. py:currentmodule:: Eck
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+
+   .. tab-item:: Attributes
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~ACTIVATE`
+            - 
+          * - :py:attr:`~ACTIVATE_NOINIT`
+            - 
+          * - :py:attr:`~AND`
+            - 
+          * - :py:attr:`~BLD_STRUCT`
+            - 
+          * - :py:attr:`~BLD_VECTOR`
+            - 
+          * - :py:attr:`~CASE`
+            - 
+          * - :py:attr:`~CHANGE_ITH`
+            - 
+          * - :py:attr:`~CLOCKED_ACTIVATE`
+            - 
+          * - :py:attr:`~CLOCKED_NOT`
+            - 
+          * - :py:attr:`~CONCAT`
+            - 
+          * - :py:attr:`~DIV`
+            - 
+          * - :py:attr:`~EQUAL`
+            - 
+          * - :py:attr:`~FBY`
+            - 
+          * - :py:attr:`~FLATTEN`
+            - 
+          * - :py:attr:`~FOLD`
+            - 
+          * - :py:attr:`~FOLDI`
+            - 
+          * - :py:attr:`~FOLDW`
+            - 
+          * - :py:attr:`~FOLDWI`
+            - 
+          * - :py:attr:`~FOLLOW`
+            - 
+          * - :py:attr:`~GEQUAL`
+            - 
+          * - :py:attr:`~GREAT`
+            - 
+          * - :py:attr:`~IF`
+            - 
+          * - :py:attr:`~INT2REAL`
+            - 
+          * - :py:attr:`~LAND`
+            - 
+          * - :py:attr:`~LEQUAL`
+            - 
+          * - :py:attr:`~LESS`
+            - 
+          * - :py:attr:`~LNOT`
+            - 
+          * - :py:attr:`~LOR`
+            - 
+          * - :py:attr:`~LSL`
+            - 
+          * - :py:attr:`~LSR`
+            - 
+          * - :py:attr:`~LXOR`
+            - 
+          * - :py:attr:`~MAKE`
+            - 
+          * - :py:attr:`~MAP`
+            - 
+          * - :py:attr:`~MAPFOLD`
+            - 
+          * - :py:attr:`~MAPFOLDI`
+            - 
+          * - :py:attr:`~MAPFOLDW`
+            - 
+          * - :py:attr:`~MAPFOLDWI`
+            - 
+          * - :py:attr:`~MAPI`
+            - 
+          * - :py:attr:`~MAPW`
+            - 
+          * - :py:attr:`~MAPWI`
+            - 
+          * - :py:attr:`~MATCH`
+            - 
+          * - :py:attr:`~MERGE`
+            - 
+          * - :py:attr:`~MOD`
+            - 
+          * - :py:attr:`~MUL`
+            - 
+          * - :py:attr:`~NEG`
+            - 
+          * - :py:attr:`~NEQUAL`
+            - 
+          * - :py:attr:`~NONE`
+            - 
+          * - :py:attr:`~NOT`
+            - 
+          * - :py:attr:`~NUMERIC_CAST`
+            - 
+          * - :py:attr:`~OR`
+            - 
+          * - :py:attr:`~PLUS`
+            - 
+          * - :py:attr:`~POS`
+            - 
+          * - :py:attr:`~PRE`
+            - 
+          * - :py:attr:`~PRJ`
+            - 
+          * - :py:attr:`~PRJ_DYN`
+            - 
+          * - :py:attr:`~REAL2INT`
+            - 
+          * - :py:attr:`~RESTART`
+            - 
+          * - :py:attr:`~REVERSE`
+            - 
+          * - :py:attr:`~SCALAR_TO_VECTOR`
+            - 
+          * - :py:attr:`~SEQ_EXPR`
+            - 
+          * - :py:attr:`~SHARP`
+            - 
+          * - :py:attr:`~SLASH`
+            - 
+          * - :py:attr:`~SLICE`
+            - 
+          * - :py:attr:`~SUB`
+            - 
+          * - :py:attr:`~TIMES`
+            - 
+          * - :py:attr:`~TRANSPOSE`
+            - 
+          * - :py:attr:`~WHEN`
+            - 
+          * - :py:attr:`~XOR`
+            - 
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.predef import Eck
+
+
+Attribute detail
+----------------
+
+.. py:attribute:: ACTIVATE
+   :value: 53
+
+
+.. py:attribute:: ACTIVATE_NOINIT
+   :value: 57
+
+
+.. py:attribute:: AND
+   :value: 2
+
+
+.. py:attribute:: BLD_STRUCT
+   :value: 34
+
+
+.. py:attribute:: BLD_VECTOR
+   :value: 41
+
+
+.. py:attribute:: CASE
+   :value: 32
+
+
+.. py:attribute:: CHANGE_ITH
+   :value: 19
+
+
+.. py:attribute:: CLOCKED_ACTIVATE
+   :value: 58
+
+
+.. py:attribute:: CLOCKED_NOT
+   :value: 59
+
+
+.. py:attribute:: CONCAT
+   :value: 52
+
+
+.. py:attribute:: DIV
+   :value: 15
+
+
+.. py:attribute:: EQUAL
+   :value: 24
+
+
+.. py:attribute:: FBY
+   :value: 30
+
+
+.. py:attribute:: FLATTEN
+   :value: 44
+
+
+.. py:attribute:: FOLD
+   :value: 36
+
+
+.. py:attribute:: FOLDI
+   :value: 39
+
+
+.. py:attribute:: FOLDW
+   :value: 55
+
+
+.. py:attribute:: FOLDWI
+   :value: 56
+
+
+.. py:attribute:: FOLLOW
+   :value: 29
+
+
+.. py:attribute:: GEQUAL
+   :value: 23
+
+
+.. py:attribute:: GREAT
+   :value: 22
+
+
+.. py:attribute:: IF
+   :value: 31
+
+
+.. py:attribute:: INT2REAL
+   :value: 12
+
+
+.. py:attribute:: LAND
+   :value: 67
+
+
+.. py:attribute:: LEQUAL
+   :value: 21
+
+
+.. py:attribute:: LESS
+   :value: 20
+
+
+.. py:attribute:: LNOT
+   :value: 70
+
+
+.. py:attribute:: LOR
+   :value: 68
+
+
+.. py:attribute:: LSL
+   :value: 71
+
+
+.. py:attribute:: LSR
+   :value: 72
+
+
+.. py:attribute:: LXOR
+   :value: 69
+
+
+.. py:attribute:: MAKE
+   :value: 43
+
+
+.. py:attribute:: MAP
+   :value: 35
+
+
+.. py:attribute:: MAPFOLD
+   :value: 37
+
+
+.. py:attribute:: MAPFOLDI
+   :value: 64
+
+
+.. py:attribute:: MAPFOLDW
+   :value: 65
+
+
+.. py:attribute:: MAPFOLDWI
+   :value: 66
+
+
+.. py:attribute:: MAPI
+   :value: 38
+
+
+.. py:attribute:: MAPW
+   :value: 61
+
+
+.. py:attribute:: MAPWI
+   :value: 62
+
+
+.. py:attribute:: MATCH
+   :value: 50
+
+
+.. py:attribute:: MERGE
+   :value: 45
+
+
+.. py:attribute:: MOD
+   :value: 16
+
+
+.. py:attribute:: MUL
+   :value: 10
+
+
+.. py:attribute:: NEG
+   :value: 9
+
+
+.. py:attribute:: NEQUAL
+   :value: 25
+
+
+.. py:attribute:: NONE
+   :value: 1
+
+
+.. py:attribute:: NOT
+   :value: 5
+
+
+.. py:attribute:: NUMERIC_CAST
+   :value: 63
+
+
+.. py:attribute:: OR
+   :value: 3
+
+
+.. py:attribute:: PLUS
+   :value: 7
+
+
+.. py:attribute:: POS
+   :value: 60
+
+
+.. py:attribute:: PRE
+   :value: 26
+
+
+.. py:attribute:: PRJ
+   :value: 18
+
+
+.. py:attribute:: PRJ_DYN
+   :value: 42
+
+
+.. py:attribute:: REAL2INT
+   :value: 11
+
+
+.. py:attribute:: RESTART
+   :value: 54
+
+
+.. py:attribute:: REVERSE
+   :value: 46
+
+
+.. py:attribute:: SCALAR_TO_VECTOR
+   :value: 40
+
+
+.. py:attribute:: SEQ_EXPR
+   :value: 33
+
+
+.. py:attribute:: SHARP
+   :value: 6
+
+
+.. py:attribute:: SLASH
+   :value: 14
+
+
+.. py:attribute:: SLICE
+   :value: 51
+
+
+.. py:attribute:: SUB
+   :value: 8
+
+
+.. py:attribute:: TIMES
+   :value: 49
+
+
+.. py:attribute:: TRANSPOSE
+   :value: 47
+
+
+.. py:attribute:: WHEN
+   :value: 28
+
+
+.. py:attribute:: XOR
+   :value: 4
+
+
+
+
+
+

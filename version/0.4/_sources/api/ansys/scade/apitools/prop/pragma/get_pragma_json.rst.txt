@@ -1,0 +1,36 @@
+.. py:function:: get_pragma_json(object_, id)
+
+   
+   Deserialize a text pragma containing a JSON document to a Python object.
+
+   See the :ref:`pragma_json <ex__pragma_json>` example.
+
+   :Parameters:
+
+       **object\_** : :obj:`suite.Object`
+           Element to get the pragma from.
+
+       **id** : :class:`python:str`
+           ID of the pragma.
+
+   :Returns:
+
+       :obj:`object`
+           Python object corresponding to the JSON document stored in the
+           pragma. Returns ``{}`` if there is no pragma or ``None`` if the
+           pragma does not contain a valid JSON document.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

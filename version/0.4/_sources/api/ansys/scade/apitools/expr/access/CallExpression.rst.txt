@@ -1,0 +1,145 @@
+
+
+
+
+CallExpression
+==============
+
+.. py:class:: CallExpression(expression)
+   :canonical: ansys.scade.apitools.expr.access.CallExpression
+
+
+
+Bases: :py:obj:`Expression`
+
+
+   Provides the abstract class for expression calls.
+
+   There are three kinds of operator calls:
+
+   * Predefined operators
+   * User operators
+   * Higher-order operators
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: CallExpression
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~code`
+            - Code of the predefined operator call.
+          * - :py:attr:`~name`
+            - Instance name of the expression.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import CallExpression
+
+
+Property detail
+---------------
+.. py:property:: code
+   :canonical: ansys.scade.apitools.expr.access.CallExpression.code
+   :type: Eck
+
+
+   
+   Code of the predefined operator call.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: name
+   :canonical: ansys.scade.apitools.expr.access.CallExpression.name
+   :type: str
+
+
+   
+   Instance name of the expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

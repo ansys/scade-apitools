@@ -1,0 +1,56 @@
+
+
+
+
+TransitionTree
+==============
+
+.. py:class:: TransitionTree(trigger, target, priority, points = None, label_position = None, label_size = None, slash_position = None, polyline = True)
+   :canonical: ansys.scade.apitools.create.data_def.TransitionTree
+
+
+
+
+
+   Provides the intermediate class for transitions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import TransitionTree
+
+
+
+
+

@@ -1,0 +1,41 @@
+
+
+TK
+==
+
+Module: *ansys.scade.apitools.create.data_def*
+
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autoclass:: TK
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TK.WEAK
+      ~TK.STRONG
+      ~TK.SYNCHRO
+
+   
+   ..
+      autoattribute:: TK.WEAK
+   ..
+      autoattribute:: TK.STRONG
+   ..
+      autoattribute:: TK.SYNCHRO
+   
+   

@@ -1,0 +1,115 @@
+
+
+
+
+FlowOp
+======
+
+.. py:class:: FlowOp(expression, flow)
+   :canonical: ansys.scade.apitools.expr.access.FlowOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides an abstract class for flow expressions.
+
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+       **flow**
+           Expression operand.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: FlowOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~flow`
+            - Flow operand of the expression.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import FlowOp
+
+
+Property detail
+---------------
+.. py:property:: flow
+   :canonical: ansys.scade.apitools.expr.access.FlowOp.flow
+   :type: Expression
+
+
+   
+   Flow operand of the expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

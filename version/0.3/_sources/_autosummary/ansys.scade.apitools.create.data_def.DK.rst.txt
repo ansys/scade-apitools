@@ -1,0 +1,41 @@
+
+
+DK
+==
+
+Module: *ansys.scade.apitools.create.data_def*
+
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autoclass:: DK
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DK.GRAPHICAL
+      ~DK.TEXTUAL
+      ~DK.SPLIT
+
+   
+   ..
+      autoattribute:: DK.GRAPHICAL
+   ..
+      autoattribute:: DK.TEXTUAL
+   ..
+      autoattribute:: DK.SPLIT
+   
+   

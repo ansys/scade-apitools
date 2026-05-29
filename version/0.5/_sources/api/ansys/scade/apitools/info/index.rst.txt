@@ -1,0 +1,97 @@
+
+
+
+
+
+
+The ``info`` package
+========================
+
+.. py:module:: ansys.scade.apitools.info
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: info
+.. tab-set::
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:obj:`~ansys.scade.apitools.info.install`
+            - Provides access to SCADE installation information.
+
+
+          * - :py:obj:`~ansys.scade.apitools.info.runtime`
+            - Provides access to SCADE runtime information.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    <span class="nf nf-fa-file"></span> install</api/ansys/scade/apitools/info/install/index>
+    <span class="nf nf-fa-file"></span> runtime</api/ansys/scade/apitools/info/runtime/index>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+
+Provides information on the current version of SCADE.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+

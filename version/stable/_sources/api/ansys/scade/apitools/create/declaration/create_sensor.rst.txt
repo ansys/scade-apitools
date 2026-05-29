@@ -1,0 +1,26 @@
+ansys.scade.apitools.create.declaration.create_sensor
+=====================================================
+
+.. py:function:: ansys.scade.apitools.create.declaration.create_sensor(owner: scade.model.suite.Package, name: str, type_: ansys.scade.apitools.create.type.TX, path: Optional[pathlib.Path] = None) -> scade.model.suite.Sensor
+
+   Create a sensor.
+
+   The sensor has a name and a type.
+
+   Parameters
+   ----------
+   owner : suite.Package
+       Owner of the sensor, which is either the model itself or a package.
+   name : str
+       Name of the sensor.
+   type\_ : TX
+       Definition of the type expressed as a type tree.
+   path : Path | None, default: None
+       Path of the file for storing the constant. This parameter is ignored if the
+       owner is a package. When the path is ``None`` and owner is the model, the
+       constant is stored in the model's default file.
+
+   Returns
+   -------
+   suite.Sensor
+

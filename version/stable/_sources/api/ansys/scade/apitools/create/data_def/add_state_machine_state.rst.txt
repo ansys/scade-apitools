@@ -1,0 +1,30 @@
+ansys.scade.apitools.create.data_def.add_state_machine_state
+============================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.add_state_machine_state(sm: scade.model.suite.StateMachine, name: str, position: Tuple[float, float] = (0, 0), size: Tuple[float, float] = (0, 0), kind: SK = SK.NORMAL, display: DK = DK.GRAPHICAL) -> scade.model.suite.State
+
+   Create a state in a state machine.
+
+   Parameters
+   ----------
+   sm : suite.StateMachine
+       Input state machine.
+   name : str.StateMachine
+       Name of the state.
+   position : Tuple[float, float], default: (0, 0)
+       Position of the state, expressed in 1/100th of mm.
+       This value is considered if and only if the state machine
+       has a graphical representation.
+   size : Tuple[float, float], default: (0, 0)
+       Size of the state, expressed in 1/100th of mm.
+       This value is considered if and only if the state machine
+       has a graphical representation.
+   kind : SK, default: NORMAL
+       Kind of the state.
+   display : DK, default: GRAPHICAL
+       Layout of the state.
+
+   Returns
+   -------
+   suite.State
+

@@ -1,0 +1,41 @@
+
+
+SK
+==
+
+Module: *ansys.scade.apitools.create.data_def*
+
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autoclass:: SK
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SK.NORMAL
+      ~SK.INITIAL
+      ~SK.FINAL
+
+   
+   ..
+      autoattribute:: SK.NORMAL
+   ..
+      autoattribute:: SK.INITIAL
+   ..
+      autoattribute:: SK.FINAL
+   
+   

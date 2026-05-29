@@ -1,0 +1,35 @@
+ansys.scade.apitools.query.type.get_leaf_alias
+==============================================
+
+.. py:function:: ansys.scade.apitools.query.type.get_leaf_alias(type_: scade.model.suite.Type) -> scade.model.suite.Type
+
+   
+   Get the closest alias of the input's type definition.
+
+   See the :ref:`get_leaf_alias <ex__get_leaf_alias>` example.
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.Type`
+           Input type.
+
+
+
+   :Returns:
+
+       :obj:`suite.Type`
+           Closest alias of the input's type definition or the input type
+           itself if it is not an alias, such as an instance of ``NamedType``.
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

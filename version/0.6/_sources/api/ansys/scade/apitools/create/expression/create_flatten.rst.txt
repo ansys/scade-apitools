@@ -1,0 +1,20 @@
+ansys.scade.apitools.create.expression.create_flatten
+=====================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_flatten(type_: scade.model.suite.NamedType, arg: EX, modifiers: Union[ET, List[ET], None] = None) -> ET
+
+   Return the expression tree for flattening a structured value.
+
+   Parameters
+   ----------
+   type\_ : suite.NamedType
+       Type to instantiate.
+   arg : EX
+       Value to flatten.
+   modifiers : Union[ET, List[ET], None], default: None
+       List of higher-order constructs.
+
+   Returns
+   -------
+   ET
+

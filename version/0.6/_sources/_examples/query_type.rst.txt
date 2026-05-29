@@ -1,0 +1,175 @@
+query_type
+==========
+
+project: QueryType.etp
+
+
+.. raw:: html
+
+  <details>
+  <summary><a>get_cell_type</a></summary>
+
+.. _ex__get_cell_type:
+
+.. literalinclude :: /_examples/get_cell_type.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_get_cell_type.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>get_leaf_alias</a></summary>
+
+.. _ex__get_leaf_alias:
+
+.. literalinclude :: /_examples/get_leaf_alias.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_get_leaf_alias.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>get_leaf_type</a></summary>
+
+.. _ex__get_leaf_type:
+
+.. literalinclude :: /_examples/get_leaf_type.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_get_leaf_type.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>get_type_name</a></summary>
+
+.. _ex__get_type_name:
+
+.. literalinclude :: /_examples/get_type_name.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_get_type_name.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>is_array</a></summary>
+
+.. _ex__is_array:
+
+.. literalinclude :: /_examples/is_array.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_is_array.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>is_enum</a></summary>
+
+.. _ex__is_enum:
+
+.. literalinclude :: /_examples/is_enum.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_is_enum.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>is_imported</a></summary>
+
+.. _ex__is_imported:
+
+.. literalinclude :: /_examples/is_imported.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_is_imported.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>is_predefined</a></summary>
+
+.. _ex__is_predefined:
+
+.. literalinclude :: /_examples/is_predefined.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_is_predefined.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>is_scalar</a></summary>
+
+.. _ex__is_scalar:
+
+.. literalinclude :: /_examples/is_scalar.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_is_scalar.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>is_structure</a></summary>
+
+.. _ex__is_structure:
+
+.. literalinclude :: /_examples/is_structure.py
+
+Output:
+
+.. literalinclude :: /examples/query_type/output_is_structure.txt
+
+.. raw:: html
+
+  </details>

@@ -1,0 +1,36 @@
+﻿ansys.scade.apitools.query
+==========================
+
+.. currentmodule:: ansys.scade.apitools.query
+
+.. automodule:: ansys.scade.apitools.query
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :recursive:
+
+   
+   
+   
+   ansys.scade.apitools.query.type
+

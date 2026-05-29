@@ -1,0 +1,18 @@
+ansys.scade.apitools.create.type.create_sized
+=============================================
+
+.. py:function:: ansys.scade.apitools.create.type.create_sized(signed: bool, size: ansys.scade.apitools.create.expression.EX) -> TT
+
+   Get the type tree for a sized type.
+
+   Parameters
+   ----------
+   signed : bool
+       Whether the type is signed.
+   size : EX
+       Size of the type expressed as an expression tree.
+
+   Returns
+   -------
+   TT
+

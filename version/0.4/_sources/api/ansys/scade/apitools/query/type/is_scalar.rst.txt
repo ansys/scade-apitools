@@ -1,0 +1,35 @@
+.. py:function:: is_scalar(type_, target = 'C')
+
+   
+   Determine if the input type is scalar.
+
+   See the :ref:`is_scalar <ex__is_scalar>` example.
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.Type`
+           Input type.
+
+       **target**
+           Target language to consider if the input type is imported.
+           Options are ``'C'`` and ``'Ada'``.
+
+   :Returns:
+
+       :ref:`bool <python:bltin-boolean-values>`
+           ``True`` when the input type is scalar, ``False`` otherwise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

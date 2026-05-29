@@ -1,0 +1,44 @@
+
+
+ScalarToVectorOp
+================
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: ScalarToVectorOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ScalarToVectorOp.code
+      ~ScalarToVectorOp.flows
+      ~ScalarToVectorOp.name
+      ~ScalarToVectorOp.size
+
+   
+   ..
+      autoattribute:: ScalarToVectorOp.code
+   ..
+      autoattribute:: ScalarToVectorOp.flows
+   ..
+      autoattribute:: ScalarToVectorOp.name
+   ..
+      autoattribute:: ScalarToVectorOp.size
+   
+   

@@ -1,0 +1,33 @@
+.. py:function:: add_data_def_text_diagram(data_def, name)
+
+   
+   Add a textal diagram to a scope.
+
+
+   :Parameters:
+
+       **data_def** : :obj:`suite.DataDef`
+           Input scope, which is an operator, state, or action.
+
+       **name** : :class:`python:str`
+           Name of the diagram.
+
+   :Returns:
+
+       :obj:`suite.TextDiagram`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

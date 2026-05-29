@@ -1,0 +1,149 @@
+
+
+
+
+ScalarToVectorOp
+================
+
+.. py:class:: ScalarToVectorOp(expression)
+   :canonical: ansys.scade.apitools.expr.access.ScalarToVectorOp
+
+
+
+Bases: :py:obj:`CallExpression`
+
+
+   Provides the vector from a flow and a size.
+
+   The format is ``<flow> ^ <size>``.
+
+   See the :ref:`scalar_to_vector_op <ex__scalar_to_vector_op>` example.
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+   .. rubric:: Notes
+
+   The design differs slightly from the meta-model. Because the input
+   must be a group of flows, the :class:`~ScalarToVectorOp` class does not inherit
+   from the :class:`~FlowOp` class. It exposes directly the list of input flows instead of
+   having a flow that is a :class:`~ListExpression` class.
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: ScalarToVectorOp
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~flows`
+            - Input flows.
+          * - :py:attr:`~size`
+            - Size of the vector.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ScalarToVectorOp
+
+
+Property detail
+---------------
+.. py:property:: flows
+   :canonical: ansys.scade.apitools.expr.access.ScalarToVectorOp.flows
+   :type: list[Expression]
+
+
+   
+   Input flows.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: size
+   :canonical: ansys.scade.apitools.expr.access.ScalarToVectorOp.size
+   :type: Expression
+
+
+   
+   Size of the vector.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

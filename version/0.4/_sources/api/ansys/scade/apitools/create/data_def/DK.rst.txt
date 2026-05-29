@@ -1,0 +1,100 @@
+
+
+
+
+DK
+==
+
+.. py:class:: DK
+   :canonical: ansys.scade.apitools.create.data_def.DK
+
+
+
+Bases: :py:obj:`enum.Enum`
+
+
+   Provides an enum of display kinds.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: DK
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~GRAPHICAL`
+            - 
+          * - :py:attr:`~SPLIT`
+            - 
+          * - :py:attr:`~TEXTUAL`
+            - 
+      
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import DK
+
+
+
+Attribute detail
+----------------
+.. py:attribute:: GRAPHICAL
+   :value: 'EmbeddedGraphical'
+
+   
+
+.. py:attribute:: SPLIT
+   :value: 'Split'
+
+   
+
+.. py:attribute:: TEXTUAL
+   :value: 'EmbeddedTextual'
+
+   
+
+
+

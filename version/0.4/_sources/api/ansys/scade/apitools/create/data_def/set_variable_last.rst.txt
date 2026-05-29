@@ -1,0 +1,33 @@
+.. py:function:: set_variable_last(variable, tree)
+
+   
+   Set the last value of a variable.
+
+
+   :Parameters:
+
+       **variable** : :obj:`suite.LocalVariable`
+           Input variable.
+
+       **tree** : :obj:`EX`
+           Last value expressed as an extended expression tree.
+
+   :Returns:
+
+       :obj:`suite.Expression`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

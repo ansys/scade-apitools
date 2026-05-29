@@ -1,0 +1,36 @@
+ansys.scade.apitools.create.expression.create_times
+===================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_times(number: EX, flow: EX) -> ET
+
+   
+   Return the expression tree for the times operator.
+
+
+   :Parameters:
+
+       **number** : :obj:`EX`
+           Number of cycles.
+
+       **flow** : :obj:`EX`
+           Input flow.
+
+
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,625 @@
+expr_access
+===========
+
+project: ExprAccess.etp
+
+
+.. raw:: html
+
+  <details>
+  <summary><a>activate_no_init_op</a></summary>
+
+.. _ex__activate_no_init_op:
+
+.. figure:: /examples/expr_access/ActivateNoInitOp.png
+
+  Operator ActivateNoInitOp
+.. literalinclude :: /_examples/activate_no_init_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_activate_no_init_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>activate_op</a></summary>
+
+.. _ex__activate_op:
+
+.. figure:: /examples/expr_access/ActivateOp.png
+
+  Operator ActivateOp
+.. literalinclude :: /_examples/activate_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_activate_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>binary_op</a></summary>
+
+.. _ex__binary_op:
+
+.. figure:: /examples/expr_access/BinaryOp.png
+
+  Operator BinaryOp
+.. literalinclude :: /_examples/binary_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_binary_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>case_op</a></summary>
+
+.. _ex__case_op:
+
+.. figure:: /examples/expr_access/CaseOp.png
+
+  Operator CaseOp
+.. literalinclude :: /_examples/case_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_case_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>chg_ith_op</a></summary>
+
+.. _ex__chg_ith_op:
+
+.. figure:: /examples/expr_access/ChgIthOp.png
+
+  Operator ChgIthOp
+.. literalinclude :: /_examples/chg_ith_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_chg_ith_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>const_value</a></summary>
+
+.. _ex__const_value:
+
+.. figure:: /examples/expr_access/ConstValue.png
+
+  Operator ConstValue
+.. literalinclude :: /_examples/const_value.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_const_value.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>data_array_op</a></summary>
+
+.. _ex__data_array_op:
+
+.. figure:: /examples/expr_access/DataArrayOp.png
+
+  Operator DataArrayOp
+.. literalinclude :: /_examples/data_array_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_data_array_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>data_struct_op</a></summary>
+
+.. _ex__data_struct_op:
+
+.. figure:: /examples/expr_access/DataStructOp.png
+
+  Operator DataStructOp
+.. literalinclude :: /_examples/data_struct_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_data_struct_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>fby_op</a></summary>
+
+.. _ex__fby_op:
+
+.. figure:: /examples/expr_access/FbyOp.png
+
+  Operator FbyOp
+.. literalinclude :: /_examples/fby_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_fby_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>flatten_op</a></summary>
+
+.. _ex__flatten_op:
+
+.. figure:: /examples/expr_access/FlattenOp.png
+
+  Operator FlattenOp
+.. literalinclude :: /_examples/flatten_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_flatten_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>id_expression</a></summary>
+
+.. _ex__id_expression:
+
+.. figure:: /examples/expr_access/IdExpression.png
+
+  Operator IdExpression
+.. literalinclude :: /_examples/id_expression.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_id_expression.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>if_then_else_op</a></summary>
+
+.. _ex__if_then_else_op:
+
+.. figure:: /examples/expr_access/IfThenElseOp.png
+
+  Operator IfThenElseOp
+.. literalinclude :: /_examples/if_then_else_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_if_then_else_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>init_op</a></summary>
+
+.. _ex__init_op:
+
+.. figure:: /examples/expr_access/InitOp.png
+
+  Operator InitOp
+.. literalinclude :: /_examples/init_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_init_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>iterator_op</a></summary>
+
+.. _ex__iterator_op:
+
+.. figure:: /examples/expr_access/IteratorOp.png
+
+  Operator IteratorOp
+.. literalinclude :: /_examples/iterator_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_iterator_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>last</a></summary>
+
+.. _ex__last:
+
+.. figure:: /examples/expr_access/Last.png
+
+  Operator Last
+.. literalinclude :: /_examples/last.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_last.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>make_op</a></summary>
+
+.. _ex__make_op:
+
+.. figure:: /examples/expr_access/MakeOp.png
+
+  Operator MakeOp
+.. literalinclude :: /_examples/make_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_make_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>n_ary_op</a></summary>
+
+.. _ex__n_ary_op:
+
+.. figure:: /examples/expr_access/NAryOp.png
+
+  Operator NAryOp
+.. literalinclude :: /_examples/n_ary_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_n_ary_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>numeric_cast_op</a></summary>
+
+.. _ex__numeric_cast_op:
+
+.. figure:: /examples/expr_access/NumericCastOp.png
+
+  Operator NumericCastOp
+.. literalinclude :: /_examples/numeric_cast_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_numeric_cast_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>op_call</a></summary>
+
+.. _ex__op_call:
+
+.. figure:: /examples/expr_access/OpCall.png
+
+  Operator OpCall
+.. literalinclude :: /_examples/op_call.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_op_call.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>partial_iterator_op</a></summary>
+
+.. _ex__partial_iterator_op:
+
+.. figure:: /examples/expr_access/PartialIteratorOp.png
+
+  Operator PartialIteratorOp
+.. literalinclude :: /_examples/partial_iterator_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_partial_iterator_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>pre_op</a></summary>
+
+.. _ex__pre_op:
+
+.. figure:: /examples/expr_access/PreOp.png
+
+  Operator PreOp
+.. literalinclude :: /_examples/pre_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_pre_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>present</a></summary>
+
+.. _ex__present:
+
+.. figure:: /examples/expr_access/Present.png
+
+  Operator Present
+.. literalinclude :: /_examples/present.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_present.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>prj_dyn_op</a></summary>
+
+.. _ex__prj_dyn_op:
+
+.. figure:: /examples/expr_access/PrjDynOp.png
+
+  Operator PrjDynOp
+.. literalinclude :: /_examples/prj_dyn_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_prj_dyn_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>prj_op</a></summary>
+
+.. _ex__prj_op:
+
+.. figure:: /examples/expr_access/PrjOp.png
+
+  Operator PrjOp
+.. literalinclude :: /_examples/prj_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_prj_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>restart_op</a></summary>
+
+.. _ex__restart_op:
+
+.. figure:: /examples/expr_access/RestartOp.png
+
+  Operator RestartOp
+.. literalinclude :: /_examples/restart_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_restart_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>scalar_to_vector_op</a></summary>
+
+.. _ex__scalar_to_vector_op:
+
+.. figure:: /examples/expr_access/ScalarToVectorOp.png
+
+  Operator ScalarToVectorOp
+.. literalinclude :: /_examples/scalar_to_vector_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_scalar_to_vector_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>sharp_op</a></summary>
+
+.. _ex__sharp_op:
+
+.. figure:: /examples/expr_access/SharpOp.png
+
+  Operator SharpOp
+.. literalinclude :: /_examples/sharp_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_sharp_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>slice_op</a></summary>
+
+.. _ex__slice_op:
+
+.. figure:: /examples/expr_access/SliceOp.png
+
+  Operator SliceOp
+.. literalinclude :: /_examples/slice_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_slice_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>text_expression</a></summary>
+
+.. _ex__text_expression:
+
+.. figure:: /examples/expr_access/TextExpression.png
+
+  Operator TextExpression
+.. literalinclude :: /_examples/text_expression.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_text_expression.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>transpose_op</a></summary>
+
+.. _ex__transpose_op:
+
+.. figure:: /examples/expr_access/TransposeOp.png
+
+  Operator TransposeOp
+.. literalinclude :: /_examples/transpose_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_transpose_op.txt
+
+.. raw:: html
+
+  </details>
+
+.. raw:: html
+
+  <details>
+  <summary><a>unary_op</a></summary>
+
+.. _ex__unary_op:
+
+.. figure:: /examples/expr_access/UnaryOp.png
+
+  Operator UnaryOp
+.. literalinclude :: /_examples/unary_op.py
+
+Output:
+
+.. literalinclude :: /examples/expr_access/output_unary_op.txt
+
+.. raw:: html
+
+  </details>

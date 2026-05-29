@@ -1,0 +1,6 @@
+ansys.scade.apitools.create.data\_def.create\_when\_branch
+==========================================================
+
+.. currentmodule:: ansys.scade.apitools.create.data_def
+
+.. autofunction:: create_when_branch

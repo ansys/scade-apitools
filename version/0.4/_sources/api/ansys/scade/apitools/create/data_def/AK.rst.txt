@@ -1,0 +1,93 @@
+
+
+
+
+AK
+==
+
+.. py:class:: AK
+   :canonical: ansys.scade.apitools.create.data_def.AK
+
+
+
+Bases: :py:obj:`enum.Enum`
+
+
+   Provides an enum of assertion kinds.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: AK
+.. tab-set::
+
+
+
+
+
+    .. tab-item:: Attributes
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~ASSUME`
+            - 
+          * - :py:attr:`~GUARANTEE`
+            - 
+      
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.create.data_def import AK
+
+
+
+Attribute detail
+----------------
+.. py:attribute:: ASSUME
+   :value: 'Assume'
+
+   
+
+.. py:attribute:: GUARANTEE
+   :value: 'Guarantee'
+
+   
+
+
+

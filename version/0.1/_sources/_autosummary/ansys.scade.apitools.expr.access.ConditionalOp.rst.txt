@@ -1,0 +1,44 @@
+
+
+ConditionalOp
+=============
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: ConditionalOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ConditionalOp.code
+      ~ConditionalOp.every
+      ~ConditionalOp.name
+      ~ConditionalOp.operator
+
+   
+   ..
+      autoattribute:: ConditionalOp.code
+   ..
+      autoattribute:: ConditionalOp.every
+   ..
+      autoattribute:: ConditionalOp.name
+   ..
+      autoattribute:: ConditionalOp.operator
+   
+   

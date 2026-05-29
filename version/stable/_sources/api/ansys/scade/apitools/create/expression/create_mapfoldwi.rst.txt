@@ -1,0 +1,22 @@
+ansys.scade.apitools.create.expression.create_mapfoldwi
+=======================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_mapfoldwi(size: EX, acc: EX, condition: EX, default: EX) -> ET
+
+   Return the expression tree for the higher-order construct for mapfoldwi creation.
+
+   Parameters
+   ----------
+   size : EX
+       Number of iterations.
+   acc : EX
+       Number of accumulators.
+   condition : EX
+       Initial value of the iteration condition.
+   default : EX
+       Default value of the iteration.
+
+   Returns
+   -------
+   ET
+

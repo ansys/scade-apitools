@@ -1,0 +1,138 @@
+
+
+
+
+
+
+:class:`SliceOp`
+================
+
+.. py:class:: ansys.scade.apitools.expr.access.SliceOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`ArrayOp`
+
+
+   Provides the slice of an array.
+
+   See the :ref:`slice_op <ex__slice_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: SliceOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~from_index`
+            - Start index of the slice.
+          * - :py:attr:`~to_index`
+            - End index of the slice.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import SliceOp
+
+Property detail
+---------------
+
+.. py:property:: from_index
+   :type: Expression
+
+
+   
+   Start index of the slice.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+.. py:property:: to_index
+   :type: Expression
+
+
+   
+   End index of the slice.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

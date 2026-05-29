@@ -1,0 +1,41 @@
+
+
+ArrayOp
+=======
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: ArrayOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ArrayOp.array
+      ~ArrayOp.code
+      ~ArrayOp.name
+
+   
+   ..
+      autoattribute:: ArrayOp.array
+   ..
+      autoattribute:: ArrayOp.code
+   ..
+      autoattribute:: ArrayOp.name
+   
+   

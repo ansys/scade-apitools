@@ -1,0 +1,29 @@
+.. py:function:: set_type_constraint(type_, name)
+
+   
+   Set the constraint of a polymorphic type.
+
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.NamedType`
+           Input polymorphic type.
+
+       **name** : :class:`python:str`
+           Name of the constraint.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

@@ -1,0 +1,33 @@
+.. py:function:: create_activate(every, *args)
+
+   
+   Return the expression tree for the higher-order construct for activating with initial values.
+
+
+   :Parameters:
+
+       **every** : :obj:`EX`
+           Input condition.
+
+       **args: List[EX]**
+           Initial values.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

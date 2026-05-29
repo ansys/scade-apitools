@@ -1,0 +1,20 @@
+ansys.scade.apitools.create.expression.create_unary
+===================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_unary(op: str, tree: EX, modifiers: Union[ET, List[ET], None] = None) -> ET
+
+   Return the expression tree for a unary operator.
+
+   Parameters
+   ----------
+   op : str
+       Unary operator to call: - | + | !
+   tree : EX
+       Operand: expression tree.
+   modifiers : Union[ET, LIST[ET], None], default: None
+       List of higher-order constructs.
+
+   Returns
+   -------
+   ET
+

@@ -1,0 +1,30 @@
+.. py:function:: create_restart(every)
+
+   
+   Return the expression tree for the higher-order construct for restarting.
+
+
+   :Parameters:
+
+       **every** : :obj:`EX`
+           Input condition.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

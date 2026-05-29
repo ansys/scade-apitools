@@ -1,0 +1,111 @@
+
+
+
+
+
+
+:class:`ChgIthOp`
+=================
+
+.. py:class:: ansys.scade.apitools.expr.access.ChgIthOp(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`ProjectionOp`
+
+
+   Provides the static assignment of a flow.
+
+   See the :ref:`chg_ith_op <ex__chg_ith_op>` example.
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+
+   Initialize the instance from the Scade expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+.. py:currentmodule:: ChgIthOp
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~value`
+            - Value assigned.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ChgIthOp
+
+Property detail
+---------------
+
+.. py:property:: value
+   :type: Expression
+
+
+   
+   Value assigned.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+

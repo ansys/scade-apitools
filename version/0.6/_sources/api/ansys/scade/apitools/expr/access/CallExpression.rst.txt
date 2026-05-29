@@ -1,0 +1,87 @@
+
+
+
+
+
+
+:class:`CallExpression`
+=======================
+
+.. py:class:: ansys.scade.apitools.expr.access.CallExpression(expression: scade.model.suite.ExprCall)
+
+   Bases: :py:obj:`Expression`
+
+
+   Provides the abstract class for expression calls.
+
+   There are three kinds of operator calls:
+
+   * Predefined operators
+   * User operators
+   * Higher-order operators
+
+   Parameters
+   ----------
+   expression :
+       Call expression to wrap.
+
+   Initialize the instance from the Scade expression.
+
+
+
+.. py:currentmodule:: CallExpression
+
+Overview
+--------
+
+.. tab-set::
+
+
+
+
+   .. tab-item:: Properties
+
+      .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~code`
+            - Code of the predefined operator call.
+          * - :py:attr:`~name`
+            - Instance name of the expression.
+
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import CallExpression
+
+Property detail
+---------------
+
+.. py:property:: code
+   :type: ansys.scade.apitools.expr.predef.Eck
+
+
+   Code of the predefined operator call.
+
+
+.. py:property:: name
+   :type: str
+
+
+   Instance name of the expression.
+
+
+
+
+
+
+

@@ -1,0 +1,99 @@
+
+
+
+
+
+The ``project.py`` module
+=========================
+
+.. py:module:: ansys.scade.apitools.create.project
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: project
+.. tab-set::
+
+
+
+
+
+
+
+    .. tab-item:: Functions
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~create_configuration`
+            - Create a configuration.
+
+
+          * - :py:attr:`~create_file_ref`
+            - Create file reference.
+
+
+          * - :py:attr:`~create_folder`
+            - Create a folder.
+
+
+          * - :py:attr:`~create_prop`
+            - Create a property.
+
+
+          * - :py:attr:`~save_project`
+            - Save the project.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    𝑓(x) create_configuration<create_configuration>
+    𝑓(x) create_file_ref<create_file_ref>
+    𝑓(x) create_folder<create_folder>
+    𝑓(x) create_prop<create_prop>
+    𝑓(x) save_project<save_project>
+
+
+
+
+
+
+Description
+-----------
+
+Provides functions for adding elements to a SCADE project (ETP file).
+
+These functions do not check for semantic errors, like adding two files with the same path.
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
+
+

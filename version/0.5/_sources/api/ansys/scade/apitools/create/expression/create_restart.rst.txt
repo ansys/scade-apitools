@@ -1,0 +1,33 @@
+ansys.scade.apitools.create.expression.create_restart
+=====================================================
+
+.. py:function:: ansys.scade.apitools.create.expression.create_restart(every: EX) -> ET
+
+   
+   Return the expression tree for the higher-order construct for restarting.
+
+
+   :Parameters:
+
+       **every** : :obj:`EX`
+           Input condition.
+
+
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

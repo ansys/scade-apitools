@@ -1,0 +1,30 @@
+.. py:function:: create_data_array(*args)
+
+   
+   Return the expression tree for the data array operator.
+
+
+   :Parameters:
+
+       **args** : :obj:`List`\[:obj:`EX`]
+           Values of the array.
+
+   :Returns:
+
+       :obj:`ET`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

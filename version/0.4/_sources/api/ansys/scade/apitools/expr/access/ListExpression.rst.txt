@@ -1,0 +1,112 @@
+
+
+
+
+ListExpression
+==============
+
+.. py:class:: ListExpression(expression)
+   :canonical: ansys.scade.apitools.expr.access.ListExpression
+
+
+
+Bases: :py:obj:`Expression`
+
+
+   Provides a group of expressions.
+
+
+   :Parameters:
+
+       **expression**
+           Call expression to wrap.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+--------
+.. py:currentmodule:: ListExpression
+.. tab-set::
+
+
+
+
+    .. tab-item:: Properties
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+          * - :py:attr:`~items`
+            - Expressions of the group.
+
+
+
+
+
+
+Import detail
+-------------
+
+.. code-block:: python
+
+    from ansys.scade.apitools.expr.access import ListExpression
+
+
+Property detail
+---------------
+.. py:property:: items
+   :canonical: ansys.scade.apitools.expr.access.ListExpression.items
+   :type: list[Expression]
+
+
+   
+   Expressions of the group.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!
+
+
+
+
+

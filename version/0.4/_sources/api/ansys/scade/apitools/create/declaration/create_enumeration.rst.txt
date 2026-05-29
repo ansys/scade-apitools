@@ -1,0 +1,45 @@
+.. py:function:: create_enumeration(owner, name, values, path = None, visibility = VK.PUBLIC)
+
+   
+   Create a named type defined by an enumeration.
+
+   The type has a name and a list of values.
+
+   :Parameters:
+
+       **owner** : :obj:`suite.Package`
+           Owner of the type, which is either the model itself or a package.
+
+       **name** : :class:`python:str`
+           Name of the type.
+
+       **values** : :obj:`List`\[:class:`python:str`]
+           List of the enumeration values.
+
+       **path** : :obj:`Path`, default: :data:`python:None`
+           Path of the file for storing the type. This parameter is ignored if
+           the owner is a package. When the path is ``None`` and owner is the model,
+           the type is stored in the model's default file.
+
+       **visibility** : :obj:`VK`
+           Accessibility of the type.
+
+   :Returns:
+
+       :obj:`suite.NamedType`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

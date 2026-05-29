@@ -1,0 +1,6 @@
+ansys.scade.apitools.query.type.get\_cell\_type
+===============================================
+
+.. currentmodule:: ansys.scade.apitools.query.type
+
+.. autofunction:: get_cell_type

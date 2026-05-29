@@ -1,0 +1,44 @@
+
+
+InitOp
+======
+
+Module: *ansys.scade.apitools.expr.access*
+
+
+.. currentmodule:: ansys.scade.apitools.expr.access
+
+.. autoclass:: InitOp
+   :members:
+   :show-inheritance:
+   :inherited-members:
+
+   
+   ..
+      automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~InitOp.code
+      ~InitOp.flows
+      ~InitOp.inits
+      ~InitOp.name
+
+   
+   ..
+      autoattribute:: InitOp.code
+   ..
+      autoattribute:: InitOp.flows
+   ..
+      autoattribute:: InitOp.inits
+   ..
+      autoattribute:: InitOp.name
+   
+   

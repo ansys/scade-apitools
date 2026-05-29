@@ -1,0 +1,36 @@
+ansys.scade.apitools.create.data_def.set_variable_last
+======================================================
+
+.. py:function:: ansys.scade.apitools.create.data_def.set_variable_last(variable: scade.model.suite.LocalVariable, tree: ansys.scade.apitools.create.expression.EX) -> scade.model.suite.Expression
+
+   
+   Set the last value of a variable.
+
+
+   :Parameters:
+
+       **variable** : :obj:`suite.LocalVariable`
+           Input variable.
+
+       **tree** : :obj:`EX`
+           Last value expressed as an extended expression tree.
+
+
+
+   :Returns:
+
+       :obj:`suite.Expression`
+           ..
+
+
+
+
+
+
+
+
+
+
+
+   ..
+       !! processed by numpydoc !!

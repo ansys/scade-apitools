@@ -1,0 +1,71 @@
+.. py:function:: get_cell_type(type_, skip_alias=False)
+
+   
+   Get the type of the elements of an array, optionally multi-dimensional.
+
+   See the :ref:`get_cell_type <ex__get_cell_type>` example.
+
+   :Parameters:
+
+       **type\_** : :obj:`suite.Type`
+           Input type, which must be an array.
+
+       **skip_alias** : :ref:`bool <python:bltin-boolean-values>`, default: :data:`python:False`
+           Whether the aliased arrays are considered as dimensions
+           of the input array.
+
+   :Returns:
+
+       :obj:`suite.Type`
+           Type of the array elements.
+
+
+
+
+
+
+
+
+
+
+   .. rubric:: Examples
+
+   .. code-block:: swan
+
+       type:
+           Real = float32;
+           Vector = Real ^2;
+           Matrix = Vector ^3;
+
+   Applying the ``get_cell_type`` function to a matrix returns a vector
+   if ``skip_alias=False``. Otherwise, a Real`` value is returned.
+
+   ..
+       ``get_cell_type`` applied to ``Matrix`` returns ``Vector``
+       if ``skip_alias`` is ``False`` otherwise ``Real``.
+
+   ..
+      container:: twocol
+
+       .. container:: leftside
+
+           .. code-block:: python
+               :caption: Direct type
+
+               cell_type = get_cell_type(matrix_type, False)
+               print(cell_type.name)
+               Vector
+
+       .. container:: rightside
+
+           .. code-block:: python
+               :caption: Indirect type
+
+               cell_type = get_cell_type(matrix_type, True)
+               print(cell_type.name)
+               Real
+
+
+
+   ..
+       !! processed by numpydoc !!

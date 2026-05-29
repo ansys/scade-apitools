@@ -1,0 +1,91 @@
+
+
+
+
+
+The ``query`` package 
+=========================
+
+.. py:module:: ansys.scade.apitools.query
+
+
+Summary
+-------
+
+
+
+
+
+
+
+
+.. py:currentmodule:: query
+.. tab-set::
+
+
+    .. tab-item:: Submodules
+
+        .. list-table::
+          :header-rows: 0
+          :widths: auto
+
+
+          * - :py:attr:`~ansys.scade.apitools.query.type`
+            - Provides queries for SCADE Suite types.
+
+
+
+
+
+
+
+
+
+
+
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   :hidden:
+
+    🗎 type<type/index.rst>
+
+
+
+
+
+
+
+
+
+
+
+Description
+-----------
+
+
+Provides a collection of queries for SCADE Suite models.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..
+    !! processed by numpydoc !!
+
+
+
+
+
