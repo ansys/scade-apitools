@@ -32,7 +32,9 @@ repos:
             .*\.etp|
             .*\.vsw|
             .*\.scade|
-            .*\.xscade
+            .*\.xscade|
+            .*\.ecore|
+            .*\.sct
         )$
 
 - repo: https://github.com/pre-commit/pre-commit-hooks

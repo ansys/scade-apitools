@@ -102,6 +102,11 @@ numpydoc_validation_checks = {
     "RT02",  # The first line of the Returns section should contain only the
     # type, unless multiple values are being returned"
 }
+numpydoc_validation_exclude = {
+    # (partially) generated files: needs manual review
+    "sdyaccess.",
+    "sdyvisitor.",
+}
 
 # lexer for Scade
 lexers['swan'] = SwanLexer(startinline=True)

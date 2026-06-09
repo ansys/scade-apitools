@@ -1,0 +1,2064 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sdy" nsURI="http:///sdy.ecore" nsPrefix="sdy">
+  <eClassifiers xsi:type="ecore:EClass" name="Specification">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="entry point of a SGFX model"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="layers" upperBound="-1"
+        eType="#//Layer" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Layer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a layer in a Specification"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horizontal_ratio" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertical_ratio" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//CoordinatePoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="id" ordered="false" lowerBound="1"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" ordered="false"
+        lowerBound="1" eType="#//VariableTable" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AContainer" abstract="true" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="base class for container primitives"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
+        upperBound="-1" eType="#//GraphicObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicObject" abstract="true" eSuperTypes="common.ecore#//Traceable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="base class for all primitives"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comment" ordered="false"
+        eType="#//Comment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="oid" ordered="false" lowerBound="1"
+        eType="#//Oid" containment="true" eOpposite="#//Oid/graphicObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inactiveMasks" ordered="false"
+        upperBound="-1" eType="#//Oid"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a comment associated with a GraphicObject or Variable"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Oid">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an OID associated with a GraphicObject, Variable or ParamProp"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" ordered="false"
+        lowerBound="1" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oid" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graphicObject" ordered="false"
+        lowerBound="1" eType="#//GraphicObject" eOpposite="#//GraphicObject/oid"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="common.ecore#//Traceable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a variable definition, used within VariableTable"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="representation" ordered="false"
+        lowerBound="1" eType="#//Representation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="group" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="oid" ordered="false" lowerBound="1"
+        eType="#//Oid"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="init" ordered="false" lowerBound="1"
+        eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comment" ordered="false"
+        eType="#//Comment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//Type" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Representation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a representation associated with a given type, used within a Variable or ParamProp"/>
+    </eAnnotations>
+    <eLiterals name="None"/>
+    <eLiterals name="line_width" value="1"/>
+    <eLiterals name="line_stipple" value="2"/>
+    <eLiterals name="line_cap" value="3"/>
+    <eLiterals name="color" value="4"/>
+    <eLiterals name="opacity" value="5"/>
+    <eLiterals name="index" value="6"/>
+    <eLiterals name="horizontal_alignment" value="7"/>
+    <eLiterals name="vertical_alignment" value="8"/>
+    <eLiterals name="font" value="9"/>
+    <eLiterals name="texture" value="10"/>
+    <eLiterals name="gradient" value="11"/>
+    <eLiterals name="as_string" value="12"/>
+    <eLiterals name="as_multiline_string" value="13"/>
+    <eLiterals name="as_rich_string" value="14"/>
+    <eLiterals name="as_int_array" value="15"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expr" abstract="true" interface="true"
+      eSuperTypes="#//GlobalConstant">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface for expressions, excluding imported constant definitions"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalConstant" abstract="true" interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface for a global constant defined in a DGFX"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" interface="true"
+      eSuperTypes="#//GlobalType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface for types, excluding enumerations and imported types"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalType" abstract="true" interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface for a global type defined in a DGFX"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="value for a boolean property"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PluggableProperty" abstract="true" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="base class for all pluggable properties"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" ordered="false" eType="#//Expr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="addr" ordered="false" eType="#//Expr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Property" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="base class for all properties"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CoordinatePoint" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="coordinates of a point"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="x" ordered="false" lowerBound="1"
+        eType="#//RealProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="y" ordered="false" lowerBound="1"
+        eType="#//RealProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RealProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="value for a floating-point property"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="value for an integer property"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableTable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a variable dictionary, associated with a layer of a Specification, or with a ReferenceObject"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" upperBound="-1"
+        eType="#//MemVariable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constant" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="local" upperBound="-1"
+        eType="#//MemVariable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localConstant" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="probe" ordered="false"
+        upperBound="-1" eType="#//Variable" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MemVariable" eSuperTypes="#//Variable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a variable with possible memory, used within VariableTable"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memory" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputParamProp" eSuperTypes="#//ParamProp">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a property to characterize an output parameter"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParamProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="base class for an input or output parameter"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectId" ordered="false"
+        lowerBound="1" eType="#//Oid"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="representation" ordered="false"
+        eType="#//Representation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputParamProp" eSuperTypes="#//ParamProp">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a property to characterize an input parameter"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="init" ordered="false" lowerBound="1"
+        eType="#//Expr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalIndexProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an index in the CondContainer primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexPropEnum" ordered="false"
+        eType="#//IndexPropEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allVisible" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="init" ordered="false" lowerBound="1"
+        eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IndexPropEnum">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="possible values for the index parameter of a ConditionalIndexProp"/>
+    </eAnnotations>
+    <eLiterals name="numeric"/>
+    <eLiterals name="other" value="1"/>
+    <eLiterals name="default" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PointProperty" eSuperTypes="#//CoordinatePoint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="coordinates of a point"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interp" ordered="false"
+        eType="#//Expr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AngleProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a property to characterize an angle"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="angle" ordered="false"
+        lowerBound="1" eType="#//RealProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interp" ordered="false"
+        eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrientationProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a clockwise or counter-clockwise orientation"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockwise" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArcSegmentProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an arc of segment"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="angle" ordered="false"
+        lowerBound="1" eType="#//AngleProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexedPointsProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a list of points in a Line or Stencil primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="points" upperBound="-1"
+        eType="#//IndexedPoint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexedPoint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an item of an IndexedPointsProp"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" ordered="false"
+        lowerBound="1" eType="#//PointProperty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arcSegment" ordered="false"
+        eType="#//ArcSegmentProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PointTextureProp" eSuperTypes="#//CoordinatePoint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="coordinates of a point with UV-mapping"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interp" ordered="false"
+        eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="u" ordered="false" eType="#//RealProp"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="v" ordered="false" eType="#//RealProp"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexedTexturePointsProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a list of points in a Shape primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="points" upperBound="-1"
+        eType="#//IndexTexturePoint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexTexturePoint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an item of an IndexedTexturePointsProp"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" ordered="false"
+        lowerBound="1" eType="#//PointTextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arcSegment" ordered="false"
+        eType="#//ArcSegmentProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextureProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a texture property, used within graphic primitives"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textureId" ordered="false"
+        lowerBound="1" eType="#//IntegerProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horizAlign" ordered="false"
+        lowerBound="1" eType="#//HorizAlignEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertAlign" ordered="false"
+        lowerBound="1" eType="#//VertAlignEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horizPattern" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertPattern" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HorizAlignEnum">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a horizontal alignment, used within a TextureProp, TextHorizAlignProp, or any text primitive"/>
+    </eAnnotations>
+    <eLiterals name="left"/>
+    <eLiterals name="center" value="1"/>
+    <eLiterals name="right" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="VertAlignEnum">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a vertical alignment, used within a TextureProp or TextVertAlignProp"/>
+    </eAnnotations>
+    <eLiterals name="top"/>
+    <eLiterals name="middle" value="1"/>
+    <eLiterals name="bottom" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LineCapEnum">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="possible values for a LineCapProp"/>
+    </eAnnotations>
+    <eLiterals name="square"/>
+    <eLiterals name="round" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineCapProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a round or square line cap"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" lowerBound="1"
+        eType="#//LineCapEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a string representation, used within a text primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" lowerBound="1"
+        eType="#//TextTypeEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" unique="false" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TextTypeEnum">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="possible values for the type parameter of a TextProp"/>
+    </eAnnotations>
+    <eLiterals name="char"/>
+    <eLiterals name="int" value="1"/>
+    <eLiterals name="wchar" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextHorizAlignProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a horizontal alignment, used within a text primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" lowerBound="1"
+        eType="#//HorizAlignEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextVertAlignProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a vertical alignment, used within a text primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" lowerBound="1"
+        eType="#//VertAlignEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BiFontDisplaySignProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a property characterizing when the sign is displayed in a BiFont"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" lowerBound="1"
+        eType="#//DisplaySignEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DisplaySignEnum">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="possible values for a BiFontDisplaySignProp"/>
+    </eAnnotations>
+    <eLiterals name="always"/>
+    <eLiterals name="never" value="1"/>
+    <eLiterals name="whenNegative" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FormatProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="text format of a BiFont primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integralPart" ordered="false"
+        lowerBound="1" eType="#//IntegerProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fractionalPart" ordered="false"
+        lowerBound="1" eType="#//IntegerProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="separator" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondFontPos" ordered="false"
+        lowerBound="1" eType="#//IntegerProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leadingZeros" ordered="false"
+        lowerBound="1" eType="#//BooleanProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="displaySign" ordered="false"
+        lowerBound="1" eType="#//BiFontDisplaySignProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FileProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the file path of a ReferenceContainer, NPlicatorContainer or Behavior"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputPointProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="pointer position in a PointerEventListener primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="x" ordered="false" eType="#//Expr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="y" ordered="false" eType="#//Expr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" ordered="false"
+        eType="#//Expr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanArrayProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an array of boolean values in the NPlicatorContainer primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RealArrayProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an array of floating-point values in the NPlicatorContainer primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PointArrayProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an array of points in the NPlicatorContainer primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="x" ordered="false" lowerBound="1"
+        eType="#//RealArrayProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="y" ordered="false" lowerBound="1"
+        eType="#//RealArrayProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AngleArrayProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an array of angles in the NPlicatorContainer primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferenceObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="entry point of an OGFX model"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" ordered="false"
+        lowerBound="1" eType="#//VariableTable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
+        lowerBound="1" eType="#//AContainer" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horizontal_ratio" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertical_ratio" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferenceContainer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a single instance of reference object"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="file" ordered="false" lowerBound="1"
+        eType="#//FileProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rotate" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scale" ordered="false"
+        lowerBound="1" eType="#//CoordinatePoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constantParameters" ordered="false"
+        lowerBound="1" eType="#//InputParametersProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputParameters" ordered="false"
+        lowerBound="1" eType="#//InputParametersProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameters" ordered="false"
+        lowerBound="1" eType="#//OutputParametersProp"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modular" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputParametersProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="list of inputs of a ReferenceConstainer, NPlicatorContainer, Behavior or Imported primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" ordered="false"
+        upperBound="-1" eType="#//InputParamProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputParametersProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="list of outputs of a ReferenceConstainer, NPlicatorContainer, Behavior or Imported primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameters" ordered="false"
+        upperBound="-1" eType="#//OutputParamProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NplicatorContainer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a multiple instance of reference object"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="file" ordered="false" lowerBound="1"
+        eType="#//FileProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="replication" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanArrayProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//PointArrayProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rotate" ordered="false"
+        lowerBound="1" eType="#//AngleArrayProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scale" ordered="false"
+        lowerBound="1" eType="#//PointArrayProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constantParameters" ordered="false"
+        lowerBound="1" eType="#//InputParametersProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputParameters" ordered="false"
+        lowerBound="1" eType="#//InputParametersProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameters" ordered="false"
+        lowerBound="1" eType="#//OutputParametersProp"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modular" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Behavior" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an instance of a Scade operator"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enable" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="file" ordered="false" lowerBound="1"
+        eType="#//FileProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" ordered="false"
+        lowerBound="1" eType="#//NodeFunctionProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputParameters" ordered="false"
+        lowerBound="1" eType="#//InputParametersProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameters" ordered="false"
+        lowerBound="1" eType="#//OutputParametersProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeFunctionProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a Scade function or node, used within a Behavior"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNode" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the name of an external function, in the Imported primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Imported" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an instance of an external function"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enable" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restoreStates" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" ordered="false"
+        lowerBound="1" eType="#//FunctionProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="memory" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputParameters" ordered="false"
+        lowerBound="1" eType="#//InputParametersProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameters" ordered="false"
+        lowerBound="1" eType="#//OutputParametersProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Hook" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="mechanism to parameterize a reference object"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
+        eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a basic container primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="priority" ordered="false"
+        eType="#//PriorityProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rotate" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scale" ordered="false"
+        lowerBound="1" eType="#//CoordinatePoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="static" ordered="false"
+        eType="#//StaticContainerProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PriorityProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="priority parameter of a container primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticContainerProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a property to characterize a static Container"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="init" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minX" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxX" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minY" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxY" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generateStaticSequence"
+        ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bitmap" ordered="false"
+        eType="#//StaticBitmap" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticBitmap">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="value for the bitmap parameter of a StaticContainerProp"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfBytes" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rawData" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PanelContainer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a panel container primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="width" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="height" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="priority" ordered="false"
+        eType="#//PriorityProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CondContainer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a conditional container primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="priority" ordered="false"
+        eType="#//PriorityProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rotate" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scale" ordered="false"
+        lowerBound="1" eType="#//CoordinatePoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
+        lowerBound="1" eType="#//ConditionalIndexProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indexes" ordered="false"
+        eType="#//IndexesProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexesProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a list of indexes, used within a CondContainer"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indexes" upperBound="-1"
+        eType="#//Expr"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultIsOther" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="default" ordered="false"
+        lowerBound="1" eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TranslationContainer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a translation container primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="priority" ordered="false"
+        eType="#//PriorityProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startTranslationPoint"
+        ordered="false" lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endTranslationPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startTranslationValue"
+        ordered="false" lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endTranslationValue" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startTranslationLocked"
+        ordered="false" lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endTranslationLocked" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionalTranslationValue"
+        ordered="false" lowerBound="1" eType="#//RealProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RotationContainer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a rotation container primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startRotationAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endRotationAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startRotationValue" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endRotationValue" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startRotationLocked" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endRotationLocked" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionalRotationValue"
+        ordered="false" lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="priority" ordered="false"
+        eType="#//PriorityProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterTranslationContainer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a translation-filter container primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startTranslationPoint"
+        ordered="false" lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endTranslationPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startTranslationValue"
+        ordered="false" lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endTranslationValue" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startTranslationLocked"
+        ordered="false" lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endTranslationLocked" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="priority" ordered="false"
+        eType="#//PriorityProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterRotationContainer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a rotation-filter container primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startRotationAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endRotationAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startRotationValue" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endRotationValue" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startRotationLocked" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endRotationLocked" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="priority" ordered="false"
+        eType="#//PriorityProp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClipPlane" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="primitive to define a clip-plane mask"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maskActivity" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clipStartPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clipAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClipBox" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="primitive to define a clip-box mask"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maskActivity" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clipInside" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thirdPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stencil" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="primitive to define a stencil mask"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maskActivity" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="points" ordered="false"
+        lowerBound="1" eType="#//IndexedPointsProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tessellate" ordered="false"
+        eType="#//BooleanProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Line" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to draw a line segment"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="points" ordered="false"
+        lowerBound="1" eType="#//IndexedPointsProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineStipple" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineCap" ordered="false"
+        lowerBound="1" eType="#//LineCapProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Arc" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to draw an arc of circle"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="radius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineStipple" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineCap" ordered="false"
+        lowerBound="1" eType="#//LineCapProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polygonSmooth" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texture" ordered="false"
+        lowerBound="1" eType="#//TextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modulate" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gradient" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Circle" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to draw a circle"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="radius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineStipple" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineCap" ordered="false"
+        lowerBound="1" eType="#//LineCapProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polygonSmooth" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texture" ordered="false"
+        lowerBound="1" eType="#//TextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modulate" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gradient" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Crown" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to draw a portion of annular disk"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="radius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thickness" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineStipple" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineCap" ordered="false"
+        lowerBound="1" eType="#//LineCapProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polygonSmooth" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texture" ordered="false"
+        lowerBound="1" eType="#//TextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modulate" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gradient" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rectangle" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to draw a rectangle"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstPoint" ordered="false"
+        lowerBound="1" eType="#//PointTextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thirdPoint" ordered="false"
+        lowerBound="1" eType="#//PointTextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstArc" ordered="false"
+        eType="#//ArcSegmentProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondArc" ordered="false"
+        eType="#//ArcSegmentProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thirdArc" ordered="false"
+        eType="#//ArcSegmentProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fourthArc" ordered="false"
+        eType="#//ArcSegmentProp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineStipple" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineCap" ordered="false"
+        lowerBound="1" eType="#//LineCapProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polygonSmooth" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texture" ordered="false"
+        lowerBound="1" eType="#//TextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textureControl" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modulate" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tessellate" ordered="false"
+        eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gradient" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Shape" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to draw a polygon"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="points" ordered="false"
+        lowerBound="1" eType="#//IndexedTexturePointsProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineStipple" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineCap" ordered="false"
+        lowerBound="1" eType="#//LineCapProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polygonSmooth" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textureControl" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texture" ordered="false"
+        lowerBound="1" eType="#//TextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modulate" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tessellate" ordered="false"
+        eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gradient" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bitmap" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to display a bitmap picture"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textureId" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Text" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to display a single-line text"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxLength" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textValue" ordered="false"
+        lowerBound="1" eType="#//TextProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="font" ordered="false" lowerBound="1"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="horizAlign" ordered="false"
+        lowerBound="1" eType="#//TextHorizAlignProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertAlign" ordered="false"
+        lowerBound="1" eType="#//TextVertAlignProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RichText" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to display a multi-line text with formatting"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxLength" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textValue" ordered="false"
+        lowerBound="1" eType="#//TextProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="font" ordered="false" lowerBound="1"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="horizAlign" ordered="false"
+        lowerBound="1" eType="#//TextHorizAlignProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertAlign" ordered="false"
+        lowerBound="1" eType="#//TextVertAlignProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextArea" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to display a multi-line text"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thirdPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxLength" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textValue" ordered="false"
+        lowerBound="1" eType="#//TextProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="font" ordered="false" lowerBound="1"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="horizAlign" ordered="false"
+        lowerBound="1" eType="#//TextHorizAlignProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertAlign" ordered="false"
+        lowerBound="1" eType="#//TextVertAlignProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BiFont" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to display a formatted text with two fonts"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="format" ordered="false"
+        lowerBound="1" eType="#//FormatProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstLineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstFont" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="horizAlign" ordered="false"
+        lowerBound="1" eType="#//TextHorizAlignProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertAlign" ordered="false"
+        lowerBound="1" eType="#//TextVertAlignProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondFont" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondLineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CircleArea" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interactive primitive to define a circular area"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enable" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pointerId" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="radius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inside" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="percent" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="angle" ordered="false"
+        eType="#//OutputProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputProp" eSuperTypes="#//AssignmentOutputProp">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="output parameter of an interactive primitive"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignmentOutputProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="output parameter of an Assignment primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" ordered="false" lowerBound="1"
+        eType="#//Expr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RectangleArea" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interactive primitive to define a rectangular area"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enable" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pointerId" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thirdPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inside" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="percentWidth" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="percentHeight" ordered="false"
+        eType="#//OutputProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PointsProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a list of points in a ShapeArea primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" lowerBound="1" upperBound="-1"
+        eType="#//PointProperty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ShapeArea" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interactive primitive to define a polygonal area"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enable" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pointerId" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="points" ordered="false"
+        lowerBound="1" eType="#//PointsProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inside" ordered="false"
+        eType="#//OutputProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PointerEventListener" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interactive primitive to handle mouse events"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enable" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eventId" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relative" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pressed" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="released" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="button" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pointerPosition" ordered="false"
+        eType="#//OutputPointProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" ordered="false"
+        eType="#//OutputProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KeyboardEventListener" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interactive primitive to handle keyboard events"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enable" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eventId" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pressed" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="released" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" ordered="false"
+        eType="#//OutputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keyCode" ordered="false"
+        eType="#//OutputProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CursorPosRequest" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interactive primitive to force the mouse position"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enable" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cursorId" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cursorPosition" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArcEllipse" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to draw an arc of ellipse"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="horzRadius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertRadius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endAngle" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineStipple" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineCap" ordered="false"
+        lowerBound="1" eType="#//LineCapProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polygonSmooth" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texture" ordered="false"
+        lowerBound="1" eType="#//TextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modulate" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gradient" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ellipse" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to draw an ellipse"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="horzRadius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertRadius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineStipple" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineCap" ordered="false"
+        lowerBound="1" eType="#//LineCapProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polygonSmooth" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texture" ordered="false"
+        lowerBound="1" eType="#//TextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modulate" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gradient" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputProp" eSuperTypes="#//PluggableProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="input parameter of an Assignment primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="init" ordered="false" lowerBound="1"
+        eType="#//Expr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Assignment" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an assignment primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enable" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" ordered="false"
+        lowerBound="1" eType="#//InputProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" ordered="false"
+        lowerBound="1" eType="#//AssignmentOutputProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MaskContainer" eSuperTypes="#//AContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="primitive to define a mask container"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maskActivity" ordered="false"
+        unique="false" lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origin" ordered="false"
+        unique="false" lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rotate" ordered="false"
+        lowerBound="1" eType="#//AngleProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orientation" ordered="false"
+        lowerBound="1" eType="#//OrientationProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scale" ordered="false"
+        lowerBound="1" eType="#//CoordinatePoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clipInside" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Path" eSuperTypes="#//GraphicObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="graphic primitive to draw an SVG path"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" ordered="false"
+        lowerBound="1" eType="#//CommandsProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visible" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineWidth" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineStipple" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineCap" ordered="false"
+        lowerBound="1" eType="#//LineCapProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloing" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="haloColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outlineOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillColor" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillOpacity" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="polygonSmooth" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texture" ordered="false"
+        lowerBound="1" eType="#//TextureProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gradient" ordered="false"
+        lowerBound="1" eType="#//IntegerProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modulate" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tessellate" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CommandsProp" eSuperTypes="#//Property">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="list of commands of a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" ordered="false"
+        upperBound="-1" eType="#//Command"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Command" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="base class for the commands of a Path primitive"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveTo" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a 'moveto' command in a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineTo" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a 'lineto' command in a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HorizontalLineTo" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a 'horizontal-lineto' command in a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endX" ordered="false" lowerBound="1"
+        eType="#//RealProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VerticalLineTo" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a 'vertical-lineto' command in a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endY" ordered="false" lowerBound="1"
+        eType="#//RealProp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CurveTo" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a 'curveto' command in a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstControlPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondControlPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SmoothCurveTo" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a 'smooth-curveto' command in a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondControlPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QuadraticCurveTo" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a 'quadratic-Bezier-curveto' command in a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SmoothQuadraticCurveTo" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a 'smooth-quadratic-Bezier-curveto' command in a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EllipticalArc" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an 'elliptical-arc' command in a Path primitive"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="xRadius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yRadius" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="xAxisRotation" ordered="false"
+        lowerBound="1" eType="#//RealProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="largeArcFlag" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sweepFlag" ordered="false"
+        lowerBound="1" eType="#//BooleanProp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" ordered="false"
+        lowerBound="1" eType="#//PointProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClosePath" eSuperTypes="#//Command">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a 'closepath' command in a Path primitive"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredefType" eSuperTypes="#//Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a predefined scalar type"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="base" ordered="false" lowerBound="1"
+        eType="#//SimpleType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SimpleType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a base type, contents of a PredefType"/>
+    </eAnnotations>
+    <eLiterals name="bool"/>
+    <eLiterals name="char" value="1"/>
+    <eLiterals name="int" value="2"/>
+    <eLiterals name="int8" value="3"/>
+    <eLiterals name="int16" value="4"/>
+    <eLiterals name="int32" value="5"/>
+    <eLiterals name="int64" value="6"/>
+    <eLiterals name="uint8" value="7"/>
+    <eLiterals name="uint16" value="8"/>
+    <eLiterals name="uint32" value="9"/>
+    <eLiterals name="uint64" value="10"/>
+    <eLiterals name="real" value="11"/>
+    <eLiterals name="float32" value="12"/>
+    <eLiterals name="float64" value="13"/>
+    <eLiterals name="wchar" value="14"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayType" eSuperTypes="#//Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an array type, consisting of the type of elements and a size"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elemType" ordered="false"
+        lowerBound="1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" ordered="false" lowerBound="1"
+        eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructType" eSuperTypes="#//Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a structured type, declaring a list of named fields"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//StructFieldType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructFieldType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a field in a StructType"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedType" eSuperTypes="#//Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an identifier referring to a user-defined type"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumType" eSuperTypes="#//GlobalType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an enumerated type, declaring a list of identifiers with optional integer values"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enums" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//EnumValue"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumValue">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an item of an EnumType"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportedType" eSuperTypes="#//GlobalType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an imported type, defined in a DGFX"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="externName" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition" eSuperTypes="#//GlobalDefinition">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a global type definition"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
+        lowerBound="1" eType="#//GlobalType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalDefinition" abstract="true" interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface for global type and constant definitions"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="oid" ordered="false" lowerBound="1"
+        eType="#//Oid"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstantDefinition" eSuperTypes="#//GlobalDefinition">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a global constant definition"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
+        lowerBound="1" eType="#//GlobalConstant" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportedConstant" eSuperTypes="#//GlobalConstant">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an imported constant, defined in a DGFX"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="externName" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralExpr" eSuperTypes="#//Expr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a scalar literal expression"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IdentifierExpr" eSuperTypes="#//Expr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an identifier referring to either a user-defined constant, or an item of an enumerated type"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayExpr" eSuperTypes="#//Expr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an array literal expression"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elems" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructExpr" eSuperTypes="#//Expr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a structure literal expression"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//StructFieldExpr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructFieldExpr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a field in a StructExpr"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
+        lowerBound="1" eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexExpr" eSuperTypes="#//Expr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an array projection"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="array" ordered="false"
+        lowerBound="1" eType="#//Expr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
+        lowerBound="1" eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FieldExpr" eSuperTypes="#//Expr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a structure projection"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="struct" ordered="false"
+        lowerBound="1" eType="#//Expr"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="field" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryOpExpr" eSuperTypes="#//Expr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a unary operation"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" ordered="false" lowerBound="1"
+        eType="#//UnaryOp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arg" ordered="false" lowerBound="1"
+        eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="UnaryOp">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a unary operator, used within a UnaryOpExpr"/>
+    </eAnnotations>
+    <eLiterals name="not"/>
+    <eLiterals name="int" value="1"/>
+    <eLiterals name="int8" value="2"/>
+    <eLiterals name="int16" value="3"/>
+    <eLiterals name="int32" value="4"/>
+    <eLiterals name="int64" value="5"/>
+    <eLiterals name="uint8" value="6"/>
+    <eLiterals name="uint16" value="7"/>
+    <eLiterals name="uint32" value="8"/>
+    <eLiterals name="uint64" value="9"/>
+    <eLiterals name="real" value="10"/>
+    <eLiterals name="float32" value="11"/>
+    <eLiterals name="float64" value="12"/>
+    <eLiterals name="plus" value="13"/>
+    <eLiterals name="minus" value="14"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryOpExpr" eSuperTypes="#//Expr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a binary operation"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" ordered="false" lowerBound="1"
+        eType="#//BinaryOp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arg1" ordered="false" lowerBound="1"
+        eType="#//Expr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arg2" ordered="false" lowerBound="1"
+        eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BinaryOp">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a binary operator, used within a BinaryOpExpr"/>
+    </eAnnotations>
+    <eLiterals name="and"/>
+    <eLiterals name="or" value="1"/>
+    <eLiterals name="add" value="2"/>
+    <eLiterals name="sub" value="3"/>
+    <eLiterals name="mult" value="4"/>
+    <eLiterals name="div" value="5"/>
+    <eLiterals name="modulo" value="6"/>
+    <eLiterals name="eq" value="7"/>
+    <eLiterals name="ne" value="8"/>
+    <eLiterals name="lt" value="9"/>
+    <eLiterals name="le" value="10"/>
+    <eLiterals name="gt" value="11"/>
+    <eLiterals name="ge" value="12"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalExpr" eSuperTypes="#//Expr">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an if-then-else expression"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" ordered="false"
+        lowerBound="1" eType="#//Expr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thenBranch" ordered="false"
+        lowerBound="1" eType="#//Expr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elseBranch" ordered="false"
+        lowerBound="1" eType="#//Expr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalDefinitions">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="entry point of a DGFX model, containing a list of global type and constant definitions"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" ordered="false"
+        upperBound="-1" eType="#//GlobalDefinition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextureTable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="entry point of an STT model, containing a list of TextureElement"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Elements" ordered="false"
+        upperBound="-1" eType="#//TextureElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basename" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextureElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an item of a texture table"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repeatable" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" ordered="false" lowerBound="1"
+        eType="#//TextureMode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="compression" ordered="false"
+        lowerBound="1" eType="#//BitmapCompressionMode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rawData" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TextureMode">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the format of an image in a TextureTable"/>
+    </eAnnotations>
+    <eLiterals name="RGBA"/>
+    <eLiterals name="RGB" value="1"/>
+    <eLiterals name="Alpha" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BitmapCompressionMode">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the algorithm used for compressing an image in a TextureTable or GradientTable"/>
+    </eAnnotations>
+    <eLiterals name="none"/>
+    <eLiterals name="rle" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ColorTable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="entry point of an SCT model, containing a list of ColorElement"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basename" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundIndex" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Elements" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//ColorElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ColorElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an item of a color table"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alpha" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rgb" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineWidthTable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="entry point of an SWT model, containing a list of LineWidthElement"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basename" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Elements" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//LineWidthElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineWidthElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an item of a line width table"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="colorWidth" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="haloWidth" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineStippleTable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="entry point of an SST model, containing a list of LineStippleElement"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basename" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Elements" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//LineStippleElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineStippleElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an item of a line stipple table"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="continuous" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Segments" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//LineStippleSegment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineStippleSegment">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a segment in a line stipple definition"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visible" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GradientTable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="entry point of an SGT model, containing a list of GradientElement"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basename" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Elements" ordered="false"
+        upperBound="-1" eType="#//GradientElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GradientElement" abstract="true" interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface for gradient elements in a GradientTable"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="spreadMethod" ordered="false"
+        lowerBound="1" eType="#//GradientSpreadMethod"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="compression" ordered="false"
+        lowerBound="1" eType="#//BitmapCompressionMode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rawData" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="StopColors" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//GradientStopColor" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GradientSpreadMethod">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the spread method to use for the gradient"/>
+    </eAnnotations>
+    <eLiterals name="pad"/>
+    <eLiterals name="reflect" value="1"/>
+    <eLiterals name="repeat" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GradientStopColor">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a stop color in a gradient definition"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LinearGradientElement" eSuperTypes="#//GradientElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an item of a gradient table, defining a linear gradient"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startX" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startY" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endX" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endY" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RadialGradientElement" eSuperTypes="#//GradientElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an item of a gradient table, defining a radial gradient"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="centerX" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="centerY" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="radius" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="finalX" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="finalY" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FontTable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basename" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generateAsBitmap" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generateHalo" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" ordered="false"
+        upperBound="-1" eType="#//FontDefinition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FontDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

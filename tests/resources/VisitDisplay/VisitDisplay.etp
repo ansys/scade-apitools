@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project id="1" oid_count="43" defaultConfiguration="2">
+	<props>
+		<Prop id="3" name="@STUDIO:PRODUCT">
+			<value>DISPLAY</value>
+		</Prop>
+		<Prop id="4" name="@SDY:RELEASE">
+			<value>23.1</value>
+		</Prop>
+		<Prop id="7" name="@SDY:DEFAULTCOLORTABLE">
+			<value>color_table.sct</value>
+		</Prop>
+		<Prop id="9" name="@SDY:DEFAULTLWTABLE">
+			<value>line_width_table.swt</value>
+		</Prop>
+		<Prop id="11" name="@SDY:DEFAULTLSTABLE">
+			<value>line_stipple_table.sst</value>
+		</Prop>
+		<Prop id="13" name="@SDY:TEXTURETABLE">
+			<value>texture_table.stt</value>
+		</Prop>
+		<Prop id="15" name="@SDY:GRADIENTTABLE">
+			<value>gradient_table.sgt</value>
+		</Prop>
+		<Prop id="17" name="@SDY:FONTTABLE">
+			<value>font_table.sft</value>
+		</Prop>
+		<Prop id="19" name="@SDY:CONFTARGET">
+			<value>Windows</value>
+			<configuration>18</configuration>
+		</Prop>
+		<Prop id="20" name="CONFIGURATIONS">
+			<value>18</value>
+			<value>27</value>
+			<value>35</value>
+		</Prop>
+		<Prop id="21" name="@SDY:CONFSOURCE">
+			<configuration>18</configuration>
+		</Prop>
+		<Prop id="22" name="@SDY:KCGTEMPLATE">
+			<configuration>18</configuration>
+		</Prop>
+		<Prop id="23" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_Exe</value>
+			<configuration>18</configuration>
+		</Prop>
+		<Prop id="24" name="@SDY:APPPERIODICITY">
+			<value>33</value>
+			<configuration>18</configuration>
+		</Prop>
+		<Prop id="25" name="@SDY:POINTERID">
+			<value>0</value>
+			<configuration>18</configuration>
+		</Prop>
+		<Prop id="26" name="@SDY:KEYBOARDID">
+			<value>0</value>
+			<configuration>18</configuration>
+		</Prop>
+		<Prop id="28" name="@SDY:CONFTARGET">
+			<value>codegen</value>
+			<configuration>27</configuration>
+		</Prop>
+		<Prop id="29" name="@SDY:CONFSOURCE">
+			<configuration>27</configuration>
+		</Prop>
+		<Prop id="30" name="@SDY:KCGTEMPLATE">
+			<configuration>27</configuration>
+		</Prop>
+		<Prop id="31" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_Code</value>
+			<configuration>27</configuration>
+		</Prop>
+		<Prop id="32" name="@SDY:CODEGENERATOR">
+			<value>KCG67</value>
+			<configuration>27</configuration>
+		</Prop>
+		<Prop id="33" name="@SDY:POINTERID">
+			<value>0</value>
+			<configuration>27</configuration>
+		</Prop>
+		<Prop id="34" name="@SDY:KEYBOARDID">
+			<value>0</value>
+			<configuration>27</configuration>
+		</Prop>
+		<Prop id="36" name="@SDY:CONFTARGET">
+			<value>Simulation</value>
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="37" name="@SDY:CONFSOURCE">
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="38" name="@SDY:KCGTEMPLATE">
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="39" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_Simulation</value>
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="40" name="@SDY:POINTERID">
+			<value>0</value>
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="41" name="@SDY:KEYBOARDID">
+			<value>0</value>
+			<configuration>35</configuration>
+		</Prop>
+	</props>
+	<roots>
+		<Folder id="5" extensions="sct;sft;sgt;sst;stt;swt" name="Resource Files">
+			<elements>
+				<FileRef id="6" persistAs="color_table.sct"/>
+				<FileRef id="8" persistAs="line_width_table.swt"/>
+				<FileRef id="10" persistAs="line_stipple_table.sst"/>
+				<FileRef id="12" persistAs="texture_table.stt"/>
+				<FileRef id="14" persistAs="gradient_table.sgt"/>
+				<FileRef id="16" persistAs="font_table.sft"/>
+			</elements>
+		</Folder>
+		<Folder id="42" extensions="asfx;ogfx;pgfx;sgfx" name="Model Files">
+			<elements>
+				<FileRef id="43" persistAs="Nominal.sgfx"/>
+			</elements>
+		</Folder>
+	</roots>
+	<configurations>
+		<Configuration id="2" name="Default"/>
+		<Configuration id="18" name="Windows"/>
+		<Configuration id="27" name="Code"/>
+		<Configuration id="35" name="Simulation"/>
+	</configurations>
+</Project>
