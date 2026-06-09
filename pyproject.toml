@@ -92,6 +92,8 @@ ignore = [
 ]
 exclude = [
     # (partially) generated files: needs manual review
+    "a661visitor.py",
+    "modelvisitor.py",
     "sdyaccess.py",
     "sdyvisitor.py",
 ]
@@ -100,6 +102,8 @@ exclude = [
 quote-style = "preserve"
 exclude = [
     # (partially) generated files: needs manual review
+    "a661visitor.py",
+    "modelvisitor.py",
     "sdyaccess.py",
     "sdyvisitor.py",
 ]

@@ -173,7 +173,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="MsgType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
         eType="#//NamedType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="substitutes" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subst" ordered="false"
         upperBound="-1" eType="#//MsgTypeSubst" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MsgTypeSubst">
@@ -188,7 +188,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="events" ordered="false"
         upperBound="-1" eType="#//Message" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="runtime" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runtime_messages" ordered="false"
         upperBound="-1" eType="#//Message" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="A661Hierarchy">
@@ -308,7 +308,7 @@
         eType="#//MsgField"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dimension">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dimensionElement" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//GenericDimension" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericDimension">
@@ -395,7 +395,7 @@
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="widgetTypes" ordered="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bitfield" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bit_field" ordered="false"
         upperBound="-1" eType="#//BitField" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BitField">
@@ -470,7 +470,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="size" ordered="false" eType="#//Dimension"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
         eType="#//GenericIndex"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//AStructElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenericIndex">

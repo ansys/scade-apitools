@@ -102,7 +102,8 @@ class SdyModel(PythonModel):
 
         # prepare children
         for reference in cls.e_references:
-            if reference.containment:
+            if reference.containment and reference.e_type:
+                # reference.e_type might be None with a661.ecore
                 self.prepare_class(reference.e_type)
 
         cls.sdy__default = cls.name + '()' if cls.sdy__is_property else 'None'
@@ -129,7 +130,7 @@ class SdyModel(PythonModel):
         cls.sdy__properties = []
         for reference in cls.e_references:
             reference.sdy__is_property = (
-                reference.containment and reference.e_type.sdy__is_property
+                reference.containment and reference.e_type and reference.e_type.sdy__is_property
             )
             if reference.sdy__is_property:
                 cls.sdy__properties.append(reference)

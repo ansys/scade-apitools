@@ -22,6 +22,12 @@
 
 """Provides additional visitors."""
 
+from .a661visitor import (
+    StandardVisitor as StandardVisitor,
+)
+from .modelvisitor import (
+    DFVisitor as DFVisitor,
+)
 from .sdyvisitor import (
     SdyVisitor as SdyVisitor,
 )

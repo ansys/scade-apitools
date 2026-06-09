@@ -104,6 +104,8 @@ numpydoc_validation_checks = {
 }
 numpydoc_validation_exclude = {
     # (partially) generated files: needs manual review
+    "a661visitor.",
+    "modelvisitor.",
     "sdyaccess.",
     "sdyvisitor.",
 }
