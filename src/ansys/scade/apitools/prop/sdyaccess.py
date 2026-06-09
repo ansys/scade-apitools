@@ -43,7 +43,7 @@ class _Property(object):
         if obj is None:
             return self
         if self.fget is None:
-            raise AttributeError("unreadable attribute")
+            raise AttributeError('unreadable attribute')
         return self.fget(obj, self.attribute)
 
     def __set__(self, obj, value):
@@ -61,287 +61,287 @@ class _Property(object):
 
 # AngleProp
 def _get_angle_prop(self, attribute: str) -> float:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.p_angle if property is not None else 0.
 
 
 def _set_angle_prop(self, attribute: str, value: float):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = AngleProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, AngleProp())
+    property = getattr(self, attribute)
     property.p_angle = value
 
 
 # ArcSegmentProp
 def _get_arc_segment_prop(self, attribute: str) -> Tuple[bool, float]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.p_orientation, property.p_angle) if property is not None else ((False, 0.))
 
 
 def _set_arc_segment_prop(self, attribute: str, value: Tuple[bool, float]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = ArcSegmentProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, ArcSegmentProp())
+    property = getattr(self, attribute)
     (property.p_orientation, property.p_angle) = value
 
 
 # CoordinatePoint
 def _get_coordinate_point(self, attribute: str) -> Tuple[float, float]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.p_x, property.p_y) if property is not None else ((0., 0.))
 
 
 def _set_coordinate_point(self, attribute: str, value: Tuple[float, float]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = CoordinatePoint()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, CoordinatePoint())
+    property = getattr(self, attribute)
     (property.p_x, property.p_y) = value
 
 
 # FileProp
 def _get_file_prop(self, attribute: str) -> str:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.file if property is not None else ''
 
 
 def _set_file_prop(self, attribute: str, value: str):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = FileProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, FileProp())
+    property = getattr(self, attribute)
     property.file = value
 
 
 # FormatProp
 def _get_format_prop(self, attribute: str) -> Tuple[int, int, int, int, bool, DisplaySignEnum]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.separator, property.p_integral_part, property.p_fractional_part, property.p_second_font_pos, property.p_leading_zeros, property.p_display_sign) if property is not None else ((0, 0, 0, 0, False, DisplaySignEnum.ALWAYS))
 
 
 def _set_format_prop(self, attribute: str, value: Tuple[int, int, int, int, bool, DisplaySignEnum]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = FormatProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, FormatProp())
+    property = getattr(self, attribute)
     (property.separator, property.p_integral_part, property.p_fractional_part, property.p_second_font_pos, property.p_leading_zeros, property.p_display_sign) = value
 
 
 # FunctionProp
 def _get_function_prop(self, attribute: str) -> str:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.name if property is not None else ''
 
 
 def _set_function_prop(self, attribute: str, value: str):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = FunctionProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, FunctionProp())
+    property = getattr(self, attribute)
     property.name = value
 
 
 # IndexesProp
 def _get_indexes_prop(self, attribute: str) -> bool:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.default_is_other if property is not None else False
 
 
 def _set_indexes_prop(self, attribute: str, value: bool):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = IndexesProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, IndexesProp())
+    property = getattr(self, attribute)
     property.default_is_other = value
 
 
 # InputParametersProp
 def _get_input_parameters_prop(self, attribute: str) -> List[Tuple[str, Representation]]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.p_parameters if property is not None else []
 
 
 def _set_input_parameters_prop(self, attribute: str, value: List[Tuple[str, Representation]]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = InputParametersProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, InputParametersProp())
+    property = getattr(self, attribute)
     property.p_parameters = value
 
 
 # NodeFunctionProp
 def _get_node_function_prop(self, attribute: str) -> Tuple[bool, str]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.is_node, property.name) if property is not None else ((False, ''))
 
 
 def _set_node_function_prop(self, attribute: str, value: Tuple[bool, str]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = NodeFunctionProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, NodeFunctionProp())
+    property = getattr(self, attribute)
     (property.is_node, property.name) = value
 
 
 # OrientationProp
 def _get_orientation_prop(self, attribute: str) -> bool:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.clockwise if property is not None else False
 
 
 def _set_orientation_prop(self, attribute: str, value: bool):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = OrientationProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, OrientationProp())
+    property = getattr(self, attribute)
     property.clockwise = value
 
 
 # OutputParametersProp
 def _get_output_parameters_prop(self, attribute: str) -> List[Tuple[str, Representation]]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.p_output_parameters if property is not None else []
 
 
 def _set_output_parameters_prop(self, attribute: str, value: List[Tuple[str, Representation]]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = OutputParametersProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, OutputParametersProp())
+    property = getattr(self, attribute)
     property.p_output_parameters = value
 
 
 # PointArrayProp
 def _get_point_array_prop(self, attribute: str) -> Tuple[List[float], List[float]]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.p_x, property.p_y) if property is not None else (([], []))
 
 
 def _set_point_array_prop(self, attribute: str, value: Tuple[List[float], List[float]]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = PointArrayProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, PointArrayProp())
+    property = getattr(self, attribute)
     (property.p_x, property.p_y) = value
 
 
 # PointsProp
 def _get_points_prop(self, attribute: str) -> List[Tuple[float, float]]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.p_point if property is not None else []
 
 
 def _set_points_prop(self, attribute: str, value: List[Tuple[float, float]]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = PointsProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, PointsProp())
+    property = getattr(self, attribute)
     property.p_point = value
 
 
 # StaticContainerProp
 def _get_static_container_prop(self, attribute: str) -> Tuple[bool, float, float, float, float, bool]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.init, property.min_x, property.max_x, property.min_y, property.max_y, property.generate_static_sequence) if property is not None else ((False, 0., 0., 0., 0., False))
 
 
 def _set_static_container_prop(self, attribute: str, value: Tuple[bool, float, float, float, float, bool]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = StaticContainerProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, StaticContainerProp())
+    property = getattr(self, attribute)
     (property.init, property.min_x, property.max_x, property.min_y, property.max_y, property.generate_static_sequence) = value
 
 
 # TextureProp
 def _get_texture_prop(self, attribute: str) -> Tuple[HorizAlignEnum, VertAlignEnum, float, float, int]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.horiz_align, property.vert_align, property.horiz_pattern, property.vert_pattern, property.p_texture_id) if property is not None else ((HorizAlignEnum.LEFT, VertAlignEnum.TOP, 0., 0., 0))
 
 
 def _set_texture_prop(self, attribute: str, value: Tuple[HorizAlignEnum, VertAlignEnum, float, float, int]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = TextureProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, TextureProp())
+    property = getattr(self, attribute)
     (property.horiz_align, property.vert_align, property.horiz_pattern, property.vert_pattern, property.p_texture_id) = value
 
 
 # AngleArrayProp
 def _get_angle_array_prop(self, attribute: str) -> List[float]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else []
 
 
 def _set_angle_array_prop(self, attribute: str, value: List[float]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = AngleArrayProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, AngleArrayProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
 # BiFontDisplaySignProp
 def _get_bi_font_display_sign_prop(self, attribute: str) -> DisplaySignEnum:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else DisplaySignEnum.ALWAYS
 
 
 def _set_bi_font_display_sign_prop(self, attribute: str, value: DisplaySignEnum):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = BiFontDisplaySignProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, BiFontDisplaySignProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
 # BooleanArrayProp
 def _get_boolean_array_prop(self, attribute: str) -> List[bool]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else []
 
 
 def _set_boolean_array_prop(self, attribute: str, value: List[bool]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = BooleanArrayProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, BooleanArrayProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
 # BooleanProp
 def _get_boolean_prop(self, attribute: str) -> bool:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else False
 
 
 def _set_boolean_prop(self, attribute: str, value: bool):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = BooleanProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, BooleanProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
 # ConditionalIndexProp
 def _get_conditional_index_prop(self, attribute: str) -> Tuple[IndexPropEnum, bool]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.index_prop_enum, property.all_visible) if property is not None else ((IndexPropEnum.NUMERIC, False))
 
 
 def _set_conditional_index_prop(self, attribute: str, value: Tuple[IndexPropEnum, bool]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = ConditionalIndexProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, ConditionalIndexProp())
+    property = getattr(self, attribute)
     (property.index_prop_enum, property.all_visible) = value
 
 
 # IntegerProp
 def _get_integer_prop(self, attribute: str) -> int:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else 0
 
 
 def _set_integer_prop(self, attribute: str, value: int):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = IntegerProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, IntegerProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
 # LineCapProp
 def _get_line_cap_prop(self, attribute: str) -> LineCapEnum:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else LineCapEnum.SQUARE
 
 
 def _set_line_cap_prop(self, attribute: str, value: LineCapEnum):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = LineCapProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, LineCapProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
@@ -353,112 +353,112 @@ def _new_point_property(values: Tuple[float, float]) -> PointProperty:
 
 
 def _get_list_point_property(self, attribute: str) -> List[Tuple[float, float]]:
-    return [(property.p_x, property.p_y) for property in self.__dict__[attribute]]
+    return [(property.p_x, property.p_y) for property in getattr(self, attribute)]
 
 
 def _set_list_point_property(self, attribute: str, values: List[Tuple[float, float]]):
-    self.__dict__[attribute] = [_new_point_property((x, y)) for x, y in values]
+    setattr(self, attribute, [_new_point_property((x, y)) for x, y in values])
 
 def _get_point_property(self, attribute: str) -> Tuple[float, float]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.p_x, property.p_y) if property is not None else ((0., 0.))
 
 
 def _set_point_property(self, attribute: str, value: Tuple[float, float]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = PointProperty()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, PointProperty())
+    property = getattr(self, attribute)
     (property.p_x, property.p_y) = value
 
 
 # PointTextureProp
 def _get_point_texture_prop(self, attribute: str) -> Tuple[float, float, float, float]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.p_x, property.p_y, property.p_u, property.p_v) if property is not None else ((0., 0., 0., 0.))
 
 
 def _set_point_texture_prop(self, attribute: str, value: Tuple[float, float, float, float]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = PointTextureProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, PointTextureProp())
+    property = getattr(self, attribute)
     (property.p_x, property.p_y, property.p_u, property.p_v) = value
 
 
 # PriorityProp
 def _get_priority_prop(self, attribute: str) -> int:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else 0
 
 
 def _set_priority_prop(self, attribute: str, value: int):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = PriorityProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, PriorityProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
 # RealArrayProp
 def _get_real_array_prop(self, attribute: str) -> List[float]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else []
 
 
 def _set_real_array_prop(self, attribute: str, value: List[float]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = RealArrayProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, RealArrayProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
 # RealProp
 def _get_real_prop(self, attribute: str) -> float:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else 0.
 
 
 def _set_real_prop(self, attribute: str, value: float):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = RealProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, RealProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
 # TextHorizAlignProp
 def _get_text_horiz_align_prop(self, attribute: str) -> HorizAlignEnum:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else HorizAlignEnum.LEFT
 
 
 def _set_text_horiz_align_prop(self, attribute: str, value: HorizAlignEnum):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = TextHorizAlignProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, TextHorizAlignProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
 # TextProp
 def _get_text_prop(self, attribute: str) -> Tuple[TextTypeEnum, List[int]]:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return (property.type, property.init) if property is not None else ((TextTypeEnum.CHAR, []))
 
 
 def _set_text_prop(self, attribute: str, value: Tuple[TextTypeEnum, List[int]]):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = TextProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, TextProp())
+    property = getattr(self, attribute)
     (property.type, property.init) = value
 
 
 # TextVertAlignProp
 def _get_text_vert_align_prop(self, attribute: str) -> VertAlignEnum:
-    property = self.__dict__[attribute]
+    property = getattr(self, attribute)
     return property.init if property is not None else VertAlignEnum.TOP
 
 
 def _set_text_vert_align_prop(self, attribute: str, value: VertAlignEnum):
-    if self.__dict__[attribute] is None:
-        self.__dict__[attribute] = TextVertAlignProp()
-    property = self.__dict__[attribute]
+    if getattr(self, attribute) is None:
+        setattr(self, attribute, TextVertAlignProp())
+    property = getattr(self, attribute)
     property.init = value
 
 
@@ -470,11 +470,11 @@ def _new_input_param_prop(values: Tuple[str, Representation]) -> InputParamProp:
 
 
 def _get_list_input_param_prop(self, attribute: str) -> List[Tuple[str, Representation]]:
-    return [(property.name, property.representation) for property in self.__dict__[attribute]]
+    return [(property.name, property.representation) for property in getattr(self, attribute)]
 
 
 def _set_list_input_param_prop(self, attribute: str, values: List[Tuple[str, Representation]]):
-    self.__dict__[attribute] = [_new_input_param_prop((name, representation)) for name, representation in values]
+    setattr(self, attribute, [_new_input_param_prop((name, representation)) for name, representation in values])
 
 
 # OutputParamProp
@@ -485,11 +485,11 @@ def _new_output_param_prop(values: Tuple[str, Representation]) -> OutputParamPro
 
 
 def _get_list_output_param_prop(self, attribute: str) -> List[Tuple[str, Representation]]:
-    return [(property.name, property.representation) for property in self.__dict__[attribute]]
+    return [(property.name, property.representation) for property in getattr(self, attribute)]
 
 
 def _set_list_output_param_prop(self, attribute: str, values: List[Tuple[str, Representation]]):
-    self.__dict__[attribute] = [_new_output_param_prop((name, representation)) for name, representation in values]
+    setattr(self, attribute, [_new_output_param_prop((name, representation)) for name, representation in values])
 
 #}}sdy_access_fct
 

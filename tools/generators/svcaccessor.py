@@ -119,11 +119,11 @@ class AccessFunctionsService(SdyService):
                         '\n'
                         '\n'
                         'def _get_list_{lower}(self, attribute: str) -> List[{type_name}]:\n'
-                        '    return [({gprops}) for {var} in self.__dict__[attribute]]\n'
+                        '    return [({gprops}) for {var} in getattr(self, attribute)]\n'
                         '\n'
                         '\n'
                         'def _set_list_{lower}(self, attribute: str, {value}: List[{type_name}]):\n'
-                        '    self.__dict__[attribute] = [_new_{lower}(({sprops})) for {sprops} in {value}]\n'
+                        '    setattr(self, attribute, [_new_{lower}(({sprops})) for {sprops} in {value}])\n'
                     )
                     bs.print(code.format_map(map))
                 if cls in scalar:
@@ -143,14 +143,14 @@ class AccessFunctionsService(SdyService):
                         map['props'] = props
                     code = (
                         'def _get_{lower}(self, attribute: str) -> {type_name}:\n'
-                        '    {var} = self.__dict__[attribute]\n'
+                        '    {var} = getattr(self, attribute)\n'
                         '    return {props} if {var} is not None else {dprops}\n'
                         '\n'
                         '\n'
                         'def _set_{lower}(self, attribute: str, {value}: {type_name}):\n'
-                        '    if self.__dict__[attribute] is None:\n'
-                        '        self.__dict__[attribute] = {class}()\n'
-                        '    {var} = self.__dict__[attribute]\n'
+                        '    if getattr(self, attribute) is None:\n'
+                        '        setattr(self, attribute, {class}())\n'
+                        '    {var} = getattr(self, attribute)\n'
                         '    {props} = {value}\n'
                     )
                     bs.print(code.format_map(map))
