@@ -34,9 +34,8 @@ from svcaccessor import AccessDeclarationsService, AccessFunctionsService
 
 # from svcclass import ClassService
 # from svcenum import EnumService
-from svcvisit import VisitorService
-
 import ansys.eseg.lbsjv.ecore as ecore
+from ansys.eseg.lbsjv.services.svcvisitor import VisitorService
 from ansys.eseg.lbsjv.vgl import get_manager_instance
 from ansys.eseg.lbsjv.vgl.defaults import FileType
 from ansys.eseg.lbsjv.vgl.interfaces import IManager
