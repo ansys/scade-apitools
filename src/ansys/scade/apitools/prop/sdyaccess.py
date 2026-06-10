@@ -20,6 +20,102 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""
+SCADE Display property accessors.
+
+The basic properties of SCADE Display graphical objects are not implemented as
+attributes but as instances of Property’s derived classes: create/set/get/display
+operations on these values are tedious.
+
+The following code is an example for creating/setting/accessing the coordinates of the center of a circle:
+
+.. code::
+
+    # create
+    circle.center = PointProperty()
+    circle.center.x = RealProp()
+    circle.center.y = RealProp()
+    # create/set
+    circle.center.x.init = 20.0
+    circle.center.y.init = 20.0
+    # get
+    x = circle.center.x.init
+    y = circle.center.y.init
+
+The values of the attributes aren’t easy to debug either:
+
+.. image:: /_static/assets/img/debug_properties.png
+
+More generally, looking at all the properties at a glance of a
+graphical object instance like ``Circle`` isn’t easy:
+
+.. image:: /_static/assets/img/debug_circle.png
+
+This module adds a ``p_<property>`` accessor for each ``<property>``
+attribute that is typed by a derived class of ``Property``.
+Import this module instead of ``scade.model.display`` to get access to
+SCADE Display Python API and to enable the accessors. For example:
+
+.. code::
+
+    # enable property accessors
+    # import scade.model.display as display
+    import ansys.scade.apitools.prop.sdyaccess as display
+
+The accessors provide a read/write access to all the flatten attributes of a property:
+self/inherited attributes as well as the attributes of the embedded sub-properties.
+References are not considered.
+
+For example, the table below shows the flatten attributes for some properties:
+
+.. list-table::
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - **Class**
+     - **Attributes**
+     - **Type**
+   * - PointProperty
+     - x, y
+     - Tuple[float, float]
+   * - PointTextureProp
+     - x, y, u, v
+     - Tuple[float, float, float, float]
+   * - PointArrayProp
+     - x, y
+     - Tuple[List[float], List[float]]
+   * - PointsProp
+     - point
+     - List[Tuple[float, float]]
+   * - InputParametersProp
+     - parameters
+     - List[Tuple[str, Representation]]
+   * - TextureProp
+     - horiz_align, vert_align, horiz_pattern, vert_pattern, texture_id
+     - Tuple[HorizAlignEnum, VertAlignEnum, float, float, int]
+   * - …
+     - …
+     - …
+
+The code of the former example is much simpler:
+
+.. code::
+
+    # create/set
+    circle.p_center = 20.0, 30.0
+    # get
+    x, y = circle.p_center
+
+The values are easier to debug:
+
+.. image:: /_static/assets/img/debug_properties_new.png
+   :align: left
+
+.. image:: /_static/assets/img/debug_circle_new.png
+   :align: left
+
+"""
+
 from typing import List, Tuple
 
 # allows importing this module instead of scade.model.display

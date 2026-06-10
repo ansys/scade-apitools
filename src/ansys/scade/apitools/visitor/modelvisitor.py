@@ -20,6 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""
+Visitor for SCADE Solutions for ARINC 661 definition files (2023 R1 to 2026 R1).
+"""
+
 import scade.model.a661.df as model
 from scade.model.common.traceability import Traceable
 

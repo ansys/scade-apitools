@@ -25,6 +25,11 @@ Visitor for SCADE Display models (from 2023 R1 to 2026 R1).
 
 The visitor corresponds to SCADE Display 2026 R1.
 It provides stubs for former releases.
+
+Note: this visitor does not consider the properties since they can be considered
+as scalar values, thanks to accessors. This might be a pain if we’re interested
+in visiting all the expressions for example.
+If you encounter such use cases, please enter an issue so that we remove the filter and get a complete visitor.
 """
 
 # required for supporting several versions
@@ -39,6 +44,7 @@ try:
 except ImportError:
     # provide stubs to fix type annotations and linter errors ONLY
     class FontDefinition:
+        """Stub for SCADE Display 2023 R1."""
         pass
 
     class FontTable:

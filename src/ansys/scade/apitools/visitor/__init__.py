@@ -20,7 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""Provides additional visitors."""
+"""
+Provides additional visitors.
+
+Visitors are a must have as soon as there are hierarchies.
+The visitors provided by this module have the same design as the one
+delivered with SCADE Suite: ``scade.model.suite.visitors.Visit``.
+
+In a few words, a visitor browses the entire hierarchy of an element.
+It is possible to derive a class that redefines the visiting functions of a given class.
+
+Available visitors and targeted Python modules:
+
+* ``DfVisitor``: ARINC 661 definition files (``scade.model.a661.df``)
+* ``SdyVisitor``: SCADE Display Specifications (``scade.model.display``)
+* ``StandardVisitor``: ARINC 661 standard (``scade.model.a661.standard``)
+"""
 
 from .a661visitor import (
     StandardVisitor as StandardVisitor,

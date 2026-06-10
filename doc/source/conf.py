@@ -56,6 +56,11 @@ html_theme_options = {
         "own_page_level": "function",
         "class_content": "both",  # documentation in https://sphinxdocs.ansys.com/version/stable/user-guide/autoapi.html
         'member_order': 'alphabetical',
+        'ignore': [
+            # ignore generated files that might be present in the development environments
+            '*/src/ansys/scade/apitools/visitor/backup/*',
+            '*/src/ansys/scade/apitools/prop/backup/*',
+        ],
     },
 }
 

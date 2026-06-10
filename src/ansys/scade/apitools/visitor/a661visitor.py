@@ -20,6 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""
+Visitor for SCADE Solutions for ARINC 661 standard files (2023 R1 to 2026 R1).
+
+The visitor corresponds to SCADE Display 2023 R1 standard, compatible up to
+SCADE 2026 R1. More precisely, the standard and its documentation has changed
+from 2023 R1 to 2026 R1 but the Python API remains identical.
+"""
+
 import scade.model.a661.df as model
 import scade.model.a661.standard as a661
 
