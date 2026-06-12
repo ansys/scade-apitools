@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?dom version="19.0" ?>
+
+<specification>
+    <IDE>
+        <project path="Properties.etp"/>
+        <ratio horizontal="1" vertical="1"/>
+    </IDE>
+    <symbology>
+        <dimension height="256" width="256"/>
+    </symbology>
+    <children>
+        <layer oid="a1a1fb9e-7c4c-475f-b9a6-8ac44d255dd6">
+            <pathFromRoot value=""/>
+            <declaration/>
+            <properties name="Circle">
+                <visible>
+                    <init>true</init>
+                </visible>
+                <origin>
+                    <x>
+                        <init>0.0</init>
+                    </x>
+                    <y>
+                        <init>0.0</init>
+                    </y>
+                </origin>
+                <id>
+                    <init>1</init>
+                </id>
+                <ratio horizontal="1" vertical="1"/>
+            </properties>
+            <children>
+                <circle oid="5c0e94df-916b-4de4-ac7a-948508eebbab">
+                    <pathFromRoot value="0"/>
+                    <properties name="circle">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <center>
+                            <x>
+                                <init>-15.0</init>
+                            </x>
+                            <y>
+                                <init>5.0</init>
+                            </y>
+                        </center>
+                        <radius>
+                            <init>31.0</init>
+                        </radius>
+                        <lineWidth>
+                            <init>0</init>
+                        </lineWidth>
+                        <lineStipple>
+                            <init>0</init>
+                        </lineStipple>
+                        <lineCap>
+                            <init>round</init>
+                        </lineCap>
+                        <haloing>
+                            <init>false</init>
+                        </haloing>
+                        <haloColor>
+                            <init>-1</init>
+                        </haloColor>
+                        <outlineColor>
+                            <init>32</init>
+                        </outlineColor>
+                        <outlineOpacity>
+                            <init>255</init>
+                        </outlineOpacity>
+                        <fillColor>
+                            <init>-1</init>
+                        </fillColor>
+                        <fillOpacity>
+                            <init>255</init>
+                        </fillOpacity>
+                        <polygonSmooth>
+                            <init>false</init>
+                        </polygonSmooth>
+                        <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                            <textureId>
+                                <init>-1</init>
+                            </textureId>
+                        </texture>
+                        <gradient>
+                            <init>-1</init>
+                        </gradient>
+                        <modulate>
+                            <init>false</init>
+                        </modulate>
+                    </properties>
+                </circle>
+            </children>
+        </layer>
+    </children>
+</specification>
+
+<!-- crc32 : 4067248586 -->
+

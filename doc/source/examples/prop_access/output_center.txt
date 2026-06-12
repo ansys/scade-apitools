@@ -1,0 +1,5 @@
+circle.center <PointProperty object>
+circle.center.x <RealProp object>
+circle.center.x.init -15.0
+circle.center.y.init 5.0
+circle.p_center (15.0, 6.0)

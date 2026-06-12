@@ -51,7 +51,7 @@ class SdyModel(PythonModel):
         super().prepare_types()
 
         # add additional properties to the types
-        assert isinstance(self.root, EPackage)
+        assert isinstance(self.root, EPackage)  # nosec B101  # addresses linter
         for type in self.root.e_classifiers:
             if isinstance(type, EDataType):
                 self.prepare_type(type)
