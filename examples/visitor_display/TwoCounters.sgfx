@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?dom version="19.0" ?>
+
+<specification>
+    <IDE>
+        <project path="TwoCounters.etp"/>
+        <ratio horizontal="1" vertical="1"/>
+    </IDE>
+    <symbology>
+        <dimension height="768" width="768"/>
+    </symbology>
+    <children>
+        <layer oid="875a5bff-b695-4f72-b5d7-c82ae7b15ddb">
+            <pathFromRoot value=""/>
+            <declaration>
+                <inputs>
+                    <input name="volt" oid="5fa6f3db-8dfe-46b4-b427-bd71649bc493" type="real">
+                        <init>0.0</init>
+                    </input>
+                    <input name="hertz" oid="7e7b7f4f-10c7-41a9-b264-b8c160af51f4" type="real">
+                        <init>0.0</init>
+                    </input>
+                    <input name="SwitchMode" oid="01346fe9-53af-4a56-9c2d-251ec9ad046b" type="Mode">
+                        <init>VOLT</init>
+                    </input>
+                </inputs>
+                <outputs>
+                    <output memory="false" name="MouseIn" oid="312917f7-69ce-4a8a-aa70-057aaf657195" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="false" name="InAreaWidth" oid="5fba4cc8-a2f8-40c0-998c-a7617bd68f82" type="real">
+                        <init>0.0</init>
+                    </output>
+                    <output memory="false" name="InAreaHeight" oid="fc6655ff-510e-4b13-b3d5-355eab2df2ba" type="real">
+                        <init>0.0</init>
+                    </output>
+                </outputs>
+            </declaration>
+            <properties name="symbology_layer">
+                <visible>
+                    <init>true</init>
+                </visible>
+                <origin>
+                    <x>
+                        <init>0.0</init>
+                    </x>
+                    <y>
+                        <init>0.0</init>
+                    </y>
+                </origin>
+                <id>
+                    <init>1</init>
+                </id>
+                <ratio horizontal="1" vertical="1"/>
+            </properties>
+            <children>
+                <referenceContainer oid="566ad0b5-7471-4731-83ee-ae3fdfb3b54a">
+                    <pathFromRoot value="0"/>
+                    <properties modular="false" name="Volt">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-178.0</init>
+                            </x>
+                            <y>
+                                <init>100.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="counter_ref.ogfx" path="Reference Objects"/>
+                        <crc value="2599602467"/>
+                        <inputParameters>
+                            <parameter control="false" name="value" oid="fedf1436-3879-48f1-b322-35c2c0896919" type="real">
+                                <expr>volt</expr>
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="unit" oid="8a4a23c8-3e3f-4287-99d0-cb2befed4958" representation="as_string" type="char^255">
+                                <init>[86,0]</init>
+                            </parameter>
+                            <parameter control="false" name="danger" oid="6fcc851d-3f7f-42c2-9283-90eb896ccc93" type="real">
+                                <init>90.0</init>
+                            </parameter>
+                            <parameter control="false" name="nominal" oid="73911e2b-8848-4070-b5ff-567557c20e24" type="real">
+                                <init>75.0</init>
+                            </parameter>
+                        </inputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="0b36fd7b-f390-4946-8a7b-8e1184f84834">
+                    <pathFromRoot value="1"/>
+                    <properties modular="false" name="Hertz">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>153.0</init>
+                            </x>
+                            <y>
+                                <init>100.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="counter_ref.ogfx" path="Reference Objects"/>
+                        <crc value="2599602467"/>
+                        <inputParameters>
+                            <parameter control="false" name="value" oid="fedf1436-3879-48f1-b322-35c2c0896919" type="real">
+                                <expr>hertz</expr>
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="unit" oid="8a4a23c8-3e3f-4287-99d0-cb2befed4958" representation="as_string" type="char^255">
+                                <init>[72,90,0]</init>
+                            </parameter>
+                            <parameter control="false" name="danger" oid="6fcc851d-3f7f-42c2-9283-90eb896ccc93" type="real">
+                                <init>75.0</init>
+                            </parameter>
+                            <parameter control="false" name="nominal" oid="73911e2b-8848-4070-b5ff-567557c20e24" type="real">
+                                <init>50.0</init>
+                            </parameter>
+                        </inputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="a87418ce-5eb2-478a-be2e-3ea30344d88e">
+                    <pathFromRoot value="2"/>
+                    <properties modular="false" name="InteractiveArea_ref">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>0.0</init>
+                            </x>
+                            <y>
+                                <init>-180.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="InteractiveArea_ref.ogfx" path="Reference Objects"/>
+                        <crc value="2752727967"/>
+                        <inputParameters>
+                            <parameter control="false" name="SwitchMode" oid="4f9fe092-5c13-46b2-8f49-bb2a1b15aba1" type="Mode">
+                                <expr>SwitchMode</expr>
+                                <init>VOLT</init>
+                            </parameter>
+                        </inputParameters>
+                        <outputParameters>
+                            <parameter name="InAreaHeight" oid="6eecd8a7-90af-4ee7-9508-d605a8943057" type="real">
+                                <expr>InAreaHeight</expr>
+                            </parameter>
+                            <parameter name="MouseIn" oid="cf32c60e-f1f4-4c7f-956f-e957a9fc9696" type="bool">
+                                <expr>MouseIn</expr>
+                            </parameter>
+                            <parameter name="InAreaWidth" oid="8e556af2-30d8-4153-ae1c-488c30be95c9" type="real">
+                                <expr>InAreaWidth</expr>
+                            </parameter>
+                        </outputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+            </children>
+        </layer>
+    </children>
+</specification>
+
+<!-- crc32 : 4095962561 -->
+

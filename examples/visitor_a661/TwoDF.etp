@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project id="1" oid_count="120">
+	<props>
+		<Prop id="1" name="@STUDIO:PRODUCT">
+			<value>UAPC</value>
+		</Prop>
+		<Prop id="3" name="@SDY:RELEASE">
+			<value>23.1</value>
+		</Prop>
+		<Prop id="4" name="@SDY:RATIO">
+			<value>20.0</value>
+			<value>20.0</value>
+		</Prop>
+		<Prop id="5" name="@SDY:DEFAULTCOLORTABLE">
+			<value>color_table.sct</value>
+		</Prop>
+		<Prop id="6" name="@SDY:DEFAULTLWTABLE">
+			<value>line_width_table.swt</value>
+		</Prop>
+		<Prop id="7" name="@SDY:DEFAULTLSTABLE">
+			<value>line_stipple_table.sst</value>
+		</Prop>
+		<Prop id="9" name="@SDY:FONTTABLE">
+			<value>font_table.sft</value>
+		</Prop>
+		<Prop id="19" name="@UAPC:PICTURESTABLE">
+			<value>picturesTable.xml</value>
+		</Prop>
+		<Prop id="20" name="@UAPC:SYMBOLSTABLE">
+			<value>symbolsTable.xml</value>
+		</Prop>
+		<Prop id="21" name="@UAPC:LINESTYLETABLE">
+			<value>linestylesTable.xml</value>
+		</Prop>
+		<Prop id="22" name="@UAPC:CONFFILE">
+			<value>a661.xml</value>
+		</Prop>
+		<Prop id="29" name="@UAPC:CHARSETENCODING">
+			<value>Ascii</value>
+		</Prop>
+		<Prop id="30" name="@UAPC:CONFLIB">
+			<value>$(SCADEDISPLAY_HOME)\config\lib\A661ServerUAPC.dll</value>
+		</Prop>
+		<Prop id="34" name="@UAPC:STYLESETLIB">
+			<value>stylesets.dll</value>
+		</Prop>
+		<Prop id="31" name="@SDY:FONTLIBRARY">
+			<value>Fonts.dll</value>
+		</Prop>
+		<Prop id="36" name="@UAPC:MSGCONNECTMODE">
+			<value>false</value>
+		</Prop>
+		<Prop id="39" name="@UAPC:STYLESETCAPACITIES">
+			<value>look_capacities.slc</value>
+		</Prop>
+		<Prop id="40" name="@UAPC:STYLESETDEFINITION">
+			<value>look_definition.sld</value>
+		</Prop>
+		<Prop id="47" name="@UAPC:DEFAULTSYMBOLCOLOR">
+			<value>1</value>
+		</Prop>
+		<Prop id="48" name="@UAPC:DEFAULTSYMBOLHALO">
+			<value>A661_FALSE</value>
+		</Prop>
+		<Prop id="50" name="@UAPC:USESERVERCONF">
+			<value>false</value>
+		</Prop>
+		<Prop id="52" name="@SDY:CONFTARGET">
+			<value>dfgen</value>
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="53" name="CONFIGURATIONS">
+			<value>51</value>
+		</Prop>
+		<Prop id="54" name="@SDY:CONFSOURCE">
+			<value>Two.sgfx</value>
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="55" name="@SDY:CONFOUTPUT">
+			<value>DF</value>
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="56" name="@UAPC:DFGENERATOR">
+			<value>dfgen67</value>
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="57" name="@UAPC:SERVERCONF">
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="58" name="@UAPC:BASENAME">
+			<value>Two%ID%</value>
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="60" name="REPCONFIGURATIONS">
+			<value>59</value>
+		</Prop>
+		<Prop id="61" name="@SDYREP:CONFSOURCE">
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="62" name="@SDY:@SDYREP:OUTPUT">
+			<value>%ModelName%_Report</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="63" name="@SDYREP:INTERNATIONALIZATION">
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="64" name="@SDYREP:AUTHORS">
+			<value>&lt;authors></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="65" name="@SDYREP:CLASSIFICATION">
+			<value>&lt;document classification></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="66" name="@SDYREP:COMPANYINFO">
+			<value>&lt;company></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="67" name="@SDYREP:DISTLIST">
+			<value>&lt;distribution list></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="68" name="@SDYREP:IMAGEPATH">
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="69" name="@SDYREP:LOGOPATH">
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="70" name="@SDYREP:BANNERPATH">
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="71" name="@SDYREP:SUMMARY">
+			<value>&lt;summary></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="72" name="@SDYREP:DATE">
+			<value>&lt;date></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="73" name="@SDYREP:DESCRIPTION">
+			<value>&lt;description></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="74" name="@SDYREP:INDEX">
+			<value>&lt;index></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="75" name="@SDYREP:ISSUE">
+			<value>&lt;issue number></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="76" name="@SDYREP:REFERENCE">
+			<value>&lt;reference></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="77" name="@SDYREP:REFERENCENB">
+			<value>&lt;reference number></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="78" name="@SDYREP:SUBTITLE">
+			<value>&lt;subtitle></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="79" name="@SDYREP:TITLE">
+			<value>&lt;title></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="80" name="@SDYREP:HEADERLEFT">
+			<value>$(ReferenceNr)
+$(CreatedDate)</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="81" name="@SDYREP:HEADERCENTER">
+			<value>$(IssueNr)</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="82" name="@SDYREP:HEADERRIGHT">
+			<value>$(PageNumbering)</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="83" name="@SDYREP:FOOTERLEFT">
+			<value></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="84" name="@SDYREP:FOOTERCENTER">
+			<value>&lt;Corporate Info></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="85" name="@SDYREP:FOOTERRIGHT">
+			<value></value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="86" name="@SDYREP:SUBMODELS">
+			<value>false</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="87" name="@SDYREP:SYMBOLS">
+			<value>false</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="88" name="@SDYREP:WIDGETSETS">
+			<value>false</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="89" name="@SDYREP:SCREENSHOTS">
+			<value>true</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="90" name="@SDYREP:RESOURCES">
+			<value>$(CONFIG)/default</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="91" name="@SDYREP:FORMAT">
+			<value>HTML</value>
+			<configuration>59</configuration>
+		</Prop>
+		<Prop id="92" name="@UAPC:CONNECTORSTABLE"/>
+	</props>
+	<roots>
+		<Folder id="11" extensions="sct;swt;sst;sft" name="Resource Files">
+			<elements>
+				<FileRef id="116" persistAs="$(SCADEDISPLAY_HOME)\templates\uapc\color_table.sct"/>
+				<FileRef id="117" persistAs="$(SCADEDISPLAY_HOME)\templates\uapc\font_table.sft"/>
+				<FileRef id="118" persistAs="$(SCADEDISPLAY_HOME)\templates\uapc\line_stipple_table.sst"/>
+				<FileRef id="119" persistAs="$(SCADEDISPLAY_HOME)\templates\uapc\line_width_table.swt"/>
+			</elements>
+		</Folder>
+		<Folder id="33" extensions="sdt;pdt;slc;sld;cnt" name="A661 Resource Files">
+			<elements>
+				<FileRef id="41" persistAs="$(SCADEDISPLAY_HOME)\templates\uapc\look_capacities.slc"/>
+				<FileRef id="42" persistAs="$(SCADEDISPLAY_HOME)\templates\uapc\look_definition.sld"/>
+			</elements>
+		</Folder>
+		<Folder id="23" extensions="xml" name="A661 Configuration Files">
+			<elements>
+				<FileRef id="25" persistAs="$(SCADEDISPLAY_HOME)\config\a661_description\Tables\picturesTable.xml">
+					<props>
+						<Prop id="43" name="@SDY:FILETYPE">
+							<value>a661nativePictureTable</value>
+						</Prop>
+					</props>
+				</FileRef>
+				<FileRef id="26" persistAs="$(SCADEDISPLAY_HOME)\config\a661_description\Tables\symbolsTable.xml">
+					<props>
+						<Prop id="44" name="@SDY:FILETYPE">
+							<value>a661nativeSymbolTable</value>
+						</Prop>
+					</props>
+				</FileRef>
+				<FileRef id="27" persistAs="$(SCADEDISPLAY_HOME)\config\a661_description\Tables\linestylesTable.xml">
+					<props>
+						<Prop id="45" name="@SDY:FILETYPE">
+							<value>a661linestyle</value>
+						</Prop>
+					</props>
+				</FileRef>
+				<FileRef id="28" persistAs="$(SCADEDISPLAY_HOME)\config\a661_description\a661.xml">
+					<props>
+						<Prop id="46" name="@SDY:FILETYPE">
+							<value>a661standardConf</value>
+						</Prop>
+					</props>
+				</FileRef>
+			</elements>
+		</Folder>
+		<Folder id="31" extensions="sgfx;ogfx;pgfx" name="Model Files">
+			<elements>
+				<FileRef id="120" persistAs="Two.sgfx"/>
+			</elements>
+		</Folder>
+		<Folder id="32" extensions="sdfx" name="Symbol Model Files"/>
+	</roots>
+	<configurations>
+		<Configuration id="51" name="DF Generation"/>
+		<Configuration id="59" name="Reporter"/>
+	</configurations>
+</Project>
