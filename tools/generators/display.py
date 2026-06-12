@@ -31,6 +31,7 @@ from pathlib import Path
 
 from sdytools import SdyModel
 from svcaccessor import AccessDeclarationsService, AccessFunctionsService
+from svctest import ConsistencyCheckService
 
 # from svcclass import ClassService
 # from svcenum import EnumService
@@ -55,6 +56,7 @@ def init_module(manager: IManager):
         VisitorService(),
         AccessFunctionsService(),
         AccessDeclarationsService(),
+        ConsistencyCheckService(),
     ]
     manager.add_services(services)
     manager.activate_services([_.NAME for _ in services])
@@ -79,7 +81,10 @@ model = SdyModel(False, '', model_dir / 'sdy.ecore', 'sdy', library=False)
 go.add_models([emodel, common, model])
 # visitor file is not the default
 path_visitor = target_dir / 'visitor' / 'sdyvisitor.py'
-go.add_user_files([path_visitor])
+# consistency check does not have a default file
+test_dir = Path(__file__).parent.parent.parent / 'tests'
+path_test = test_dir / 'test_sdy_access.py'
+go.add_user_files([path_visitor, path_test])
 
 go.go()
 print('...done')

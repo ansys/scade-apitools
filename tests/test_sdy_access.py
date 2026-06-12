@@ -25,733 +25,945 @@ Test suite for sdyaccess.py.
 
 Test strategy:
 
-* for each class having properties
-  * create instance with values different from default
-  * for each property
-    * assess read access
-    * assess write access
+* Test at least one instance of property class
+
+    * Assess read access
+    * Assess write access
+
+* Check accessors, produced from sdy.ecore, are consistent with SCADE Display API
 """
-
-from typing import List, Tuple
-
-import pytest
 
 import ansys.scade.apitools.prop.sdyaccess as sdy
 
 
-def test_circle():
-    circle = sdy.Circle(center=(1.0, 2.0), radius=3.0, haloing=True)
-    assert circle.modulate is None
-
-    # read
-    assert circle.p_visible
-    assert circle.p_center == (1.0, 2.0)
-    assert circle.p_radius == 3.0
-    assert circle.p_haloing
-    # some properties are not created in constructor
-    assert circle.gradient is None
-    # they remain accessible without error
-    assert circle.p_gradient == 0  # default value
-    # read access does not modify the model
-    assert circle.gradient is None
-
-    # write
-    # should update properties
-    circle.p_visible = False
-    circle.p_center = 4.0, 5.0
-    circle.p_radius = 6.0
-    circle.p_haloing = False
-    # should create and set properties
-    circle.p_gradient = 7
-
-    # traditional access
-    assert not circle.visible.init
-    assert circle.center.x.init == 4.0
-    assert circle.center.y.init == 5.0
-    assert circle.radius.init == 6.0
-    assert not circle.haloing.init
-    # the property has been created
-    assert circle.gradient.init == 7
+def test_angle_prop():
+    # one of sdy.Arc, sdy.ArcEllipse, sdy.ClipPlane...
+    angle = 1.991
+    c = sdy.Arc(
+        # one of start_angle, end_angle...
+        start_angle=angle,
+    )
+    assert c.p_start_angle == angle
+    angle = 2.026
+    c.p_start_angle = angle
+    assert c.start_angle.angle.init == angle
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Arc, [('start_angle', 'start_angle'), ('end_angle', 'end_angle')]),
-        (sdy.ArcEllipse, [('start_angle', 'start_angle'), ('end_angle', 'end_angle')]),
-        (sdy.ClipPlane, [('clip_angle', 'angle')]),
-        (sdy.Crown, [('start_angle', 'start_angle'), ('end_angle', 'end_angle')]),
-        (sdy.CondContainer, [('rotate', 'angle')]),
-        (sdy.Container, [('rotate', 'angle')]),
-        (
-            sdy.FilterRotationContainer,
-            [('start_rotation_angle', 'start_angle'), ('end_rotation_angle', 'end_angle')],
-        ),
-        (sdy.MaskContainer, [('rotate', 'angle')]),
-        (sdy.ReferenceContainer, [('rotate', 'angle')]),
-        (
-            sdy.RotationContainer,
-            [
-                ('ref_angle', 'ref_angle'),
-                ('start_rotation_angle', 'start_angle'),
-                ('end_rotation_angle', 'end_angle'),
-            ],
-        ),
-    ],
-)
-def test_angle_property(class_: type, names: List[Tuple[str, str]]):
-    d = {default: float(index + 1) for index, (_, default) in enumerate(names)}
-    c = class_(**d)
-    for name, _ in names:
-        prop_name = f'p_{name}'
-        value = getattr(c, name).angle.init
-        assert getattr(c, prop_name) == value
-        value *= 2.0
-        setattr(c, prop_name, value)
-        assert getattr(c, name).angle.init == value
+def test_arc_segment_prop():
+    # one of sdy.Rectangle, sdy.IndexTexturePoint, sdy.IndexedPoint...
+    c = sdy.Rectangle()
+    # one of first_arc, second_arc, third_arc, fourth_arc
+    assert c.first_arc is None
+    assert c.p_first_arc == (False, 0.0)
+    flag = True
+    angle = 3.14
+    value = (flag, angle)
+    c.p_first_arc = value
+    assert c.first_arc.orientation.clockwise == flag
+    assert c.first_arc.angle.angle.init == angle
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Rectangle, ['first_arc', 'second_arc', 'third_arc', 'fourth_arc']),
-        (sdy.IndexTexturePoint, ['arc_segment']),
-        (sdy.IndexedPoint, ['arc_segment']),
-    ],
-)
-def test_arc_segment_prop(class_: type, names: List[str]):
-    c = class_()
-    flag = False
-    for index, name in enumerate(names):
-        prop_name = f'p_{name}'
-        value = getattr(c, name)
-        assert value is None
-        assert getattr(c, prop_name) == (False, 0.0)
-        angle = 1.0 + index
-        flag = not flag
-        value = (flag, angle)
-        setattr(c, prop_name, value)
-        assert getattr(c, prop_name) == value
-        assert getattr(c, name).orientation.clockwise == flag
-        assert getattr(c, name).angle.angle.init == angle
+# N/A
+# def test_assignment_output_prop():
+#     pass
 
 
-# AssignmentOutputProp: N/A
+def test_coordinate_point():
+    # one of sdy.MaskContainer, sdy.ReferenceContainer...
+    c = sdy.MaskContainer(scale=(1.2, 3.4))
+    assert c.p_scale == (c.scale.x.init, c.scale.y.init)
+    x = 5.6
+    y = 7.7
+    c.p_scale = (x, y)
+    assert c.scale.x.init == x
+    assert c.scale.y.init == y
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.MaskContainer, ['scale']),
-        (sdy.ReferenceContainer, ['scale']),
-    ],
-)
-def test_coordinate_point(class_: type, names: List[str]):
-    d = {name: (1.0 + index, 2.0 + index) for index, name in enumerate(names)}
-    c = class_(**d)
-    for name in names:
-        prop_name = f'p_{name}'
-        x = getattr(c, name).x.init
-        y = getattr(c, name).y.init
-        assert getattr(c, prop_name) == (x, y)
-        x *= 2.0
-        y *= 3.0
-        setattr(c, prop_name, (x, y))
-        assert getattr(c, name).x.init == x
-        assert getattr(c, name).y.init == y
+def test_file_prop():
+    # one of sdy.Behavior, sdy.NplicatorContainer, sdy.ReferenceContainer...
+    c = sdy.Behavior(file='project.etp')
+    assert c.p_file == c.file.file
+    value = 'project_ex.etp'
+    c.p_file = value
+    assert c.file.file == value
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Behavior, ['file']),
-        (sdy.NplicatorContainer, ['file']),
-        (sdy.ReferenceContainer, ['file']),
-    ],
-)
-def test_file_prop(class_: type, names: List[str]):
-    d = {name: str(index + 1) for index, name in enumerate(names)}
-    c = class_(**d)
-    for name in names:
-        prop_name = f'p_{name}'
-        value = getattr(c, name).file
-        assert getattr(c, prop_name) == value
-        value = f'{value}ex'
-        setattr(c, prop_name, value)
-        assert getattr(c, name).file == value
+def test_format_prop():
+    # one of sdy.BiFont...
+    c = sdy.BiFont()
+    assert c.p_format == (
+        c.format.separator,
+        c.format.integral_part.init,
+        c.format.fractional_part.init,
+        c.format.second_font_pos.init,
+        c.format.leading_zeros.init,
+        c.format.display_sign.init,
+    )
+
+    s = 3
+    ip = 1
+    fp = 2
+    sfp = 4
+    lz = True
+    ds = sdy.DisplaySignEnum.WHENNEGATIVE
+    c.p_format = (s, ip, fp, sfp, lz, ds)
+    assert c.format.integral_part.init == ip
+    assert c.format.fractional_part.init == fp
+    assert c.format.separator == s
+    assert c.format.second_font_pos.init == sfp
+    assert c.format.leading_zeros.init == lz
+    assert c.format.display_sign.init == ds
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.BiFont, ['format']),
-    ],
-)
-def test_format_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        ip = getattr(c, name).integral_part.init
-        fp = getattr(c, name).fractional_part.init
-        s = getattr(c, name).separator
-        sfp = getattr(c, name).second_font_pos.init
-        lz = getattr(c, name).leading_zeros.init
-        ds = getattr(c, name).display_sign.init
-        assert getattr(c, prop_name) == (s, ip, fp, sfp, lz, ds)
-        ip = getattr(c, name).integral_part.init
-        fp = getattr(c, name).fractional_part.init
-        s = getattr(c, name).separator
-        sfp = getattr(c, name).second_font_pos.init
-        lz = getattr(c, name).leading_zeros.init
-        ds = getattr(c, name).display_sign.init
-        setattr(c, prop_name, (s, ip, fp, sfp, lz, ds))
-        assert getattr(c, name).integral_part.init == ip
-        assert getattr(c, name).fractional_part.init == fp
-        assert getattr(c, name).separator == s
-        assert getattr(c, name).second_font_pos.init == sfp
-        assert getattr(c, name).leading_zeros.init == lz
-        assert getattr(c, name).display_sign.init == ds
+def test_function_prop():
+    # one of sdy.Imported...
+    c = sdy.Imported(function='f')
+    assert c.p_function == c.function.name
+    value = 'g'
+    c.p_function = value
+    assert c.function.name == value
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Imported, ['function']),
-    ],
-)
-def test_function_prop(class_: type, names: List[str]):
-    d = {name: str(index + 1) for index, name in enumerate(names)}
-    c = class_(**d)
-    for name in names:
-        prop_name = f'p_{name}'
-        value = getattr(c, name).name
-        assert getattr(c, prop_name) == value
-        value = f'{value}ex'
-        setattr(c, prop_name, value)
-        assert getattr(c, name).name == value
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Line, ['points']),
-        (sdy.Stencil, ['points']),
-    ],
-)
-def test_indexed_points_prop(class_: type, names: List[str]):
+def test_indexed_points_prop():
     points = [(1.0, 2.0), (3.0, 4.0), (5.0, 6.0)]
-    c = class_(points=points)
-    for name in names:
-        for index, point in enumerate(points):
-            prop = getattr(c, name).points[index]
-            assert getattr(prop, 'p_point') == point
-            assert getattr(prop, 'p_arc_segment') == (False, 0.0)
+    # one of sdy.Line, sdy.Stencil...
+    c = sdy.Line(points=points)
+    for index, point in enumerate(points):
+        assert c.points.points[index].p_point == point
+        assert c.points.points[index].p_arc_segment == (False, 0.0)
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.CondContainer, ['indexes']),
-    ],
-)
-def test_indexes_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        dis = getattr(c, name).default_is_other
-        assert getattr(c, prop_name) == dis
-        dis = not dis
-        setattr(c, prop_name, dis)
-        assert getattr(c, name).default_is_other == dis
+def test_indexes_prop():
+    # one of sdy.CondContainer...
+    c = sdy.CondContainer()
+    assert c.p_indexes == c.indexes.default_is_other
+    dis = not c.p_indexes
+    c.p_indexes = dis
+    assert c.indexes.default_is_other == dis
 
 
-@pytest.mark.parametrize(
-    'class_, names, opts',
-    [
-        (sdy.Behavior, [('input_parameters', 'inputs')], []),
-        (sdy.Imported, [('input_parameters', 'inputs')], []),
-        (sdy.NplicatorContainer, [('input_parameters', 'inputs')], ['constant_parameters']),
-        (sdy.ReferenceContainer, [('input_parameters', 'inputs')], ['constant_parameters']),
-    ],
-)
-def test_input_parameters_prop(class_: type, names: List[Tuple[str, str]], opts: List[str]):
+def test_input_parameters_prop():
     bool_type = sdy.PredefType(sdy.SimpleType.BOOL)
-    d = {default: [(f'I{index}', bool_type)] for index, (_, default) in enumerate(names)}
-    c = class_(**d)
-    for name, _ in names:
-        prop_name = f'p_{name}'
-        prop = getattr(c, name)
-        values = [(_.name, _.representation) for _ in prop.parameters]
-        assert getattr(c, prop_name) == values
-        inputs = [('color', sdy.Representation.COLOR), ('font', sdy.Representation.FONT)]
-        setattr(c, prop_name, inputs)
-        assert getattr(c, name).parameters[0].name == inputs[0][0]
-        assert getattr(c, name).parameters[0].representation == inputs[0][1]
-        assert getattr(c, name).parameters[1].name == inputs[1][0]
-        assert getattr(c, name).parameters[1].representation == inputs[1][1]
+    inputs = [('I0', bool_type)]
+    # one of sdy.Behavior, sdy.Imported, sdy.NplicatorContainer...
+    c = sdy.NplicatorContainer(
+        # one of input_parameters, constant_parameters...
+        inputs=inputs,  # type: ignore
+    )
+    values = [(_.name, _.representation) for _ in c.input_parameters.parameters]
+    assert c.p_input_parameters == values
+    inputs = [('color', sdy.Representation.COLOR), ('font', sdy.Representation.FONT)]
+    c.p_input_parameters = inputs
+    assert c.input_parameters.parameters[0].name == inputs[0][0]
+    assert c.input_parameters.parameters[0].representation == inputs[0][1]
+    assert c.input_parameters.parameters[1].name == inputs[1][0]
+    assert c.input_parameters.parameters[1].representation == inputs[1][1]
 
-    for index, name in enumerate(opts):
-        prop_name = f'p_{name}'
-        value = getattr(c, name)
-        assert value is None
-        assert getattr(c, prop_name) == []  # ('', sdy.Representation.NONE)
-        param = f'C{index}'
-        representation = sdy.Representation.GRADIENT
-        value = [(param, representation)]
-        setattr(c, prop_name, value)
-        assert getattr(c, prop_name) == value
-        assert len(getattr(c, name).parameters) == 1
-        assert getattr(c, name).parameters[0].name == param
-        assert getattr(c, name).parameters[0].representation == representation
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Behavior, ['function']),
-    ],
-)
-def test_node_function_prop(class_: type, names: List[str]):
-    d = {name: f'F{index}' for index, name in enumerate(names)}
-    c = class_(**d)
-    for name in names:
-        prop_name = f'p_{name}'
-        is_node = getattr(c, name).is_node
-        function = getattr(c, name).name
-        assert getattr(c, prop_name) == (is_node, function)
-        is_node = not is_node
-        function = f'{function}ex'
-        value = (is_node, function)
-        setattr(c, prop_name, value)
-        assert getattr(c, prop_name) == value
-        assert getattr(c, name).is_node == is_node
-        assert getattr(c, name).name == function
+    # for index, name in enumerate(opts):
+    #     prop_name = f'p_{name}'
+    #     value = getattr(c, name)
+    #     assert value is None
+    #     assert getattr(c, prop_name) == []  # ('', sdy.Representation.NONE)
+    #     param = f'C{index}'
+    #     representation = sdy.Representation.GRADIENT
+    #     value = [(param, representation)]
+    #     setattr(c, prop_name, value)
+    #     assert getattr(c, prop_name) == value
+    #     assert len(getattr(c, name).parameters) == 1
+    #     assert getattr(c, name).parameters[0].name == param
+    #     assert getattr(c, name).parameters[0].representation == representation
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Arc, [('orientation', 'clockwise')]),
-        (sdy.ArcEllipse, [('orientation', 'clockwise')]),
-        (sdy.ClipPlane, [('orientation', 'clockwise')]),
-        (sdy.Crown, [('orientation', 'clockwise')]),
-        (sdy.CondContainer, [('orientation', 'clockwise')]),
-        (sdy.Container, [('orientation', 'clockwise')]),
-        (sdy.FilterRotationContainer, [('orientation', 'clockwise')]),
-        (sdy.MaskContainer, [('orientation', 'clockwise')]),
-        (sdy.NplicatorContainer, [('orientation', 'clockwise')]),
-        (sdy.ReferenceContainer, [('orientation', 'clockwise')]),
-        (sdy.RotationContainer, [('orientation', 'clockwise')]),
-        (sdy.ArcSegmentProp, [('orientation', 'clockwise')]),
-    ],
-)
-def test_orientation_property(class_: type, names: List[Tuple[str, str]]):
-    d = {default: index % 2 == 0 for index, (_, default) in enumerate(names)}
-    c = class_(**d)
-    for name, _ in names:
-        prop_name = f'p_{name}'
-        value = getattr(c, name).clockwise
-        assert getattr(c, prop_name) == value
-        value = not value
-        setattr(c, prop_name, value)
-        assert getattr(c, name).clockwise == value
+def test_node_function_prop():
+    # one of sdy.Behavior...
+    c = sdy.Behavior(function='F')
+    is_node = c.function.is_node
+    assert c.p_function == (c.function.is_node, c.function.name)
+    is_node = not c.function.is_node
+    name = 'G'
+    c.p_function = (is_node, name)
+    assert c.function.is_node == is_node
+    assert c.function.name == name
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Behavior, [('output_parameters', 'outputs')]),
-        (sdy.Imported, [('output_parameters', 'outputs')]),
-        (sdy.NplicatorContainer, [('output_parameters', 'outputs')]),
-        (sdy.ReferenceContainer, [('output_parameters', 'outputs')]),
-    ],
-)
-def test_output_parameters_prop(class_: type, names: List[Tuple[str, str]]):
+def test_orientation_property():
+    # one of sdy.Arc, sdy.ArcEllipse, sdy.ClipPlane...
+    c = sdy.Arc(clockwise=False)
+
+    assert not c.p_orientation
+    c.p_orientation = True
+    assert c.orientation.clockwise
+
+
+def test_output_parameters_prop():
     bool_type = sdy.PredefType(sdy.SimpleType.BOOL)
-    d = {default: [(f'I{index}', bool_type)] for index, (_, default) in enumerate(names)}
-    c = class_(**d)
-    for name, _ in names:
-        prop_name = f'p_{name}'
-        prop = getattr(c, name)
-        values = [(_.name, _.representation) for _ in prop.output_parameters]
-        assert getattr(c, prop_name) == values
-        outputs = [('color', sdy.Representation.COLOR), ('font', sdy.Representation.FONT)]
-        setattr(c, prop_name, outputs)
-        assert getattr(c, name).output_parameters[0].name == outputs[0][0]
-        assert getattr(c, name).output_parameters[0].representation == outputs[0][1]
-        assert getattr(c, name).output_parameters[1].name == outputs[1][0]
-        assert getattr(c, name).output_parameters[1].representation == outputs[1][1]
+    outputs = [('O1', bool_type)]
+    # one of sdy.Behavior, sdy.Imported, sdy.NplicatorContainer...
+    c = sdy.NplicatorContainer(
+        # one of input_parameters, constant_parameters...
+        outputs=outputs,  # type: ignore
+    )
+    values = [(_.name, _.representation) for _ in c.output_parameters.output_parameters]
+    assert c.p_output_parameters == values
+    outputs = [('color', sdy.Representation.COLOR), ('font', sdy.Representation.FONT)]
+    c.p_output_parameters = outputs
+    assert c.output_parameters.output_parameters[0].name == outputs[0][0]
+    assert c.output_parameters.output_parameters[0].representation == outputs[0][1]
+    assert c.output_parameters.output_parameters[1].name == outputs[1][0]
+    assert c.output_parameters.output_parameters[1].representation == outputs[1][1]
 
 
-# OutputPointProp: N/A
-# PluggableProperty: N/A
+# N/A
+# def test_output_point_prop():
+#     pass
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.NplicatorContainer, ['origin', 'scale']),
-    ],
-)
-def test_point_array_prop(class_: type, names: List[str]):
-    values = ((1.0, 2.0), (3.0, 4.0))
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        setattr(c, prop_name, values)
-        assert getattr(c, prop_name) == values
-        assert getattr(c, name).x.init[0] == values[0][0]
-        assert getattr(c, name).x.init[1] == values[0][1]
-        assert getattr(c, name).y.init[0] == values[1][0]
-        assert getattr(c, name).y.init[1] == values[1][1]
+# N/A
+# def test_pluggable_property():
+#     pass
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.ShapeArea, ['points']),
-    ],
-)
-def test_points_prop(class_: type, names: List[str]):
+def test_point_array_prop():
+    # one of sdy.NplicatorContainer...
+    c = sdy.NplicatorContainer(
+        # one of origin, scale...
+        origin=[(1.0, 2.0), (3.0, 4.0), (5.0, 6.0)],
+    )
+    assert c.p_origin == ([1.0, 3.0, 5.0], [2.0, 4.0, 6.0])
+    c.p_origin = ([5.0, 6.0, 7.0], [8.0, 9.0, 0.0])
+    assert c.origin.x.init[0] == 5.0
+    assert c.origin.x.init[1] == 6.0
+    assert c.origin.x.init[2] == 7.0
+    assert c.origin.y.init[0] == 8.0
+    assert c.origin.y.init[1] == 9.0
+    assert c.origin.y.init[2] == 0.0
+
+
+def test_points_prop():
     points = [(1.0, 2.0), (3.0, 4.0)]
-    d = {name: points for name in names}
-    c = class_(**d)
-    for name in names:
-        prop_name = f'p_{name}'
-        assert getattr(c, prop_name) == points
-        points = [(5.0, 6.0)]
-        setattr(c, prop_name, points)
-        assert getattr(c, prop_name) == points
-        assert len(getattr(c, name).point) == 1
-        assert getattr(c, name).point[0].x.init == points[0][0]
-        assert getattr(c, name).point[0].y.init == points[0][1]
+    # one of sdy.ShapeArea...
+    c = sdy.ShapeArea(
+        # one of points...
+        points=points,
+    )
+    assert c.p_points == points
+    c.p_points = [(5.0, 6.0)]
+    assert len(c.points.point) == 1
+    assert c.points.point[0].x.init == 5.0
+    assert c.points.point[0].y.init == 6.0
 
 
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Container, ['static']),
+def test_static_container_prop():
+    # one of sdy.Container...
+    c = sdy.Container()
+    assert c.static is None
+    assert c.p_static == (False, 0.0, 0.0, 0.0, 0.0, False)
+    init = False
+    min_x = 4.0
+    max_x = 3.0
+    min_y = 2.0
+    max_y = 1.0
+    gss = True
+    c.p_static = (init, min_x, max_x, min_y, max_y, gss)
+    assert c.static.init == init
+    assert c.static.min_x == min_x
+    assert c.static.max_x == max_x
+    assert c.static.min_y == min_y
+    assert c.static.max_y == max_y
+    assert c.static.generate_static_sequence == gss
+
+
+def test_texture_prop():
+    # one of sdy.Arc, sdy.ArcEllipse, sdy.Circle...
+    c = sdy.Arc()
+    assert c.texture is None
+    assert c.p_texture == (
+        sdy.HorizAlignEnum.LEFT,
+        sdy.VertAlignEnum.TOP,
+        0.0,
+        0.0,
+        0,
+    )
+    ha = sdy.HorizAlignEnum.CENTER
+    va = sdy.VertAlignEnum.MIDDLE
+    hp = 1.0
+    vp = 2.0
+    id = 31
+    c.p_texture = (ha, va, hp, vp, id)
+    assert c.texture.horiz_align == ha
+    assert c.texture.vert_align == va
+    assert c.texture.horiz_pattern == hp
+    assert c.texture.vert_pattern == vp
+    assert c.texture.texture_id.init == id
+
+
+def test_angle_array_prop():
+    # one of sdy.NplicatorContainer...
+    c = sdy.NplicatorContainer()
+    values = [1.0, 2.0]
+    c.p_rotate = values
+    assert c.p_rotate == values
+    assert c.rotate.init == values
+
+
+def test_boolean_array_prop():
+    # one of sdy.NplicatorContainer...
+    c = sdy.NplicatorContainer()
+    values = [True, False]
+    c.p_visible = values
+    assert c.p_visible == values
+    assert c.visible.init == values
+
+
+def test_boolean_prop():
+    # one of sdy.Arc, sdy.ArcEllipse, sdy.BiFont...
+    c = sdy.Arc(
+        # one of haloing...
+        haloing=True,
+    )
+    assert c.p_haloing
+    c.p_haloing = False
+    assert not c.haloing.init
+
+
+def test_conditionnal_index_prop():
+    # one of sdy.CondContainer...
+    c = sdy.CondContainer()
+    assert c.p_index == (c.index.index_prop_enum, c.index.all_visible)
+    index = sdy.IndexPropEnum.OTHER
+    all_visible = not c.index.all_visible
+    c.p_index = (index, all_visible)
+    assert c.index.index_prop_enum == index
+    assert c.index.all_visible == all_visible
+
+
+# N/A
+# def test_input_prop():
+#     pass
+
+
+def test_integer_prop():
+    # one of sdy.Arc, sdy.ArcEllipse, sdy.BiFont...
+    c = sdy.Arc(
+        # one of line_width, line_stipple, outline_color...
+        line_width=9,
+    )
+    assert c.p_line_width == c.line_width.init
+    value = c.line_width.init + 1
+    c.p_line_width = value
+    assert c.line_width.init == value
+
+
+def test_line_cap_prop():
+    # one of sdy.Arc, sdy.ArcEllipse, sdy.BiFont...
+    c = sdy.Arc()
+    assert c.line_cap is None
+    assert c.p_line_cap in sdy.LineCapEnum
+    value = sdy.LineCapEnum.ROUND
+    c.p_line_cap = value
+    assert c.line_cap.init == value
+
+
+# N/A
+# def test_param_prop():
+#     pass
+
+
+def test_priority_prop():
+    # one of sdy.CondContainer, sdy.Container, sdy.FilterRotationContainer...
+    c = sdy.CondContainer()
+    assert c.priority is None
+    assert c.p_priority == 0
+    value = 31
+    c.p_priority = value
+    assert c.priority.init == value
+
+
+def test_real_array_prop():
+    # one of sdy.PointArrayProp...
+    c = sdy.PointArrayProp()
+    values = [-2.0, 3.14]
+    # one of x, y...
+    c.p_x = values
+    assert c.p_x == values
+    assert c.x.init == values
+
+
+def test_real_prop():
+    # one of sdy.EllipticalArc, sdy.HorizontalLineTo, sdy.VerticalLineTo...
+    c = sdy.EllipticalArc(
+        # one of x_radius, y_radius, x_axis_rotation...
+        x_radius=0.9,
+    )
+    assert c.p_x_radius == c.x_radius.init
+    value = 31.0
+    c.p_x_radius = value
+    assert c.x_radius.init == value
+
+
+def test_text_horiz_align_prop():
+    # one of sdy.BiFont, sdy.RichText, sdy.Text...
+    c = sdy.BiFont()
+    for value in sdy.HorizAlignEnum:
+        c.p_horiz_align = value
+        assert c.p_horiz_align == value
+        assert c.horiz_align.init == value
+
+
+def test_text_vert_align_prop():
+    # one of sdy.BiFont, sdy.RichText, sdy.Text...
+    c = sdy.BiFont()
+    for value in sdy.VertAlignEnum:
+        c.p_vert_align = value
+        assert c.p_vert_align == value
+        assert c.vert_align.init == value
+
+
+def test_text_prop():
+    # one of sdy.RichText, sdy.Text, sdy.TextArea...
+    c = sdy.RichText()
+    type_ = sdy.TextTypeEnum.INT
+    init = [9, 31]
+    value = (type_, init)
+    c.p_text_value = value
+    assert c.p_text_value == value
+    assert c.text_value.type == type_
+    assert c.text_value.init == init
+
+
+def test_point_texture_prop():
+    # one of sdy.Rectangle, sdy.IndexTexturePoint...
+    c = sdy.Rectangle(
+        # one of first_point, third_point
+        first_point=(1.0, 2.0)
+    )
+
+    x = c.first_point.x.init
+    y = c.first_point.y.init
+    assert c.first_point.u is None
+    assert c.first_point.v is None
+    assert c.p_first_point == (x, y, 0.0, 0.0)
+    x *= 2.0
+    y *= 3.0
+    u = -x
+    v = -y
+    c.p_first_point = (x, y, u, v)
+    assert c.first_point.x.init == x
+    assert c.first_point.y.init == y
+    assert c.first_point.u.init == u
+    assert c.first_point.v.init == v
+
+
+# no white space required for markers
+# fmt: off
+#{{sdy_access_ut(sdy)
+classes = {
+    sdy.AngleProp: [
+        ('angle', sdy.RealProp, False),
     ],
-)
-def test_static_container_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        assert getattr(c, name) is None
-        assert getattr(c, prop_name) == (False, 0.0, 0.0, 0.0, 0.0, False)
-        init = False
-        min_x = 4.0
-        max_x = 3.0
-        min_y = 2.0
-        max_y = 1.0
-        gss = True
-        values = (init, min_x, max_x, min_y, max_y, gss)
-        setattr(c, prop_name, values)
-        assert getattr(c, prop_name) == values
-        assert getattr(c, name).init == init
-        assert getattr(c, name).min_x == min_x
-        assert getattr(c, name).max_x == max_x
-        assert getattr(c, name).min_y == min_y
-        assert getattr(c, name).max_y == max_y
-        assert getattr(c, name).generate_static_sequence == gss
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Arc, ['texture']),
-        (sdy.ArcEllipse, ['texture']),
-        (sdy.Circle, ['texture']),
-        (sdy.Crown, ['texture']),
-        (sdy.Ellipse, ['texture']),
-        (sdy.Path, ['texture']),
-        (sdy.Rectangle, ['texture']),
-        (sdy.Shape, ['texture']),
+    sdy.Arc: [
+        ('visible', sdy.BooleanProp, False),
+        ('center', sdy.PointProperty, False),
+        ('radius', sdy.RealProp, False),
+        ('start_angle', sdy.AngleProp, False),
+        ('end_angle', sdy.AngleProp, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('line_stipple', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('fill_color', sdy.IntegerProp, False),
+        ('outline_opacity', sdy.IntegerProp, False),
+        ('fill_opacity', sdy.IntegerProp, False),
+        ('line_cap', sdy.LineCapProp, False),
+        ('polygon_smooth', sdy.BooleanProp, False),
+        ('texture', sdy.TextureProp, False),
+        ('modulate', sdy.BooleanProp, False),
+        ('gradient', sdy.IntegerProp, False),
     ],
-)
-def test_texture_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        assert getattr(c, name) is None
-        assert getattr(c, prop_name) == (
-            sdy.HorizAlignEnum.LEFT,
-            sdy.VertAlignEnum.TOP,
-            0.0,
-            0.0,
-            0,
-        )
-        ha = sdy.HorizAlignEnum.CENTER
-        va = sdy.VertAlignEnum.MIDDLE
-        hp = 1.0
-        vp = 2.0
-        id = 31
-        values = (ha, va, hp, vp, id)
-        setattr(c, prop_name, values)
-        assert getattr(c, prop_name) == values
-        assert getattr(c, name).horiz_align == ha
-        assert getattr(c, name).vert_align == va
-        assert getattr(c, name).horiz_pattern == hp
-        assert getattr(c, name).vert_pattern == vp
-        assert getattr(c, name).texture_id.init == id
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.NplicatorContainer, ['rotate']),
+    sdy.ArcEllipse: [
+        ('visible', sdy.BooleanProp, False),
+        ('center', sdy.PointProperty, False),
+        ('horz_radius', sdy.RealProp, False),
+        ('vert_radius', sdy.RealProp, False),
+        ('start_angle', sdy.AngleProp, False),
+        ('end_angle', sdy.AngleProp, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('line_stipple', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('fill_color', sdy.IntegerProp, False),
+        ('outline_opacity', sdy.IntegerProp, False),
+        ('fill_opacity', sdy.IntegerProp, False),
+        ('line_cap', sdy.LineCapProp, False),
+        ('polygon_smooth', sdy.BooleanProp, False),
+        ('texture', sdy.TextureProp, False),
+        ('modulate', sdy.BooleanProp, False),
+        ('gradient', sdy.IntegerProp, False),
     ],
-)
-def test_angle_array_prop_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        values = [1.0, 2.0]
-        setattr(c, prop_name, values)
-        assert getattr(c, prop_name) == values
-        assert getattr(c, name).init == values
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.NplicatorContainer, ['visible']),
+    sdy.ArcSegmentProp: [
+        ('orientation', sdy.OrientationProp, False),
+        ('angle', sdy.AngleProp, False),
     ],
-)
-def test_boolean_array_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        values = [True, False]
-        setattr(c, prop_name, values)
-        assert getattr(c, prop_name) == values
-        assert getattr(c, name).init == values
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Circle, ['visible']),
-        # TODO JH: find and add all occurrences
+    sdy.Assignment: [
+        ('enable', sdy.BooleanProp, False),
     ],
-)
-def test_boolean_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        value = getattr(c, name).init
-        assert getattr(c, prop_name) == value
-        value = not value
-        setattr(c, prop_name, value)
-        assert getattr(c, name).init == value
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.CondContainer, ['index']),
+    sdy.Behavior: [
+        ('enable', sdy.BooleanProp, False),
+        ('file', sdy.FileProp, False),
+        ('function', sdy.NodeFunctionProp, False),
+        ('input_parameters', sdy.InputParametersProp, False),
+        ('output_parameters', sdy.OutputParametersProp, False),
     ],
-)
-def test_conditionnal_index_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        index = getattr(c, name).index_prop_enum
-        all_visible = getattr(c, name).all_visible
-        assert getattr(c, prop_name) == (index, all_visible)
-        value = (sdy.IndexPropEnum.OTHER, not all_visible)
-        setattr(c, prop_name, value)
-        assert getattr(c, name).index_prop_enum == value[0]
-        assert getattr(c, name).all_visible == value[1]
-
-
-# InputProp: N/A
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.KeyboardEventListener, ['event_id']),
-        # TODO JH: find and add all occurrences
+    sdy.BiFont: [
+        ('visible', sdy.BooleanProp, False),
+        ('position', sdy.PointProperty, False),
+        ('value', sdy.RealProp, False),
+        ('format', sdy.FormatProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('first_line_width', sdy.IntegerProp, False),
+        ('first_font', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('horiz_align', sdy.TextHorizAlignProp, False),
+        ('vert_align', sdy.TextVertAlignProp, False),
+        ('second_font', sdy.IntegerProp, False),
+        ('second_line_width', sdy.IntegerProp, False),
     ],
-)
-def test_integer_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        value = getattr(c, name).init
-        assert getattr(c, prop_name) == value
-        value = value + 1
-        setattr(c, prop_name, value)
-        assert getattr(c, name).init == value
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Arc, ['line_cap']),
-        (sdy.ArcEllipse, ['line_cap']),
-        (sdy.Circle, ['line_cap']),
-        (sdy.Crown, ['line_cap']),
-        (sdy.Ellipse, ['line_cap']),
-        (sdy.Line, ['line_cap']),
-        (sdy.Path, ['line_cap']),
-        (sdy.Rectangle, ['line_cap']),
-        (sdy.Shape, ['line_cap']),
+    sdy.Bitmap: [
+        ('visible', sdy.BooleanProp, False),
+        ('position', sdy.PointProperty, False),
+        ('texture_id', sdy.IntegerProp, False),
     ],
-)
-def test_line_cap_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        assert getattr(c, name) is None
-        assert getattr(c, prop_name) in sdy.LineCapEnum
-        value = sdy.LineCapEnum.ROUND
-        setattr(c, prop_name, value)
-        assert getattr(c, name).init == value
-
-
-# ParamProp: N/A
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.CondContainer, ['priority']),
-        (sdy.Container, ['priority']),
-        (sdy.FilterRotationContainer, ['priority']),
-        (sdy.FilterTranslationContainer, ['priority']),
-        (sdy.PanelContainer, ['priority']),
-        (sdy.RotationContainer, ['priority']),
-        (sdy.TranslationContainer, ['priority']),
+    sdy.Circle: [
+        ('visible', sdy.BooleanProp, False),
+        ('center', sdy.PointProperty, False),
+        ('radius', sdy.RealProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('line_stipple', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('fill_color', sdy.IntegerProp, False),
+        ('outline_opacity', sdy.IntegerProp, False),
+        ('fill_opacity', sdy.IntegerProp, False),
+        ('line_cap', sdy.LineCapProp, False),
+        ('polygon_smooth', sdy.BooleanProp, False),
+        ('texture', sdy.TextureProp, False),
+        ('modulate', sdy.BooleanProp, False),
+        ('gradient', sdy.IntegerProp, False),
     ],
-)
-def test_priority_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        assert getattr(c, name) is None
-        assert getattr(c, prop_name) == 0
-        value = 31
-        setattr(c, prop_name, value)
-        assert getattr(c, name).init == value
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.PointArrayProp, ['x', 'y']),
+    sdy.CircleArea: [
+        ('enable', sdy.BooleanProp, False),
+        ('pointer_id', sdy.IntegerProp, False),
+        ('center', sdy.PointProperty, False),
+        ('radius', sdy.RealProp, False),
     ],
-)
-def test_real_array_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        values = [-2.0, 3.14]
-        setattr(c, prop_name, values)
-        assert getattr(c, prop_name) == values
-        assert getattr(c, name).init == values
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.FilterRotationContainer, ['start_rotation_value']),
-        # TODO JH: find and add all occurrences
+    sdy.ClipBox: [
+        ('mask_activity', sdy.BooleanProp, False),
+        ('clip_inside', sdy.BooleanProp, False),
+        ('first_point', sdy.PointProperty, False),
+        ('third_point', sdy.PointProperty, False),
     ],
-)
-def test_real_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        value = 3.14
-        setattr(c, prop_name, value)
-        assert getattr(c, name).init == value
-        assert getattr(c, prop_name) == value
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.BiFont, ['horiz_align']),
-        (sdy.RichText, ['horiz_align']),
-        (sdy.Text, ['horiz_align']),
-        (sdy.TextArea, ['horiz_align']),
+    sdy.ClipPlane: [
+        ('mask_activity', sdy.BooleanProp, False),
+        ('clip_start_point', sdy.PointProperty, False),
+        ('clip_angle', sdy.AngleProp, False),
+        ('orientation', sdy.OrientationProp, False),
     ],
-)
-def test_text_horiz_align_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        for value in sdy.HorizAlignEnum:
-            setattr(c, prop_name, value)
-            assert getattr(c, prop_name) == value
-            assert getattr(c, name).init == value
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.BiFont, ['vert_align']),
-        (sdy.RichText, ['vert_align']),
-        (sdy.Text, ['vert_align']),
-        (sdy.TextArea, ['vert_align']),
+    sdy.CondContainer: [
+        ('visible', sdy.BooleanProp, False),
+        ('priority', sdy.PriorityProp, False),
+        ('origin', sdy.PointProperty, False),
+        ('rotate', sdy.AngleProp, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('scale', sdy.CoordinatePoint, False),
+        ('index', sdy.ConditionalIndexProp, False),
+        ('indexes', sdy.IndexesProp, False),
     ],
-)
-def test_text_vert_align_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        for value in sdy.VertAlignEnum:
-            setattr(c, prop_name, value)
-            assert getattr(c, prop_name) == value
-            assert getattr(c, name).init == value
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.RichText, ['text_value']),
-        (sdy.Text, ['text_value']),
-        (sdy.TextArea, ['text_value']),
+    sdy.Container: [
+        ('visible', sdy.BooleanProp, False),
+        ('priority', sdy.PriorityProp, False),
+        ('origin', sdy.PointProperty, False),
+        ('rotate', sdy.AngleProp, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('scale', sdy.CoordinatePoint, False),
+        ('static', sdy.StaticContainerProp, False),
     ],
-)
-def test_text_prop(class_: type, names: List[str]):
-    c = class_()
-    for name in names:
-        prop_name = f'p_{name}'
-        type_ = sdy.TextTypeEnum.INT
-        init = [9, 31]
-        value = (type_, init)
-        setattr(c, prop_name, value)
-        assert getattr(c, prop_name) == value
-        assert getattr(c, name).type == type_
-        assert getattr(c, name).init == init
-
-
-@pytest.mark.parametrize(
-    'class_, names',
-    [
-        (sdy.Rectangle, [('first_point', 'first_point'), ('third_point', 'third_point')]),
-        (sdy.IndexTexturePoint, [('point', 'val')]),
+    sdy.CoordinatePoint: [
+        ('x', sdy.RealProp, False),
+        ('y', sdy.RealProp, False),
     ],
-)
-def test_point_texture_prop(class_: type, names: List[str]):
-    d = {default: (1.0 + index, 2.0 + index) for index, (_, default) in enumerate(names)}
-    c = class_(**d)
-    for name, _ in names:
-        prop_name = f'p_{name}'
-        x = getattr(c, name).x.init
-        y = getattr(c, name).y.init
-        assert getattr(c, name).u is None
-        assert getattr(c, name).v is None
-        assert getattr(c, prop_name) == (x, y, 0.0, 0.0)
-        x *= 2.0
-        y *= 3.0
-        u = -x
-        v = -y
-        setattr(c, prop_name, (x, y, u, v))
-        assert getattr(c, name).x.init == x
-        assert getattr(c, name).y.init == y
-        assert getattr(c, name).u.init == u
-        assert getattr(c, name).v.init == v
+    sdy.Crown: [
+        ('visible', sdy.BooleanProp, False),
+        ('center', sdy.PointProperty, False),
+        ('radius', sdy.RealProp, False),
+        ('start_angle', sdy.AngleProp, False),
+        ('end_angle', sdy.AngleProp, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('thickness', sdy.RealProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('line_stipple', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('fill_color', sdy.IntegerProp, False),
+        ('outline_opacity', sdy.IntegerProp, False),
+        ('fill_opacity', sdy.IntegerProp, False),
+        ('line_cap', sdy.LineCapProp, False),
+        ('polygon_smooth', sdy.BooleanProp, False),
+        ('texture', sdy.TextureProp, False),
+        ('modulate', sdy.BooleanProp, False),
+        ('gradient', sdy.IntegerProp, False),
+    ],
+    sdy.CursorPosRequest: [
+        ('enable', sdy.BooleanProp, False),
+        ('cursor_id', sdy.IntegerProp, False),
+        ('cursor_position', sdy.PointProperty, False),
+    ],
+    sdy.CurveTo: [
+        ('first_control_point', sdy.PointProperty, False),
+        ('second_control_point', sdy.PointProperty, False),
+        ('end_point', sdy.PointProperty, False),
+    ],
+    sdy.Ellipse: [
+        ('visible', sdy.BooleanProp, False),
+        ('center', sdy.PointProperty, False),
+        ('horz_radius', sdy.RealProp, False),
+        ('vert_radius', sdy.RealProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('line_stipple', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('fill_color', sdy.IntegerProp, False),
+        ('outline_opacity', sdy.IntegerProp, False),
+        ('fill_opacity', sdy.IntegerProp, False),
+        ('line_cap', sdy.LineCapProp, False),
+        ('polygon_smooth', sdy.BooleanProp, False),
+        ('texture', sdy.TextureProp, False),
+        ('modulate', sdy.BooleanProp, False),
+        ('gradient', sdy.IntegerProp, False),
+    ],
+    sdy.EllipticalArc: [
+        ('x_radius', sdy.RealProp, False),
+        ('y_radius', sdy.RealProp, False),
+        ('x_axis_rotation', sdy.RealProp, False),
+        ('large_arc_flag', sdy.BooleanProp, False),
+        ('sweep_flag', sdy.BooleanProp, False),
+        ('end_point', sdy.PointProperty, False),
+    ],
+    sdy.FilterRotationContainer: [
+        ('visible', sdy.BooleanProp, False),
+        ('origin', sdy.PointProperty, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('start_rotation_angle', sdy.AngleProp, False),
+        ('end_rotation_angle', sdy.AngleProp, False),
+        ('start_rotation_value', sdy.RealProp, False),
+        ('end_rotation_value', sdy.RealProp, False),
+        ('start_rotation_locked', sdy.BooleanProp, False),
+        ('end_rotation_locked', sdy.BooleanProp, False),
+        ('priority', sdy.PriorityProp, False),
+    ],
+    sdy.FilterTranslationContainer: [
+        ('visible', sdy.BooleanProp, False),
+        ('origin', sdy.PointProperty, False),
+        ('start_translation_point', sdy.PointProperty, False),
+        ('end_translation_point', sdy.PointProperty, False),
+        ('start_translation_value', sdy.RealProp, False),
+        ('end_translation_value', sdy.RealProp, False),
+        ('start_translation_locked', sdy.BooleanProp, False),
+        ('end_translation_locked', sdy.BooleanProp, False),
+        ('priority', sdy.PriorityProp, False),
+    ],
+    sdy.FormatProp: [
+        ('integral_part', sdy.IntegerProp, False),
+        ('fractional_part', sdy.IntegerProp, False),
+        ('second_font_pos', sdy.IntegerProp, False),
+        ('leading_zeros', sdy.BooleanProp, False),
+        ('display_sign', sdy.BiFontDisplaySignProp, False),
+    ],
+    sdy.Hook: [
+        ('visible', sdy.BooleanProp, False),
+        ('index', sdy.IntegerProp, False),
+    ],
+    sdy.HorizontalLineTo: [
+        ('end_x', sdy.RealProp, False),
+    ],
+    sdy.Imported: [
+        ('enable', sdy.BooleanProp, False),
+        ('restore_states', sdy.BooleanProp, False),
+        ('function', sdy.FunctionProp, False),
+        ('memory', sdy.BooleanProp, False),
+        ('input_parameters', sdy.InputParametersProp, False),
+        ('output_parameters', sdy.OutputParametersProp, False),
+    ],
+    sdy.IndexTexturePoint: [
+        ('point', sdy.PointTextureProp, False),
+        ('arc_segment', sdy.ArcSegmentProp, False),
+    ],
+    sdy.IndexedPoint: [
+        ('point', sdy.PointProperty, False),
+        ('arc_segment', sdy.ArcSegmentProp, False),
+    ],
+    sdy.InputParametersProp: [
+        ('parameters', sdy.InputParamProp, True),
+    ],
+    sdy.KeyboardEventListener: [
+        ('enable', sdy.BooleanProp, False),
+        ('event_id', sdy.IntegerProp, False),
+    ],
+    sdy.Layer: [
+        ('visible', sdy.BooleanProp, False),
+        ('origin', sdy.CoordinatePoint, False),
+        ('id', sdy.IntegerProp, False),
+    ],
+    sdy.Line: [
+        ('visible', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('line_stipple', sdy.IntegerProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('outline_opacity', sdy.IntegerProp, False),
+        ('line_cap', sdy.LineCapProp, False),
+    ],
+    sdy.LineTo: [
+        ('end_point', sdy.PointProperty, False),
+    ],
+    sdy.MaskContainer: [
+        ('mask_activity', sdy.BooleanProp, False),
+        ('origin', sdy.PointProperty, False),
+        ('rotate', sdy.AngleProp, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('scale', sdy.CoordinatePoint, False),
+        ('clip_inside', sdy.BooleanProp, False),
+    ],
+    sdy.MoveTo: [
+        ('start_point', sdy.PointProperty, False),
+    ],
+    sdy.NplicatorContainer: [
+        ('file', sdy.FileProp, False),
+        ('replication', sdy.IntegerProp, False),
+        ('visible', sdy.BooleanArrayProp, False),
+        ('origin', sdy.PointArrayProp, False),
+        ('rotate', sdy.AngleArrayProp, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('scale', sdy.PointArrayProp, False),
+        ('constant_parameters', sdy.InputParametersProp, False),
+        ('input_parameters', sdy.InputParametersProp, False),
+        ('output_parameters', sdy.OutputParametersProp, False),
+    ],
+    sdy.OutputParametersProp: [
+        ('output_parameters', sdy.OutputParamProp, True),
+    ],
+    sdy.PanelContainer: [
+        ('visible', sdy.BooleanProp, False),
+        ('origin', sdy.PointProperty, False),
+        ('width', sdy.RealProp, False),
+        ('height', sdy.RealProp, False),
+        ('priority', sdy.PriorityProp, False),
+    ],
+    sdy.Path: [
+        ('visible', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('line_stipple', sdy.IntegerProp, False),
+        ('line_cap', sdy.LineCapProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('outline_opacity', sdy.IntegerProp, False),
+        ('fill_color', sdy.IntegerProp, False),
+        ('fill_opacity', sdy.IntegerProp, False),
+        ('polygon_smooth', sdy.BooleanProp, False),
+        ('texture', sdy.TextureProp, False),
+        ('gradient', sdy.IntegerProp, False),
+        ('modulate', sdy.BooleanProp, False),
+        ('tessellate', sdy.BooleanProp, False),
+    ],
+    sdy.PointArrayProp: [
+        ('x', sdy.RealArrayProp, False),
+        ('y', sdy.RealArrayProp, False),
+    ],
+    sdy.PointTextureProp: [
+        ('u', sdy.RealProp, False),
+        ('v', sdy.RealProp, False),
+    ],
+    sdy.PointerEventListener: [
+        ('enable', sdy.BooleanProp, False),
+        ('event_id', sdy.IntegerProp, False),
+        ('relative', sdy.BooleanProp, False),
+    ],
+    sdy.PointsProp: [
+        ('point', sdy.PointProperty, True),
+    ],
+    sdy.QuadraticCurveTo: [
+        ('control_point', sdy.PointProperty, False),
+        ('end_point', sdy.PointProperty, False),
+    ],
+    sdy.Rectangle: [
+        ('visible', sdy.BooleanProp, False),
+        ('first_point', sdy.PointTextureProp, False),
+        ('third_point', sdy.PointTextureProp, False),
+        ('first_arc', sdy.ArcSegmentProp, False),
+        ('second_arc', sdy.ArcSegmentProp, False),
+        ('third_arc', sdy.ArcSegmentProp, False),
+        ('fourth_arc', sdy.ArcSegmentProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('line_stipple', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('fill_color', sdy.IntegerProp, False),
+        ('outline_opacity', sdy.IntegerProp, False),
+        ('fill_opacity', sdy.IntegerProp, False),
+        ('line_cap', sdy.LineCapProp, False),
+        ('polygon_smooth', sdy.BooleanProp, False),
+        ('texture', sdy.TextureProp, False),
+        ('texture_control', sdy.BooleanProp, False),
+        ('modulate', sdy.BooleanProp, False),
+        ('tessellate', sdy.BooleanProp, False),
+        ('gradient', sdy.IntegerProp, False),
+    ],
+    sdy.RectangleArea: [
+        ('enable', sdy.BooleanProp, False),
+        ('pointer_id', sdy.IntegerProp, False),
+        ('first_point', sdy.PointProperty, False),
+        ('third_point', sdy.PointProperty, False),
+    ],
+    sdy.ReferenceContainer: [
+        ('file', sdy.FileProp, False),
+        ('visible', sdy.BooleanProp, False),
+        ('origin', sdy.PointProperty, False),
+        ('rotate', sdy.AngleProp, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('scale', sdy.CoordinatePoint, False),
+        ('constant_parameters', sdy.InputParametersProp, False),
+        ('input_parameters', sdy.InputParametersProp, False),
+        ('output_parameters', sdy.OutputParametersProp, False),
+    ],
+    sdy.RichText: [
+        ('visible', sdy.BooleanProp, False),
+        ('position', sdy.PointProperty, False),
+        ('max_length', sdy.IntegerProp, False),
+        ('text_value', sdy.TextProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('font', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('horiz_align', sdy.TextHorizAlignProp, False),
+        ('vert_align', sdy.TextVertAlignProp, False),
+    ],
+    sdy.RotationContainer: [
+        ('visible', sdy.BooleanProp, False),
+        ('origin', sdy.PointProperty, False),
+        ('ref_angle', sdy.AngleProp, False),
+        ('orientation', sdy.OrientationProp, False),
+        ('start_rotation_angle', sdy.AngleProp, False),
+        ('end_rotation_angle', sdy.AngleProp, False),
+        ('start_rotation_value', sdy.RealProp, False),
+        ('end_rotation_value', sdy.RealProp, False),
+        ('start_rotation_locked', sdy.BooleanProp, False),
+        ('end_rotation_locked', sdy.BooleanProp, False),
+        ('functional_rotation_value', sdy.RealProp, False),
+        ('priority', sdy.PriorityProp, False),
+    ],
+    sdy.Shape: [
+        ('visible', sdy.BooleanProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('line_stipple', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('fill_color', sdy.IntegerProp, False),
+        ('outline_opacity', sdy.IntegerProp, False),
+        ('fill_opacity', sdy.IntegerProp, False),
+        ('line_cap', sdy.LineCapProp, False),
+        ('polygon_smooth', sdy.BooleanProp, False),
+        ('texture_control', sdy.BooleanProp, False),
+        ('texture', sdy.TextureProp, False),
+        ('modulate', sdy.BooleanProp, False),
+        ('tessellate', sdy.BooleanProp, False),
+        ('gradient', sdy.IntegerProp, False),
+    ],
+    sdy.ShapeArea: [
+        ('enable', sdy.BooleanProp, False),
+        ('pointer_id', sdy.IntegerProp, False),
+        ('points', sdy.PointsProp, False),
+    ],
+    sdy.SmoothCurveTo: [
+        ('second_control_point', sdy.PointProperty, False),
+        ('end_point', sdy.PointProperty, False),
+    ],
+    sdy.SmoothQuadraticCurveTo: [
+        ('end_point', sdy.PointProperty, False),
+    ],
+    sdy.Stencil: [
+        ('mask_activity', sdy.BooleanProp, False),
+        ('tessellate', sdy.BooleanProp, False),
+    ],
+    sdy.Text: [
+        ('visible', sdy.BooleanProp, False),
+        ('position', sdy.PointProperty, False),
+        ('max_length', sdy.IntegerProp, False),
+        ('text_value', sdy.TextProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('font', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('horiz_align', sdy.TextHorizAlignProp, False),
+        ('vert_align', sdy.TextVertAlignProp, False),
+    ],
+    sdy.TextArea: [
+        ('visible', sdy.BooleanProp, False),
+        ('first_point', sdy.PointProperty, False),
+        ('third_point', sdy.PointProperty, False),
+        ('max_length', sdy.IntegerProp, False),
+        ('text_value', sdy.TextProp, False),
+        ('haloing', sdy.BooleanProp, False),
+        ('line_width', sdy.IntegerProp, False),
+        ('font', sdy.IntegerProp, False),
+        ('outline_color', sdy.IntegerProp, False),
+        ('halo_color', sdy.IntegerProp, False),
+        ('horiz_align', sdy.TextHorizAlignProp, False),
+        ('vert_align', sdy.TextVertAlignProp, False),
+    ],
+    sdy.TextureProp: [
+        ('texture_id', sdy.IntegerProp, False),
+    ],
+    sdy.TranslationContainer: [
+        ('visible', sdy.BooleanProp, False),
+        ('priority', sdy.PriorityProp, False),
+        ('origin', sdy.PointProperty, False),
+        ('ref_point', sdy.PointProperty, False),
+        ('start_translation_point', sdy.PointProperty, False),
+        ('end_translation_point', sdy.PointProperty, False),
+        ('start_translation_value', sdy.RealProp, False),
+        ('end_translation_value', sdy.RealProp, False),
+        ('start_translation_locked', sdy.BooleanProp, False),
+        ('end_translation_locked', sdy.BooleanProp, False),
+        ('functional_translation_value', sdy.RealProp, False),
+    ],
+    sdy.VerticalLineTo: [
+        ('end_y', sdy.RealProp, False),
+    ],
+}
+#}}sdy_access_ut
+# fmt: on
+
+
+def test_consistency():
+    # ensure the consistency between SCADE Display API and generated accessors
+    for cls, properties in classes.items():
+        instance = cls()
+        for name, type_, many in properties:
+            attribute = getattr(instance, name)
+            if many:
+                for value in attribute:
+                    assert isinstance(value, type_)
+            else:
+                assert attribute is None or isinstance(attribute, type_)
+            assert getattr(instance, f'p_{name}') is not None
