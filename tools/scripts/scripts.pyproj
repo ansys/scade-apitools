@@ -33,7 +33,7 @@
     <Interpreter Include="..\..\.venv\">
       <Id>.venv</Id>
       <Version>3.10</Version>
-      <Description>.venv (23.2)</Description>
+      <Description>.venv (Python 3.10 (64-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>

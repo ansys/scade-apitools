@@ -22,6 +22,7 @@
 
 """Unit tests fixtures."""
 
+import difflib
 from pathlib import Path
 from shutil import copytree, rmtree
 from typing import Any, Generator, Tuple
@@ -123,3 +124,15 @@ def tmp_project_session(
     print('saving', path)
     project_.save(str(path))
     session.save_model2()
+
+
+def cmp_ref_text(ref: Path, result: str, n=3) -> bool:
+    ref_lines = ref.read_text().split('\n')
+    res_lines = result.split('\n')
+
+    diffs = difflib.context_diff(ref_lines, res_lines, str(ref), '<result>', n=n)
+    failure = False
+    for d in diffs:
+        print(d.rstrip('\r\n'))
+        failure = True
+    return failure

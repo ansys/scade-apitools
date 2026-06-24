@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project id="1" oid_count="113">
+	<props>
+		<Prop id="1" name="@STUDIO:PRODUCT">
+			<value>DISPLAY</value>
+		</Prop>
+		<Prop id="3" name="@SDY:RELEASE">
+			<value>25.2</value>
+		</Prop>
+		<Prop id="4" name="@SDY:RATIO">
+			<value>1.0</value>
+			<value>1.0</value>
+		</Prop>
+		<Prop id="5" name="@SDY:DEFAULTCOLORTABLE">
+			<value>color_table.sct</value>
+		</Prop>
+		<Prop id="6" name="@SDY:DEFAULTLWTABLE">
+			<value>line_width_table.swt</value>
+		</Prop>
+		<Prop id="7" name="@SDY:DEFAULTLSTABLE">
+			<value>line_stipple_table.sst</value>
+		</Prop>
+		<Prop id="8" name="@SDY:TEXTURETABLE">
+			<value>texture_table.stt</value>
+		</Prop>
+		<Prop id="9" name="@SDY:FONTTABLE">
+			<value>font_table.sft</value>
+		</Prop>
+		<Prop id="18" name="@SDY:FONTLIBRARY">
+			<value>Fonts.dll</value>
+		</Prop>
+		<Prop id="23" name="@SDY:CONFTARGET">
+			<value>codegen</value>
+			<configuration>22</configuration>
+		</Prop>
+		<Prop id="24" name="CONFIGURATIONS">
+			<value>22</value>
+			<value>30</value>
+			<value>35</value>
+			<value>43</value>
+			<value>51</value>
+			<value>65</value>
+			<value>74</value>
+			<value>81</value>
+		</Prop>
+		<Prop id="25" name="@SDY:CONFSOURCE">
+			<configuration>22</configuration>
+		</Prop>
+		<Prop id="26" name="@SDY:KCGTEMPLATE">
+			<configuration>22</configuration>
+		</Prop>
+		<Prop id="27" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_Code</value>
+			<configuration>22</configuration>
+		</Prop>
+		<Prop id="28" name="@SDY:CODEGENERATOR">
+			<value>KCG672</value>
+			<configuration>22</configuration>
+		</Prop>
+		<Prop id="29" name="@SDY:CODEGENCHECK">
+			<value>false</value>
+			<configuration>22</configuration>
+		</Prop>
+		<Prop id="31" name="@SDY:CONFTARGET">
+			<value>Simulation</value>
+			<configuration>30</configuration>
+		</Prop>
+		<Prop id="32" name="@SDY:CONFSOURCE">
+			<configuration>30</configuration>
+		</Prop>
+		<Prop id="33" name="@SDY:KCGTEMPLATE">
+			<configuration>30</configuration>
+		</Prop>
+		<Prop id="34" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_Simulation</value>
+			<configuration>30</configuration>
+		</Prop>
+		<Prop id="36" name="@SDY:CONFTARGET">
+			<value>SuiteCosimulation</value>
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="37" name="@SDY:CONFSOURCE">
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="38" name="@SDY:KCGTEMPLATE">
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="39" name="@SDY:APPPERIODICITY">
+			<value>33</value>
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="40" name="@SDY:INTEGRATIONMODE">
+			<value>asynchronous</value>
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="41" name="@SDY:POINTERID">
+			<value>0</value>
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="42" name="@SDY:KEYBOARDID">
+			<value>0</value>
+			<configuration>35</configuration>
+		</Prop>
+		<Prop id="44" name="@SDY:CONFTARGET">
+			<value>Windows</value>
+			<configuration>43</configuration>
+		</Prop>
+		<Prop id="45" name="@SDY:CONFSOURCE">
+			<configuration>43</configuration>
+		</Prop>
+		<Prop id="46" name="@SDY:KCGTEMPLATE">
+			<configuration>43</configuration>
+		</Prop>
+		<Prop id="47" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_Exe</value>
+			<configuration>43</configuration>
+		</Prop>
+		<Prop id="48" name="@SDY:APPPERIODICITY">
+			<value>33</value>
+			<configuration>43</configuration>
+		</Prop>
+		<Prop id="49" name="@SDY:POINTERID">
+			<value>0</value>
+			<configuration>43</configuration>
+		</Prop>
+		<Prop id="50" name="@SDY:KEYBOARDID">
+			<value>0</value>
+			<configuration>43</configuration>
+		</Prop>
+		<Prop id="52" name="@SDY:CONFTARGET">
+			<value>Android</value>
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="53" name="@SDY:CONFSOURCE">
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="54" name="@SDY:KCGTEMPLATE">
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="55" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_%Target%</value>
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="56" name="@SDY:APPPERIODICITY">
+			<value>33</value>
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="57" name="@SDY:APPORIENTATION">
+			<value>Landscape</value>
+			<configuration>51</configuration>
+		</Prop>
+		<Prop id="66" name="@SDY:CONFTARGET">
+			<value>FMU</value>
+			<configuration>65</configuration>
+		</Prop>
+		<Prop id="67" name="@SDY:CONFSOURCE">
+			<configuration>65</configuration>
+		</Prop>
+		<Prop id="68" name="@SDY:KCGTEMPLATE">
+			<configuration>65</configuration>
+		</Prop>
+		<Prop id="69" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_%Target%</value>
+			<configuration>65</configuration>
+		</Prop>
+		<Prop id="70" name="@SDY:APPPERIODICITY">
+			<value>33</value>
+			<configuration>65</configuration>
+		</Prop>
+		<Prop id="75" name="@SDY:CONFTARGET">
+			<value>codegen</value>
+			<configuration>74</configuration>
+		</Prop>
+		<Prop id="76" name="@SDY:CONFSOURCE">
+			<value>TwoCounters.sgfx</value>
+			<configuration>74</configuration>
+		</Prop>
+		<Prop id="77" name="@SDY:KCGTEMPLATE">
+			<configuration>74</configuration>
+		</Prop>
+		<Prop id="78" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_Code</value>
+			<configuration>74</configuration>
+		</Prop>
+		<Prop id="79" name="@SDY:CODEGENERATOR">
+			<value>KCG672</value>
+			<configuration>74</configuration>
+		</Prop>
+		<Prop id="80" name="@SDY:CODEGENCHECK">
+			<value>false</value>
+			<configuration>74</configuration>
+		</Prop>
+		<Prop id="82" name="@SDY:CONFTARGET">
+			<value>Windows</value>
+			<configuration>81</configuration>
+		</Prop>
+		<Prop id="83" name="@SDY:CONFSOURCE">
+			<value>TwoCounters.sgfx</value>
+			<configuration>81</configuration>
+		</Prop>
+		<Prop id="84" name="@SDY:KCGTEMPLATE">
+			<configuration>81</configuration>
+		</Prop>
+		<Prop id="85" name="@SDY:CONFOUTPUT">
+			<value>%ModelName%_Exe</value>
+			<configuration>81</configuration>
+		</Prop>
+		<Prop id="86" name="@SDY:APPPERIODICITY">
+			<value>33</value>
+			<configuration>81</configuration>
+		</Prop>
+		<Prop id="87" name="@SDY:POINTERID">
+			<value>0</value>
+			<configuration>81</configuration>
+		</Prop>
+		<Prop id="88" name="@SDY:KEYBOARDID">
+			<value>0</value>
+			<configuration>81</configuration>
+		</Prop>
+		<Prop id="89" name="@SDY:SCADESUITEPROJECTS">
+			<value>BehaviorSuite/Example.etp</value>
+		</Prop>
+		<Prop id="92" name="@SDY:RULES">
+			<value>container:true</value>
+			<value>widgets_naming_pattern:true</value>
+			<value>contour_color:true</value>
+			<value>conditional_container:true</value>
+			<value>lines_optim:true</value>
+			<value>shape:true</value>
+			<value>visibility_object:true</value>
+			<value>widgets_naming_unicity:true</value>
+			<value>var_consistency:true</value>
+			<value>containers_optim:true</value>
+			<value>layer_ratio:true</value>
+			<value>transformation_rule:true</value>
+			<value>arc_crown:true</value>
+			<value>useless_masks:true</value>
+			<value>bool_expression_rule:true</value>
+			<value>transfos_optim:true</value>
+			<value>moving_surfaces:true</value>
+			<value>math_expression_rule:true</value>
+			<value>rectangle:true</value>
+			<value>static_container:true</value>
+			<value>broken_line:true</value>
+			<value>mask_object_checking:true</value>
+			<value>max_number_of_objects:true</value>
+		</Prop>
+		<Prop id="95" name="@SDY:GLOBALDEFS">
+			<value>definitions.dgfx</value>
+		</Prop>
+		<Prop id="103" name="@SDY:GRADIENTTABLE">
+			<value>gradient_table.sgt</value>
+		</Prop>
+	</props>
+	<roots>
+		<Folder id="11" extensions="sct;swt;sst;sft;stt;sgt" name="Resource Files">
+			<elements>
+				<FileRef id="12" persistAs="$(SCADEDISPLAY_HOME)\templates\display\color_table.sct"/>
+				<FileRef id="13" persistAs="$(SCADEDISPLAY_HOME)\templates\display\line_width_table.swt"/>
+				<FileRef id="14" persistAs="$(SCADEDISPLAY_HOME)\templates\display\line_stipple_table.sst"/>
+				<FileRef id="15" persistAs="$(SCADEDISPLAY_HOME)\templates\display\font_table.sft"/>
+				<FileRef id="17" persistAs="$(SCADEDISPLAY_HOME)\templates\display\texture_table.stt"/>
+				<FileRef id="110" persistAs="$(SCADEDISPLAY_HOME)\templates\display\gradient_table.sgt"/>
+			</elements>
+		</Folder>
+		<Folder id="19" extensions="sgfx;ogfx;pgfx;asfx;trace" name="Model Files">
+			<elements>
+				<FileRef id="71" persistAs="TwoCounters.sgfx">
+					<props>
+						<Prop id="112" name="@SDY:ANIMATIONFILE">
+							<value>TwoCounters.asfx</value>
+						</Prop>
+					</props>
+				</FileRef>
+				<FileRef id="101" persistAs="Reference Objects/InteractiveArea_ref.ogfx"/>
+			</elements>
+		</Folder>
+		<Folder id="93" extensions="dgfx" name="Global Definitions">
+			<elements>
+				<FileRef id="109" persistAs="definitions.dgfx"/>
+			</elements>
+		</Folder>
+	</roots>
+	<configurations>
+		<Configuration id="22" name="Code"/>
+		<Configuration id="30" name="Simulation"/>
+		<Configuration id="35" name="Co-simulation"/>
+		<Configuration id="43" name="Windows"/>
+		<Configuration id="51" name="Android"/>
+		<Configuration id="65" name="FMU"/>
+		<Configuration id="74" name="Code: TwoCounters"/>
+		<Configuration id="81" name="Windows: TwoCounters"/>
+	</configurations>
+</Project>

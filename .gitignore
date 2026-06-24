@@ -173,3 +173,6 @@ doc/source/_download/
 
 !vocabularies
 !vocabularies/**
+
+# generated files
+backup/

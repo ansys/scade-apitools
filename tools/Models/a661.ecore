@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="a661" nsURI="http:///a661.ecore" nsPrefix="a661">
+  <eClassifiers xsi:type="ecore:EClass" name="A661Standard">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the root class for the A661 standard description"/>
+    </eAnnotations>
+    <eOperations name="getWidget" ordered="false" lowerBound="1" eType="#//A661Widget">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getExtension" ordered="false" lowerBound="1" eType="#//A661Widget">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getSymbol" ordered="false" lowerBound="1" eType="#//SymbolCommand">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" ordered="false"
+        lowerBound="1" eType="#//A661Types" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constants" ordered="false"
+        lowerBound="1" eType="#//A661Constants" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//A661Widget" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="layer" ordered="false"
+        lowerBound="1" eType="#//A661Layer" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="a661Hierarchy" ordered="false"
+        lowerBound="1" eType="#//A661Hierarchy" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="symbolCommands" ordered="false"
+        upperBound="-1" eType="#//SymbolCommand" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="supp_version" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="widgetExtensions" ordered="false"
+        upperBound="-1" eType="#//A661Widget" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="symbolHierarchy" ordered="false"
+        eType="#//SymbolHierarchy" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensionHierarchy" ordered="false"
+        eType="#//ExtensionHierarchy" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A661Types">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the list of types used in the A661 standard"/>
+    </eAnnotations>
+    <eOperations name="getType" ordered="false" lowerBound="1" eType="#//NamedType">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//NamedType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedType" eSuperTypes="#//A661Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an identifier referring to a type"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//A661Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A661Type" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface for types"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A661Constants">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the list of constants used in the A661 standard"/>
+    </eAnnotations>
+    <eOperations name="getConstant" ordered="false" lowerBound="1" eType="#//A661Constant">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constants" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//A661Constant" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A661Constant">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a constant, of a specified size, associating a value to the given name"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" lowerBound="1"
+        eType="#//ElementSize"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ElementSize">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the size of an A661 constant"/>
+    </eAnnotations>
+    <eLiterals name="_8">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="8"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_16" value="1">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="16"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="_32" value="2">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="32"/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A661Widget" eSuperTypes="#//A661Object">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the description of an A661 widget (or widget extension), with its associated runtime parameters and events"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runtimeMessages" ordered="false"
+        upperBound="-1" eType="#//Message" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="events" ordered="false"
+        upperBound="-1" eType="#//Message" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extension" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" ordered="false"
+        upperBound="-1" eType="#//NamedType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A661Object" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface for widgets and symbol commands"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" ordered="false"
+        upperBound="-1" eType="#//DefinitionField" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ideInfo" ordered="false"
+        lowerBound="1" eType="#//ObjectIDEInfo" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="id" ordered="false" lowerBound="1"
+        eType="#//A661Constant"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefinitionField" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface of base elements in the DF, used when encoding an A661 object"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectIDEInfo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iconPath" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="family" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="focusable" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectable" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortcut" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Message">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a message (runtime parameter or event) associated with an A661 widget"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="id" ordered="false" lowerBound="1"
+        eType="#//A661Constant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elem" ordered="false" lowerBound="1"
+        upperBound="-1" eType="#//MsgElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="popupVisibilityMsg" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idAsString" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="msgType" ordered="false"
+        eType="#//MsgType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MsgElement" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="interface of base elements when encoding an A661 message"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MsgType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//NamedType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subst" ordered="false"
+        upperBound="-1" eType="#//MsgTypeSubst" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MsgTypeSubst">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="var" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A661Layer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the description of an A661 layer"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="events" ordered="false"
+        upperBound="-1" eType="#//Message" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runtime_messages" ordered="false"
+        upperBound="-1" eType="#//Message" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="A661Hierarchy">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the allowed hierarchy of widgets in a DF, specifying the set of possible children for the A661 layer and for each container widget"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hierarchies" ordered="false"
+        upperBound="-1" eType="#//WidgetHierarchy" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topWidgets" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//A661Widget"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WidgetHierarchy">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the set of possible children of a given container widget"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" ordered="false"
+        lowerBound="1" eType="#//A661Widget"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//A661Widget"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SymbolHierarchy">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the allowed hierarchy of symbol commands in a DF, specifying the set of possible children for the A661 layer and for each container symbol command"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topSymbols" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//SymbolCommand"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hierarchies" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//SymbolCommandHierarchy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SymbolCommandHierarchy">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the set of possible children of a given container symbol command"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="symbolContainer" ordered="false"
+        lowerBound="1" eType="#//SymbolCommand"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//SymbolCommand"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtensionHierarchy">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the set of possible extensions for each A661 widget"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="widgetExtensions" ordered="false"
+        upperBound="-1" eType="#//WidgetExtensions" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WidgetExtensions">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the set of possible extensions of a given widget"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="widget" ordered="false"
+        lowerBound="1" eType="#//A661Widget"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//A661Widget"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BuiltInType" eSuperTypes="#//A661Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a predefined type in the A661 standard"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scalar" ordered="false"
+        lowerBound="1" eType="#//BuiltInEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" eType="#//BuiltInTypeKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BuiltInEnum">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a base type, contents of a BuiltInType"/>
+    </eAnnotations>
+    <eLiterals name="uchar"/>
+    <eLiterals name="ushort" value="1"/>
+    <eLiterals name="short" value="2"/>
+    <eLiterals name="ulong" value="3"/>
+    <eLiterals name="long" value="4"/>
+    <eLiterals name="float" value="5"/>
+    <eLiterals name="FR" value="6"/>
+    <eLiterals name="string" value="7"/>
+    <eLiterals name="bit" value="8"/>
+    <eLiterals name="ushort15" value="9"/>
+    <eLiterals name="bcd" value="10"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BuiltInTypeKind">
+    <eLiterals name="None"/>
+    <eLiterals name="layer" value="1"/>
+    <eLiterals name="widget" value="2"/>
+    <eLiterals name="parameter" value="3"/>
+    <eLiterals name="symbol" value="4"/>
+    <eLiterals name="picture" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumType" eSuperTypes="#//A661Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an enumerated type, declaring a list of identifiers with values (defined from A661 constants)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enum" ordered="false" lowerBound="1"
+        upperBound="-1" eType="#//A661Constant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visibleState" ordered="false"
+        eType="#//A661Constant"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructType" eSuperTypes="#//A661Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a structured type, declaring a list of named fields"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//AStructElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AStructElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayType" eSuperTypes="#//A661Type">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="an array type, consisting of the type of elements and a (variable but bounded) size"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxField" ordered="false"
+        eType="#//Dimension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" ordered="false" eType="#//Dimension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//A661Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
+        eType="#//MsgField"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dimension">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//GenericDimension" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericDimension">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" ordered="false"
+        eType="#//DefinitionField"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MsgField" eSuperTypes="#//MsgElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a scalar element of an A661 message"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="param" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//A661Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FRType" eSuperTypes="#//BuiltInType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the FR(180) type, to represent an angle value between -180 and +180 degrees"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" lowerBound="1"
+        eType="#//ElementSize"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StrType" eSuperTypes="#//BuiltInType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the string type"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxField" ordered="false"
+        lowerBound="1" eType="#//Dimension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" ordered="false" lowerBound="1"
+        eType="#//Dimension"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefinitionProp" eSuperTypes="#//DefinitionField">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a property of an A661 object, consisting of a name, a type and a default value"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//A661Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ideInfo" ordered="false"
+        eType="#//DefinitionPropIDEInfo" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="default" ordered="false"
+        lowerBound="1" eType="ecore:EClass model.ecore#//PropValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefinitionPropIDEInfo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibleProp" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="control" ordered="false"
+        eType="#//DefinitionPropControl"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selector" ordered="false"
+        upperBound="-1" eType="#//DefinitionPropSelector" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefinitionPropControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orientationNames" ordered="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orientationValues" ordered="false"
+        unique="false" upperBound="-1" eType="#//OrientationValue"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OrientationValue">
+    <eLiterals name="Up"/>
+    <eLiterals name="Down" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefinitionPropSelector">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="chooser" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="field" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="focus" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="childrenOnly" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="widgetTypes" ordered="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bit_field" ordered="false"
+        upperBound="-1" eType="#//BitField" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BitField">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="display" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PaddingElement" eSuperTypes="#//DefinitionField #//MsgElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a data structure padding directive, used when encoding an A661 object or message"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="padBytes" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AlignElement" eSuperTypes="#//DefinitionField #//MsgElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a data alignment directive, used when encoding an A661 object or message"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="align" ordered="false"
+        lowerBound="1" eType="#//ElementSize"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayField" eSuperTypes="#//MsgElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="a structured element of an A661 message"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" ordered="false" lowerBound="1"
+        eType="#//Dimension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxSizeParam" ordered="false"
+        eType="#//Dimension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fieldElements" ordered="false"
+        upperBound="-1" eType="#//MsgElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
+        eType="#//MsgField"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnionType" eSuperTypes="#//A661Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alternatives" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//NamedType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ScalarElement" eSuperTypes="#//AStructElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//GenericType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enum" ordered="false" upperBound="-1"
+        eType="#//A661Constant"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" eType="#//A661Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructPaddingElement" eSuperTypes="#//AStructElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bytes" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SizeElement" eSuperTypes="#//AStructElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sizeElem" ordered="false"
+        lowerBound="1" eType="#//BuiltInEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataElement" eSuperTypes="#//AStructElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StructElement" eSuperTypes="#//AStructElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//GenericType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayElement" eSuperTypes="#//AStructElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxField" ordered="false"
+        eType="#//Dimension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" ordered="false" eType="#//Dimension"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" ordered="false"
+        eType="#//GenericIndex"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//AStructElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericIndex">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="msgField" ordered="false"
+        eType="#//MsgField"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructAlignElement" eSuperTypes="#//AStructElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="align" ordered="false"
+        lowerBound="1" eType="#//ElementSize"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SymbolCommand" eSuperTypes="#//A661Object">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="the description of an A661 symbol command"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="presence" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xmlDF" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

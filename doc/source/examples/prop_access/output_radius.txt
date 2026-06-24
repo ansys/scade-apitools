@@ -1,0 +1,3 @@
+circle.radius <RealProp object>
+circle.radius.init 31.0
+circle.p_radius 62.0

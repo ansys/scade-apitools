@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?dom version="19.0" ?>
+
+<specification>
+    <IDE>
+        <project path="TwoDF.etp"/>
+        <ratio horizontal="20" vertical="20"/>
+    </IDE>
+    <symbology>
+        <dimension height="256" width="256"/>
+    </symbology>
+    <A661 library_version="1" supp_version="6">
+        <intprop name="ApplicationId">12</intprop>
+    </A661>
+    <children>
+        <A661Layer name="a661_two_layer_1" oid="7ecc9998-ee32-48cd-a249-bb99069634a7">
+            <IDE>
+                <ratio horizontal="20" vertical="20"/>
+            </IDE>
+            <model>
+                <intprop name="LayerId">21</intprop>
+                <intprop name="ContextNumber">0</intprop>
+                <intprop name="Width">5120</intprop>
+                <intprop name="Height">5120</intprop>
+            </model>
+            <runtime/>
+            <events/>
+            <children>
+                <widget name="BasicContainer" oid="996522e1-052e-4f5a-8fe3-ab1afc6461a4" type="BasicContainer">
+                    <model>
+                        <intprop name="WidgetIdent">12</intprop>
+                        <enumprop name="Enable">A661_TRUE</enumprop>
+                        <enumprop name="Visible">A661_TRUE</enumprop>
+                        <intprop name="PosX">60</intprop>
+                        <intprop name="PosY">0</intprop>
+                    </model>
+                    <runtime/>
+                    <children>
+                        <widget name="LOCK LEVERS" oid="aaed92d6-9187-4c1b-a284-9c4bf9b4ae7f" type="ToggleButton">
+                            <model>
+                                <intprop name="WidgetIdent">8</intprop>
+                                <enumprop name="Enable">A661_TRUE</enumprop>
+                                <enumprop name="Visible">A661_TRUE</enumprop>
+                                <intprop name="PosX">0</intprop>
+                                <intprop name="PosY">4200</intprop>
+                                <intprop name="SizeX">5000</intprop>
+                                <intprop name="SizeY">800</intprop>
+                                <intprop name="StyleSet">111</intprop>
+                                <intprop name="NextFocusedWidget">0</intprop>
+                                <intprop name="MaxStringLength">32</intprop>
+                                <enumprop name="ToggleState">A661_UNSELECTED</enumprop>
+                                <enumprop name="AlternateFlag">A661_TRUE</enumprop>
+                                <enumprop name="AutomaticFocusMotion">A661_FALSE</enumprop>
+                                <enumprop name="Alignment">A661_CENTER</enumprop>
+                                <stringprop name="LabelString">Unlocked</stringprop>
+                                <stringprop name="AlternateLabelString">Locked</stringprop>
+                            </model>
+                            <runtime>
+                                <connect msg_id="A661_INNER_STATE_TOGGLE" name="INNER_STATE_LOCK_LEVERS"/>
+                            </runtime>
+                            <events>
+                                <connect msg_id="A661_EVT_STATE_CHANGE" name="LOCK LEVERS"/>
+                            </events>
+                            <children/>
+                        </widget>
+                        <widget name="ENG LEFT LVR" oid="30060458-f454-47ae-9c31-265a32b601a1" type="Slider">
+                            <model>
+                                <intprop name="WidgetIdent">2</intprop>
+                                <enumprop name="Enable">A661_TRUE</enumprop>
+                                <enumprop name="Visible">A661_TRUE</enumprop>
+                                <intprop name="PosX">0</intprop>
+                                <intprop name="PosY">800</intprop>
+                                <intprop name="SizeX">2400</intprop>
+                                <intprop name="SizeY">3200</intprop>
+                                <intprop name="StyleSet">2</intprop>
+                                <intprop name="NextFocusedWidget">0</intprop>
+                                <floatprop name="MinValue">0.0</floatprop>
+                                <floatprop name="MaxValue">1.0</floatprop>
+                                <floatprop name="Value">0.0</floatprop>
+                                <floatprop name="MajorTickInterval">1.0</floatprop>
+                                <enumprop name="ShowMajorLabels">A661_TRUE</enumprop>
+                                <enumprop name="Orientation">A661_BOTTOM_TO_TOP</enumprop>
+                                <enumprop name="Alignment">A661_LEFT</enumprop>
+                                <enumprop name="AutomaticFocusMotion">A661_FALSE</enumprop>
+                                <intprop name="LsbMultiple">5</intprop>
+                                <intprop name="MinorTickMultiple">4</intprop>
+                                <floatprop name="MajorTickReference">0.0</floatprop>
+                            </model>
+                            <runtime>
+                                <connect msg_id="A661_VALUE" name="ThrottleLeftValue"/>
+                            </runtime>
+                            <events>
+                                <connect msg_id="A661_EVT_VALUE_CHANGE" name="ThrottleLeftChanged"/>
+                            </events>
+                            <children/>
+                        </widget>
+                        <widget name="ENG RIGHT LVR" oid="99bfd1df-2352-4170-b85b-c3fecc527f6c" type="Slider">
+                            <model>
+                                <intprop name="WidgetIdent">9</intprop>
+                                <enumprop name="Enable">A661_TRUE</enumprop>
+                                <enumprop name="Visible">A661_TRUE</enumprop>
+                                <intprop name="PosX">2600</intprop>
+                                <intprop name="PosY">800</intprop>
+                                <intprop name="SizeX">2400</intprop>
+                                <intprop name="SizeY">3200</intprop>
+                                <intprop name="StyleSet">2</intprop>
+                                <intprop name="NextFocusedWidget">0</intprop>
+                                <floatprop name="MinValue">0.0</floatprop>
+                                <floatprop name="MaxValue">1.0</floatprop>
+                                <floatprop name="Value">0.0</floatprop>
+                                <floatprop name="MajorTickInterval">1.0</floatprop>
+                                <enumprop name="ShowMajorLabels">A661_TRUE</enumprop>
+                                <enumprop name="Orientation">A661_BOTTOM_TO_TOP</enumprop>
+                                <enumprop name="Alignment">A661_LEFT</enumprop>
+                                <enumprop name="AutomaticFocusMotion">A661_FALSE</enumprop>
+                                <intprop name="LsbMultiple">5</intprop>
+                                <intprop name="MinorTickMultiple">4</intprop>
+                                <floatprop name="MajorTickReference">0.0</floatprop>
+                            </model>
+                            <runtime>
+                                <connect msg_id="A661_VALUE" name="ThrottleRightValue"/>
+                            </runtime>
+                            <events>
+                                <connect msg_id="A661_EVT_VALUE_CHANGE" name="ThrottleRightChanged"/>
+                            </events>
+                            <children/>
+                        </widget>
+                        <widget name="PWR LEFT" oid="b2fbe067-61f8-4d84-a492-88d44f292b08" type="NumericReadout">
+                            <model>
+                                <intprop name="WidgetIdent">7</intprop>
+                                <enumprop name="Visible">A661_TRUE</enumprop>
+                                <enumprop name="MotionAllowed">A661_TRUE</enumprop>
+                                <intprop name="PosX">600</intprop>
+                                <intprop name="PosY">-20</intprop>
+                                <intprop name="SizeX">1200</intprop>
+                                <intprop name="SizeY">620</intprop>
+                                <intprop name="RotationAngle">0</intprop>
+                                <intprop name="StyleSet">70</intprop>
+                                <enumprop name="Alignment">A661_CENTER</enumprop>
+                                <floatprop name="Value">0.0</floatprop>
+                                <intprop name="LegendAreaSizeX">0</intprop>
+                                <intprop name="MaxFormatStringLength">16</intprop>
+                                <intprop name="MaxLegendStringLength">16</intprop>
+                                <enumprop name="LegendPosition">A661_RIGHT</enumprop>
+                                <stringprop name="FormatString">###</stringprop>
+                                <stringprop name="LegendString"></stringprop>
+                            </model>
+                            <runtime>
+                                <connect msg_id="A661_VALUE" name="PowerLeft"/>
+                            </runtime>
+                            <children/>
+                        </widget>
+                        <widget name="PWR RIGHT" oid="634ae3dc-3a07-4816-bea1-ba8daf02dc77" type="NumericReadout">
+                            <model>
+                                <intprop name="WidgetIdent">6</intprop>
+                                <enumprop name="Visible">A661_TRUE</enumprop>
+                                <enumprop name="MotionAllowed">A661_TRUE</enumprop>
+                                <intprop name="PosX">3200</intprop>
+                                <intprop name="PosY">0</intprop>
+                                <intprop name="SizeX">1200</intprop>
+                                <intprop name="SizeY">600</intprop>
+                                <intprop name="RotationAngle">0</intprop>
+                                <intprop name="StyleSet">70</intprop>
+                                <enumprop name="Alignment">A661_CENTER</enumprop>
+                                <floatprop name="Value">0.0</floatprop>
+                                <intprop name="LegendAreaSizeX">0</intprop>
+                                <intprop name="MaxFormatStringLength">16</intprop>
+                                <intprop name="MaxLegendStringLength">16</intprop>
+                                <enumprop name="LegendPosition">A661_LEFT</enumprop>
+                                <stringprop name="FormatString">###</stringprop>
+                                <stringprop name="LegendString"></stringprop>
+                            </model>
+                            <runtime>
+                                <connect msg_id="A661_VALUE" name="PowerRight"/>
+                            </runtime>
+                            <children/>
+                        </widget>
+                    </children>
+                </widget>
+            </children>
+        </A661Layer>
+    </children>
+</specification>
+
+<!-- crc32 : 499853579 -->
+

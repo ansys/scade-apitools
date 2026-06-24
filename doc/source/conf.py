@@ -56,6 +56,11 @@ html_theme_options = {
         "own_page_level": "function",
         "class_content": "both",  # documentation in https://sphinxdocs.ansys.com/version/stable/user-guide/autoapi.html
         'member_order': 'alphabetical',
+        'ignore': [
+            # ignore generated files that might be present in the development environments
+            '*/src/ansys/scade/apitools/visitor/backup/*',
+            '*/src/ansys/scade/apitools/prop/backup/*',
+        ],
     },
 }
 
@@ -101,6 +106,13 @@ numpydoc_validation_checks = {
     # "SS05", # Summary must start with infinitive verb, not third person
     "RT02",  # The first line of the Returns section should contain only the
     # type, unless multiple values are being returned"
+}
+numpydoc_validation_exclude = {
+    # (partially) generated files: needs manual review
+    "a661visitor.",
+    "modelvisitor.",
+    "sdyaccess.",
+    "sdyvisitor.",
 }
 
 # lexer for Scade

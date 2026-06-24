@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?dom version="19.0" ?>
+
+<globals>
+    <type name="Mode" oid="426ecc22-c67b-4ba0-9c63-8e390a032e6a">
+        <definition>enum {VOLT, HERTZ, VOLTHERTZ}</definition>
+    </type>
+</globals>
+
+<!-- crc32 : 3116777870 -->
+

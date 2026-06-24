@@ -31,7 +31,7 @@ Test strategy:
 import pytest
 import scade.model.suite as suite
 
-# shall modify sys.path to access SCACE APIs
+# shall modify sys.path to access SCADE APIs
 import ansys.scade.apitools.expr as expr
 from conftest import load_session
 from test_utils import get_resources_dir

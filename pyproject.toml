@@ -39,6 +39,8 @@ tests = [
     "pytest-cov==4.1.0; python_version < '3.8'",
     "pytest==8.4.2; python_version >= '3.8'",
     "pytest-cov==7.1.0; python_version >= '3.8'",
+    # required for SCADE Display API
+    "pyparsing",
 ]
 doc = [
     "ansys-sphinx-theme[autoapi]==1.7.0; python_version >= '3.12'",
@@ -88,9 +90,23 @@ ignore = [
     "D203",  # One blank line required before class docstring.
     "D204"  # One blank line required after class docstring.
 ]
+exclude = [
+    # (partially) generated files: needs manual review
+    "a661visitor.py",
+    "modelvisitor.py",
+    "sdyaccess.py",
+    "sdyvisitor.py",
+]
 
 [tool.ruff.format]
 quote-style = "preserve"
+exclude = [
+    # (partially) generated files: needs manual review
+    "a661visitor.py",
+    "modelvisitor.py",
+    "sdyaccess.py",
+    "sdyvisitor.py",
+]
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
