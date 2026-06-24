@@ -59,7 +59,8 @@ class ConsistencyCheckService(SdyService):
             for prop in cls.sdy__properties:
                 features = prop.e_type.sdy__flatten_features
                 if not features:
-                    print('ignoring prop', cls.name, prop.name)
+                    # debug
+                    # print('ignoring prop', cls.name, prop.name)
                     continue
                 many = prop.upper_bound == -1
                 props.append(f"('{prop.sdy__attribute}', sdy.{prop.e_type.name}, {many})")
